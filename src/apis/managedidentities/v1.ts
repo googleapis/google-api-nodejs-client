@@ -156,6 +156,31 @@ export namespace managedidentities_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Certificate used to configure LDAPS.
+   */
+  export interface Schema$Certificate {
+    /**
+     * The certificate expire time.
+     */
+    expireTime?: string | null;
+    /**
+     * The issuer of this certificate.
+     */
+    issuingCertificate?: Schema$Certificate;
+    /**
+     * The certificate subject.
+     */
+    subject?: string | null;
+    /**
+     * The additional hostnames for the domain.
+     */
+    subjectAlternativeName?: string[] | null;
+    /**
+     * The certificate thumbprint which uniquely identifies the certificate.
+     */
+    thumbprint?: string | null;
+  }
+  /**
    * Time window specified for daily operations.
    */
   export interface Schema$DailyCycle {
@@ -581,6 +606,35 @@ export namespace managedidentities_v1 {
      * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
      */
     tier?: string | null;
+  }
+  /**
+   * LDAPSSettings represents the ldaps settings for domain resource. LDAP is the Lightweight Directory Access Protocol, defined in https://tools.ietf.org/html/rfc4511. The settings object configures LDAP over SSL/TLS, whether it is over port 636 or the StartTLS operation. If LDAPSSettings is being changed, it will be placed into the UPDATING state, which indicates that the resource is being reconciled. At this point, Get will reflect an intermediate state.
+   */
+  export interface Schema$LDAPSSettings {
+    /**
+     * Output only. The certificate used to configure LDAPS. Certificates can be chained with a maximum length of 15.
+     */
+    certificate?: Schema$Certificate;
+    /**
+     * Input only. The password used to encrypt the uploaded pfx certificate.
+     */
+    certificatePassword?: string | null;
+    /**
+     * Input only. The uploaded PKCS12-formatted certificate to configure LDAPS with. It will enable the domain controllers in this domain to accept LDAPS connections (either LDAP over SSL/TLS or the StartTLS operation). A valid certificate chain must form a valid x.509 certificate chain (or be comprised of a single self-signed certificate. It must be encrypted with either: 1) PBES2 + PBKDF2 + AES256 encryption and SHA256 PRF; or 2) pbeWithSHA1And3-KeyTripleDES-CBC Private key must be included for the leaf / single self-signed certificate. Note: For a fqdn your-example-domain.com, the wildcard fqdn is *.your-example-domain.com. Specifically the leaf certificate must have: - Either a blank subject or a subject with CN matching the wildcard fqdn. - Exactly two SANs - the fqdn and wildcard fqdn. - Encipherment and digital key signature key usages. - Server authentication extended key usage (OID=1.3.6.1.5.5.7.3.1) - Private key must be in one of the following formats: RSA, ECDSA, ED25519. - Private key must have appropriate key length: 2048 for RSA, 256 for ECDSA - Signature algorithm of the leaf certificate cannot be MD2, MD5 or SHA1.
+     */
+    certificatePfx?: string | null;
+    /**
+     * The resource name of the LDAPS settings. Uses the form: `projects/{project\}/locations/{location\}/domains/{domain\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The current state of this LDAPS settings.
+     */
+    state?: string | null;
+    /**
+     * Output only. Last update time.
+     */
+    updateTime?: string | null;
   }
   /**
    * Response message for ListDomains
@@ -2199,6 +2253,145 @@ export namespace managedidentities_v1 {
     }
 
     /**
+     * Gets the domain ldaps settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const managedidentities = google.managedidentities('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.getLdapssettings({
+     *       // Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     *       name: 'projects/my-project/locations/global/domains/my-domain',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "certificate": {},
+     *   //   "certificatePassword": "my_certificatePassword",
+     *   //   "certificatePfx": "my_certificatePfx",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getLdapssettings(
+      params: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getLdapssettings(
+      params?: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LDAPSSettings>;
+    getLdapssettings(
+      params: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getLdapssettings(
+      params: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
+      options: MethodOptions | BodyResponseCallback<Schema$LDAPSSettings>,
+      callback: BodyResponseCallback<Schema$LDAPSSettings>
+    ): void;
+    getLdapssettings(
+      params: Params$Resource$Projects$Locations$Global$Domains$Getldapssettings,
+      callback: BodyResponseCallback<Schema$LDAPSSettings>
+    ): void;
+    getLdapssettings(
+      callback: BodyResponseCallback<Schema$LDAPSSettings>
+    ): void;
+    getLdapssettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Domains$Getldapssettings
+        | BodyResponseCallback<Schema$LDAPSSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LDAPSSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LDAPSSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LDAPSSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Domains$Getldapssettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Getldapssettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://managedidentities.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/ldapssettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LDAPSSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LDAPSSettings>(parameters);
+      }
+    }
+
+    /**
      * Lists domains in a project.
      * @example
      * ```js
@@ -2370,7 +2563,7 @@ export namespace managedidentities_v1 {
      *   const res = await managedidentities.projects.locations.global.domains.patch({
      *     // Required. The unique name of the domain using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`.
      *     name: 'projects/my-project/locations/global/domains/my-domain',
-     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`
+     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3077,6 +3270,159 @@ export namespace managedidentities_v1 {
     }
 
     /**
+     * Patches a single ldaps settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const managedidentities = google.managedidentities('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.updateLdapssettings(
+     *       {
+     *         // The resource name of the LDAPS settings. Uses the form: `projects/{project\}/locations/{location\}/domains/{domain\}`.
+     *         name: 'projects/my-project/locations/global/domains/my-domain',
+     *         // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "certificate": {},
+     *           //   "certificatePassword": "my_certificatePassword",
+     *           //   "certificatePfx": "my_certificatePfx",
+     *           //   "name": "my_name",
+     *           //   "state": "my_state",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateLdapssettings(
+      params: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateLdapssettings(
+      params?: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateLdapssettings(
+      params: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateLdapssettings(
+      params: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateLdapssettings(
+      params: Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateLdapssettings(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateLdapssettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://managedidentities.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/ldapssettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Validates a trust state, that the target domain is reachable, and that the target domain is able to accept incoming trust requests.
      * @example
      * ```js
@@ -3286,6 +3632,13 @@ export namespace managedidentities_v1 {
      */
     resource?: string;
   }
+  export interface Params$Resource$Projects$Locations$Global$Domains$Getldapssettings
+    extends StandardParameters {
+    /**
+     * Required. The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Global$Domains$List
     extends StandardParameters {
     /**
@@ -3316,7 +3669,7 @@ export namespace managedidentities_v1 {
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks`
+     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`
      */
     updateMask?: string;
 
@@ -3372,6 +3725,22 @@ export namespace managedidentities_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Domains$Updateldapssettings
+    extends StandardParameters {
+    /**
+     * The resource name of the LDAPS settings. Uses the form: `projects/{project\}/locations/{location\}/domains/{domain\}`.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LDAPSSettings;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Validatetrust
     extends StandardParameters {
