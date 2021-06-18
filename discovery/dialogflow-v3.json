@@ -3553,7 +3553,7 @@
       }
     }
   },
-  "revision": "20210601",
+  "revision": "20210611",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Agent": {
@@ -3565,7 +3565,7 @@
           "type": "string"
         },
         "defaultLanguageCode": {
-          "description": "Immutable. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/cx/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the Agents.UpdateAgent method.",
+          "description": "Required. Immutable. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/cx/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the Agents.UpdateAgent method.",
           "type": "string"
         },
         "description": {
@@ -3916,6 +3916,10 @@
       "description": "The message returned from the DetectIntent method.",
       "id": "GoogleCloudDialogflowCxV3DetectIntentResponse",
       "properties": {
+        "allowCancellation": {
+          "description": "Indicates whether the partial response can be cancelled when a later response arrives. e.g. if the agent specified some music as partial response, it can be cancelled.",
+          "type": "boolean"
+        },
         "outputAudio": {
           "description": "The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.response_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty. In some scenarios, multiple output audio fields may be present in the response structure. In these cases, only the top-most-level audio output has content.",
           "format": "byte",
@@ -3931,6 +3935,20 @@
         },
         "responseId": {
           "description": "Output only. The unique identifier of the response. It can be used to locate a response in the training example set or for reporting issues.",
+          "type": "string"
+        },
+        "responseType": {
+          "description": "Response type.",
+          "enum": [
+            "RESPONSE_TYPE_UNSPECIFIED",
+            "PARTIAL",
+            "FINAL"
+          ],
+          "enumDescriptions": [
+            "Not specified. This should never happen.",
+            "Partial response. e.g. Aggregated responses in a Fulfillment that enables `return_partial_response` can be returned as partial response. WARNING: partial response is not eligible for barge-in.",
+            "Final response."
+          ],
           "type": "string"
         }
       },
@@ -4650,6 +4668,10 @@
             "$ref": "GoogleCloudDialogflowCxV3ResponseMessage"
           },
           "type": "array"
+        },
+        "returnPartialResponses": {
+          "description": "Whether Dialogflow should return currently queued fulfillment response messages in streaming APIs. If a webhook is specified, it happens before Dialogflow invokes webhook. Warning: 1) This flag only affects streaming API. Responses are still queued and returned once in non-streaming API. 2) The flag can be enabled in any fulfillment but only the first 3 partial responses will be returned. You may only want to apply it to fulfillments that have slow webhooks.",
+          "type": "boolean"
         },
         "setParameterActions": {
           "description": "Set parameter values before executing the webhook.",
@@ -6153,7 +6175,7 @@
           "type": "string"
         },
         "inspectTemplate": {
-          "description": "DLP inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`",
+          "description": "DLP inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`",
           "type": "string"
         },
         "name": {
@@ -7598,6 +7620,10 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage"
           },
           "type": "array"
+        },
+        "returnPartialResponses": {
+          "description": "Whether Dialogflow should return currently queued fulfillment response messages in streaming APIs. If a webhook is specified, it happens before Dialogflow invokes webhook. Warning: 1) This flag only affects streaming API. Responses are still queued and returned once in non-streaming API. 2) The flag can be enabled in any fulfillment but only the first 3 partial responses will be returned. You may only want to apply it to fulfillments that have slow webhooks.",
+          "type": "boolean"
         },
         "setParameterActions": {
           "description": "Set parameter values before executing the webhook.",
