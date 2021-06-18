@@ -179,7 +179,7 @@ export namespace cloudasset_v1p1beta1 {
    */
   export interface Schema$Explanation {
     /**
-     * The map from roles to their included permission matching the permission query (e.g. containing `policy.role.permissions:`). A sample role string: "roles/compute.instanceAdmin". The roles can also be found in the returned `policy` bindings. Note that the map is populated only if requesting with a permission query.
+     * The map from roles to their included permission matching the permission query (e.g. containing `policy.role.permissions:`). Example role string: "roles/compute.instanceAdmin". The roles can also be found in the returned `policy` bindings. Note that the map is populated only if requesting with a permission query.
      */
     matchedPermissions?: {[key: string]: Schema$Permissions} | null;
   }
@@ -748,19 +748,19 @@ export namespace cloudasset_v1p1beta1 {
     enableRestriction?: boolean | null;
   }
   /**
-   * The result for a IAM Policy search.
+   * The result for an IAM policy search.
    */
   export interface Schema$IamPolicySearchResult {
     /**
-     * Explanation about the IAM policy search result. It contains additional information to explain why the search result matches the query.
+     * Explanation about the IAM policy search result. It contains additional information that explains why the search result matches the query.
      */
     explanation?: Schema$Explanation;
     /**
-     * The IAM policy directly set on the given resource. Note that the original IAM policy can contain multiple bindings. This only contains the bindings that match the given query. For queries that don't contain a constrain on policies (e.g. an empty query), this contains all the bindings.
+     * The IAM policy attached to the specified resource. Note that the original IAM policy can contain multiple bindings. This only contains the bindings that match the given query. For queries that don't contain a constraint on policies (e.g. an empty query), this contains all the bindings.
      */
     policy?: Schema$Policy;
     /**
-     * The project that the associated GCP resource belongs to, in the form of `projects/{project_number\}`. If an IAM policy is set on a resource (like VM instance, Cloud Storage bucket), the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, the project field will be empty.
+     * The project that the associated Google Cloud resource belongs to, in the form of `projects/{project_number\}`. If an IAM policy is set on a resource -- such as a Compute Engine instance or a Cloud Storage bucket -- the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, the project field will be empty.
      */
     project?: string | null;
     /**
@@ -769,11 +769,11 @@ export namespace cloudasset_v1p1beta1 {
     resource?: string | null;
   }
   /**
-   * IAM permissions
+   * IAM permissions.
    */
   export interface Schema$Permissions {
     /**
-     * A list of permissions. A sample permission string: "compute.disk.get".
+     * A list of permissions. Example permission string: "compute.disk.get".
      */
     permissions?: string[] | null;
   }

@@ -207,7 +207,7 @@
       }
     }
   },
-  "revision": "20210426",
+  "revision": "20210611",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AnalyzeIamPolicyLongrunningResponse": {
@@ -294,7 +294,7 @@
           "additionalProperties": {
             "$ref": "Permissions"
           },
-          "description": "The map from roles to their included permission matching the permission query (e.g. containing `policy.role.permissions:`). A sample role string: \"roles/compute.instanceAdmin\". The roles can also be found in the returned `policy` bindings. Note that the map is populated only if requesting with a permission query.",
+          "description": "The map from roles to their included permission matching the permission query (e.g. containing `policy.role.permissions:`). Example role string: \"roles/compute.instanceAdmin\". The roles can also be found in the returned `policy` bindings. Note that the map is populated only if requesting with a permission query.",
           "type": "object"
         }
       },
@@ -1107,19 +1107,19 @@
       "type": "object"
     },
     "IamPolicySearchResult": {
-      "description": "The result for a IAM Policy search.",
+      "description": "The result for an IAM policy search.",
       "id": "IamPolicySearchResult",
       "properties": {
         "explanation": {
           "$ref": "Explanation",
-          "description": "Explanation about the IAM policy search result. It contains additional information to explain why the search result matches the query."
+          "description": "Explanation about the IAM policy search result. It contains additional information that explains why the search result matches the query."
         },
         "policy": {
           "$ref": "Policy",
-          "description": "The IAM policy directly set on the given resource. Note that the original IAM policy can contain multiple bindings. This only contains the bindings that match the given query. For queries that don't contain a constrain on policies (e.g. an empty query), this contains all the bindings."
+          "description": "The IAM policy attached to the specified resource. Note that the original IAM policy can contain multiple bindings. This only contains the bindings that match the given query. For queries that don't contain a constraint on policies (e.g. an empty query), this contains all the bindings."
         },
         "project": {
-          "description": "The project that the associated GCP resource belongs to, in the form of `projects/{project_number}`. If an IAM policy is set on a resource (like VM instance, Cloud Storage bucket), the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, the project field will be empty.",
+          "description": "The project that the associated Google Cloud resource belongs to, in the form of `projects/{project_number}`. If an IAM policy is set on a resource -- such as a Compute Engine instance or a Cloud Storage bucket -- the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, the project field will be empty.",
           "type": "string"
         },
         "resource": {
@@ -1130,11 +1130,11 @@
       "type": "object"
     },
     "Permissions": {
-      "description": "IAM permissions",
+      "description": "IAM permissions.",
       "id": "Permissions",
       "properties": {
         "permissions": {
-          "description": "A list of permissions. A sample permission string: \"compute.disk.get\".",
+          "description": "A list of permissions. Example permission string: \"compute.disk.get\".",
           "items": {
             "type": "string"
           },
