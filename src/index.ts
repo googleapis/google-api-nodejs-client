@@ -300,6 +300,7 @@ export {remotebuildexecution_v1} from './apis/remotebuildexecution/v1';
 export {remotebuildexecution_v1alpha} from './apis/remotebuildexecution/v1alpha';
 export {remotebuildexecution_v2} from './apis/remotebuildexecution/v2';
 export {reseller_v1} from './apis/reseller/v1';
+export {resourcesettings_v1} from './apis/resourcesettings/v1';
 export {retail_v2} from './apis/retail/v2';
 export {retail_v2alpha} from './apis/retail/v2alpha';
 export {retail_v2beta} from './apis/retail/v2beta';

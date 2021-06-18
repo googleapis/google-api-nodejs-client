@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20210520",
+  "revision": "20210617",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdUnit": {
@@ -608,7 +608,11 @@
               "MEDIATION_GROUP",
               "COUNTRY",
               "FORMAT",
-              "PLATFORM"
+              "PLATFORM",
+              "MOBILE_OS_VERSION",
+              "GMA_SDK_VERSION",
+              "APP_VERSION_NAME",
+              "SERVING_RESTRICTION"
             ],
             "enumDescriptions": [
               "Default value for an unset field. Do not use.",
@@ -622,7 +626,11 @@
               "The unique ID of the mediation group (for example, \"ca-app-pub-1234:mg:1234\" and \"AdMob (default)\" as label value).",
               "CLDR country code of the place where the ad views/clicks occur (for example, \"US\" or \"FR\"). This is a geography dimension.",
               "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension.",
-              "Mobile OS platform of the app (for example, \"Android\" or \"iOS\")."
+              "Mobile OS platform of the app (for example, \"Android\" or \"iOS\").",
+              "Mobile operating system version, e.g. \"iOS 13.5.1\". **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+              "GMA SDK version, e.g. \"iOS 7.62.0\". **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+              "For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString. **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+              "Restriction mode for ads serving (e.g. \"Non-personalized ads\")."
             ],
             "type": "string"
           },
@@ -698,7 +706,11 @@
             "MEDIATION_GROUP",
             "COUNTRY",
             "FORMAT",
-            "PLATFORM"
+            "PLATFORM",
+            "MOBILE_OS_VERSION",
+            "GMA_SDK_VERSION",
+            "APP_VERSION_NAME",
+            "SERVING_RESTRICTION"
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
@@ -712,7 +724,11 @@
             "The unique ID of the mediation group (for example, \"ca-app-pub-1234:mg:1234\" and \"AdMob (default)\" as label value).",
             "CLDR country code of the place where the ad views/clicks occur (for example, \"US\" or \"FR\"). This is a geography dimension.",
             "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension.",
-            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\")."
+            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\").",
+            "Mobile operating system version, e.g. \"iOS 13.5.1\". **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+            "GMA SDK version, e.g. \"iOS 7.62.0\". **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+            "For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString. **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+            "Restriction mode for ads serving (e.g. \"Non-personalized ads\")."
           ],
           "type": "string"
         },
@@ -741,7 +757,11 @@
             "MEDIATION_GROUP",
             "COUNTRY",
             "FORMAT",
-            "PLATFORM"
+            "PLATFORM",
+            "MOBILE_OS_VERSION",
+            "GMA_SDK_VERSION",
+            "APP_VERSION_NAME",
+            "SERVING_RESTRICTION"
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
@@ -755,7 +775,11 @@
             "The unique ID of the mediation group (for example, \"ca-app-pub-1234:mg:1234\" and \"AdMob (default)\" as label value).",
             "CLDR country code of the place where the ad views/clicks occur (for example, \"US\" or \"FR\"). This is a geography dimension.",
             "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension.",
-            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\")."
+            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\").",
+            "Mobile operating system version, e.g. \"iOS 13.5.1\". **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+            "GMA SDK version, e.g. \"iOS 7.62.0\". **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+            "For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString. **Warning:** The dimension is incompatible with [ESTIMATED_EARNINGS](#Metric.ENUM_VALUES.ESTIMATED_EARNINGS), [OBSERVED_ECPM](#Metric.ENUM_VALUES.OBSERVED_ECPM) metrics.",
+            "Restriction mode for ads serving (e.g. \"Non-personalized ads\")."
           ],
           "type": "string"
         },
@@ -830,7 +854,11 @@
               "AD_TYPE",
               "COUNTRY",
               "FORMAT",
-              "PLATFORM"
+              "PLATFORM",
+              "MOBILE_OS_VERSION",
+              "GMA_SDK_VERSION",
+              "APP_VERSION_NAME",
+              "SERVING_RESTRICTION"
             ],
             "enumDescriptions": [
               "Default value for an unset field. Do not use.",
@@ -842,7 +870,11 @@
               "Type of the ad (for example, \"text\" or \"image\"), an ad delivery dimension. **Warning:** The dimension is incompatible with [AD_REQUESTS](#Metric.ENUM_VALUES.AD_REQUESTS), [MATCH_RATE](#Metric.ENUM_VALUES.MATCH_RATE) and [IMPRESSION_RPM](#Metric.ENUM_VALUES.IMPRESSION_RPM) metrics.",
               "CLDR country code of the place where the ad views/clicks occur (for example, \"US\" or \"FR\"). This is a geography dimension.",
               "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension.",
-              "Mobile OS platform of the app (for example, \"Android\" or \"iOS\")."
+              "Mobile OS platform of the app (for example, \"Android\" or \"iOS\").",
+              "Mobile operating system version, e.g. \"iOS 13.5.1\".",
+              "GMA SDK version, e.g. \"iOS 7.62.0\".",
+              "For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString.",
+              "Restriction mode for ads serving (e.g. \"Non-personalized ads\")."
             ],
             "type": "string"
           },
@@ -918,7 +950,11 @@
             "AD_TYPE",
             "COUNTRY",
             "FORMAT",
-            "PLATFORM"
+            "PLATFORM",
+            "MOBILE_OS_VERSION",
+            "GMA_SDK_VERSION",
+            "APP_VERSION_NAME",
+            "SERVING_RESTRICTION"
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
@@ -930,7 +966,11 @@
             "Type of the ad (for example, \"text\" or \"image\"), an ad delivery dimension. **Warning:** The dimension is incompatible with [AD_REQUESTS](#Metric.ENUM_VALUES.AD_REQUESTS), [MATCH_RATE](#Metric.ENUM_VALUES.MATCH_RATE) and [IMPRESSION_RPM](#Metric.ENUM_VALUES.IMPRESSION_RPM) metrics.",
             "CLDR country code of the place where the ad views/clicks occur (for example, \"US\" or \"FR\"). This is a geography dimension.",
             "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension.",
-            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\")."
+            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\").",
+            "Mobile operating system version, e.g. \"iOS 13.5.1\".",
+            "GMA SDK version, e.g. \"iOS 7.62.0\".",
+            "For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString.",
+            "Restriction mode for ads serving (e.g. \"Non-personalized ads\")."
           ],
           "type": "string"
         },
@@ -957,7 +997,11 @@
             "AD_TYPE",
             "COUNTRY",
             "FORMAT",
-            "PLATFORM"
+            "PLATFORM",
+            "MOBILE_OS_VERSION",
+            "GMA_SDK_VERSION",
+            "APP_VERSION_NAME",
+            "SERVING_RESTRICTION"
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
@@ -969,7 +1013,11 @@
             "Type of the ad (for example, \"text\" or \"image\"), an ad delivery dimension. **Warning:** The dimension is incompatible with [AD_REQUESTS](#Metric.ENUM_VALUES.AD_REQUESTS), [MATCH_RATE](#Metric.ENUM_VALUES.MATCH_RATE) and [IMPRESSION_RPM](#Metric.ENUM_VALUES.IMPRESSION_RPM) metrics.",
             "CLDR country code of the place where the ad views/clicks occur (for example, \"US\" or \"FR\"). This is a geography dimension.",
             "Format of the ad unit (for example, \"banner\", \"native\"), an ad delivery dimension.",
-            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\")."
+            "Mobile OS platform of the app (for example, \"Android\" or \"iOS\").",
+            "Mobile operating system version, e.g. \"iOS 13.5.1\".",
+            "GMA SDK version, e.g. \"iOS 7.62.0\".",
+            "For Android, the app version name can be found in versionName in PackageInfo. For iOS, the app version name can be found in CFBundleShortVersionString.",
+            "Restriction mode for ads serving (e.g. \"Non-personalized ads\")."
           ],
           "type": "string"
         },
