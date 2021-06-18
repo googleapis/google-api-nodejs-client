@@ -1440,6 +1440,10 @@ export namespace container_v1beta1 {
      */
     privateIpv6GoogleAccess?: string | null;
     /**
+     * ServiceExternalIPsConfig specifies if services with externalIPs field are blocked or not.
+     */
+    serviceExternalIpsConfig?: Schema$ServiceExternalIPsConfig;
+    /**
      * Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
@@ -2084,6 +2088,15 @@ export namespace container_v1beta1 {
      * Maps of Kubernetes version and supported Windows server versions.
      */
     windowsVersionMaps?: {[key: string]: Schema$WindowsVersions} | null;
+  }
+  /**
+   * Config to block services with externalIPs field.
+   */
+  export interface Schema$ServiceExternalIPsConfig {
+    /**
+     * Whether Services with ExternalIPs field are allowed or not.
+     */
+    enabled?: boolean | null;
   }
   /**
    * SetAddonsRequest sets the addons associated with the cluster.
