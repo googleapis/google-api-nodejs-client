@@ -433,6 +433,10 @@ export namespace analyticsadmin_v1alpha {
      */
     createTime?: string | null;
     /**
+     * Output only. If set to true, this conversion event refers to a custom event. If set to false, this conversion event refers to a default event in GA. Default events typically have special meaning in GA. Default events are usually created for you by the GA system, but in some cases can be created by property admins. Custom events count towards the maximum number of custom conversion events that may be created per property.
+     */
+    custom?: boolean | null;
+    /**
      * Immutable. The event name for this conversion event. Examples: 'click', 'purchase'
      */
     eventName?: string | null;
@@ -6570,6 +6574,7 @@ export namespace analyticsadmin_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "custom": false,
      *       //   "eventName": "my_eventName",
      *       //   "isDeletable": false,
      *       //   "name": "my_name"
@@ -6581,6 +6586,7 @@ export namespace analyticsadmin_v1alpha {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "custom": false,
      *   //   "eventName": "my_eventName",
      *   //   "isDeletable": false,
      *   //   "name": "my_name"
@@ -6854,6 +6860,7 @@ export namespace analyticsadmin_v1alpha {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "custom": false,
      *   //   "eventName": "my_eventName",
      *   //   "isDeletable": false,
      *   //   "name": "my_name"
