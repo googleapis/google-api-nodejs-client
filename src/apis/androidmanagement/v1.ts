@@ -234,7 +234,7 @@ export namespace androidmanagement_v1 {
      */
     accessibleTrackIds?: string[] | null;
     /**
-     * This feature is not generally available yet.
+     * Controls the auto-update mode for the app.
      */
     autoUpdateMode?: string | null;
     /**
@@ -525,6 +525,10 @@ export namespace androidmanagement_v1 {
      * Reports for apps installed on the device. This information is only available when application_reports_enabled is true in the device's policy.
      */
     applicationReports?: Schema$ApplicationReport[];
+    /**
+     * The password requirements currently applied to the device. The applied requirements may be slightly different from those specified in passwordPolicies in some cases. fieldPath is set based on passwordPolicies.
+     */
+    appliedPasswordPolicies?: Schema$PasswordRequirements[];
     /**
      * The name of the policy currently applied to the device.
      */
@@ -1431,7 +1435,7 @@ export namespace androidmanagement_v1 {
      */
     androidDevicePolicyTracks?: string[] | null;
     /**
-     * The app auto update policy, which controls when automatic app updates can be applied.
+     * Deprecated. Use autoUpdateMode instead.When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect.The app auto update policy, which controls when automatic app updates can be applied.
      */
     appAutoUpdatePolicy?: string | null;
     /**
@@ -3277,6 +3281,7 @@ export namespace androidmanagement_v1 {
      *   // {
      *   //   "apiLevel": 0,
      *   //   "applicationReports": [],
+     *   //   "appliedPasswordPolicies": [],
      *   //   "appliedPolicyName": "my_appliedPolicyName",
      *   //   "appliedPolicyVersion": "my_appliedPolicyVersion",
      *   //   "appliedState": "my_appliedState",
@@ -3725,6 +3730,7 @@ export namespace androidmanagement_v1 {
      *       // {
      *       //   "apiLevel": 0,
      *       //   "applicationReports": [],
+     *       //   "appliedPasswordPolicies": [],
      *       //   "appliedPolicyName": "my_appliedPolicyName",
      *       //   "appliedPolicyVersion": "my_appliedPolicyVersion",
      *       //   "appliedState": "my_appliedState",
@@ -3766,6 +3772,7 @@ export namespace androidmanagement_v1 {
      *   // {
      *   //   "apiLevel": 0,
      *   //   "applicationReports": [],
+     *   //   "appliedPasswordPolicies": [],
      *   //   "appliedPolicyName": "my_appliedPolicyName",
      *   //   "appliedPolicyVersion": "my_appliedPolicyVersion",
      *   //   "appliedState": "my_appliedState",
