@@ -317,7 +317,7 @@
       }
     }
   },
-  "revision": "20210329",
+  "revision": "20210616",
   "rootUrl": "https://firebasedatabase.googleapis.com/",
   "schemas": {
     "DatabaseInstance": {
@@ -329,7 +329,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`. Currently the only supported location is 'us-central1'.",
+          "description": "The fully qualified resource name of the database instance, in the form: `projects/{project-number}/locations/{location-id}/instances/{database-id}`.",
           "type": "string"
         },
         "project": {

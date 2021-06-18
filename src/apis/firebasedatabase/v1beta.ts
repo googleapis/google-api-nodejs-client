@@ -134,7 +134,7 @@ export namespace firebasedatabase_v1beta {
      */
     databaseUrl?: string | null;
     /**
-     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`. Currently the only supported location is 'us-central1'.
+     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`.
      */
     name?: string | null;
     /**
