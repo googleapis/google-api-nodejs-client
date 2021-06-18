@@ -1985,7 +1985,7 @@ export namespace appengine_v1 {
      *   const res = await appengine.apps.patch({
      *     // Part of `name`. Name of the Application resource to update. Example: apps/myapp.
      *     appsId: 'placeholder-value',
-     *     // Standard field mask for the set of fields to be updated.
+     *     // Required. Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2265,7 +2265,7 @@ export namespace appengine_v1 {
      */
     appsId?: string;
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
 
@@ -3888,7 +3888,7 @@ export namespace appengine_v1 {
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     domainMappingsId: 'placeholder-value',
-     *     // Standard field mask for the set of fields to be updated.
+     *     // Required. Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4069,7 +4069,7 @@ export namespace appengine_v1 {
      */
     domainMappingsId?: string;
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
 
@@ -6127,7 +6127,7 @@ export namespace appengine_v1 {
      *     migrateTraffic: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     servicesId: 'placeholder-value',
-     *     // Standard field mask for the set of fields to be updated.
+     *     // Required. Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6297,7 +6297,7 @@ export namespace appengine_v1 {
      */
     servicesId?: string;
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
 
