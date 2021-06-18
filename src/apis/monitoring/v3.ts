@@ -1374,6 +1374,23 @@ export namespace monitoring_v3 {
     type?: string | null;
   }
   /**
+   * Contains metadata for longrunning operation for the edit Metrics Scope endpoints.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * The time when the batch request was received.
+     */
+    createTime?: string | null;
+    /**
+     * Current state of the batch operation.
+     */
+    state?: string | null;
+    /**
+     * The time when the operation result was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
    */
   export interface Schema$Option {
@@ -1550,6 +1567,10 @@ export namespace monitoring_v3 {
      * Configuration for how to query telemetry on a Service.
      */
     telemetry?: Schema$Telemetry;
+    /**
+     * Labels which have been used to annotate the service. Label keys must start with a letter. Label keys and values may contain lowercase letters, numbers, underscores, and dashes. Label keys and values have a maximum length of 63 characters, and must be less than 128 bytes in size. Up to 64 label entries may be stored. For labels which do not have a semantic value, the empty string may be supplied for the label value.
+     */
+    userLabels?: {[key: string]: string} | null;
   }
   /**
    * A Service-Level Indicator (SLI) describes the "performance" of a service. For some services, the SLI is well-defined. In such cases, the SLI can be described easily by referencing the well-known SLI and providing the needed parameters. Alternatively, a "custom" SLI can be defined with a query to the underlying metric store. An SLI is defined to be good_service / total_service over any queried time interval. The value of performance always falls into the range 0 <= performance <= 1. A custom SLI describes how to compute this ratio, whether this is by dividing values from a pair of time series, cutting a Distribution into good and bad counts, or counting time windows in which the service complies with a criterion. For separation of concerns, a single Service-Level Indicator measures performance for only one aspect of service quality, such as fraction of successful queries or fast-enough queries.
@@ -1596,6 +1617,10 @@ export namespace monitoring_v3 {
      * The definition of good service, used to measure and calculate the quality of the Service's performance with respect to a single aspect of service quality.
      */
     serviceLevelIndicator?: Schema$ServiceLevelIndicator;
+    /**
+     * Labels which have been used to annotate the service-level objective. Label keys must start with a letter. Label keys and values may contain lowercase letters, numbers, underscores, and dashes. Label keys and values have a maximum length of 63 characters, and must be less than 128 bytes in size. Up to 64 label entries may be stored. For labels which do not have a semantic value, the empty string may be supplied for the label value.
+     */
+    userLabels?: {[key: string]: string} | null;
   }
   /**
    * SourceContext represents information about the source of a protobuf element, like the file in which it is defined.
@@ -8440,7 +8465,8 @@ export namespace monitoring_v3 {
      *       //   "istioCanonicalService": {},
      *       //   "meshIstio": {},
      *       //   "name": "my_name",
-     *       //   "telemetry": {}
+     *       //   "telemetry": {},
+     *       //   "userLabels": {}
      *       // }
      *     },
      *   });
@@ -8456,7 +8482,8 @@ export namespace monitoring_v3 {
      *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
-     *   //   "telemetry": {}
+     *   //   "telemetry": {},
+     *   //   "userLabels": {}
      *   // }
      * }
      *
@@ -8722,7 +8749,8 @@ export namespace monitoring_v3 {
      *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
-     *   //   "telemetry": {}
+     *   //   "telemetry": {},
+     *   //   "userLabels": {}
      *   // }
      * }
      *
@@ -9004,7 +9032,8 @@ export namespace monitoring_v3 {
      *       //   "istioCanonicalService": {},
      *       //   "meshIstio": {},
      *       //   "name": "my_name",
-     *       //   "telemetry": {}
+     *       //   "telemetry": {},
+     *       //   "userLabels": {}
      *       // }
      *     },
      *   });
@@ -9020,7 +9049,8 @@ export namespace monitoring_v3 {
      *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
-     *   //   "telemetry": {}
+     *   //   "telemetry": {},
+     *   //   "userLabels": {}
      *   // }
      * }
      *
@@ -9223,7 +9253,8 @@ export namespace monitoring_v3 {
      *       //   "goal": {},
      *       //   "name": "my_name",
      *       //   "rollingPeriod": "my_rollingPeriod",
-     *       //   "serviceLevelIndicator": {}
+     *       //   "serviceLevelIndicator": {},
+     *       //   "userLabels": {}
      *       // }
      *     },
      *   });
@@ -9236,7 +9267,8 @@ export namespace monitoring_v3 {
      *   //   "goal": {},
      *   //   "name": "my_name",
      *   //   "rollingPeriod": "my_rollingPeriod",
-     *   //   "serviceLevelIndicator": {}
+     *   //   "serviceLevelIndicator": {},
+     *   //   "userLabels": {}
      *   // }
      * }
      *
@@ -9508,7 +9540,8 @@ export namespace monitoring_v3 {
      *   //   "goal": {},
      *   //   "name": "my_name",
      *   //   "rollingPeriod": "my_rollingPeriod",
-     *   //   "serviceLevelIndicator": {}
+     *   //   "serviceLevelIndicator": {},
+     *   //   "userLabels": {}
      *   // }
      * }
      *
@@ -9800,7 +9833,8 @@ export namespace monitoring_v3 {
      *       //   "goal": {},
      *       //   "name": "my_name",
      *       //   "rollingPeriod": "my_rollingPeriod",
-     *       //   "serviceLevelIndicator": {}
+     *       //   "serviceLevelIndicator": {},
+     *       //   "userLabels": {}
      *       // }
      *     },
      *   });
@@ -9813,7 +9847,8 @@ export namespace monitoring_v3 {
      *   //   "goal": {},
      *   //   "name": "my_name",
      *   //   "rollingPeriod": "my_rollingPeriod",
-     *   //   "serviceLevelIndicator": {}
+     *   //   "serviceLevelIndicator": {},
+     *   //   "userLabels": {}
      *   // }
      * }
      *

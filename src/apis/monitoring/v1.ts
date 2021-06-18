@@ -355,6 +355,23 @@ export namespace monitoring_v1 {
     tiles?: Schema$Tile[];
   }
   /**
+   * Contains metadata for longrunning operation for the edit Metrics Scope endpoints.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * The time when the batch request was received.
+     */
+    createTime?: string | null;
+    /**
+     * Current state of the batch operation.
+     */
+    state?: string | null;
+    /**
+     * The time when the operation result was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
    */
   export interface Schema$Option {
