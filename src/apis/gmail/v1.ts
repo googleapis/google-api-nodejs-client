@@ -1762,7 +1762,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.drafts.list({
      *     // Include drafts from `SPAM` and `TRASH` in the results.
      *     includeSpamTrash: 'placeholder-value',
-     *     // Maximum number of drafts to return.
+     *     // Maximum number of drafts to return. This field defaults to 100. The maximum allowed value for this field is 500.
      *     maxResults: 'placeholder-value',
      *     // Page token to retrieve a specific page of results in the list.
      *     pageToken: 'placeholder-value',
@@ -2246,7 +2246,7 @@ export namespace gmail_v1 {
      */
     includeSpamTrash?: boolean;
     /**
-     * Maximum number of drafts to return.
+     * Maximum number of drafts to return. This field defaults to 100. The maximum allowed value for this field is 500.
      */
     maxResults?: number;
     /**
@@ -2363,7 +2363,7 @@ export namespace gmail_v1 {
      *     historyTypes: 'placeholder-value',
      *     // Only return messages with a label matching the ID.
      *     labelId: 'placeholder-value',
-     *     // The maximum number of history records to return.
+     *     // Maximum number of history records to return. This field defaults to 100. The maximum allowed value for this field is 500.
      *     maxResults: 'placeholder-value',
      *     // Page token to retrieve a specific page of results in the list.
      *     pageToken: 'placeholder-value',
@@ -2488,7 +2488,7 @@ export namespace gmail_v1 {
      */
     labelId?: string;
     /**
-     * The maximum number of history records to return.
+     * Maximum number of history records to return. This field defaults to 100. The maximum allowed value for this field is 500.
      */
     maxResults?: number;
     /**
@@ -4399,7 +4399,7 @@ export namespace gmail_v1 {
      *     includeSpamTrash: 'placeholder-value',
      *     // Only return messages with labels that match all of the specified label IDs.
      *     labelIds: 'placeholder-value',
-     *     // Maximum number of messages to return.
+     *     // Maximum number of messages to return. This field defaults to 100. The maximum allowed value for this field is 500.
      *     maxResults: 'placeholder-value',
      *     // Page token to retrieve a specific page of results in the list.
      *     pageToken: 'placeholder-value',
@@ -5256,7 +5256,7 @@ export namespace gmail_v1 {
      */
     labelIds?: string[];
     /**
-     * Maximum number of messages to return.
+     * Maximum number of messages to return. This field defaults to 100. The maximum allowed value for this field is 500.
      */
     maxResults?: number;
     /**
@@ -10961,7 +10961,7 @@ export namespace gmail_v1 {
      *     includeSpamTrash: 'placeholder-value',
      *     // Only return threads with labels that match all of the specified label IDs.
      *     labelIds: 'placeholder-value',
-     *     // Maximum number of threads to return.
+     *     // Maximum number of threads to return. This field defaults to 100. The maximum allowed value for this field is 500.
      *     maxResults: 'placeholder-value',
      *     // Page token to retrieve a specific page of results in the list.
      *     pageToken: 'placeholder-value',
@@ -11533,7 +11533,7 @@ export namespace gmail_v1 {
      */
     labelIds?: string[];
     /**
-     * Maximum number of threads to return.
+     * Maximum number of threads to return. This field defaults to 100. The maximum allowed value for this field is 500.
      */
     maxResults?: number;
     /**
