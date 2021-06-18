@@ -1,5 +1,21 @@
 # Changelog
 
+## [3.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/run-v2.0.1...run-v3.0.0) (2021-06-18)
+
+
+### ⚠ BREAKING CHANGES
+
+* **run:** This release has breaking changes.
+
+### Features
+
+* **run:** update the API ([526d16c](https://www.github.com/googleapis/google-api-nodejs-client/commit/526d16c050fed481e50341a8a27f25c033ffa757))
+
+
+### Bug Fixes
+
+* **run:** update the API ([995c285](https://www.github.com/googleapis/google-api-nodejs-client/commit/995c28501297aff1cc4b2edaa328d16b77dcc5a4))
+
 ### [2.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/run-v2.0.0...run-v2.0.1) (2021-05-23)
 
 
