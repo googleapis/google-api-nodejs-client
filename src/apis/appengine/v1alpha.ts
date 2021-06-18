@@ -2183,7 +2183,7 @@ export namespace appengine_v1alpha {
      *     domainMappingsId: 'placeholder-value',
      *     // Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated. Only applicable if ssl_settings.certificate_id is specified in the update mask.
      *     noManagedCertificate: 'placeholder-value',
-     *     // Standard field mask for the set of fields to be updated.
+     *     // Required. Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2373,7 +2373,7 @@ export namespace appengine_v1alpha {
      */
     noManagedCertificate?: boolean;
     /**
-     * Standard field mask for the set of fields to be updated.
+     * Required. Standard field mask for the set of fields to be updated.
      */
     updateMask?: string;
 

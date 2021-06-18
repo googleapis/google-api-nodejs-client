@@ -528,7 +528,7 @@
                   "type": "boolean"
                 },
                 "updateMask": {
-                  "description": "Standard field mask for the set of fields to be updated.",
+                  "description": "Required. Standard field mask for the set of fields to be updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -708,7 +708,7 @@
       }
     }
   },
-  "revision": "20210410",
+  "revision": "20210613",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {

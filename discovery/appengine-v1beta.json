@@ -171,7 +171,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Standard field mask for the set of fields to be updated.",
+              "description": "Required. Standard field mask for the set of fields to be updated.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -624,7 +624,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Standard field mask for the set of fields to be updated.",
+                  "description": "Required. Standard field mask for the set of fields to be updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1140,7 +1140,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Standard field mask for the set of fields to be updated.",
+                  "description": "Required. Standard field mask for the set of fields to be updated.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20210608",
+  "revision": "20210613",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
