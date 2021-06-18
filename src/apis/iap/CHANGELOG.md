@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/iap-v1.1.1...iap-v1.2.0) (2021-06-18)
+
+
+### Features
+
+* **iap:** update the API ([a3cc690](https://www.github.com/googleapis/google-api-nodejs-client/commit/a3cc69016a0d9fcb8456b56fcfd4cc7d38e7d9a6))
+
 ### [1.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/iap-v1.1.0...iap-v1.1.1) (2021-05-23)
 
 

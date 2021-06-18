@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/sql-v0.2.1...sql-v0.2.2) (2021-06-18)
+
+
+### Bug Fixes
+
+* **sql:** update the API ([a17c1e3](https://www.github.com/googleapis/google-api-nodejs-client/commit/a17c1e31f3feeea3faba71d920240e08446bb3a1))
+
 ### [0.2.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/sql-v0.2.0...sql-v0.2.1) (2021-04-07)
 
 
