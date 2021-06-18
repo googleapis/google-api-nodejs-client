@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20210525",
+  "revision": "20210615",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -1307,7 +1307,7 @@
           "type": "string"
         },
         "duration": {
-          "description": "Output only. Duration of the maintenance window. The current window is fixed at 3 hours.",
+          "description": "Output only. Duration of the maintenance window. The current window is fixed at 1 hour.",
           "format": "google-duration",
           "readOnly": true,
           "type": "string"
