@@ -285,7 +285,7 @@
       }
     }
   },
-  "revision": "20210514",
+  "revision": "20210614",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -738,6 +738,41 @@
             "$ref": "Tile"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OperationMetadata": {
+      "description": "Contains metadata for longrunning operation for the edit Metrics Scope endpoints.",
+      "id": "OperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time when the batch request was received.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Current state of the batch operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATED",
+            "RUNNING",
+            "DONE",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Invalid.",
+            "Request has been received.",
+            "Request is actively being processed.",
+            "The batch processing is done.",
+            "The batch processing was cancelled."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The time when the operation result was last updated.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
