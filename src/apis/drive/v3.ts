@@ -519,6 +519,7 @@ export namespace drive_v3 {
       canAddFolderFromAnotherDrive?: boolean;
       canAddMyDriveParent?: boolean;
       canChangeCopyRequiresWriterPermission?: boolean;
+      canChangeSecurityUpdateEnabled?: boolean;
       canChangeViewersCanCopyContent?: boolean;
       canComment?: boolean;
       canCopy?: boolean;
@@ -658,6 +659,13 @@ export namespace drive_v3 {
      */
     lastModifyingUser?: Schema$User;
     /**
+     * Contains details about the link URLs that clients are using to refer to this item.
+     */
+    linkShareMetadata?: {
+      securityUpdateEligible?: boolean;
+      securityUpdateEnabled?: boolean;
+    } | null;
+    /**
      * The MD5 checksum for the content of the file. This is only applicable to files with binary content in Google Drive.
      */
     md5Checksum?: string | null;
@@ -719,6 +727,10 @@ export namespace drive_v3 {
      */
     quotaBytesUsed?: string | null;
     /**
+     * A key needed to access the item via a shared link.
+     */
+    resourceKey?: string | null;
+    /**
      * Whether the file has been shared. Not populated for items in shared drives.
      */
     shared?: boolean | null;
@@ -733,7 +745,11 @@ export namespace drive_v3 {
     /**
      * Shortcut file details. Only populated for shortcut files, which have the mimeType field set to application/vnd.google-apps.shortcut.
      */
-    shortcutDetails?: {targetId?: string; targetMimeType?: string} | null;
+    shortcutDetails?: {
+      targetId?: string;
+      targetMimeType?: string;
+      targetResourceKey?: string;
+    } | null;
     /**
      * The size of the file's content in bytes. This is applicable to binary files in Google Drive and Google Docs files.
      */
@@ -4125,6 +4141,7 @@ export namespace drive_v3 {
      *       //   "isAppAuthorized": false,
      *       //   "kind": "my_kind",
      *       //   "lastModifyingUser": {},
+     *       //   "linkShareMetadata": {},
      *       //   "md5Checksum": "my_md5Checksum",
      *       //   "mimeType": "my_mimeType",
      *       //   "modifiedByMe": false,
@@ -4139,6 +4156,7 @@ export namespace drive_v3 {
      *       //   "permissions": [],
      *       //   "properties": {},
      *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "resourceKey": "my_resourceKey",
      *       //   "shared": false,
      *       //   "sharedWithMeTime": "my_sharedWithMeTime",
      *       //   "sharingUser": {},
@@ -4189,6 +4207,7 @@ export namespace drive_v3 {
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
      *   //   "lastModifyingUser": {},
+     *   //   "linkShareMetadata": {},
      *   //   "md5Checksum": "my_md5Checksum",
      *   //   "mimeType": "my_mimeType",
      *   //   "modifiedByMe": false,
@@ -4203,6 +4222,7 @@ export namespace drive_v3 {
      *   //   "permissions": [],
      *   //   "properties": {},
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "resourceKey": "my_resourceKey",
      *   //   "shared": false,
      *   //   "sharedWithMeTime": "my_sharedWithMeTime",
      *   //   "sharingUser": {},
@@ -4391,6 +4411,7 @@ export namespace drive_v3 {
      *       //   "isAppAuthorized": false,
      *       //   "kind": "my_kind",
      *       //   "lastModifyingUser": {},
+     *       //   "linkShareMetadata": {},
      *       //   "md5Checksum": "my_md5Checksum",
      *       //   "mimeType": "my_mimeType",
      *       //   "modifiedByMe": false,
@@ -4405,6 +4426,7 @@ export namespace drive_v3 {
      *       //   "permissions": [],
      *       //   "properties": {},
      *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "resourceKey": "my_resourceKey",
      *       //   "shared": false,
      *       //   "sharedWithMeTime": "my_sharedWithMeTime",
      *       //   "sharingUser": {},
@@ -4459,6 +4481,7 @@ export namespace drive_v3 {
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
      *   //   "lastModifyingUser": {},
+     *   //   "linkShareMetadata": {},
      *   //   "md5Checksum": "my_md5Checksum",
      *   //   "mimeType": "my_mimeType",
      *   //   "modifiedByMe": false,
@@ -4473,6 +4496,7 @@ export namespace drive_v3 {
      *   //   "permissions": [],
      *   //   "properties": {},
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "resourceKey": "my_resourceKey",
      *   //   "shared": false,
      *   //   "sharedWithMeTime": "my_sharedWithMeTime",
      *   //   "sharingUser": {},
@@ -5178,6 +5202,7 @@ export namespace drive_v3 {
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
      *   //   "lastModifyingUser": {},
+     *   //   "linkShareMetadata": {},
      *   //   "md5Checksum": "my_md5Checksum",
      *   //   "mimeType": "my_mimeType",
      *   //   "modifiedByMe": false,
@@ -5192,6 +5217,7 @@ export namespace drive_v3 {
      *   //   "permissions": [],
      *   //   "properties": {},
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "resourceKey": "my_resourceKey",
      *   //   "shared": false,
      *   //   "sharedWithMeTime": "my_sharedWithMeTime",
      *   //   "sharingUser": {},
@@ -5548,6 +5574,7 @@ export namespace drive_v3 {
      *       //   "isAppAuthorized": false,
      *       //   "kind": "my_kind",
      *       //   "lastModifyingUser": {},
+     *       //   "linkShareMetadata": {},
      *       //   "md5Checksum": "my_md5Checksum",
      *       //   "mimeType": "my_mimeType",
      *       //   "modifiedByMe": false,
@@ -5562,6 +5589,7 @@ export namespace drive_v3 {
      *       //   "permissions": [],
      *       //   "properties": {},
      *       //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *       //   "resourceKey": "my_resourceKey",
      *       //   "shared": false,
      *       //   "sharedWithMeTime": "my_sharedWithMeTime",
      *       //   "sharingUser": {},
@@ -5616,6 +5644,7 @@ export namespace drive_v3 {
      *   //   "isAppAuthorized": false,
      *   //   "kind": "my_kind",
      *   //   "lastModifyingUser": {},
+     *   //   "linkShareMetadata": {},
      *   //   "md5Checksum": "my_md5Checksum",
      *   //   "mimeType": "my_mimeType",
      *   //   "modifiedByMe": false,
@@ -5630,6 +5659,7 @@ export namespace drive_v3 {
      *   //   "permissions": [],
      *   //   "properties": {},
      *   //   "quotaBytesUsed": "my_quotaBytesUsed",
+     *   //   "resourceKey": "my_resourceKey",
      *   //   "shared": false,
      *   //   "sharedWithMeTime": "my_sharedWithMeTime",
      *   //   "sharingUser": {},

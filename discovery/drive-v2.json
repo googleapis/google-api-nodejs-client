@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/k-Jb6ACjU_BtVOjtdDxwWpX84Vc\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/BPHTbpP2A09yonqgnqNunwZ3hsI\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -3527,7 +3527,7 @@
       }
     }
   },
-  "revision": "20210606",
+  "revision": "20210612",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4656,6 +4656,10 @@
               "description": "Deprecated",
               "type": "boolean"
             },
+            "canChangeSecurityUpdateEnabled": {
+              "description": "Whether the current user can change the securityUpdateEnabled field on link share metadata.",
+              "type": "boolean"
+            },
             "canComment": {
               "description": "Whether the current user can comment on this file.",
               "type": "boolean"
@@ -5052,6 +5056,20 @@
           "format": "date-time",
           "type": "string"
         },
+        "linkShareMetadata": {
+          "description": "Contains details about the link URLs that clients are using to refer to this item.",
+          "properties": {
+            "securityUpdateEligible": {
+              "description": "Whether the file is eligible for security update.",
+              "type": "boolean"
+            },
+            "securityUpdateEnabled": {
+              "description": "Whether the security update is enabled for this file.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "markedViewedByMeDate": {
           "description": "Deprecated.",
           "format": "date-time",
@@ -5137,6 +5155,10 @@
           "format": "int64",
           "type": "string"
         },
+        "resourceKey": {
+          "description": "A key needed to access the item via a shared link.",
+          "type": "string"
+        },
         "selfLink": {
           "description": "A link back to this file.",
           "type": "string"
@@ -5167,6 +5189,10 @@
             },
             "targetMimeType": {
               "description": "The MIME type of the file that this shortcut points to. The value of this field is a snapshot of the target's MIME type, captured when the shortcut is created.",
+              "type": "string"
+            },
+            "targetResourceKey": {
+              "description": "The ResourceKey for the target file.",
               "type": "string"
             }
           },
