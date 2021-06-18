@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/SyjBUZsd7-BeUq6cmstd3qVqbuA\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/56de6Sert85HpqehIo2JUpO8JUM\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -2191,7 +2191,7 @@
       }
     }
   },
-  "revision": "20210606",
+  "revision": "20210612",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2810,6 +2810,10 @@
               "description": "Whether the current user can change the copyRequiresWriterPermission restriction of this file.",
               "type": "boolean"
             },
+            "canChangeSecurityUpdateEnabled": {
+              "description": "Whether the current user can change the securityUpdateEnabled field on link share metadata.",
+              "type": "boolean"
+            },
             "canChangeViewersCanCopyContent": {
               "description": "Deprecated",
               "type": "boolean"
@@ -3157,6 +3161,20 @@
           "$ref": "User",
           "description": "The last user to modify the file."
         },
+        "linkShareMetadata": {
+          "description": "Contains details about the link URLs that clients are using to refer to this item.",
+          "properties": {
+            "securityUpdateEligible": {
+              "description": "Whether the file is eligible for security update.",
+              "type": "boolean"
+            },
+            "securityUpdateEnabled": {
+              "description": "Whether the security update is enabled for this file.",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        },
         "md5Checksum": {
           "description": "The MD5 checksum for the content of the file. This is only applicable to files with binary content in Google Drive.",
           "type": "string"
@@ -3231,6 +3249,10 @@
           "format": "int64",
           "type": "string"
         },
+        "resourceKey": {
+          "description": "A key needed to access the item via a shared link.",
+          "type": "string"
+        },
         "shared": {
           "description": "Whether the file has been shared. Not populated for items in shared drives.",
           "type": "boolean"
@@ -3253,6 +3275,10 @@
             },
             "targetMimeType": {
               "description": "The MIME type of the file that this shortcut points to. The value of this field is a snapshot of the target's MIME type, captured when the shortcut is created.",
+              "type": "string"
+            },
+            "targetResourceKey": {
+              "description": "The ResourceKey for the target file.",
               "type": "string"
             }
           },
