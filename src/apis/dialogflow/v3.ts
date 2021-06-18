@@ -134,7 +134,7 @@ export namespace dialogflow_v3 {
      */
     avatarUri?: string | null;
     /**
-     * Immutable. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/cx/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the Agents.UpdateAgent method.
+     * Required. Immutable. The default language of the agent as a language tag. See [Language Support](https://cloud.google.com/dialogflow/cx/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the Agents.UpdateAgent method.
      */
     defaultLanguageCode?: string | null;
     /**
@@ -547,6 +547,10 @@ export namespace dialogflow_v3 {
      * The list of rich message responses to present to the user.
      */
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
+    /**
+     * Whether Dialogflow should return currently queued fulfillment response messages in streaming APIs. If a webhook is specified, it happens before Dialogflow invokes webhook. Warning: 1) This flag only affects streaming API. Responses are still queued and returned once in non-streaming API. 2) The flag can be enabled in any fulfillment but only the first 3 partial responses will be returned. You may only want to apply it to fulfillments that have slow webhooks.
+     */
+    returnPartialResponses?: boolean | null;
     /**
      * Set parameter values before executing the webhook.
      */
@@ -1564,6 +1568,10 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3DetectIntentResponse {
     /**
+     * Indicates whether the partial response can be cancelled when a later response arrives. e.g. if the agent specified some music as partial response, it can be cancelled.
+     */
+    allowCancellation?: boolean | null;
+    /**
      * The audio data bytes encoded as specified in the request. Note: The output audio is generated based on the values of default platform text responses found in the `query_result.response_messages` field. If multiple default text responses exist, they will be concatenated when generating audio. If no default platform text responses exist, the generated audio content will be empty. In some scenarios, multiple output audio fields may be present in the response structure. In these cases, only the top-most-level audio output has content.
      */
     outputAudio?: string | null;
@@ -1579,6 +1587,10 @@ export namespace dialogflow_v3 {
      * Output only. The unique identifier of the response. It can be used to locate a response in the training example set or for reporting issues.
      */
     responseId?: string | null;
+    /**
+     * Response type.
+     */
+    responseType?: string | null;
   }
   /**
    * Represents the input for dtmf event.
@@ -2103,6 +2115,10 @@ export namespace dialogflow_v3 {
      * The list of rich message responses to present to the user.
      */
     messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
+    /**
+     * Whether Dialogflow should return currently queued fulfillment response messages in streaming APIs. If a webhook is specified, it happens before Dialogflow invokes webhook. Warning: 1) This flag only affects streaming API. Responses are still queued and returned once in non-streaming API. 2) The flag can be enabled in any fulfillment but only the first 3 partial responses will be returned. You may only want to apply it to fulfillments that have slow webhooks.
+     */
+    returnPartialResponses?: boolean | null;
     /**
      * Set parameter values before executing the webhook.
      */
@@ -3161,7 +3177,7 @@ export namespace dialogflow_v3 {
      */
     displayName?: string | null;
     /**
-     * DLP inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
+     * DLP inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`
      */
     inspectTemplate?: string | null;
     /**
@@ -11588,10 +11604,12 @@ export namespace dialogflow_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "allowCancellation": false,
      *   //   "outputAudio": "my_outputAudio",
      *   //   "outputAudioConfig": {},
      *   //   "queryResult": {},
-     *   //   "responseId": "my_responseId"
+     *   //   "responseId": "my_responseId",
+     *   //   "responseType": "my_responseType"
      *   // }
      * }
      *
@@ -18057,10 +18075,12 @@ export namespace dialogflow_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "allowCancellation": false,
      *   //   "outputAudio": "my_outputAudio",
      *   //   "outputAudioConfig": {},
      *   //   "queryResult": {},
-     *   //   "responseId": "my_responseId"
+     *   //   "responseId": "my_responseId",
+     *   //   "responseType": "my_responseType"
      *   // }
      * }
      *

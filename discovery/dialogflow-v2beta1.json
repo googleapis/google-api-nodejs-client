@@ -7247,7 +7247,7 @@
       }
     }
   },
-  "revision": "20210601",
+  "revision": "20210611",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7648,6 +7648,10 @@
             "$ref": "GoogleCloudDialogflowCxV3ResponseMessage"
           },
           "type": "array"
+        },
+        "returnPartialResponses": {
+          "description": "Whether Dialogflow should return currently queued fulfillment response messages in streaming APIs. If a webhook is specified, it happens before Dialogflow invokes webhook. Warning: 1) This flag only affects streaming API. Responses are still queued and returned once in non-streaming API. 2) The flag can be enabled in any fulfillment but only the first 3 partial responses will be returned. You may only want to apply it to fulfillments that have slow webhooks.",
+          "type": "boolean"
         },
         "setParameterActions": {
           "description": "Set parameter values before executing the webhook.",
@@ -9215,6 +9219,10 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage"
           },
           "type": "array"
+        },
+        "returnPartialResponses": {
+          "description": "Whether Dialogflow should return currently queued fulfillment response messages in streaming APIs. If a webhook is specified, it happens before Dialogflow invokes webhook. Warning: 1) This flag only affects streaming API. Responses are still queued and returned once in non-streaming API. 2) The flag can be enabled in any fulfillment but only the first 3 partial responses will be returned. You may only want to apply it to fulfillments that have slow webhooks.",
+          "type": "boolean"
         },
         "setParameterActions": {
           "description": "Set parameter values before executing the webhook.",
@@ -12400,6 +12408,24 @@
       "description": "Represents a response from an automated agent.",
       "id": "GoogleCloudDialogflowV2beta1AutomatedAgentReply",
       "properties": {
+        "allowCancellation": {
+          "description": "Indicates whether the partial automated agent reply is interruptible when a later reply message arrives. e.g. if the agent specified some music as partial response, it can be cancelled.",
+          "type": "boolean"
+        },
+        "automatedAgentReplyType": {
+          "description": "AutomatedAgentReply type.",
+          "enum": [
+            "AUTOMATED_AGENT_REPLY_TYPE_UNSPECIFIED",
+            "PARTIAL",
+            "FINAL"
+          ],
+          "enumDescriptions": [
+            "Not specified. This should never happen.",
+            "Partial reply. e.g. Aggregated responses in a `Fulfillment` that enables `return_partial_response` can be returned as partial reply. WARNING: partial reply is not eligible for barge-in.",
+            "Final reply."
+          ],
+          "type": "string"
+        },
         "cxSessionParameters": {
           "additionalProperties": {
             "description": "Properties of the object.",

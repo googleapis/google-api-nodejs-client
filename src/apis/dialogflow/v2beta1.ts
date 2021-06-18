@@ -460,6 +460,10 @@ export namespace dialogflow_v2beta1 {
      */
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
     /**
+     * Whether Dialogflow should return currently queued fulfillment response messages in streaming APIs. If a webhook is specified, it happens before Dialogflow invokes webhook. Warning: 1) This flag only affects streaming API. Responses are still queued and returned once in non-streaming API. 2) The flag can be enabled in any fulfillment but only the first 3 partial responses will be returned. You may only want to apply it to fulfillments that have slow webhooks.
+     */
+    returnPartialResponses?: boolean | null;
+    /**
      * Set parameter values before executing the webhook.
      */
     setParameterActions?: Schema$GoogleCloudDialogflowCxV3beta1FulfillmentSetParameterAction[];
@@ -1590,6 +1594,10 @@ export namespace dialogflow_v2beta1 {
      * The list of rich message responses to present to the user.
      */
     messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
+    /**
+     * Whether Dialogflow should return currently queued fulfillment response messages in streaming APIs. If a webhook is specified, it happens before Dialogflow invokes webhook. Warning: 1) This flag only affects streaming API. Responses are still queued and returned once in non-streaming API. 2) The flag can be enabled in any fulfillment but only the first 3 partial responses will be returned. You may only want to apply it to fulfillments that have slow webhooks.
+     */
+    returnPartialResponses?: boolean | null;
     /**
      * Set parameter values before executing the webhook.
      */
@@ -2780,6 +2788,14 @@ export namespace dialogflow_v2beta1 {
    * Represents a response from an automated agent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1AutomatedAgentReply {
+    /**
+     * Indicates whether the partial automated agent reply is interruptible when a later reply message arrives. e.g. if the agent specified some music as partial response, it can be cancelled.
+     */
+    allowCancellation?: boolean | null;
+    /**
+     * AutomatedAgentReply type.
+     */
+    automatedAgentReplyType?: string | null;
     /**
      * The collection of current Dialogflow CX agent session parameters at the time of this response. Deprecated: Use `parameters` instead.
      */
