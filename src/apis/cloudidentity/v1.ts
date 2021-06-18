@@ -184,7 +184,7 @@ export namespace cloudidentity_v1 {
      */
     id?: string | null;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
      */
     namespace?: string | null;
   }
@@ -4342,7 +4342,7 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.groups.lookup({
      *     // The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
      *     'groupKey.id': 'placeholder-value',
-     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
+     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
      *     'groupKey.namespace': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4480,7 +4480,7 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.groups.patch({
      *     // Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
      *     name: 'groups/my-group',
-     *     // Required. The fully-qualified names of fields to update. May only contain the following fields: `display_name`, `description`.
+     *     // Required. The fully-qualified names of fields to update. May only contain the following fields: `display_name`, `description`, `labels`.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4789,7 +4789,7 @@ export namespace cloudidentity_v1 {
      */
     'groupKey.id'?: string;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
      */
     'groupKey.namespace'?: string;
   }
@@ -4799,7 +4799,7 @@ export namespace cloudidentity_v1 {
      */
     name?: string;
     /**
-     * Required. The fully-qualified names of fields to update. May only contain the following fields: `display_name`, `description`.
+     * Required. The fully-qualified names of fields to update. May only contain the following fields: `display_name`, `description`, `labels`.
      */
     updateMask?: string;
 
@@ -5716,7 +5716,7 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.groups.memberships.lookup({
      *     // The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
      *     'memberKey.id': 'placeholder-value',
-     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
+     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
      *     'memberKey.namespace': 'placeholder-value',
      *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
      *     parent: 'groups/my-group',
@@ -6356,7 +6356,7 @@ export namespace cloudidentity_v1 {
      */
     'memberKey.id'?: string;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
      */
     'memberKey.namespace'?: string;
     /**
