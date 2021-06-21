@@ -534,6 +534,19 @@ export namespace notebooks_v1 {
     vmImage?: Schema$VmImage;
   }
   /**
+   * Notebook instance configurations that can be updated.
+   */
+  export interface Schema$InstanceConfig {
+    /**
+     * Verifies core internal services are running. More info: go/notebooks-health
+     */
+    enableHealthMonitoring?: boolean | null;
+    /**
+     * Cron expression in UTC timezone, used to schedule instance auto upgrade. Please follow the [cron format](https://en.wikipedia.org/wiki/Cron).
+     */
+    notebookUpgradeSchedule?: string | null;
+  }
+  /**
    * Response for checking if a notebook instance is upgradeable.
    */
   export interface Schema$IsInstanceUpgradeableResponse {
@@ -1205,6 +1218,15 @@ export namespace notebooks_v1 {
    * Request for created scheduled notebooks
    */
   export interface Schema$TriggerScheduleRequest {}
+  /**
+   * Request for updating instance configurations.
+   */
+  export interface Schema$UpdateInstanceConfigRequest {
+    /**
+     * The instance configurations to be updated.
+     */
+    config?: Schema$InstanceConfig;
+  }
   /**
    * Request for updating the Shielded Instance config for a notebook instance. You can only use this method on a stopped instance
    */
@@ -5491,6 +5513,148 @@ export namespace notebooks_v1 {
     }
 
     /**
+     * Update Notebook Instance configurations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.updateConfig({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Instances$Updateconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateConfig(
+      params?: Params$Resource$Projects$Locations$Instances$Updateconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Instances$Updateconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Instances$Updateconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateConfig(
+      params: Params$Resource$Projects$Locations$Instances$Updateconfig,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateConfig(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Updateconfig
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Updateconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Updateconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:updateConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Updates the Shielded instance configuration of a single Instance.
      * @example
      * ```js
@@ -6118,6 +6282,18 @@ export namespace notebooks_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Updateconfig
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateInstanceConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig
     extends StandardParameters {

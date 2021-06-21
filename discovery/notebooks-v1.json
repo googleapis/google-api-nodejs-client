@@ -943,6 +943,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "updateConfig": {
+                  "description": "Update Notebook Instance configurations.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:updateConfig",
+                  "httpMethod": "PATCH",
+                  "id": "notebooks.projects.locations.instances.updateConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:updateConfig",
+                  "request": {
+                    "$ref": "UpdateInstanceConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "updateShieldedInstanceConfig": {
                   "description": "Updates the Shielded instance configuration of a single Instance.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:updateShieldedInstanceConfig",
@@ -1553,7 +1581,7 @@
       }
     }
   },
-  "revision": "20210603",
+  "revision": "20210610",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1803,7 +1831,8 @@
             "SUCCEEDED",
             "FAILED",
             "CANCELLING",
-            "CANCELLED"
+            "CANCELLED",
+            "EXPIRED"
           ],
           "enumDescriptions": [
             "The job state is unspecified.",
@@ -1813,7 +1842,8 @@
             "The job completed successfully.",
             "The job failed. `error_message` should contain the details of the failure.",
             "The job is being cancelled. `error_message` should describe the reason for the cancellation.",
-            "The job has been cancelled. `error_message` should describe the reason for the cancellation."
+            "The job has been cancelled. `error_message` should describe the reason for the cancellation.",
+            "The jobs has become expired (added for uCAIP jobs) https://cloud.google.com/vertex-ai/docs/reference/rest/v1/JobState"
           ],
           "readOnly": true,
           "type": "string"
@@ -2197,6 +2227,21 @@
         "vmImage": {
           "$ref": "VmImage",
           "description": "Use a Compute Engine VM image to start the notebook instance."
+        }
+      },
+      "type": "object"
+    },
+    "InstanceConfig": {
+      "description": "Notebook instance configurations that can be updated.",
+      "id": "InstanceConfig",
+      "properties": {
+        "enableHealthMonitoring": {
+          "description": "Verifies core internal services are running. More info: go/notebooks-health",
+          "type": "boolean"
+        },
+        "notebookUpgradeSchedule": {
+          "description": "Cron expression in UTC timezone, used to schedule instance auto upgrade. Please follow the [cron format](https://en.wikipedia.org/wiki/Cron).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3222,6 +3267,17 @@
       "description": "Request for created scheduled notebooks",
       "id": "TriggerScheduleRequest",
       "properties": {},
+      "type": "object"
+    },
+    "UpdateInstanceConfigRequest": {
+      "description": "Request for updating instance configurations.",
+      "id": "UpdateInstanceConfigRequest",
+      "properties": {
+        "config": {
+          "$ref": "InstanceConfig",
+          "description": "The instance configurations to be updated."
+        }
+      },
       "type": "object"
     },
     "UpdateShieldedInstanceConfigRequest": {
