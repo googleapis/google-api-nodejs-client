@@ -482,6 +482,10 @@ export namespace metastore_v1alpha {
      */
     description?: string | null;
     /**
+     * Output only. The time when the metadata import finished.
+     */
+    endTime?: string | null;
+    /**
      * Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      */
     name?: string | null;
@@ -4262,6 +4266,7 @@ export namespace metastore_v1alpha {
      *         //   "createTime": "my_createTime",
      *         //   "databaseDump": {},
      *         //   "description": "my_description",
+     *         //   "endTime": "my_endTime",
      *         //   "name": "my_name",
      *         //   "state": "my_state",
      *         //   "updateTime": "my_updateTime"
@@ -4409,6 +4414,7 @@ export namespace metastore_v1alpha {
      *   //   "createTime": "my_createTime",
      *   //   "databaseDump": {},
      *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
      *   //   "name": "my_name",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -4693,6 +4699,7 @@ export namespace metastore_v1alpha {
      *         //   "createTime": "my_createTime",
      *         //   "databaseDump": {},
      *         //   "description": "my_description",
+     *         //   "endTime": "my_endTime",
      *         //   "name": "my_name",
      *         //   "state": "my_state",
      *         //   "updateTime": "my_updateTime"
