@@ -1110,7 +1110,7 @@ export namespace people_v1 {
      */
     coverPhotos?: Schema$CoverPhoto[];
     /**
-     * The person's email addresses.
+     * The person's email addresses. For [`connections.list`](/people/api/rest/v1/people.connections/list), [`otherContacts.list`](/people/api/rest/v1/otherContacts/list), and [`people.listDirectoryPeople`](/people/api/rest/v1/people/listDirectoryPeople) the number of email addresses is limited to 100. If a Person has more email addresses the entire set can be obtained by calling ['people.get'](/people/api/rest/v1/people/get).
      */
     emailAddresses?: Schema$EmailAddress[];
     /**
@@ -1178,7 +1178,7 @@ export namespace people_v1 {
      */
     organizations?: Schema$Organization[];
     /**
-     * The person's phone numbers.
+     * The person's phone numbers. For [`connections.list`](/people/api/rest/v1/people.connections/list), [`otherContacts.list`](/people/api/rest/v1/otherContacts/list), and [`people.listDirectoryPeople`](/people/api/rest/v1/people/listDirectoryPeople) the number of phone numbers is limited to 100. If a Person has more phone numbers the entire set can be obtained by calling ['people.get'](/people/api/rest/v1/people/get).
      */
     phoneNumbers?: Schema$PhoneNumber[];
     /**
