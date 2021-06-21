@@ -482,7 +482,7 @@ export namespace privateca_v1 {
      */
     allowSubjectPassthrough?: boolean | null;
     /**
-     * Optional. A CEL expression that may be used to validate the resolved X.509 Subject and/or Subject Alternative Name before a certificate is signed. To see the full allowed syntax and some examples, see https://cloud.google.com/certificate-authority-service/docs/cel-guide
+     * Optional. A CEL expression that may be used to validate the resolved X.509 Subject and/or Subject Alternative Name before a certificate is signed. To see the full allowed syntax and some examples, see https://cloud.google.com/certificate-authority-service/docs/using-cel
      */
     celExpression?: Schema$Expr;
   }
@@ -1228,11 +1228,11 @@ export namespace privateca_v1 {
      */
     hexSerialNumber?: string | null;
     /**
-     * For convenience, the actual lifetime of an issued certificate. Corresponds to 'not_after_time' - 'not_before_time'.
+     * For convenience, the actual lifetime of an issued certificate.
      */
     lifetime?: string | null;
     /**
-     * The time at which the certificate expires.
+     * The time after which the certificate is expired. Per RFC 5280, the validity period for a certificate is the period of time from not_before_time through not_after_time, inclusive. Corresponds to 'not_before_time' + 'lifetime' - 1 second.
      */
     notAfterTime?: string | null;
     /**
