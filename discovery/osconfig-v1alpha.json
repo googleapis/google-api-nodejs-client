@@ -610,7 +610,7 @@
       }
     }
   },
-  "revision": "20210527",
+  "revision": "20210614",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -1696,9 +1696,9 @@
           ],
           "enumDescriptions": [
             "Defaults to NONE.",
-            "If no interpreter is specified the source will be executed directly, which will likely only succeed for executables and scripts with shebang lines. [Wikipedia shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)).",
-            "Indicates that the script will be run with /bin/sh on Linux and cmd.exe on windows.",
-            "Indicates that the script will be run with powershell."
+            "If an interpreter is not specified, the source is executed directly. This execution, without an interpreter, only succeeds for executables and scripts that have shebang lines.",
+            "Indicates that the script runs with `/bin/sh` on Linux and `cmd.exe` on Windows.",
+            "Indicates that the script runs with PowerShell."
           ],
           "type": "string"
         },
