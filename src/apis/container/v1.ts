@@ -616,6 +616,10 @@ export namespace container_v1 {
      */
     desiredIntraNodeVisibilityConfig?: Schema$IntraNodeVisibilityConfig;
     /**
+     * The desired L4 Internal Load Balancer Subsetting configuration.
+     */
+    desiredL4ilbSubsettingConfig?: Schema$ILBSubsettingConfig;
+    /**
      * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This list must always include the cluster's primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.
      */
     desiredLocations?: string[] | null;
@@ -917,6 +921,15 @@ export namespace container_v1 {
     disabled?: boolean | null;
   }
   /**
+   * ILBSubsettingConfig contains the desired config of L4 Internal LoadBalancer subsetting on this cluster.
+   */
+  export interface Schema$ILBSubsettingConfig {
+    /**
+     * Enables l4 ILB subsetting for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * IntraNodeVisibilityConfig contains the desired config of the intra-node visibility on this cluster.
    */
   export interface Schema$IntraNodeVisibilityConfig {
@@ -1216,6 +1229,10 @@ export namespace container_v1 {
      * Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
      */
     enableIntraNodeVisibility?: boolean | null;
+    /**
+     * Whether L4ILB Subsetting is enabled for this cluster.
+     */
+    enableL4ilbSubsetting?: boolean | null;
     /**
      * Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */

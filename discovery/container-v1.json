@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20210521",
+  "revision": "20210607",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3048,6 +3048,10 @@
           "$ref": "IntraNodeVisibilityConfig",
           "description": "The desired config of Intra-node visibility."
         },
+        "desiredL4ilbSubsettingConfig": {
+          "$ref": "ILBSubsettingConfig",
+          "description": "The desired L4 Internal Load Balancer Subsetting configuration."
+        },
         "desiredLocations": {
           "description": "The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This list must always include the cluster's primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.",
           "items": {
@@ -3429,6 +3433,17 @@
       },
       "type": "object"
     },
+    "ILBSubsettingConfig": {
+      "description": "ILBSubsettingConfig contains the desired config of L4 Internal LoadBalancer subsetting on this cluster.",
+      "id": "ILBSubsettingConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enables l4 ILB subsetting for this cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "IPAllocationPolicy": {
       "description": "Configuration for controlling how IPs are allocated in the cluster.",
       "id": "IPAllocationPolicy",
@@ -3799,6 +3814,10 @@
         },
         "enableIntraNodeVisibility": {
           "description": "Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.",
+          "type": "boolean"
+        },
+        "enableL4ilbSubsetting": {
+          "description": "Whether L4ILB Subsetting is enabled for this cluster.",
           "type": "boolean"
         },
         "network": {
