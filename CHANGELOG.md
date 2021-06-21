@@ -4,6 +4,33 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [78.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v77.0.0...googleapis-v78.0.0) (2021-06-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **memcache:** This release has breaking changes.
+
+### Features
+
+* **cloudbuild:** update the API ([8b234ec](https://www.github.com/googleapis/google-api-nodejs-client/commit/8b234ec05d03f05f385771797f2f09e466decd0b))
+* **container:** update the API ([b2d721e](https://www.github.com/googleapis/google-api-nodejs-client/commit/b2d721e5b5418bd0ea390c56aa8d60d83543cdee))
+* **managedidentities:** update the API ([d5add54](https://www.github.com/googleapis/google-api-nodejs-client/commit/d5add54b3d091602bd6e4f44a60ce7bfcd26ac48))
+* **memcache:** update the API ([f355a8f](https://www.github.com/googleapis/google-api-nodejs-client/commit/f355a8f6aab1097a18571651702fec49b67d3fce))
+* **metastore:** update the API ([0ed3ebf](https://www.github.com/googleapis/google-api-nodejs-client/commit/0ed3ebf0516b1ecb4adabded6b249d07df9ae2f3))
+* **notebooks:** update the API ([5c35d08](https://www.github.com/googleapis/google-api-nodejs-client/commit/5c35d086323680b37c5011e7d1f556ae316b77f9))
+* **ondemandscanning:** update the API ([d6b88ac](https://www.github.com/googleapis/google-api-nodejs-client/commit/d6b88acf4a217e495d78435d64b5284d0868c2a5))
+* regenerate index files ([72c6e89](https://www.github.com/googleapis/google-api-nodejs-client/commit/72c6e894d72eee458a9a5570648694d0f9fd2c0c))
+
+
+### Bug Fixes
+
+* **jobs:** update the API ([44f31af](https://www.github.com/googleapis/google-api-nodejs-client/commit/44f31af31f6a19c0f59d5dc032c5574b5f57f1ef))
+* **networkmanagement:** update the API ([b5c6b61](https://www.github.com/googleapis/google-api-nodejs-client/commit/b5c6b61c88cb12ef804e6fa629c8429c8a3e4061))
+* **people:** update the API ([539516d](https://www.github.com/googleapis/google-api-nodejs-client/commit/539516d1e0c781291939cc3acec57d19b293ec90))
+* **privateca:** update the API ([d637893](https://www.github.com/googleapis/google-api-nodejs-client/commit/d637893287464a6aa7043a8906b912ae2350eb1c))
+* **retail:** update the API ([06d77e3](https://www.github.com/googleapis/google-api-nodejs-client/commit/06d77e30b482897e9e0aa7ed6f3fe93e7cbd505e))
+
 ## [77.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v76.0.0...googleapis-v77.0.0) (2021-06-18)
 
 
