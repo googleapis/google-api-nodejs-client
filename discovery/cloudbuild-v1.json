@@ -581,6 +581,260 @@
                   ]
                 }
               }
+            },
+            "triggers": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new `BuildTrigger`. This API is experimental.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers",
+                  "httpMethod": "POST",
+                  "id": "cloudbuild.projects.locations.triggers.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "The parent resource where this trigger will be created. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "Required. ID of the project for which to configure automatic builds.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/triggers",
+                  "request": {
+                    "$ref": "BuildTrigger"
+                  },
+                  "response": {
+                    "$ref": "BuildTrigger"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a `BuildTrigger` by its project ID and trigger ID. This API is experimental.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudbuild.projects.locations.triggers.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the `Trigger` to delete. Format: `projects/{project}/locations/{location}/triggers/{trigger}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/triggers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "Required. ID of the project that owns the trigger.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "triggerId": {
+                      "description": "Required. ID of the `BuildTrigger` to delete.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns information about a `BuildTrigger`. This API is experimental.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
+                  "httpMethod": "GET",
+                  "id": "cloudbuild.projects.locations.triggers.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the `Trigger` to retrieve. Format: `projects/{project}/locations/{location}/triggers/{trigger}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/triggers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "Required. ID of the project that owns the trigger.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "triggerId": {
+                      "description": "Required. Identifier (`id` or `name`) of the `BuildTrigger` to get.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "BuildTrigger"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists existing `BuildTrigger`s. This API is experimental.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers",
+                  "httpMethod": "GET",
+                  "id": "cloudbuild.projects.locations.triggers.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Number of results to return in the list.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token to provide to skip to a particular spot in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "The parent of the collection of `Triggers`. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "Required. ID of the project for which to list BuildTriggers.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/triggers",
+                  "response": {
+                    "$ref": "ListBuildTriggersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a `BuildTrigger` by its project ID and trigger ID. This API is experimental.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudbuild.projects.locations.triggers.patch",
+                  "parameterOrder": [
+                    "resourceName"
+                  ],
+                  "parameters": {
+                    "projectId": {
+                      "description": "Required. ID of the project that owns the trigger.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "resourceName": {
+                      "description": "The `Trigger` name with format: `projects/{project}/locations/{location}/triggers/{trigger}`, where {trigger} is a unique identifier generated by the service.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/triggers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "triggerId": {
+                      "description": "Required. ID of the `BuildTrigger` to update.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resourceName}",
+                  "request": {
+                    "$ref": "BuildTrigger"
+                  },
+                  "response": {
+                    "$ref": "BuildTrigger"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "run": {
+                  "description": "Runs a `BuildTrigger` at a particular source revision.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:run",
+                  "httpMethod": "POST",
+                  "id": "cloudbuild.projects.locations.triggers.run",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the `Trigger` to run. Format: `projects/{project}/locations/{location}/triggers/{trigger}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/triggers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:run",
+                  "request": {
+                    "$ref": "RunBuildTriggerRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "webhook": {
+                  "description": "ReceiveTriggerWebhook [Experimental] is called when the API receives a webhook request targeted at a specific trigger.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:webhook",
+                  "httpMethod": "POST",
+                  "id": "cloudbuild.projects.locations.triggers.webhook",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The name of the `ReceiveTriggerWebhook` to retrieve. Format: `projects/{project}/locations/{location}/triggers/{trigger}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/triggers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "Project in which the specified trigger lives",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "secret": {
+                      "description": "Secret token used for authorization if an OAuth token isn't provided.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "trigger": {
+                      "description": "Name of the trigger to run the payload against",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:webhook",
+                  "request": {
+                    "$ref": "HttpBody"
+                  },
+                  "response": {
+                    "$ref": "ReceiveTriggerWebhookResponse"
+                  }
+                }
+              }
             }
           }
         },
@@ -595,6 +849,11 @@
                 "projectId"
               ],
               "parameters": {
+                "parent": {
+                  "description": "The parent resource where this trigger will be created. Format: `projects/{project}/locations/{location}`",
+                  "location": "query",
+                  "type": "string"
+                },
                 "projectId": {
                   "description": "Required. ID of the project for which to configure automatic builds.",
                   "location": "path",
@@ -623,6 +882,11 @@
                 "triggerId"
               ],
               "parameters": {
+                "name": {
+                  "description": "The name of the `Trigger` to delete. Format: `projects/{project}/locations/{location}/triggers/{trigger}`",
+                  "location": "query",
+                  "type": "string"
+                },
                 "projectId": {
                   "description": "Required. ID of the project that owns the trigger.",
                   "location": "path",
@@ -654,6 +918,11 @@
                 "triggerId"
               ],
               "parameters": {
+                "name": {
+                  "description": "The name of the `Trigger` to retrieve. Format: `projects/{project}/locations/{location}/triggers/{trigger}`",
+                  "location": "query",
+                  "type": "string"
+                },
                 "projectId": {
                   "description": "Required. ID of the project that owns the trigger.",
                   "location": "path",
@@ -692,6 +961,11 @@
                 },
                 "pageToken": {
                   "description": "Token to provide to skip to a particular spot in the list.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "The parent of the collection of `Triggers`. Format: `projects/{project}/locations/{location}`",
                   "location": "query",
                   "type": "string"
                 },
@@ -754,6 +1028,11 @@
                 "triggerId"
               ],
               "parameters": {
+                "name": {
+                  "description": "The name of the `Trigger` to run. Format: `projects/{project}/locations/{location}/triggers/{trigger}`",
+                  "location": "query",
+                  "type": "string"
+                },
                 "projectId": {
                   "description": "Required. ID of the project.",
                   "location": "path",
@@ -788,6 +1067,11 @@
                 "trigger"
               ],
               "parameters": {
+                "name": {
+                  "description": "The name of the `ReceiveTriggerWebhook` to retrieve. Format: `projects/{project}/locations/{location}/triggers/{trigger}`",
+                  "location": "query",
+                  "type": "string"
+                },
                 "projectId": {
                   "description": "Project in which the specified trigger lives",
                   "location": "path",
@@ -819,7 +1103,7 @@
       }
     }
   },
-  "revision": "20210514",
+  "revision": "20210613",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -1362,7 +1646,11 @@
         },
         "pubsubConfig": {
           "$ref": "PubsubConfig",
-          "description": "Optional. PubsubConfig describes the configuration of a trigger that creates a build whenever a Pub/Sub message is published."
+          "description": "PubsubConfig describes the configuration of a trigger that creates a build whenever a Pub/Sub message is published."
+        },
+        "resourceName": {
+          "description": "The `Trigger` name with format: `projects/{project}/locations/{location}/triggers/{trigger}`, where {trigger} is a unique identifier generated by the service.",
+          "type": "string"
         },
         "substitutions": {
           "additionalProperties": {
@@ -1381,6 +1669,10 @@
         "triggerTemplate": {
           "$ref": "RepoSource",
           "description": "Template describing the types of source changes to trigger a build. Branch and tag names in trigger templates are interpreted as regular expressions. Any branch or tag change that matches that regular expression will trigger a build. Mutually exclusive with `github`."
+        },
+        "webhookConfig": {
+          "$ref": "WebhookConfig",
+          "description": "WebhookConfig describes the configuration of a trigger that creates a build whenever a webhook is sent to a trigger's webhook URL."
         }
       },
       "type": "object"
@@ -1940,6 +2232,25 @@
       },
       "type": "object"
     },
+    "RunBuildTriggerRequest": {
+      "description": "Specifies a build trigger to run and the source to use.",
+      "id": "RunBuildTriggerRequest",
+      "properties": {
+        "projectId": {
+          "description": "Required. ID of the project.",
+          "type": "string"
+        },
+        "source": {
+          "$ref": "RepoSource",
+          "description": "Source to build against this trigger."
+        },
+        "triggerId": {
+          "description": "Required. ID of the trigger.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SMTPDelivery": {
       "description": "SMTPDelivery is the delivery configuration for an SMTP (email) notification.",
       "id": "SMTPDelivery",
@@ -2207,6 +2518,31 @@
         },
         "text": {
           "description": "Explanation of the warning generated.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WebhookConfig": {
+      "description": "WebhookConfig describes the configuration of a trigger that creates a build whenever a webhook is sent to a trigger's webhook URL.",
+      "id": "WebhookConfig",
+      "properties": {
+        "secret": {
+          "description": "Required. Resource name for the secret required as a URL parameter.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Potential issues with the underlying Pub/Sub subscription configuration. Only populated on get requests.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "OK",
+            "SECRET_DELETED"
+          ],
+          "enumDescriptions": [
+            "The webhook auth configuration not been checked.",
+            "The auth configuration is properly setup.",
+            "The secret provided in auth_method has been deleted."
+          ],
           "type": "string"
         }
       },
