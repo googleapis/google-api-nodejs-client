@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - default-branch
   pull_request:
 name: ci
 jobs:
