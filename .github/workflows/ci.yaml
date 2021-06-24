@@ -24,6 +24,11 @@ jobs:
       - run: rm -rf node_modules
       - run: npm install
       - run: npm test
+      - name: coverage
+        uses: codecov/codecov-action@v1
+        with:
+          name: actions ${{ matrix.node }}
+          fail_ci_if_error: false
   windows:
     runs-on: windows-latest
     steps:
@@ -33,6 +38,11 @@ jobs:
           node-version: 14
       - run: npm install
       - run: npm test
+      - name: coverage
+        uses: codecov/codecov-action@v1
+        with:
+          name: actions windows
+          fail_ci_if_error: false
   lint:
     runs-on: ubuntu-latest
     steps:
