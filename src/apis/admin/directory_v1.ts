@@ -10757,8 +10757,6 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.delete({
-     *     // Parses org unit path without url decode to allow for plus in ou name
-     *     allowPlus: 'placeholder-value',
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit or its unique ID.
@@ -10885,8 +10883,6 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.get({
-     *     // Parses org unit path without url decode to allow for plus in ou name
-     *     allowPlus: 'placeholder-value',
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit or its unique ID.
@@ -11312,8 +11308,6 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.patch({
-     *     // Parses org unit path without url decode to allow for plus in ou name
-     *     allowPlus: 'placeholder-value',
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit or its unique ID.
@@ -11468,8 +11462,6 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.update({
-     *     // Parses org unit path without url decode to allow for plus in ou name
-     *     allowPlus: 'placeholder-value',
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit or its unique ID.
@@ -11600,10 +11592,6 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Orgunits$Delete extends StandardParameters {
     /**
-     * Parses org unit path without url decode to allow for plus in ou name
-     */
-    allowPlus?: boolean;
-    /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
@@ -11613,10 +11601,6 @@ export namespace admin_directory_v1 {
     orgUnitPath?: string;
   }
   export interface Params$Resource$Orgunits$Get extends StandardParameters {
-    /**
-     * Parses org unit path without url decode to allow for plus in ou name
-     */
-    allowPlus?: boolean;
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
@@ -11653,10 +11637,6 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Patch extends StandardParameters {
     /**
-     * Parses org unit path without url decode to allow for plus in ou name
-     */
-    allowPlus?: boolean;
-    /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
@@ -11671,10 +11651,6 @@ export namespace admin_directory_v1 {
     requestBody?: Schema$OrgUnit;
   }
   export interface Params$Resource$Orgunits$Update extends StandardParameters {
-    /**
-     * Parses org unit path without url decode to allow for plus in ou name
-     */
-    allowPlus?: boolean;
     /**
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
