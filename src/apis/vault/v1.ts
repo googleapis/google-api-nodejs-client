@@ -103,7 +103,7 @@ export namespace vault_v1 {
   /**
    * G Suite Vault API
    *
-   * Retention and eDiscovery for Google Workspace. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege. For example, to download an export, an account needs the **Manage Exports** privilege and the matter shared with them.
+   * Retention and eDiscovery for Google Workspace. To work with Vault resources, the account must have the [required Vault privileges](https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege. For example, to download an export, an account needs the **Manage Exports** privilege and the matter shared with them.
    *
    * @example
    * ```js
@@ -128,7 +128,7 @@ export namespace vault_v1 {
   }
 
   /**
-   * Count number for each account.
+   * The results count for each account.
    */
   export interface Schema$AccountCount {
     /**
@@ -136,7 +136,7 @@ export namespace vault_v1 {
      */
     account?: Schema$UserInfo;
     /**
-     * The number of artifacts found for this account.
+     * The number of results (messages or files) found for this account.
      */
     count?: string | null;
   }
@@ -154,7 +154,7 @@ export namespace vault_v1 {
     errorType?: string | null;
   }
   /**
-   * Accounts to search
+   * The accounts to search
    */
   export interface Schema$AccountInfo {
     /**
@@ -163,15 +163,15 @@ export namespace vault_v1 {
     emails?: string[] | null;
   }
   /**
-   * A status detailing the status of each account creation, and the HeldAccount, if successful.
+   * The status of each account creation, and the **HeldAccount**, if successful.
    */
   export interface Schema$AddHeldAccountResult {
     /**
-     * If present, this account was successfully created.
+     * Returned when the account was successfully created.
      */
     account?: Schema$HeldAccount;
     /**
-     * This represents the success status. If failed, check message.
+     * Reports the request status. If it failed, returns an error message.
      */
     status?: Schema$Status;
   }
@@ -180,11 +180,11 @@ export namespace vault_v1 {
    */
   export interface Schema$AddHeldAccountsRequest {
     /**
-     * Account IDs to identify which accounts to add. Only account_ids or only emails should be specified, but not both.
+     * A comma-separated list of the account IDs of the accounts to add to the hold. Specify either **emails** or **account_ids**, but not both.
      */
     accountIds?: string[] | null;
     /**
-     * Emails to identify which accounts to add. Only emails or only account_ids should be specified, but not both.
+     * A comma-separated list of the emails of the accounts to add to the hold. Specify either **emails** or **account_ids**, but not both.
      */
     emails?: string[] | null;
   }
@@ -198,19 +198,19 @@ export namespace vault_v1 {
     responses?: Schema$AddHeldAccountResult[];
   }
   /**
-   * Add an account with the permission specified. The role cannot be owner. If an account already has a role in the matter, it will be overwritten.
+   * Add an account with the permission specified. The role cannot be owner. If an account already has a role in the matter, the existing role is overwritten.
    */
   export interface Schema$AddMatterPermissionsRequest {
     /**
-     * Only relevant if send_emails is true. True to CC requestor in the email message. False to not CC requestor.
+     * Only relevant if **sendEmails** is **true**. To CC the requestor in the email message, set to **true**. To not CC requestor, set to **false**.
      */
     ccMe?: boolean | null;
     /**
-     * The MatterPermission to add.
+     * The account and its role to add.
      */
     matterPermission?: Schema$MatterPermission;
     /**
-     * True to send notification email to the added account. False to not send notification email.
+     * To send a notification email to the added account, set to **true**. To not send a notification email, set to **false**.
      */
     sendEmails?: boolean | null;
   }
@@ -227,16 +227,16 @@ export namespace vault_v1 {
    */
   export interface Schema$CloseMatterResponse {
     /**
-     * The updated matter, with state CLOSED.
+     * The updated matter, with state **CLOSED**.
      */
     matter?: Schema$Matter;
   }
   /**
-   * An export file on cloud storage
+   * The export file in Cloud Storage
    */
   export interface Schema$CloudStorageFile {
     /**
-     * The cloud storage bucket name of this export file. Can be used in cloud storage JSON/XML API, but not to list the bucket contents. Instead, you can get individual export files by object name.
+     * The name of the Cloud Storage bucket for the export file. You can use this value in the [Cloud Storage JSON or XML APIs](https://cloud.google.com/storage/docs/apis), but not to list the bucket contents. Instead, you can [get individual export files](https://cloud.google.com/storage/docs/json_api/v1/objects/get) by object name.
      */
     bucketName?: string | null;
     /**
@@ -244,45 +244,45 @@ export namespace vault_v1 {
      */
     md5Hash?: string | null;
     /**
-     * The cloud storage object name of this export file. Can be used in cloud storage JSON/XML API.
+     * The name of the Cloud Storage object for the export file. You can use this value in the [Cloud Storage JSON or XML APIs](https://cloud.google.com/storage/docs/apis).
      */
     objectName?: string | null;
     /**
-     * The size of the export file.
+     * The export file size.
      */
     size?: string | null;
   }
   /**
-   * Export sink for cloud storage files.
+   * Export sink for Cloud Storage files.
    */
   export interface Schema$CloudStorageSink {
     /**
-     * Output only. The exported files on cloud storage.
+     * Output only. The exported files in Cloud Storage.
      */
     files?: Schema$CloudStorageFile[];
   }
   /**
-   * Corpus specific queries.
+   * Service-specific options for holds.
    */
   export interface Schema$CorpusQuery {
     /**
-     * Details pertaining to Drive holds. If set, corpus must be Drive.
+     * Service-specific options for Drive holds. If set, **CorpusType** must be **DRIVE**.
      */
     driveQuery?: Schema$HeldDriveQuery;
     /**
-     * Details pertaining to Groups holds. If set, corpus must be Groups.
+     * Service-specific options for Groups holds. If set, **CorpusType** must be **GROUPS**.
      */
     groupsQuery?: Schema$HeldGroupsQuery;
     /**
-     * Details pertaining to Hangouts Chat holds. If set, corpus must be Hangouts Chat.
+     * Service-specific options for Chat holds. If set, **CorpusType** must be **HANGOUTS_CHAT**.
      */
     hangoutsChatQuery?: Schema$HeldHangoutsChatQuery;
     /**
-     * Details pertaining to mail holds. If set, corpus must be mail.
+     * Service-specific options for Gmail holds. If set, **CorpusType** must be **MAIL**.
      */
     mailQuery?: Schema$HeldMailQuery;
     /**
-     * Details pertaining to Voice holds. If set, corpus must be Voice.
+     * Service-specific options for Voice holds. If set, **CorpusType** must be **VOICE**.
      */
     voiceQuery?: Schema$HeldVoiceQuery;
   }
@@ -316,7 +316,7 @@ export namespace vault_v1 {
      */
     query?: Schema$Query;
     /**
-     * Specifies the granularity of the count result returned in response.
+     * Sets the granularity of the count results.
      */
     view?: string | null;
   }
@@ -325,33 +325,33 @@ export namespace vault_v1 {
    */
   export interface Schema$CountArtifactsResponse {
     /**
-     * Count metrics of Groups.
+     * Count metrics for Groups.
      */
     groupsCountResult?: Schema$GroupsCountResult;
     /**
-     * Count metrics of Mail.
+     * Count metrics for Gmail and classic Hangouts.
      */
     mailCountResult?: Schema$MailCountResult;
     /**
-     * Total count of artifacts. For mail and groups, artifacts refers to messages.
+     * Total count of messages.
      */
     totalCount?: string | null;
   }
   /**
-   * The options for Drive export.
+   * Options for Drive exports.
    */
   export interface Schema$DriveExportOptions {
     /**
-     * Set to true to include access level information for users with indirect access to files.
+     * To include access level information for users with [indirect access](https://support.google.com/vault/answer/6099459#metadata) to files, set to **true**.
      */
     includeAccessInfo?: boolean | null;
   }
   /**
-   * Drive search advanced options
+   * Additional options for Drive search
    */
   export interface Schema$DriveOptions {
     /**
-     * Set to true to include shared drive.
+     * Set to **true** to include shared drives.
      */
     includeSharedDrives?: boolean | null;
     /**
@@ -359,7 +359,7 @@ export namespace vault_v1 {
      */
     includeTeamDrives?: boolean | null;
     /**
-     * Search the versions of the Drive file as of the reference date. These timestamps are in GMT and rounded down to the given date.
+     * Search the current version of the Drive file, but export the contents of the last version saved before 12:00 AM UTC on the specified date. Enter the date in UTC.
      */
     versionDate?: string | null;
   }
@@ -368,11 +368,11 @@ export namespace vault_v1 {
    */
   export interface Schema$Empty {}
   /**
-   * An export To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.
+   * An export. To work with Vault resources, the account must have the [required Vault privileges](https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.
    */
   export interface Schema$Export {
     /**
-     * Output only. Export sink for cloud storage files.
+     * Output only. The sink for export files in Cloud Storage.
      */
     cloudStorageSink?: Schema$CloudStorageSink;
     /**
@@ -380,7 +380,7 @@ export namespace vault_v1 {
      */
     createTime?: string | null;
     /**
-     * Advanced options of the export.
+     * Additional export options.
      */
     exportOptions?: Schema$ExportOptions;
     /**
@@ -396,7 +396,7 @@ export namespace vault_v1 {
      */
     name?: string | null;
     /**
-     * The search query being exported.
+     * The query parameters used to create the export.
      */
     query?: Schema$Query;
     /**
@@ -404,49 +404,49 @@ export namespace vault_v1 {
      */
     requester?: Schema$UserInfo;
     /**
-     * Output only. Export statistics.
+     * Output only. Details about the export progress and size.
      */
     stats?: Schema$ExportStats;
     /**
-     * Output only. The export status.
+     * Output only. The status of the export.
      */
     status?: string | null;
   }
   /**
-   * Export advanced options
+   * Additional options for exports
    */
   export interface Schema$ExportOptions {
     /**
-     * Option available for Drive export.
+     * Options for Drive exports.
      */
     driveOptions?: Schema$DriveExportOptions;
     /**
-     * Option available for groups export.
+     * Options for Groups exports.
      */
     groupsOptions?: Schema$GroupsExportOptions;
     /**
-     * Option available for hangouts chat export.
+     * Options for Chat exports.
      */
     hangoutsChatOptions?: Schema$HangoutsChatExportOptions;
     /**
-     * Option available for mail export.
+     * Options for Gmail exports.
      */
     mailOptions?: Schema$MailExportOptions;
     /**
-     * The requested export location.
+     * The requested data region for the export.
      */
     region?: string | null;
     /**
-     * Option available for voice export.
+     * Options for Voice exports.
      */
     voiceOptions?: Schema$VoiceExportOptions;
   }
   /**
-   * Stats of an export.
+   * Progress information for an export.
    */
   export interface Schema$ExportStats {
     /**
-     * The number of documents already processed by the export.
+     * The number of messages or files already processed for export.
      */
     exportedArtifactCount?: string | null;
     /**
@@ -454,7 +454,7 @@ export namespace vault_v1 {
      */
     sizeInBytes?: string | null;
     /**
-     * The number of documents to be exported.
+     * The number of messages or files to be exported.
      */
     totalArtifactCount?: string | null;
   }
@@ -475,7 +475,7 @@ export namespace vault_v1 {
      */
     matchingAccountsCount?: string | null;
     /**
-     * When data scope is HELD_DATA in the request Query, these accounts in the request are not queried because they are not on hold. For other data scope, this field is not set.
+     * When **DataScope** is **HELD_DATA**, these accounts in the request are not queried because they are not on hold. For other data scope, this field is not set.
      */
     nonQueryableAccounts?: string[] | null;
     /**
@@ -484,51 +484,51 @@ export namespace vault_v1 {
     queriedAccountsCount?: string | null;
   }
   /**
-   * The options for groups export.
+   * Options for Groups exports.
    */
   export interface Schema$GroupsExportOptions {
     /**
-     * The export format for groups export.
+     * The file format for exported messages.
      */
     exportFormat?: string | null;
   }
   /**
-   * The options for hangouts chat export.
+   * Options for Chat exports.
    */
   export interface Schema$HangoutsChatExportOptions {
     /**
-     * The export format for hangouts chat export.
+     * The file format for exported messages.
      */
     exportFormat?: string | null;
   }
   /**
-   * Accounts to search
+   * The Chat spaces to search
    */
   export interface Schema$HangoutsChatInfo {
     /**
-     * A set of rooms to search.
+     * A list of Chat spaces IDs, as provided by the [Chat API](https://developers.google.com/hangouts/chat).
      */
     roomId?: string[] | null;
   }
   /**
-   * Hangouts chat search advanced options
+   * Additional options for Google Chat search
    */
   export interface Schema$HangoutsChatOptions {
     /**
-     * Set to true to include rooms.
+     * For searches by account or organizational unit, set to **true** to include rooms.
      */
     includeRooms?: boolean | null;
   }
   /**
-   * An account being held in a particular hold. This structure is immutable. This can be either a single user or a google group, depending on the corpus. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.
+   * An account covered by a hold. This structure is immutable. It can be an individual account or a Google Group, depending on the service. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.
    */
   export interface Schema$HeldAccount {
     /**
-     * The account's ID as provided by the Admin SDK.
+     * The account ID, as provided by the [Admin SDK](https://developers.google.com/admin-sdk/).
      */
     accountId?: string | null;
     /**
-     * The primary email address of the account. If used as an input, this takes precedence over account ID.
+     * The primary email address of the account. If used as an input, this takes precedence over **accountId**.
      */
     email?: string | null;
     /**
@@ -545,15 +545,15 @@ export namespace vault_v1 {
     lastName?: string | null;
   }
   /**
-   * Query options for Drive holds.
+   * Options for Drive holds.
    */
   export interface Schema$HeldDriveQuery {
     /**
-     * If true, include files in shared drives in the hold.
+     * To include files in shared drives in the hold, set to **true**.
      */
     includeSharedDriveFiles?: boolean | null;
     /**
-     * If true, include files in Team Drives in the hold.
+     * To include files in Team Drives in the hold, set to **true**.
      */
     includeTeamDriveFiles?: boolean | null;
   }
@@ -562,76 +562,76 @@ export namespace vault_v1 {
    */
   export interface Schema$HeldGroupsQuery {
     /**
-     * The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
+     * The end time for the query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     endTime?: string | null;
     /**
-     * The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
+     * The start time for the query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     startTime?: string | null;
     /**
-     * The search terms for the hold.
+     * The [search operators](https://support.google.com/vault/answer/2474474) used to refine the messages covered by the hold.
      */
     terms?: string | null;
   }
   /**
-   * Query options for hangouts chat holds.
+   * Options for Chat holds.
    */
   export interface Schema$HeldHangoutsChatQuery {
     /**
-     * If true, include rooms the user has participated in.
+     * To include messages in Chat spaces the user was a member of, set to **true**.
      */
     includeRooms?: boolean | null;
   }
   /**
-   * Query options for mail holds.
+   * Query options for Gmail holds.
    */
   export interface Schema$HeldMailQuery {
     /**
-     * The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
+     * The end time for the query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     endTime?: string | null;
     /**
-     * The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
+     * The start time for the query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     startTime?: string | null;
     /**
-     * The search terms for the hold.
+     * The [search operators](https://support.google.com/vault/answer/2474474) used to refine the messages covered by the hold.
      */
     terms?: string | null;
   }
   /**
-   * A organizational unit being held in a particular hold. This structure is immutable.
+   * The organizational unit covered by a hold. This structure is immutable.
    */
   export interface Schema$HeldOrgUnit {
     /**
-     * When the org unit was put on hold. This property is immutable.
+     * When the organizational unit was put on hold. This property is immutable.
      */
     holdTime?: string | null;
     /**
-     * The org unit's immutable ID as provided by the Admin SDK.
+     * The organizational unit's immutable ID as provided by the [Admin SDK](https://developers.google.com/admin-sdk/).
      */
     orgUnitId?: string | null;
   }
   /**
-   * Query options for Voice holds.
+   * Options for Voice holds.
    */
   export interface Schema$HeldVoiceQuery {
     /**
-     * Data covered by this rule. Should be non-empty. Order does not matter and duplicates will be ignored.
+     * A list of data types covered by the hold. Should be non-empty. Order does not matter and duplicates are ignored.
      */
     coveredData?: string[] | null;
   }
   /**
-   * Represents a hold within Vault. A hold restricts purging of artifacts based on the combination of the query and accounts restrictions. A hold can be configured to either apply to an explicitly configured set of accounts, or can be applied to all members of an organizational unit. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.
+   * A hold. A hold prevents the specified Google Workspace service from purging data for specific accounts or all members of an organizational unit. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.
    */
   export interface Schema$Hold {
     /**
-     * If set, the hold applies to the enumerated accounts and org_unit must be empty.
+     * If set, the hold applies to the specified accounts and **orgUnit** must be empty.
      */
     accounts?: Schema$HeldAccount[];
     /**
-     * The corpus to be searched.
+     * The service to be searched.
      */
     corpus?: string | null;
     /**
@@ -643,11 +643,11 @@ export namespace vault_v1 {
      */
     name?: string | null;
     /**
-     * If set, the hold applies to all members of the organizational unit and accounts must be empty. This property is mutable. For groups holds, set the accounts field.
+     * If set, the hold applies to all members of the organizational unit and **accounts** must be empty. This property is mutable. For Groups holds, set **accounts**.
      */
     orgUnit?: Schema$HeldOrgUnit;
     /**
-     * The corpus-specific query. If set, the corpusQuery must match corpus type.
+     * Service-specific options. If set, **CorpusQuery** must match **CorpusType**.
      */
     query?: Schema$CorpusQuery;
     /**
@@ -656,7 +656,7 @@ export namespace vault_v1 {
     updateTime?: string | null;
   }
   /**
-   * The holds for a matter.
+   * The exports for a matter.
    */
   export interface Schema$ListExportsResponse {
     /**
@@ -669,7 +669,7 @@ export namespace vault_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Returns a list of held accounts for a hold.
+   * Returns a list of the accounts covered by a hold.
    */
   export interface Schema$ListHeldAccountsResponse {
     /**
@@ -725,16 +725,16 @@ export namespace vault_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * List of output saved queries.
+     * List of saved queries.
      */
     savedQueries?: Schema$SavedQuery[];
   }
   /**
-   * Mail specific count metrics.
+   * Gmail and classic Hangouts-specific count metrics.
    */
   export interface Schema$MailCountResult {
     /**
-     * Error occurred when querying these accounts.
+     * Errors occurred when querying these accounts.
      */
     accountCountErrors?: Schema$AccountCountError[];
     /**
@@ -746,7 +746,7 @@ export namespace vault_v1 {
      */
     matchingAccountsCount?: string | null;
     /**
-     * When data scope is HELD_DATA in the request Query, these accounts in the request are not queried because they are not on hold. For other data scope, this field is not set.
+     * When **DataScope** is **HELD_DATA**, the number of accounts in the request that are not queried because they are not on hold. For other data scopes, this field is not set.
      */
     nonQueryableAccounts?: string[] | null;
     /**
@@ -755,24 +755,24 @@ export namespace vault_v1 {
     queriedAccountsCount?: string | null;
   }
   /**
-   * The options for mail export.
+   * Options for Gmail exports.
    */
   export interface Schema$MailExportOptions {
     /**
-     * The export file format.
+     * The file format for exported messages.
      */
     exportFormat?: string | null;
     /**
-     * Set to true to export confidential mode content.
+     * To export confidential mode content, set to **true**.
      */
     showConfidentialModeContent?: boolean | null;
   }
   /**
-   * Mail search advanced options
+   * Additional options for Gmail search
    */
   export interface Schema$MailOptions {
     /**
-     * Set to true to exclude drafts.
+     * Set to **true** to exclude drafts.
      */
     excludeDrafts?: boolean | null;
   }
@@ -781,15 +781,15 @@ export namespace vault_v1 {
    */
   export interface Schema$Matter {
     /**
-     * The description of the matter.
+     * An optional description for the matter.
      */
     description?: string | null;
     /**
-     * The matter ID which is generated by the server. Should be blank when creating a new matter.
+     * The matter ID, which is generated by the server. Leave blank when creating a matter.
      */
     matterId?: string | null;
     /**
-     * List of users and access to the matter. Currently there is no programmer defined limit on the number of permissions a matter can have.
+     * Lists the users and their permission for the matter. Currently there is no programmer defined limit on the number of permissions a matter can have.
      */
     matterPermissions?: Schema$MatterPermission[];
     /**
@@ -802,15 +802,15 @@ export namespace vault_v1 {
     state?: string | null;
   }
   /**
-   * Currently each matter only has one owner, and all others are collaborators. When an account is purged, its corresponding MatterPermission resources cease to exist.
+   * Users can be matter owners or collaborators. Each matter has only one owner. All others users who can access the matter are collaborators. When an account is purged, its corresponding MatterPermission resources cease to exist.
    */
   export interface Schema$MatterPermission {
     /**
-     * The account ID, as provided by Admin SDK.
+     * The account ID, as provided by the [Admin SDK](https://developers.google.com/admin-sdk/).
      */
     accountId?: string | null;
     /**
-     * The user's role in this matter.
+     * The user's role for the matter.
      */
     role?: string | null;
   }
@@ -840,56 +840,56 @@ export namespace vault_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Org Unit to search
+   * The organizational unit to search
    */
   export interface Schema$OrgUnitInfo {
     /**
-     * Org unit to search, as provided by the Admin SDK Directory API.
+     * The name of the organizational unit to search, as provided by the [Admin SDK Directory API](https://developers.google.com/admin-sdk/directory/).
      */
     orgUnitId?: string | null;
   }
   /**
-   * A query definition relevant for search & export.
+   * The query definition used for search and export.
    */
   export interface Schema$Query {
     /**
-     * When 'ACCOUNT' is chosen as search method, account_info needs to be specified.
+     * Required when **SearchMethod** is **ACCOUNT**.
      */
     accountInfo?: Schema$AccountInfo;
     /**
-     * The corpus to search.
+     * The Google Workspace service to search.
      */
     corpus?: string | null;
     /**
-     * The data source to search from.
+     * The data source to search.
      */
     dataScope?: string | null;
     /**
-     * For Drive search, specify more options in this field.
+     * Set Drive search-specific options.
      */
     driveOptions?: Schema$DriveOptions;
     /**
-     * The end time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
+     * The end time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     endTime?: string | null;
     /**
-     * When 'ROOM' is chosen as search method, hangout_chats_info needs to be specified. (read-only)
+     * Required when **SearchMethod** is **ROOM**. (read-only)
      */
     hangoutsChatInfo?: Schema$HangoutsChatInfo;
     /**
-     * For hangouts chat search, specify more options in this field. (read-only)
+     * Set Chat search-specific options. (read-only)
      */
     hangoutsChatOptions?: Schema$HangoutsChatOptions;
     /**
-     * For mail search, specify more options in this field.
+     * Set Gmail search-specific options.
      */
     mailOptions?: Schema$MailOptions;
     /**
-     * The search method to use. This field is similar to the search_method field but is introduced to support shared drives. It supports all search method types. In case the search_method is TEAM_DRIVE the response of this field will be SHARED_DRIVE only.
+     * The entity to search. This field replaces **searchMethod** to support shared drives. When **searchMethod** is **TEAM_DRIVE**, the response of this field is **SHARED_DRIVE**.
      */
     method?: string | null;
     /**
-     * When 'ORG_UNIT' is chosen as as search method, org_unit_info needs to be specified.
+     * Required when **SearchMethod** is **ORG_UNIT**.
      */
     orgUnitInfo?: Schema$OrgUnitInfo;
     /**
@@ -897,27 +897,27 @@ export namespace vault_v1 {
      */
     searchMethod?: string | null;
     /**
-     * When 'SHARED_DRIVE' is chosen as search method, shared_drive_info needs to be specified.
+     * Required when **SearchMethod** is **SHARED_DRIVE**.
      */
     sharedDriveInfo?: Schema$SharedDriveInfo;
     /**
-     * The start time range for the search query. These timestamps are in GMT and rounded down to the start of the given date.
+     * The start time for the search query. Specify in GMT. The value is rounded to 12 AM on the specified date.
      */
     startTime?: string | null;
     /**
-     * When 'TEAM_DRIVE' is chosen as search method, team_drive_info needs to be specified.
+     * Required when **SearchMethod** is **TEAM_DRIVE**.
      */
     teamDriveInfo?: Schema$TeamDriveInfo;
     /**
-     * The corpus-specific search operators used to generate search results.
+     * Service-specific [search operators](https://support.google.com/vault/answer/2474474) to filter search results.
      */
     terms?: string | null;
     /**
-     * The time zone name. It should be an IANA TZ name, such as "America/Los_Angeles". For more information, see Time Zone.
+     * The time zone name. It should be an IANA TZ name, such as "America/Los_Angeles". For a list of time zone names, see [Time Zone](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). For more information about how Vault uses time zones, see [the Vault help center](https://support.google.com/vault/answer/6092995#time).
      */
     timeZone?: string | null;
     /**
-     * For voice search, specify more options in this field.
+     * Set Voice search-specific options.
      */
     voiceOptions?: Schema$VoiceOptions;
   }
@@ -926,7 +926,7 @@ export namespace vault_v1 {
    */
   export interface Schema$RemoveHeldAccountsRequest {
     /**
-     * Account IDs to identify HeldAccounts to remove.
+     * The account IDs of the accounts to remove from the hold.
      */
     accountIds?: string[] | null;
   }
@@ -935,7 +935,7 @@ export namespace vault_v1 {
    */
   export interface Schema$RemoveHeldAccountsResponse {
     /**
-     * A list of statuses for deleted accounts. Results have the same order as the request.
+     * A list of statuses for the deleted accounts. Results have the same order as the request.
      */
     statuses?: Schema$Status[];
   }
@@ -957,28 +957,28 @@ export namespace vault_v1 {
    */
   export interface Schema$ReopenMatterResponse {
     /**
-     * The updated matter, with state OPEN.
+     * The updated matter, with state **OPEN**.
      */
     matter?: Schema$Matter;
   }
   /**
-   * Definition of the saved query. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.
+   * The definition of a saved query. To work with Vault resources, the account must have the [required Vault privileges](https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.
    */
   export interface Schema$SavedQuery {
     /**
-     * Output only. The server generated timestamp at which saved query was created.
+     * Output only. The server-generated timestamp when the saved query was created.
      */
     createTime?: string | null;
     /**
-     * Name of the saved query.
+     * The name of the saved query.
      */
     displayName?: string | null;
     /**
-     * Output only. The matter ID of the associated matter. The server does not look at this field during create and always uses matter id in the URL.
+     * Output only. The matter ID of the matter the saved query is saved in. The server does not use this field during create and always uses matter ID in the URL.
      */
     matterId?: string | null;
     /**
-     * The underlying Query object which contains all the information of the saved query.
+     * The search parameters of the saved query.
      */
     query?: Schema$Query;
     /**
@@ -987,11 +987,11 @@ export namespace vault_v1 {
     savedQueryId?: string | null;
   }
   /**
-   * Shared drives to search
+   * The shared drives to search
    */
   export interface Schema$SharedDriveInfo {
     /**
-     * List of Shared drive IDs, as provided by Drive API.
+     * A list of shared drive IDs, as provided by the [Drive API](https://developers.google.com/drive).
      */
     sharedDriveIds?: string[] | null;
   }
@@ -1017,7 +1017,7 @@ export namespace vault_v1 {
    */
   export interface Schema$TeamDriveInfo {
     /**
-     * List of Team Drive IDs, as provided by Drive API.
+     * List of Team Drive IDs, as provided by the [Drive API](https://developers.google.com/drive).
      */
     teamDriveIds?: string[] | null;
   }
@@ -1039,16 +1039,16 @@ export namespace vault_v1 {
     email?: string | null;
   }
   /**
-   * The options for voice export.
+   * The options for Voice exports.
    */
   export interface Schema$VoiceExportOptions {
     /**
-     * The export format for voice export.
+     * The file format for exported text messages.
      */
     exportFormat?: string | null;
   }
   /**
-   * Voice search options
+   * Additional options for Voice search
    */
   export interface Schema$VoiceOptions {
     /**
@@ -1212,7 +1212,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Closes the specified matter. Returns matter with updated state.
+     * Closes the specified matter. Returns the matter with updated state.
      * @example
      * ```js
      * // Before running the sample:
@@ -1349,7 +1349,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Counts the artifacts within the context of a matter and returns a detailed breakdown of metrics.
+     * Counts the accounts processed by the specified query.
      * @example
      * ```js
      * // Before running the sample:
@@ -1490,7 +1490,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Creates a new matter with the given name and description. The initial state is open, and the owner is the method caller. Returns the created matter with default view.
+     * Creates a matter with the given name and description. The initial state is open, and the owner is the method caller. Returns the created matter with default view.
      * @example
      * ```js
      * // Before running the sample:
@@ -1628,7 +1628,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Deletes the specified matter. Returns matter with updated state.
+     * Deletes the specified matter. Returns the matter with updated state.
      * @example
      * ```js
      * // Before running the sample:
@@ -1791,7 +1791,7 @@ export namespace vault_v1 {
      *   const res = await vault.matters.get({
      *     // The matter ID.
      *     matterId: 'placeholder-value',
-     *     // Specifies which parts of the Matter to return in the response.
+     *     // Specifies how much information about the matter to return in the response.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1897,7 +1897,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Lists matters the user has access to.
+     * Lists matters the requestor has access to.
      * @example
      * ```js
      * // Before running the sample:
@@ -1930,9 +1930,9 @@ export namespace vault_v1 {
      *     pageSize: 'placeholder-value',
      *     // The pagination token as returned in the response.
      *     pageToken: 'placeholder-value',
-     *     // If set, list only matters with that specific state. The default is listing matters of all states.
+     *     // If set, lists only matters with the specified state. The default lists matters of all states.
      *     state: 'placeholder-value',
-     *     // Specifies which parts of the matter to return in response.
+     *     // Specifies how much information about the matter to return in response.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2170,7 +2170,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Reopens the specified matter. Returns matter with updated state.
+     * Reopens the specified matter. Returns the matter with updated state.
      * @example
      * ```js
      * // Before running the sample:
@@ -2309,7 +2309,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Undeletes the specified matter. Returns matter with updated state.
+     * Undeletes the specified matter. Returns the matter with updated state.
      * @example
      * ```js
      * // Before running the sample:
@@ -2643,7 +2643,7 @@ export namespace vault_v1 {
      */
     matterId?: string;
     /**
-     * Specifies which parts of the Matter to return in the response.
+     * Specifies how much information about the matter to return in the response.
      */
     view?: string;
   }
@@ -2657,11 +2657,11 @@ export namespace vault_v1 {
      */
     pageToken?: string;
     /**
-     * If set, list only matters with that specific state. The default is listing matters of all states.
+     * If set, lists only matters with the specified state. The default lists matters of all states.
      */
     state?: string;
     /**
-     * Specifies which parts of the matter to return in response.
+     * Specifies how much information about the matter to return in response.
      */
     view?: string;
   }
@@ -2718,7 +2718,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Creates an Export.
+     * Creates an export.
      * @example
      * ```js
      * // Before running the sample:
@@ -2873,7 +2873,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Deletes an Export.
+     * Deletes an export.
      * @example
      * ```js
      * // Before running the sample:
@@ -3001,7 +3001,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Gets an Export.
+     * Gets an export.
      * @example
      * ```js
      * // Before running the sample:
@@ -3143,7 +3143,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Lists Exports.
+     * Lists details about the exports in the specified matter.
      * @example
      * ```js
      * // Before running the sample:
@@ -3342,7 +3342,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Adds HeldAccounts to a hold. Returns a list of accounts that have been successfully added. Accounts can only be added to an existing account-based hold.
+     * Adds accounts to a hold. Returns a list of accounts that have been successfully added. Accounts can be added only to an existing account-based hold.
      * @example
      * ```js
      * // Before running the sample:
@@ -3488,7 +3488,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Creates a hold in the given matter.
+     * Creates a hold in the specified matter.
      * @example
      * ```js
      * // Before running the sample:
@@ -3637,7 +3637,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Removes a hold by ID. This will release any HeldAccounts on this Hold.
+     * Removes the specified hold and releases the accounts or organizational unit covered by the hold. If the data is not preserved by another hold or retention rule, it might be purged.
      * @example
      * ```js
      * // Before running the sample:
@@ -3766,7 +3766,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Gets a hold by ID.
+     * Gets the specified hold.
      * @example
      * ```js
      * // Before running the sample:
@@ -3799,7 +3799,7 @@ export namespace vault_v1 {
      *     holdId: 'placeholder-value',
      *     // The matter ID.
      *     matterId: 'placeholder-value',
-     *     // Specifies which parts of the Hold to return.
+     *     // The amount of detail to return for a hold.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3908,7 +3908,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Lists holds within a matter. An empty page token in ListHoldsResponse denotes no more holds to list.
+     * Lists the holds in a matter.
      * @example
      * ```js
      * // Before running the sample:
@@ -3939,11 +3939,11 @@ export namespace vault_v1 {
      *   const res = await vault.matters.holds.list({
      *     // The matter ID.
      *     matterId: 'placeholder-value',
-     *     // The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
+     *     // The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as **page_size** = 100.
      *     pageSize: 'placeholder-value',
      *     // The pagination token as returned in the response. An empty token means start from the beginning.
      *     pageToken: 'placeholder-value',
-     *     // Specifies which parts of the Hold to return.
+     *     // The amount of detail to return for a hold.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4050,7 +4050,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Removes HeldAccounts from a hold. Returns a list of statuses in the same order as the request. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.
+     * Removes the specified accounts from a hold. Returns a list of statuses in the same order as the request.
      * @example
      * ```js
      * // Before running the sample:
@@ -4196,7 +4196,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Updates the OU and/or query parameters of a hold. You cannot add accounts to a hold that covers an OU, nor can you add OUs to a hold that covers individual accounts. Accounts listed in the hold will be ignored.
+     * Updates the scope (organizational unit or accounts) and query parameters of a hold. You cannot add accounts to a hold that covers an organizational unit, nor can you add organizational units to a hold that covers individual accounts. If you try, the unsupported values are ignored.
      * @example
      * ```js
      * // Before running the sample:
@@ -4397,7 +4397,7 @@ export namespace vault_v1 {
      */
     matterId?: string;
     /**
-     * Specifies which parts of the Hold to return.
+     * The amount of detail to return for a hold.
      */
     view?: string;
   }
@@ -4408,7 +4408,7 @@ export namespace vault_v1 {
      */
     matterId?: string;
     /**
-     * The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as page_size = 100.
+     * The number of holds to return in the response, between 0 and 100 inclusive. Leaving this empty, or as 0, is the same as **page_size** = 100.
      */
     pageSize?: number;
     /**
@@ -4416,7 +4416,7 @@ export namespace vault_v1 {
      */
     pageToken?: string;
     /**
-     * Specifies which parts of the Hold to return.
+     * The amount of detail to return for a hold.
      */
     view?: string;
   }
@@ -4460,7 +4460,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Adds a HeldAccount to a hold. Accounts can only be added to a hold that has no held_org_unit set. Attempting to add an account to an OU-based hold will result in an error.
+     * Adds an account to a hold. Accounts can be added only to a hold that does not have an organizational unit set. If you try to add an account to an organizational unit-based hold, an error is returned.
      * @example
      * ```js
      * // Before running the sample:
@@ -4606,7 +4606,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Removes a HeldAccount from a hold. If this request leaves the hold with no held accounts, the hold will not apply to any accounts.
+     * Removes an account from a hold.
      * @example
      * ```js
      * // Before running the sample:
@@ -4737,7 +4737,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Lists HeldAccounts for a hold. This will only list individually specified held accounts. If the hold is on an OU, then use Admin SDK to enumerate its members.
+     * Lists the accounts covered by a hold. This can list only individually-specified accounts covered by the hold. If the hold covers an organizational unit, use the [Admin SDK](https://developers.google.com/admin-sdk/). to list the members of the organizational unit on hold.
      * @example
      * ```js
      * // Before running the sample:
@@ -4951,7 +4951,7 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.create({
-     *     // The matter ID of the parent matter for which the saved query is to be created.
+     *     // The ID of the matter to create the saved query in.
      *     matterId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5070,7 +5070,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Deletes a saved query by Id.
+     * Deletes the specified saved query.
      * @example
      * ```js
      * // Before running the sample:
@@ -5096,9 +5096,9 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.delete({
-     *     // The matter ID of the parent matter for which the saved query is to be deleted.
+     *     // The ID of the matter to delete the saved query from.
      *     matterId: 'placeholder-value',
-     *     // ID of the saved query to be deleted.
+     *     // ID of the saved query to delete.
      *     savedQueryId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5198,7 +5198,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Retrieves a saved query by Id.
+     * Retrieves the specified saved query.
      * @example
      * ```js
      * // Before running the sample:
@@ -5227,9 +5227,9 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.get({
-     *     // The matter ID of the parent matter for which the saved query is to be retrieved.
+     *     // The ID of the matter to get the saved query from.
      *     matterId: 'placeholder-value',
-     *     // ID of the saved query to be retrieved.
+     *     // ID of the saved query to retrieve.
      *     savedQueryId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5335,7 +5335,7 @@ export namespace vault_v1 {
     }
 
     /**
-     * Lists saved queries within a matter. An empty page token in ListSavedQueriesResponse denotes no more saved queries to list.
+     * Lists the saved queries in a matter.
      * @example
      * ```js
      * // Before running the sample:
@@ -5364,7 +5364,7 @@ export namespace vault_v1 {
      *
      *   // Do the magic
      *   const res = await vault.matters.savedQueries.list({
-     *     // The matter ID of the parent matter for which the saved queries are to be retrieved.
+     *     // The ID of the matter to get the saved queries for.
      *     matterId: 'placeholder-value',
      *     // The maximum number of saved queries to return.
      *     pageSize: 'placeholder-value',
@@ -5480,7 +5480,7 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Savedqueries$Create
     extends StandardParameters {
     /**
-     * The matter ID of the parent matter for which the saved query is to be created.
+     * The ID of the matter to create the saved query in.
      */
     matterId?: string;
 
@@ -5492,29 +5492,29 @@ export namespace vault_v1 {
   export interface Params$Resource$Matters$Savedqueries$Delete
     extends StandardParameters {
     /**
-     * The matter ID of the parent matter for which the saved query is to be deleted.
+     * The ID of the matter to delete the saved query from.
      */
     matterId?: string;
     /**
-     * ID of the saved query to be deleted.
+     * ID of the saved query to delete.
      */
     savedQueryId?: string;
   }
   export interface Params$Resource$Matters$Savedqueries$Get
     extends StandardParameters {
     /**
-     * The matter ID of the parent matter for which the saved query is to be retrieved.
+     * The ID of the matter to get the saved query from.
      */
     matterId?: string;
     /**
-     * ID of the saved query to be retrieved.
+     * ID of the saved query to retrieve.
      */
     savedQueryId?: string;
   }
   export interface Params$Resource$Matters$Savedqueries$List
     extends StandardParameters {
     /**
-     * The matter ID of the parent matter for which the saved queries are to be retrieved.
+     * The ID of the matter to get the saved queries for.
      */
     matterId?: string;
     /**
