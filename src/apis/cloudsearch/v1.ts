@@ -103,7 +103,7 @@ export namespace cloudsearch_v1 {
   /**
    * Cloud Search API
    *
-   * Cloud Search provides cloud-based search capabilities over G Suite data. The Cloud Search API allows indexing of non-G Suite data into Cloud Search.
+   * Cloud Search provides cloud-based search capabilities over Google Workspace data. The Cloud Search API allows indexing of non-Google Workspace data into Cloud Search.
    *
    * @example
    * ```js
@@ -533,7 +533,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$FacetBucket {
     /**
-     * Number of results that match the bucket value. Counts are only returned for searches when count accuracy is ensured. Can be empty.
+     * Number of results that match the bucket value. Counts are only returned for searches when count accuracy is ensured. Cloud Search does not guarantee facet counts for any query and facet counts might be present only intermittently, even for identical queries. Do not build dependencies on facet count existence; instead use facet ount percentages which are always returned.
      */
     count?: number | null;
     /**
