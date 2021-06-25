@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20210601",
+  "revision": "20210619",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountWarning": {
@@ -1159,6 +1159,30 @@
         "cloudPubsubTopic": {
           "$ref": "CloudPubsubTopic",
           "description": "A Google Cloud Pub/sub topic destination."
+        }
+      },
+      "type": "object"
+    },
+    "OutOfDomainForwarding": {
+      "description": "An alert that gets triggered when a user enables autoforwarding to an email which is outside of its domain",
+      "id": "OutOfDomainForwarding",
+      "properties": {
+        "actorEmail": {
+          "description": "Email of the actor who triggered the alert.",
+          "type": "string"
+        },
+        "enableTime": {
+          "description": "The time the email forwarding was enabled",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "forwardeeEmail": {
+          "description": "Email to which emails are being forwarded",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "IP address of the user while enabling forwarding",
+          "type": "string"
         }
       },
       "type": "object"

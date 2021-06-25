@@ -698,6 +698,27 @@ export namespace alertcenter_v1beta1 {
     cloudPubsubTopic?: Schema$CloudPubsubTopic;
   }
   /**
+   * An alert that gets triggered when a user enables autoforwarding to an email which is outside of its domain
+   */
+  export interface Schema$OutOfDomainForwarding {
+    /**
+     * Email of the actor who triggered the alert.
+     */
+    actorEmail?: string | null;
+    /**
+     * The time the email forwarding was enabled
+     */
+    enableTime?: string | null;
+    /**
+     * Email to which emails are being forwarded
+     */
+    forwardeeEmail?: string | null;
+    /**
+     * IP address of the user while enabling forwarding
+     */
+    ipAddress?: string | null;
+  }
+  /**
    * Alert for a spike in user reported phishing. *Warning*: This type has been deprecated. Use [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing) instead.
    */
   export interface Schema$PhishingSpike {
