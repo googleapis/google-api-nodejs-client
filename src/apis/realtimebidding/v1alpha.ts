@@ -126,6 +126,14 @@ export namespace realtimebidding_v1alpha {
   }
 
   /**
+   * The request to activate a bidding function.
+   */
+  export interface Schema$ActivateBiddingFunctionRequest {}
+  /**
+   * A request to archive a bidding function.
+   */
+  export interface Schema$ArchiveBiddingFunctionRequest {}
+  /**
    * The bidding function to be executed as part of the TURTLEDOVE simulation experiment bidding flow.
    */
   export interface Schema$BiddingFunction {
@@ -137,6 +145,10 @@ export namespace realtimebidding_v1alpha {
      * The name of the bidding function that must follow the pattern: `bidders/{bidder_account_id\}/biddingFunctions/{bidding_function_name\}`.
      */
     name?: string | null;
+    /**
+     * Output only. The state of the bidding function.
+     */
+    state?: string | null;
     /**
      * The type of the bidding function to be created.
      */
@@ -171,6 +183,284 @@ export namespace realtimebidding_v1alpha {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Activates an existing bidding function. An activated function is available for invocation for the server-side TURTLEDOVE simulations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.biddingFunctions.activate({
+     *     // Required. The name of the bidding function to activate. Format: `bidders/{bidder_account_id\}/biddingFunction/{bidding_function_name\}`
+     *     name: 'bidders/my-bidder/biddingFunctions/my-biddingFunction',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "biddingFunction": "my_biddingFunction",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activate(
+      params: Params$Resource$Bidders$Biddingfunctions$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
+      params?: Params$Resource$Bidders$Biddingfunctions$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BiddingFunction>;
+    activate(
+      params: Params$Resource$Bidders$Biddingfunctions$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Bidders$Biddingfunctions$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$BiddingFunction>,
+      callback: BodyResponseCallback<Schema$BiddingFunction>
+    ): void;
+    activate(
+      params: Params$Resource$Bidders$Biddingfunctions$Activate,
+      callback: BodyResponseCallback<Schema$BiddingFunction>
+    ): void;
+    activate(callback: BodyResponseCallback<Schema$BiddingFunction>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Biddingfunctions$Activate
+        | BodyResponseCallback<Schema$BiddingFunction>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BiddingFunction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BiddingFunction>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BiddingFunction> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Biddingfunctions$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Biddingfunctions$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:activate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BiddingFunction>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BiddingFunction>(parameters);
+      }
+    }
+
+    /**
+     * Archives an existing bidding function. An archived function will not be available for function invocation for the server-side TURTLEDOVE simulations unless it is activated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.biddingFunctions.archive({
+     *     // Required. The name of the bidding function to archive. Format: `bidders/{bidder_account_id\}/biddingFunction/{bidding_function_name\}`
+     *     name: 'bidders/my-bidder/biddingFunctions/my-biddingFunction',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "biddingFunction": "my_biddingFunction",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    archive(
+      params: Params$Resource$Bidders$Biddingfunctions$Archive,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    archive(
+      params?: Params$Resource$Bidders$Biddingfunctions$Archive,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BiddingFunction>;
+    archive(
+      params: Params$Resource$Bidders$Biddingfunctions$Archive,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    archive(
+      params: Params$Resource$Bidders$Biddingfunctions$Archive,
+      options: MethodOptions | BodyResponseCallback<Schema$BiddingFunction>,
+      callback: BodyResponseCallback<Schema$BiddingFunction>
+    ): void;
+    archive(
+      params: Params$Resource$Bidders$Biddingfunctions$Archive,
+      callback: BodyResponseCallback<Schema$BiddingFunction>
+    ): void;
+    archive(callback: BodyResponseCallback<Schema$BiddingFunction>): void;
+    archive(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Biddingfunctions$Archive
+        | BodyResponseCallback<Schema$BiddingFunction>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BiddingFunction>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BiddingFunction>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$BiddingFunction> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Biddingfunctions$Archive;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Biddingfunctions$Archive;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:archive').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BiddingFunction>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BiddingFunction>(parameters);
+      }
     }
 
     /**
@@ -209,6 +499,7 @@ export namespace realtimebidding_v1alpha {
      *       // {
      *       //   "biddingFunction": "my_biddingFunction",
      *       //   "name": "my_name",
+     *       //   "state": "my_state",
      *       //   "type": "my_type"
      *       // }
      *     },
@@ -219,6 +510,7 @@ export namespace realtimebidding_v1alpha {
      *   // {
      *   //   "biddingFunction": "my_biddingFunction",
      *   //   "name": "my_name",
+     *   //   "state": "my_state",
      *   //   "type": "my_type"
      *   // }
      * }
@@ -460,6 +752,30 @@ export namespace realtimebidding_v1alpha {
     }
   }
 
+  export interface Params$Resource$Bidders$Biddingfunctions$Activate
+    extends StandardParameters {
+    /**
+     * Required. The name of the bidding function to activate. Format: `bidders/{bidder_account_id\}/biddingFunction/{bidding_function_name\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateBiddingFunctionRequest;
+  }
+  export interface Params$Resource$Bidders$Biddingfunctions$Archive
+    extends StandardParameters {
+    /**
+     * Required. The name of the bidding function to archive. Format: `bidders/{bidder_account_id\}/biddingFunction/{bidding_function_name\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ArchiveBiddingFunctionRequest;
+  }
   export interface Params$Resource$Bidders$Biddingfunctions$Create
     extends StandardParameters {
     /**
