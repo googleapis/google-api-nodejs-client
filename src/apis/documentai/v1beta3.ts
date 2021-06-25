@@ -3095,10 +3095,6 @@ export namespace documentai_v1beta3 {
      */
     name?: string | null;
     /**
-     * The schema of the default version of this processor type.
-     */
-    schema?: Schema$GoogleCloudDocumentaiV1beta3Schema;
-    /**
      * The type of the processor, e.g, "invoice_parsing".
      */
     type?: string | null;
@@ -3217,56 +3213,6 @@ export namespace documentai_v1beta3 {
      * The Cloud Storage uri for the human reviewed document.
      */
     gcsDestination?: string | null;
-  }
-  /**
-   * The schema defines the output of the processed document by a processor.
-   */
-  export interface Schema$GoogleCloudDocumentaiV1beta3Schema {
-    /**
-     * Description of the schema.
-     */
-    description?: string | null;
-    /**
-     * Display name to show to users.
-     */
-    displayName?: string | null;
-    /**
-     * Entity types of the schema.
-     */
-    entityTypes?: Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType[];
-  }
-  /**
-   * EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.
-   */
-  export interface Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType {
-    /**
-     * Type of the entity. It must be one of the following: `document` - the entity represents a classification of a logical document. `object` - if the entity has properties it is likely an object (or or a document.) `datetime` - the entity is a date or time value. `money` - the entity represents a money value amount. `number` - the entity is a number - integer or floating point. `string` - the entity is a string value. `boolean` - the entity is a boolean value. `address` - the entity is a location address.
-     */
-    baseType?: string | null;
-    /**
-     * Description of the entity type.
-     */
-    description?: string | null;
-    /**
-     * If specified, lists all the possible values for this entity.
-     */
-    enumValues?: string[] | null;
-    /**
-     * Occurrence type limits the number of times an entity type appears in the document.
-     */
-    occurrenceType?: string | null;
-    /**
-     * Describing the nested structure of an entity. An EntityType may consist of several other EntityTypes. For example, in a document there can be an EntityType 'ID', which consists of EntityType 'name' and 'address', with corresponding attributes, such as TEXT for both types and ONCE for occurrence types.
-     */
-    properties?: Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType[];
-    /**
-     * Source of this entity type.
-     */
-    source?: string | null;
-    /**
-     * Name of the type. It must be unique within the set of same level types.
-     */
-    type?: string | null;
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.
