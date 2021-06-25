@@ -1763,7 +1763,7 @@ export namespace dialogflow_v2 {
      */
     isFallback?: boolean | null;
     /**
-     * The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys." is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys.head * sys.contextual The above labels do not require value. "sys.head" means the intent is a head intent. "sys.contextual" means the intent is a contextual intent.
+     * The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys-" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys-head * sys-contextual The above labels do not require value. "sys-head" means the intent is a head intent. "sys.contextual" means the intent is a contextual intent.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -4612,7 +4612,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2Environment {
     /**
-     * Optional. The agent version loaded into this environment. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`
+     * Required. The agent version loaded into this environment. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`
      */
     agentVersion?: string | null;
     /**
@@ -7014,7 +7014,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates/updates the specified agent.
+     * Creates/updates the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -7241,7 +7241,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Exports the specified agent to a ZIP file. Operation
+     * Exports the specified agent to a ZIP file.
      * @example
      * ```js
      * // Before running the sample:
@@ -7677,7 +7677,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Imports the specified agent from a ZIP file. Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest. After the import, the imported draft agent will be trained automatically (unless disabled in agent settings). However, once the import is done, training may not be completed yet. Please call TrainAgent and wait for the operation it returns in order to train explicitly. Operation An operation which tracks when importing is complete. It only tracks when the draft agent is updated not when it is done training.
+     * Imports the specified agent from a ZIP file. Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest. After the import, the imported draft agent will be trained automatically (unless disabled in agent settings). However, once the import is done, training may not be completed yet. Please call TrainAgent and wait for the operation it returns in order to train explicitly. An operation which tracks when importing is complete. It only tracks when the draft agent is updated not when it is done training. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -7829,7 +7829,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Restores the specified agent from a ZIP file. Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted. After the restore, the restored draft agent will be trained automatically (unless disabled in agent settings). However, once the restore is done, training may not be completed yet. Please call TrainAgent and wait for the operation it returns in order to train explicitly. Operation An operation which tracks when restoring is complete. It only tracks when the draft agent is updated not when it is done training.
+     * Restores the specified agent from a ZIP file. Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted. After the restore, the restored draft agent will be trained automatically (unless disabled in agent settings). However, once the restore is done, training may not be completed yet. Please call TrainAgent and wait for the operation it returns in order to train explicitly. An operation which tracks when restoring is complete. It only tracks when the draft agent is updated not when it is done training. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -8127,7 +8127,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Trains the specified agent. Operation
+     * Trains the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -8541,7 +8541,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes entity types in the specified agent. Operation
+     * Deletes entity types in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -8692,7 +8692,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates/Creates multiple entity types in the specified agent. Operation
+     * Updates/Creates multiple entity types in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -8846,7 +8846,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates an entity type in the specified agent.
+     * Creates an entity type in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -9007,7 +9007,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes the specified entity type.
+     * Deletes the specified entity type. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -9430,7 +9430,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates the specified entity type.
+     * Updates the specified entity type. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -9695,7 +9695,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates multiple new entities in the specified entity type. Operation
+     * Creates multiple new entities in the specified entity type. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -9848,7 +9848,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes entities in the specified entity type. Operation
+     * Deletes entities in the specified entity type. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -10001,7 +10001,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates or creates multiple entities in the specified entity type. This method does not affect entities in the entity type that aren't explicitly specified in the request. Operation
+     * Updates or creates multiple entities in the specified entity type. This method does not affect entities in the entity type that aren't explicitly specified in the request. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -13322,7 +13322,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes intents in the specified agent. Operation
+     * Deletes intents in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -13473,7 +13473,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates/Creates multiple intents in the specified agent. Operation
+     * Updates/Creates multiple intents in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -13628,7 +13628,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates an intent in the specified agent.
+     * Creates an intent in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -13819,7 +13819,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes the specified intent and its direct or indirect followup intents.
+     * Deletes the specified intent and its direct or indirect followup intents. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -14260,7 +14260,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates the specified intent.
+     * Updates the specified intent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -24324,7 +24324,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates/updates the specified agent.
+     * Creates/updates the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -24555,7 +24555,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Exports the specified agent to a ZIP file. Operation
+     * Exports the specified agent to a ZIP file.
      * @example
      * ```js
      * // Before running the sample:
@@ -24992,7 +24992,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Imports the specified agent from a ZIP file. Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest. After the import, the imported draft agent will be trained automatically (unless disabled in agent settings). However, once the import is done, training may not be completed yet. Please call TrainAgent and wait for the operation it returns in order to train explicitly. Operation An operation which tracks when importing is complete. It only tracks when the draft agent is updated not when it is done training.
+     * Imports the specified agent from a ZIP file. Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest. After the import, the imported draft agent will be trained automatically (unless disabled in agent settings). However, once the import is done, training may not be completed yet. Please call TrainAgent and wait for the operation it returns in order to train explicitly. An operation which tracks when importing is complete. It only tracks when the draft agent is updated not when it is done training. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -25144,7 +25144,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Restores the specified agent from a ZIP file. Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted. After the restore, the restored draft agent will be trained automatically (unless disabled in agent settings). However, once the restore is done, training may not be completed yet. Please call TrainAgent and wait for the operation it returns in order to train explicitly. Operation An operation which tracks when restoring is complete. It only tracks when the draft agent is updated not when it is done training.
+     * Restores the specified agent from a ZIP file. Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted. After the restore, the restored draft agent will be trained automatically (unless disabled in agent settings). However, once the restore is done, training may not be completed yet. Please call TrainAgent and wait for the operation it returns in order to train explicitly. An operation which tracks when restoring is complete. It only tracks when the draft agent is updated not when it is done training. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -25442,7 +25442,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Trains the specified agent. Operation
+     * Trains the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -25858,7 +25858,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes entity types in the specified agent. Operation
+     * Deletes entity types in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -26012,7 +26012,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates/Creates multiple entity types in the specified agent. Operation
+     * Updates/Creates multiple entity types in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -26169,7 +26169,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates an entity type in the specified agent.
+     * Creates an entity type in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -26331,7 +26331,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes the specified entity type.
+     * Deletes the specified entity type. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -26756,7 +26756,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates the specified entity type.
+     * Updates the specified entity type. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -27022,7 +27022,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates multiple new entities in the specified entity type. Operation
+     * Creates multiple new entities in the specified entity type. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -27177,7 +27177,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes entities in the specified entity type. Operation
+     * Deletes entities in the specified entity type. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -27332,7 +27332,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates or creates multiple entities in the specified entity type. This method does not affect entities in the entity type that aren't explicitly specified in the request. Operation
+     * Updates or creates multiple entities in the specified entity type. This method does not affect entities in the entity type that aren't explicitly specified in the request. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -30680,7 +30680,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes intents in the specified agent. Operation
+     * Deletes intents in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -30832,7 +30832,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates/Creates multiple intents in the specified agent. Operation
+     * Updates/Creates multiple intents in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -30988,7 +30988,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Creates an intent in the specified agent.
+     * Creates an intent in the specified agent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -31179,7 +31179,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Deletes the specified intent and its direct or indirect followup intents.
+     * Deletes the specified intent and its direct or indirect followup intents. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -31620,7 +31620,7 @@ export namespace dialogflow_v2 {
     }
 
     /**
-     * Updates the specified intent.
+     * Updates the specified intent. Note: You should always train an agent prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/es/docs/training).
      * @example
      * ```js
      * // Before running the sample:
