@@ -387,7 +387,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$ContactGroupMetadata;
     /**
-     * The contact group name set by the group owner or a system provided name for system groups.
+     * The contact group name set by the group owner or a system provided name for system groups. For [`contactGroups.create`](/people/api/rest/v1/contactGroups/create) or [`contactGroups.update`](/people/api/rest/v1/contactGroups/update) the name must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error.
      */
     name?: string | null;
     /**
@@ -1759,7 +1759,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Create a new contact group owned by the authenticated user.
+     * Create a new contact group owned by the authenticated user. Created contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error.
      * @example
      * ```js
      * // Before running the sample:
@@ -2317,7 +2317,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Update the name of an existing contact group owned by the authenticated user.
+     * Update the name of an existing contact group owned by the authenticated user. Updated contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error.
      * @example
      * ```js
      * // Before running the sample:
@@ -2930,7 +2930,7 @@ export namespace people_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListOtherContacts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOtherContacts` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * metadata * names * phoneNumbers
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * metadata * names * phoneNumbers * photos
      *     readMask: 'placeholder-value',
      *     // Optional. Whether the response should include `next_sync_token`, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
      *     requestSyncToken: 'placeholder-value',
@@ -3070,7 +3070,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.otherContacts.search({
-     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.
+     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.
      *     pageSize: 'placeholder-value',
      *     // Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
      *     query: 'placeholder-value',
@@ -3200,7 +3200,7 @@ export namespace people_v1 {
      */
     pageToken?: string;
     /**
-     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * metadata * names * phoneNumbers
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * metadata * names * phoneNumbers * photos
      */
     readMask?: string;
     /**
@@ -3215,7 +3215,7 @@ export namespace people_v1 {
   export interface Params$Resource$Othercontacts$Search
     extends StandardParameters {
     /**
-     * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.
+     * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.
      */
     pageSize?: number;
     /**
@@ -4648,7 +4648,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.searchContacts({
-     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.
+     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.
      *     pageSize: 'placeholder-value',
      *     // Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
      *     query: 'placeholder-value',
@@ -5400,7 +5400,7 @@ export namespace people_v1 {
   export interface Params$Resource$People$Searchcontacts
     extends StandardParameters {
     /**
-     * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.
+     * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.
      */
     pageSize?: number;
     /**
