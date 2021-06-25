@@ -142,6 +142,7 @@ export namespace youtube_v3 {
     videoCategories: Resource$Videocategories;
     videos: Resource$Videos;
     watermarks: Resource$Watermarks;
+    youtube: Resource$Youtube;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -180,6 +181,7 @@ export namespace youtube_v3 {
       this.videoCategories = new Resource$Videocategories(this.context);
       this.videos = new Resource$Videos(this.context);
       this.watermarks = new Resource$Watermarks(this.context);
+      this.youtube = new Resource$Youtube(this.context);
     }
   }
 
@@ -8143,151 +8145,6 @@ export namespace youtube_v3 {
         return createAPIRequest<Schema$CommentThreadListResponse>(parameters);
       }
     }
-
-    /**
-     * Updates an existing resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const youtube = google.youtube('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/youtube.force-ssl'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await youtube.commentThreads.update({
-     *     // The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
-     *     part: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "etag": "my_etag",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "replies": {},
-     *       //   "snippet": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "etag": "my_etag",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "replies": {},
-     *   //   "snippet": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    update(
-      params: Params$Resource$Commentthreads$Update,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    update(
-      params?: Params$Resource$Commentthreads$Update,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$CommentThread>;
-    update(
-      params: Params$Resource$Commentthreads$Update,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    update(
-      params: Params$Resource$Commentthreads$Update,
-      options: MethodOptions | BodyResponseCallback<Schema$CommentThread>,
-      callback: BodyResponseCallback<Schema$CommentThread>
-    ): void;
-    update(
-      params: Params$Resource$Commentthreads$Update,
-      callback: BodyResponseCallback<Schema$CommentThread>
-    ): void;
-    update(callback: BodyResponseCallback<Schema$CommentThread>): void;
-    update(
-      paramsOrCallback?:
-        | Params$Resource$Commentthreads$Update
-        | BodyResponseCallback<Schema$CommentThread>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$CommentThread>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$CommentThread>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$CommentThread> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Commentthreads$Update;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Commentthreads$Update;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/youtube/v3/commentThreads').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PUT',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['part'],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$CommentThread>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$CommentThread>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Commentthreads$Insert
@@ -8348,18 +8205,6 @@ export namespace youtube_v3 {
      * Returns the comment threads of the specified video.
      */
     videoId?: string;
-  }
-  export interface Params$Resource$Commentthreads$Update
-    extends StandardParameters {
-    /**
-     * The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
-     */
-    part?: string[];
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CommentThread;
   }
 
   export class Resource$I18nlanguages {
@@ -14288,7 +14133,7 @@ export namespace youtube_v3 {
      *     maxResults: 'placeholder-value',
      *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken and prevPageToken properties identify other pages that could be retrieved.
      *     pageToken: 'placeholder-value',
-     *     // The *part* parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.
+     *     // The *part* parameter specifies the superChatEvent resource parts that the API response will include. This parameter is currently not supported.
      *     part: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -14420,7 +14265,7 @@ export namespace youtube_v3 {
      */
     pageToken?: string;
     /**
-     * The *part* parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.
+     * The *part* parameter specifies the superChatEvent resource parts that the API response will include. This parameter is currently not supported.
      */
     part?: string[];
   }
@@ -17281,5 +17126,181 @@ export namespace youtube_v3 {
      * *Note:* This parameter is intended exclusively for YouTube content partners. The *onBehalfOfContentOwner* parameter indicates that the request's authorization credentials identify a YouTube CMS user who is acting on behalf of the content owner specified in the parameter value. This parameter is intended for YouTube content partners that own and manage many different YouTube channels. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The CMS account that the user authenticates with must be linked to the specified YouTube content owner.
      */
     onBehalfOfContentOwner?: string;
+  }
+
+  export class Resource$Youtube {
+    context: APIRequestContext;
+    v3: Resource$Youtube$V3;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.v3 = new Resource$Youtube$V3(this.context);
+    }
+  }
+
+  export class Resource$Youtube$V3 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Updates an existing resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.updateCommentThreads({
+     *     // The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
+     *     part: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "replies": {},
+     *       //   "snippet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "replies": {},
+     *   //   "snippet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateCommentThreads(
+      params: Params$Resource$Youtube$V3$Updatecommentthreads,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCommentThreads(
+      params?: Params$Resource$Youtube$V3$Updatecommentthreads,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommentThread>;
+    updateCommentThreads(
+      params: Params$Resource$Youtube$V3$Updatecommentthreads,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateCommentThreads(
+      params: Params$Resource$Youtube$V3$Updatecommentthreads,
+      options: MethodOptions | BodyResponseCallback<Schema$CommentThread>,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
+    updateCommentThreads(
+      params: Params$Resource$Youtube$V3$Updatecommentthreads,
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
+    updateCommentThreads(
+      callback: BodyResponseCallback<Schema$CommentThread>
+    ): void;
+    updateCommentThreads(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Updatecommentthreads
+        | BodyResponseCallback<Schema$CommentThread>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommentThread>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommentThread>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CommentThread> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Updatecommentthreads;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Youtube$V3$Updatecommentthreads;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/commentThreads').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CommentThread>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CommentThread>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Updatecommentthreads
+    extends StandardParameters {
+    /**
+     * The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.
+     */
+    part?: string[];
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommentThread;
   }
 }

@@ -966,34 +966,6 @@
           "scopes": [
             "https://www.googleapis.com/auth/youtube.force-ssl"
           ]
-        },
-        "update": {
-          "description": "Updates an existing resource.",
-          "flatPath": "youtube/v3/commentThreads",
-          "httpMethod": "PUT",
-          "id": "youtube.commentThreads.update",
-          "parameterOrder": [
-            "part"
-          ],
-          "parameters": {
-            "part": {
-              "description": "The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.",
-              "location": "query",
-              "repeated": true,
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "youtube/v3/commentThreads",
-          "request": {
-            "$ref": "CommentThread"
-          },
-          "response": {
-            "$ref": "CommentThread"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/youtube.force-ssl"
-          ]
         }
       }
     },
@@ -3012,7 +2984,7 @@
               "type": "string"
             },
             "part": {
-              "description": "The *part* parameter specifies the superChatEvent resource parts that the API response will include. Supported values are id and snippet.",
+              "description": "The *part* parameter specifies the superChatEvent resource parts that the API response will include. This parameter is currently not supported.",
               "location": "query",
               "repeated": true,
               "required": true,
@@ -3762,9 +3734,39 @@
           ]
         }
       }
+    },
+    "youtube": {
+      "resources": {
+        "v3": {
+          "methods": {
+            "updateCommentThreads": {
+              "description": "Updates an existing resource.",
+              "flatPath": "youtube/v3/commentThreads",
+              "httpMethod": "PUT",
+              "id": "youtube.youtube.v3.updateCommentThreads",
+              "parameterOrder": [],
+              "parameters": {
+                "part": {
+                  "description": "The *part* parameter specifies a comma-separated list of commentThread resource properties that the API response will include. You must at least include the snippet part in the parameter value since that part contains all of the properties that the API request can update.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                }
+              },
+              "path": "youtube/v3/commentThreads",
+              "request": {
+                "$ref": "CommentThread"
+              },
+              "response": {
+                "$ref": "CommentThread"
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20210602",
+  "revision": "20210624",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
