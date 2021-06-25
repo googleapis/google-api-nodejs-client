@@ -14,27 +14,40 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {datacatalog_v1} from './v1';
 import {datacatalog_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: datacatalog_v1.Datacatalog,
   v1beta1: datacatalog_v1beta1.Datacatalog,
 };
 
+export function datacatalog(version: 'v1'): datacatalog_v1.Datacatalog;
+export function datacatalog(
+  options: datacatalog_v1.Options
+): datacatalog_v1.Datacatalog;
 export function datacatalog(
   version: 'v1beta1'
 ): datacatalog_v1beta1.Datacatalog;
 export function datacatalog(
   options: datacatalog_v1beta1.Options
 ): datacatalog_v1beta1.Datacatalog;
-export function datacatalog<T = datacatalog_v1beta1.Datacatalog>(
+export function datacatalog<
+  T = datacatalog_v1.Datacatalog | datacatalog_v1beta1.Datacatalog
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | datacatalog_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | datacatalog_v1.Options
+    | 'v1beta1'
+    | datacatalog_v1beta1.Options
 ) {
   return getAPI<T>('datacatalog', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {datacatalog_v1};
 export {datacatalog_v1beta1};
 export {
   AuthPlus,
