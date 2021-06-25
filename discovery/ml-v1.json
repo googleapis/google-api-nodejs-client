@@ -1486,7 +1486,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210611",
   "rootUrl": "https://ml.googleapis.com/",
   "schemas": {
     "GoogleApi__HttpBody": {
@@ -2250,6 +2250,13 @@
         "trialId": {
           "description": "The trial id for these results.",
           "type": "string"
+        },
+        "webAccessUris": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The web URIs for the training job. Currently for debug terminal access to the job. Only set for in-progress hyperparameter tuning trials with web access enabled.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -3211,6 +3218,10 @@
           },
           "type": "array"
         },
+        "enableWebAccess": {
+          "description": "Optional. Whether to enable web access for the training job.",
+          "type": "boolean"
+        },
         "encryptionConfig": {
           "$ref": "GoogleCloudMlV1__EncryptionConfig",
           "description": "Optional. Options for using customer-managed encryption keys (CMEK) to protect resources created by a training job, instead of using Google's default encryption. If this is set, then all resources created by the training job will be encrypted with the customer-managed encryption key that you specify. [Learn how and when to use CMEK with AI Platform Training](/ai-platform/training/docs/cmek)."
@@ -3368,6 +3379,14 @@
             "$ref": "GoogleCloudMlV1__HyperparameterOutput"
           },
           "type": "array"
+        },
+        "webAccessUris": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. The web URIs for the training job. Currently for debug terminal access to the job.",
+          "readOnly": true,
+          "type": "object"
         }
       },
       "type": "object"

@@ -604,6 +604,10 @@ export namespace ml_v1 {
      * The trial id for these results.
      */
     trialId?: string | null;
+    /**
+     * The web URIs for the training job. Currently for debug terminal access to the job. Only set for in-progress hyperparameter tuning trials with web access enabled.
+     */
+    webAccessUris?: {[key: string]: string} | null;
   }
   /**
    * Represents a set of hyperparameters to optimize.
@@ -1217,6 +1221,10 @@ export namespace ml_v1 {
      */
     args?: string[] | null;
     /**
+     * Optional. Whether to enable web access for the training job.
+     */
+    enableWebAccess?: boolean | null;
+    /**
      * Optional. Options for using customer-managed encryption keys (CMEK) to protect resources created by a training job, instead of using Google's default encryption. If this is set, then all resources created by the training job will be encrypted with the customer-managed encryption key that you specify. [Learn how and when to use CMEK with AI Platform Training](/ai-platform/training/docs/cmek).
      */
     encryptionConfig?: Schema$GoogleCloudMlV1__EncryptionConfig;
@@ -1345,6 +1353,10 @@ export namespace ml_v1 {
      * Results for individual Hyperparameter trials. Only set for hyperparameter tuning jobs.
      */
     trials?: Schema$GoogleCloudMlV1__HyperparameterOutput[];
+    /**
+     * Output only. The web URIs for the training job. Currently for debug terminal access to the job.
+     */
+    webAccessUris?: {[key: string]: string} | null;
   }
   /**
    * A message representing a trial.
