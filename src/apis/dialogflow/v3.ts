@@ -2314,7 +2314,7 @@ export namespace dialogflow_v3 {
      */
     isFallback?: boolean | null;
     /**
-     * The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys." is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys.head * sys.contextual The above labels do not require value. "sys.head" means the intent is a head intent. "sys.contextual" means the intent is a contextual intent.
+     * The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys-" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys-head * sys-contextual The above labels do not require value. "sys-head" means the intent is a head intent. "sys.contextual" means the intent is a contextual intent.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -3177,7 +3177,7 @@ export namespace dialogflow_v3 {
      */
     displayName?: string | null;
     /**
-     * DLP inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`
+     * [DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`
      */
     inspectTemplate?: string | null;
     /**
@@ -6735,7 +6735,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Creates an agent in the specified location.
+     * Creates an agent in the specified location. Note: You should always train flows prior to sending them queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -7622,7 +7622,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Updates the specified agent.
+     * Updates the specified agent. Note: You should always train flows prior to sending them queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -7792,7 +7792,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed.
+     * Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed. Note: You should always train flows prior to sending them queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -8207,7 +8207,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Creates an entity type in the specified agent.
+     * Creates an entity type in the specified agent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -8373,7 +8373,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Deletes the specified entity type.
+     * Deletes the specified entity type. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -8803,7 +8803,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Updates the specified entity type.
+     * Updates the specified entity type. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -12899,7 +12899,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Creates a flow in the specified agent.
+     * Creates a flow in the specified agent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -13633,7 +13633,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Imports the specified flow to the specified agent from a binary file.
+     * Imports the specified flow to the specified agent from a binary file. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -13934,7 +13934,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Updates the specified flow.
+     * Updates the specified flow. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -14096,7 +14096,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Trains the specified flow. Note that only the flow in 'draft' environment is trained.
+     * Trains the specified flow. Note that only the flow in 'draft' environment is trained. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -14537,7 +14537,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Creates a page in the specified flow.
+     * Creates a page in the specified flow. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -14702,7 +14702,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Deletes the specified page.
+     * Deletes the specified page. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -15132,7 +15132,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Updates the specified page.
+     * Updates the specified page. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -15380,7 +15380,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Creates an TransitionRouteGroup in the specified flow.
+     * Creates an TransitionRouteGroup in the specified flow. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -15540,7 +15540,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Deletes the specified TransitionRouteGroup.
+     * Deletes the specified TransitionRouteGroup. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -15973,7 +15973,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Updates the specified TransitionRouteGroup.
+     * Updates the specified TransitionRouteGroup. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -17182,7 +17182,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Creates an intent in the specified agent.
+     * Creates an intent in the specified agent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -17347,7 +17347,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Deletes the specified intent.
+     * Deletes the specified intent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -17774,7 +17774,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Updates the specified intent.
+     * Updates the specified intent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:

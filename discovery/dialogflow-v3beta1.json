@@ -115,7 +115,7 @@
             "agents": {
               "methods": {
                 "create": {
-                  "description": "Creates an agent in the specified location.",
+                  "description": "Creates an agent in the specified location. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                   "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.locations.agents.create",
@@ -293,7 +293,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the specified agent.",
+                  "description": "Updates the specified agent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                   "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}",
                   "httpMethod": "PATCH",
                   "id": "dialogflow.projects.locations.agents.patch",
@@ -328,7 +328,7 @@
                   ]
                 },
                 "restore": {
-                  "description": "Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed.",
+                  "description": "Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                   "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}:restore",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.locations.agents.restore",
@@ -424,7 +424,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes the specified entity type.",
+                      "description": "Deletes the specified entity type. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/entityTypes/{entityTypesId}",
                       "httpMethod": "DELETE",
                       "id": "dialogflow.projects.locations.agents.entityTypes.delete",
@@ -528,7 +528,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the specified entity type.",
+                      "description": "Updates the specified entity type. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/entityTypes/{entityTypesId}",
                       "httpMethod": "PATCH",
                       "id": "dialogflow.projects.locations.agents.entityTypes.patch",
@@ -1303,7 +1303,7 @@
                 "flows": {
                   "methods": {
                     "create": {
-                      "description": "Creates a flow in the specified agent.",
+                      "description": "Creates a flow in the specified agent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.flows.create",
@@ -1459,7 +1459,7 @@
                       ]
                     },
                     "import": {
-                      "description": "Imports the specified flow to the specified agent from a binary file.",
+                      "description": "Imports the specified flow to the specified agent from a binary file. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows:import",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.flows.import",
@@ -1530,7 +1530,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the specified flow.",
+                      "description": "Updates the specified flow. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}",
                       "httpMethod": "PATCH",
                       "id": "dialogflow.projects.locations.agents.flows.patch",
@@ -1570,7 +1570,7 @@
                       ]
                     },
                     "train": {
-                      "description": "Trains the specified flow. Note that only the flow in 'draft' environment is trained.",
+                      "description": "Trains the specified flow. Note that only the flow in 'draft' environment is trained. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}:train",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.flows.train",
@@ -1814,7 +1814,7 @@
                     "transitionRouteGroups": {
                       "methods": {
                         "create": {
-                          "description": "Creates an TransitionRouteGroup in the specified flow.",
+                          "description": "Creates an TransitionRouteGroup in the specified flow. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                           "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}/transitionRouteGroups",
                           "httpMethod": "POST",
                           "id": "dialogflow.projects.locations.agents.flows.transitionRouteGroups.create",
@@ -1848,7 +1848,7 @@
                           ]
                         },
                         "delete": {
-                          "description": "Deletes the specified TransitionRouteGroup.",
+                          "description": "Deletes the specified TransitionRouteGroup. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                           "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}/transitionRouteGroups/{transitionRouteGroupsId}",
                           "httpMethod": "DELETE",
                           "id": "dialogflow.projects.locations.agents.flows.transitionRouteGroups.delete",
@@ -1952,7 +1952,7 @@
                           ]
                         },
                         "patch": {
-                          "description": "Updates the specified TransitionRouteGroup.",
+                          "description": "Updates the specified TransitionRouteGroup. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                           "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}/transitionRouteGroups/{transitionRouteGroupsId}",
                           "httpMethod": "PATCH",
                           "id": "dialogflow.projects.locations.agents.flows.transitionRouteGroups.patch",
@@ -2184,7 +2184,7 @@
                 "intents": {
                   "methods": {
                     "create": {
-                      "description": "Creates an intent in the specified agent.",
+                      "description": "Creates an intent in the specified agent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/intents",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.intents.create",
@@ -2218,7 +2218,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes the specified intent.",
+                      "description": "Deletes the specified intent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/intents/{intentsId}",
                       "httpMethod": "DELETE",
                       "id": "dialogflow.projects.locations.agents.intents.delete",
@@ -2332,7 +2332,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the specified intent.",
+                      "description": "Updates the specified intent. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/intents/{intentsId}",
                       "httpMethod": "PATCH",
                       "id": "dialogflow.projects.locations.agents.intents.patch",
@@ -3553,7 +3553,7 @@
       }
     }
   },
-  "revision": "20210611",
+  "revision": "20210618",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -4218,7 +4218,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix \"sys.\" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys.head * sys.contextual The above labels do not require value. \"sys.head\" means the intent is a head intent. \"sys.contextual\" means the intent is a contextual intent.",
+          "description": "The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix \"sys-\" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys-head * sys-contextual The above labels do not require value. \"sys-head\" means the intent is a head intent. \"sys.contextual\" means the intent is a contextual intent.",
           "type": "object"
         },
         "name": {
@@ -7746,7 +7746,7 @@
           "type": "string"
         },
         "inspectTemplate": {
-          "description": "DLP inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`",
+          "description": "[DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`",
           "type": "string"
         },
         "name": {
