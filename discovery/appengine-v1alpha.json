@@ -20,6 +20,7 @@
   "description": "Provisions and manages developers' App Engine applications.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/appengine/docs/admin-api/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -708,7 +709,7 @@
       }
     }
   },
-  "revision": "20210613",
+  "revision": "20210618",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {

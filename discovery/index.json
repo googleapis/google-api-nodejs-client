@@ -1640,6 +1640,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/data-catalog/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "datacatalog:v1",
+      "name": "datacatalog",
+      "version": "v1",
+      "title": "Google Cloud Data Catalog API",
+      "description": "A fully managed and highly scalable data discovery and metadata management service.",
+      "discoveryRestUrl": "https://datacatalog.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/data-catalog/docs/",
       "preferred": true
     },
     {
@@ -3000,7 +3015,7 @@
       "name": "keep",
       "version": "v1",
       "title": "Google Keep API",
-      "description": "Allows clients to create, read, and write their Google Keep Notes.",
+      "description": "This API is an enterprise-only API used to create and manage the Keep notes within your domain, including resolving issues identified by CASB software.",
       "discoveryRestUrl": "https://keep.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4066,7 +4081,7 @@
       "name": "run",
       "version": "v1alpha1",
       "title": "Cloud Run Admin API",
-      "description": "Deploy and manage user provided container images that scale automatically based on incoming requets. The Cloud Run Admin API follows the Knative Serving API specification.",
+      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4081,7 +4096,7 @@
       "name": "run",
       "version": "v1beta1",
       "title": "Cloud Run Admin API",
-      "description": "Deploy and manage user provided container images that scale automatically based on incoming requets. The Cloud Run Admin API follows the Knative Serving API specification.",
+      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4096,7 +4111,7 @@
       "name": "run",
       "version": "v1",
       "title": "Cloud Run Admin API",
-      "description": "Deploy and manage user provided container images that scale automatically based on incoming requets. The Cloud Run Admin API follows the Knative Serving API specification.",
+      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",

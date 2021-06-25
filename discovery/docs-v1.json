@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20210323",
+  "revision": "20210615",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -2633,7 +2633,8 @@
             "BREAK_LEFT",
             "BREAK_RIGHT",
             "BREAK_LEFT_RIGHT",
-            "IN_FRONT_OF_TEXT"
+            "IN_FRONT_OF_TEXT",
+            "BEHIND_TEXT"
           ],
           "enumDescriptions": [
             "The layout is unspecified.",
@@ -2641,7 +2642,8 @@
             "Breaks text such that the positioned object is on the left and text is on the right.",
             "Breaks text such that the positioned object is on the right and text is on the left.",
             "Breaks text such that there is no text on the left or right of the positioned object.",
-            "The positioned object is in front of the text."
+            "The positioned object is in front of the text.",
+            "The positioned object is behind the text."
           ],
           "type": "string"
         },

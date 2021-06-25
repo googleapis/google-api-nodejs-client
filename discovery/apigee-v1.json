@@ -254,6 +254,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getRuntimeConfig": {
+          "description": "Get runtime config for an organization.",
+          "flatPath": "v1/organizations/{organizationsId}/runtimeConfig",
+          "httpMethod": "GET",
+          "id": "apigee.organizations.getRuntimeConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Name of the runtime config for the organization in the following format: 'organizations/{org}/runtimeConfig'.",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/runtimeConfig$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "GoogleCloudApigeeV1RuntimeConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getSyncAuthorization": {
           "description": "Lists the service accounts with the permissions required to allow the Synchronizer to download environment data from the control plane. An ETag is returned in the response to `getSyncAuthorization`. Pass that ETag when calling [setSyncAuthorization](setSyncAuthorization) to ensure that you are updating the correct version. If you don't pass the ETag in the call to `setSyncAuthorization`, then the existing authorization is overwritten indiscriminately. For more information, see [Configure the Synchronizer](https://cloud.google.com/apigee/docs/hybrid/latest/synchronizer-access). **Note**: Available to Apigee hybrid only.",
           "flatPath": "v1/organizations/{organizationsId}:getSyncAuthorization",
@@ -6986,7 +7011,7 @@
       }
     }
   },
-  "revision": "20210604",
+  "revision": "20210618",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -11145,6 +11170,30 @@
         "updateTime": {
           "description": "The unix timestamp when this rule was updated. This is updated whenever env_group_revision is updated. This field is omitted from the IngressConfig unless the GetDeployedIngressConfig API is called with view=FULL.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1RuntimeConfig": {
+      "description": "Runtime configuration for the organization. Response for GetRuntimeConfig.",
+      "id": "GoogleCloudApigeeV1RuntimeConfig",
+      "properties": {
+        "analyticsBucket": {
+          "description": "Cloud Storage bucket used for uploading Analytics records.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the resource in the following format: `organizations/{org}/runtimeConfig`.",
+          "type": "string"
+        },
+        "tenantProjectId": {
+          "description": "Output only. Tenant project ID associated with the Apigee organization. The tenant project is used to host Google-managed resources that are dedicated to this Apigee organization. Clients have limited access to resources within the tenant project used to support Apigee runtime instances. Access to the tenant project is managed using SetSyncAuthorization. It can be empty if the tenant project hasn't been created yet.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "traceBucket": {
+          "description": "Cloud Storage bucket used for uploading Trace records.",
           "type": "string"
         }
       },
