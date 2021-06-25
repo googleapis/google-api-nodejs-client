@@ -175,7 +175,7 @@
           ]
         },
         "create": {
-          "description": "Create a new contact group owned by the authenticated user.",
+          "description": "Create a new contact group owned by the authenticated user. Created contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error.",
           "flatPath": "v1/contactGroups",
           "httpMethod": "POST",
           "id": "people.contactGroups.create",
@@ -300,7 +300,7 @@
           ]
         },
         "update": {
-          "description": "Update the name of an existing contact group owned by the authenticated user.",
+          "description": "Update the name of an existing contact group owned by the authenticated user. Updated contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error.",
           "flatPath": "v1/contactGroups/{contactGroupsId}",
           "httpMethod": "PUT",
           "id": "people.contactGroups.update",
@@ -413,7 +413,7 @@
               "type": "string"
             },
             "readMask": {
-              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * metadata * names * phoneNumbers",
+              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * metadata * names * phoneNumbers * photos",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -445,7 +445,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.",
+              "description": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -853,7 +853,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.",
+              "description": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 30 will be capped to 30.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -1154,7 +1154,7 @@
       }
     }
   },
-  "revision": "20210617",
+  "revision": "20210623",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1538,7 +1538,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "The contact group name set by the group owner or a system provided name for system groups.",
+          "description": "The contact group name set by the group owner or a system provided name for system groups. For [`contactGroups.create`](/people/api/rest/v1/contactGroups/create) or [`contactGroups.update`](/people/api/rest/v1/contactGroups/update) the name must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error.",
           "type": "string"
         },
         "resourceName": {
