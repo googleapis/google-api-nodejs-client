@@ -36,7 +36,7 @@
   "baseUrl": "https://cloudsearch.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloud Search",
-  "description": "Cloud Search provides cloud-based search capabilities over G Suite data. The Cloud Search API allows indexing of non-G Suite data into Cloud Search.",
+  "description": "Cloud Search provides cloud-based search capabilities over Google Workspace data. The Cloud Search API allows indexing of non-Google Workspace data into Cloud Search.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/cloud-search/docs/guides/",
   "fullyEncodeReservedExpansion": true,
@@ -1916,7 +1916,7 @@
       }
     }
   },
-  "revision": "20210608",
+  "revision": "20210614",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AuditLoggingSettings": {
@@ -2558,7 +2558,7 @@
       "id": "FacetBucket",
       "properties": {
         "count": {
-          "description": "Number of results that match the bucket value. Counts are only returned for searches when count accuracy is ensured. Can be empty.",
+          "description": "Number of results that match the bucket value. Counts are only returned for searches when count accuracy is ensured. Cloud Search does not guarantee facet counts for any query and facet counts might be present only intermittently, even for identical queries. Do not build dependencies on facet count existence; instead use facet ount percentages which are always returned.",
           "format": "int32",
           "type": "integer"
         },
