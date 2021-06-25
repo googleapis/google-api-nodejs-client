@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20210529",
+  "revision": "20210616",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -5185,7 +5185,7 @@
             "Cloud Dataflow is unaware of this version.",
             "This is a known version of an SDK, and is supported.",
             "A newer version of the SDK family exists, and an update is recommended.",
-            "This version of the SDK is deprecated and will eventually be no longer supported.",
+            "This version of the SDK is deprecated and will eventually be unsupported.",
             "Support for this SDK version has ended and it should no longer be used."
           ],
           "type": "string"
