@@ -1652,40 +1652,6 @@
                 "https://www.googleapis.com/auth/analytics.edit",
                 "https://www.googleapis.com/auth/analytics.readonly"
               ]
-            },
-            "patch": {
-              "description": "Updates a FirebaseLink on a property",
-              "flatPath": "v1alpha/properties/{propertiesId}/firebaseLinks/{firebaseLinksId}",
-              "httpMethod": "PATCH",
-              "id": "analyticsadmin.properties.firebaseLinks.patch",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Output only. Example format: properties/1234/firebaseLinks/5678",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+/firebaseLinks/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                },
-                "updateMask": {
-                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
-                  "format": "google-fieldmask",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+name}",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.edit"
-              ]
             }
           }
         },
@@ -2796,7 +2762,7 @@
       }
     }
   },
-  "revision": "20210616",
+  "revision": "20210624",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3214,14 +3180,14 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "eventName": {
-          "description": "Immutable. The event name for this conversion event. Examples: 'click', 'purchase'",
-          "type": "string"
-        },
-        "isDeletable": {
+        "deletable": {
           "description": "Output only. If set, this event can currently be deleted via DeleteConversionEvent.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "eventName": {
+          "description": "Immutable. The event name for this conversion event. Examples: 'click', 'purchase'",
+          "type": "string"
         },
         "name": {
           "description": "Output only. Resource name of this conversion event. Format: properties/{property}/conversionEvents/{conversion_event}",
