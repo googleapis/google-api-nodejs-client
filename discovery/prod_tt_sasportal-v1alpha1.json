@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210526",
+  "revision": "20210624",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2887,7 +2887,12 @@
     "SasPortalDeviceMetadata": {
       "description": "Device data overridable by both SAS Portal and registration requests.",
       "id": "SasPortalDeviceMetadata",
-      "properties": {},
+      "properties": {
+        "antennaModel": {
+          "description": "If populated, the Antenna Model Pattern to use. Format is: RecordCreatorId:PatternId",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SasPortalDeviceModel": {
