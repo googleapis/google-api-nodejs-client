@@ -126,7 +126,7 @@
               "type": "string"
             },
             "filter": {
-              "description": "Filter semantics described below.",
+              "description": "Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.",
               "location": "query",
               "type": "string"
             },
@@ -230,7 +230,7 @@
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Filter semantics described below.",
+                      "description": "Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -301,13 +301,48 @@
                   }
                 }
               }
+            },
+            "topicStates": {
+              "methods": {
+                "patch": {
+                  "description": "Update a topic state resource.",
+                  "flatPath": "v1alpha/platforms/{platformsId}/properties/{propertiesId}/topicStates/{topicStatesId}",
+                  "httpMethod": "PATCH",
+                  "id": "ideahub.platforms.properties.topicStates.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Unique identifier for the topic state. Format: platforms/{platform}/properties/{property}/topicStates/{topic_state}",
+                      "location": "path",
+                      "pattern": "^platforms/[^/]+/properties/[^/]+/topicStates/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleSearchIdeahubV1alphaTopicState"
+                  },
+                  "response": {
+                    "$ref": "GoogleSearchIdeahubV1alphaTopicState"
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20210528",
+  "revision": "20210623",
   "rootUrl": "https://ideahub.googleapis.com/",
   "schemas": {
     "GoogleSearchIdeahubV1alphaAvailableLocale": {
@@ -412,6 +447,25 @@
         "mid": {
           "description": "The mID of the topic.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleSearchIdeahubV1alphaTopicState": {
+      "description": "Represents topic state specific to a web property.",
+      "id": "GoogleSearchIdeahubV1alphaTopicState",
+      "properties": {
+        "dismissed": {
+          "description": "Whether the topic is dismissed.",
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Unique identifier for the topic state. Format: platforms/{platform}/properties/{property}/topicStates/{topic_state}",
+          "type": "string"
+        },
+        "saved": {
+          "description": "Whether the topic is saved.",
+          "type": "boolean"
         }
       },
       "type": "object"

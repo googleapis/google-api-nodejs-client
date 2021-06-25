@@ -210,6 +210,23 @@ export namespace ideahub_v1alpha {
      */
     mid?: string | null;
   }
+  /**
+   * Represents topic state specific to a web property.
+   */
+  export interface Schema$GoogleSearchIdeahubV1alphaTopicState {
+    /**
+     * Whether the topic is dismissed.
+     */
+    dismissed?: boolean | null;
+    /**
+     * Unique identifier for the topic state. Format: platforms/{platform\}/properties/{property\}/topicStates/{topic_state\}
+     */
+    name?: string | null;
+    /**
+     * Whether the topic is saved.
+     */
+    saved?: boolean | null;
+  }
 
   export class Resource$Ideas {
     context: APIRequestContext;
@@ -248,7 +265,7 @@ export namespace ideahub_v1alpha {
      *     'creator.platform': 'placeholder-value',
      *     // Identifies the platform account (blog/site/etc.) for which to fetch Ideas.
      *     'creator.platformId': 'placeholder-value',
-     *     // Filter semantics described below.
+     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Order semantics described below.
      *     orderBy: 'placeholder-value',
@@ -375,7 +392,7 @@ export namespace ideahub_v1alpha {
      */
     'creator.platformId'?: string;
     /**
-     * Filter semantics described below.
+     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -410,6 +427,7 @@ export namespace ideahub_v1alpha {
     ideas: Resource$Platforms$Properties$Ideas;
     ideaStates: Resource$Platforms$Properties$Ideastates;
     locales: Resource$Platforms$Properties$Locales;
+    topicStates: Resource$Platforms$Properties$Topicstates;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.ideas = new Resource$Platforms$Properties$Ideas(this.context);
@@ -417,6 +435,9 @@ export namespace ideahub_v1alpha {
         this.context
       );
       this.locales = new Resource$Platforms$Properties$Locales(this.context);
+      this.topicStates = new Resource$Platforms$Properties$Topicstates(
+        this.context
+      );
     }
   }
 
@@ -457,7 +478,7 @@ export namespace ideahub_v1alpha {
      *     'creator.platform': 'placeholder-value',
      *     // Identifies the platform account (blog/site/etc.) for which to fetch Ideas.
      *     'creator.platformId': 'placeholder-value',
-     *     // Filter semantics described below.
+     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Order semantics described below.
      *     orderBy: 'placeholder-value',
@@ -589,7 +610,7 @@ export namespace ideahub_v1alpha {
      */
     'creator.platformId'?: string;
     /**
-     * Filter semantics described below.
+     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -947,5 +968,178 @@ export namespace ideahub_v1alpha {
      * Required. The web property to check idea availability for Format: platforms/{platform\}/property/{property\}
      */
     parent?: string;
+  }
+
+  export class Resource$Platforms$Properties$Topicstates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Update a topic state resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/ideahub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const ideahub = google.ideahub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await ideahub.platforms.properties.topicStates.patch({
+     *     // Unique identifier for the topic state. Format: platforms/{platform\}/properties/{property\}/topicStates/{topic_state\}
+     *     name: 'platforms/my-platform/properties/my-propertie/topicStates/my-topicState',
+     *     // The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dismissed": false,
+     *       //   "name": "my_name",
+     *       //   "saved": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dismissed": false,
+     *   //   "name": "my_name",
+     *   //   "saved": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Platforms$Properties$Topicstates$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Platforms$Properties$Topicstates$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleSearchIdeahubV1alphaTopicState>;
+    patch(
+      params: Params$Resource$Platforms$Properties$Topicstates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Platforms$Properties$Topicstates$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleSearchIdeahubV1alphaTopicState>,
+      callback: BodyResponseCallback<Schema$GoogleSearchIdeahubV1alphaTopicState>
+    ): void;
+    patch(
+      params: Params$Resource$Platforms$Properties$Topicstates$Patch,
+      callback: BodyResponseCallback<Schema$GoogleSearchIdeahubV1alphaTopicState>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleSearchIdeahubV1alphaTopicState>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Platforms$Properties$Topicstates$Patch
+        | BodyResponseCallback<Schema$GoogleSearchIdeahubV1alphaTopicState>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleSearchIdeahubV1alphaTopicState>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleSearchIdeahubV1alphaTopicState>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleSearchIdeahubV1alphaTopicState>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Platforms$Properties$Topicstates$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Platforms$Properties$Topicstates$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ideahub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleSearchIdeahubV1alphaTopicState>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleSearchIdeahubV1alphaTopicState>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Platforms$Properties$Topicstates$Patch
+    extends StandardParameters {
+    /**
+     * Unique identifier for the topic state. Format: platforms/{platform\}/properties/{property\}/topicStates/{topic_state\}
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleSearchIdeahubV1alphaTopicState;
   }
 }
