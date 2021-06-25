@@ -437,13 +437,13 @@ export namespace analyticsadmin_v1alpha {
      */
     custom?: boolean | null;
     /**
+     * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
+     */
+    deletable?: boolean | null;
+    /**
      * Immutable. The event name for this conversion event. Examples: 'click', 'purchase'
      */
     eventName?: string | null;
-    /**
-     * Output only. If set, this event can currently be deleted via DeleteConversionEvent.
-     */
-    isDeletable?: boolean | null;
     /**
      * Output only. Resource name of this conversion event. Format: properties/{property\}/conversionEvents/{conversion_event\}
      */
@@ -6575,8 +6575,8 @@ export namespace analyticsadmin_v1alpha {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "custom": false,
+     *       //   "deletable": false,
      *       //   "eventName": "my_eventName",
-     *       //   "isDeletable": false,
      *       //   "name": "my_name"
      *       // }
      *     },
@@ -6587,8 +6587,8 @@ export namespace analyticsadmin_v1alpha {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "custom": false,
+     *   //   "deletable": false,
      *   //   "eventName": "my_eventName",
-     *   //   "isDeletable": false,
      *   //   "name": "my_name"
      *   // }
      * }
@@ -6861,8 +6861,8 @@ export namespace analyticsadmin_v1alpha {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "custom": false,
+     *   //   "deletable": false,
      *   //   "eventName": "my_eventName",
-     *   //   "isDeletable": false,
      *   //   "name": "my_name"
      *   // }
      * }
@@ -9208,156 +9208,6 @@ export namespace analyticsadmin_v1alpha {
         );
       }
     }
-
-    /**
-     * Updates a FirebaseLink on a property
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.firebaseLinks.patch({
-     *     // Output only. Example format: properties/1234/firebaseLinks/5678
-     *     name: 'properties/my-propertie/firebaseLinks/my-firebaseLink',
-     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "createTime": "my_createTime",
-     *       //   "name": "my_name",
-     *       //   "project": "my_project"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "project": "my_project"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Properties$Firebaselinks$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Properties$Firebaselinks$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>;
-    patch(
-      params: Params$Resource$Properties$Firebaselinks$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Properties$Firebaselinks$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
-    ): void;
-    patch(
-      params: Params$Resource$Properties$Firebaselinks$Patch,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Firebaselinks$Patch
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Firebaselinks$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Properties$Firebaselinks$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Properties$Firebaselinks$Create
@@ -9393,22 +9243,6 @@ export namespace analyticsadmin_v1alpha {
      * Required. Format: properties/{property_id\} Example: properties/1234
      */
     parent?: string;
-  }
-  export interface Params$Resource$Properties$Firebaselinks$Patch
-    extends StandardParameters {
-    /**
-     * Output only. Example format: properties/1234/firebaseLinks/5678
-     */
-    name?: string;
-    /**
-     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaFirebaseLink;
   }
 
   export class Resource$Properties$Googleadslinks {
