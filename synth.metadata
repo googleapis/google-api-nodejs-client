@@ -4,14 +4,14 @@
       "git": {
         "name": ".",
         "remote": "https://github.com/googleapis/google-api-nodejs-client.git",
-        "sha": "68a8690b4caa75b3b8b533c8245797bce2873092"
+        "sha": "a62d42fee89f6186c346a067711cfb5b6fe03901"
       }
     },
     {
       "git": {
         "name": "synthtool",
         "remote": "https://github.com/googleapis/synthtool.git",
-        "sha": "e60186990fae9c4e14e046085b79c08917217040"
+        "sha": "6d26b13debbfe3c6a6a9f9f1914c5bccf1e6fadc"
       }
     }
   ]

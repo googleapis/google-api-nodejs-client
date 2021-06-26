@@ -32,6 +32,9 @@ if [[ $KOKORO_BUILD_ARTIFACTS_SUBDIR = *"continuous"* ]] || [[ $KOKORO_BUILD_ART
   }
   trap cleanup EXIT HUP
 fi
+# Unit tests exercise the entire API surface, which may include
+# deprecation warnings:
+export MOCHA_THROW_DEPRECATION=false
 npm test
 
 # codecov combines coverage across integration and unit tests. Include
