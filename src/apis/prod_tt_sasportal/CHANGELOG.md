@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v1.2.0...prod_tt_sasportal-v1.3.0) (2021-06-25)
+
+
+### Features
+
+* **prod_tt_sasportal:** update the API ([bb09fd9](https://www.github.com/googleapis/google-api-nodejs-client/commit/bb09fd9e01f22ad2f4c9ece20681d22529469991))
+
 ## [1.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v1.1.0...prod_tt_sasportal-v1.2.0) (2021-06-02)
 
 
