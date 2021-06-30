@@ -161,6 +161,10 @@ export namespace groupssettings_v1 {
      */
     defaultMessageDenyNotificationText?: string | null;
     /**
+     * Default sender for members who can post messages as the group. Possible values are: - `DEFAULT_SELF`: By default messages will be sent from the user - `GROUP`: By default messages will be sent from the group
+     */
+    default_sender?: string | null;
+    /**
      * Description of the group. This property value may be an empty string if no group description has been entered. If entered, the maximum group description is no more than 300 characters.
      */
     description?: string | null;
@@ -609,6 +613,7 @@ export namespace groupssettings_v1 {
      *   //   "customReplyTo": "my_customReplyTo",
      *   //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
      *   //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *   //   "default_sender": "my_default_sender",
      *   //   "description": "my_description",
      *   //   "email": "my_email",
      *   //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
@@ -797,6 +802,7 @@ export namespace groupssettings_v1 {
      *       //   "customReplyTo": "my_customReplyTo",
      *       //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
      *       //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *       //   "default_sender": "my_default_sender",
      *       //   "description": "my_description",
      *       //   "email": "my_email",
      *       //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
@@ -865,6 +871,7 @@ export namespace groupssettings_v1 {
      *   //   "customReplyTo": "my_customReplyTo",
      *   //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
      *   //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *   //   "default_sender": "my_default_sender",
      *   //   "description": "my_description",
      *   //   "email": "my_email",
      *   //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
@@ -1053,6 +1060,7 @@ export namespace groupssettings_v1 {
      *       //   "customReplyTo": "my_customReplyTo",
      *       //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
      *       //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *       //   "default_sender": "my_default_sender",
      *       //   "description": "my_description",
      *       //   "email": "my_email",
      *       //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
@@ -1121,6 +1129,7 @@ export namespace groupssettings_v1 {
      *   //   "customReplyTo": "my_customReplyTo",
      *   //   "customRolesEnabledForSettingsToBeMerged": "my_customRolesEnabledForSettingsToBeMerged",
      *   //   "defaultMessageDenyNotificationText": "my_defaultMessageDenyNotificationText",
+     *   //   "default_sender": "my_default_sender",
      *   //   "description": "my_description",
      *   //   "email": "my_email",
      *   //   "enableCollaborativeInbox": "my_enableCollaborativeInbox",
