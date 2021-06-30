@@ -362,7 +362,12 @@ export namespace sasportal_v1alpha1 {
   /**
    * Device data overridable by both SAS Portal and registration requests.
    */
-  export interface Schema$SasPortalDeviceMetadata {}
+  export interface Schema$SasPortalDeviceMetadata {
+    /**
+     * If populated, the Antenna Model Pattern to use. Format is: RecordCreatorId:PatternId
+     */
+    antennaModel?: string | null;
+  }
   /**
    * Information about the model of the device.
    */
