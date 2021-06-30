@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/run-v3.0.1...run-v4.0.0) (2021-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* * fix(accessapproval): update the API
+
+### Features
+
+* run the generator ([#2667](https://www.github.com/googleapis/google-api-nodejs-client/issues/2667)) ([0e56eeb](https://www.github.com/googleapis/google-api-nodejs-client/commit/0e56eebe1358284e6dfbedba92e10769ce1bb4d7))
+
 ### [3.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/run-v3.0.0...run-v3.0.1) (2021-06-25)
 
 
