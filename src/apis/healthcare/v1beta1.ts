@@ -408,6 +408,19 @@ export namespace healthcare_v1beta1 {
     name?: string | null;
   }
   /**
+   * Request to configure the search parameters for the specified FHIR store.
+   */
+  export interface Schema$ConfigureSearchRequest {
+    /**
+     * The canonical URLs of the search parameters that are intended to be used for the FHIR store. See https://www.hl7.org/fhir/references.html#canonical for explanation on FHIR canonical urls
+     */
+    canonicalUrls?: string[] | null;
+    /**
+     * If `validate_only` is set to true, the method will compile all the search parameters without actually setting the search config for the store and triggering the reindex.
+     */
+    validateOnly?: boolean | null;
+  }
+  /**
    * Represents a user's consent.
    */
   export interface Schema$Consent {
@@ -905,7 +918,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ExportResourcesRequest {
     /**
-     * The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type.
+     * The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type. Note that unlike in FhirStore.StreamConfig.BigQueryDestination, BigQuery views will not be created by ExportResources.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1FhirBigQueryDestination;
     /**
@@ -1005,6 +1018,10 @@ export namespace healthcare_v1beta1 {
      * If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, "action":"CreateResource".
      */
     notificationConfig?: Schema$NotificationConfig;
+    /**
+     * Configuration for how FHIR resource can be searched.
+     */
+    searchConfig?: Schema$SearchConfig;
     /**
      * A list of streaming configs that configure the destinations of streaming export for every resource mutation in this FHIR store. Each store is allowed to have up to 10 streaming configs. After a new config is added, the next resource mutation is streamed to the new location in addition to the existing ones. When a location is removed from the list, the server stops streaming to that location. Before adding a new config, you must add the required [`bigquery.dataEditor`](https://cloud.google.com/bigquery/docs/access-control#bigquery.dataEditor) role to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/iam/docs/service-accounts). Some lag (typically on the order of dozens of seconds) is expected before the results show up in the streaming destination.
      */
@@ -2084,6 +2101,28 @@ export namespace healthcare_v1beta1 {
      * The error output of the parser.
      */
     error?: string | null;
+  }
+  /**
+   * Contains the configuration for FHIR search.
+   */
+  export interface Schema$SearchConfig {
+    /**
+     * A list of search parameters in this FHIR store that are used to configure this FHIR store.
+     */
+    searchParameters?: Schema$SearchParameter[];
+  }
+  /**
+   * Contains the versioned name and the URL for one SearchParameter.
+   */
+  export interface Schema$SearchParameter {
+    /**
+     * The canonical url of the search parameter resource.
+     */
+    canonicalUrl?: string | null;
+    /**
+     * The versioned name of the search parameter resource. The format is projects/{project-id\}/locations/{location\}/datasets/{dataset-id\}/fhirStores/{fhirStore-id\}/fhir/SearchParameter/{resource-id\}/_history/{version-id\} For fhir stores with disable_resource_versioning=true, the format is projects/{project-id\}/locations/{location\}/datasets/{dataset-id\}/fhirStores/{fhirStore-id\}/fhir/SearchParameter/{resource-id\}/
+     */
+    parameter?: string | null;
   }
   /**
    * Request to search the resources in the specified FHIR store.
@@ -16919,6 +16958,150 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
+     * Configure the search parameters for the FHIR store and reindex resources in the FHIR store according to the defined search parameters. The search parameters provided in this request will replace any previous search configuration. The target SearchParameter resources need to exist in the store before calling ConfigureSearch, otherwise an error will occur. This method returns an Operation that can be used to track the progress of the reindexing by calling GetOperation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.configureSearch({
+     *       // The name of the FHIR store to configure, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "canonicalUrls": [],
+     *         //   "validateOnly": false
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    configureSearch(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    configureSearch(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    configureSearch(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    configureSearch(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureSearch(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    configureSearch(callback: BodyResponseCallback<Schema$Operation>): void;
+    configureSearch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:configureSearch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a new FHIR store within the parent dataset.
      * @example
      * ```js
@@ -16961,6 +17144,7 @@ export namespace healthcare_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
+     *       //   "searchConfig": {},
      *       //   "streamConfigs": [],
      *       //   "validationConfig": {},
      *       //   "version": "my_version"
@@ -16978,6 +17162,7 @@ export namespace healthcare_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "searchConfig": {},
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
      *   //   "version": "my_version"
@@ -17533,6 +17718,7 @@ export namespace healthcare_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "searchConfig": {},
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
      *   //   "version": "my_version"
@@ -18093,6 +18279,7 @@ export namespace healthcare_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
+     *       //   "searchConfig": {},
      *       //   "streamConfigs": [],
      *       //   "validationConfig": {},
      *       //   "version": "my_version"
@@ -18110,6 +18297,7 @@ export namespace healthcare_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
+     *   //   "searchConfig": {},
      *   //   "streamConfigs": [],
      *   //   "validationConfig": {},
      *   //   "version": "my_version"
@@ -18497,6 +18685,18 @@ export namespace healthcare_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Configuresearch
+    extends StandardParameters {
+    /**
+     * The name of the FHIR store to configure, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConfigureSearchRequest;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Create
     extends StandardParameters {
     /**

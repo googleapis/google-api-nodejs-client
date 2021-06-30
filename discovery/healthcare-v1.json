@@ -3920,7 +3920,7 @@
       }
     }
   },
-  "revision": "20210611",
+  "revision": "20210621",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4651,7 +4651,7 @@
       "properties": {
         "bigqueryDestination": {
           "$ref": "GoogleCloudHealthcareV1FhirBigQueryDestination",
-          "description": "The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type."
+          "description": "The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type. Note that unlike in FhirStore.StreamConfig.BigQueryDestination, BigQuery views will not be created by ExportResources."
         },
         "gcsDestination": {
           "$ref": "GoogleCloudHealthcareV1FhirGcsDestination",
