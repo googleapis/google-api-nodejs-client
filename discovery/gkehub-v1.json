@@ -905,7 +905,7 @@
       }
     }
   },
-  "revision": "20210604",
+  "revision": "20210622",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1632,7 +1632,7 @@
           "type": "string"
         },
         "lastSync": {
-          "description": "Timestamp of when ACM last successfully synced the repo The time format is specified in https://golang.org/pkg/time/#Time.String This field is being deprecated. Use last_sync_time instead. (b/154053616)",
+          "description": "Deprecated: use last_sync_time instead. Timestamp of when ACM last successfully synced the repo The time format is specified in https://golang.org/pkg/time/#Time.String",
           "type": "string"
         },
         "lastSyncTime": {
