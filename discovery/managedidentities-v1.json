@@ -839,7 +839,7 @@
       }
     }
   },
-  "revision": "20210614",
+  "revision": "20210615",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1402,6 +1402,10 @@
         "nodeId": {
           "description": "The id of the node. This should be equal to SaasInstanceNode.node_id.",
           "type": "string"
+        },
+        "perSliEligibility": {
+          "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility",
+          "description": "If present, this will override eligibility for the node coming from instance or exclusions for specified SLIs."
         }
       },
       "type": "object"
