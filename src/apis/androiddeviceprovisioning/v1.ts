@@ -189,13 +189,21 @@ export namespace androiddeviceprovisioning_v1 {
      */
     companyName?: string | null;
     /**
+     * Input only. The preferred locale of the customer represented as a BCP47 language code. This field is validated on input and requests containing unsupported language codes will be rejected. Supported language codes: Arabic (ar) Chinese (Hong Kong) (zh-HK) Chinese (Simplified) (zh-CN) Chinese (Traditional) (zh-TW) Czech (cs) Danish (da) Dutch (nl) English (UK) (en-GB) English (US) (en-US) Filipino (fil) Finnish (fi) French (fr) German (de) Hebrew (iw) Hindi (hi) Hungarian (hu) Indonesian (id) Italian (it) Japanese (ja) Korean (ko) Norwegian (Bokmal) (no) Polish (pl) Portuguese (Brazil) (pt-BR) Portuguese (Portugal) (pt-PT) Russian (ru) Spanish (es) Spanish (Latin America) (es-419) Swedish (sv) Thai (th) Turkish (tr) Ukrainian (uk) Vietnamese (vi)
+     */
+    languageCode?: string | null;
+    /**
      * Output only. The API resource name of the company. The resource name is one of the following formats: * `partners/[PARTNER_ID]/customers/[CUSTOMER_ID]` * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]` * `partners/[PARTNER_ID]/vendors/[VENDOR_ID]/customers/[CUSTOMER_ID]` Assigned by the server.
      */
     name?: string | null;
     /**
-     * Required. Input only. Email address of customer's users in the owner role. At least one `owner_email` is required. Each email address must be associated with a Google Account. Owners share the same access as admins but can also add, delete, and edit your organization's portal users.
+     * Required. Input only. Email address of customer's users in the owner role. At least one `owner_email` is required. Owners share the same access as admins but can also add, delete, and edit your organization's portal users.
      */
     ownerEmails?: string[] | null;
+    /**
+     * Input only. If set to true, welcome email will not be sent to the customer. It is recommended to skip the welcome email if devices will be claimed with additional DEVICE_PROTECTION service, as the customer will receive separate emails at device claim time. This field is ignored if this is not a Zero-touch customer.
+     */
+    skipWelcomeEmail?: boolean | null;
     /**
      * Output only. Whether any user from the company has accepted the latest Terms of Service (ToS). See TermsStatus.
      */
@@ -2840,8 +2848,10 @@ export namespace androiddeviceprovisioning_v1 {
      *   //   "adminEmails": [],
      *   //   "companyId": "my_companyId",
      *   //   "companyName": "my_companyName",
+     *   //   "languageCode": "my_languageCode",
      *   //   "name": "my_name",
      *   //   "ownerEmails": [],
+     *   //   "skipWelcomeEmail": false,
      *   //   "termsStatus": "my_termsStatus"
      *   // }
      * }
