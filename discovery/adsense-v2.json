@@ -701,6 +701,8 @@
                     "REQUESTED_AD_TYPE_CODE",
                     "SERVED_AD_TYPE_NAME",
                     "SERVED_AD_TYPE_CODE",
+                    "AD_FORMAT_NAME",
+                    "AD_FORMAT_CODE",
                     "CUSTOM_SEARCH_STYLE_NAME",
                     "CUSTOM_SEARCH_STYLE_ID",
                     "DOMAIN_REGISTRANT",
@@ -747,6 +749,8 @@
                     "Requested ad type code (e.g. \"IMAGE\", \"RADLINK\", \"OTHER\").",
                     "Localized served ad type name (e.g. \"Display\", \"Link unit\", \"Other\").",
                     "Served ad type code (e.g. \"IMAGE\", \"RADLINK\", \"OTHER\").",
+                    "Localized ad format name indicating the way an ad is shown to the users on your site (e.g. \"In-page\", \"Anchor\", \"Vignette\").",
+                    "Ad format code indicating the way an ad is shown to the users on your site (e.g. \"ON_PAGE\", \"ANCHOR\", \"INTERSTITIAL\").",
                     "Custom search style name.",
                     "Custom search style id.",
                     "Domain registrants.",
@@ -1005,6 +1009,8 @@
                     "REQUESTED_AD_TYPE_CODE",
                     "SERVED_AD_TYPE_NAME",
                     "SERVED_AD_TYPE_CODE",
+                    "AD_FORMAT_NAME",
+                    "AD_FORMAT_CODE",
                     "CUSTOM_SEARCH_STYLE_NAME",
                     "CUSTOM_SEARCH_STYLE_ID",
                     "DOMAIN_REGISTRANT",
@@ -1051,6 +1057,8 @@
                     "Requested ad type code (e.g. \"IMAGE\", \"RADLINK\", \"OTHER\").",
                     "Localized served ad type name (e.g. \"Display\", \"Link unit\", \"Other\").",
                     "Served ad type code (e.g. \"IMAGE\", \"RADLINK\", \"OTHER\").",
+                    "Localized ad format name indicating the way an ad is shown to the users on your site (e.g. \"In-page\", \"Anchor\", \"Vignette\").",
+                    "Ad format code indicating the way an ad is shown to the users on your site (e.g. \"ON_PAGE\", \"ANCHOR\", \"INTERSTITIAL\").",
                     "Custom search style name.",
                     "Custom search style id.",
                     "Domain registrants.",
@@ -1559,7 +1567,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210629",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {

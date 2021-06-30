@@ -2,7 +2,7 @@
 
 # notebooks
 
-> AI Platform Notebooks API is used to manage notebook resources in Google Cloud.
+> Notebooks API is used to manage notebook resources in Google Cloud.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in

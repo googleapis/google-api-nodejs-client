@@ -12,7 +12,7 @@
   "baseUrl": "https://run.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloud Run",
-  "description": "Deploy and manage user provided container images that scale automatically based on incoming requets. The Cloud Run Admin API follows the Knative Serving API specification.",
+  "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/run/",
   "fullyEncodeReservedExpansion": true,
@@ -1736,7 +1736,7 @@
       }
     }
   },
-  "revision": "20210611",
+  "revision": "20210628",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {

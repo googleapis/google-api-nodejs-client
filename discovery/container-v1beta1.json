@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210607",
+  "revision": "20210617",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3126,6 +3126,10 @@
         "desiredAddonsConfig": {
           "$ref": "AddonsConfig",
           "description": "Configurations for the various addons available to run in the cluster."
+        },
+        "desiredAuthenticatorGroupsConfig": {
+          "$ref": "AuthenticatorGroupsConfig",
+          "description": "AuthenticatorGroupsConfig specifies the config for the cluster security groups settings."
         },
         "desiredAutopilot": {
           "$ref": "Autopilot",

@@ -142,7 +142,7 @@ export namespace translate_v3 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The models to use for translation. Map's key is target language code. Map's value is model name. Value can be a built-in general model, or an AutoML Translation model. The value format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, `projects/{project-number-or-id\}/locations/{location-id\}/models/general/base` If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
+     * Optional. The models to use for translation. Map's key is target language code. Map's value is model name. Value can be a built-in general model, or an AutoML Translation model. The value format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
      */
     models?: {[key: string]: string} | null;
     /**
@@ -483,7 +483,7 @@ export namespace translate_v3 {
      */
     mimeType?: string | null;
     /**
-     * Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, `projects/{project-number-or-id\}/locations/{location-id\}/models/general/base` For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id\}/locations/global/models/general/nmt`. If missing, the system decides which google base model to use.
+     * Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, For global (non-regionalized) requests, use `location-id` `global`. For example, `projects/{project-number-or-id\}/locations/global/models/general/nmt`. If not provided, the default Google model (NMT) will be used
      */
     model?: string | null;
     /**
@@ -726,7 +726,7 @@ export namespace translate_v3 {
      *   const res = await translate.projects.getSupportedLanguages({
      *     // Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      *     displayLanguageCode: 'placeholder-value',
-     *     // Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, `projects/{project-number-or-id\}/locations/{location-id\}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     *     // Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, Returns languages supported by the specified model. If missing, we get supported languages of Google general NMT model.
      *     model: 'placeholder-value',
      *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}` or `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project',
@@ -1009,7 +1009,7 @@ export namespace translate_v3 {
      */
     displayLanguageCode?: string;
     /**
-     * Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, `projects/{project-number-or-id\}/locations/{location-id\}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, Returns languages supported by the specified model. If missing, we get supported languages of Google general NMT model.
      */
     model?: string;
     /**
@@ -1506,7 +1506,7 @@ export namespace translate_v3 {
      *   const res = await translate.projects.locations.getSupportedLanguages({
      *     // Optional. The language to use to return localized, human readable names of supported languages. If missing, then display names are not returned in a response.
      *     displayLanguageCode: 'placeholder-value',
-     *     // Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, `projects/{project-number-or-id\}/locations/{location-id\}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     *     // Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, Returns languages supported by the specified model. If missing, we get supported languages of Google general NMT model.
      *     model: 'placeholder-value',
      *     // Required. Project or location to make a call. Must refer to a caller's project. Format: `projects/{project-number-or-id\}` or `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global` or `projects/{project-number-or-id\}`. Non-global location is required for AutoML models. Only models within the same region (have same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
      *     parent: 'projects/my-project/locations/my-location',
@@ -1952,7 +1952,7 @@ export namespace translate_v3 {
      */
     displayLanguageCode?: string;
     /**
-     * Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, `projects/{project-number-or-id\}/locations/{location-id\}/models/general/base` Returns languages supported by the specified model. If missing, we get supported languages of Google general base (PBMT) model.
+     * Optional. Get supported languages of this model. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, Returns languages supported by the specified model. If missing, we get supported languages of Google general NMT model.
      */
     model?: string;
     /**

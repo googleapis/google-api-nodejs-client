@@ -343,6 +343,10 @@ import {
   VERSIONS as networkmanagementVersions,
   networkmanagement,
 } from './networkmanagement';
+import {
+  VERSIONS as networksecurityVersions,
+  networksecurity,
+} from './networksecurity';
 import {VERSIONS as notebooksVersions, notebooks} from './notebooks';
 import {VERSIONS as oauth2Versions, oauth2} from './oauth2';
 import {
@@ -669,6 +673,7 @@ export const APIS: APIList = {
   mybusinessplaceactions: mybusinessplaceactionsVersions,
   networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
+  networksecurity: networksecurityVersions,
   notebooks: notebooksVersions,
   oauth2: oauth2Versions,
   ondemandscanning: ondemandscanningVersions,
@@ -892,6 +897,7 @@ export class GeneratedAPIs {
   mybusinessplaceactions = mybusinessplaceactions;
   networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
+  networksecurity = networksecurity;
   notebooks = notebooks;
   oauth2 = oauth2;
   ondemandscanning = ondemandscanning;

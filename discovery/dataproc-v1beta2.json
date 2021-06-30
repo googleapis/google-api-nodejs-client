@@ -1181,7 +1181,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).",
+                  "description": "Updates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata). The cluster must be in a RUNNING state or an error is returned.",
                   "flatPath": "v1beta2/projects/{projectId}/regions/{region}/clusters/{clusterName}",
                   "httpMethod": "PATCH",
                   "id": "dataproc.projects.regions.clusters.patch",
@@ -2291,7 +2291,7 @@
       }
     }
   },
-  "revision": "20210604",
+  "revision": "20210622",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2359,7 +2359,7 @@
         },
         "yarnConfig": {
           "$ref": "BasicYarnAutoscalingConfig",
-          "description": "Required. YARN autoscaling configuration."
+          "description": "Optional. YARN autoscaling configuration."
         }
       },
       "type": "object"

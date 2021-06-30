@@ -3092,6 +3092,34 @@
                 },
                 "fhirStores": {
                   "methods": {
+                    "configureSearch": {
+                      "description": "Configure the search parameters for the FHIR store and reindex resources in the FHIR store according to the defined search parameters. The search parameters provided in this request will replace any previous search configuration. The target SearchParameter resources need to exist in the store before calling ConfigureSearch, otherwise an error will occur. This method returns an Operation that can be used to track the progress of the reindexing by calling GetOperation.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores/{fhirStoresId}:configureSearch",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.fhirStores.configureSearch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the FHIR store to configure, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/fhirStores/{fhir_store_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/fhirStores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}:configureSearch",
+                      "request": {
+                        "$ref": "ConfigureSearchRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "create": {
                       "description": "Creates a new FHIR store within the parent dataset.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/fhirStores",
@@ -4837,7 +4865,7 @@
       }
     }
   },
-  "revision": "20210611",
+  "revision": "20210621",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -5252,6 +5280,24 @@
         "name": {
           "description": "Full path of a Cloud Healthcare API resource.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigureSearchRequest": {
+      "description": "Request to configure the search parameters for the specified FHIR store.",
+      "id": "ConfigureSearchRequest",
+      "properties": {
+        "canonicalUrls": {
+          "description": "The canonical URLs of the search parameters that are intended to be used for the FHIR store. See https://www.hl7.org/fhir/references.html#canonical for explanation on FHIR canonical urls",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "validateOnly": {
+          "description": "If `validate_only` is set to true, the method will compile all the search parameters without actually setting the search config for the store and triggering the reindex.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -5946,7 +5992,7 @@
         },
         "bigqueryDestination": {
           "$ref": "GoogleCloudHealthcareV1beta1FhirBigQueryDestination",
-          "description": "The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type."
+          "description": "The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type. Note that unlike in FhirStore.StreamConfig.BigQueryDestination, BigQuery views will not be created by ExportResources."
         },
         "gcsDestination": {
           "$ref": "GoogleCloudHealthcareV1beta1FhirGcsDestination",
@@ -6053,6 +6099,10 @@
         "notificationConfig": {
           "$ref": "NotificationConfig",
           "description": "If non-empty, publish all resource modifications of this FHIR store to this destination. The Pub/Sub message attributes contain a map with a string describing the action that has triggered the notification. For example, \"action\":\"CreateResource\"."
+        },
+        "searchConfig": {
+          "$ref": "SearchConfig",
+          "description": "Configuration for how FHIR resource can be searched."
         },
         "streamConfigs": {
           "description": "A list of streaming configs that configure the destinations of streaming export for every resource mutation in this FHIR store. Each store is allowed to have up to 10 streaming configs. After a new config is added, the next resource mutation is streamed to the new location in addition to the existing ones. When a location is removed from the list, the server stops streaming to that location. Before adding a new config, you must add the required [`bigquery.dataEditor`](https://cloud.google.com/bigquery/docs/access-control#bigquery.dataEditor) role to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/iam/docs/service-accounts). Some lag (typically on the order of dozens of seconds) is expected before the results show up in the streaming destination.",
@@ -7651,6 +7701,35 @@
         },
         "error": {
           "description": "The error output of the parser.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchConfig": {
+      "description": "Contains the configuration for FHIR search.",
+      "id": "SearchConfig",
+      "properties": {
+        "searchParameters": {
+          "description": "A list of search parameters in this FHIR store that are used to configure this FHIR store.",
+          "items": {
+            "$ref": "SearchParameter"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SearchParameter": {
+      "description": "Contains the versioned name and the URL for one SearchParameter.",
+      "id": "SearchParameter",
+      "properties": {
+        "canonicalUrl": {
+          "description": "The canonical url of the search parameter resource.",
+          "type": "string"
+        },
+        "parameter": {
+          "description": "The versioned name of the search parameter resource. The format is projects/{project-id}/locations/{location}/datasets/{dataset-id}/fhirStores/{fhirStore-id}/fhir/SearchParameter/{resource-id}/_history/{version-id} For fhir stores with disable_resource_versioning=true, the format is projects/{project-id}/locations/{location}/datasets/{dataset-id}/fhirStores/{fhirStore-id}/fhir/SearchParameter/{resource-id}/",
           "type": "string"
         }
       },

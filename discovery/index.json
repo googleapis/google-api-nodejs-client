@@ -3021,7 +3021,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://support.google.com/keep",
+      "documentationLink": "https://developers.google.com/keep/api",
       "preferred": true
     },
     {
@@ -3416,17 +3416,32 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "networksecurity:v1beta1",
+      "name": "networksecurity",
+      "version": "v1beta1",
+      "title": "Network Security API",
+      "description": "",
+      "discoveryRestUrl": "https://networksecurity.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/networking",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "notebooks:v1",
       "name": "notebooks",
       "version": "v1",
       "title": "Notebooks API",
-      "description": "AI Platform Notebooks API is used to manage notebook resources in Google Cloud.",
+      "description": "Notebooks API is used to manage notebook resources in Google Cloud.",
       "discoveryRestUrl": "https://notebooks.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/ai-platform/notebooks/docs/",
+      "documentationLink": "https://cloud.google.com/notebooks/docs/",
       "preferred": true
     },
     {
@@ -4593,6 +4608,21 @@
       "title": "Cloud SQL Admin API",
       "description": "API for Cloud SQL database instance management",
       "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1beta4",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/cloud-sql/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "sqladmin:v1",
+      "name": "sqladmin",
+      "version": "v1",
+      "title": "Cloud SQL Admin API",
+      "description": "API for Cloud SQL database instance management",
+      "discoveryRestUrl": "https://sqladmin.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

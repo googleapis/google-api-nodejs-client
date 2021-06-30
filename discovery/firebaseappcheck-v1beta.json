@@ -863,7 +863,7 @@
       }
     }
   },
-  "revision": "20210621",
+  "revision": "20210625",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse": {
@@ -980,7 +980,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaDeviceCheckConfig": {
-      "description": "An app's DeviceCheck configuration object. This configuration is used by ExchangeDeviceCheckToken to validate device tokens issued to apps by DeviceCheck.",
+      "description": "An app's DeviceCheck configuration object. This configuration is used by ExchangeDeviceCheckToken to validate device tokens issued to apps by DeviceCheck. It also controls certain properties of the returned App Check token, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).",
       "id": "GoogleFirebaseAppcheckV1betaDeviceCheckConfig",
       "properties": {
         "keyId": {
@@ -1048,7 +1048,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse": {
-      "description": "Response message for ExchangeAppAttestAttestation",
+      "description": "Response message for ExchangeAppAttestAttestation and ExchangeAppAttestDebugAttestation",
       "id": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse",
       "properties": {
         "artifact": {
@@ -1206,7 +1206,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaRecaptchaConfig": {
-      "description": "An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3.",
+      "description": "An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned App Check token, such as its ttl.",
       "id": "GoogleFirebaseAppcheckV1betaRecaptchaConfig",
       "properties": {
         "name": {

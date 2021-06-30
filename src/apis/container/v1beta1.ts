@@ -654,6 +654,10 @@ export namespace container_v1beta1 {
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
     /**
+     * AuthenticatorGroupsConfig specifies the config for the cluster security groups settings.
+     */
+    desiredAuthenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
+    /**
      * The desired Autopilot configuration for the cluster.
      */
     desiredAutopilot?: Schema$Autopilot;

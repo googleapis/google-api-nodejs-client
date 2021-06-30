@@ -622,7 +622,7 @@ export namespace gkehub_v1beta {
      */
     importToken?: string | null;
     /**
-     * Timestamp of when ACM last successfully synced the repo The time format is specified in https://golang.org/pkg/time/#Time.String This field is being deprecated. Use last_sync_time instead. (b/154053616)
+     * Deprecated: use last_sync_time instead. Timestamp of when ACM last successfully synced the repo The time format is specified in https://golang.org/pkg/time/#Time.String
      */
     lastSync?: string | null;
     /**

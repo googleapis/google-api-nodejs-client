@@ -686,6 +686,12 @@
               "location": "query",
               "type": "string"
             },
+            "readMask": {
+              "description": "Optional. A comma-separated list of fields specifying which fields to be returned in ResourceSearchResult. Only '*' or combination of top level fields can be specified. Field names of both snake_case and camelCase are supported. Examples: `\"*\"`, `\"name,location\"`, `\"name,versionedResources\"`. The read_mask paths must be valid field paths listed but not limited to (both snake_case and camelCase are supported): * name * asset_type or assetType * project * display_name or displayName * description * location * labels * network_tags or networkTags * kms_key or kmsKey * create_time or createTime * update_time or updateTime * state * additional_attributes or additionalAttributes * versioned_resources or versionedResources If read_mask is not specified, all fields except versionedResources will be returned. If only '*' is specified, all fields including versionedResources will be returned. Any invalid field path will trigger INVALID_ARGUMENT error.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
             "scope": {
               "description": "Required. A scope can be a project, a folder, or an organization. The search is limited to the resources within the `scope`. The caller must be granted the [`cloudasset.assets.searchAllResources`](https://cloud.google.com/asset-inventory/docs/access-control#required_permissions) permission on the desired scope. The allowed values are: * projects/{PROJECT_ID} (e.g., \"projects/foo-bar\") * projects/{PROJECT_NUMBER} (e.g., \"projects/12345678\") * folders/{FOLDER_NUMBER} (e.g., \"folders/1234567\") * organizations/{ORGANIZATION_NUMBER} (e.g., \"organizations/123456\")",
               "location": "path",
@@ -705,7 +711,7 @@
       }
     }
   },
-  "revision": "20210611",
+  "revision": "20210625",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -2801,6 +2807,13 @@
           "description": "The last update timestamp of this resource, at which the resource was last modified or deleted. The granularity is in seconds. Timestamp.nanos will always be 0. This field is available only when the resource's proto contains it. To search against `update_time`: * use a field query. - value in seconds since unix epoch. Example: `updateTime < 1609459200` - value in date string. Example: `updateTime < 2021-01-01` - value in date-time string (must be quoted). Example: `updateTime < \"2021-01-01T00:00:00\"`",
           "format": "google-datetime",
           "type": "string"
+        },
+        "versionedResources": {
+          "description": "Versioned resource representations of this resource. This is repeated because there could be multiple versions of resource representations during version migration. This `versioned_resources` field is not searchable. Some attributes of the resource representations are exposed in `additional_attributes` field, so as to allow users to search on them.",
+          "items": {
+            "$ref": "VersionedResource"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3006,6 +3019,25 @@
         },
         "version": {
           "description": "The version of the package.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VersionedResource": {
+      "description": "Resource representation as defined by the corresponding service providing the resource for a given API version.",
+      "id": "VersionedResource",
+      "properties": {
+        "resource": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "JSON representation of the resource as defined by the corresponding service providing this resource. Example: If the resource is an instance provided by Compute Engine, this field will contain the JSON representation of the instance as defined by Compute Engine: `https://cloud.google.com/compute/docs/reference/rest/v1/instances`. You can find the resource definition for each supported resource type in this table: `https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types`",
+          "type": "object"
+        },
+        "version": {
+          "description": "API version of the resource. Example: If the resource is an instance provided by Compute Engine v1 API as defined in `https://cloud.google.com/compute/docs/reference/rest/v1/instances`, version will be \"v1\".",
           "type": "string"
         }
       },

@@ -1336,7 +1336,7 @@
       }
     }
   },
-  "revision": "20210614",
+  "revision": "20210623",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -2633,6 +2633,13 @@
           "description": "Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups. The `customer_id` must begin with \"C\" (for example, 'C046psxkn').",
           "type": "string"
         },
+        "posixGroups": {
+          "description": "Optional. The POSIX groups associated with the `Group`.",
+          "items": {
+            "$ref": "PosixGroup"
+          },
+          "type": "array"
+        },
         "updateTime": {
           "description": "Output only. The time when the `Group` was last updated.",
           "format": "google-datetime",
@@ -3059,6 +3066,26 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "PosixGroup": {
+      "description": "POSIX Group definition to represent a group in a POSIX compliant system.",
+      "id": "PosixGroup",
+      "properties": {
+        "gid": {
+          "description": "GID of the POSIX group.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the POSIX group.",
+          "type": "string"
+        },
+        "systemId": {
+          "description": "System identifier for which group name and gid apply to. If not specified it will default to empty value.",
+          "type": "string"
         }
       },
       "type": "object"
