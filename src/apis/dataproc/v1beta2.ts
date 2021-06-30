@@ -178,7 +178,7 @@ export namespace dataproc_v1beta2 {
      */
     cooldownPeriod?: string | null;
     /**
-     * Required. YARN autoscaling configuration.
+     * Optional. YARN autoscaling configuration.
      */
     yarnConfig?: Schema$BasicYarnAutoscalingConfig;
   }
@@ -6929,7 +6929,7 @@ export namespace dataproc_v1beta2 {
     }
 
     /**
-     * Updates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata).
+     * Updates a cluster in a project. The returned Operation.metadata will be ClusterOperationMetadata (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#clusteroperationmetadata). The cluster must be in a RUNNING state or an error is returned.
      * @example
      * ```js
      * // Before running the sample:
