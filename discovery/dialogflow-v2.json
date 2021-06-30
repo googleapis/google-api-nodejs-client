@@ -6915,7 +6915,7 @@
       }
     }
   },
-  "revision": "20210618",
+  "revision": "20210625",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -11063,7 +11063,7 @@
       "id": "GoogleCloudDialogflowV2Environment",
       "properties": {
         "agentVersion": {
-          "description": "Required. The agent version loaded into this environment. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`",
+          "description": "Optional. The agent version loaded into this environment. Supported formats: - `projects//agent/versions/` - `projects//locations//agent/versions/`",
           "type": "string"
         },
         "description": {
