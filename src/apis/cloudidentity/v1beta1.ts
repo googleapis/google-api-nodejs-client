@@ -879,6 +879,10 @@ export namespace cloudidentity_v1beta1 {
      */
     parent?: string | null;
     /**
+     * Optional. The POSIX groups associated with the `Group`.
+     */
+    posixGroups?: Schema$PosixGroup[];
+    /**
      * Output only. The time when the `Group` was last updated.
      */
     updateTime?: string | null;
@@ -1164,6 +1168,23 @@ export namespace cloudidentity_v1beta1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * POSIX Group definition to represent a group in a POSIX compliant system.
+   */
+  export interface Schema$PosixGroup {
+    /**
+     * GID of the POSIX group.
+     */
+    gid?: string | null;
+    /**
+     * Name of the POSIX group.
+     */
+    name?: string | null;
+    /**
+     * System identifier for which group name and gid apply to. If not specified it will default to empty value.
+     */
+    systemId?: string | null;
   }
   /**
    * The response message for GroupsService.SearchGroups.
@@ -4617,6 +4638,7 @@ export namespace cloudidentity_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
+     *       //   "posixGroups": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -4901,6 +4923,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
+     *   //   "posixGroups": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -5307,7 +5330,7 @@ export namespace cloudidentity_v1beta1 {
      *   const res = await cloudidentity.groups.patch({
      *     // Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
      *     name: 'groups/my-group',
-     *     // Required. The fully-qualified names of fields to update. May only contain the following fields: `display_name`, `description`, `labels`.
+     *     // Required. The names of fields to update. May only contain the following fields: `display_name`, `description`, `labels`.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5323,6 +5346,7 @@ export namespace cloudidentity_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
+     *       //   "posixGroups": [],
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -5630,7 +5654,7 @@ export namespace cloudidentity_v1beta1 {
      */
     name?: string;
     /**
-     * Required. The fully-qualified names of fields to update. May only contain the following fields: `display_name`, `description`, `labels`.
+     * Required. The names of fields to update. May only contain the following fields: `display_name`, `description`, `labels`.
      */
     updateMask?: string;
 
