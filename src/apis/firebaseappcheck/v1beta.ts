@@ -211,7 +211,7 @@ export namespace firebaseappcheck_v1beta {
     token?: string | null;
   }
   /**
-   * An app's DeviceCheck configuration object. This configuration is used by ExchangeDeviceCheckToken to validate device tokens issued to apps by DeviceCheck.
+   * An app's DeviceCheck configuration object. This configuration is used by ExchangeDeviceCheckToken to validate device tokens issued to apps by DeviceCheck. It also controls certain properties of the returned App Check token, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaDeviceCheckConfig {
     /**
@@ -266,7 +266,7 @@ export namespace firebaseappcheck_v1beta {
     keyId?: string | null;
   }
   /**
-   * Response message for ExchangeAppAttestAttestation
+   * Response message for ExchangeAppAttestAttestation and ExchangeAppAttestDebugAttestation
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse {
     /**
@@ -392,7 +392,7 @@ export namespace firebaseappcheck_v1beta {
     keys?: Schema$GoogleFirebaseAppcheckV1betaPublicJwk[];
   }
   /**
-   * An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3.
+   * An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned App Check token, such as its ttl.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaRecaptchaConfig {
     /**
