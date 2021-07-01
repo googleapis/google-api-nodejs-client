@@ -5,3 +5,8 @@ rules:
   - "package\\.json$"
   - "CHANGELOG\\.md$"
   maxFiles: 3
+- author: "renovate-bot"
+  title: "^(fix\\(deps\\)|chore\\(deps\\)):"
+  changedFiles: 
+  - "/package\\.json$"
+  maxFiles: 2
