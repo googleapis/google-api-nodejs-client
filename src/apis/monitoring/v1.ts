@@ -147,6 +147,15 @@ export namespace monitoring_v1 {
     perSeriesAligner?: string | null;
   }
   /**
+   * A chart that displays alert policy data.
+   */
+  export interface Schema$AlertChart {
+    /**
+     * Required. The resource name of the alert policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
+     */
+    name?: string | null;
+  }
+  /**
    * A chart axis.
    */
   export interface Schema$Axis {
@@ -664,6 +673,10 @@ export namespace monitoring_v1 {
    * Widget contains a single dashboard component and configuration of how to present the component in the dashboard.
    */
   export interface Schema$Widget {
+    /**
+     * A chart of alert policy data.
+     */
+    alertChart?: Schema$AlertChart;
     /**
      * A blank space.
      */
