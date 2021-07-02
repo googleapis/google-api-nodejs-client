@@ -288,6 +288,10 @@
     "package": "@google-cloud/notebooks"
   },
   {
+    "api": "gateway",
+    "package": "@google-cloud/gke-connect-gateway"
+  },
+  {
     "api": "apigeeconnect",
     "package": "@google-cloud/apigee-connect"
   },
