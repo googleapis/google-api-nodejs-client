@@ -160,6 +160,10 @@ export namespace storagetransfer_v1 {
      * Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'.
      */
     path?: string | null;
+    /**
+     * Input only. Role arn to support temporary credentials via AssumeRoleWithWebIdentity. When role arn is provided, transfer service will fetch temporary credentials for the session using AssumeRoleWithWebIdentity call for the provided role using the [GoogleServiceAccount] for this project.
+     */
+    roleArn?: string | null;
   }
   /**
    * An AzureBlobStorageData resource can be a data source, but not a data sink. An AzureBlobStorageData resource represents one Azure container. The storage account determines the [Azure endpoint](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account#storage-account-endpoints). In an AzureBlobStorageData resource, a blobs's name is the [Azure Blob Storage blob's key name](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#blob-names).
@@ -187,7 +191,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$AzureCredentials {
     /**
-     * Required. Azure shared access signature. (see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview)).
+     * Required. Azure shared access signature (SAS). *Note:*Copying data from Azure Data Lake Storage (ADLS) Gen 2 is in [Preview](/products/#product-launch-stages). During Preview, if you are copying data from ADLS Gen 2, you must use an account SAS. For more information about SAS, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview).
      */
     sasToken?: string | null;
   }
@@ -267,6 +271,10 @@ export namespace storagetransfer_v1 {
      * Email address of the service account.
      */
     accountEmail?: string | null;
+    /**
+     * Unique identifier for the service account.
+     */
+    subjectId?: string | null;
   }
   /**
    * An HttpData resource specifies a list of objects on the web to be transferred over HTTP. The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `"TsvHttpData-1.0"`, which specifies the format of the file. Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields: * **HTTP URL** — The location of the object. * **Length** — The size of the object in bytes. * **MD5** — The base64-encoded MD5 hash of the object. For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list). When transferring data based on a URL list, keep the following in mind: * When an object located at `http(s)://hostname:port/` is transferred to a data sink, the name of the object at the data sink is `/`. * If the specified size of an object does not match the actual size of the object fetched, the object will not be transferred. * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer will fail. * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (/storage/docs/cloud-console#_sharingdata) and get a link to it. * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response. * ObjectConditions have no effect when filtering objects to transfer.
@@ -725,7 +733,8 @@ export namespace storagetransfer_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "accountEmail": "my_accountEmail"
+     *   //   "accountEmail": "my_accountEmail",
+     *   //   "subjectId": "my_subjectId"
      *   // }
      * }
      *
