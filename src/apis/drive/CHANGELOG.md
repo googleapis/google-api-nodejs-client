@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/drive-v1.1.0...drive-v1.1.1) (2021-07-02)
+
+
+### Bug Fixes
+
+* **drive:** update the API ([4a9fed1](https://www.github.com/googleapis/google-api-nodejs-client/commit/4a9fed1195be43f27df5ff84667ee8d8890e092d))
+
 ## [1.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/drive-v1.0.0...drive-v1.1.0) (2021-06-18)
 
 
