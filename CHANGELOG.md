@@ -4,6 +4,29 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [80.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v80.0.0...googleapis-v80.1.0) (2021-07-02)
+
+
+### Features
+
+* **composer:** update the API ([92c939f](https://www.github.com/googleapis/google-api-nodejs-client/commit/92c939fb17ff6098930dd9195e76ae3d00a2b327))
+* **documentai:** update the API ([3a9a07d](https://www.github.com/googleapis/google-api-nodejs-client/commit/3a9a07d8d4abfaa04a6436519f486156e0ce8381))
+* **logging:** update the API ([98e3101](https://www.github.com/googleapis/google-api-nodejs-client/commit/98e31012a6c52fc60403145cebec2efc75aba0e2))
+* **monitoring:** update the API ([5f6fea0](https://www.github.com/googleapis/google-api-nodejs-client/commit/5f6fea031a7f2488d77740a0ac4ca1785f8338f5))
+* regenerate index files ([625b1cb](https://www.github.com/googleapis/google-api-nodejs-client/commit/625b1cbd0092efae2f22242d06c04e86d71cf131))
+* **slides:** update the API ([5c23f85](https://www.github.com/googleapis/google-api-nodejs-client/commit/5c23f850a1edbdf9dabc75cb742514e02755aa79))
+* **storagetransfer:** update the API ([7c3156e](https://www.github.com/googleapis/google-api-nodejs-client/commit/7c3156e590baa55a4b578bc7e1c31e4965f3732f))
+
+
+### Bug Fixes
+
+* **cloudchannel:** update the API ([1b0c4ec](https://www.github.com/googleapis/google-api-nodejs-client/commit/1b0c4ec1c71c955af10545e1a564ad0972296efe))
+* **cloudidentity:** update the API ([f23c7ff](https://www.github.com/googleapis/google-api-nodejs-client/commit/f23c7ff19d05e28ad0c40c4dff08824e397a7061))
+* **dataflow:** update the API ([b345a79](https://www.github.com/googleapis/google-api-nodejs-client/commit/b345a797f77b915298baef973fb5ee414797cae5))
+* **drive:** update the API ([4a9fed1](https://www.github.com/googleapis/google-api-nodejs-client/commit/4a9fed1195be43f27df5ff84667ee8d8890e092d))
+* **networkconnectivity:** update the API ([1c3ee52](https://www.github.com/googleapis/google-api-nodejs-client/commit/1c3ee52e1ddf250778e710d058900190b33117fa))
+* **sts:** update the API ([544cd44](https://www.github.com/googleapis/google-api-nodejs-client/commit/544cd4428ef03b2c2729b62e287bbb14b1cc5d3e))
+
 ## [80.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v79.0.0...googleapis-v80.0.0) (2021-06-30)
 
 
