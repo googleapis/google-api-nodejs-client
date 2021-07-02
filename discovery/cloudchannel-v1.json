@@ -1533,7 +1533,7 @@
       }
     }
   },
-  "revision": "20210514",
+  "revision": "20210629",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -1856,15 +1856,15 @@
           "type": "string"
         },
         "email": {
-          "description": "The customer account's contact email. Required for entitlements that create admin.google.com accounts, and serves as the customer's username for those accounts.",
+          "description": "The customer account's contact email. Required for entitlements that create admin.google.com accounts, and serves as the customer's username for those accounts. Use this email to invite Team customers.",
           "type": "string"
         },
         "firstName": {
-          "description": "The customer account contact's first name.",
+          "description": "The customer account contact's first name. Optional for Team customers.",
           "type": "string"
         },
         "lastName": {
-          "description": "The customer account contact's last name.",
+          "description": "The customer account contact's last name. Optional for Team customers.",
           "type": "string"
         },
         "phone": {
@@ -1898,7 +1898,7 @@
       "id": "GoogleCloudChannelV1Customer",
       "properties": {
         "alternateEmail": {
-          "description": "Secondary contact email. You need to provide an alternate email to create different domains if a primary contact email already exists. Users will receive a notification with credentials when you create an admin.google.com account. Secondary emails are also recovery email addresses.",
+          "description": "Secondary contact email. You need to provide an alternate email to create different domains if a primary contact email already exists. Users will receive a notification with credentials when you create an admin.google.com account. Secondary emails are also recovery email addresses. Alternate emails are optional when you create Team customers.",
           "type": "string"
         },
         "channelPartnerId": {
