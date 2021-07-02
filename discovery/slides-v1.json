@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210622",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AffineTransform": {
@@ -3461,6 +3461,10 @@
       "description": "The properties of Page that are only relevant for pages with page_type SLIDE.",
       "id": "SlideProperties",
       "properties": {
+        "isSkipped": {
+          "description": "Whether the slide is skipped in the presentation mode. Defaults to false.",
+          "type": "boolean"
+        },
         "layoutObjectId": {
           "description": "The object ID of the layout that this slide is based on. This property is read-only.",
           "type": "string"
