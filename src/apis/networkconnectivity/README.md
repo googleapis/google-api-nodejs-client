@@ -2,7 +2,7 @@
 
 # networkconnectivity
 
-> The Network Connectivity API will be home to various services which provide information pertaining to network connectivity.
+> The Network Connectivity API provides access to Network Connectivity Center.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
