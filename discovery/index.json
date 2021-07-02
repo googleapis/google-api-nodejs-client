@@ -3375,7 +3375,7 @@
       "name": "networkconnectivity",
       "version": "v1alpha1",
       "title": "Network Connectivity API",
-      "description": "The Network Connectivity API will be home to various services which provide information pertaining to network connectivity.",
+      "description": "The Network Connectivity API provides access to Network Connectivity Center.",
       "discoveryRestUrl": "https://networkconnectivity.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4952,6 +4952,21 @@
       "title": "Chrome Verified Access API",
       "description": "API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network",
       "discoveryRestUrl": "https://verifiedaccess.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/chrome/verified-access",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "verifiedaccess:v2",
+      "name": "verifiedaccess",
+      "version": "v2",
+      "title": "Chrome Verified Access API",
+      "description": "API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network",
+      "discoveryRestUrl": "https://verifiedaccess.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

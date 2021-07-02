@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210605",
+  "revision": "20210626",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -2142,6 +2142,7 @@
         "createTime": {
           "description": "Output only. The time at which the message was created in Hangouts Chat server.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "fallbackText": {
