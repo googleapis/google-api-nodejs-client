@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20210616",
+  "revision": "20210618",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -2336,7 +2336,7 @@
           "type": "string"
         },
         "workerPool": {
-          "description": "A short and friendly name for the worker pool this event refers to, populated from the value of PoolStageRelation::user_pool_name.",
+          "description": "A short and friendly name for the worker pool this event refers to.",
           "type": "string"
         }
       },

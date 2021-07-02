@@ -205,7 +205,7 @@ export namespace dataflow_v1b3 {
      */
     time?: string | null;
     /**
-     * A short and friendly name for the worker pool this event refers to, populated from the value of PoolStageRelation::user_pool_name.
+     * A short and friendly name for the worker pool this event refers to.
      */
     workerPool?: string | null;
   }
