@@ -638,15 +638,15 @@ export namespace cloudchannel_v1 {
      */
     displayName?: string | null;
     /**
-     * The customer account's contact email. Required for entitlements that create admin.google.com accounts, and serves as the customer's username for those accounts.
+     * The customer account's contact email. Required for entitlements that create admin.google.com accounts, and serves as the customer's username for those accounts. Use this email to invite Team customers.
      */
     email?: string | null;
     /**
-     * The customer account contact's first name.
+     * The customer account contact's first name. Optional for Team customers.
      */
     firstName?: string | null;
     /**
-     * The customer account contact's last name.
+     * The customer account contact's last name. Optional for Team customers.
      */
     lastName?: string | null;
     /**
@@ -676,7 +676,7 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1Customer {
     /**
-     * Secondary contact email. You need to provide an alternate email to create different domains if a primary contact email already exists. Users will receive a notification with credentials when you create an admin.google.com account. Secondary emails are also recovery email addresses.
+     * Secondary contact email. You need to provide an alternate email to create different domains if a primary contact email already exists. Users will receive a notification with credentials when you create an admin.google.com account. Secondary emails are also recovery email addresses. Alternate emails are optional when you create Team customers.
      */
     alternateEmail?: string | null;
     /**
