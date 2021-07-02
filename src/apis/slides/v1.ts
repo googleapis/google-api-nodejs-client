@@ -1833,6 +1833,10 @@ export namespace slides_v1 {
    */
   export interface Schema$SlideProperties {
     /**
+     * Whether the slide is skipped in the presentation mode. Defaults to false.
+     */
+    isSkipped?: boolean | null;
+    /**
      * The object ID of the layout that this slide is based on. This property is read-only.
      */
     layoutObjectId?: string | null;
