@@ -240,6 +240,19 @@ export namespace documentai_v1beta2 {
     evaluation?: string | null;
   }
   /**
+   * Metadata message associated with the ExportProcessorVersion operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportProcessorVersionMetadata {
+    /**
+     * The common metadata about the operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message associated with the ExportProcessorVersion operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ExportProcessorVersionResponse {}
+  /**
    * The long running operation metadata for set default processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata {
