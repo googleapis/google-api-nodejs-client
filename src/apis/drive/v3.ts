@@ -3584,7 +3584,7 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.drives.list({
-     *     // Maximum number of shared drives to return.
+     *     // Maximum number of shared drives to return per page.
      *     pageSize: 'placeholder-value',
      *     // Page token for shared drives.
      *     pageToken: 'placeholder-value',
@@ -4022,7 +4022,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Drives$List extends StandardParameters {
     /**
-     * Maximum number of shared drives to return.
+     * Maximum number of shared drives to return per page.
      */
     pageSize?: number;
     /**
