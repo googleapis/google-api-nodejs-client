@@ -160,9 +160,17 @@ export namespace composer_v1beta1 {
      */
     containsPypiModulesConflict?: string | null;
     /**
+     * Composer image for which the build was happening.
+     */
+    imageVersion?: string | null;
+    /**
      * Output only. Extract from a docker image build log containing information about pypi modules conflicts.
      */
     pypiConflictBuildLogExtract?: string | null;
+    /**
+     * Pypi dependencies specified in the environment configuration, at the time when the build was triggered.
+     */
+    pypiDependencies?: {[key: string]: string} | null;
   }
   /**
    * The configuration of Cloud SQL instance that is used by the Apache Airflow software.
@@ -257,6 +265,10 @@ export namespace composer_v1beta1 {
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
+     * Optional. The size of the Cloud Composer environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    environmentSize?: string | null;
+    /**
      * Output only. The Kubernetes Engine cluster used to run this environment.
      */
     gkeCluster?: string | null;
@@ -288,6 +300,10 @@ export namespace composer_v1beta1 {
      * Optional. The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied.
      */
     webServerNetworkAccessControl?: Schema$WebServerNetworkAccessControl;
+    /**
+     * Optional. The workloads configuration settings for the GKE cluster associated with the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web server and workers workloads. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    workloadsConfig?: Schema$WorkloadsConfig;
   }
   /**
    * Image Version information
@@ -432,7 +448,7 @@ export namespace composer_v1beta1 {
      */
     oauthScopes?: string[] | null;
     /**
-     * Optional. The Google Cloud Platform Service Account to be used by the workloads. If a service account is not specified, the "default" Compute Engine service account is used. Cannot be updated .
+     * Optional. The Google Cloud Platform Service Account to be used by the workloads. If a service account is not specified, the "default" Compute Engine service account is used. Cannot be updated.
      */
     serviceAccount?: string | null;
     /**
@@ -520,6 +536,14 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$PrivateEnvironmentConfig {
     /**
+     * Optional. The CIDR block from which IP range for Cloud Composer Network in tenant project will be reserved. Needs to be disjoint from private_cluster_config.master_ipv4_cidr_block and cloud_sql_ipv4_cidr_block. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    cloudComposerNetworkIpv4CidrBlock?: string | null;
+    /**
+     * Output only. The IP range reserved for the tenant project's Cloud Composer network. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    cloudComposerNetworkIpv4ReservedRange?: string | null;
+    /**
      * Optional. The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from web_server_ipv4_cidr_block
      */
     cloudSqlIpv4CidrBlock?: string | null;
@@ -544,6 +568,27 @@ export namespace composer_v1beta1 {
    * Restart Airflow web server.
    */
   export interface Schema$RestartWebServerRequest {}
+  /**
+   * Configuration for resources used by Airflow schedulers.
+   */
+  export interface Schema$SchedulerResource {
+    /**
+     * Optional. The number of schedulers.
+     */
+    count?: number | null;
+    /**
+     * Optional. CPU request and limit for a single Airflow scheduler replica.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for a single Airflow scheduler replica.
+     */
+    memoryGb?: number | null;
+    /**
+     * Optional. Storage (GB) request and limit for a single Airflow scheduler replica.
+     */
+    storageGb?: number | null;
+  }
   /**
    * Specifies the selection and configuration of software inside the environment.
    */
@@ -603,6 +648,65 @@ export namespace composer_v1beta1 {
      * A collection of allowed IP ranges with descriptions.
      */
     allowedIpRanges?: Schema$AllowedIpRange[];
+  }
+  /**
+   * Configuration for resources used by Airflow web server.
+   */
+  export interface Schema$WebServerResource {
+    /**
+     * Optional. CPU request and limit for Airflow web server.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for Airflow web server.
+     */
+    memoryGb?: number | null;
+    /**
+     * Optional. Storage (GB) request and limit for Airflow web server.
+     */
+    storageGb?: number | null;
+  }
+  /**
+   * Configuration for resources used by Airflow workers.
+   */
+  export interface Schema$WorkerResource {
+    /**
+     * Optional. CPU request and limit for a single Airflow worker replica.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Maximum number of workers for autoscaling.
+     */
+    maxCount?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for a single Airflow worker replica.
+     */
+    memoryGb?: number | null;
+    /**
+     * Optional. Minimum number of workers for autoscaling.
+     */
+    minCount?: number | null;
+    /**
+     * Optional. Storage (GB) request and limit for a single Airflow worker replica.
+     */
+    storageGb?: number | null;
+  }
+  /**
+   * The Kubernetes workloads configuration for GKE cluster associated with the Cloud Composer environment. Supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+   */
+  export interface Schema$WorkloadsConfig {
+    /**
+     * Optional. Resources used by Airflow schedulers.
+     */
+    scheduler?: Schema$SchedulerResource;
+    /**
+     * Optional. Resources used by Airflow web server.
+     */
+    webServer?: Schema$WebServerResource;
+    /**
+     * Optional. Resources used by Airflow workers.
+     */
+    worker?: Schema$WorkerResource;
   }
 
   export class Resource$Projects {
@@ -1359,7 +1463,7 @@ export namespace composer_v1beta1 {
      *   const res = await composer.projects.locations.environments.patch({
      *     // The relative resource name of the environment to update, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      *     name: 'projects/my-project/locations/my-location/environments/my-environment',
-     *     // Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of argparse, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.argparse". The included patch environment would specify the scikit-learn version as follows: { "config":{ "softwareConfig":{ "pypiPackages":{ "scikit-learn":"==0.19.0" \} \} \} \} Note that in the above example, any existing PyPI packages other than scikit-learn and argparse will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows: { "labels":{ "label1":"new-label1-value" "label2":"new-label2-value" \} \} Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following: { "config":{ "softwareConfig":{ "pypiPackages":{ "botocore":"==1.7.14" \} \} \} \} *Note:* Only the following fields can be updated: * config.softwareConfig.pypiPackages * Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. * config.softwareConfig.pypiPackages.packagename * Update the custom PyPI package packagename, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the "config.softwareConfig.pypiPackages" mask. * labels * Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. * labels.labelName * Set the label named labelName, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the "labels" mask. * config.nodeCount * Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. * config.webServerNetworkAccessControl * Replace the environment's current WebServerNetworkAccessControl. * config.softwareConfig.airflowConfigOverrides * Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. * config.softwareConfig.airflowConfigOverrides.section- name * Override the Apache Airflow config property name in the section named section, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the "config.softwareConfig.airflowConfigOverrides" mask. * config.softwareConfig.envVariables * Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. It is an error to provide both this mask and a mask specifying one or more individual environment variables. * config.softwareConfig.imageVersion * Upgrade the version of the environment in-place. Refer to `SoftwareConfig.image_version` for information on how to format the new image version. Additionally, the new image version cannot effect a version downgrade and must match the current image version's Composer major version and Airflow major and minor versions. Consult the Cloud Composer Version List for valid values. * config.databaseConfig.machineType * Cloud SQL machine type used by Airflow database. It has to be one of: db-n1-standard-2, db-n1-standard-4, db-n1-standard-8 or db-n1-standard-16. * config.webServerConfig.machineType * Machine type on which Airflow web server is running. It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4 or composer-n1-webserver-8. * config.maintenanceWindow * Maintenance window during which Cloud Composer components may be under maintenance.
+     *     // Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of argparse, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.argparse". The included patch environment would specify the scikit-learn version as follows: { "config":{ "softwareConfig":{ "pypiPackages":{ "scikit-learn":"==0.19.0" \} \} \} \} Note that in the above example, any existing PyPI packages other than scikit-learn and argparse will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows: { "labels":{ "label1":"new-label1-value" "label2":"new-label2-value" \} \} Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following: { "config":{ "softwareConfig":{ "pypiPackages":{ "botocore":"==1.7.14" \} \} \} \} *Note:* Only the following fields can be updated: * config.softwareConfig.pypiPackages * Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. * config.softwareConfig.pypiPackages.packagename * Update the custom PyPI package packagename, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the "config.softwareConfig.pypiPackages" mask. * labels * Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. * labels.labelName * Set the label named labelName, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the "labels" mask. * config.nodeCount * Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. * config.webServerNetworkAccessControl * Replace the environment's current WebServerNetworkAccessControl. * config.softwareConfig.airflowConfigOverrides * Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. * config.softwareConfig.airflowConfigOverrides.section- name * Override the Apache Airflow config property name in the section named section, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the "config.softwareConfig.airflowConfigOverrides" mask. * config.softwareConfig.envVariables * Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. It is an error to provide both this mask and a mask specifying one or more individual environment variables. * config.softwareConfig.imageVersion * Upgrade the version of the environment in-place. Refer to `SoftwareConfig.image_version` for information on how to format the new image version. Additionally, the new image version cannot effect a version downgrade and must match the current image version's Composer major version and Airflow major and minor versions. Consult the Cloud Composer Version List for valid values. * config.softwareConfig.schedulerCount * Horizontally scale the number of schedulers in Airflow. A positive integer not greater than the number of nodes must be provided in the `config.softwareConfig.schedulerCount` field. * config.databaseConfig.machineType * Cloud SQL machine type used by Airflow database. It has to be one of: db-n1-standard-2, db-n1-standard-4, db-n1-standard-8 or db-n1-standard-16. * config.webServerConfig.machineType * Machine type on which Airflow web server is running. It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4 or composer-n1-webserver-8. * config.maintenanceWindow * Maintenance window during which Cloud Composer components may be under maintenance.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1677,7 +1781,7 @@ export namespace composer_v1beta1 {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of argparse, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.argparse". The included patch environment would specify the scikit-learn version as follows: { "config":{ "softwareConfig":{ "pypiPackages":{ "scikit-learn":"==0.19.0" \} \} \} \} Note that in the above example, any existing PyPI packages other than scikit-learn and argparse will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows: { "labels":{ "label1":"new-label1-value" "label2":"new-label2-value" \} \} Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following: { "config":{ "softwareConfig":{ "pypiPackages":{ "botocore":"==1.7.14" \} \} \} \} *Note:* Only the following fields can be updated: * config.softwareConfig.pypiPackages * Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. * config.softwareConfig.pypiPackages.packagename * Update the custom PyPI package packagename, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the "config.softwareConfig.pypiPackages" mask. * labels * Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. * labels.labelName * Set the label named labelName, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the "labels" mask. * config.nodeCount * Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. * config.webServerNetworkAccessControl * Replace the environment's current WebServerNetworkAccessControl. * config.softwareConfig.airflowConfigOverrides * Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. * config.softwareConfig.airflowConfigOverrides.section- name * Override the Apache Airflow config property name in the section named section, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the "config.softwareConfig.airflowConfigOverrides" mask. * config.softwareConfig.envVariables * Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. It is an error to provide both this mask and a mask specifying one or more individual environment variables. * config.softwareConfig.imageVersion * Upgrade the version of the environment in-place. Refer to `SoftwareConfig.image_version` for information on how to format the new image version. Additionally, the new image version cannot effect a version downgrade and must match the current image version's Composer major version and Airflow major and minor versions. Consult the Cloud Composer Version List for valid values. * config.databaseConfig.machineType * Cloud SQL machine type used by Airflow database. It has to be one of: db-n1-standard-2, db-n1-standard-4, db-n1-standard-8 or db-n1-standard-16. * config.webServerConfig.machineType * Machine type on which Airflow web server is running. It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4 or composer-n1-webserver-8. * config.maintenanceWindow * Maintenance window during which Cloud Composer components may be under maintenance.
+     * Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of argparse, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.argparse". The included patch environment would specify the scikit-learn version as follows: { "config":{ "softwareConfig":{ "pypiPackages":{ "scikit-learn":"==0.19.0" \} \} \} \} Note that in the above example, any existing PyPI packages other than scikit-learn and argparse will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows: { "labels":{ "label1":"new-label1-value" "label2":"new-label2-value" \} \} Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following: { "config":{ "softwareConfig":{ "pypiPackages":{ "botocore":"==1.7.14" \} \} \} \} *Note:* Only the following fields can be updated: * config.softwareConfig.pypiPackages * Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. * config.softwareConfig.pypiPackages.packagename * Update the custom PyPI package packagename, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the "config.softwareConfig.pypiPackages" mask. * labels * Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. * labels.labelName * Set the label named labelName, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the "labels" mask. * config.nodeCount * Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. * config.webServerNetworkAccessControl * Replace the environment's current WebServerNetworkAccessControl. * config.softwareConfig.airflowConfigOverrides * Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. * config.softwareConfig.airflowConfigOverrides.section- name * Override the Apache Airflow config property name in the section named section, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the "config.softwareConfig.airflowConfigOverrides" mask. * config.softwareConfig.envVariables * Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. It is an error to provide both this mask and a mask specifying one or more individual environment variables. * config.softwareConfig.imageVersion * Upgrade the version of the environment in-place. Refer to `SoftwareConfig.image_version` for information on how to format the new image version. Additionally, the new image version cannot effect a version downgrade and must match the current image version's Composer major version and Airflow major and minor versions. Consult the Cloud Composer Version List for valid values. * config.softwareConfig.schedulerCount * Horizontally scale the number of schedulers in Airflow. A positive integer not greater than the number of nodes must be provided in the `config.softwareConfig.schedulerCount` field. * config.databaseConfig.machineType * Cloud SQL machine type used by Airflow database. It has to be one of: db-n1-standard-2, db-n1-standard-4, db-n1-standard-8 or db-n1-standard-16. * config.webServerConfig.machineType * Machine type on which Airflow web server is running. It has to be one of: composer-n1-webserver-2, composer-n1-webserver-4 or composer-n1-webserver-8. * config.maintenanceWindow * Maintenance window during which Cloud Composer components may be under maintenance.
      */
     updateMask?: string;
 

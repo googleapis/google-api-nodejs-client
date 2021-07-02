@@ -151,9 +151,17 @@ export namespace composer_v1 {
      */
     containsPypiModulesConflict?: string | null;
     /**
+     * Composer image for which the build was happening.
+     */
+    imageVersion?: string | null;
+    /**
      * Output only. Extract from a docker image build log containing information about pypi modules conflicts.
      */
     pypiConflictBuildLogExtract?: string | null;
+    /**
+     * Pypi dependencies specified in the environment configuration, at the time when the build was triggered.
+     */
+    pypiDependencies?: {[key: string]: string} | null;
   }
   /**
    * The configuration of Cloud SQL instance that is used by the Apache Airflow software.
