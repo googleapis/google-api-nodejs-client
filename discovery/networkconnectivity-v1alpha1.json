@@ -12,7 +12,7 @@
   "baseUrl": "https://networkconnectivity.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "networkconnectivity",
-  "description": "The Network Connectivity API will be home to various services which provide information pertaining to network connectivity.",
+  "description": "The Network Connectivity API provides access to Network Connectivity Center.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/network-connectivity/docs",
   "fullyEncodeReservedExpansion": true,
@@ -1029,7 +1029,7 @@
       }
     }
   },
-  "revision": "20210616",
+  "revision": "20210701",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
