@@ -103,7 +103,7 @@ export namespace baremetalsolution_v1 {
   /**
    * Bare Metal Solution API
    *
-   * Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.
+   * Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.
    *
    * @example
    * ```js
