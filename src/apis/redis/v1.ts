@@ -232,7 +232,7 @@ export namespace redis_v1 {
     gcsSource?: Schema$GcsSource;
   }
   /**
-   * A Google Cloud Redis instance.
+   * A Google Cloud Redis instance. next id = 30
    */
   export interface Schema$Instance {
     /**
