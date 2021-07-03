@@ -321,6 +321,10 @@ export namespace cloudbuild_v1 {
      */
     machineType?: string | null;
     /**
+     * Optional. Specification for execution on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.
+     */
+    pool?: Schema$PoolOption;
+    /**
      * Requested verifiability options.
      */
     requestedVerifyOption?: string | null;
@@ -341,7 +345,7 @@ export namespace cloudbuild_v1 {
      */
     volumes?: Schema$Volume[];
     /**
-     * Option to specify a `WorkerPool` for the build. Format: projects/{project\}/locations/{location\}/workerPools/{workerPool\} This field is in beta and is available only to restricted users.
+     * This field deprecated; please use `pool.name` instead.
      */
     workerPool?: string | null;
   }
@@ -406,6 +410,10 @@ export namespace cloudbuild_v1 {
    * Configuration for an automated build in response to source repository changes.
    */
   export interface Schema$BuildTrigger {
+    /**
+     * Autodetect build configuration. The following precedence is used (case insensitive): 1. cloudbuild.yaml 2. cloudbuild.yml 3. cloudbuild.json 4. Dockerfile Currently only available for GitHub App Triggers.
+     */
+    autodetect?: boolean | null;
     /**
      * Contents of the build template.
      */
@@ -513,6 +521,40 @@ export namespace cloudbuild_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Metadata for the `CreateWorkerPool` operation.
+   */
+  export interface Schema$CreateWorkerPoolOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the `WorkerPool` to create. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
+  }
+  /**
+   * Metadata for the `DeleteWorkerPool` operation.
+   */
+  export interface Schema$DeleteWorkerPoolOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the `WorkerPool` being deleted. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
@@ -628,6 +670,32 @@ export namespace cloudbuild_v1 {
      * `BuildTriggers` for the project, sorted by `create_time` descending.
      */
     triggers?: Schema$BuildTrigger[];
+  }
+  /**
+   * Response containing existing `WorkerPools`.
+   */
+  export interface Schema$ListWorkerPoolsResponse {
+    /**
+     * Continuation token used to page through large result sets. Provide this value in a subsequent ListWorkerPoolsRequest to return the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * `WorkerPools` for the specified project.
+     */
+    workerPools?: Schema$WorkerPool[];
+  }
+  /**
+   * Defines the network configuration for the pool.
+   */
+  export interface Schema$NetworkConfig {
+    /**
+     * Option to configure network egress for the workers.
+     */
+    egressOption?: string | null;
+    /**
+     * Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network. Must be in the format `projects/{project\}/global/networks/{network\}`, where `{project\}` is a project number, such as `12345`, and `{network\}` is the name of a VPC network in the project. See [Understanding network configuration options](https://cloud.google.com/cloud-build/docs/custom-workers/set-up-custom-worker-pool-environment#understanding_the_network_configuration_options)
+     */
+    peeredNetwork?: string | null;
   }
   /**
    * Notification is the container which holds the data that is relevant to this particular notification.
@@ -747,6 +815,28 @@ export namespace cloudbuild_v1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Details about how a build should be executed on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.
+   */
+  export interface Schema$PoolOption {
+    /**
+     * The `WorkerPool` resource to execute the build on. You must have `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Configuration for a V1 `PrivatePool`.
+   */
+  export interface Schema$PrivatePoolV1Config {
+    /**
+     * Network configuration for the pool.
+     */
+    networkConfig?: Schema$NetworkConfig;
+    /**
+     * Machine configuration for the workers in the pool.
+     */
+    workerConfig?: Schema$WorkerConfig;
   }
   /**
    * PubsubConfig describes the configuration of a trigger that creates a build whenever a Pub/Sub message is published.
@@ -997,7 +1087,7 @@ export namespace cloudbuild_v1 {
      */
     storageSource?: Schema$StorageSource;
     /**
-     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview.
+     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      */
     storageSourceManifest?: Schema$StorageSourceManifest;
   }
@@ -1057,7 +1147,7 @@ export namespace cloudbuild_v1 {
     object?: string | null;
   }
   /**
-   * Location of the source manifest in Google Cloud Storage. This feature is in Preview.
+   * Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
    */
   export interface Schema$StorageSourceManifest {
     /**
@@ -1085,6 +1175,23 @@ export namespace cloudbuild_v1 {
      * Start of time span.
      */
     startTime?: string | null;
+  }
+  /**
+   * Metadata for the `UpdateWorkerPool` operation.
+   */
+  export interface Schema$UpdateWorkerPoolOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the `WorkerPool` being updated. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
   }
   /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution.
@@ -1124,6 +1231,64 @@ export namespace cloudbuild_v1 {
      * Potential issues with the underlying Pub/Sub subscription configuration. Only populated on get requests.
      */
     state?: string | null;
+  }
+  /**
+   * Defines the configuration to be used for creating workers in the pool.
+   */
+  export interface Schema$WorkerConfig {
+    /**
+     * Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). Specify a value of up to 1000. If `0` is specified, Cloud Build will use a standard disk size.
+     */
+    diskSizeGb?: string | null;
+    /**
+     * Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). If left blank, Cloud Build will use a sensible default.
+     */
+    machineType?: string | null;
+  }
+  /**
+   * Configuration for a `WorkerPool`. Cloud Build owns and maintains a pool of workers for general use and have no access to a project's private network. By default, builds submitted to Cloud Build will use a worker from this pool. If your build needs access to resources on a private network, create and use a `WorkerPool` to run your builds. Private `WorkerPool`s give your builds access to any single VPC network that you administer, including any on-prem resources connected to that VPC network. For an overview of custom worker pools, see [Custom workers overview](https://cloud.google.com/cloud-build/docs/custom-workers/custom-workers-overview).
+   */
+  export interface Schema$WorkerPool {
+    /**
+     * User specified annotations. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
+     * Output only. Time at which the request to create the `WorkerPool` was received.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Time at which the request to delete the `WorkerPool` was received.
+     */
+    deleteTime?: string | null;
+    /**
+     * A user-specified, human-readable name for the `WorkerPool`. If provided, this value must be 1-63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
+     */
+    name?: string | null;
+    /**
+     * Private Pool using a v1 configuration.
+     */
+    privatePoolV1Config?: Schema$PrivatePoolV1Config;
+    /**
+     * Output only. `WorkerPool` state.
+     */
+    state?: string | null;
+    /**
+     * Output only. A unique identifier for the `WorkerPool`.
+     */
+    uid?: string | null;
+    /**
+     * Output only. Time at which the request to update the `WorkerPool` was received.
+     */
+    updateTime?: string | null;
   }
 
   export class Resource$Operations {
@@ -2302,6 +2467,7 @@ export namespace cloudbuild_v1 {
     builds: Resource$Projects$Locations$Builds;
     operations: Resource$Projects$Locations$Operations;
     triggers: Resource$Projects$Locations$Triggers;
+    workerPools: Resource$Projects$Locations$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.builds = new Resource$Projects$Locations$Builds(this.context);
@@ -2309,6 +2475,9 @@ export namespace cloudbuild_v1 {
         this.context
       );
       this.triggers = new Resource$Projects$Locations$Triggers(this.context);
+      this.workerPools = new Resource$Projects$Locations$Workerpools(
+        this.context
+      );
     }
   }
 
@@ -3495,6 +3664,7 @@ export namespace cloudbuild_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autodetect": false,
      *       //   "build": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -3519,6 +3689,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autodetect": false,
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -3796,6 +3967,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autodetect": false,
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -4086,6 +4258,7 @@ export namespace cloudbuild_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autodetect": false,
      *       //   "build": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -4110,6 +4283,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autodetect": false,
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -4636,6 +4810,810 @@ export namespace cloudbuild_v1 {
     requestBody?: Schema$HttpBody;
   }
 
+  export class Resource$Projects$Locations$Workerpools {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a `WorkerPool`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.workerPools.create({
+     *     // Required. The parent resource where this worker pool will be created. Format: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // If set, validate the request and preview the response, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
+     *     // Required. Immutable. The ID to use for the `WorkerPool`, which will become the final component of the resource name. This value should be 1-63 characters, and valid characters are /a-z-/.
+     *     workerPoolId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "privatePoolV1Config": {},
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Workerpools$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Workerpools$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Workerpools$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Workerpools$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Workerpools$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/workerPools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a `WorkerPool`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.workerPools.delete({
+     *     // If set to true, and the `WorkerPool` is not found, the request will succeed but no action will be taken on the server.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. If this is provided, it must match the server's etag on the workerpool for the request to be processed.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
+     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
+     *     // If set, validate the request and preview the response, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Workerpools$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Workerpools$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Workerpools$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Workerpools$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Workerpools$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Returns details of a `WorkerPool`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.workerPools.get({
+     *     // Required. The name of the `WorkerPool` to retrieve. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
+     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotations": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "privatePoolV1Config": {},
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Workerpools$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Workerpools$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$WorkerPool>;
+    get(
+      params: Params$Resource$Projects$Locations$Workerpools$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workerpools$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
+      callback: BodyResponseCallback<Schema$WorkerPool>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Workerpools$Get,
+      callback: BodyResponseCallback<Schema$WorkerPool>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$WorkerPool>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Get
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkerPool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkerPool>(parameters);
+      }
+    }
+
+    /**
+     * Lists `WorkerPool`s.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.workerPools.list({
+     *     // The maximum number of `WorkerPool`s to return. The service may return fewer than this value. If omitted, the server will use a sensible default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListWorkerPools` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/location`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workerPools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Workerpools$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Workerpools$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkerPoolsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Workerpools$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workerpools$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Workerpools$List,
+      callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$List
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkerPoolsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/workerPools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkerPoolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkerPoolsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a `WorkerPool`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.workerPools.patch({
+     *     // Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
+     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
+     *     // A mask specifying which fields in `worker_pool` to update.
+     *     updateMask: 'placeholder-value',
+     *     // If set, validate the request and preview the response, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "annotations": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "privatePoolV1Config": {},
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Workerpools$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Workerpools$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Workerpools$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Workerpools$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Workerpools$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Workerpools$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Workerpools$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Workerpools$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this worker pool will be created. Format: `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * If set, validate the request and preview the response, but do not actually post it.
+     */
+    validateOnly?: boolean;
+    /**
+     * Required. Immutable. The ID to use for the `WorkerPool`, which will become the final component of the resource name. This value should be 1-63 characters, and valid characters are /a-z-/.
+     */
+    workerPoolId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkerPool;
+  }
+  export interface Params$Resource$Projects$Locations$Workerpools$Delete
+    extends StandardParameters {
+    /**
+     * If set to true, and the `WorkerPool` is not found, the request will succeed but no action will be taken on the server.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. If this is provided, it must match the server's etag on the workerpool for the request to be processed.
+     */
+    etag?: string;
+    /**
+     * Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
+     */
+    name?: string;
+    /**
+     * If set, validate the request and preview the response, but do not actually post it.
+     */
+    validateOnly?: boolean;
+  }
+  export interface Params$Resource$Projects$Locations$Workerpools$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the `WorkerPool` to retrieve. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workerpools$List
+    extends StandardParameters {
+    /**
+     * The maximum number of `WorkerPool`s to return. The service may return fewer than this value. If omitted, the server will use a sensible default.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListWorkerPools` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/location`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Workerpools$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
+     */
+    name?: string;
+    /**
+     * A mask specifying which fields in `worker_pool` to update.
+     */
+    updateMask?: string;
+    /**
+     * If set, validate the request and preview the response, but do not actually post it.
+     */
+    validateOnly?: boolean;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkerPool;
+  }
+
   export class Resource$Projects$Triggers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4678,6 +5656,7 @@ export namespace cloudbuild_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autodetect": false,
      *       //   "build": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -4702,6 +5681,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autodetect": false,
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -4981,6 +5961,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autodetect": false,
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -5270,6 +6251,7 @@ export namespace cloudbuild_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "autodetect": false,
      *       //   "build": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -5294,6 +6276,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autodetect": false,
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",

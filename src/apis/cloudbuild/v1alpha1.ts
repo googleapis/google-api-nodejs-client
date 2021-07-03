@@ -319,6 +319,10 @@ export namespace cloudbuild_v1alpha1 {
      */
     machineType?: string | null;
     /**
+     * Optional. Specification for execution on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.
+     */
+    pool?: Schema$PoolOption;
+    /**
      * Requested verifiability options.
      */
     requestedVerifyOption?: string | null;
@@ -339,7 +343,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     volumes?: Schema$Volume[];
     /**
-     * Option to specify a `WorkerPool` for the build. Format: projects/{project\}/locations/{location\}/workerPools/{workerPool\} This field is in beta and is available only to restricted users.
+     * This field deprecated; please use `pool.name` instead.
      */
     workerPool?: string | null;
   }
@@ -421,6 +425,40 @@ export namespace cloudbuild_v1alpha1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Metadata for the `CreateWorkerPool` operation.
+   */
+  export interface Schema$CreateWorkerPoolOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the `WorkerPool` to create. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
+  }
+  /**
+   * Metadata for the `DeleteWorkerPool` operation.
+   */
+  export interface Schema$DeleteWorkerPoolOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the `WorkerPool` being deleted. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
@@ -615,6 +653,15 @@ export namespace cloudbuild_v1alpha1 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Details about how a build should be executed on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.
+   */
+  export interface Schema$PoolOption {
+    /**
+     * The `WorkerPool` resource to execute the build on. You must have `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format projects/{project\}/locations/{location\}/workerPools/{workerPoolId\}
+     */
+    name?: string | null;
+  }
+  /**
    * Location of the source in a Google Cloud Source Repository.
    */
   export interface Schema$RepoSource {
@@ -770,7 +817,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     storageSource?: Schema$StorageSource;
     /**
-     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview.
+     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
      */
     storageSourceManifest?: Schema$StorageSourceManifest;
   }
@@ -830,7 +877,7 @@ export namespace cloudbuild_v1alpha1 {
     object?: string | null;
   }
   /**
-   * Location of the source manifest in Google Cloud Storage. This feature is in Preview.
+   * Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).
    */
   export interface Schema$StorageSourceManifest {
     /**
@@ -858,6 +905,23 @@ export namespace cloudbuild_v1alpha1 {
      * Start of time span.
      */
     startTime?: string | null;
+  }
+  /**
+   * Metadata for the `UpdateWorkerPool` operation.
+   */
+  export interface Schema$UpdateWorkerPoolOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the `WorkerPool` being updated. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
+     */
+    workerPool?: string | null;
   }
   /**
    * Volume describes a Docker container volume which is mounted into build steps in order to persist files across build step execution.

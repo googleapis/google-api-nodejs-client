@@ -835,6 +835,188 @@
                   }
                 }
               }
+            },
+            "workerPools": {
+              "methods": {
+                "create": {
+                  "description": "Creates a `WorkerPool`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workerPools",
+                  "httpMethod": "POST",
+                  "id": "cloudbuild.projects.locations.workerPools.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this worker pool will be created. Format: `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If set, validate the request and preview the response, but do not actually post it.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "workerPoolId": {
+                      "description": "Required. Immutable. The ID to use for the `WorkerPool`, which will become the final component of the resource name. This value should be 1-63 characters, and valid characters are /a-z-/.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/workerPools",
+                  "request": {
+                    "$ref": "WorkerPool"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a `WorkerPool`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}",
+                  "httpMethod": "DELETE",
+                  "id": "cloudbuild.projects.locations.workerPools.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "allowMissing": {
+                      "description": "If set to true, and the `WorkerPool` is not found, the request will succeed but no action will be taken on the server.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "etag": {
+                      "description": "Optional. If this is provided, it must match the server's etag on the workerpool for the request to be processed.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The name of the `WorkerPool` to delete. Format: `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If set, validate the request and preview the response, but do not actually post it.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns details of a `WorkerPool`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}",
+                  "httpMethod": "GET",
+                  "id": "cloudbuild.projects.locations.workerPools.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the `WorkerPool` to retrieve. Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "WorkerPool"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists `WorkerPool`s.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workerPools",
+                  "httpMethod": "GET",
+                  "id": "cloudbuild.projects.locations.workerPools.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of `WorkerPool`s to return. The service may return fewer than this value. If omitted, the server will use a sensible default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListWorkerPools` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the collection of `WorkerPools`. Format: `projects/{project}/locations/location`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/workerPools",
+                  "response": {
+                    "$ref": "ListWorkerPoolsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a `WorkerPool`.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workerPools/{workerPoolsId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudbuild.projects.locations.workerPools.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The resource name of the `WorkerPool`, with format `projects/{project}/locations/{location}/workerPools/{worker_pool}`. The value of `{worker_pool}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location}` is determined by the endpoint accessed.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "A mask specifying which fields in `worker_pool` to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "If set, validate the request and preview the response, but do not actually post it.",
+                      "location": "query",
+                      "type": "boolean"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "WorkerPool"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         },
@@ -1103,7 +1285,7 @@
       }
     }
   },
-  "revision": "20210613",
+  "revision": "20210701",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -1425,6 +1607,10 @@
           ],
           "type": "string"
         },
+        "pool": {
+          "$ref": "PoolOption",
+          "description": "Optional. Specification for execution on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information."
+        },
         "requestedVerifyOption": {
           "description": "Requested verifiability options.",
           "enum": [
@@ -1481,7 +1667,7 @@
           "type": "array"
         },
         "workerPool": {
-          "description": "Option to specify a `WorkerPool` for the build. Format: projects/{project}/locations/{location}/workerPools/{workerPool} This field is in beta and is available only to restricted users.",
+          "description": "This field deprecated; please use `pool.name` instead.",
           "type": "string"
         }
       },
@@ -1591,6 +1777,10 @@
       "description": "Configuration for an automated build in response to source repository changes.",
       "id": "BuildTrigger",
       "properties": {
+        "autodetect": {
+          "description": "Autodetect build configuration. The following precedence is used (case insensitive): 1. cloudbuild.yaml 2. cloudbuild.yml 3. cloudbuild.json 4. Dockerfile Currently only available for GitHub App Triggers.",
+          "type": "boolean"
+        },
         "build": {
           "$ref": "Build",
           "description": "Contents of the build template."
@@ -1720,6 +1910,48 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CreateWorkerPoolOperationMetadata": {
+      "description": "Metadata for the `CreateWorkerPool` operation.",
+      "id": "CreateWorkerPoolOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "workerPool": {
+          "description": "The resource name of the `WorkerPool` to create. Format: `projects/{project}/locations/{location}/workerPools/{worker_pool}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteWorkerPoolOperationMetadata": {
+      "description": "Metadata for the `DeleteWorkerPool` operation.",
+      "id": "DeleteWorkerPoolOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "workerPool": {
+          "description": "The resource name of the `WorkerPool` being deleted. Format: `projects/{project}/locations/{location}/workerPools/{worker_pool}`.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -1889,6 +2121,49 @@
       },
       "type": "object"
     },
+    "ListWorkerPoolsResponse": {
+      "description": "Response containing existing `WorkerPools`.",
+      "id": "ListWorkerPoolsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token used to page through large result sets. Provide this value in a subsequent ListWorkerPoolsRequest to return the next page of results.",
+          "type": "string"
+        },
+        "workerPools": {
+          "description": "`WorkerPools` for the specified project.",
+          "items": {
+            "$ref": "WorkerPool"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkConfig": {
+      "description": "Defines the network configuration for the pool.",
+      "id": "NetworkConfig",
+      "properties": {
+        "egressOption": {
+          "description": "Option to configure network egress for the workers.",
+          "enum": [
+            "EGRESS_OPTION_UNSPECIFIED",
+            "NO_PUBLIC_EGRESS",
+            "PUBLIC_EGRESS"
+          ],
+          "enumDescriptions": [
+            "If set, defaults to PUBLIC_EGRESS.",
+            "If set, workers are created without any public address, which prevents network egress to public IPs unless a network proxy is configured.",
+            "If set, workers are created with a public address which allows for public internet egress."
+          ],
+          "type": "string"
+        },
+        "peeredNetwork": {
+          "description": "Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network. Must be in the format `projects/{project}/global/networks/{network}`, where `{project}` is a project number, such as `12345`, and `{network}` is the name of a VPC network in the project. See [Understanding network configuration options](https://cloud.google.com/cloud-build/docs/custom-workers/set-up-custom-worker-pool-environment#understanding_the_network_configuration_options)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Notification": {
       "description": "Notification is the container which holds the data that is relevant to this particular notification.",
       "id": "Notification",
@@ -2033,6 +2308,32 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "PoolOption": {
+      "description": "Details about how a build should be executed on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.",
+      "id": "PoolOption",
+      "properties": {
+        "name": {
+          "description": "The `WorkerPool` resource to execute the build on. You must have `cloudbuild.workerpools.use` on the project hosting the WorkerPool. Format projects/{project}/locations/{location}/workerPools/{workerPoolId}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PrivatePoolV1Config": {
+      "description": "Configuration for a V1 `PrivatePool`.",
+      "id": "PrivatePoolV1Config",
+      "properties": {
+        "networkConfig": {
+          "$ref": "NetworkConfig",
+          "description": "Network configuration for the pool."
+        },
+        "workerConfig": {
+          "$ref": "WorkerConfig",
+          "description": "Machine configuration for the workers in the pool."
         }
       },
       "type": "object"
@@ -2365,7 +2666,7 @@
         },
         "storageSourceManifest": {
           "$ref": "StorageSourceManifest",
-          "description": "If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview."
+          "description": "If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher)."
         }
       },
       "type": "object"
@@ -2445,7 +2746,7 @@
       "type": "object"
     },
     "StorageSourceManifest": {
-      "description": "Location of the source manifest in Google Cloud Storage. This feature is in Preview.",
+      "description": "Location of the source manifest in Google Cloud Storage. This feature is in Preview; see description [here](https://github.com/GoogleCloudPlatform/cloud-builders/tree/master/gcs-fetcher).",
       "id": "StorageSourceManifest",
       "properties": {
         "bucket": {
@@ -2476,6 +2777,27 @@
         "startTime": {
           "description": "Start of time span.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateWorkerPoolOperationMetadata": {
+      "description": "Metadata for the `UpdateWorkerPool` operation.",
+      "id": "UpdateWorkerPoolOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "workerPool": {
+          "description": "The resource name of the `WorkerPool` being updated. Format: `projects/{project}/locations/{location}/workerPools/{worker_pool}`.",
           "type": "string"
         }
       },
@@ -2543,6 +2865,96 @@
             "The auth configuration is properly setup.",
             "The secret provided in auth_method has been deleted."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkerConfig": {
+      "description": "Defines the configuration to be used for creating workers in the pool.",
+      "id": "WorkerConfig",
+      "properties": {
+        "diskSizeGb": {
+          "description": "Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). Specify a value of up to 1000. If `0` is specified, Cloud Build will use a standard disk size.",
+          "format": "int64",
+          "type": "string"
+        },
+        "machineType": {
+          "description": "Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). If left blank, Cloud Build will use a sensible default.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WorkerPool": {
+      "description": "Configuration for a `WorkerPool`. Cloud Build owns and maintains a pool of workers for general use and have no access to a project's private network. By default, builds submitted to Cloud Build will use a worker from this pool. If your build needs access to resources on a private network, create and use a `WorkerPool` to run your builds. Private `WorkerPool`s give your builds access to any single VPC network that you administer, including any on-prem resources connected to that VPC network. For an overview of custom worker pools, see [Custom workers overview](https://cloud.google.com/cloud-build/docs/custom-workers/custom-workers-overview).",
+      "id": "WorkerPool",
+      "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User specified annotations. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
+          "type": "object"
+        },
+        "createTime": {
+          "description": "Output only. Time at which the request to create the `WorkerPool` was received.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. Time at which the request to delete the `WorkerPool` was received.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "A user-specified, human-readable name for the `WorkerPool`. If provided, this value must be 1-63 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the `WorkerPool`, with format `projects/{project}/locations/{location}/workerPools/{worker_pool}`. The value of `{worker_pool}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location}` is determined by the endpoint accessed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "privatePoolV1Config": {
+          "$ref": "PrivatePoolV1Config",
+          "description": "Private Pool using a v1 configuration."
+        },
+        "state": {
+          "description": "Output only. `WorkerPool` state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "RUNNING",
+            "DELETING",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "State of the `WorkerPool` is unknown.",
+            "`WorkerPool` is being created.",
+            "`WorkerPool` is running.",
+            "`WorkerPool` is being deleted: cancelling builds and draining workers.",
+            "`WorkerPool` is deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. A unique identifier for the `WorkerPool`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time at which the request to update the `WorkerPool` was received.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
