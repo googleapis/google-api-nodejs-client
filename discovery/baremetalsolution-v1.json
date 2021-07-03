@@ -11,7 +11,7 @@
   "basePath": "",
   "baseUrl": "https://baremetalsolution.googleapis.com/",
   "batchPath": "batch",
-  "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
+  "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/bare-metal",
   "fullyEncodeReservedExpansion": true,
@@ -145,7 +145,7 @@
       }
     }
   },
-  "revision": "20210519",
+  "revision": "20210701",
   "rootUrl": "https://baremetalsolution.googleapis.com/",
   "schemas": {
     "ResetInstanceRequest": {
