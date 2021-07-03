@@ -320,6 +320,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     partnerUserToken?: string | null;
     /**
+     * Output only. Describes the processing state of the subscription. See more details at [the lifecycle of a subscription](/payments/reseller/subscription/reference/index/Receive.Notifications#payments-subscription-lifecycle).
+     */
+    processingState?: string | null;
+    /**
      * Required. Resource name that identifies one or more subscription products. The format will be 'partners/{partner_id\}/products/{product_id\}'.
      */
     products?: string[] | null;
@@ -336,7 +340,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     serviceLocation?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Location;
     /**
-     * Output only. Descibes the state of the subscription. See more details at [the lifecycle of a subscription](/payments/reseller/subscription/reference/index/Receive.Notifications#payments-subscription-lifecycle).
+     * Output only. Describes the state of the subscription. See more details at [the lifecycle of a subscription](/payments/reseller/subscription/reference/index/Receive.Notifications#payments-subscription-lifecycle).
      */
     state?: string | null;
     /**
@@ -349,7 +353,7 @@ export namespace paymentsresellersubscription_v1 {
     upgradeDowngradeDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails;
   }
   /**
-   * Describes the details of a cancelled subscription.
+   * Describes the details of a cancelled or cancelling subscription.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails {
     /**
@@ -759,7 +763,7 @@ export namespace paymentsresellersubscription_v1 {
     }
 
     /**
-     * Used by partners to cancel a subscription service by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.
+     * Used by partners to cancel a subscription service either immediately or by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.
      * @example
      * ```js
      * // Before running the sample:
@@ -947,6 +951,7 @@ export namespace paymentsresellersubscription_v1 {
      *       //   "freeTrialEndTime": "my_freeTrialEndTime",
      *       //   "name": "my_name",
      *       //   "partnerUserToken": "my_partnerUserToken",
+     *       //   "processingState": "my_processingState",
      *       //   "products": [],
      *       //   "promotions": [],
      *       //   "redirectUri": "my_redirectUri",
@@ -968,6 +973,7 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "freeTrialEndTime": "my_freeTrialEndTime",
      *   //   "name": "my_name",
      *   //   "partnerUserToken": "my_partnerUserToken",
+     *   //   "processingState": "my_processingState",
      *   //   "products": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",
@@ -1416,6 +1422,7 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "freeTrialEndTime": "my_freeTrialEndTime",
      *   //   "name": "my_name",
      *   //   "partnerUserToken": "my_partnerUserToken",
+     *   //   "processingState": "my_processingState",
      *   //   "products": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",
@@ -1569,6 +1576,7 @@ export namespace paymentsresellersubscription_v1 {
      *         //   "freeTrialEndTime": "my_freeTrialEndTime",
      *         //   "name": "my_name",
      *         //   "partnerUserToken": "my_partnerUserToken",
+     *         //   "processingState": "my_processingState",
      *         //   "products": [],
      *         //   "promotions": [],
      *         //   "redirectUri": "my_redirectUri",
@@ -1590,6 +1598,7 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "freeTrialEndTime": "my_freeTrialEndTime",
      *   //   "name": "my_name",
      *   //   "partnerUserToken": "my_partnerUserToken",
+     *   //   "processingState": "my_processingState",
      *   //   "products": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",

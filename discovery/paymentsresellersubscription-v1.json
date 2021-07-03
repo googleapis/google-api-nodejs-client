@@ -180,7 +180,7 @@
         "subscriptions": {
           "methods": {
             "cancel": {
-              "description": "Used by partners to cancel a subscription service by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.",
+              "description": "Used by partners to cancel a subscription service either immediately or by the end of the current billing cycle for their customers. It should be called directly by the partner using service accounts.",
               "flatPath": "v1/partners/{partnersId}/subscriptions/{subscriptionsId}:cancel",
               "httpMethod": "POST",
               "id": "paymentsresellersubscription.partners.subscriptions.cancel",
@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20210617",
+  "revision": "20210701",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
@@ -675,6 +675,21 @@
           "description": "Required. Identifier of the end-user in partner’s system. The value is restricted to 63 ASCII characters at the maximum.",
           "type": "string"
         },
+        "processingState": {
+          "description": "Output only. Describes the processing state of the subscription. See more details at [the lifecycle of a subscription](/payments/reseller/subscription/reference/index/Receive.Notifications#payments-subscription-lifecycle).",
+          "enum": [
+            "PROCESSING_STATE_UNSPECIFIED",
+            "PROCESSING_STATE_CANCELLING",
+            "PROCESSING_STATE_RECURRING"
+          ],
+          "enumDescriptions": [
+            "The processing state is unspecified.",
+            "The subscription is being cancelled.",
+            "The subscription is recurring."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "products": {
           "description": "Required. Resource name that identifies one or more subscription products. The format will be 'partners/{partner_id}/products/{product_id}'.",
           "items": {
@@ -699,7 +714,7 @@
           "description": "Required. The location that the service is provided as indicated by the partner."
         },
         "state": {
-          "description": "Output only. Descibes the state of the subscription. See more details at [the lifecycle of a subscription](/payments/reseller/subscription/reference/index/Receive.Notifications#payments-subscription-lifecycle).",
+          "description": "Output only. Describes the state of the subscription. See more details at [the lifecycle of a subscription](/payments/reseller/subscription/reference/index/Receive.Notifications#payments-subscription-lifecycle).",
           "enum": [
             "STATE_UNSPECIFIED",
             "STATE_CREATED",
@@ -733,7 +748,7 @@
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails": {
-      "description": "Describes the details of a cancelled subscription.",
+      "description": "Describes the details of a cancelled or cancelling subscription.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails",
       "properties": {
         "reason": {
