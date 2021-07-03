@@ -316,6 +316,10 @@
     "package": "@google-cloud/security-private-ca"
   },
   {
+    "api": "contactcenterinsights",
+    "package": "@google-cloud/contact-center-insights"
+  },
+  {
     "api": "datalabeling",
     "package": "@google-cloud/datalabeling"
   },
@@ -360,6 +364,10 @@
     "package": "@google-cloud/compute"
   },
   {
+    "api": "lifesciences",
+    "package": "@google-cloud/life-sciences"
+  },
+  {
     "api": "mediatranslation",
     "package": "@google-cloud/media-translation"
   },
@@ -378,6 +386,10 @@
   {
     "api": "cloudresourcemanager",
     "package": "@google-cloud/resource-manager"
+  },
+  {
+    "api": "resourcesettings",
+    "package": "@google-cloud/resource-settings"
   },
   {
     "api": "runtimeconfig",
