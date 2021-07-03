@@ -186,6 +186,15 @@ export namespace datafusion_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * The crypto key configuration. This field is used by the Customer-managed encryption keys (CMEK) feature.
+   */
+  export interface Schema$CryptoKeyConfig {
+    /**
+     * The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    keyReference?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -231,6 +240,10 @@ export namespace datafusion_v1 {
      */
     createTime?: string | null;
     /**
+     * The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature.
+     */
+    cryptoKeyConfig?: Schema$CryptoKeyConfig;
+    /**
      * User-managed service account to set on Dataproc when Cloud Data Fusion creates Dataproc to run data processing pipelines. This allows users to have fine-grained access control on Dataproc's accesses to cloud resources.
      */
     dataprocServiceAccount?: string | null;
@@ -259,7 +272,7 @@ export namespace datafusion_v1 {
      */
     gcsBucket?: string | null;
     /**
-     * The resource labels for instance to use to annotate any related underlying resources such as GCE VMs. The character '=' is not allowed to be used within the labels.
+     * The resource labels for instance to use to annotate any related underlying resources such as Compute Engine VMs. The character '=' is not allowed to be used within the labels.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -443,7 +456,7 @@ export namespace datafusion_v1 {
    */
   export interface Schema$OperationMetadata {
     /**
-     * Map to hold any additonal status info for the operation If there is an accelerator being enabled/disabled/deleted, this will be populated with accelerator name as key and status as ENABLING, DISABLING or DELETING
+     * Map to hold any additional status info for the operation If there is an accelerator being enabled/disabled/deleted, this will be populated with accelerator name as key and status as ENABLING, DISABLING or DELETING
      */
     additionalStatus?: {[key: string]: string} | null;
     /**
@@ -752,7 +765,7 @@ export namespace datafusion_v1 {
      *     includeUnrevealedLocations: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -885,7 +898,7 @@ export namespace datafusion_v1 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
@@ -940,6 +953,7 @@ export namespace datafusion_v1 {
      *       //   "apiEndpoint": "my_apiEndpoint",
      *       //   "availableVersion": [],
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyConfig": {},
      *       //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -1236,6 +1250,7 @@ export namespace datafusion_v1 {
      *   //   "apiEndpoint": "my_apiEndpoint",
      *   //   "availableVersion": [],
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyConfig": {},
      *   //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -1668,6 +1683,7 @@ export namespace datafusion_v1 {
      *       //   "apiEndpoint": "my_apiEndpoint",
      *       //   "availableVersion": [],
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyConfig": {},
      *       //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
