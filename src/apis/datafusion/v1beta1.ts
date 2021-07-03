@@ -135,6 +135,19 @@ export namespace datafusion_v1beta1 {
     acceleratorType?: string | null;
   }
   /**
+   * Request message to create dns peering.
+   */
+  export interface Schema$AddDnsPeeringRequest {
+    /**
+     * Dns peering config.
+     */
+    dnsPeering?: Schema$DnsPeering;
+  }
+  /**
+   * Response message for set dns peering method.
+   */
+  export interface Schema$AddDnsPeeringResponse {}
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -182,6 +195,40 @@ export namespace datafusion_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * The crypto key configuration. This field is used by the Customer-managed encryption keys (CMEK) feature.
+   */
+  export interface Schema$CryptoKeyConfig {
+    /**
+     * The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    keyReference?: string | null;
+  }
+  /**
+   * DNS peering configuration. These configurations are used to create DNS peering with the customer Cloud DNS.
+   */
+  export interface Schema$DnsPeering {
+    /**
+     * Optional. Optional description of the dns zone.
+     */
+    description?: string | null;
+    /**
+     * Required. Name of the dns.
+     */
+    domain?: string | null;
+    /**
+     * Optional. Optional target network to which dns peering should happen.
+     */
+    targetNetwork?: string | null;
+    /**
+     * Optional. Optional target project to which dns peering should happen.
+     */
+    targetProject?: string | null;
+    /**
+     * Required. Name of the zone.
+     */
+    zone?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -207,6 +254,19 @@ export namespace datafusion_v1beta1 {
     title?: string | null;
   }
   /**
+   * IAMPolicy encapsulates the IAM policy name, definition and status of policy fetching.
+   */
+  export interface Schema$IAMPolicy {
+    /**
+     * Policy definition if IAM policy fetching is successful, otherwise empty.
+     */
+    policy?: Schema$Policy;
+    /**
+     * Status of iam policy fetching.
+     */
+    status?: Schema$Status;
+  }
+  /**
    * Represents a Data Fusion instance.
    */
   export interface Schema$Instance {
@@ -226,6 +286,10 @@ export namespace datafusion_v1beta1 {
      * Output only. The time the instance was created.
      */
     createTime?: string | null;
+    /**
+     * The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature.
+     */
+    cryptoKeyConfig?: Schema$CryptoKeyConfig;
     /**
      * User-managed service account to set on Dataproc when Cloud Data Fusion creates Dataproc to run data processing pipelines. This allows users to have fine-grained access control on Dataproc's accesses to cloud resources.
      */
@@ -329,6 +393,19 @@ export namespace datafusion_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * List dns peering response.
+   */
+  export interface Schema$ListDnsPeeringsResponse {
+    /**
+     * List of dns peering configs.
+     */
+    dnsPeerings?: Schema$DnsPeering[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for the list instance request.
    */
   export interface Schema$ListInstancesResponse {
@@ -355,6 +432,19 @@ export namespace datafusion_v1beta1 {
     locations?: Schema$Location[];
     /**
      * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * List namespaces response.
+   */
+  export interface Schema$ListNamespacesResponse {
+    /**
+     * List of namespaces
+     */
+    namespaces?: Schema$Namespace[];
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
   }
@@ -393,6 +483,19 @@ export namespace datafusion_v1beta1 {
     metadata?: {[key: string]: any} | null;
     /**
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents the information of a namespace
+   */
+  export interface Schema$Namespace {
+    /**
+     * IAM policy associated with this namespace.
+     */
+    iamPolicy?: Schema$IAMPolicy;
+    /**
+     * Name of the given namespace.
      */
     name?: string | null;
   }
@@ -488,6 +591,19 @@ export namespace datafusion_v1beta1 {
      */
     version?: number | null;
   }
+  /**
+   * Request message to remove dns peering.
+   */
+  export interface Schema$RemoveDnsPeeringRequest {
+    /**
+     * Required. The zone to be removed.
+     */
+    zone?: string | null;
+  }
+  /**
+   * Response message for set dns peering method.
+   */
+  export interface Schema$RemoveDnsPeeringResponse {}
   /**
    * Request message for RemoveIamPolicy method.
    */
@@ -756,7 +872,7 @@ export namespace datafusion_v1beta1 {
      *     includeUnrevealedLocations: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -1029,7 +1145,7 @@ export namespace datafusion_v1beta1 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
@@ -1052,9 +1168,13 @@ export namespace datafusion_v1beta1 {
 
   export class Resource$Projects$Locations$Instances {
     context: APIRequestContext;
+    dnsPeerings: Resource$Projects$Locations$Instances$Dnspeerings;
     namespaces: Resource$Projects$Locations$Instances$Namespaces;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.dnsPeerings = new Resource$Projects$Locations$Instances$Dnspeerings(
+        this.context
+      );
       this.namespaces = new Resource$Projects$Locations$Instances$Namespaces(
         this.context
       );
@@ -1100,6 +1220,7 @@ export namespace datafusion_v1beta1 {
      *       //   "apiEndpoint": "my_apiEndpoint",
      *       //   "availableVersion": [],
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyConfig": {},
      *       //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -1396,6 +1517,7 @@ export namespace datafusion_v1beta1 {
      *   //   "apiEndpoint": "my_apiEndpoint",
      *   //   "availableVersion": [],
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyConfig": {},
      *   //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
@@ -1828,6 +1950,7 @@ export namespace datafusion_v1beta1 {
      *       //   "apiEndpoint": "my_apiEndpoint",
      *       //   "availableVersion": [],
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyConfig": {},
      *       //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
@@ -2648,6 +2771,477 @@ export namespace datafusion_v1beta1 {
     requestBody?: Schema$UpgradeInstanceRequest;
   }
 
+  export class Resource$Projects$Locations$Instances$Dnspeerings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Add DNS peering on the given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datafusion.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datafusion = google.datafusion('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datafusion.projects.locations.instances.dnsPeerings.add({
+     *     // The resource on which DNS peering will be created.
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dnsPeering": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    add(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Add,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    add(
+      params?: Params$Resource$Projects$Locations$Instances$Dnspeerings$Add,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddDnsPeeringResponse>;
+    add(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Add,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    add(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Add,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddDnsPeeringResponse>,
+      callback: BodyResponseCallback<Schema$AddDnsPeeringResponse>
+    ): void;
+    add(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Add,
+      callback: BodyResponseCallback<Schema$AddDnsPeeringResponse>
+    ): void;
+    add(callback: BodyResponseCallback<Schema$AddDnsPeeringResponse>): void;
+    add(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Dnspeerings$Add
+        | BodyResponseCallback<Schema$AddDnsPeeringResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddDnsPeeringResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddDnsPeeringResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddDnsPeeringResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Dnspeerings$Add;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Dnspeerings$Add;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datafusion.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/dnsPeerings:add').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddDnsPeeringResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddDnsPeeringResponse>(parameters);
+      }
+    }
+
+    /**
+     * List DNS peering for a given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datafusion.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datafusion = google.datafusion('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datafusion.projects.locations.instances.dnsPeerings.list({
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value to use if there are additional results to retrieve for this list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource on which dns peering will be listed.
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dnsPeerings": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDnsPeeringsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDnsPeeringsResponse>,
+      callback: BodyResponseCallback<Schema$ListDnsPeeringsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$List,
+      callback: BodyResponseCallback<Schema$ListDnsPeeringsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListDnsPeeringsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Dnspeerings$List
+        | BodyResponseCallback<Schema$ListDnsPeeringsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDnsPeeringsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDnsPeeringsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDnsPeeringsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Dnspeerings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Dnspeerings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datafusion.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/dnsPeerings:list').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDnsPeeringsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDnsPeeringsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Remove DNS peering on the given resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datafusion.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datafusion = google.datafusion('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datafusion.projects.locations.instances.dnsPeerings.remove({
+     *     // The resource on which DNS peering will be removed.
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    remove(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    remove(
+      params?: Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemoveDnsPeeringResponse>;
+    remove(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    remove(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoveDnsPeeringResponse>,
+      callback: BodyResponseCallback<Schema$RemoveDnsPeeringResponse>
+    ): void;
+    remove(
+      params: Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove,
+      callback: BodyResponseCallback<Schema$RemoveDnsPeeringResponse>
+    ): void;
+    remove(
+      callback: BodyResponseCallback<Schema$RemoveDnsPeeringResponse>
+    ): void;
+    remove(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove
+        | BodyResponseCallback<Schema$RemoveDnsPeeringResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveDnsPeeringResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveDnsPeeringResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemoveDnsPeeringResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datafusion.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/dnsPeerings:remove').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoveDnsPeeringResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemoveDnsPeeringResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$Add
+    extends StandardParameters {
+    /**
+     * The resource on which DNS peering will be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddDnsPeeringRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value to use if there are additional results to retrieve for this list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource on which dns peering will be listed.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Dnspeerings$Remove
+    extends StandardParameters {
+    /**
+     * The resource on which DNS peering will be removed.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveDnsPeeringRequest;
+  }
+
   export class Resource$Projects$Locations$Instances$Namespaces {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2788,6 +3382,148 @@ export namespace datafusion_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * List namespaces in a given instance
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datafusion.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datafusion = google.datafusion('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datafusion.projects.locations.instances.namespaces.list({
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value to use if there are additional results to retrieve for this list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The instance to list its namespaces.
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     // By default, only basic information about a namespace is returned (e.g. name). When `NAMESPACE_VIEW_FULL` is specified, additional information associated with a namespace gets returned (e.g. IAM policy set on the namespace)
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "namespaces": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Namespaces$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Namespaces$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListNamespacesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Namespaces$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Namespaces$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListNamespacesResponse>,
+      callback: BodyResponseCallback<Schema$ListNamespacesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Namespaces$List,
+      callback: BodyResponseCallback<Schema$ListNamespacesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListNamespacesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Namespaces$List
+        | BodyResponseCallback<Schema$ListNamespacesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListNamespacesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListNamespacesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListNamespacesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Namespaces$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Namespaces$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datafusion.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/namespaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListNamespacesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListNamespacesResponse>(parameters);
       }
     }
 
@@ -3095,6 +3831,25 @@ export namespace datafusion_v1beta1 {
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Namespaces$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value to use if there are additional results to retrieve for this list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The instance to list its namespaces.
+     */
+    parent?: string;
+    /**
+     * By default, only basic information about a namespace is returned (e.g. name). When `NAMESPACE_VIEW_FULL` is specified, additional information associated with a namespace gets returned (e.g. IAM policy set on the namespace)
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Namespaces$Setiampolicy
     extends StandardParameters {

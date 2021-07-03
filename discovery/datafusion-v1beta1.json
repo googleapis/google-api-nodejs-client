@@ -161,7 +161,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -520,6 +520,102 @@
                 }
               },
               "resources": {
+                "dnsPeerings": {
+                  "methods": {
+                    "add": {
+                      "description": "Add DNS peering on the given resource.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings:add",
+                      "httpMethod": "POST",
+                      "id": "datafusion.projects.locations.instances.dnsPeerings.add",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "The resource on which DNS peering will be created.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/dnsPeerings:add",
+                      "request": {
+                        "$ref": "AddDnsPeeringRequest"
+                      },
+                      "response": {
+                        "$ref": "AddDnsPeeringResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List DNS peering for a given resource.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings:list",
+                      "httpMethod": "GET",
+                      "id": "datafusion.projects.locations.instances.dnsPeerings.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of items to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource on which dns peering will be listed.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/dnsPeerings:list",
+                      "response": {
+                        "$ref": "ListDnsPeeringsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "remove": {
+                      "description": "Remove DNS peering on the given resource.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings:remove",
+                      "httpMethod": "POST",
+                      "id": "datafusion.projects.locations.instances.dnsPeerings.remove",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "The resource on which DNS peering will be removed.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/dnsPeerings:remove",
+                      "request": {
+                        "$ref": "RemoveDnsPeeringRequest"
+                      },
+                      "response": {
+                        "$ref": "RemoveDnsPeeringResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "namespaces": {
                   "methods": {
                     "getIamPolicy": {
@@ -548,6 +644,57 @@
                       "path": "v1beta1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List namespaces in a given instance",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/namespaces",
+                      "httpMethod": "GET",
+                      "id": "datafusion.projects.locations.instances.namespaces.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of items to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The instance to list its namespaces.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "By default, only basic information about a namespace is returned (e.g. name). When `NAMESPACE_VIEW_FULL` is specified, additional information associated with a namespace gets returned (e.g. IAM policy set on the namespace)",
+                          "enum": [
+                            "NAMESPACE_VIEW_UNSPECIFIED",
+                            "NAMESPACE_VIEW_BASIC",
+                            "NAMESPACE_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Default/unset value, which will use BASIC view.",
+                            "Show the most basic metadata of a namespace",
+                            "Returns all metadata of a namespace"
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/namespaces",
+                      "response": {
+                        "$ref": "ListNamespacesResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -786,7 +933,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210628",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -808,6 +955,23 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AddDnsPeeringRequest": {
+      "description": "Request message to create dns peering.",
+      "id": "AddDnsPeeringRequest",
+      "properties": {
+        "dnsPeering": {
+          "$ref": "DnsPeering",
+          "description": "Dns peering config."
+        }
+      },
+      "type": "object"
+    },
+    "AddDnsPeeringResponse": {
+      "description": "Response message for set dns peering method.",
+      "id": "AddDnsPeeringResponse",
+      "properties": {},
       "type": "object"
     },
     "AuditConfig": {
@@ -886,6 +1050,44 @@
       "properties": {},
       "type": "object"
     },
+    "CryptoKeyConfig": {
+      "description": "The crypto key configuration. This field is used by the Customer-managed encryption keys (CMEK) feature.",
+      "id": "CryptoKeyConfig",
+      "properties": {
+        "keyReference": {
+          "description": "The name of the key which is used to encrypt/decrypt customer data. For key in Cloud KMS, the key should be in the format of `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DnsPeering": {
+      "description": "DNS peering configuration. These configurations are used to create DNS peering with the customer Cloud DNS.",
+      "id": "DnsPeering",
+      "properties": {
+        "description": {
+          "description": "Optional. Optional description of the dns zone.",
+          "type": "string"
+        },
+        "domain": {
+          "description": "Required. Name of the dns.",
+          "type": "string"
+        },
+        "targetNetwork": {
+          "description": "Optional. Optional target network to which dns peering should happen.",
+          "type": "string"
+        },
+        "targetProject": {
+          "description": "Optional. Optional target project to which dns peering should happen.",
+          "type": "string"
+        },
+        "zone": {
+          "description": "Required. Name of the zone.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
@@ -911,6 +1113,21 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IAMPolicy": {
+      "description": "IAMPolicy encapsulates the IAM policy name, definition and status of policy fetching.",
+      "id": "IAMPolicy",
+      "properties": {
+        "policy": {
+          "$ref": "Policy",
+          "description": "Policy definition if IAM policy fetching is successful, otherwise empty."
+        },
+        "status": {
+          "$ref": "Status",
+          "description": "Status of iam policy fetching."
         }
       },
       "type": "object"
@@ -943,6 +1160,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "cryptoKeyConfig": {
+          "$ref": "CryptoKeyConfig",
+          "description": "The crypto key configuration. This field is used by the Customer-Managed Encryption Keys (CMEK) feature."
         },
         "dataprocServiceAccount": {
           "description": "User-managed service account to set on Dataproc when Cloud Data Fusion creates Dataproc to run data processing pipelines. This allows users to have fine-grained access control on Dataproc's accesses to cloud resources.",
@@ -1105,6 +1326,24 @@
       },
       "type": "object"
     },
+    "ListDnsPeeringsResponse": {
+      "description": "List dns peering response.",
+      "id": "ListDnsPeeringsResponse",
+      "properties": {
+        "dnsPeerings": {
+          "description": "List of dns peering configs.",
+          "items": {
+            "$ref": "DnsPeering"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListInstancesResponse": {
       "description": "Response message for the list instance request.",
       "id": "ListInstancesResponse",
@@ -1143,6 +1382,24 @@
         },
         "nextPageToken": {
           "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListNamespacesResponse": {
+      "description": "List namespaces response.",
+      "id": "ListNamespacesResponse",
+      "properties": {
+        "namespaces": {
+          "description": "List of namespaces",
+          "items": {
+            "$ref": "Namespace"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results or empty if there are no more results in the list.",
           "type": "string"
         }
       },
@@ -1195,6 +1452,21 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Namespace": {
+      "description": "Represents the information of a namespace",
+      "id": "Namespace",
+      "properties": {
+        "iamPolicy": {
+          "$ref": "IAMPolicy",
+          "description": "IAM policy associated with this namespace."
+        },
+        "name": {
+          "description": "Name of the given namespace.",
           "type": "string"
         }
       },
@@ -1316,6 +1588,23 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "RemoveDnsPeeringRequest": {
+      "description": "Request message to remove dns peering.",
+      "id": "RemoveDnsPeeringRequest",
+      "properties": {
+        "zone": {
+          "description": "Required. The zone to be removed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveDnsPeeringResponse": {
+      "description": "Response message for set dns peering method.",
+      "id": "RemoveDnsPeeringResponse",
+      "properties": {},
       "type": "object"
     },
     "RemoveIamPolicyRequest": {
