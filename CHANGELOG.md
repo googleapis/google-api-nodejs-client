@@ -4,6 +4,27 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [80.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v80.1.0...googleapis-v80.2.0) (2021-07-03)
+
+
+### Features
+
+* **cloudbuild:** update the API ([208f744](https://www.github.com/googleapis/google-api-nodejs-client/commit/208f7447de569344ca084be4aceb507522039598))
+* **datafusion:** update the API ([274e3ad](https://www.github.com/googleapis/google-api-nodejs-client/commit/274e3ad5808dc727796b20d997c0ac725c0f054b))
+* **dataproc:** update the API ([341fe51](https://www.github.com/googleapis/google-api-nodejs-client/commit/341fe51a78186d1284d5c2f3ddd778a3d515d62e))
+* **firebasestorage:** update the API ([5ae6773](https://www.github.com/googleapis/google-api-nodejs-client/commit/5ae6773dbd55654e450bf4f830cb6e2e5006f37c))
+* **paymentsresellersubscription:** update the API ([8bd0290](https://www.github.com/googleapis/google-api-nodejs-client/commit/8bd029023fc7e99eaf5f384a5bcd400216a609c1))
+* regenerate index files ([12c3fea](https://www.github.com/googleapis/google-api-nodejs-client/commit/12c3fea4323666fbdf309c04e7c66d66f3d02f55))
+
+
+### Bug Fixes
+
+* **baremetalsolution:** update the API ([0da28ed](https://www.github.com/googleapis/google-api-nodejs-client/commit/0da28eda79a89adc5b4d1ba8d7c4608677eecee1))
+* **lifesciences:** update the API ([5bfe52f](https://www.github.com/googleapis/google-api-nodejs-client/commit/5bfe52f940459e0655584eeb4a2bd964452e8016))
+* **networkconnectivity:** update the API ([0b63b6b](https://www.github.com/googleapis/google-api-nodejs-client/commit/0b63b6b049279de87bf557e208dc31e54751130d))
+* **redis:** update the API ([86572fb](https://www.github.com/googleapis/google-api-nodejs-client/commit/86572fb769d59fcfd4e86ba7fa36f6bdcba452d8))
+* **resourcesettings:** update the API ([88549f2](https://www.github.com/googleapis/google-api-nodejs-client/commit/88549f26d3b3af4e13331c6e8e24a35159716a6a))
+
 ## [80.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v80.0.0...googleapis-v80.1.0) (2021-07-02)
 
 

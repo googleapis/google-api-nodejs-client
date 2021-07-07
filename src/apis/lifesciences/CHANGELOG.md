@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/lifesciences-v0.4.0...lifesciences-v0.4.1) (2021-07-03)
+
+
+### Bug Fixes
+
+* **lifesciences:** update the API ([5bfe52f](https://www.github.com/googleapis/google-api-nodejs-client/commit/5bfe52f940459e0655584eeb4a2bd964452e8016))
+
 ## [0.4.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/lifesciences-v0.3.0...lifesciences-v0.4.0) (2021-06-09)
 
 
