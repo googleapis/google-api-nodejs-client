@@ -393,7 +393,7 @@ export namespace slides_v1 {
      */
     objectId?: string | null;
     /**
-     * The ID of the Google Sheets spreadsheet that contains the chart.
+     * The ID of the Google Sheets spreadsheet that contains the chart. You might need to add a resource key to the HTTP header for a subset of old files. For more information, see [Access link-shared files using resource keys](https://developers.google.com/drive/api/v3/resource-keys).
      */
     spreadsheetId?: string | null;
   }
@@ -475,7 +475,7 @@ export namespace slides_v1 {
      */
     elementProperties?: Schema$PageElementProperties;
     /**
-     * The video source's unique identifier for this video. e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is 7U3axjORYZ0. For a Google Drive video https://drive.google.com/file/d/1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q the ID is 1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q.
+     * The video source's unique identifier for this video. e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is 7U3axjORYZ0. For a Google Drive video https://drive.google.com/file/d/1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q the ID is 1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q. To access a Google Drive video file, you might need to add a resource key to the HTTP header for a subset of old files. For more information, see [Access link-shared files using resource keys](https://developers.google.com/drive/api/v3/resource-keys).
      */
     id?: string | null;
     /**
@@ -526,7 +526,7 @@ export namespace slides_v1 {
    */
   export interface Schema$DeleteObjectRequest {
     /**
-     * The object ID of the page or page element to delete. If after a delete operation a group contains only 1 or no page elements, the group is also deleted. If a placeholder is deleted on a layout, any empty inheriting shapes are also deleted.
+     * The object ID of the page or page element to delete. If after a delete operation a group contains only 1 or no page elements, the group is also deleted. If a placeholder is deleted on a layout, any empty inheriting placeholders are also deleted.
      */
     objectId?: string | null;
   }
@@ -639,7 +639,7 @@ export namespace slides_v1 {
    */
   export interface Schema$GroupObjectsRequest {
     /**
-     * The object IDs of the objects to group. Only page elements can be grouped. There should be at least two page elements on the same page that are not already in another group. Some page elements, such as videos, tables and placeholder shapes cannot be grouped.
+     * The object IDs of the objects to group. Only page elements can be grouped. There should be at least two page elements on the same page that are not already in another group. Some page elements, such as videos, tables and placeholders cannot be grouped.
      */
     childrenObjectIds?: string[] | null;
     /**
@@ -1727,7 +1727,7 @@ export namespace slides_v1 {
    */
   export interface Schema$Shape {
     /**
-     * Placeholders are shapes that are inherit from corresponding placeholders on layouts and masters. If set, the shape is a placeholder shape and any inherited properties can be resolved by looking at the parent placeholder identified by the Placeholder.parent_object_id field.
+     * Placeholders are page elements that inherit from corresponding placeholders on layouts and masters. If set, the shape is a placeholder shape and any inherited properties can be resolved by looking at the parent placeholder identified by the Placeholder.parent_object_id field.
      */
     placeholder?: Schema$Placeholder;
     /**
