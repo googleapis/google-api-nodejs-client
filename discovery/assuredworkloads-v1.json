@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20210513",
+  "revision": "20210702",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -631,7 +631,7 @@
       "id": "GoogleCloudAssuredworkloadsV1beta1Workload",
       "properties": {
         "billingAccount": {
-          "description": "Required. Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`.",
+          "description": "Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`.",
           "type": "string"
         },
         "cjisSettings": {
@@ -800,12 +800,14 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
+            "CONSUMER_FOLDER",
             "ENCRYPTION_KEYS_PROJECT",
             "KEYRING"
           ],
           "enumDescriptions": [
             "Unknown resource type.",
-            "Consumer project.",
+            "Deprecated. Existing workloads will continue to support this, but new CreateWorkloadRequests should not specify this as an input value.",
+            "Consumer Folder.",
             "Consumer project containing encryption keys.",
             "Keyring resource that hosts encryption keys."
           ],
@@ -831,12 +833,14 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
+            "CONSUMER_FOLDER",
             "ENCRYPTION_KEYS_PROJECT",
             "KEYRING"
           ],
           "enumDescriptions": [
             "Unknown resource type.",
-            "Consumer project.",
+            "Deprecated. Existing workloads will continue to support this, but new CreateWorkloadRequests should not specify this as an input value.",
+            "Consumer Folder.",
             "Consumer project containing encryption keys.",
             "Keyring resource that hosts encryption keys."
           ],
