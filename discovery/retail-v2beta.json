@@ -706,7 +706,7 @@
       }
     }
   },
-  "revision": "20210625",
+  "revision": "20210702",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1730,7 +1730,7 @@
       "id": "GoogleCloudRetailV2betaProductInlineSource",
       "properties": {
         "products": {
-          "description": "Required. A list of products to update/create. Each product must have a valid Product.id. Recommended max of 10k items.",
+          "description": "Required. A list of products to update/create. Each product must have a valid Product.id. Recommended max of 100 items.",
           "items": {
             "$ref": "GoogleCloudRetailV2betaProduct"
           },

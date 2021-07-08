@@ -800,7 +800,7 @@ export namespace retail_v2beta {
    */
   export interface Schema$GoogleCloudRetailV2betaProductInlineSource {
     /**
-     * Required. A list of products to update/create. Each product must have a valid Product.id. Recommended max of 10k items.
+     * Required. A list of products to update/create. Each product must have a valid Product.id. Recommended max of 100 items.
      */
     products?: Schema$GoogleCloudRetailV2betaProduct[];
   }
