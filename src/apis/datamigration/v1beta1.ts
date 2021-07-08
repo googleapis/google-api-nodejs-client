@@ -729,7 +729,7 @@ export namespace datamigration_v1beta1 {
      */
     authorizedNetworks?: Schema$SqlAclEntry[];
     /**
-     * Whether the instance should be assigned an IPv4 address or not.
+     * Whether the instance is assigned a public IP address or not.
      */
     enableIpv4?: boolean | null;
     /**
