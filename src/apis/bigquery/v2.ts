@@ -382,6 +382,26 @@ export namespace bigquery_v2 {
      */
     logType?: string | null;
   }
+  export interface Schema$BiEngineReason {
+    /**
+     * [Output-only] High-level BI Engine reason for partial or disabled acceleration.
+     */
+    code?: string | null;
+    /**
+     * [Output-only] Free form human-readable reason for partial or disabled acceleration.
+     */
+    message?: string | null;
+  }
+  export interface Schema$BiEngineStatistics {
+    /**
+     * [Output-only] Specifies which mode of BI Engine acceleration was performed (if any).
+     */
+    biEngineMode?: string | null;
+    /**
+     * In case of DISABLED or PARTIAL bi_engine_mode, these contain the explanatory reasons as to why BI Engine could not accelerate. In case the full query was accelerated, this field is not populated.
+     */
+    biEngineReasons?: Schema$BiEngineReason[];
+  }
   export interface Schema$BigQueryModelTraining {
     /**
      * [Output-only, Beta] Index of current ML training iteration. Updated during create model query job to show job progress.
@@ -850,6 +870,20 @@ export namespace bigquery_v2 {
      */
     labels?: {[key: string]: string} | null;
   }
+  export interface Schema$DmlStatistics {
+    /**
+     * Number of deleted Rows. populated by DML DELETE, MERGE and TRUNCATE statements.
+     */
+    deletedRowCount?: string | null;
+    /**
+     * Number of inserted Rows. Populated by DML INSERT and MERGE statements.
+     */
+    insertedRowCount?: string | null;
+    /**
+     * Number of updated Rows. Populated by DML UPDATE and MERGE statements.
+     */
+    updatedRowCount?: string | null;
+  }
   export interface Schema$EncryptionConfiguration {
     /**
      * [Optional] Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table. The BigQuery Service Account associated with your project requires access to this encryption key.
@@ -1049,19 +1083,6 @@ export namespace bigquery_v2 {
     substeps?: string[] | null;
   }
   /**
-   * Explanation for a single feature.
-   */
-  export interface Schema$Explanation {
-    /**
-     * Attribution of feature.
-     */
-    attribution?: number | null;
-    /**
-     * Full name of the feature. For non-numerical features, will be formatted like .. Overall size of feature name will always be truncated to first 120 characters.
-     */
-    featureName?: string | null;
-  }
-  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -1234,19 +1255,6 @@ export namespace bigquery_v2 {
      * The resource type of the response.
      */
     kind?: string | null;
-  }
-  /**
-   * Global explanations containing the top most important features after training.
-   */
-  export interface Schema$GlobalExplanation {
-    /**
-     * Class label for this set of global explanations. Will be empty/null for binary logistic and linear regression models. Sorted alphabetically in descending order.
-     */
-    classLabel?: string | null;
-    /**
-     * A list of the top global explanations. Sorted by absolute value of attribution in descending order.
-     */
-    explanations?: Schema$Explanation[];
   }
   export interface Schema$GoogleSheetsOptions {
     /**
@@ -1774,7 +1782,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] [Preview] Information of the session if this job is part of one.
      */
-    sessionInfoTemplate?: Schema$SessionInfo;
+    sessionInfo?: Schema$SessionInfo;
     /**
      * [Output-only] Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.
      */
@@ -1793,6 +1801,10 @@ export namespace bigquery_v2 {
     transactionInfo?: Schema$TransactionInfo;
   }
   export interface Schema$JobStatistics2 {
+    /**
+     * BI Engine specific Statistics. [Output-only] BI Engine specific Statistics.
+     */
+    biEngineStatistics?: Schema$BiEngineStatistics;
     /**
      * [Output-only] Billing tier for the job.
      */
@@ -1832,7 +1844,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
      */
-    dmlStats?: any | null;
+    dmlStats?: Schema$DmlStatistics;
     /**
      * [Output-only] The original estimate of bytes processed for the job.
      */
@@ -2309,7 +2321,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
      */
-    dmlStats?: any | null;
+    dmlStats?: Schema$DmlStatistics;
     /**
      * [Output-only] The first errors or warnings encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
      */
@@ -3200,10 +3212,6 @@ export namespace bigquery_v2 {
      * The evaluation metrics over training/eval data that were computed at the end of training.
      */
     evaluationMetrics?: Schema$EvaluationMetrics;
-    /**
-     * Global explanations for important features of the model. For multi-class models, there is one entry for each label class. For other models, there is only one entry in the list.
-     */
-    globalExplanations?: Schema$GlobalExplanation[];
     /**
      * Output of each iteration run, results.size() <= max_iterations.
      */
