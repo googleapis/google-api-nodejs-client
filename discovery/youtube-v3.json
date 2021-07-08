@@ -2644,7 +2644,6 @@
               "type": "string"
             },
             "type": {
-              "default": "video,channel,playlist",
               "description": "Restrict results to a particular set of resource types from One Platform.",
               "location": "query",
               "repeated": true,
@@ -3766,7 +3765,7 @@
       }
     }
   },
-  "revision": "20210624",
+  "revision": "20210706",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {

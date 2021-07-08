@@ -12,10 +12,10 @@
           "description": "See and download all your Google Drive files"
         },
         "https://www.googleapis.com/auth/spreadsheets": {
-          "description": "See, edit, create, and delete your spreadsheets in Google Drive"
+          "description": "See, edit, create, and delete all your Google Sheets spreadsheets"
         },
         "https://www.googleapis.com/auth/spreadsheets.readonly": {
-          "description": "View your Google Spreadsheets"
+          "description": "See all your Google Sheets spreadsheets"
         }
       }
     }
@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20210527",
+  "revision": "20210629",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
