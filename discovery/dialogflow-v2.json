@@ -822,7 +822,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the environment to delete. / Format: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+                      "description": "Required. The name of the environment to delete. / Format: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/agent/environments/[^/]+$",
                       "required": true,
@@ -848,7 +848,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+                      "description": "Required. The name of the environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/agent/environments/[^/]+$",
                       "required": true,
@@ -885,7 +885,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The name of the environment to retrieve history for. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+                      "description": "Required. The name of the environment to retrieve history for. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/agent/environments/[^/]+$",
                       "required": true,
@@ -902,7 +902,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Returns the list of all non-draft environments of the specified agent.",
+                  "description": "Returns the list of all non-default environments of the specified agent.",
                   "flatPath": "v2/projects/{projectsId}/agent/environments",
                   "httpMethod": "GET",
                   "id": "dialogflow.projects.agent.environments.list",
@@ -939,7 +939,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates the specified agent environment. This method allows you to deploy new agent versions into the environment. When an environment is pointed to a new agent version by setting `environment.agent_version`, the environment is temporarily set to the `LOADING` state. During that time, the environment keeps on serving the previous version of the agent. After the new agent version is done loading, the environment is set back to the `RUNNING` state. You can use \"-\" as Environment ID in environment name to update version in \"draft\" environment. WARNING: this will negate all recent changes to draft and can't be undone. You may want to save the draft to a version before calling this function.",
+                  "description": "Updates the specified agent environment. This method allows you to deploy new agent versions into the environment. When an environment is pointed to a new agent version by setting `environment.agent_version`, the environment is temporarily set to the `LOADING` state. During that time, the environment continues serving the previous version of the agent. After the new agent version is done loading, the environment is set back to the `RUNNING` state. You can use \"-\" as Environment ID in environment name to update an agent version in the default environment. WARNING: this will negate all recent changes to the draft agent and can't be undone. You may want to save the draft agent to a version before calling this method.",
                   "flatPath": "v2/projects/{projectsId}/agent/environments/{environmentsId}",
                   "httpMethod": "PATCH",
                   "id": "dialogflow.projects.agent.environments.patch",
@@ -948,12 +948,12 @@
                   ],
                   "parameters": {
                     "allowLoadToDraftAndDiscardChanges": {
-                      "description": "Optional. This field is used to prevent accidental overwrite of the draft environment, which is an operation that cannot be undone. To confirm that the caller desires this overwrite, this field must be explicitly set to true when updating the draft environment (environment ID = `-`).",
+                      "description": "Optional. This field is used to prevent accidental overwrite of the default environment, which is an operation that cannot be undone. To confirm that the caller desires this overwrite, this field must be explicitly set to true when updating the default environment (environment ID = `-`).",
                       "location": "query",
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Output only. The unique identifier of this agent environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+                      "description": "Output only. The unique identifier of this agent environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/agent/environments/[^/]+$",
                       "required": true,
@@ -4300,7 +4300,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the environment to delete. / Format: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+                          "description": "Required. The name of the environment to delete. / Format: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/agent/environments/[^/]+$",
                           "required": true,
@@ -4326,7 +4326,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+                          "description": "Required. The name of the environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/agent/environments/[^/]+$",
                           "required": true,
@@ -4363,7 +4363,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The name of the environment to retrieve history for. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+                          "description": "Required. The name of the environment to retrieve history for. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/agent/environments/[^/]+$",
                           "required": true,
@@ -4380,7 +4380,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Returns the list of all non-draft environments of the specified agent.",
+                      "description": "Returns the list of all non-default environments of the specified agent.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/agent/environments",
                       "httpMethod": "GET",
                       "id": "dialogflow.projects.locations.agent.environments.list",
@@ -4417,7 +4417,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the specified agent environment. This method allows you to deploy new agent versions into the environment. When an environment is pointed to a new agent version by setting `environment.agent_version`, the environment is temporarily set to the `LOADING` state. During that time, the environment keeps on serving the previous version of the agent. After the new agent version is done loading, the environment is set back to the `RUNNING` state. You can use \"-\" as Environment ID in environment name to update version in \"draft\" environment. WARNING: this will negate all recent changes to draft and can't be undone. You may want to save the draft to a version before calling this function.",
+                      "description": "Updates the specified agent environment. This method allows you to deploy new agent versions into the environment. When an environment is pointed to a new agent version by setting `environment.agent_version`, the environment is temporarily set to the `LOADING` state. During that time, the environment continues serving the previous version of the agent. After the new agent version is done loading, the environment is set back to the `RUNNING` state. You can use \"-\" as Environment ID in environment name to update an agent version in the default environment. WARNING: this will negate all recent changes to the draft agent and can't be undone. You may want to save the draft agent to a version before calling this method.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/agent/environments/{environmentsId}",
                       "httpMethod": "PATCH",
                       "id": "dialogflow.projects.locations.agent.environments.patch",
@@ -4426,12 +4426,12 @@
                       ],
                       "parameters": {
                         "allowLoadToDraftAndDiscardChanges": {
-                          "description": "Optional. This field is used to prevent accidental overwrite of the draft environment, which is an operation that cannot be undone. To confirm that the caller desires this overwrite, this field must be explicitly set to true when updating the draft environment (environment ID = `-`).",
+                          "description": "Optional. This field is used to prevent accidental overwrite of the default environment, which is an operation that cannot be undone. To confirm that the caller desires this overwrite, this field must be explicitly set to true when updating the default environment (environment ID = `-`).",
                           "location": "query",
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Output only. The unique identifier of this agent environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+                          "description": "Output only. The unique identifier of this agent environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/agent/environments/[^/]+$",
                           "required": true,
@@ -6915,7 +6915,7 @@
       }
     }
   },
-  "revision": "20210625",
+  "revision": "20210706",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -11075,7 +11075,7 @@
           "description": "Optional. The fulfillment settings to use for this environment."
         },
         "name": {
-          "description": "Output only. The unique identifier of this agent environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+          "description": "Output only. The unique identifier of this agent environment. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
           "readOnly": true,
           "type": "string"
         },
@@ -11127,7 +11127,7 @@
           "type": "string"
         },
         "parent": {
-          "description": "Output only. The name of the environment this history is for. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/`",
+          "description": "Output only. The name of the environment this history is for. Supported formats: - `projects//agent/environments/` - `projects//locations//agent/environments/` The environment ID for the default environment is `-`.",
           "readOnly": true,
           "type": "string"
         }
