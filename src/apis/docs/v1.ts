@@ -1670,6 +1670,10 @@ export namespace docs_v1 {
      */
     person?: Schema$Person;
     /**
+     * A paragraph element that links to a Google resource (such as a file in Drive, a Youtube video, a Calendar event, etc.)
+     */
+    richLink?: Schema$RichLink;
+    /**
      * The zero-based start index of this paragraph element, in UTF-16 code units.
      */
     startIndex?: number | null;
@@ -2238,6 +2242,54 @@ export namespace docs_v1 {
      * The red component of the color, from 0.0 to 1.0.
      */
     red?: number | null;
+  }
+  /**
+   * A link to a Google resource (e.g., a file in Drive, a YouTube video, a Calendar event, etc.).
+   */
+  export interface Schema$RichLink {
+    /**
+     * Output only. The ID of this link.
+     */
+    richLinkId?: string | null;
+    /**
+     * Output only. The properties of this RichLink. This field is always present.
+     */
+    richLinkProperties?: Schema$RichLinkProperties;
+    /**
+     * IDs for suggestions that remove this link from the document. A RichLink might have multiple deletion IDs if, for example, multiple users suggest to delete it. If empty, then this person link isn't suggested for deletion.
+     */
+    suggestedDeletionIds?: string[] | null;
+    /**
+     * IDs for suggestions that insert this link into the document. A RichLink might have multiple insertion IDs if it is a nested suggested change (a suggestion within a suggestion made by a different user, for example). If empty, then this person link isn't a suggested insertion.
+     */
+    suggestedInsertionIds?: string[] | null;
+    /**
+     * The suggested text style changes to this RichLink, keyed by suggestion ID.
+     */
+    suggestedTextStyleChanges?: {
+      [key: string]: Schema$SuggestedTextStyle;
+    } | null;
+    /**
+     * The text style of this RichLink.
+     */
+    textStyle?: Schema$TextStyle;
+  }
+  /**
+   * Properties specific to a RichLink.
+   */
+  export interface Schema$RichLinkProperties {
+    /**
+     * Output only. The [MIME type](https://developers.google.com/drive/api/v3/mime-types) of the RichLink, if there is one (i.e., when it is a file in Drive).
+     */
+    mimeType?: string | null;
+    /**
+     * Output only. The title of the RichLink as displayed in the link. This title matches the title of the linked resource at the time of the insertion or last update of the link. This field is always present.
+     */
+    title?: string | null;
+    /**
+     * Output only. The URI to the RichLink. This is always present.
+     */
+    uri?: string | null;
   }
   /**
    * A StructuralElement representing a section break. A section is a range of content which has the same SectionStyle. A section break represents the start of a new section, and the section style applies to the section after the section break. The document body always begins with a section break.
