@@ -796,6 +796,10 @@ export namespace spanner_v1 {
      */
     startKeyIndex?: number | null;
     /**
+     * The time offset. This is the time since the start of the time interval.
+     */
+    timeOffset?: string | null;
+    /**
      * The unit of the metric. This is an unstructured field and will be mapped as is to the user.
      */
     unit?: Schema$LocalizedString;

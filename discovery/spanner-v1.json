@@ -2037,7 +2037,7 @@
       }
     }
   },
-  "revision": "20210611",
+  "revision": "20210624",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2970,6 +2970,11 @@
           "description": "The index of the start key in indexed_keys.",
           "format": "int32",
           "type": "integer"
+        },
+        "timeOffset": {
+          "description": "The time offset. This is the time since the start of the time interval.",
+          "format": "google-duration",
+          "type": "string"
         },
         "unit": {
           "$ref": "LocalizedString",
