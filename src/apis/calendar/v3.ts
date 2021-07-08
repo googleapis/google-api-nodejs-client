@@ -404,7 +404,7 @@ export namespace calendar_v3 {
     /**
      * The ID of the conference.
      * Can be used by developers to keep track of conferences, should not be displayed to users.
-     * The ID value is formed differently for each conference solution type: `
+     * The ID value is formed differently for each conference solution type:
      * - eventHangout: ID is not set.
      * - eventNamedHangout: ID is the name of the Hangout.
      * - hangoutsMeet: ID is the 10-letter meeting code, for example aaa-bbbb-ccc.
@@ -598,7 +598,7 @@ export namespace calendar_v3 {
   }
   export interface Schema$Event {
     /**
-     * Whether anyone can invite themselves to the event (currently works for Google+ events only). Optional. The default is False.
+     * Whether anyone can invite themselves to the event (deprecated). Optional. The default is False.
      */
     anyoneCanAddSelf?: boolean | null;
     /**
@@ -691,7 +691,7 @@ export namespace calendar_v3 {
      */
     guestsCanSeeOtherGuests?: boolean | null;
     /**
-     * An absolute link to the Google+ hangout associated with this event. Read-only.
+     * An absolute link to the Google Hangout associated with this event. Read-only.
      */
     hangoutLink?: string | null;
     /**
@@ -848,7 +848,7 @@ export namespace calendar_v3 {
      */
     email?: string | null;
     /**
-     * The attendee's Profile ID, if available. It corresponds to the id field in the People collection of the Google+ API
+     * The attendee's Profile ID, if available.
      */
     id?: string | null;
     /**

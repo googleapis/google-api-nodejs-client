@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20210518",
+  "revision": "20210703",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2104,7 +2104,7 @@
       "id": "ConferenceData",
       "properties": {
         "conferenceId": {
-          "description": "The ID of the conference.\nCan be used by developers to keep track of conferences, should not be displayed to users.\nThe ID value is formed differently for each conference solution type: `\n- eventHangout: ID is not set.\n- eventNamedHangout: ID is the name of the Hangout.\n- hangoutsMeet: ID is the 10-letter meeting code, for example aaa-bbbb-ccc.\n- addOn: ID is defined by the third-party provider.  Optional.",
+          "description": "The ID of the conference.\nCan be used by developers to keep track of conferences, should not be displayed to users.\nThe ID value is formed differently for each conference solution type:  \n- eventHangout: ID is not set.\n- eventNamedHangout: ID is the name of the Hangout.\n- hangoutsMeet: ID is the 10-letter meeting code, for example aaa-bbbb-ccc.\n- addOn: ID is defined by the third-party provider.  Optional.",
           "type": "string"
         },
         "conferenceSolution": {
@@ -2296,7 +2296,7 @@
       "properties": {
         "anyoneCanAddSelf": {
           "default": "false",
-          "description": "Whether anyone can invite themselves to the event (currently works for Google+ events only). Optional. The default is False.",
+          "description": "Whether anyone can invite themselves to the event (deprecated). Optional. The default is False.",
           "type": "boolean"
         },
         "attachments": {
@@ -2343,7 +2343,7 @@
               "type": "string"
             },
             "id": {
-              "description": "The creator's Profile ID, if available. It corresponds to the id field in the People collection of the Google+ API",
+              "description": "The creator's Profile ID, if available.",
               "type": "string"
             },
             "self": {
@@ -2465,7 +2465,7 @@
           "type": "boolean"
         },
         "hangoutLink": {
-          "description": "An absolute link to the Google+ hangout associated with this event. Read-only.",
+          "description": "An absolute link to the Google Hangout associated with this event. Read-only.",
           "type": "string"
         },
         "htmlLink": {
@@ -2511,7 +2511,7 @@
               "type": "string"
             },
             "id": {
-              "description": "The organizer's Profile ID, if available. It corresponds to the id field in the People collection of the Google+ API",
+              "description": "The organizer's Profile ID, if available.",
               "type": "string"
             },
             "self": {
@@ -2663,7 +2663,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The attendee's Profile ID, if available. It corresponds to the id field in the People collection of the Google+ API",
+          "description": "The attendee's Profile ID, if available.",
           "type": "string"
         },
         "optional": {
