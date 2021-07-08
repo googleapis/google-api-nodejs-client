@@ -12,16 +12,16 @@
           "description": "See and download all your Google Drive files"
         },
         "https://www.googleapis.com/auth/presentations": {
-          "description": "View and manage your Google Slides presentations"
+          "description": "See, edit, create, and delete all your Google Slides presentations"
         },
         "https://www.googleapis.com/auth/presentations.readonly": {
-          "description": "View your Google Slides presentations"
+          "description": "See all your Google Slides presentations"
         },
         "https://www.googleapis.com/auth/spreadsheets": {
-          "description": "See, edit, create, and delete your spreadsheets in Google Drive"
+          "description": "See, edit, create, and delete all your Google Sheets spreadsheets"
         },
         "https://www.googleapis.com/auth/spreadsheets.readonly": {
-          "description": "View your Google Spreadsheets"
+          "description": "See all your Google Sheets spreadsheets"
         }
       }
     }
@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20210622",
+  "revision": "20210629",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AffineTransform": {
@@ -1019,7 +1019,7 @@
           "type": "string"
         },
         "spreadsheetId": {
-          "description": "The ID of the Google Sheets spreadsheet that contains the chart.",
+          "description": "The ID of the Google Sheets spreadsheet that contains the chart. You might need to add a resource key to the HTTP header for a subset of old files. For more information, see [Access link-shared files using resource keys](https://developers.google.com/drive/api/v3/resource-keys).",
           "type": "string"
         }
       },
@@ -1119,7 +1119,7 @@
           "description": "The element properties for the video. The PageElementProperties.size property is optional. If you don't specify a size, a default size is chosen by the server. The PageElementProperties.transform property is optional. The transform must not have shear components. If you don't specify a transform, the video will be placed at the top left corner of the page."
         },
         "id": {
-          "description": "The video source's unique identifier for this video. e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is 7U3axjORYZ0. For a Google Drive video https://drive.google.com/file/d/1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q the ID is 1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q.",
+          "description": "The video source's unique identifier for this video. e.g. For YouTube video https://www.youtube.com/watch?v=7U3axjORYZ0, the ID is 7U3axjORYZ0. For a Google Drive video https://drive.google.com/file/d/1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q the ID is 1xCgQLFTJi5_Xl8DgW_lcUYq5e-q6Hi5Q. To access a Google Drive video file, you might need to add a resource key to the HTTP header for a subset of old files. For more information, see [Access link-shared files using resource keys](https://developers.google.com/drive/api/v3/resource-keys).",
           "type": "string"
         },
         "objectId": {
@@ -1191,7 +1191,7 @@
       "id": "DeleteObjectRequest",
       "properties": {
         "objectId": {
-          "description": "The object ID of the page or page element to delete. If after a delete operation a group contains only 1 or no page elements, the group is also deleted. If a placeholder is deleted on a layout, any empty inheriting shapes are also deleted.",
+          "description": "The object ID of the page or page element to delete. If after a delete operation a group contains only 1 or no page elements, the group is also deleted. If a placeholder is deleted on a layout, any empty inheriting placeholders are also deleted.",
           "type": "string"
         }
       },
@@ -1339,7 +1339,7 @@
       "id": "GroupObjectsRequest",
       "properties": {
         "childrenObjectIds": {
-          "description": "The object IDs of the objects to group. Only page elements can be grouped. There should be at least two page elements on the same page that are not already in another group. Some page elements, such as videos, tables and placeholder shapes cannot be grouped.",
+          "description": "The object IDs of the objects to group. Only page elements can be grouped. There should be at least two page elements on the same page that are not already in another group. Some page elements, such as videos, tables and placeholders cannot be grouped.",
           "items": {
             "type": "string"
           },
@@ -3030,7 +3030,7 @@
       "properties": {
         "placeholder": {
           "$ref": "Placeholder",
-          "description": "Placeholders are shapes that are inherit from corresponding placeholders on layouts and masters. If set, the shape is a placeholder shape and any inherited properties can be resolved by looking at the parent placeholder identified by the Placeholder.parent_object_id field."
+          "description": "Placeholders are page elements that inherit from corresponding placeholders on layouts and masters. If set, the shape is a placeholder shape and any inherited properties can be resolved by looking at the parent placeholder identified by the Placeholder.parent_object_id field."
         },
         "shapeProperties": {
           "$ref": "ShapeProperties",
