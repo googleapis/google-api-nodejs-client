@@ -375,7 +375,7 @@
       }
     }
   },
-  "revision": "20210528",
+  "revision": "20210703",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings": {
@@ -431,7 +431,7 @@
               "Default unspecified reason.",
               "Indicates a chargeback for fraud was issued for the transaction associated with the assessment.",
               "Indicates the transaction associated with the assessment is suspected of being fraudulent based on the payment method, billing details, shipping address or other transaction information.",
-              "Indicates that the user was served a 2FA challenge. Sufficiently old assessments with this reason that have not been overwritten with PASSED_TWO_FACTOR will be treated as an abandoned 2FA flow, equivalent to FAILED_TWO_FACTOR.",
+              "Indicates that the user was served a 2FA challenge. An old assessment with `ENUM_VALUES.INITIATED_TWO_FACTOR` reason that has not been overwritten with `PASSED_TWO_FACTOR` is treated as an abandoned 2FA flow. This is equivalent to `FAILED_TWO_FACTOR`.",
               "Indicates that the user passed a 2FA challenge.",
               "Indicates that the user failed a 2FA challenge.",
               "Indicates the user provided the correct password.",
@@ -713,7 +713,7 @@
           "enum": [
             "TESTING_CHALLENGE_UNSPECIFIED",
             "NOCAPTCHA",
-            "CHALLENGE"
+            "UNSOLVABLE_CHALLENGE"
           ],
           "enumDescriptions": [
             "Perform the normal risk analysis and return either nocaptcha or a challenge depending on risk and trust factors.",
