@@ -126,6 +126,35 @@ export namespace artifactregistry_v1beta1 {
   }
 
   /**
+   * A detailed representation of an Apt artifact. Information in the record is derived from the archive's control file. See https://www.debian.org/doc/debian-policy/ch-controlfields.html
+   */
+  export interface Schema$AptArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. Repository component of the artifact.
+     */
+    component?: string | null;
+    /**
+     * Output only. Contents of the artifact's control metadata file.
+     */
+    controlFile?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The Apt package name of the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. An artifact is a binary or source package.
+     */
+    packageType?: string | null;
+  }
+  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -208,6 +237,84 @@ export namespace artifactregistry_v1beta1 {
      * The hash value.
      */
     value?: string | null;
+  }
+  /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportAptArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportAptArtifactsGcsSource;
+  }
+  /**
+   * Google Cloud Storage location where the artifacts currently reside.
+   */
+  export interface Schema$ImportAptArtifactsGcsSource {
+    /**
+     * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
+     */
+    uris?: string[] | null;
+    /**
+     * Supports URI wildcards for matching multiple objects from a single URI.
+     */
+    useWildcards?: boolean | null;
+  }
+  /**
+   * The response message from importing artifacts.
+   */
+  export interface Schema$ImportAptArtifactsResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    aptArtifacts?: Schema$AptArtifact[];
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportAptArtifactsErrorInfo[];
+  }
+  /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportYumArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportYumArtifactsGcsSource;
+  }
+  /**
+   * Google Cloud Storage location where the artifacts currently reside.
+   */
+  export interface Schema$ImportYumArtifactsGcsSource {
+    /**
+     * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
+     */
+    uris?: string[] | null;
+    /**
+     * Supports URI wildcards for matching multiple objects from a single URI.
+     */
+    useWildcards?: boolean | null;
+  }
+  /**
+   * The response message from importing artifacts.
+   */
+  export interface Schema$ImportYumArtifactsResponse {
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportYumArtifactsErrorInfo[];
+    /**
+     * The yum artifacts updated.
+     */
+    yumArtifacts?: Schema$YumArtifact[];
   }
   /**
    * The response from listing files.
@@ -479,6 +586,42 @@ export namespace artifactregistry_v1beta1 {
     permissions?: string[] | null;
   }
   /**
+   * The response to upload an artifact.
+   */
+  export interface Schema$UploadAptArtifactMediaResponse {
+    /**
+     * Operation to be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadAptArtifactResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    aptArtifacts?: Schema$AptArtifact[];
+  }
+  /**
+   * The response to upload an artifact.
+   */
+  export interface Schema$UploadYumArtifactMediaResponse {
+    /**
+     * Operation to be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadYumArtifactResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    yumArtifacts?: Schema$YumArtifact[];
+  }
+  /**
    * The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.
    */
   export interface Schema$Version {
@@ -502,6 +645,27 @@ export namespace artifactregistry_v1beta1 {
      * The time when the version was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A detailed representation of a Yum artifact.
+   */
+  export interface Schema$YumArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The yum package name of the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. An artifact is a binary or source package.
+     */
+    packageType?: string | null;
   }
 
   export class Resource$Projects {

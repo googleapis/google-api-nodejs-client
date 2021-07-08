@@ -126,6 +126,35 @@ export namespace artifactregistry_v1beta2 {
   }
 
   /**
+   * A detailed representation of an Apt artifact. Information in the record is derived from the archive's control file. See https://www.debian.org/doc/debian-policy/ch-controlfields.html
+   */
+  export interface Schema$AptArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. Repository component of the artifact.
+     */
+    component?: string | null;
+    /**
+     * Output only. Contents of the artifact's control metadata file.
+     */
+    controlFile?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The Apt package name of the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. An artifact is a binary or source package.
+     */
+    packageType?: string | null;
+  }
+  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -208,6 +237,102 @@ export namespace artifactregistry_v1beta2 {
      * The hash value.
      */
     value?: string | null;
+  }
+  /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportAptArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportAptArtifactsGcsSource;
+  }
+  /**
+   * Google Cloud Storage location where the artifacts currently reside.
+   */
+  export interface Schema$ImportAptArtifactsGcsSource {
+    /**
+     * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
+     */
+    uris?: string[] | null;
+    /**
+     * Supports URI wildcards for matching multiple objects from a single URI.
+     */
+    useWildcards?: boolean | null;
+  }
+  /**
+   * The request to import new apt artifacts.
+   */
+  export interface Schema$ImportAptArtifactsRequest {
+    /**
+     * Google Cloud Storage location where input content is located.
+     */
+    gcsSource?: Schema$ImportAptArtifactsGcsSource;
+  }
+  /**
+   * The response message from importing artifacts.
+   */
+  export interface Schema$ImportAptArtifactsResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    aptArtifacts?: Schema$AptArtifact[];
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportAptArtifactsErrorInfo[];
+  }
+  /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportYumArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportYumArtifactsGcsSource;
+  }
+  /**
+   * Google Cloud Storage location where the artifacts currently reside.
+   */
+  export interface Schema$ImportYumArtifactsGcsSource {
+    /**
+     * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
+     */
+    uris?: string[] | null;
+    /**
+     * Supports URI wildcards for matching multiple objects from a single URI.
+     */
+    useWildcards?: boolean | null;
+  }
+  /**
+   * The request to import new yum artifacts.
+   */
+  export interface Schema$ImportYumArtifactsRequest {
+    /**
+     * Google Cloud Storage location where input content is located.
+     */
+    gcsSource?: Schema$ImportYumArtifactsGcsSource;
+  }
+  /**
+   * The response message from importing artifacts.
+   */
+  export interface Schema$ImportYumArtifactsResponse {
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportYumArtifactsErrorInfo[];
+    /**
+     * The yum artifacts updated.
+     */
+    yumArtifacts?: Schema$YumArtifact[];
   }
   /**
    * The response from listing files.
@@ -479,6 +604,42 @@ export namespace artifactregistry_v1beta2 {
     permissions?: string[] | null;
   }
   /**
+   * The response to upload an artifact.
+   */
+  export interface Schema$UploadAptArtifactMediaResponse {
+    /**
+     * Operation to be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadAptArtifactResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    aptArtifacts?: Schema$AptArtifact[];
+  }
+  /**
+   * The response to upload an artifact.
+   */
+  export interface Schema$UploadYumArtifactMediaResponse {
+    /**
+     * Operation to be returned to the user.
+     */
+    operation?: Schema$Operation;
+  }
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadYumArtifactResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    yumArtifacts?: Schema$YumArtifact[];
+  }
+  /**
    * The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.
    */
   export interface Schema$Version {
@@ -506,6 +667,27 @@ export namespace artifactregistry_v1beta2 {
      * The time when the version was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A detailed representation of a Yum artifact.
+   */
+  export interface Schema$YumArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The yum package name of the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. An artifact is a binary or source package.
+     */
+    packageType?: string | null;
   }
 
   export class Resource$Projects {
@@ -1153,16 +1335,22 @@ export namespace artifactregistry_v1beta2 {
 
   export class Resource$Projects$Locations$Repositories {
     context: APIRequestContext;
+    aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
     files: Resource$Projects$Locations$Repositories$Files;
     packages: Resource$Projects$Locations$Repositories$Packages;
+    yumArtifacts: Resource$Projects$Locations$Repositories$Yumartifacts;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.aptArtifacts =
+        new Resource$Projects$Locations$Repositories$Aptartifacts(this.context);
       this.files = new Resource$Projects$Locations$Repositories$Files(
         this.context
       );
       this.packages = new Resource$Projects$Locations$Repositories$Packages(
         this.context
       );
+      this.yumArtifacts =
+        new Resource$Projects$Locations$Repositories$Yumartifacts(this.context);
     }
 
     /**
@@ -2404,6 +2592,171 @@ export namespace artifactregistry_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Aptartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports Apt artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.aptArtifacts.import({
+     *       // The name of the parent resource where the artifacts will be imported.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "gcsSource": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/aptArtifacts:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Aptartifacts$Import
+    extends StandardParameters {
+    /**
+     * The name of the parent resource where the artifacts will be imported.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportAptArtifactsRequest;
   }
 
   export class Resource$Projects$Locations$Repositories$Files {
@@ -4430,5 +4783,170 @@ export namespace artifactregistry_v1beta2 {
      * The view that should be returned in the response.
      */
     view?: string;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Yumartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Imports Yum (RPM) artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.yumArtifacts.import({
+     *       // The name of the parent resource where the artifacts will be imported.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "gcsSource": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    import(callback: BodyResponseCallback<Schema$Operation>): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/yumArtifacts:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Yumartifacts$Import
+    extends StandardParameters {
+    /**
+     * The name of the parent resource where the artifacts will be imported.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportYumArtifactsRequest;
   }
 }
