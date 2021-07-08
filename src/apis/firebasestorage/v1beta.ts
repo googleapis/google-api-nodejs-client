@@ -134,10 +134,6 @@ export namespace firebasestorage_v1beta {
    */
   export interface Schema$Bucket {
     /**
-     * Output only. Location of the storage bucket.
-     */
-    location?: string | null;
-    /**
      * Resource name of the bucket.
      */
     name?: string | null;
@@ -213,7 +209,7 @@ export namespace firebasestorage_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasestorage.projects.buckets.addFirebase({
-     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket. Because bucket resource names are unique across projects, you may omit the project number, `projects/-/buckets/{bucket_id\}`.
      *     bucket: 'projects/my-project/buckets/my-bucket',
      *
      *     // Request body metadata
@@ -226,7 +222,6 @@ export namespace firebasestorage_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "reconciling": false
      *   // }
@@ -354,14 +349,13 @@ export namespace firebasestorage_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasestorage.projects.buckets.get({
-     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket. Because bucket resource names are unique across projects, you may omit the project number, `projects/-/buckets/{bucket_id\}`.
      *     name: 'projects/my-project/buckets/my-bucket',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "reconciling": false
      *   // }
@@ -627,7 +621,7 @@ export namespace firebasestorage_v1beta {
      *
      *   // Do the magic
      *   const res = await firebasestorage.projects.buckets.removeFirebase({
-     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     *     // Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket. Because bucket resource names are unique across projects, you may omit the project number, `projects/-/buckets/{bucket_id\}`.
      *     bucket: 'projects/my-project/buckets/my-bucket',
      *
      *     // Request body metadata
@@ -738,7 +732,7 @@ export namespace firebasestorage_v1beta {
   export interface Params$Resource$Projects$Buckets$Addfirebase
     extends StandardParameters {
     /**
-     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket. Because bucket resource names are unique across projects, you may omit the project number, `projects/-/buckets/{bucket_id\}`.
      */
     bucket?: string;
 
@@ -750,7 +744,7 @@ export namespace firebasestorage_v1beta {
   export interface Params$Resource$Projects$Buckets$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket. Because bucket resource names are unique across projects, you may omit the project number, `projects/-/buckets/{bucket_id\}`.
      */
     name?: string;
   }
@@ -772,7 +766,7 @@ export namespace firebasestorage_v1beta {
   export interface Params$Resource$Projects$Buckets$Removefirebase
     extends StandardParameters {
     /**
-     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket, `projects/{project_number\}/buckets/{bucket_id\}`.
+     * Required. Resource name of the bucket, mirrors the ID of the underlying Google Cloud Storage bucket. Because bucket resource names are unique across projects, you may omit the project number, `projects/-/buckets/{bucket_id\}`.
      */
     bucket?: string;
 
