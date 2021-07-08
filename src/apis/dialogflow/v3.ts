@@ -1757,7 +1757,7 @@ export namespace dialogflow_v3 {
      */
     endTime?: string | null;
     /**
-     * Maximum number of days to run the experiment/rollout. If auto-rollout is not enabled, default value and maximum will be 30 days. If auto-rollout is enabled, default value and maximum will be 6 days.
+     * LINT.IfChange(default_experiment_length) Maximum number of days to run the experiment/rollout. If auto-rollout is not enabled, default value and maximum will be 30 days. If auto-rollout is enabled, default value and maximum will be 6 days. LINT.ThenChange(//depot/google3/cloud/ml/api/conversation/analytics/compute.cc:default_experiment_length)
      */
     experimentLength?: string | null;
     /**
@@ -1777,7 +1777,7 @@ export namespace dialogflow_v3 {
      */
     startTime?: string | null;
     /**
-     * The current state of the experiment. Transition triggered by Expriments.StartExperiment: PENDING-\>RUNNING. Transition triggered by Expriments.CancelExperiment: PENDING-\>CANCELLED or RUNNING-\>CANCELLED.
+     * The current state of the experiment. Transition triggered by Experiments.StartExperiment: DRAFT-\>RUNNING. Transition triggered by Experiments.CancelExperiment: DRAFT-\>DONE or RUNNING-\>DONE.
      */
     state?: string | null;
     /**

@@ -3553,7 +3553,7 @@
       }
     }
   },
-  "revision": "20210618",
+  "revision": "20210706",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -5743,7 +5743,7 @@
           "type": "string"
         },
         "experimentLength": {
-          "description": "Maximum number of days to run the experiment. If auto-rollout is not enabled, default value and maximum will be 30 days. If auto-rollout is enabled, default value and maximum will be 6 days.",
+          "description": "LINT.IfChange(default_experiment_length) Maximum number of days to run the experiment. If auto-rollout is not enabled, default value and maximum will be 30 days. If auto-rollout is enabled, default value and maximum will be 6 days. LINT.ThenChange(//depot/google3/cloud/ml/api/conversation/analytics/compute.cc:default_experiment_length)",
           "format": "google-duration",
           "type": "string"
         },
@@ -5766,18 +5766,20 @@
           "type": "string"
         },
         "state": {
-          "description": "The current state of the experiment. Transition triggered by Expriments.StartExperiment: PENDING->RUNNING. Transition triggered by Expriments.CancelExperiment: PENDING->CANCELLED or RUNNING->CANCELLED.",
+          "description": "The current state of the experiment. Transition triggered by Experiments.StartExperiment: DRAFT->RUNNING. Transition triggered by Experiments.CancelExperiment: DRAFT->DONE or RUNNING->DONE.",
           "enum": [
             "STATE_UNSPECIFIED",
             "DRAFT",
             "RUNNING",
-            "DONE"
+            "DONE",
+            "ROLLOUT_FAILED"
           ],
           "enumDescriptions": [
             "State unspecified.",
             "The experiment is created but not started yet.",
             "The experiment is running.",
-            "The experiment is done."
+            "The experiment is done.",
+            "The experiment with auto-rollout enabled has failed."
           ],
           "type": "string"
         },
