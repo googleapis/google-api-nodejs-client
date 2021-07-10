@@ -368,31 +368,31 @@ export namespace tpu_v1alpha1 {
    */
   export interface Schema$OperationMetadata {
     /**
-     * [Output only] API version used to start the operation.
+     * Output only. API version used to start the operation.
      */
     apiVersion?: string | null;
     /**
-     * [Output only] Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
-     * [Output only] The time the operation was created.
+     * Output only. The time the operation was created.
      */
     createTime?: string | null;
     /**
-     * [Output only] The time the operation finished running.
+     * Output only. The time the operation finished running.
      */
     endTime?: string | null;
     /**
-     * [Output only] Human-readable status of the operation, if any.
+     * Output only. Human-readable status of the operation, if any.
      */
     statusDetail?: string | null;
     /**
-     * [Output only] Server-defined resource path for the target of the operation.
+     * Output only. Server-defined resource path for the target of the operation.
      */
     target?: string | null;
     /**
-     * [Output only] Name of the verb executed by the operation.
+     * Output only. Name of the verb executed by the operation.
      */
     verb?: string | null;
   }
@@ -1155,6 +1155,8 @@ export namespace tpu_v1alpha1 {
      *     nodeId: 'placeholder-value',
      *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Idempotent request UUID.
+     *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1314,6 +1316,8 @@ export namespace tpu_v1alpha1 {
      *   const res = await tpu.projects.locations.nodes.delete({
      *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
+     *     // Idempotent request UUID.
+     *     requestId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2127,6 +2131,10 @@ export namespace tpu_v1alpha1 {
      * Required. The parent resource name.
      */
     parent?: string;
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -2139,6 +2147,10 @@ export namespace tpu_v1alpha1 {
      * Required. The resource name.
      */
     name?: string;
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Get
     extends StandardParameters {
