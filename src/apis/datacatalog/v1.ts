@@ -190,6 +190,23 @@ export namespace datacatalog_v1 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * Specification for the BigQuery connection.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1BigQueryConnectionSpec {
+    /**
+     * Specification for the BigQuery connection to a Cloud SQL instance.
+     */
+    cloudSql?: Schema$GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec;
+    /**
+     * The type of the BigQuery connection.
+     */
+    connectionType?: string | null;
+    /**
+     * True if there are credentials attached to the BigQuery connection; false otherwise.
+     */
+    hasCredential?: boolean | null;
+  }
+  /**
    * Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD` name pattern. For more information, see [Introduction to partitioned tables] (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).
    */
   export interface Schema$GoogleCloudDatacatalogV1BigQueryDateShardedSpec {
@@ -231,6 +248,23 @@ export namespace datacatalog_v1 {
      * Table view specification. Populated only if the `table_source_type` is `BIGQUERY_VIEW`.
      */
     viewSpec?: Schema$GoogleCloudDatacatalogV1ViewSpec;
+  }
+  /**
+   * Specification for the BigQuery connection to a Cloud SQL instance.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec {
+    /**
+     * Database name.
+     */
+    database?: string | null;
+    /**
+     * Cloud SQL instance ID in the format of `project:location:instance`.
+     */
+    instanceId?: string | null;
+    /**
+     * Type of the Cloud SQL database.
+     */
+    type?: string | null;
   }
   /**
    * A column within a schema. Columns can be nested inside other columns.
@@ -289,6 +323,15 @@ export namespace datacatalog_v1 {
     service?: string | null;
   }
   /**
+   * Specification that applies to a data source connection. Valid only for entries with the `DATA_SOURCE_CONNECTION` type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataSourceConnectionSpec {
+    /**
+     * Fields specific to BigQuery connections.
+     */
+    bigqueryConnectionSpec?: Schema$GoogleCloudDatacatalogV1BigQueryConnectionSpec;
+  }
+  /**
    * Entry metadata. A Data Catalog entry represents another resource in Google Cloud Platform (such as a BigQuery dataset or a Pub/Sub topic) or outside of it. You can use the `linked_resource` field in the entry resource to refer to the original resource ID of the source system. An entry resource contains resource details, for example, its schema. Additionally, you can attach flexible metadata to an entry in the form of a Tag.
    */
   export interface Schema$GoogleCloudDatacatalogV1Entry {
@@ -309,6 +352,10 @@ export namespace datacatalog_v1 {
      */
     dataSource?: Schema$GoogleCloudDatacatalogV1DataSource;
     /**
+     * Specification that applies to a data source connection. Valid only for entries with the `DATA_SOURCE_CONNECTION` type.
+     */
+    dataSourceConnectionSpec?: Schema$GoogleCloudDatacatalogV1DataSourceConnectionSpec;
+    /**
      * Entry description that can consist of several sentences or paragraphs that describe entry contents. The description must not contain Unicode non-characters as well as C0 and C1 control codes except tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF). The maximum size is 2000 bytes when encoded in UTF-8. Default value is an empty string.
      */
     description?: string | null;
@@ -328,6 +375,10 @@ export namespace datacatalog_v1 {
      * Output only. Indicates the entry's source system that Data Catalog integrates with, such as BigQuery, Pub/Sub, or Dataproc Metastore.
      */
     integratedSystem?: string | null;
+    /**
+     * Cloud labels attached to the entry. In Data Catalog, you can create and modify labels attached only to custom entries. Synced entries have unmodifiable labels that come from the source system.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * The resource this metadata entry refers to. For Google Cloud Platform resources, `linked_resource` is the [Full Resource Name] (https://cloud.google.com/apis/design/resource_names#full_resource_name). For example, the `linked_resource` for a table resource from BigQuery is: `//bigquery.googleapis.com/projects/{PROJECT_ID\}/datasets/{DATASET_ID\}/tables/{TABLE_ID\}` Output only when the entry is one of the types in the `EntryType` enum. For entries with a `user_specified_type`, this field is optional and defaults to an empty string. The resource string must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), periods (.), colons (:), slashes (/), dashes (-), and hashes (#). The maximum size is 200 bytes when encoded in UTF-8.
      */
@@ -692,6 +743,10 @@ export namespace datacatalog_v1 {
      */
     includeProjectIds?: string[] | null;
     /**
+     * Optional. If `true`, include public tag templates in the search results. By default, they are included only if you have explicit permissions on them to view them. For example, if you are the owner. Other scope fields, for example, ``include_org_ids``, still restrict the returned public tag templates and at least one of them is required.
+     */
+    includePublicTagTemplates?: boolean | null;
+    /**
      * Optional. The list of locations to search within. If empty, all locations are searched. Returns an error if any location in the list isn't one of the [Supported regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions). If a location is unreachable, its name is returned in the `SearchCatalogResponse.unreachable` field. To get additional information on the error, repeat the search request and set the location name as the value of this parameter.
      */
     restrictedLocations?: string[] | null;
@@ -899,6 +954,10 @@ export namespace datacatalog_v1 {
     fields?: {
       [key: string]: Schema$GoogleCloudDatacatalogV1TagTemplateField;
     } | null;
+    /**
+     * Indicates whether this is a public tag template. Every user has view access to a *public* tag template by default. This means that: * Every user can use this tag template to tag an entry. * If an entry is tagged using the tag template, the tag is always shown in the response to ``ListTags`` called on the entry. * To get the template using the GetTagTemplate method, you need view access either on the project or the organization the tag template resides in but no other permission is needed. * Operations on the tag template other than viewing (for example, editing IAM policies) follow standard IAM structures. Tags created with a public tag template are referred to as public tags. You can search for a public tag by value with a simple search query instead of using a ``tag:`` predicate. Public tag templates may not appear in search results depending on scope, see: include_public_tag_templates
+     */
+    isPubliclyReadable?: boolean | null;
     /**
      * The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.
      */
@@ -1258,12 +1317,14 @@ export namespace datacatalog_v1 {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
      *   //   "dataSource": {},
+     *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
+     *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
      *   //   "name": "my_name",
      *   //   "routineSpec": {},
@@ -2730,12 +2791,14 @@ export namespace datacatalog_v1 {
      *       //   "bigqueryDateShardedSpec": {},
      *       //   "bigqueryTableSpec": {},
      *       //   "dataSource": {},
+     *       //   "dataSourceConnectionSpec": {},
      *       //   "databaseTableSpec": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "fullyQualifiedName": "my_fullyQualifiedName",
      *       //   "gcsFilesetSpec": {},
      *       //   "integratedSystem": "my_integratedSystem",
+     *       //   "labels": {},
      *       //   "linkedResource": "my_linkedResource",
      *       //   "name": "my_name",
      *       //   "routineSpec": {},
@@ -2755,12 +2818,14 @@ export namespace datacatalog_v1 {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
      *   //   "dataSource": {},
+     *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
+     *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
      *   //   "name": "my_name",
      *   //   "routineSpec": {},
@@ -3036,12 +3101,14 @@ export namespace datacatalog_v1 {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
      *   //   "dataSource": {},
+     *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
+     *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
      *   //   "name": "my_name",
      *   //   "routineSpec": {},
@@ -3480,12 +3547,14 @@ export namespace datacatalog_v1 {
      *       //   "bigqueryDateShardedSpec": {},
      *       //   "bigqueryTableSpec": {},
      *       //   "dataSource": {},
+     *       //   "dataSourceConnectionSpec": {},
      *       //   "databaseTableSpec": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "fullyQualifiedName": "my_fullyQualifiedName",
      *       //   "gcsFilesetSpec": {},
      *       //   "integratedSystem": "my_integratedSystem",
+     *       //   "labels": {},
      *       //   "linkedResource": "my_linkedResource",
      *       //   "name": "my_name",
      *       //   "routineSpec": {},
@@ -3505,12 +3574,14 @@ export namespace datacatalog_v1 {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
      *   //   "dataSource": {},
+     *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
+     *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
      *   //   "name": "my_name",
      *   //   "routineSpec": {},
@@ -5168,6 +5239,7 @@ export namespace datacatalog_v1 {
      *       // {
      *       //   "displayName": "my_displayName",
      *       //   "fields": {},
+     *       //   "isPubliclyReadable": false,
      *       //   "name": "my_name"
      *       // }
      *     },
@@ -5178,6 +5250,7 @@ export namespace datacatalog_v1 {
      *   // {
      *   //   "displayName": "my_displayName",
      *   //   "fields": {},
+     *   //   "isPubliclyReadable": false,
      *   //   "name": "my_name"
      *   // }
      * }
@@ -5444,6 +5517,7 @@ export namespace datacatalog_v1 {
      *   // {
      *   //   "displayName": "my_displayName",
      *   //   "fields": {},
+     *   //   "isPubliclyReadable": false,
      *   //   "name": "my_name"
      *   // }
      * }
@@ -5724,6 +5798,7 @@ export namespace datacatalog_v1 {
      *       // {
      *       //   "displayName": "my_displayName",
      *       //   "fields": {},
+     *       //   "isPubliclyReadable": false,
      *       //   "name": "my_name"
      *       // }
      *     },
@@ -5734,6 +5809,7 @@ export namespace datacatalog_v1 {
      *   // {
      *   //   "displayName": "my_displayName",
      *   //   "fields": {},
+     *   //   "isPubliclyReadable": false,
      *   //   "name": "my_name"
      *   // }
      * }
