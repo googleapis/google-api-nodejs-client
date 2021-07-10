@@ -163,6 +163,35 @@
       "resources": {
         "properties": {
           "resources": {
+            "ideaActivities": {
+              "methods": {
+                "create": {
+                  "description": "Creates an idea activity entry.",
+                  "flatPath": "v1alpha/platforms/{platformsId}/properties/{propertiesId}/ideaActivities",
+                  "httpMethod": "POST",
+                  "id": "ideahub.platforms.properties.ideaActivities.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this idea activity will be created. Format: platforms/{platform}/property/{property}",
+                      "location": "path",
+                      "pattern": "^platforms/[^/]+/properties/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/ideaActivities",
+                  "request": {
+                    "$ref": "GoogleSearchIdeahubV1alphaIdeaActivity"
+                  },
+                  "response": {
+                    "$ref": "GoogleSearchIdeahubV1alphaIdeaActivity"
+                  }
+                }
+              }
+            },
             "ideaStates": {
               "methods": {
                 "patch": {
@@ -342,7 +371,7 @@
       }
     }
   },
-  "revision": "20210623",
+  "revision": "20210707",
   "rootUrl": "https://ideahub.googleapis.com/",
   "schemas": {
     "GoogleSearchIdeahubV1alphaAvailableLocale": {
@@ -378,6 +407,51 @@
             "$ref": "GoogleSearchIdeahubV1alphaTopic"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleSearchIdeahubV1alphaIdeaActivity": {
+      "description": "An idea activity entry.",
+      "id": "GoogleSearchIdeahubV1alphaIdeaActivity",
+      "properties": {
+        "ideaIds": {
+          "description": "The Idea IDs for this entry.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Unique identifier for the idea activity. Format: platforms/{platform}/properties/{property}/ideaActivities/{idea_activity}",
+          "type": "string"
+        },
+        "topicIds": {
+          "description": "The Topic IDs for this entry.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "The type of activity performed.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "POST_DRAFTED",
+            "POST_PUBLISHED",
+            "POST_DELETED"
+          ],
+          "enumDescriptions": [
+            "An unspecified, unknown type of idea activity.",
+            "An idea activity type indicating a post has been drafted.",
+            "An idea activity type indicating a post has been published.",
+            "An idea activity type indicating a post has been deleted."
+          ],
+          "type": "string"
+        },
+        "uri": {
+          "description": "The uri the activity relates to.",
+          "type": "string"
         }
       },
       "type": "object"
