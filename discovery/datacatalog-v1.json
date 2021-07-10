@@ -1841,7 +1841,7 @@
       }
     }
   },
-  "revision": "20210618",
+  "revision": "20210702",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1918,6 +1918,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1BigQueryConnectionSpec": {
+      "description": "Specification for the BigQuery connection.",
+      "id": "GoogleCloudDatacatalogV1BigQueryConnectionSpec",
+      "properties": {
+        "cloudSql": {
+          "$ref": "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec",
+          "description": "Specification for the BigQuery connection to a Cloud SQL instance."
+        },
+        "connectionType": {
+          "description": "The type of the BigQuery connection.",
+          "enum": [
+            "CONNECTION_TYPE_UNSPECIFIED",
+            "CLOUD_SQL"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Cloud SQL connection."
+          ],
+          "type": "string"
+        },
+        "hasCredential": {
+          "description": "True if there are credentials attached to the BigQuery connection; false otherwise.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1BigQueryDateShardedSpec": {
       "description": "Specification for a group of BigQuery tables with the `[prefix]YYYYMMDD` name pattern. For more information, see [Introduction to partitioned tables] (https://cloud.google.com/bigquery/docs/partitioned-tables#partitioning_versus_sharding).",
       "id": "GoogleCloudDatacatalogV1BigQueryDateShardedSpec",
@@ -1983,6 +2010,35 @@
         "viewSpec": {
           "$ref": "GoogleCloudDatacatalogV1ViewSpec",
           "description": "Table view specification. Populated only if the `table_source_type` is `BIGQUERY_VIEW`."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec": {
+      "description": "Specification for the BigQuery connection to a Cloud SQL instance.",
+      "id": "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec",
+      "properties": {
+        "database": {
+          "description": "Database name.",
+          "type": "string"
+        },
+        "instanceId": {
+          "description": "Cloud SQL instance ID in the format of `project:location:instance`.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the Cloud SQL database.",
+          "enum": [
+            "DATABASE_TYPE_UNSPECIFIED",
+            "POSTGRES",
+            "MYSQL"
+          ],
+          "enumDescriptions": [
+            "Unspecified database type.",
+            "Cloud SQL for PostgreSQL.",
+            "Cloud SQL for MySQL."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2053,6 +2109,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1DataSourceConnectionSpec": {
+      "description": "Specification that applies to a data source connection. Valid only for entries with the `DATA_SOURCE_CONNECTION` type.",
+      "id": "GoogleCloudDatacatalogV1DataSourceConnectionSpec",
+      "properties": {
+        "bigqueryConnectionSpec": {
+          "$ref": "GoogleCloudDatacatalogV1BigQueryConnectionSpec",
+          "description": "Fields specific to BigQuery connections."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1DatabaseTableSpec": {
       "description": "Specification that applies to a table resource. Valid only for entries with the `TABLE` type.",
       "id": "GoogleCloudDatacatalogV1DatabaseTableSpec",
@@ -2091,6 +2158,10 @@
           "description": "Output only. Physical location of the entry.",
           "readOnly": true
         },
+        "dataSourceConnectionSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DataSourceConnectionSpec",
+          "description": "Specification that applies to a data source connection. Valid only for entries with the `DATA_SOURCE_CONNECTION` type."
+        },
         "databaseTableSpec": {
           "$ref": "GoogleCloudDatacatalogV1DatabaseTableSpec",
           "description": "Specification that applies to a table resource. Valid only for entries with the `TABLE` type."
@@ -2128,6 +2199,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cloud labels attached to the entry. In Data Catalog, you can create and modify labels attached only to custom entries. Synced entries have unmodifiable labels that come from the source system.",
+          "type": "object"
+        },
         "linkedResource": {
           "description": "The resource this metadata entry refers to. For Google Cloud Platform resources, `linked_resource` is the [Full Resource Name] (https://cloud.google.com/apis/design/resource_names#full_resource_name). For example, the `linked_resource` for a table resource from BigQuery is: `//bigquery.googleapis.com/projects/{PROJECT_ID}/datasets/{DATASET_ID}/tables/{TABLE_ID}` Output only when the entry is one of the types in the `EntryType` enum. For entries with a `user_specified_type`, this field is optional and defaults to an empty string. The resource string must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), periods (.), colons (:), slashes (/), dashes (-), and hashes (#). The maximum size is 200 bytes when encoded in UTF-8.",
           "type": "string"
@@ -2159,6 +2237,7 @@
             "FILESET",
             "CLUSTER",
             "DATABASE",
+            "DATA_SOURCE_CONNECTION",
             "ROUTINE",
             "SERVICE"
           ],
@@ -2170,6 +2249,7 @@
             "An entry type for a set of files or objects. For example, a Cloud Storage fileset.",
             "A group of servers that work together. For example, a Kafka cluster.",
             "A database.",
+            "Output only. Connection to a data source. For example, a BigQuery connection.",
             "Output only. Routine, for example, a BigQuery routine.",
             "A service, for example, a Dataproc Metastore service."
           ],
@@ -2661,6 +2741,10 @@
           },
           "type": "array"
         },
+        "includePublicTagTemplates": {
+          "description": "Optional. If `true`, include public tag templates in the search results. By default, they are included only if you have explicit permissions on them to view them. For example, if you are the owner. Other scope fields, for example, ``include_org_ids``, still restrict the returned public tag templates and at least one of them is required.",
+          "type": "boolean"
+        },
         "restrictedLocations": {
           "description": "Optional. The list of locations to search within. If empty, all locations are searched. Returns an error if any location in the list isn't one of the [Supported regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions). If a location is unreachable, its name is returned in the `SearchCatalogResponse.unreachable` field. To get additional information on the error, repeat the search request and set the location name as the value of this parameter.",
           "items": {
@@ -2955,6 +3039,10 @@
           },
           "description": "Required. Map of tag template field IDs to the settings for the field. This map is an exhaustive list of the allowed fields. The map must contain at least one field and at most 500 fields. The keys to this map are tag template field IDs. The IDs have the following limitations: * Can contain uppercase and lowercase letters, numbers (0-9) and underscores (_). * Must be at least 1 character and at most 64 characters long. * Must start with a letter or underscore.",
           "type": "object"
+        },
+        "isPubliclyReadable": {
+          "description": "Indicates whether this is a public tag template. Every user has view access to a *public* tag template by default. This means that: * Every user can use this tag template to tag an entry. * If an entry is tagged using the tag template, the tag is always shown in the response to ``ListTags`` called on the entry. * To get the template using the GetTagTemplate method, you need view access either on the project or the organization the tag template resides in but no other permission is needed. * Operations on the tag template other than viewing (for example, editing IAM policies) follow standard IAM structures. Tags created with a public tag template are referred to as public tags. You can search for a public tag by value with a simple search query instead of using a ``tag:`` predicate. Public tag templates may not appear in search results depending on scope, see: include_public_tag_templates",
+          "type": "boolean"
         },
         "name": {
           "description": "The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name. ",
