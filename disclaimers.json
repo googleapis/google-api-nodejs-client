@@ -328,6 +328,10 @@
     "package": "@google-cloud/data-qna"
   },
   {
+    "api": "dataflow",
+    "package": "@google-cloud/dataflow"
+  },
+  {
     "api": "metastore",
     "package": "@google-cloud/dataproc-metastore"
   },
