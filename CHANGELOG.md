@@ -4,6 +4,30 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [82.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v81.0.0...googleapis-v82.0.0) (2021-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **metastore:** This release has breaking changes.
+
+### Features
+
+* **composer:** update the API ([e20e215](https://www.github.com/googleapis/google-api-nodejs-client/commit/e20e215fe936c7d31f8d9697c0325f8ff8521715))
+* **datacatalog:** update the API ([5f1fc90](https://www.github.com/googleapis/google-api-nodejs-client/commit/5f1fc900db6451500f988556a9dfb7690f10a941))
+* **ideahub:** update the API ([2c0d821](https://www.github.com/googleapis/google-api-nodejs-client/commit/2c0d821aadc05bba22afbf9896045fec418f64e1))
+* **metastore:** update the API ([4390285](https://www.github.com/googleapis/google-api-nodejs-client/commit/4390285829bbdc41f932a9f3efae08a2358c617a))
+* regenerate index files ([cef2092](https://www.github.com/googleapis/google-api-nodejs-client/commit/cef2092c916ab49778d44f1f4332e4c297bab03f))
+* **tpu:** update the API ([f61f41e](https://www.github.com/googleapis/google-api-nodejs-client/commit/f61f41e6809ea013f0fdb2397b36759078652546))
+
+
+### Bug Fixes
+
+* **dataflow:** update the API ([788af70](https://www.github.com/googleapis/google-api-nodejs-client/commit/788af708fb07a7d243242b887a00719180ee4810))
+* **recommendationengine:** update the API ([d5cbf6b](https://www.github.com/googleapis/google-api-nodejs-client/commit/d5cbf6b1a07f63b895ce840a6aad968aead5b3f7))
+* **serviceconsumermanagement:** update the API ([b95673a](https://www.github.com/googleapis/google-api-nodejs-client/commit/b95673ad1a05cac077e1c0d89b4cedf1a8453744))
+* **serviceusage:** update the API ([653aa00](https://www.github.com/googleapis/google-api-nodejs-client/commit/653aa000b0f670661fd66a3cd188eb6483543526))
+
 ## [81.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v80.2.0...googleapis-v81.0.0) (2021-07-08)
 
 
