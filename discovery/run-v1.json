@@ -184,7 +184,7 @@
               ],
               "parameters": {
                 "continue": {
-                  "description": "Optional encoded string to continue paging.",
+                  "description": "Optional. Encoded string to continue paging.",
                   "location": "query",
                   "type": "string"
                 },
@@ -204,7 +204,7 @@
                   "type": "string"
                 },
                 "limit": {
-                  "description": "The maximum number of records that should be returned.",
+                  "description": "Optional. The maximum number of records that should be returned.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -352,7 +352,7 @@
               ],
               "parameters": {
                 "continue": {
-                  "description": "Optional encoded string to continue paging.",
+                  "description": "Optional. Encoded string to continue paging.",
                   "location": "query",
                   "type": "string"
                 },
@@ -372,7 +372,7 @@
                   "type": "string"
                 },
                 "limit": {
-                  "description": "The maximum number of records that should be returned.",
+                  "description": "Optional. The maximum number of records that should be returned.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -487,7 +487,7 @@
               ],
               "parameters": {
                 "continue": {
-                  "description": "Optional encoded string to continue paging.",
+                  "description": "Optional. Encoded string to continue paging.",
                   "location": "query",
                   "type": "string"
                 },
@@ -507,7 +507,7 @@
                   "type": "string"
                 },
                 "limit": {
-                  "description": "The maximum number of records that should be returned.",
+                  "description": "Optional. The maximum number of records that should be returned.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -577,7 +577,7 @@
               ],
               "parameters": {
                 "continue": {
-                  "description": "Optional encoded string to continue paging.",
+                  "description": "Optional. Encoded string to continue paging.",
                   "location": "query",
                   "type": "string"
                 },
@@ -597,7 +597,7 @@
                   "type": "string"
                 },
                 "limit": {
-                  "description": "The maximum number of records that should be returned.",
+                  "description": "Optional. The maximum number of records that should be returned.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -745,7 +745,7 @@
               ],
               "parameters": {
                 "continue": {
-                  "description": "Optional encoded string to continue paging.",
+                  "description": "Optional. Encoded string to continue paging.",
                   "location": "query",
                   "type": "string"
                 },
@@ -765,7 +765,7 @@
                   "type": "string"
                 },
                 "limit": {
-                  "description": "The maximum number of records that should be returned.",
+                  "description": "Optional. The maximum number of records that should be returned.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -997,7 +997,7 @@
                   ],
                   "parameters": {
                     "continue": {
-                      "description": "Optional encoded string to continue paging.",
+                      "description": "Optional. Encoded string to continue paging.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1017,7 +1017,7 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "The maximum number of records that should be returned.",
+                      "description": "Optional. The maximum number of records that should be returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1165,7 +1165,7 @@
                   ],
                   "parameters": {
                     "continue": {
-                      "description": "Optional encoded string to continue paging.",
+                      "description": "Optional. Encoded string to continue paging.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1185,7 +1185,7 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "The maximum number of records that should be returned.",
+                      "description": "Optional. The maximum number of records that should be returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1300,7 +1300,7 @@
                   ],
                   "parameters": {
                     "continue": {
-                      "description": "Optional encoded string to continue paging.",
+                      "description": "Optional. Encoded string to continue paging.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1320,7 +1320,7 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "The maximum number of records that should be returned.",
+                      "description": "Optional. The maximum number of records that should be returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1390,7 +1390,7 @@
                   ],
                   "parameters": {
                     "continue": {
-                      "description": "Optional encoded string to continue paging.",
+                      "description": "Optional. Encoded string to continue paging.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1410,7 +1410,7 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "The maximum number of records that should be returned.",
+                      "description": "Optional. The maximum number of records that should be returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1589,7 +1589,7 @@
                   ],
                   "parameters": {
                     "continue": {
-                      "description": "Optional encoded string to continue paging.",
+                      "description": "Optional. Encoded string to continue paging.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1609,7 +1609,7 @@
                       "type": "string"
                     },
                     "limit": {
-                      "description": "The maximum number of records that should be returned.",
+                      "description": "Optional. The maximum number of records that should be returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1736,7 +1736,7 @@
       }
     }
   },
-  "revision": "20210628",
+  "revision": "20210716",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2164,7 +2164,7 @@
           "type": "array"
         },
         "url": {
-          "description": "Cloud Run fully managed: not supported Cloud Run on GKE: supported Holds the URL that will serve the traffic of the DomainMapping. +optional",
+          "description": "Optional. Cloud Run fully managed: not supported Cloud Run on GKE: supported Holds the URL that will serve the traffic of the DomainMapping.",
           "type": "string"
         }
       },
@@ -2891,7 +2891,7 @@
       "id": "RevisionSpec",
       "properties": {
         "containerConcurrency": {
-          "description": "(Optional) ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. Cloud Run fully managed: supported, defaults to 80 Cloud Run for Anthos: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.",
+          "description": "Optional. ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. Cloud Run fully managed: supported, defaults to 80 Cloud Run for Anthos: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.",
           "format": "int32",
           "type": "integer"
         },
@@ -2936,7 +2936,7 @@
           "type": "string"
         },
         "logUrl": {
-          "description": "Specifies the generated logging url for this particular revision based on the revision url template specified in the controller's config. +optional",
+          "description": "Optional. Specifies the generated logging url for this particular revision based on the revision url template specified in the controller's config.",
           "type": "string"
         },
         "observedGeneration": {
@@ -3364,7 +3364,7 @@
           "type": "string"
         },
         "latestRevision": {
-          "description": "LatestRevision may be optionally provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty. +optional",
+          "description": "Optional. LatestRevision may be provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty.",
           "type": "boolean"
         },
         "percent": {
@@ -3377,7 +3377,7 @@
           "type": "string"
         },
         "tag": {
-          "description": "Tag is optionally used to expose a dedicated url for referencing this target exclusively. +optional",
+          "description": "Optional. Tag is used to expose a dedicated url for referencing this target exclusively.",
           "type": "string"
         },
         "url": {

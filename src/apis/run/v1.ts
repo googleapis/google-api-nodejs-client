@@ -453,7 +453,7 @@ export namespace run_v1 {
      */
     resourceRecords?: Schema$ResourceRecord[];
     /**
-     * Cloud Run fully managed: not supported Cloud Run on GKE: supported Holds the URL that will serve the traffic of the DomainMapping. +optional
+     * Optional. Cloud Run fully managed: not supported Cloud Run on GKE: supported Holds the URL that will serve the traffic of the DomainMapping.
      */
     url?: string | null;
   }
@@ -1028,7 +1028,7 @@ export namespace run_v1 {
    */
   export interface Schema$RevisionSpec {
     /**
-     * (Optional) ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. Cloud Run fully managed: supported, defaults to 80 Cloud Run for Anthos: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.
+     * Optional. ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. Cloud Run fully managed: supported, defaults to 80 Cloud Run for Anthos: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.
      */
     containerConcurrency?: number | null;
     /**
@@ -1058,7 +1058,7 @@ export namespace run_v1 {
      */
     imageDigest?: string | null;
     /**
-     * Specifies the generated logging url for this particular revision based on the revision url template specified in the controller's config. +optional
+     * Optional. Specifies the generated logging url for this particular revision based on the revision url template specified in the controller's config.
      */
     logUrl?: string | null;
     /**
@@ -1409,7 +1409,7 @@ export namespace run_v1 {
      */
     configurationName?: string | null;
     /**
-     * LatestRevision may be optionally provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty. +optional
+     * Optional. LatestRevision may be provided to indicate that the latest ready Revision of the Configuration should be used for this traffic target. When provided LatestRevision must be true if RevisionName is empty; it must be false when RevisionName is non-empty.
      */
     latestRevision?: boolean | null;
     /**
@@ -1421,7 +1421,7 @@ export namespace run_v1 {
      */
     revisionName?: string | null;
     /**
-     * Tag is optionally used to expose a dedicated url for referencing this target exclusively. +optional
+     * Optional. Tag is used to expose a dedicated url for referencing this target exclusively.
      */
     tag?: string | null;
     /**
@@ -1819,7 +1819,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.configurations.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -1827,7 +1827,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
@@ -1956,7 +1956,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Configurations$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -1972,7 +1972,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -2443,7 +2443,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -2451,7 +2451,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
@@ -2619,7 +2619,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -2635,7 +2635,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -2960,7 +2960,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.revisions.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -2968,7 +2968,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
@@ -3118,7 +3118,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Revisions$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -3134,7 +3134,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -3317,7 +3317,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.routes.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -3325,7 +3325,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
@@ -3450,7 +3450,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Routes$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -3466,7 +3466,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -3937,7 +3937,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -3945,7 +3945,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
@@ -4258,7 +4258,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -4274,7 +4274,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -5001,7 +5001,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.configurations.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -5009,7 +5009,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
@@ -5139,7 +5139,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Configurations$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -5155,7 +5155,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -5621,7 +5621,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -5629,7 +5629,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
@@ -5798,7 +5798,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -5814,7 +5814,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -6133,7 +6133,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.revisions.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -6141,7 +6141,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
@@ -6292,7 +6292,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Revisions$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -6308,7 +6308,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -6488,7 +6488,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.routes.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -6496,7 +6496,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
@@ -6622,7 +6622,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Routes$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -6638,7 +6638,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
@@ -7238,7 +7238,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.list({
-     *     // Optional encoded string to continue paging.
+     *     // Optional. Encoded string to continue paging.
      *     continue: 'placeholder-value',
      *     // Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
      *     fieldSelector: 'placeholder-value',
@@ -7246,7 +7246,7 @@ export namespace run_v1 {
      *     includeUninitialized: 'placeholder-value',
      *     // Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
      *     labelSelector: 'placeholder-value',
-     *     // The maximum number of records that should be returned.
+     *     // Optional. The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
      *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
@@ -7855,7 +7855,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$List
     extends StandardParameters {
     /**
-     * Optional encoded string to continue paging.
+     * Optional. Encoded string to continue paging.
      */
     continue?: string;
     /**
@@ -7871,7 +7871,7 @@ export namespace run_v1 {
      */
     labelSelector?: string;
     /**
-     * The maximum number of records that should be returned.
+     * Optional. The maximum number of records that should be returned.
      */
     limit?: number;
     /**
