@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20210613",
+  "revision": "20210717",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1166,13 +1166,15 @@
             "PACKAGE_TYPE_UNSPECIFIED",
             "OS",
             "MAVEN",
-            "GO"
+            "GO",
+            "GO_STDLIB"
           ],
           "enumDescriptions": [
             "",
             "Operating System",
-            "",
-            ""
+            "Java packages from Maven.",
+            "Go third-party packages.",
+            "Go toolchain + standard library packages."
           ],
           "type": "string"
         },

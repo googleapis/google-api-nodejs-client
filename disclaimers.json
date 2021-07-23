@@ -76,6 +76,10 @@
     "package": "@google-cloud/dns"
   },
   {
+    "api": "file",
+    "package": "@google-cloud/filestore"
+  },
+  {
     "api": "firestore",
     "package": "@google-cloud/firestore"
   },
@@ -260,6 +264,10 @@
     "package": "@google-cloud/text-to-speech"
   },
   {
+    "api": "transcoder",
+    "package": "@google-cloud/video-transcoder"
+  },
+  {
     "api": "translate",
     "package": "@google-cloud/translate"
   },
@@ -352,6 +360,10 @@
     "package": "@google-cloud/essential-contacts"
   },
   {
+    "api": "eventarc",
+    "package": "@google-cloud/eventarc"
+  },
+  {
     "api": "gkehub",
     "package": "@google-cloud/gke-hub"
   },
@@ -378,6 +390,10 @@
   {
     "api": "networkconnectivity",
     "package": "@google-cloud/network-connectivity"
+  },
+  {
+    "api": "networkmanagement",
+    "package": "@google-cloud/network-management"
   },
   {
     "api": "phishingprotection",
@@ -414,10 +430,6 @@
   {
     "api": "tpu",
     "package": "@google-cloud/tpu"
-  },
-  {
-    "api": "transcoder",
-    "package": "@google-cloud/video-transcoder"
   },
   {
     "api": "aiplatform",
