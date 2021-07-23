@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20210617",
+  "revision": "20210626",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -4147,7 +4147,7 @@
           "type": "boolean"
         },
         "maxNodeCount": {
-          "description": "Maximum number of nodes in the NodePool. Must be >= min_node_count. There has to enough quota to scale up the cluster.",
+          "description": "Maximum number of nodes in the NodePool. Must be >= min_node_count. There has to be enough quota to scale up the cluster.",
           "format": "int32",
           "type": "integer"
         },
