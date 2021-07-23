@@ -191,6 +191,10 @@ export namespace cloudbuild_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Contains information about the build when status=FAILURE.
+     */
+    failureInfo?: Schema$FailureInfo;
+    /**
      * Output only. Time at which execution of the build was finished. The difference between finish_time and start_time is the duration of the build's execution.
      */
     finishTime?: string | null;
@@ -321,7 +325,7 @@ export namespace cloudbuild_v1 {
      */
     machineType?: string | null;
     /**
-     * Optional. Specification for execution on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.
+     * Optional. Specification for execution on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
      */
     pool?: Schema$PoolOption;
     /**
@@ -467,6 +471,10 @@ export namespace cloudbuild_v1 {
      */
     resourceName?: string | null;
     /**
+     * The repo and ref of the repository from which to build. This field is used only for those triggers that do not respond to SCM events. Triggers that respond to such events build source at whatever commit caused the event. This field is currently only used by Webhook, Pub/Sub, Manual, and Cron triggers.
+     */
+    sourceToBuild?: Schema$GitRepoSource;
+    /**
      * Substitutions for Build resource. The keys must match the following regular expression: `^_[A-Z0-9_]+$`.
      */
     substitutions?: {[key: string]: string} | null;
@@ -560,6 +568,19 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * A fatal problem encountered during the execution of the build.
+   */
+  export interface Schema$FailureInfo {
+    /**
+     * Explains the failure issue in more detail using hard-coded text.
+     */
+    detail?: string | null;
+    /**
+     * The name of the failure.
+     */
+    type?: string | null;
+  }
+  /**
    * Container message for hashes of byte content of files, used in SourceProvenance messages to verify integrity of source input to the build.
    */
   export interface Schema$FileHashes {
@@ -592,6 +613,56 @@ export namespace cloudbuild_v1 {
      * filter to match changes in refs like branches, tags.
      */
     push?: Schema$PushFilter;
+  }
+  /**
+   * GitRepoSource describes a repo and ref of a code repository.
+   */
+  export interface Schema$GitRepoSource {
+    /**
+     * The branch or tag to use. Must start with "refs/" (required).
+     */
+    ref?: string | null;
+    /**
+     * See RepoType below.
+     */
+    repoType?: string | null;
+    /**
+     * The URI of the repo (required).
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV2OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
   }
   /**
    * Container message for hash values.
@@ -693,7 +764,7 @@ export namespace cloudbuild_v1 {
      */
     egressOption?: string | null;
     /**
-     * Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network. Must be in the format `projects/{project\}/global/networks/{network\}`, where `{project\}` is a project number, such as `12345`, and `{network\}` is the name of a VPC network in the project. See [Understanding network configuration options](https://cloud.google.com/cloud-build/docs/custom-workers/set-up-custom-worker-pool-environment#understanding_the_network_configuration_options)
+     * Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network. Must be in the format `projects/{project\}/global/networks/{network\}`, where `{project\}` is a project number, such as `12345`, and `{network\}` is the name of a VPC network in the project. See [Understanding network configuration options](https://cloud.google.com/build/docs/private-pools/set-up-private-pool-environment)
      */
     peeredNetwork?: string | null;
   }
@@ -817,7 +888,40 @@ export namespace cloudbuild_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Details about how a build should be executed on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    cancelRequested?: boolean | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusDetail?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Details about how a build should be executed on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
    */
   export interface Schema$PoolOption {
     /**
@@ -1142,7 +1246,7 @@ export namespace cloudbuild_v1 {
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.
+     * Google Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
   }
@@ -1237,16 +1341,16 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$WorkerConfig {
     /**
-     * Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). Specify a value of up to 1000. If `0` is specified, Cloud Build will use a standard disk size.
+     * Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). Specify a value of up to 1000. If `0` is specified, Cloud Build will use a standard disk size.
      */
     diskSizeGb?: string | null;
     /**
-     * Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). If left blank, Cloud Build will use a sensible default.
+     * Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will use a sensible default.
      */
     machineType?: string | null;
   }
   /**
-   * Configuration for a `WorkerPool`. Cloud Build owns and maintains a pool of workers for general use and have no access to a project's private network. By default, builds submitted to Cloud Build will use a worker from this pool. If your build needs access to resources on a private network, create and use a `WorkerPool` to run your builds. Private `WorkerPool`s give your builds access to any single VPC network that you administer, including any on-prem resources connected to that VPC network. For an overview of custom worker pools, see [Custom workers overview](https://cloud.google.com/cloud-build/docs/custom-workers/custom-workers-overview).
+   * Configuration for a `WorkerPool`. Cloud Build owns and maintains a pool of workers for general use and have no access to a project's private network. By default, builds submitted to Cloud Build will use a worker from this pool. If your build needs access to resources on a private network, create and use a `WorkerPool` to run your builds. Private `WorkerPool`s give your builds access to any single VPC network that you administer, including any on-prem resources connected to that VPC network. For an overview of private pools, see [Private pools overview](https://cloud.google.com/build/docs/private-pools/private-pools-overview).
    */
   export interface Schema$WorkerPool {
     /**
@@ -1645,6 +1749,7 @@ export namespace cloudbuild_v1 {
      *   //   "availableSecrets": {},
      *   //   "buildTriggerId": "my_buildTriggerId",
      *   //   "createTime": "my_createTime",
+     *   //   "failureInfo": {},
      *   //   "finishTime": "my_finishTime",
      *   //   "id": "my_id",
      *   //   "images": [],
@@ -1801,6 +1906,7 @@ export namespace cloudbuild_v1 {
      *       //   "availableSecrets": {},
      *       //   "buildTriggerId": "my_buildTriggerId",
      *       //   "createTime": "my_createTime",
+     *       //   "failureInfo": {},
      *       //   "finishTime": "my_finishTime",
      *       //   "id": "my_id",
      *       //   "images": [],
@@ -1972,6 +2078,7 @@ export namespace cloudbuild_v1 {
      *   //   "availableSecrets": {},
      *   //   "buildTriggerId": "my_buildTriggerId",
      *   //   "createTime": "my_createTime",
+     *   //   "failureInfo": {},
      *   //   "finishTime": "my_finishTime",
      *   //   "id": "my_id",
      *   //   "images": [],
@@ -2535,6 +2642,7 @@ export namespace cloudbuild_v1 {
      *   //   "availableSecrets": {},
      *   //   "buildTriggerId": "my_buildTriggerId",
      *   //   "createTime": "my_createTime",
+     *   //   "failureInfo": {},
      *   //   "finishTime": "my_finishTime",
      *   //   "id": "my_id",
      *   //   "images": [],
@@ -2689,6 +2797,7 @@ export namespace cloudbuild_v1 {
      *       //   "availableSecrets": {},
      *       //   "buildTriggerId": "my_buildTriggerId",
      *       //   "createTime": "my_createTime",
+     *       //   "failureInfo": {},
      *       //   "finishTime": "my_finishTime",
      *       //   "id": "my_id",
      *       //   "images": [],
@@ -2860,6 +2969,7 @@ export namespace cloudbuild_v1 {
      *   //   "availableSecrets": {},
      *   //   "buildTriggerId": "my_buildTriggerId",
      *   //   "createTime": "my_createTime",
+     *   //   "failureInfo": {},
      *   //   "finishTime": "my_finishTime",
      *   //   "id": "my_id",
      *   //   "images": [],
@@ -3678,6 +3788,7 @@ export namespace cloudbuild_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubConfig": {},
      *       //   "resourceName": "my_resourceName",
+     *       //   "sourceToBuild": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
      *       //   "triggerTemplate": {},
@@ -3703,6 +3814,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {},
@@ -3981,6 +4093,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {},
@@ -4272,6 +4385,7 @@ export namespace cloudbuild_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubConfig": {},
      *       //   "resourceName": "my_resourceName",
+     *       //   "sourceToBuild": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
      *       //   "triggerTemplate": {},
@@ -4297,6 +4411,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {},
@@ -5272,7 +5387,7 @@ export namespace cloudbuild_v1 {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListWorkerPools` call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/location`.
+     *     // Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5589,7 +5704,7 @@ export namespace cloudbuild_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/location`.
+     * Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
@@ -5670,6 +5785,7 @@ export namespace cloudbuild_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubConfig": {},
      *       //   "resourceName": "my_resourceName",
+     *       //   "sourceToBuild": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
      *       //   "triggerTemplate": {},
@@ -5695,6 +5811,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {},
@@ -5975,6 +6092,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {},
@@ -6265,6 +6383,7 @@ export namespace cloudbuild_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubConfig": {},
      *       //   "resourceName": "my_resourceName",
+     *       //   "sourceToBuild": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
      *       //   "triggerTemplate": {},
@@ -6290,6 +6409,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {},

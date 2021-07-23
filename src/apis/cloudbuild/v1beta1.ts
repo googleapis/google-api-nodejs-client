@@ -189,6 +189,10 @@ export namespace cloudbuild_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Contains information about the build when status=FAILURE.
+     */
+    failureInfo?: Schema$FailureInfo;
+    /**
      * Output only. Time at which execution of the build was finished. The difference between finish_time and start_time is the duration of the build's execution.
      */
     finishTime?: string | null;
@@ -319,7 +323,7 @@ export namespace cloudbuild_v1beta1 {
      */
     machineType?: string | null;
     /**
-     * Optional. Specification for execution on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.
+     * Optional. Specification for execution on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
      */
     pool?: Schema$PoolOption;
     /**
@@ -464,6 +468,19 @@ export namespace cloudbuild_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
+   * A fatal problem encountered during the execution of the build.
+   */
+  export interface Schema$FailureInfo {
+    /**
+     * Explains the failure issue in more detail using hard-coded text.
+     */
+    detail?: string | null;
+    /**
+     * The name of the failure.
+     */
+    type?: string | null;
+  }
+  /**
    * Container message for hashes of byte content of files, used in SourceProvenance messages to verify integrity of source input to the build.
    */
   export interface Schema$FileHashes {
@@ -471,6 +488,39 @@ export namespace cloudbuild_v1beta1 {
      * Collection of file hashes.
      */
     fileHash?: Schema$Hash[];
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleDevtoolsCloudbuildV2OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
   }
   /**
    * Container message for hash values.
@@ -645,7 +695,40 @@ export namespace cloudbuild_v1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Details about how a build should be executed on a `WorkerPool`. See [running builds in a custom worker pool](https://cloud.google.com/build/docs/custom-workers/run-builds-in-custom-worker-pool) for more information.
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    cancelRequested?: boolean | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusDetail?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
+   * Details about how a build should be executed on a `WorkerPool`. See [running builds in a private pool](https://cloud.google.com/build/docs/private-pools/run-builds-in-private-pool) for more information.
    */
   export interface Schema$PoolOption {
     /**
@@ -864,7 +947,7 @@ export namespace cloudbuild_v1beta1 {
      */
     generation?: string | null;
     /**
-     * Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.
+     * Google Cloud Storage object containing the source. This object must be a zipped (`.zip`) or gzipped archive file (`.tar.gz`) containing source to build.
      */
     object?: string | null;
   }
