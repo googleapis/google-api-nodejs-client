@@ -2524,7 +2524,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Delete an ASP issued by a user.
+     * Deletes an ASP issued by a user.
      * @example
      * ```js
      * // Before running the sample:
@@ -2646,7 +2646,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Get information about an ASP issued by a user.
+     * Gets information about an ASP issued by a user.
      * @example
      * ```js
      * // Before running the sample:
@@ -2781,7 +2781,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * List the ASPs issued by a user.
+     * Lists the ASPs issued by a user.
      * @example
      * ```js
      * // Before running the sample:
@@ -2945,7 +2945,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Stop watching resources through this channel.
+     * Stops watching resources through this channel.
      * @example
      * ```js
      * // Before running the sample:
@@ -3554,7 +3554,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Move or insert multiple Chrome OS devices to an organizational unit. You can move up to 50 devices at once.
+     * Moves or inserts multiple Chrome OS devices to an organizational unit. You can move up to 50 devices at once.
      * @example
      * ```js
      * // Before running the sample:
@@ -4751,7 +4751,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch Customers via Apiary Patch Orchestration
+     * Patches a customer.
      * @example
      * ```js
      * // Before running the sample:
@@ -7980,7 +7980,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve all groups of a domain or of a user given a userKey (paginated)
+     * Retrieves all groups of a domain or of a user given a userKey (paginated).
      * @example
      * ```js
      * // Before running the sample:
@@ -12394,7 +12394,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patches a building via Apiary Patch Orchestration.
+     * Patches a building.
      * @example
      * ```js
      * // Before running the sample:
@@ -13396,7 +13396,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patches a calendar resource via Apiary Patch Orchestration.
+     * Patches a calendar resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -14375,7 +14375,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patches a feature via Apiary Patch Orchestration.
+     * Patches a feature.
      * @example
      * ```js
      * // Before running the sample:
@@ -15028,7 +15028,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve a role assignment.
+     * Retrieves a role assignment.
      * @example
      * ```js
      * // Before running the sample:
@@ -16072,7 +16072,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch role via Apiary Patch Orchestration
+     * Patches a role.
      * @example
      * ```js
      * // Before running the sample:
@@ -16457,7 +16457,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Delete schema
+     * Deletes a schema.
      * @example
      * ```js
      * // Before running the sample:
@@ -16580,7 +16580,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve schema
+     * Retrieves a schema.
      * @example
      * ```js
      * // Before running the sample:
@@ -16718,7 +16718,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Create schema.
+     * Creates a schema.
      * @example
      * ```js
      * // Before running the sample:
@@ -16863,7 +16863,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve all schemas for a customer
+     * Retrieves all schemas for a customer.
      * @example
      * ```js
      * // Before running the sample:
@@ -16995,7 +16995,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch Schema via Apiary Patch Orchestration
+     * Patches a schema.
      * @example
      * ```js
      * // Before running the sample:
@@ -17143,7 +17143,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Update schema
+     * Updates a schema.
      * @example
      * ```js
      * // Before running the sample:
@@ -17366,7 +17366,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Delete all access tokens issued by a user for an application.
+     * Deletes all access tokens issued by a user for an application.
      * @example
      * ```js
      * // Before running the sample:
@@ -17488,7 +17488,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Get information about an access token issued by a user.
+     * Gets information about an access token issued by a user.
      * @example
      * ```js
      * // Before running the sample:
@@ -17787,7 +17787,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Turn off 2-Step Verification for user.
+     * Turns off 2-Step Verification for user.
      * @example
      * ```js
      * // Before running the sample:
@@ -18966,7 +18966,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Sign a user out of all web and device sessions and reset their sign-in cookies. User will have to sign in by authenticating again.
+     * Signs a user out of all web and device sessions and reset their sign-in cookies. User will have to sign in by authenticating again.
      * @example
      * ```js
      * // Before running the sample:
@@ -19440,7 +19440,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Watch for changes in users list
+     * Watches for changes in users list.
      * @example
      * ```js
      * // Before running the sample:
@@ -20223,7 +20223,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Watch for changes in users list.
+     * Watches for changes in users list.
      * @example
      * ```js
      * // Before running the sample:
@@ -21045,7 +21045,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Generate new backup verification codes for the user.
+     * Generates new backup verification codes for the user.
      * @example
      * ```js
      * // Before running the sample:
@@ -21167,7 +21167,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Invalidate the current backup verification codes for the user.
+     * Invalidates the current backup verification codes for the user.
      * @example
      * ```js
      * // Before running the sample:
