@@ -628,6 +628,19 @@ export namespace retail_v2beta {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for ProductService.ListProducts method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaListProductsResponse {
+    /**
+     * A token that can be sent as ListProductsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The Products.
+     */
+    products?: Schema$GoogleCloudRetailV2betaProduct[];
+  }
+  /**
    * Request message for Predict method.
    */
   export interface Schema$GoogleCloudRetailV2betaPredictRequest {
@@ -1022,11 +1035,11 @@ export namespace retail_v2beta {
      */
     directUserRequest?: boolean | null;
     /**
-     * The end user's IP address. Required for getting SearchRespons.sponsored_results. This field is used to extract location information for personalization. This field must be either an IPv4 address (e.g. "104.133.9.80") or an IPv6 address (e.g. "2001:0db8:85a3:0000:0000:8a2e:0370:7334"). Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.
+     * The end user's IP address. Required for getting SearchResponse.sponsored_results. This field is used to extract location information for personalization. This field must be either an IPv4 address (e.g. "104.133.9.80") or an IPv6 address (e.g. "2001:0db8:85a3:0000:0000:8a2e:0370:7334"). Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.
      */
     ipAddress?: string | null;
     /**
-     * User agent as included in the HTTP header. Required for getting SearchRespons.sponsored_results. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.
+     * User agent as included in the HTTP header. Required for getting SearchResponse.sponsored_results. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.
      */
     userAgent?: string | null;
     /**
@@ -2353,6 +2366,153 @@ export namespace retail_v2beta {
     }
 
     /**
+     * Gets a list of Products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.branches.products.list({
+     *     // Maximum number of Products to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token ListProductsResponse.next_page_token, received from a previous ProductService.ListProducts call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ProductService.ListProducts must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent branch resource name, such as `projects/x/locations/global/catalogs/default_catalog/branches/0`. Use `default_branch` as the branch ID, to list products under the default branch. If the caller does not have permission to list Products under this branch, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.
+     *     parent:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche',
+     *     // The fields of Product to return in the responses. If not set or empty, the following fields are returned: * Product.name * Product.id * Product.title * Product.uri * Product.images * Product.price_info If "*" is provided, all fields are returned. Product.name is always returned no matter what mask is set. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2betaListProductsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2betaListProductsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2betaListProductsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2betaListProductsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2betaListProductsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Branches$Products$List
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2betaListProductsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2betaListProductsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2betaListProductsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2betaListProductsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta/{+parent}/products').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2betaListProductsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2betaListProductsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates a Product.
      * @example
      * ```js
@@ -2570,6 +2730,25 @@ export namespace retail_v2beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2betaImportProductsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$List
+    extends StandardParameters {
+    /**
+     * Maximum number of Products to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
+     */
+    pageSize?: number;
+    /**
+     * A page token ListProductsResponse.next_page_token, received from a previous ProductService.ListProducts call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ProductService.ListProducts must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent branch resource name, such as `projects/x/locations/global/catalogs/default_catalog/branches/0`. Use `default_branch` as the branch ID, to list products under the default branch. If the caller does not have permission to list Products under this branch, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.
+     */
+    parent?: string;
+    /**
+     * The fields of Product to return in the responses. If not set or empty, the following fields are returned: * Product.name * Product.id * Product.title * Product.uri * Product.images * Product.price_info If "*" is provided, all fields are returned. Product.name is always returned no matter what mask is set. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     */
+    readMask?: string;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch
     extends StandardParameters {
