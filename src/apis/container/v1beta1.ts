@@ -762,6 +762,10 @@ export namespace container_v1beta1 {
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
+     * ServiceExternalIPsConfig specifies the config for the use of Services with ExternalIPs field.
+     */
+    desiredServiceExternalIpsConfig?: Schema$ServiceExternalIPsConfig;
+    /**
      * Configuration for Shielded Nodes.
      */
     desiredShieldedNodes?: Schema$ShieldedNodes;
@@ -1726,7 +1730,7 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * Maximum number of nodes in the NodePool. Must be \>= min_node_count. There has to enough quota to scale up the cluster.
+     * Maximum number of nodes in the NodePool. Must be \>= min_node_count. There has to be enough quota to scale up the cluster.
      */
     maxNodeCount?: number | null;
     /**
