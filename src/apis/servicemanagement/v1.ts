@@ -554,7 +554,7 @@ export namespace servicemanagement_v1 {
      */
     serviceRootUrl?: string | null;
     /**
-     * A short summary of what the service does. Can only be provided by plain text.
+     * A short description of what the service does. The summary must be plain text. It becomes the overview of the service displayed in Google Cloud Console. NOTE: This field is equivalent to the standard field `description`.
      */
     summary?: string | null;
   }
@@ -567,11 +567,11 @@ export namespace servicemanagement_v1 {
      */
     deprecationDescription?: string | null;
     /**
-     * Description of the selected API(s).
+     * The description is the comment in front of the selected proto element, such as a message, a method, a 'service' definition, or a field.
      */
     description?: string | null;
     /**
-     * The selector is a comma-separated list of patterns. Each pattern is a qualified name of the element which may end in "*", indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. "foo.*" is ok, but not "foo.b*" or "foo.*.bar". A wildcard will match one or more components. To specify a default for all applicable elements, the whole pattern "*" is used.
+     * The selector is a comma-separated list of patterns for any element such as a method, a field, an enum value. Each pattern is a qualified name of the element which may end in "*", indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. "foo.*" is ok, but not "foo.b*" or "foo.*.bar". A wildcard will match one or more components. To specify a default for all applicable elements, the whole pattern "*" is used.
      */
     selector?: string | null;
   }
@@ -1239,7 +1239,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$Page {
     /**
-     * The Markdown content of the page. You can use (== include {path\} ==) to include content from a Markdown file.
+     * The Markdown content of the page. You can use (== include {path\} ==) to include content from a Markdown file. The content can be used to produce the documentation page such as HTML format page.
      */
     content?: string | null;
     /**
@@ -1421,7 +1421,7 @@ export namespace servicemanagement_v1 {
      */
     endpoints?: Schema$Endpoint[];
     /**
-     * A list of all enum types included in this API service. Enums referenced directly or indirectly by the `apis` are automatically included. Enums which are not referenced but shall be included should be listed here by name. Example: enums: - name: google.someapi.v1.SomeEnum
+     * A list of all enum types included in this API service. Enums referenced directly or indirectly by the `apis` are automatically included. Enums which are not referenced but shall be included should be listed here by name by the configuration author. Example: enums: - name: google.someapi.v1.SomeEnum
      */
     enums?: Schema$Enum[];
     /**
@@ -1477,11 +1477,11 @@ export namespace servicemanagement_v1 {
      */
     systemTypes?: Schema$Type[];
     /**
-     * The product title for this service.
+     * The product title for this service, it is the name displayed in Google Cloud Console.
      */
     title?: string | null;
     /**
-     * A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included. Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name. Example: types: - name: google.protobuf.Int32
+     * A list of all proto message types included in this API service. Types referenced directly or indirectly by the `apis` are automatically included. Messages which are not referenced but shall be included, such as types used by the `google.protobuf.Any` type, should be listed here by name by the configuration author. Example: types: - name: google.protobuf.Int32
      */
     types?: Schema$Type[];
     /**
