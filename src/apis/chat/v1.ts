@@ -149,6 +149,10 @@ export namespace chat_v1 {
    */
   export interface Schema$ActionResponse {
     /**
+     * This response is for Dialog related events and must be accompanied by ResponseType.Dialog
+     */
+    dialogAction?: Schema$DialogAction;
+    /**
      * The type of bot response.
      */
     type?: string | null;
@@ -156,6 +160,19 @@ export namespace chat_v1 {
      * URL for users to auth or config. (Only for REQUEST_CONFIG response types.)
      */
     url?: string | null;
+  }
+  /**
+   * ActionStatus represents status of a request from the bot developer's side. In specific, for each request a bot gets, the bot developer will set both fields below in relation to what the response status and message related to status should be.
+   */
+  export interface Schema$ActionStatus {
+    /**
+     * The status code.
+     */
+    statusCode?: string | null;
+    /**
+     * This message will be the corresponding string to the above status_code. If unset, an appropriate generic message based on the status_code will be shown to the user. If this field is set then the message will be surfaced to the user for both successes and errors.
+     */
+    userFacingMessage?: string | null;
   }
   /**
    * Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!" ``` The corresponding annotations metadata: ``` "annotations":[{ "type":"USER_MENTION", "startIndex":6, "length":7, "userMention": { "user": { "name":"users/107946847022116401880", "displayName":"FooBot", "avatarUrl":"https://goo.gl/aeDtrS", "type":"BOT" \}, "type":"MENTION" \} \}] ```
@@ -294,19 +311,6 @@ export namespace chat_v1 {
     title?: string | null;
   }
   /**
-   * Widgets for chatbots to specify.
-   */
-  export interface Schema$CardWithId {
-    /**
-     * Card proto that allows chatbots to specify UI elements and editable widgets.
-     */
-    card?: Schema$GoogleAppsCardV1Card;
-    /**
-     * Chatbot-specified identifier for this widget. Scoped within a message.
-     */
-    cardId?: string | null;
-  }
-  /**
    * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
    */
   export interface Schema$Color {
@@ -367,6 +371,28 @@ export namespace chat_v1 {
      * The user that triggered the event.
      */
     user?: Schema$User;
+  }
+  /**
+   * Wrapper around the card body of the dialog.
+   */
+  export interface Schema$Dialog {
+    /**
+     * Body of the dialog, which will be rendered in a modal. NOTE: The following fields within the objects are not supported: google.apps.card.v1.Widget.date_time_picker google.apps.card.v1.DecoratedText.SwitchControl.on_change_action google.apps.card.v1.TextInput.on_change_action google.apps.card.v1.SelectionInput.on_change_action google.apps.card.v1.DateTimePicker.on_change_action Setting the fields above will have no effect on the dialog.
+     */
+    body?: Schema$GoogleAppsCardV1Card;
+  }
+  /**
+   * Contains dialog if present as well as the ActionStatus for the request sent from user.
+   */
+  export interface Schema$DialogAction {
+    /**
+     * Status for either invoke dialog or submit dialog requests. This will be used to display a status and message to user if needed. For example in case of an error or success.
+     */
+    actionStatus?: Schema$ActionStatus;
+    /**
+     * Dialog for the request.
+     */
+    dialog?: Schema$Dialog;
   }
   /**
    * A reference to the data of a drive attachment.
@@ -1111,10 +1137,6 @@ export namespace chat_v1 {
      */
     cards?: Schema$Card[];
     /**
-     * Rich, formatted and interactive cards that can be used to display UI elements and editable widgets, such as: formatted text, buttons, clickable images, checkboxes, radio buttons. Cards are normally displayed below the plain-text body of the message. This v2 allows input widgets. The string key is a unique identifier among cards in the same message for identifying inputs.
-     */
-    cardsV2?: Schema$CardWithId[];
-    /**
      * Output only. The time at which the message was created in Hangouts Chat server.
      */
     createTime?: string | null;
@@ -1379,7 +1401,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -1401,7 +1422,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -1545,7 +1565,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -1567,7 +1586,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -1749,7 +1767,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -1771,7 +1788,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -2084,7 +2100,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -2106,7 +2121,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -2250,7 +2264,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -2272,7 +2285,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -2454,7 +2466,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -2476,7 +2487,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -2909,7 +2919,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -2931,7 +2940,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -3414,7 +3422,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -3436,7 +3443,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -3703,7 +3709,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
@@ -3844,7 +3849,6 @@ export namespace chat_v1 {
      *       //   "argumentText": "my_argumentText",
      *       //   "attachment": [],
      *       //   "cards": [],
-     *       //   "cardsV2": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
      *       //   "name": "my_name",
@@ -3866,7 +3870,6 @@ export namespace chat_v1 {
      *   //   "argumentText": "my_argumentText",
      *   //   "attachment": [],
      *   //   "cards": [],
-     *   //   "cardsV2": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
      *   //   "name": "my_name",
