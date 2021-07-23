@@ -327,6 +327,48 @@
                             "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
+                        "list": {
+                          "description": "Gets a list of Products.",
+                          "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products",
+                          "httpMethod": "GET",
+                          "id": "retail.projects.locations.catalogs.branches.products.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Maximum number of Products to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token ListProductsResponse.next_page_token, received from a previous ProductService.ListProducts call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ProductService.ListProducts must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent branch resource name, such as `projects/*/locations/global/catalogs/default_catalog/branches/0`. Use `default_branch` as the branch ID, to list products under the default branch. If the caller does not have permission to list Products under this branch, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/branches/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "readMask": {
+                              "description": "The fields of Product to return in the responses. If not set or empty, the following fields are returned: * Product.name * Product.id * Product.title * Product.uri * Product.images * Product.price_info If \"*\" is provided, all fields are returned. Product.name is always returned no matter what mask is set. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+parent}/products",
+                          "response": {
+                            "$ref": "GoogleCloudRetailV2ListProductsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "patch": {
                           "description": "Updates a Product.",
                           "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}",
@@ -706,7 +748,7 @@
       }
     }
   },
-  "revision": "20210702",
+  "revision": "20210716",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1093,6 +1135,24 @@
         "nextPageToken": {
           "description": "A token that can be sent as ListCatalogsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2ListProductsResponse": {
+      "description": "Response message for ProductService.ListProducts method.",
+      "id": "GoogleCloudRetailV2ListProductsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as ListProductsRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "products": {
+          "description": "The Products.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2Product"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1624,11 +1684,11 @@
           "type": "boolean"
         },
         "ipAddress": {
-          "description": "The end user's IP address. Required for getting SearchRespons.sponsored_results. This field is used to extract location information for personalization. This field must be either an IPv4 address (e.g. \"104.133.9.80\") or an IPv6 address (e.g. \"2001:0db8:85a3:0000:0000:8a2e:0370:7334\"). Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.",
+          "description": "The end user's IP address. Required for getting SearchResponse.sponsored_results. This field is used to extract location information for personalization. This field must be either an IPv4 address (e.g. \"104.133.9.80\") or an IPv6 address (e.g. \"2001:0db8:85a3:0000:0000:8a2e:0370:7334\"). Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.",
           "type": "string"
         },
         "userAgent": {
-          "description": "User agent as included in the HTTP header. Required for getting SearchRespons.sponsored_results. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.",
+          "description": "User agent as included in the HTTP header. Required for getting SearchResponse.sponsored_results. The field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the client side event reporting with GTM or JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.",
           "type": "string"
         },
         "userId": {
