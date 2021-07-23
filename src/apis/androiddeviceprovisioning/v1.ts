@@ -372,6 +372,10 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$DeviceClaim {
     /**
+     * The Additional service registered for the device.
+     */
+    additionalService?: string | null;
+    /**
      * The ID of the Customer that purchased the device.
      */
     ownerCompanyId?: string | null;
