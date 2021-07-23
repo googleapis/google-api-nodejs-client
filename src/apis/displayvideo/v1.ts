@@ -495,6 +495,10 @@ export namespace displayvideo_v1 {
      */
     browserDetails?: Schema$BrowserAssignedTargetingOptionDetails;
     /**
+     * Business chain details. This field will be populated when the targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
+     */
+    businessChainDetails?: Schema$BusinessChainAssignedTargetingOptionDetails;
+    /**
      * Carrier and ISP details. This field will be populated when the targeting_type is `TARGETING_TYPE_CARRIER_AND_ISP`.
      */
     carrierAndIspDetails?: Schema$CarrierAndIspAssignedTargetingOptionDetails;
@@ -583,6 +587,10 @@ export namespace displayvideo_v1 {
      */
     negativeKeywordListDetails?: Schema$NegativeKeywordListAssignedTargetingOptionDetails;
     /**
+     * Open Measurement enabled inventory details. This field will be populated when the targeting_type is `TARGETING_TYPE_OMID`.
+     */
+    omidDetails?: Schema$OmidAssignedTargetingOptionDetails;
+    /**
      * On screen position details. This field will be populated when the targeting_type is `TARGETING_TYPE_ON_SCREEN_POSITION`.
      */
     onScreenPositionDetails?: Schema$OnScreenPositionAssignedTargetingOptionDetails;
@@ -594,6 +602,10 @@ export namespace displayvideo_v1 {
      * Parental status details. This field will be populated when the targeting_type is `TARGETING_TYPE_PARENTAL_STATUS`.
      */
     parentalStatusDetails?: Schema$ParentalStatusAssignedTargetingOptionDetails;
+    /**
+     * POI details. This field will be populated when the targeting_type is `TARGETING_TYPE_POI`.
+     */
+    poiDetails?: Schema$PoiAssignedTargetingOptionDetails;
     /**
      * Proximity location list details. This field will be populated when the targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.
      */
@@ -830,11 +842,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$BulkEditAdvertiserAssignedTargetingOptionsRequest {
     /**
-     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     createRequests?: Schema$CreateAssignedTargetingOptionsRequest[];
     /**
-     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     deleteRequests?: Schema$DeleteAssignedTargetingOptionsRequest[];
   }
@@ -1050,6 +1062,57 @@ export namespace displayvideo_v1 {
      * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent BulkListLineItemAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Details for assigned Business chain targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
+   */
+  export interface Schema$BusinessChainAssignedTargetingOptionDetails {
+    /**
+     * Output only. The display name of a business chain, e.g. "KFC", "Chase Bank".
+     */
+    displayName?: string | null;
+    /**
+     * Required. The radius of the area around the business chain that will be targeted. The units of the radius are specified by proximity_radius_unit. Must be 1 to 800 if unit is `DISTANCE_UNIT_KILOMETERS` and 1 to 500 if unit is `DISTANCE_UNIT_MILES`. The minimum increment for both cases is 0.1. Inputs will be rounded to the nearest acceptable value if it is too granular, e.g. 15.57 will become 15.6.
+     */
+    proximityRadiusAmount?: number | null;
+    /**
+     * Required. The unit of distance by which the targeting radius is measured.
+     */
+    proximityRadiusUnit?: string | null;
+    /**
+     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_BUSINESS_CHAIN`.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
+   * Search terms for Business Chain targeting options. At least one of the field should be populated.
+   */
+  export interface Schema$BusinessChainSearchTerms {
+    /**
+     * The search query for the desired business chain. The query can be a prefix, e.g. "KFC", "mercede".
+     */
+    businessChain?: string | null;
+    /**
+     * The search query for the desired geo region, e.g. "Seattle", "United State".
+     */
+    region?: string | null;
+  }
+  /**
+   * Represents a targetable business chain within a geo region. This will be populated in the business_chain_details field when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
+   */
+  export interface Schema$BusinessChainTargetingOptionDetails {
+    /**
+     * Output only. The display name of the business chain, e.g. "KFC", "Chase Bank".
+     */
+    businessChain?: string | null;
+    /**
+     * Output only. The display name of the geographic region, e.g. "Ontario, Canada".
+     */
+    geoRegion?: string | null;
+    /**
+     * Output only. The type of the geographic region.
+     */
+    geoRegionType?: string | null;
   }
   /**
    * A single campaign.
@@ -3617,6 +3680,28 @@ export namespace displayvideo_v1 {
     viewTrackingUrl?: string | null;
   }
   /**
+   * Represents a targetable Open Measurement enabled inventory type. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_OMID`.
+   */
+  export interface Schema$OmidAssignedTargetingOptionDetails {
+    /**
+     * Output only. The type of Open Measurement enabled inventory.
+     */
+    omid?: string | null;
+    /**
+     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_OMID`.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable Open Measurement enabled inventory type. This will be populated in the omid_details field when targeting_type is `TARGETING_TYPE_OMID`.
+   */
+  export interface Schema$OmidTargetingOptionDetails {
+    /**
+     * Output only. The type of Open Measurement enabled inventory.
+     */
+    omid?: string | null;
+  }
+  /**
    * On screen position targeting option details. This will be populated in the on_screen_position_details field when targeting_type is `TARGETING_TYPE_ON_SCREEN_POSITION`.
    */
   export interface Schema$OnScreenPositionAssignedTargetingOptionDetails {
@@ -3906,6 +3991,61 @@ export namespace displayvideo_v1 {
     performanceGoalType?: string | null;
   }
   /**
+   * Details for assigned POI targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_POI`.
+   */
+  export interface Schema$PoiAssignedTargetingOptionDetails {
+    /**
+     * Output only. The display name of a POI, e.g. "Times Square", "Space Needle".
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Latitude of the POI rounding to 6th decimal place.
+     */
+    latitude?: number | null;
+    /**
+     * Output only. Longitude of the POI rounding to 6th decimal place.
+     */
+    longitude?: number | null;
+    /**
+     * Required. The radius of the area around the POI that will be targeted. The units of the radius are specified by proximity_radius_unit. Must be 1 to 800 if unit is `DISTANCE_UNIT_KILOMETERS` and 1 to 500 if unit is `DISTANCE_UNIT_MILES`.
+     */
+    proximityRadiusAmount?: number | null;
+    /**
+     * Required. The unit of distance by which the targeting radius is measured.
+     */
+    proximityRadiusUnit?: string | null;
+    /**
+     * Input only. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_POI`.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
+   * Search terms for POI targeting options.
+   */
+  export interface Schema$PoiSearchTerms {
+    /**
+     * The search query for the desired POI name, street address, or coordinate of the desired POI. The query can be a prefix, e.g. "Times squar", "40.7505045,-73.99562", "315 W 44th St", etc.
+     */
+    poiQuery?: string | null;
+  }
+  /**
+   * Represents a targetable point of interest(POI). This will be populated in the poi_details field when targeting_type is `TARGETING_TYPE_POI`.
+   */
+  export interface Schema$PoiTargetingOptionDetails {
+    /**
+     * Output only. The display name of a POI, e.g. "Times Square", "Space Needle".
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Latitude of the POI rounding to 6th decimal place.
+     */
+    latitude?: number | null;
+    /**
+     * Output only. Longitude of the POI rounding to 6th decimal place.
+     */
+    longitude?: number | null;
+  }
+  /**
    * Settings specific to the Mediaocean Prisma tool.
    */
   export interface Schema$PrismaConfig {
@@ -4116,6 +4256,10 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string | null;
     /**
+     * Search terms for Business Chain targeting options. Can only be used when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
+     */
+    businessChainSearchTerms?: Schema$BusinessChainSearchTerms;
+    /**
      * Search terms for geo region targeting options. Can only be used when targeting_type is `TARGETING_TYPE_GEO_REGION`.
      */
     geoRegionSearchTerms?: Schema$GeoRegionSearchTerms;
@@ -4127,6 +4271,10 @@ export namespace displayvideo_v1 {
      * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `SearchTargetingOptions` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string | null;
+    /**
+     * Search terms for POI targeting options. Can only be used when targeting_type is `TARGETING_TYPE_POI`.
+     */
+    poiSearchTerms?: Schema$PoiSearchTerms;
   }
   /**
    * Response message for SearchTargetingOptionsResponse.
@@ -4245,6 +4393,10 @@ export namespace displayvideo_v1 {
      */
     browserDetails?: Schema$BrowserTargetingOptionDetails;
     /**
+     * Business chain resource details.
+     */
+    businessChainDetails?: Schema$BusinessChainTargetingOptionDetails;
+    /**
      * Carrier and ISP details.
      */
     carrierAndIspDetails?: Schema$CarrierAndIspTargetingOptionDetails;
@@ -4305,6 +4457,10 @@ export namespace displayvideo_v1 {
      */
     nativeContentPositionDetails?: Schema$NativeContentPositionTargetingOptionDetails;
     /**
+     * Open Measurement enabled inventory details.
+     */
+    omidDetails?: Schema$OmidTargetingOptionDetails;
+    /**
      * On screen position details.
      */
     onScreenPositionDetails?: Schema$OnScreenPositionTargetingOptionDetails;
@@ -4316,6 +4472,10 @@ export namespace displayvideo_v1 {
      * Parental status details.
      */
     parentalStatusDetails?: Schema$ParentalStatusTargetingOptionDetails;
+    /**
+     * POI resource details.
+     */
+    poiDetails?: Schema$PoiTargetingOptionDetails;
     /**
      * Sensitive Category details.
      */
@@ -7151,6 +7311,7 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -7173,9 +7334,11 @@ export namespace displayvideo_v1 {
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -7333,7 +7496,7 @@ export namespace displayvideo_v1 {
      *         filter: 'placeholder-value',
      *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *         orderBy: 'placeholder-value',
-     *         // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *         pageSize: 'placeholder-value',
      *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *         pageToken: 'placeholder-value',
@@ -7490,7 +7653,7 @@ export namespace displayvideo_v1 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -11090,6 +11253,7 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -11112,9 +11276,11 @@ export namespace displayvideo_v1 {
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -11272,7 +11438,7 @@ export namespace displayvideo_v1 {
      *         insertionOrderId: '[^/]+',
      *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *         orderBy: 'placeholder-value',
-     *         // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *         pageSize: 'placeholder-value',
      *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *         pageToken: 'placeholder-value',
@@ -11429,7 +11595,7 @@ export namespace displayvideo_v1 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -13240,6 +13406,7 @@ export namespace displayvideo_v1 {
      *           //   "audienceGroupDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
      *           //   "browserDetails": {},
+     *           //   "businessChainDetails": {},
      *           //   "carrierAndIspDetails": {},
      *           //   "categoryDetails": {},
      *           //   "channelDetails": {},
@@ -13262,9 +13429,11 @@ export namespace displayvideo_v1 {
      *           //   "name": "my_name",
      *           //   "nativeContentPositionDetails": {},
      *           //   "negativeKeywordListDetails": {},
+     *           //   "omidDetails": {},
      *           //   "onScreenPositionDetails": {},
      *           //   "operatingSystemDetails": {},
      *           //   "parentalStatusDetails": {},
+     *           //   "poiDetails": {},
      *           //   "proximityLocationListDetails": {},
      *           //   "regionalLocationListDetails": {},
      *           //   "sensitiveCategoryExclusionDetails": {},
@@ -13290,6 +13459,7 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -13312,9 +13482,11 @@ export namespace displayvideo_v1 {
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -13624,6 +13796,7 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -13646,9 +13819,11 @@ export namespace displayvideo_v1 {
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -13806,7 +13981,7 @@ export namespace displayvideo_v1 {
      *         lineItemId: '[^/]+',
      *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *         orderBy: 'placeholder-value',
-     *         // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *         pageSize: 'placeholder-value',
      *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *         pageToken: 'placeholder-value',
@@ -14002,7 +14177,7 @@ export namespace displayvideo_v1 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -17981,7 +18156,7 @@ export namespace displayvideo_v1 {
      *       {
      *         // Required. The ID of the advertiser.
      *         advertiserId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *         targetingType: '[^/]+',
      *
      *         // Request body metadata
@@ -17995,6 +18170,7 @@ export namespace displayvideo_v1 {
      *           //   "audienceGroupDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
      *           //   "browserDetails": {},
+     *           //   "businessChainDetails": {},
      *           //   "carrierAndIspDetails": {},
      *           //   "categoryDetails": {},
      *           //   "channelDetails": {},
@@ -18017,9 +18193,11 @@ export namespace displayvideo_v1 {
      *           //   "name": "my_name",
      *           //   "nativeContentPositionDetails": {},
      *           //   "negativeKeywordListDetails": {},
+     *           //   "omidDetails": {},
      *           //   "onScreenPositionDetails": {},
      *           //   "operatingSystemDetails": {},
      *           //   "parentalStatusDetails": {},
+     *           //   "poiDetails": {},
      *           //   "proximityLocationListDetails": {},
      *           //   "regionalLocationListDetails": {},
      *           //   "sensitiveCategoryExclusionDetails": {},
@@ -18045,6 +18223,7 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -18067,9 +18246,11 @@ export namespace displayvideo_v1 {
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -18215,7 +18396,7 @@ export namespace displayvideo_v1 {
      *         advertiserId: '[^/]+',
      *         // Required. The ID of the assigned targeting option to delete.
      *         assignedTargetingOptionId: '[^/]+',
-     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *         targetingType: '[^/]+',
      *       }
      *     );
@@ -18357,7 +18538,7 @@ export namespace displayvideo_v1 {
      *       advertiserId: '[^/]+',
      *       // Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
      *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *       targetingType: '[^/]+',
      *     });
      *   console.log(res.data);
@@ -18371,6 +18552,7 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -18393,9 +18575,11 @@ export namespace displayvideo_v1 {
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -18549,11 +18733,11 @@ export namespace displayvideo_v1 {
      *         filter: 'placeholder-value',
      *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
      *         orderBy: 'placeholder-value',
-     *         // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         // Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *         pageSize: 'placeholder-value',
      *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *         pageToken: 'placeholder-value',
-     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *         targetingType: '[^/]+',
      *       }
      *     );
@@ -18675,7 +18859,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     targetingType?: string;
 
@@ -18695,7 +18879,7 @@ export namespace displayvideo_v1 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -18710,7 +18894,7 @@ export namespace displayvideo_v1 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -18729,7 +18913,7 @@ export namespace displayvideo_v1 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `5000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -18737,7 +18921,7 @@ export namespace displayvideo_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_OMID` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -24779,6 +24963,7 @@ export namespace displayvideo_v1 {
      *         //   "audienceGroupDetails": {},
      *         //   "authorizedSellerStatusDetails": {},
      *         //   "browserDetails": {},
+     *         //   "businessChainDetails": {},
      *         //   "carrierAndIspDetails": {},
      *         //   "categoryDetails": {},
      *         //   "channelDetails": {},
@@ -24801,9 +24986,11 @@ export namespace displayvideo_v1 {
      *         //   "name": "my_name",
      *         //   "nativeContentPositionDetails": {},
      *         //   "negativeKeywordListDetails": {},
+     *         //   "omidDetails": {},
      *         //   "onScreenPositionDetails": {},
      *         //   "operatingSystemDetails": {},
      *         //   "parentalStatusDetails": {},
+     *         //   "poiDetails": {},
      *         //   "proximityLocationListDetails": {},
      *         //   "regionalLocationListDetails": {},
      *         //   "sensitiveCategoryExclusionDetails": {},
@@ -24828,6 +25015,7 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -24850,9 +25038,11 @@ export namespace displayvideo_v1 {
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -25148,6 +25338,7 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -25170,9 +25361,11 @@ export namespace displayvideo_v1 {
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -25880,6 +26073,7 @@ export namespace displayvideo_v1 {
      *   //   "appCategoryDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
+     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "contentInstreamPositionDetails": {},
@@ -25895,9 +26089,11 @@ export namespace displayvideo_v1 {
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
      *   //   "nativeContentPositionDetails": {},
+     *   //   "omidDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
+     *   //   "poiDetails": {},
      *   //   "sensitiveCategoryDetails": {},
      *   //   "subExchangeDetails": {},
      *   //   "targetingOptionId": "my_targetingOptionId",
@@ -26174,7 +26370,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.targetingTypes.targetingOptions.search({
-     *     // Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION`
+     *     // Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_BUSINESS_CHAIN`
      *     targetingType: '[^/]+',
      *
      *     // Request body metadata
@@ -26182,9 +26378,11 @@ export namespace displayvideo_v1 {
      *       // request body parameters
      *       // {
      *       //   "advertiserId": "my_advertiserId",
+     *       //   "businessChainSearchTerms": {},
      *       //   "geoRegionSearchTerms": {},
      *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken"
+     *       //   "pageToken": "my_pageToken",
+     *       //   "poiSearchTerms": {}
      *       // }
      *     },
      *   });
@@ -26343,7 +26541,7 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Targetingtypes$Targetingoptions$Search
     extends StandardParameters {
     /**
-     * Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION`
+     * Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_BUSINESS_CHAIN`
      */
     targetingType?: string;
 
