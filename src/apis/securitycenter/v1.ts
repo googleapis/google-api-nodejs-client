@@ -276,6 +276,14 @@ export namespace securitycenter_v1 {
      */
     externalUri?: string | null;
     /**
+     * The class of the finding.
+     */
+    findingClass?: string | null;
+    /**
+     * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     */
+    indicator?: Schema$Indicator;
+    /**
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
     name?: string | null;
@@ -670,6 +678,19 @@ export namespace securitycenter_v1 {
      * The JSON representation of the Policy associated with the asset. See https://cloud.google.com/iam/reference/rest/v1/Policy for format details.
      */
     policyBlob?: string | null;
+  }
+  /**
+   * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+   */
+  export interface Schema$Indicator {
+    /**
+     * List of domains associated to the Finding.
+     */
+    domains?: string[] | null;
+    /**
+     * List of ip addresses associated to the Finding.
+     */
+    ipAddresses?: string[] | null;
   }
   /**
    * Response message for listing assets.
@@ -2096,6 +2117,8 @@ export namespace securitycenter_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
      *       //   "externalUri": "my_externalUri",
+     *       //   "findingClass": "my_findingClass",
+     *       //   "indicator": {},
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
@@ -2115,6 +2138,8 @@ export namespace securitycenter_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -2262,6 +2287,8 @@ export namespace securitycenter_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -6070,6 +6097,8 @@ export namespace securitycenter_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
      *       //   "externalUri": "my_externalUri",
+     *       //   "findingClass": "my_findingClass",
+     *       //   "indicator": {},
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
@@ -6089,6 +6118,8 @@ export namespace securitycenter_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -6535,6 +6566,8 @@ export namespace securitycenter_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
      *       //   "externalUri": "my_externalUri",
+     *       //   "findingClass": "my_findingClass",
+     *       //   "indicator": {},
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
@@ -6554,6 +6587,8 @@ export namespace securitycenter_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -6701,6 +6736,8 @@ export namespace securitycenter_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -8106,6 +8143,8 @@ export namespace securitycenter_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
      *       //   "externalUri": "my_externalUri",
+     *       //   "findingClass": "my_findingClass",
+     *       //   "indicator": {},
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
@@ -8125,6 +8164,8 @@ export namespace securitycenter_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -8272,6 +8313,8 @@ export namespace securitycenter_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
      *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",

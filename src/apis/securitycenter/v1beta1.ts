@@ -264,6 +264,14 @@ export namespace securitycenter_v1beta1 {
      */
     externalUri?: string | null;
     /**
+     * The class of the finding.
+     */
+    findingClass?: string | null;
+    /**
+     * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+     */
+    indicator?: Schema$Indicator;
+    /**
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
     name?: string | null;
@@ -695,6 +703,19 @@ export namespace securitycenter_v1beta1 {
      * Properties matching the groupBy fields in the request.
      */
     properties?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
+   */
+  export interface Schema$Indicator {
+    /**
+     * List of domains associated to the Finding.
+     */
+    domains?: string[] | null;
+    /**
+     * List of ip addresses associated to the Finding.
+     */
+    ipAddresses?: string[] | null;
   }
   /**
    * Response message for listing assets.
