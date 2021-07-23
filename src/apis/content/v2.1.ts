@@ -194,6 +194,10 @@ export namespace content_v2_1 {
    */
   export interface Schema$Account {
     /**
+     * Output only. How the account is managed. Acceptable values are: - "`manual`" - "`automatic`"
+     */
+    accountManagement?: string | null;
+    /**
      * Linked Ads accounts that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected either in the Ads interface or through the AdWords API. To delete an active link, or to cancel a link request, remove it from the list.
      */
     adsLinks?: Schema$AccountAdsLink[];
@@ -222,7 +226,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "`content#account`"
+     * Identifies what kind of resource this is. Value: the fixed string "`content#account`".
      */
     kind?: string | null;
     /**
@@ -403,13 +407,13 @@ export namespace content_v2_1 {
      */
     accountIdentifiers?: Schema$AccountIdentifier[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountsAuthInfoResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountsAuthInfoResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$AccountsClaimWebsiteResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountsClaimWebsiteResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountsClaimWebsiteResponse`".
      */
     kind?: string | null;
   }
@@ -488,7 +492,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccountsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountsCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountsCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -537,13 +541,13 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsLinkResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountsLinkResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountsLinkResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$AccountsListLinksResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountsListLinksResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountsListLinksResponse`".
      */
     kind?: string | null;
     /**
@@ -557,7 +561,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountsListResponse`".
      */
     kind?: string | null;
     /**
@@ -578,6 +582,10 @@ export namespace content_v2_1 {
      * A list of account level issues.
      */
     accountLevelIssues?: Schema$AccountStatusAccountLevelIssue[];
+    /**
+     * How the account is managed. Acceptable values are: - "`manual`" - "`automatic`"
+     */
+    accountManagement?: string | null;
     /**
      * Identifies what kind of resource this is. Value: the fixed string "`content#accountStatus`"
      */
@@ -658,7 +666,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccountstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountstatusesCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountstatusesCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -681,7 +689,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountstatusesListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountstatusesListResponse`".
      */
     kind?: string | null;
     /**
@@ -772,7 +780,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsUpdateLabelsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountsUpdateLabelsResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountsUpdateLabelsResponse`".
      */
     kind?: string | null;
   }
@@ -785,7 +793,7 @@ export namespace content_v2_1 {
      */
     accountId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accountTax".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountTax`".
      */
     kind?: string | null;
     /**
@@ -830,7 +838,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccounttaxCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accounttaxCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accounttaxCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -857,7 +865,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccounttaxListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#accounttaxListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accounttaxListResponse`".
      */
     kind?: string | null;
     /**
@@ -1353,7 +1361,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$DatafeedsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedsCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#datafeedsCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -1376,13 +1384,13 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedsFetchNowResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedsFetchNowResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#datafeedsFetchNowResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$DatafeedsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#datafeedsListResponse`".
      */
     kind?: string | null;
     /**
@@ -1498,7 +1506,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$DatafeedstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedstatusesCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#datafeedstatusesCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -1521,7 +1529,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedstatusesListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#datafeedstatusesListResponse`".
      */
     kind?: string | null;
     /**
@@ -2005,7 +2013,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$LiasettingsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -2045,13 +2053,13 @@ export namespace content_v2_1 {
      */
     gmbAccounts?: Schema$GmbAccountsGmbAccount[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsGetAccessibleGmbAccountsResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsGetAccessibleGmbAccountsResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$LiasettingsListPosDataProvidersResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsListPosDataProvidersResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsListPosDataProvidersResponse`".
      */
     kind?: string | null;
     /**
@@ -2061,7 +2069,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$LiasettingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsListResponse`".
      */
     kind?: string | null;
     /**
@@ -2072,25 +2080,25 @@ export namespace content_v2_1 {
   }
   export interface Schema$LiasettingsRequestGmbAccessResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsRequestGmbAccessResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsRequestGmbAccessResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$LiasettingsRequestInventoryVerificationResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsRequestInventoryVerificationResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsRequestInventoryVerificationResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$LiasettingsSetInventoryVerificationContactResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsSetInventoryVerificationContactResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsSetInventoryVerificationContactResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$LiasettingsSetPosDataProviderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsSetPosDataProviderResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsSetPosDataProviderResponse`".
      */
     kind?: string | null;
   }
@@ -2318,7 +2326,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$LocalinventoryCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#localinventoryCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#localinventoryCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -2794,7 +2802,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#orderinvoicesCreateChargeInvoiceResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#orderinvoicesCreateChargeInvoiceResponse`".
      */
     kind?: string | null;
   }
@@ -2826,7 +2834,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#orderinvoicesCreateRefundInvoiceResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#orderinvoicesCreateRefundInvoiceResponse`".
      */
     kind?: string | null;
   }
@@ -3243,7 +3251,7 @@ export namespace content_v2_1 {
      */
     disbursements?: Schema$OrderReportDisbursement[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#orderreportsListDisbursementsResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#orderreportsListDisbursementsResponse`".
      */
     kind?: string | null;
     /**
@@ -3253,7 +3261,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreportsListTransactionsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#orderreportsListTransactionsResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#orderreportsListTransactionsResponse`".
      */
     kind?: string | null;
     /**
@@ -3337,7 +3345,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#orderreturnsAcknowledgeResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#orderreturnsAcknowledgeResponse`".
      */
     kind?: string | null;
   }
@@ -3365,7 +3373,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#orderreturnsCreateOrderReturnResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#orderreturnsCreateOrderReturnResponse`".
      */
     kind?: string | null;
     /**
@@ -3389,7 +3397,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#orderreturnsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#orderreturnsListResponse`".
      */
     kind?: string | null;
     /**
@@ -3432,7 +3440,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#orderreturnsProcessResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#orderreturnsProcessResponse`".
      */
     kind?: string | null;
   }
@@ -3494,13 +3502,13 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersAcknowledgeResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersAcknowledgeResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$OrdersAdvanceTestOrderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersAdvanceTestOrderResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersAdvanceTestOrderResponse`".
      */
     kind?: string | null;
   }
@@ -3536,7 +3544,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCancelLineItemResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersCancelLineItemResponse`".
      */
     kind?: string | null;
   }
@@ -3560,7 +3568,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCancelResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersCancelResponse`".
      */
     kind?: string | null;
   }
@@ -3572,7 +3580,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelTestOrderByCustomerResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCancelTestOrderByCustomerResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersCancelTestOrderByCustomerResponse`".
      */
     kind?: string | null;
   }
@@ -3592,7 +3600,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCreateTestOrderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCreateTestOrderResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersCreateTestOrderResponse`".
      */
     kind?: string | null;
     /**
@@ -3608,7 +3616,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCreateTestReturnResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCreateTestReturnResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersCreateTestReturnResponse`".
      */
     kind?: string | null;
     /**
@@ -3687,7 +3695,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersGetByMerchantOrderIdResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersGetByMerchantOrderIdResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersGetByMerchantOrderIdResponse`".
      */
     kind?: string | null;
     /**
@@ -3697,7 +3705,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersGetTestOrderTemplateResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersGetTestOrderTemplateResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersGetTestOrderTemplateResponse`".
      */
     kind?: string | null;
     /**
@@ -3807,13 +3815,13 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersInStoreRefundLineItemResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersInStoreRefundLineItemResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$OrdersListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersListResponse`".
      */
     kind?: string | null;
     /**
@@ -3850,7 +3858,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersRefundItemResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersRefundItemResponse`".
      */
     kind?: string | null;
   }
@@ -3882,7 +3890,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersRefundOrderResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersRefundOrderResponse`".
      */
     kind?: string | null;
   }
@@ -3918,7 +3926,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersRejectReturnLineItemResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersRejectReturnLineItemResponse`".
      */
     kind?: string | null;
   }
@@ -3962,7 +3970,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersReturnRefundLineItemResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersReturnRefundLineItemResponse`".
      */
     kind?: string | null;
   }
@@ -3987,7 +3995,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersSetLineItemMetadataResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersSetLineItemMetadataResponse`".
      */
     kind?: string | null;
   }
@@ -4015,7 +4023,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersShipLineItemsResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersShipLineItemsResponse`".
      */
     kind?: string | null;
   }
@@ -4047,7 +4055,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersUpdateLineItemShippingDetailsResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersUpdateLineItemShippingDetailsResponse`".
      */
     kind?: string | null;
   }
@@ -4067,7 +4075,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersUpdateMerchantOrderIdResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersUpdateMerchantOrderIdResponse`".
      */
     kind?: string | null;
   }
@@ -4119,7 +4127,7 @@ export namespace content_v2_1 {
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#ordersUpdateShipmentResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#ordersUpdateShipmentResponse`".
      */
     kind?: string | null;
   }
@@ -4346,7 +4354,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$PosCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#posCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#posCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -4489,7 +4497,7 @@ export namespace content_v2_1 {
      */
     itemId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#posInventoryResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#posInventoryResponse`".
      */
     kind?: string | null;
     /**
@@ -4515,7 +4523,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$PosListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#posListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#posListResponse`".
      */
     kind?: string | null;
     resources?: Schema$PosStore[];
@@ -4617,7 +4625,7 @@ export namespace content_v2_1 {
      */
     itemId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#posSaleResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#posSaleResponse`".
      */
     kind?: string | null;
     /**
@@ -5097,7 +5105,7 @@ export namespace content_v2_1 {
      */
     batchId?: number | null;
     /**
-     * The Content API feed id.
+     * The Content API Supplemental Feed ID. If present then product insertion or deletion applies to a supplemental feed instead of primary Content API feed.
      */
     feedId?: string | null;
     /**
@@ -5127,7 +5135,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ProductsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#productsCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#productsCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -5220,7 +5228,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ProductsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#productsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#productsListResponse`".
      */
     kind?: string | null;
     /**
@@ -5330,7 +5338,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ProductstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#productstatusesCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#productstatusesCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -5357,7 +5365,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ProductstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#productstatusesListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#productstatusesListResponse`".
      */
     kind?: string | null;
     /**
@@ -5563,7 +5571,7 @@ export namespace content_v2_1 {
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#regionalInventory".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#regionalInventory`".
      */
     kind?: string | null;
     /**
@@ -5620,7 +5628,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$RegionalinventoryCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#regionalinventoryCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#regionalinventoryCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -5637,7 +5645,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#regionalinventoryCustomBatchResponseEntry".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#regionalinventoryCustomBatchResponseEntry`".
      */
     kind?: string | null;
     /**
@@ -6048,7 +6056,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ReturnaddressCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#returnaddressCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#returnaddressCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -6072,7 +6080,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ReturnaddressListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#returnaddressListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#returnaddressListResponse`".
      */
     kind?: string | null;
     /**
@@ -6156,7 +6164,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ReturnpolicyCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#returnpolicyCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#returnpolicyCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -6180,7 +6188,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ReturnpolicyListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#returnpolicyListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#returnpolicyListResponse`".
      */
     kind?: string | null;
     resources?: Schema$ReturnPolicy[];
@@ -6601,7 +6609,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$SettlementreportsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#settlementreportsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#settlementreportsListResponse`".
      */
     kind?: string | null;
     /**
@@ -6684,7 +6692,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$SettlementtransactionsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#settlementtransactionsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#settlementtransactionsListResponse`".
      */
     kind?: string | null;
     /**
@@ -6799,7 +6807,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ShippingsettingsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsCustomBatchResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#shippingsettingsCustomBatchResponse`".
      */
     kind?: string | null;
   }
@@ -6830,7 +6838,7 @@ export namespace content_v2_1 {
      */
     carriers?: Schema$CarriersCarrier[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsGetSupportedCarriersResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#shippingsettingsGetSupportedCarriersResponse`".
      */
     kind?: string | null;
   }
@@ -6840,13 +6848,13 @@ export namespace content_v2_1 {
      */
     holidays?: Schema$HolidaysHoliday[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsGetSupportedHolidaysResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#shippingsettingsGetSupportedHolidaysResponse`".
      */
     kind?: string | null;
   }
   export interface Schema$ShippingsettingsGetSupportedPickupServicesResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsGetSupportedPickupServicesResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#shippingsettingsGetSupportedPickupServicesResponse`".
      */
     kind?: string | null;
     /**
@@ -6856,7 +6864,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ShippingsettingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsListResponse".
+     * Identifies what kind of resource this is. Value: the fixed string "`content#shippingsettingsListResponse`".
      */
     kind?: string | null;
     /**
@@ -7128,7 +7136,7 @@ export namespace content_v2_1 {
      */
     additionalCharges?: Schema$UnitInvoiceAdditionalCharge[];
     /**
-     * [required] Pre-tax or post-tax price of the unit depending on the locality of the order.
+     * [required] Pre-tax or post-tax price of one unit depending on the locality of the order. *Note:* Invoicing works on a per unit basis. The `unitPrice` is the price of a single unit, and will be multiplied by the number of entries in `shipmentUnitId`.
      */
     unitPrice?: Schema$Price;
     /**
@@ -7138,7 +7146,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$UnitInvoiceAdditionalCharge {
     /**
-     * [required] Amount of the additional charge.
+     * [required] Amount of the additional charge per unit. *Note:* Invoicing works on a per unit bases. The `additionalChargeAmount` is the amount charged per unit, and will be multiplied by the number of entries in `shipmentUnitID`.
      */
     additionalChargeAmount?: Schema$Amount;
     /**
@@ -7822,6 +7830,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "accountManagement": "my_accountManagement",
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
      *   //   "automaticLabelIds": [],
@@ -7963,6 +7972,7 @@ export namespace content_v2_1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "accountManagement": "my_accountManagement",
      *       //   "adsLinks": [],
      *       //   "adultContent": false,
      *       //   "automaticLabelIds": [],
@@ -7984,6 +7994,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "accountManagement": "my_accountManagement",
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
      *   //   "automaticLabelIds": [],
@@ -8272,6 +8283,8 @@ export namespace content_v2_1 {
      *     maxResults: 'placeholder-value',
      *     // The ID of the managing account. This must be a multi-client account.
      *     merchantId: 'placeholder-value',
+     *     // If set, only the accounts with the given name (case sensitive) will be returned.
+     *     name: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
      *     // Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
@@ -8564,6 +8577,7 @@ export namespace content_v2_1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "accountManagement": "my_accountManagement",
      *       //   "adsLinks": [],
      *       //   "adultContent": false,
      *       //   "automaticLabelIds": [],
@@ -8585,6 +8599,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "accountManagement": "my_accountManagement",
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
      *   //   "automaticLabelIds": [],
@@ -8933,6 +8948,10 @@ export namespace content_v2_1 {
      * The ID of the managing account. This must be a multi-client account.
      */
     merchantId?: string;
+    /**
+     * If set, only the accounts with the given name (case sensitive) will be returned.
+     */
+    name?: string;
     /**
      * The token returned by the previous request.
      */
@@ -10583,6 +10602,7 @@ export namespace content_v2_1 {
      *   // {
      *   //   "accountId": "my_accountId",
      *   //   "accountLevelIssues": [],
+     *   //   "accountManagement": "my_accountManagement",
      *   //   "kind": "my_kind",
      *   //   "products": [],
      *   //   "websiteClaimed": false
@@ -10713,6 +10733,8 @@ export namespace content_v2_1 {
      *     maxResults: 'placeholder-value',
      *     // The ID of the managing account. This must be a multi-client account.
      *     merchantId: 'placeholder-value',
+     *     // If set, only the accounts with the given name (case sensitive) will be returned.
+     *     name: 'placeholder-value',
      *     // The token returned by the previous request.
      *     pageToken: 'placeholder-value',
      *   });
@@ -10861,6 +10883,10 @@ export namespace content_v2_1 {
      * The ID of the managing account. This must be a multi-client account.
      */
     merchantId?: string;
+    /**
+     * If set, only the accounts with the given name (case sensitive) will be returned.
+     */
+    name?: string;
     /**
      * The token returned by the previous request.
      */
@@ -23792,7 +23818,7 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.products.delete({
-     *     // The Content API Supplemental Feed ID.
+     *     // The Content API Supplemental Feed ID. If present then product deletion applies to the data in a supplemental feed. If absent, entire product will be deleted.
      *     feedId: 'placeholder-value',
      *     // The ID of the account that contains the product. This account cannot be a multi-client account.
      *     merchantId: 'placeholder-value',
@@ -24131,7 +24157,7 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.products.insert({
-     *     // The Content API Supplemental Feed ID.
+     *     // The Content API Supplemental Feed ID. If present then product insertion applies to the data in a supplemental feed.
      *     feedId: 'placeholder-value',
      *     // The ID of the account that contains the product. This account cannot be a multi-client account.
      *     merchantId: 'placeholder-value',
@@ -24869,7 +24895,7 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Products$Delete extends StandardParameters {
     /**
-     * The Content API Supplemental Feed ID.
+     * The Content API Supplemental Feed ID. If present then product deletion applies to the data in a supplemental feed. If absent, entire product will be deleted.
      */
     feedId?: string;
     /**
@@ -24893,7 +24919,7 @@ export namespace content_v2_1 {
   }
   export interface Params$Resource$Products$Insert extends StandardParameters {
     /**
-     * The Content API Supplemental Feed ID.
+     * The Content API Supplemental Feed ID. If present then product insertion applies to the data in a supplemental feed.
      */
     feedId?: string;
     /**
