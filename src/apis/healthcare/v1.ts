@@ -631,7 +631,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$ExportResourcesRequest {
     /**
-     * The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type. Note that unlike in FhirStore.StreamConfig.BigQueryDestination, BigQuery views will not be created by ExportResources.
+     * The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type. Unlike when setting `BigQueryDestination` for `StreamConfig`, `ExportResources` does not create BigQuery views.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1FhirBigQueryDestination;
     /**
