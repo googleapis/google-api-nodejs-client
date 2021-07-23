@@ -545,7 +545,7 @@ export namespace alertcenter_v1beta1 {
      */
     attachmentsSha256Hash?: string[] | null;
     /**
-     * The date the malicious email was sent.
+     * The date of the event related to this email.
      */
     date?: string | null;
     /**
