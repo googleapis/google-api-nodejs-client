@@ -439,7 +439,7 @@
               ],
               "parameters": {
                 "ackBundleInstallationWarning": {
-                  "description": "Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).",
+                  "description": "Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -2676,7 +2676,7 @@
       }
     }
   },
-  "revision": "20210605",
+  "revision": "20210722",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -2791,7 +2791,7 @@
       "type": "object"
     },
     "Bundle": {
-      "description": "Information about a bundle. The resource for BundlesService.",
+      "description": "Information about an app bundle. The resource for BundlesService.",
       "id": "Bundle",
       "properties": {
         "sha1": {
@@ -2811,11 +2811,11 @@
       "type": "object"
     },
     "BundlesListResponse": {
-      "description": "Response listing all bundles.",
+      "description": "Response listing all app bundles.",
       "id": "BundlesListResponse",
       "properties": {
         "bundles": {
-          "description": "All bundles.",
+          "description": "All app bundles.",
           "items": {
             "$ref": "Bundle"
           },

@@ -230,7 +230,7 @@ export namespace androidpublisher_v3 {
     id?: string | null;
   }
   /**
-   * Information about a bundle. The resource for BundlesService.
+   * Information about an app bundle. The resource for BundlesService.
    */
   export interface Schema$Bundle {
     /**
@@ -247,11 +247,11 @@ export namespace androidpublisher_v3 {
     versionCode?: number | null;
   }
   /**
-   * Response listing all bundles.
+   * Response listing all app bundles.
    */
   export interface Schema$BundlesListResponse {
     /**
-     * All bundles.
+     * All app bundles.
      */
     bundles?: Schema$Bundle[];
     /**
@@ -2675,7 +2675,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.bundles.upload({
-     *     // Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
+     *     // Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      *     ackBundleInstallationWarning: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
@@ -2811,7 +2811,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Edits$Bundles$Upload
     extends StandardParameters {
     /**
-     * Must be set to true if the bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
+     * Must be set to true if the app bundle installation may trigger a warning on user devices (for example, if installation size may be over a threshold, typically 100 MB).
      */
     ackBundleInstallationWarning?: boolean;
     /**
