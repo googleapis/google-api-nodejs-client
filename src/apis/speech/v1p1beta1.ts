@@ -147,7 +147,7 @@ export namespace speech_v1p1beta1 {
      */
     customClass?: Schema$CustomClass;
     /**
-     * The ID to use for the custom class, which will become the final component of the custom class' resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the custom class, which will become the final component of the custom class' resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
      */
     customClassId?: string | null;
   }
@@ -160,7 +160,7 @@ export namespace speech_v1p1beta1 {
      */
     phraseSet?: Schema$PhraseSet;
     /**
-     * The ID to use for the phrase set, which will become the final component of the phrase set's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the phrase set, which will become the final component of the phrase set's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
      */
     phraseSetId?: string | null;
   }
@@ -185,6 +185,23 @@ export namespace speech_v1p1beta1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * A single replacement configuration.
+   */
+  export interface Schema$Entry {
+    /**
+     * Whether the search is case sensitive.
+     */
+    caseSensitive?: boolean | null;
+    /**
+     * What to replace with. Max length is 100 characters.
+     */
+    replace?: string | null;
+    /**
+     * What to replace. Max length is 100 characters.
+     */
+    search?: string | null;
+  }
   /**
    * Message returned to the client by the `ListCustomClasses` method.
    */
@@ -436,6 +453,10 @@ export namespace speech_v1p1beta1 {
      */
     speechContexts?: Schema$SpeechContext[];
     /**
+     * Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability \> 0.8) and final transcripts.
+     */
+    transcriptNormalization?: Schema$TranscriptNormalization;
+    /**
      * Set to true to use an enhanced model for speech recognition. If `use_enhanced` is set to true and the `model` field is not set, then an appropriate enhanced model is chosen if an enhanced model exists for the audio. If `use_enhanced` is true and an enhanced version of the specified model does not exist, then the speech is recognized using the standard version of the specified model.
      */
     useEnhanced?: boolean | null;
@@ -604,6 +625,15 @@ export namespace speech_v1p1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Transcription normalization configuration. Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability \> 0.8) and final transcripts.
+   */
+  export interface Schema$TranscriptNormalization {
+    /**
+     * A list of replacement entries. We will perform replacement with one entry at a time. For example, the second entry in ["cat" =\> "dog", "mountain cat" =\> "mountain dog"] will never be applied because we will always process the first entry before it. At most 100 entries.
+     */
+    entries?: Schema$Entry;
   }
   /**
    * Specifies an optional destination for the recognition results.
