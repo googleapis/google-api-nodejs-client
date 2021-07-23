@@ -986,7 +986,7 @@
       }
     }
   },
-  "revision": "20210702",
+  "revision": "20210715",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1073,14 +1073,16 @@
             "CREATING",
             "DELETING",
             "ACTIVE",
-            "FAILED"
+            "FAILED",
+            "RESTORING"
           ],
           "enumDescriptions": [
             "The state of the backup is unknown.",
             "The backup is being created.",
             "The backup is being deleted.",
             "The backup is active and ready to use.",
-            "The backup failed."
+            "The backup failed.",
+            "The backup is being restored."
           ],
           "readOnly": true,
           "type": "string"
