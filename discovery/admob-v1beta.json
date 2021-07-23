@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20210617",
+  "revision": "20210722",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdUnit": {
@@ -579,7 +579,7 @@
       "type": "object"
     },
     "MediationReportSpec": {
-      "description": "The specification for generating an AdMob Mediation report. For example, the specification to get observed ECPM sliced by ad source and app for the 'US' and 'CN' countries can look like the following example: { \"date_range\": { \"start_date\": {\"year\": 2018, \"month\": 9, \"day\": 1}, \"end_date\": {\"year\": 2018, \"month\": 9, \"day\": 30} }, \"dimensions\": [\"AD_SOURCE\", \"APP\", \"COUNTRY\"], \"metrics\": [\"OBSERVED_ECPM\"], \"dimension_filters\": [ { \"dimension\": \"COUNTRY\", \"matches_any\": {\"values\": [{\"value\": \"US\", \"value\": \"CN\"}]} } ], \"sort_conditions\": [ {\"dimension\":\"APP\", order: \"ASCENDING\"} ], \"localization_settings\": { \"currency_code\": \"USD\", \"language_code\": \"en-US\" } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM FROM MEDIATION_REPORT WHERE DATE >= '2018-09-01' AND DATE <= '2018-09-30' AND COUNTRY IN ('US', 'CN') GROUP BY AD_SOURCE, APP, COUNTRY ORDER BY APP ASC;",
+      "description": "The specification for generating an AdMob Mediation report. For example, the specification to get observed ECPM sliced by ad source and app for the 'US' and 'CN' countries can look like the following example: { \"date_range\": { \"start_date\": {\"year\": 2021, \"month\": 9, \"day\": 1}, \"end_date\": {\"year\": 2021, \"month\": 9, \"day\": 30} }, \"dimensions\": [\"AD_SOURCE\", \"APP\", \"COUNTRY\"], \"metrics\": [\"OBSERVED_ECPM\"], \"dimension_filters\": [ { \"dimension\": \"COUNTRY\", \"matches_any\": {\"values\": [{\"value\": \"US\", \"value\": \"CN\"}]} } ], \"sort_conditions\": [ {\"dimension\":\"APP\", order: \"ASCENDING\"} ], \"localization_settings\": { \"currency_code\": \"USD\", \"language_code\": \"en-US\" } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM FROM MEDIATION_REPORT WHERE DATE >= '2021-09-01' AND DATE <= '2021-09-30' AND COUNTRY IN ('US', 'CN') GROUP BY AD_SOURCE, APP, COUNTRY ORDER BY APP ASC;",
       "id": "MediationReportSpec",
       "properties": {
         "dateRange": {
@@ -616,9 +616,9 @@
             ],
             "enumDescriptions": [
               "Default value for an unset field. Do not use.",
-              "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-              "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
-              "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
+              "A date in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
+              "A month in the YYYYMM format (for example, \"202107\"). Requests can specify at most one time dimension.",
+              "The date of the first day of a week in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
               "The [unique ID of the ad source](/admob/api/v1/ad_sources) (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
               "The unique ID of the ad source instance (for example, \"ca-app-pub-1234:asi:5678\" and \"AdMob (default)\" as label value).",
               "The unique ID of the ad unit (for example, \"ca-app-pub-1234/8790\"). If AD_UNIT dimension is specified, then APP is included automatically.",
@@ -714,9 +714,9 @@
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
-            "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
-            "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
+            "A date in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
+            "A month in the YYYYMM format (for example, \"202107\"). Requests can specify at most one time dimension.",
+            "The date of the first day of a week in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
             "The [unique ID of the ad source](/admob/api/v1/ad_sources) (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
             "The unique ID of the ad source instance (for example, \"ca-app-pub-1234:asi:5678\" and \"AdMob (default)\" as label value).",
             "The unique ID of the ad unit (for example, \"ca-app-pub-1234/8790\"). If AD_UNIT dimension is specified, then APP is included automatically.",
@@ -765,9 +765,9 @@
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
-            "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
-            "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
+            "A date in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
+            "A month in the YYYYMM format (for example, \"202107\"). Requests can specify at most one time dimension.",
+            "The date of the first day of a week in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
             "The [unique ID of the ad source](/admob/api/v1/ad_sources) (for example, \"5450213213286189855\" and \"AdMob Network\" as label value).",
             "The unique ID of the ad source instance (for example, \"ca-app-pub-1234:asi:5678\" and \"AdMob (default)\" as label value).",
             "The unique ID of the ad unit (for example, \"ca-app-pub-1234/8790\"). If AD_UNIT dimension is specified, then APP is included automatically.",
@@ -827,7 +827,7 @@
       "type": "object"
     },
     "NetworkReportSpec": {
-      "description": "The specification for generating an AdMob Network report. For example, the specification to get clicks and estimated earnings for only the 'US' and 'CN' countries can look like the following example: { 'date_range': { 'start_date': {'year': 2018, 'month': 9, 'day': 1}, 'end_date': {'year': 2018, 'month': 9, 'day': 30} }, 'dimensions': ['DATE', 'APP', 'COUNTRY'], 'metrics': ['CLICKS', 'ESTIMATED_EARNINGS'], 'dimension_filters': [ { 'dimension': 'COUNTRY', 'matches_any': {'values': [{'value': 'US', 'value': 'CN'}]} } ], 'sort_conditions': [ {'dimension':'APP', order: 'ASCENDING'}, {'metric':'CLICKS', order: 'DESCENDING'} ], 'localization_settings': { 'currency_code': 'USD', 'language_code': 'en-US' } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS FROM NETWORK_REPORT WHERE DATE >= '2018-09-01' AND DATE <= '2018-09-30' AND COUNTRY IN ('US', 'CN') GROUP BY DATE, APP, COUNTRY ORDER BY APP ASC, CLICKS DESC;",
+      "description": "The specification for generating an AdMob Network report. For example, the specification to get clicks and estimated earnings for only the 'US' and 'CN' countries can look like the following example: { 'date_range': { 'start_date': {'year': 2021, 'month': 9, 'day': 1}, 'end_date': {'year': 2021, 'month': 9, 'day': 30} }, 'dimensions': ['DATE', 'APP', 'COUNTRY'], 'metrics': ['CLICKS', 'ESTIMATED_EARNINGS'], 'dimension_filters': [ { 'dimension': 'COUNTRY', 'matches_any': {'values': [{'value': 'US', 'value': 'CN'}]} } ], 'sort_conditions': [ {'dimension':'APP', order: 'ASCENDING'}, {'metric':'CLICKS', order: 'DESCENDING'} ], 'localization_settings': { 'currency_code': 'USD', 'language_code': 'en-US' } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS FROM NETWORK_REPORT WHERE DATE >= '2021-09-01' AND DATE <= '2021-09-30' AND COUNTRY IN ('US', 'CN') GROUP BY DATE, APP, COUNTRY ORDER BY APP ASC, CLICKS DESC;",
       "id": "NetworkReportSpec",
       "properties": {
         "dateRange": {
@@ -862,9 +862,9 @@
             ],
             "enumDescriptions": [
               "Default value for an unset field. Do not use.",
-              "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-              "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
-              "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
+              "A date in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
+              "A month in the YYYYMM format (for example, \"202107\"). Requests can specify at most one time dimension.",
+              "The date of the first day of a week in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
               "The unique ID of the ad unit (for example, \"ca-app-pub-1234/1234\"). If AD_UNIT dimension is specified, then APP is included automatically.",
               "The unique ID of the mobile application (for example, \"ca-app-pub-1234~1234\").",
               "Type of the ad (for example, \"text\" or \"image\"), an ad delivery dimension. **Warning:** The dimension is incompatible with [AD_REQUESTS](#Metric.ENUM_VALUES.AD_REQUESTS), [MATCH_RATE](#Metric.ENUM_VALUES.MATCH_RATE) and [IMPRESSION_RPM](#Metric.ENUM_VALUES.IMPRESSION_RPM) metrics.",
@@ -958,9 +958,9 @@
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
-            "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
-            "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
+            "A date in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
+            "A month in the YYYYMM format (for example, \"202107\"). Requests can specify at most one time dimension.",
+            "The date of the first day of a week in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
             "The unique ID of the ad unit (for example, \"ca-app-pub-1234/1234\"). If AD_UNIT dimension is specified, then APP is included automatically.",
             "The unique ID of the mobile application (for example, \"ca-app-pub-1234~1234\").",
             "Type of the ad (for example, \"text\" or \"image\"), an ad delivery dimension. **Warning:** The dimension is incompatible with [AD_REQUESTS](#Metric.ENUM_VALUES.AD_REQUESTS), [MATCH_RATE](#Metric.ENUM_VALUES.MATCH_RATE) and [IMPRESSION_RPM](#Metric.ENUM_VALUES.IMPRESSION_RPM) metrics.",
@@ -1005,9 +1005,9 @@
           ],
           "enumDescriptions": [
             "Default value for an unset field. Do not use.",
-            "A date in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
-            "A month in the YYYY-MM format (for example, \"2018-12\"). Requests can specify at most one time dimension.",
-            "The date of the first day of a week in the YYYY-MM-DD format (for example, \"2018-12-21\"). Requests can specify at most one time dimension.",
+            "A date in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
+            "A month in the YYYYMM format (for example, \"202107\"). Requests can specify at most one time dimension.",
+            "The date of the first day of a week in the YYYYMMDD format (for example, \"20210701\"). Requests can specify at most one time dimension.",
             "The unique ID of the ad unit (for example, \"ca-app-pub-1234/1234\"). If AD_UNIT dimension is specified, then APP is included automatically.",
             "The unique ID of the mobile application (for example, \"ca-app-pub-1234~1234\").",
             "Type of the ad (for example, \"text\" or \"image\"), an ad delivery dimension. **Warning:** The dimension is incompatible with [AD_REQUESTS](#Metric.ENUM_VALUES.AD_REQUESTS), [MATCH_RATE](#Metric.ENUM_VALUES.MATCH_RATE) and [IMPRESSION_RPM](#Metric.ENUM_VALUES.IMPRESSION_RPM) metrics.",
