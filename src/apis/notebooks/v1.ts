@@ -704,15 +704,15 @@ export namespace notebooks_v1 {
    */
   export interface Schema$LocalDisk {
     /**
-     * Output only. Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+     * Optional. Output only. Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
      */
     autoDelete?: boolean | null;
     /**
-     * Output only. Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
+     * Optional. Output only. Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
      */
     boot?: boolean | null;
     /**
-     * Output only. Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     * Optional. Output only. Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
      */
     deviceName?: string | null;
     /**
@@ -720,11 +720,11 @@ export namespace notebooks_v1 {
      */
     guestOsFeatures?: Schema$RuntimeGuestOsFeature[];
     /**
-     * Output only. [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
+     * Output only. A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
      */
     index?: number | null;
     /**
-     * Input only. [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+     * Input only. Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
      */
     initializeParams?: Schema$LocalDiskInitializeParams;
     /**
@@ -736,7 +736,7 @@ export namespace notebooks_v1 {
      */
     kind?: string | null;
     /**
-     * Output only. [Output Only] Any valid publicly visible licenses.
+     * Output only. Any valid publicly visible licenses.
      */
     licenses?: string[] | null;
     /**
@@ -753,7 +753,7 @@ export namespace notebooks_v1 {
     type?: string | null;
   }
   /**
-   * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new runtime. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+   * Input only. Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new runtime. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
    */
   export interface Schema$LocalDiskInitializeParams {
     /**
@@ -971,7 +971,7 @@ export namespace notebooks_v1 {
      */
     metrics?: Schema$RuntimeMetrics;
     /**
-     * Output only. The resource name of the runtime. Format: `projects/{project\}/locations/{location\}/runtimes/{runtime\}`
+     * Output only. The resource name of the runtime. Format: `projects/{project\}/locations/{location\}/runtimes/{runtimeId\}`
      */
     name?: string | null;
     /**
@@ -1022,11 +1022,11 @@ export namespace notebooks_v1 {
     runtimeOwner?: string | null;
   }
   /**
-   * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options. Guest OS features for boot disk.
+   * Optional. A list of features to enable on the guest operating system. Applicable only for bootable images. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options. Guest OS features for boot disk.
    */
   export interface Schema$RuntimeGuestOsFeature {
     /**
-     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options. Valid values: FEATURE_TYPE_UNSPECIFIED MULTI_IP_SUBNET SECURE_BOOT UEFI_COMPATIBLE VIRTIO_SCSI_MULTIQUEUE WINDOWS
+     * The ID of a supported feature. Read [Enabling guest operating system features](https://cloud.google.com/compute/docs/images/create-delete-deprecate-private-images#guest-os-features) to see a list of available options. Valid values: * FEATURE_TYPE_UNSPECIFIED * MULTI_IP_SUBNET * SECURE_BOOT * UEFI_COMPATIBLE * VIRTIO_SCSI_MULTIQUEUE * WINDOWS
      */
     type?: string | null;
   }
@@ -1040,7 +1040,7 @@ export namespace notebooks_v1 {
     systemMetrics?: {[key: string]: string} | null;
   }
   /**
-   * A set of Shielded Instance options. Check [Images using supported Shielded VM features] Not all combinations are valid.
+   * A set of Shielded Instance options. Check [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid.
    */
   export interface Schema$RuntimeShieldedInstanceConfig {
     /**
@@ -1057,7 +1057,7 @@ export namespace notebooks_v1 {
     enableVtpm?: boolean | null;
   }
   /**
-   * Specifies the selection and config of software inside the runtime. / The properties to set on runtime. Properties keys are specified in `key:value` format, for example: * idle_shutdown: idle_shutdown=true * idle_shutdown_timeout: idle_shutdown_timeout=180 * report-system-health: report-system-health=true
+   * Specifies the selection and configuration of software inside the runtime. The properties to set on runtime. Properties keys are specified in `key:value` format, for example: * `idle_shutdown: true` * `idle_shutdown_timeout: 180` * `report-system-health: true`
    */
   export interface Schema$RuntimeSoftwareConfig {
     /**
