@@ -245,11 +245,61 @@ export namespace retail_v2alpha {
     functionName?: string | null;
   }
   /**
+   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the AddFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2AddFulfillmentPlacesMetadata {}
+  /**
+   * Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the AddFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2AddFulfillmentPlacesResponse {}
+  /**
+   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the AddFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesMetadata {}
+  /**
+   * Request message for AddFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesRequest {
+    /**
+     * The time when the fulfillment updates are issued, used to prevent out-of-order updates on fulfillment information. If not provided, the internal system time will be used.
+     */
+    addTime?: string | null;
+    /**
+     * If set to true, and the Product is not found, the fulfillment information will still be processed and retained for at most 1 day and processed once the Product is created. If set to false, an INVALID_ARGUMENT error is returned if the Product is not found.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Required. The IDs for this type, such as the store IDs for "pickup-in-store" or the region IDs for "same-day-delivery" to be added for this type. Duplicate IDs will be automatically ignored. At least 1 value is required, and a maximum of 2000 values are allowed. Each value must be a string with a length limit of 10 characters, matching the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an INVALID_ARGUMENT error is returned. If the total number of place IDs exceeds 2000 for this type after adding, then the update will be rejected.
+     */
+    placeIds?: string[] | null;
+    /**
+     * Required. The fulfillment type, including commonly used types (such as pickup in store and same day delivery), and custom types. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. This field directly corresponds to Product.fulfillment_info.type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the AddFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesResponse {}
+  /**
+   * An intended audience of the Product for whom it's sold.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAudience {
+    /**
+     * The age groups of the audience. Strongly encouraged to use the standard values: "newborn" (up to 3 months old), "infant" (3–12 months old), "toddler" (1–5 years old), "kids" (5–13 years old), "adult" (typically teens or older). At most 5 values are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [age_group](https://support.google.com/merchants/answer/6324463). Schema.org property [Product.audience.suggestedMinAge](https://schema.org/suggestedMinAge) and [Product.audience.suggestedMaxAge](https://schema.org/suggestedMaxAge).
+     */
+    ageGroups?: string[] | null;
+    /**
+     * The genders of the audience. Strongly encouraged to use the standard values: "male", "female", "unisex". At most 5 values are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [gender](https://support.google.com/merchants/answer/6324479). Schema.org property [Product.audience.suggestedGender](https://schema.org/suggestedGender).
+     */
+    genders?: string[] | null;
+  }
+  /**
    * BigQuery source import data from.
    */
   export interface Schema$GoogleCloudRetailV2alphaBigQuerySource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719?hl=en.
+     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719.
      */
     dataSchema?: string | null;
     /**
@@ -260,6 +310,10 @@ export namespace retail_v2alpha {
      * Intermediate Cloud Storage directory used for the import with a length limit of 2,000 characters. Can be specified if one wants to have the BigQuery export to a specific Cloud Storage directory.
      */
     gcsStagingDir?: string | null;
+    /**
+     * BigQuery time partitioned table's _PARTITIONDATE in YYYY-MM-DD format. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.
+     */
+    partitionDate?: Schema$GoogleTypeDate;
     /**
      * The project ID (can be project # or ID) that the BigQuery source is in with a length limit of 128 characters. If not specified, inherits the project ID from the parent request.
      */
@@ -278,6 +332,10 @@ export namespace retail_v2alpha {
      */
     displayName?: string | null;
     /**
+     * The Merchant Center linking configuration. Once a link is added, the data stream from Merchant Center to Cloud Retail will be enabled automatically. The requester must have access to the merchant center account in order to make changes to this field.
+     */
+    merchantCenterLinkingConfig?: Schema$GoogleCloudRetailV2alphaMerchantCenterLinkingConfig;
+    /**
      * Required. Immutable. The fully qualified resource name of the catalog.
      */
     name?: string | null;
@@ -287,13 +345,101 @@ export namespace retail_v2alpha {
     productLevelConfig?: Schema$GoogleCloudRetailV2alphaProductLevelConfig;
   }
   /**
+   * The color information of a Product.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaColorInfo {
+    /**
+     * The standard color families. Strongly recommended to use the following standard color groups: "Red", "Pink", "Orange", "Yellow", "Purple", "Green", "Cyan", "Blue", "Brown", "White", "Gray", "Black" and "Mixed". Normally it is expected to have only 1 color family. May consider using single "Mixed" instead of multiple values. A maximum of 5 values are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).
+     */
+    colorFamilies?: string[] | null;
+    /**
+     * The color display names, which may be different from standard color family names, such as the color aliases used in the website frontend. Normally it is expected to have only 1 color. May consider using single "Mixed" instead of multiple values. A maximum of 5 colors are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).
+     */
+    colors?: string[] | null;
+  }
+  /**
+   * Response of the auto-complete query.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCompleteQueryResponse {
+    /**
+     * A unique complete token. This should be included in the SearchRequest resulting from this completion, which enables accurate attribution of complete model performance.
+     */
+    attributionToken?: string | null;
+    /**
+     * Results of the matching suggestions. The result list is ordered and the first result is top suggestion.
+     */
+    completionResults?: Schema$GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult[];
+    /**
+     * Matched recent searches of this user. This field is a restricted feature. Contact Retail Support (retail-search-support@google.com) if you are interested in enabling it. This feature is only available when CompleteQueryRequest.visitor_id field is set and UserEvent is imported. The recent searches satisfy the follow rules: * They are ordered from latest to oldest. * They are matched with CompleteQueryRequest.query case insensitively. * They are transformed to lower cases. * They are UTF-8 safe. Recent searches are deduplicated. More recent searches will be reserved when duplication happens.
+     */
+    recentSearchResults?: Schema$GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult[];
+  }
+  /**
+   * Resource that represents completion results.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult {
+    /**
+     * Additional custom attributes ingested through BigQuery.
+     */
+    attributes?: {
+      [key: string]: Schema$GoogleCloudRetailV2alphaCustomAttribute;
+    } | null;
+    /**
+     * The suggestion for the query.
+     */
+    suggestion?: string | null;
+  }
+  /**
+   * Recent search of this user.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCompleteQueryResponseRecentSearchResult {
+    /**
+     * The recent search query.
+     */
+    recentSearch?: string | null;
+  }
+  /**
+   * The input config source for completion data.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCompletionDataInputConfig {
+    /**
+     * Required. BigQuery input source. Add the IAM permission “BigQuery Data Viewer” for cloud-retail-customer-data-access@system.gserviceaccount.com before using this feature otherwise an error is thrown.
+     */
+    bigQuerySource?: Schema$GoogleCloudRetailV2alphaBigQuerySource;
+  }
+  /**
+   * Detailed completion information including completion attribution token and clicked completion info.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCompletionDetail {
+    /**
+     * Completion attribution token in CompleteQueryResponse.attribution_token.
+     */
+    completionAttributionToken?: string | null;
+    /**
+     * End user selected CompleteQueryResponse.CompletionResult.suggestion position, starting from 0.
+     */
+    selectedPosition?: number | null;
+    /**
+     * End user selected CompleteQueryResponse.CompletionResult.suggestion.
+     */
+    selectedSuggestion?: string | null;
+  }
+  /**
    * A custom attribute that is not explicitly modeled in Product.
    */
   export interface Schema$GoogleCloudRetailV2alphaCustomAttribute {
     /**
+     * If true, custom attribute values are indexed, so that it can be filtered, faceted or boosted in SearchService.Search. This field is ignored in a UserEvent. See SearchRequest.filter, SearchRequest.facet_specs and SearchRequest.boost_spec for more details.
+     */
+    indexable?: boolean | null;
+    /**
      * The numerical values of this custom attribute. For example, `[2.3, 15.4]` when the key is "lengths_cm". At most 400 values are allowed.Otherwise, an INVALID_ARGUMENT error is returned. Exactly one of text or numbers should be set. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     numbers?: number[] | null;
+    /**
+     * If true, custom attribute values are searchable by text queries in SearchService.Search. This field is ignored in a UserEvent. Only set if type text is set. Otherwise, a INVALID_ARGUMENT error is returned.
+     */
+    searchable?: boolean | null;
     /**
      * The textual values of this custom attribute. For example, `["yellow", "green"]` when the key is "color". At most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. Otherwise, an INVALID_ARGUMENT error is returned. Exactly one of text or numbers should be set. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -348,17 +494,47 @@ export namespace retail_v2alpha {
     errorsConfig?: Schema$GoogleCloudRetailV2alphaExportErrorsConfig;
   }
   /**
+   * Fulfillment information, such as the store IDs for in-store pickup or region IDs for different shipping methods.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaFulfillmentInfo {
+    /**
+     * The IDs for this type, such as the store IDs for FulfillmentInfo.type.pickup-in-store or the region IDs for FulfillmentInfo.type.same-day-delivery. A maximum of 2000 values are allowed. Each value must be a string with a length limit of 10 characters, matching the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    placeIds?: string[] | null;
+    /**
+     * The fulfillment type, including commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned.
+     */
+    type?: string | null;
+  }
+  /**
    * Google Cloud Storage location for input content. format.
    */
   export interface Schema$GoogleCloudRetailV2alphaGcsSource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719?hl=en.
+     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719.
      */
     dataSchema?: string | null;
     /**
      * Required. Google Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/x.json`. A request can contain at most 100 files, and each file can be up to 2 GB. See [Importing product information](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog) for the expected file format and setup instructions.
      */
     inputUris?: string[] | null;
+  }
+  /**
+   * Response message of CatalogService.GetDefaultBranch.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse {
+    /**
+     * Full resource name of the branch id currently set as default branch.
+     */
+    branch?: string | null;
+    /**
+     * This corresponds to SetDefaultBranchRequest.note field, when this branch was set as default.
+     */
+    note?: string | null;
+    /**
+     * The time when this branch is set to default.
+     */
+    setTime?: string | null;
   }
   /**
    * Product thumbnail/detail image.
@@ -376,6 +552,28 @@ export namespace retail_v2alpha {
      * Width of the image in number of pixels. This field must be nonnegative. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     width?: number | null;
+  }
+  /**
+   * Request message for ImportCompletionData methods.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaImportCompletionDataRequest {
+    /**
+     * Required. The desired input location of the data.
+     */
+    inputConfig?: Schema$GoogleCloudRetailV2alphaCompletionDataInputConfig;
+    /**
+     * Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project\}/topics/{topic\}`.
+     */
+    notificationPubsubTopic?: string | null;
+  }
+  /**
+   * Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaImportCompletionDataResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
   }
   /**
    * Configuration of destination for Import related errors.
@@ -399,6 +597,14 @@ export namespace retail_v2alpha {
      */
     failureCount?: string | null;
     /**
+     * Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project\}/topics/{topic\}`.
+     */
+    notificationPubsubTopic?: string | null;
+    /**
+     * Id of the request / operation. This is parroting back the requestId that was passed in the request.
+     */
+    requestId?: string | null;
+    /**
      * Count of entries that were processed successfully.
      */
     successCount?: string | null;
@@ -419,6 +625,18 @@ export namespace retail_v2alpha {
      * Required. The desired input location of the data.
      */
     inputConfig?: Schema$GoogleCloudRetailV2alphaProductInputConfig;
+    /**
+     * Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project\}/topics/{topic\}`. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.
+     */
+    notificationPubsubTopic?: string | null;
+    /**
+     * The mode of reconciliation between existing products and the products to be imported. Defaults to ReconciliationMode.INCREMENTAL.
+     */
+    reconciliationMode?: string | null;
+    /**
+     * Unique identifier provided by client, within the ancestor dataset scope. Ensures idempotency and used for request deduplication. Server-generated if unspecified. Up to 128 characters long and must match the pattern: "[a-zA-Z0-9_]+". This is returned as Operation.name in ImportMetadata. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.
+     */
+    requestId?: string | null;
     /**
      * Indicates which fields in the provided imported 'products' to update. If not set, will by default update all fields.
      */
@@ -468,6 +686,27 @@ export namespace retail_v2alpha {
     importSummary?: Schema$GoogleCloudRetailV2alphaUserEventImportSummary;
   }
   /**
+   * A floating point interval.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaInterval {
+    /**
+     * Exclusive upper bound.
+     */
+    exclusiveMaximum?: number | null;
+    /**
+     * Exclusive lower bound.
+     */
+    exclusiveMinimum?: number | null;
+    /**
+     * Inclusive upper bound.
+     */
+    maximum?: number | null;
+    /**
+     * Inclusive lower bound.
+     */
+    minimum?: number | null;
+  }
+  /**
    * Response for CatalogService.ListCatalogs method.
    */
   export interface Schema$GoogleCloudRetailV2alphaListCatalogsResponse {
@@ -492,6 +731,36 @@ export namespace retail_v2alpha {
      * The Products.
      */
     products?: Schema$GoogleCloudRetailV2alphaProduct[];
+    /**
+     * The total count of matched Products irrespective of pagination. The total number of Products returned by pagination may be less than the total_size that matches. This field is ignored if ListProductsRequest.require_total_size is not set or ListProductsRequest.page_token is not empty.
+     */
+    totalSize?: number | null;
+  }
+  /**
+   * Represents a link between a Merchant Center account and a branch. Once a link is established, products from the linked merchant center account will be streamed to the linked branch.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaMerchantCenterLink {
+    /**
+     * The branch id (e.g. 0/1/2) within this catalog that products from merchant_center_account_id are streamed to. When updating this field, an empty value will use the currently configured default branch. However, changing the default branch later on won't change the linked branch here. A single branch id can only have one linked merchant center account id.
+     */
+    branchId?: string | null;
+    /**
+     * String representing the destination to import for, all if left empty. List of possible values can be found here. [https://support.google.com/merchants/answer/7501026?hl=en] List of allowed string values: "shopping-ads", "buy-on-google-listings", "display-ads", "local-inventory -ads", "free-listings", "free-local-listings" NOTE: The string values are case sensitive.
+     */
+    destinations?: string[] | null;
+    /**
+     * Required. The linked [Merchant center account id](https://developers.google.com/shopping-content/guides/accountstatuses). The account must be a standalone account or a sub-account of a MCA.
+     */
+    merchantCenterAccountId?: string | null;
+  }
+  /**
+   * Configures Merchant Center linking. Links contained in the config will be used to sync data from a Merchant Center account to a Cloud Retail branch.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaMerchantCenterLinkingConfig {
+    /**
+     * Links between Merchant Center accounts and branches.
+     */
+    links?: Schema$GoogleCloudRetailV2alphaMerchantCenterLink[];
   }
   /**
    * Request message for Predict method.
@@ -569,7 +838,7 @@ export namespace retail_v2alpha {
      */
     cost?: number | null;
     /**
-     * The 3-letter currency code defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html). If this field is an unrecognizable currency code, an INVALID_ARGUMENT error is returned.
+     * The 3-letter currency code defined in [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html). If this field is an unrecognizable currency code, an INVALID_ARGUMENT error is returned. The Product.Type.VARIANT Products with the same Product.primary_product_id must share the same currency_code. Otherwise, a FAILED_PRECONDITION error is returned.
      */
     currencyCode?: string | null;
     /**
@@ -580,17 +849,46 @@ export namespace retail_v2alpha {
      * Price of the product. Google Merchant Center property [price](https://support.google.com/merchants/answer/6324371). Schema.org property [Offer.priceSpecification](https://schema.org/priceSpecification).
      */
     price?: number | null;
+    /**
+     * The timestamp when the price starts to be effective. This can be set as a future timestamp, and the price is only used for search after price_effective_time. If so, the original_price must be set and original_price is used before price_effective_time. Do not set if price is always effective because it will cause additional latency during search.
+     */
+    priceEffectiveTime?: string | null;
+    /**
+     * The timestamp when the price stops to be effective. The price is used for search before price_expire_time. If this field is set, the original_price must be set and original_price is used after price_expire_time. Do not set if price is always effective because it will cause additional latency during search.
+     */
+    priceExpireTime?: string | null;
+    /**
+     * Output only. The price range of all the child Product.Type.VARIANT Products grouped together on the Product.Type.PRIMARY Product. Only populated for Product.Type.PRIMARY Products. Note: This field is OUTPUT_ONLY for ProductService.GetProduct. Do not set this field in API requests.
+     */
+    priceRange?: Schema$GoogleCloudRetailV2alphaPriceInfoPriceRange;
+  }
+  /**
+   * The price range of all variant Product having the same Product.primary_product_id.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaPriceInfoPriceRange {
+    /**
+     * The inclusive Product.pricing_info.original_price internal of all variant Product having the same Product.primary_product_id.
+     */
+    originalPrice?: Schema$GoogleCloudRetailV2alphaInterval;
+    /**
+     * The inclusive Product.pricing_info.price interval of all variant Product having the same Product.primary_product_id.
+     */
+    price?: Schema$GoogleCloudRetailV2alphaInterval;
   }
   /**
    * Product captures all metadata information of items to be recommended or searched.
    */
   export interface Schema$GoogleCloudRetailV2alphaProduct {
     /**
-     * Highly encouraged. Extra product attributes to be included. For example, for products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the attributes here. Features that can take on one of a limited number of possible values. Two types of features can be set are: Textual features. some examples would be the brand/maker of a product, or country of a customer. Numerical features. Some examples would be the height/weight of a product, or age of a customer. For example: `{ "vendor": {"text": ["vendor123", "vendor456"]\}, "lengths_cm": {"numbers":[2.3, 15.4]\}, "heights_cm": {"numbers":[8.1, 6.4]\} \}`. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * Max entries count: 200 by default; 100 for Type.VARIANT. * The key must be a UTF-8 encoded string with a length limit of 128 characters.
+     * Highly encouraged. Extra product attributes to be included. For example, for products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the attributes here. Features that can take on one of a limited number of possible values. Two types of features can be set are: Textual features. some examples would be the brand/maker of a product, or country of a customer. Numerical features. Some examples would be the height/weight of a product, or age of a customer. For example: `{ "vendor": {"text": ["vendor123", "vendor456"]\}, "lengths_cm": {"numbers":[2.3, 15.4]\}, "heights_cm": {"numbers":[8.1, 6.4]\} \}`. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * Max entries count: 200 by default; 100 for Type.VARIANT. * The key must be a UTF-8 encoded string with a length limit of 128 characters. * Max indexable entries count: 200 by default; 40 for Type.VARIANT. * Max searchable entries count: 30. * For indexable attribute, the key must match the pattern: a-zA-Z0-9*. For example, key0LikeThis or KEY_1_LIKE_THIS.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudRetailV2alphaCustomAttribute;
     } | null;
+    /**
+     * The target group associated with a given audience (e.g. male, veterans, car owners, musicians, etc.) of the product.
+     */
+    audience?: Schema$GoogleCloudRetailV2alphaAudience;
     /**
      * The online availability of the Product. Default to Availability.IN_STOCK. Google Merchant Center Property [availability](https://support.google.com/merchants/answer/6324448). Schema.org Property [Offer.availability](https://schema.org/availability).
      */
@@ -600,17 +898,45 @@ export namespace retail_v2alpha {
      */
     availableQuantity?: number | null;
     /**
-     * The timestamp when this Product becomes available for recommendation.
+     * The timestamp when this Product becomes available for SearchService.Search.
      */
     availableTime?: string | null;
+    /**
+     * The brands of the product. A maximum of 30 brands are allowed. Each brand must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [brand](https://support.google.com/merchants/answer/6324351). Schema.org property [Product.brand](https://schema.org/brand).
+     */
+    brands?: string[] | null;
     /**
      * Product categories. This field is repeated for supporting one product belonging to several parallel categories. Strongly recommended using the full path for better search / recommendation quality. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, please replace it with other character(s). For example, if a shoes product belongs to both ["Shoes & Accessories" -\> "Shoes"] and ["Sports & Fitness" -\> "Athletic Clothing" -\> "Shoes"], it could be represented as: "categories": [ "Shoes & Accessories \> Shoes", "Sports & Fitness \> Athletic Clothing \> Shoes" ] Must be set for Type.PRIMARY Product otherwise an INVALID_ARGUMENT error is returned. At most 250 values are allowed per Product. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property google_product_category. Schema.org property [Product.category] (https://schema.org/category). [mc_google_product_category]: https://support.google.com/merchants/answer/6324436
      */
     categories?: string[] | null;
     /**
+     * The id of the collection members when type is Type.COLLECTION. Should not set it for other types. A maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is return.
+     */
+    collectionMemberIds?: string[] | null;
+    /**
+     * The color of the product. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).
+     */
+    colorInfo?: Schema$GoogleCloudRetailV2alphaColorInfo;
+    /**
+     * The condition of the product. Strongly encouraged to use the standard values: "new", "refurbished", "used". A maximum of 5 values are allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [condition](https://support.google.com/merchants/answer/6324469). Schema.org property [Offer.itemCondition](https://schema.org/itemCondition).
+     */
+    conditions?: string[] | null;
+    /**
      * Product description. This field must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [description](https://support.google.com/merchants/answer/6324468). schema.org property [Product.description](https://schema.org/description).
      */
     description?: string | null;
+    /**
+     * The timestamp when this product becomes unavailable for SearchService.Search. If it is set, the Product is not available for SearchService.Search after expire_time. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts. Google Merchant Center property [expiration_date](https://support.google.com/merchants/answer/6324499).
+     */
+    expireTime?: string | null;
+    /**
+     * Fulfillment information, such as the store IDs for in-store pickup or region IDs for different shipping methods. All the elements must have distinct FulfillmentInfo.type. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    fulfillmentInfo?: Schema$GoogleCloudRetailV2alphaFulfillmentInfo[];
+    /**
+     * The Global Trade Item Number (GTIN) of the product. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [gtin](https://support.google.com/merchants/answer/6324461). Schema.org property [Product.isbn](https://schema.org/isbn) or [Product.gtin8](https://schema.org/gtin8) or [Product.gtin12](https://schema.org/gtin12) or [Product.gtin13](https://schema.org/gtin13) or [Product.gtin14](https://schema.org/gtin14). If the value is not a valid GTIN, an INVALID_ARGUMENT error is returned.
+     */
+    gtin?: string | null;
     /**
      * Immutable. Product identifier, which is the final component of name. For example, this field is "id_1", if name is `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/id_1`. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [id](https://support.google.com/merchants/answer/6324405). Schema.org Property [Product.sku](https://schema.org/sku).
      */
@@ -620,9 +946,21 @@ export namespace retail_v2alpha {
      */
     images?: Schema$GoogleCloudRetailV2alphaImage[];
     /**
+     * Language of the title/description and other string attributes. Use language tags defined by BCP 47. For product prediction, this field is ignored and the model automatically detects the text language. The Product can include text in different languages, but duplicating Products to provide text in multiple languages can result in degraded model performance. For product search this field is in use. It defaults to "en-US" if unset.
+     */
+    languageCode?: string | null;
+    /**
+     * The material of the product. For example, "leather", "wooden". A maximum of 5 values are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [material](https://support.google.com/merchants/answer/6324410). Schema.org property [Product.material](https://schema.org/material).
+     */
+    materials?: string[] | null;
+    /**
      * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
      */
     name?: string | null;
+    /**
+     * The pattern or graphic print of the product. For example, "striped", "polka dot", "paisley". A maximum of 5 values are allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [pattern](https://support.google.com/merchants/answer/6324483). Schema.org property [Product.pattern](https://schema.org/pattern).
+     */
+    patterns?: string[] | null;
     /**
      * Product price and cost information. Google Merchant Center property [price](https://support.google.com/merchants/answer/6324371).
      */
@@ -632,6 +970,26 @@ export namespace retail_v2alpha {
      */
     primaryProductId?: string | null;
     /**
+     * The promotions applied to the product. A maximum of 10 values are allowed per Product.
+     */
+    promotions?: Schema$GoogleCloudRetailV2alphaPromotion[];
+    /**
+     * The timestamp when the product is published by the retailer for the first time, which indicates the freshness of the products. Note that this field is different from available_time, given it purely describes product freshness regardless of when it is available on search and recommendation.
+     */
+    publishTime?: string | null;
+    /**
+     * The rating of this product.
+     */
+    rating?: Schema$GoogleCloudRetailV2alphaRating;
+    /**
+     * Indicates which fields in the Products are returned in SearchResponse. Supported fields for all types: * audience * availability * brands * color_info * conditions * gtin * materials * name * patterns * price_info * rating * sizes * title * uri Supported fields only for Type.PRIMARY and Type.COLLECTION: * categories * description * images Supported fields only for Type.VARIANT: * Only the first image in images To mark attributes as retrievable, include paths of the form "attributes.key" where "key" is the key of a custom attribute, as specified in attributes. For Type.PRIMARY and Type.COLLECTION, the following fields are always returned in SearchResponse by default: * name For Type.VARIANT, the following fields are always returned in by default: * name * color_info Maximum number of paths is 20. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    retrievableFields?: string | null;
+    /**
+     * The size of the product. To represent different size systems or size types, consider using this format: [[[size_system:]size_type:]size_value]. For example, in "US:MENS:M", "US" represents size system; "MENS" represents size type; "M" represents size value. In "GIRLS:27", size system is empty; "GIRLS" represents size type; "27" represents size value. In "32 inches", both size system and size type are empty, while size value is "32 inches". A maximum of 20 values are allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [size](https://support.google.com/merchants/answer/6324492), [size_type](https://support.google.com/merchants/answer/6324497) and [size_system](https://support.google.com/merchants/answer/6324502). Schema.org property [Product.size](https://schema.org/size).
+     */
+    sizes?: string[] | null;
+    /**
      * Custom tags associated with the product. At most 250 values are allowed per Product. This value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This tag can be used for filtering recommendation results by passing the tag as part of the PredictRequest.filter. Google Merchant Center property [custom_label_0–4](https://support.google.com/merchants/answer/6324473).
      */
     tags?: string[] | null;
@@ -640,6 +998,10 @@ export namespace retail_v2alpha {
      */
     title?: string | null;
     /**
+     * Input only. The TTL (time to live) of the product. If it is set, expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.
+     */
+    ttl?: string | null;
+    /**
      * Immutable. The type of the product. Default to Catalog.product_level_config.ingestion_product_type if unset.
      */
     type?: string | null;
@@ -647,6 +1009,10 @@ export namespace retail_v2alpha {
      * Canonical URL directly linking to the product detail page. It is strongly recommended to provide a valid uri for the product, otherwise the service performance could be significantly degraded. This field must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [link](https://support.google.com/merchants/answer/6324416). Schema.org property [Offer.url](https://schema.org/url).
      */
     uri?: string | null;
+    /**
+     * Output only. Product variants grouped together on primary product which share similar product attributes. It's automatically grouped by primary_product_id for all the product variants. Only populated for Type.PRIMARY Products. Note: This field is OUTPUT_ONLY for ProductService.GetProduct. Do not set this field in API requests.
+     */
+    variants?: Schema$GoogleCloudRetailV2alphaProduct[];
   }
   /**
    * Detailed product information associated with a user event.
@@ -701,6 +1067,15 @@ export namespace retail_v2alpha {
     merchantCenterProductIdField?: string | null;
   }
   /**
+   * Promotion information.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaPromotion {
+    /**
+     * ID of the promotion. For example, "free gift". The value value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: a-zA-Z*. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [promotion](https://support.google.com/merchants/answer/7050148).
+     */
+    promotionId?: string | null;
+  }
+  /**
    * A transaction represents the entire purchase transaction.
    */
   export interface Schema$GoogleCloudRetailV2alphaPurchaseTransaction {
@@ -752,6 +1127,23 @@ export namespace retail_v2alpha {
     purgedEventsCount?: string | null;
   }
   /**
+   * The rating of a Product.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRating {
+    /**
+     * The average rating of the Product. The rating is scaled at 1-5. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    averageRating?: number | null;
+    /**
+     * The total number of ratings. This value is independent of the value of rating_histogram. This value must be nonnegative. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    ratingCount?: number | null;
+    /**
+     * List of rating counts per rating value (index = rating - 1). The list is empty if there is no rating. If the list is non-empty, its size is always 5. Otherwise, an INVALID_ARGUMENT error is returned. For example, [41, 14, 13, 47, 303]. It means that the Product got 41 ratings with 1 star, 14 ratings with 2 star, and so on.
+     */
+    ratingHistogram?: number[] | null;
+  }
+  /**
    * Metadata for RejoinUserEvents method.
    */
   export interface Schema$GoogleCloudRetailV2alphaRejoinUserEventsMetadata {}
@@ -774,6 +1166,349 @@ export namespace retail_v2alpha {
     rejoinedUserEventsCount?: string | null;
   }
   /**
+   * Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the RemoveFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRemoveFulfillmentPlacesMetadata {}
+  /**
+   * Request message for RemoveFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRemoveFulfillmentPlacesRequest {
+    /**
+     * If set to true, and the Product is not found, the fulfillment information will still be processed and retained for at most 1 day and processed once the Product is created. If set to false, an INVALID_ARGUMENT error is returned if the Product is not found.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Required. The IDs for this type, such as the store IDs for "pickup-in-store" or the region IDs for "same-day-delivery", to be removed for this type. At least 1 value is required, and a maximum of 2000 values are allowed. Each value must be a string with a length limit of 10 characters, matching the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    placeIds?: string[] | null;
+    /**
+     * The time when the fulfillment updates are issued, used to prevent out-of-order updates on fulfillment information. If not provided, the internal system time will be used.
+     */
+    removeTime?: string | null;
+    /**
+     * Required. The fulfillment type, including commonly used types (such as pickup in store and same day delivery), and custom types. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. This field directly corresponds to Product.fulfillment_info.type.
+     */
+    type?: string | null;
+  }
+  /**
+   * Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRemoveFulfillmentPlacesResponse {}
+  /**
+   * Request message for SearchService.Search method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequest {
+    /**
+     * Boost specification to boost certain products. See more details at this [user guide](/retail/private/docs/boosting).
+     */
+    boostSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestBoostSpec;
+    /**
+     * The branch resource name, such as `projects/x/locations/global/catalogs/default_catalog/branches/0`. Use "default_branch" as the branch ID or leave this field empty, to search products under the default branch.
+     */
+    branch?: string | null;
+    /**
+     * The filter applied to every search request when quality improvement such as query expansion is needed. For example, if a query does not have enough results, an expanded query with SearchRequest.canonical_filter will be returned as a supplement of the original query. This field is strongly recommended to achieve high search quality. See SearchRequest.filter for more details about filter syntax.
+     */
+    canonicalFilter?: string | null;
+    /**
+     * The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated. This feature requires additional allowlisting. Contact Retail Support (retail-search-support@google.com) if you are interested in using dynamic facet feature.
+     */
+    dynamicFacetSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec;
+    /**
+     * Facet specifications for faceted search. If empty, no facets are returned. A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    facetSpecs?: Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpec[];
+    /**
+     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the products being filtered. Filter expression is case-sensitive. See more details at this [user guide](/retail/private/docs/filter-and-order#filter). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
+     */
+    filter?: string | null;
+    /**
+     * A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Products deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an INVALID_ARGUMENT is returned.
+     */
+    offset?: number | null;
+    /**
+     * The order in which products are returned. Products can be ordered by a field in an Product object. Leave it unset if ordered by relevance. OrderBy expression is case-sensitive. See more details at this [user guide](/retail/private/docs/filter-and-order#order). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
+     */
+    orderBy?: string | null;
+    /**
+     * The categories associated with a category page. Required for category navigation queries to achieve good search quality. The format should be the same as UserEvent.page_categories; To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, please replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: "pageCategories" : ["Sales \> 2017 Black Friday Deals"].
+     */
+    pageCategories?: string[] | null;
+    /**
+     * Maximum number of Products to return. If unspecified, defaults to a reasonable value. The maximum allowed value is 120. Values above 120 will be coerced to 120. If this field is negative, an INVALID_ARGUMENT is returned.
+     */
+    pageSize?: number | null;
+    /**
+     * A page token SearchResponse.next_page_token, received from a previous SearchService.Search call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SearchService.Search must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    pageToken?: string | null;
+    /**
+     * Raw search query.
+     */
+    query?: string | null;
+    /**
+     * The query expansion specification that specifies the conditions under which query expansion will occur. See more details at this [user guide](/retail/private/docs/result-size#query_expansion).
+     */
+    queryExpansionSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec;
+    /**
+     * The relevance threshold of the search results. Defaults to RelevanceThreshold.HIGH, which means only the most relevant results are shown, and the least number of results are returned. See more details at this [user guide](/retail/private/docs/result-size#relevance_thresholding).
+     */
+    relevanceThreshold?: string | null;
+    /**
+     * User information.
+     */
+    userInfo?: Schema$GoogleCloudRetailV2alphaUserInfo;
+    /**
+     * The keys to fetch and rollup the matching variant Products attributes. The attributes from all the matching variant Products are merged and de-duplicated. Notice that rollup variant Products attributes will lead to extra query latency. Maximum number of keys is 10. For Product.fulfillment_info, a fulfillment type and a fulfillment ID must be provided in the format of "fulfillmentType.filfillmentId". E.g., in "pickupInStore.store123", "pickupInStore" is fulfillment type and "store123" is the store ID. Supported keys are: * colorFamilies * price * originalPrice * discount * attributes.key, where key is any key in the Product.attributes map. * pickupInStore.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.PICKUP_IN_STORE. * shipToStore.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.SHIP_TO_STORE. * sameDayDelivery.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.SAME_DAY_DELIVERY. * nextDayDelivery.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.NEXT_DAY_DELIVERY. * customFulfillment1.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.CUSTOM_TYPE_1. * customFulfillment2.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.CUSTOM_TYPE_2. * customFulfillment3.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.CUSTOM_TYPE_3. * customFulfillment4.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.CUSTOM_TYPE_4. * customFulfillment5.id, where id is any FulfillmentInfo.ids for type FulfillmentInfo.Type.CUSTOM_TYPE_5. If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned.
+     */
+    variantRollupKeys?: string[] | null;
+    /**
+     * Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    visitorId?: string | null;
+  }
+  /**
+   * Boost specification to boost certain items.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestBoostSpec {
+    /**
+     * Condition boost specifications. If a product matches multiple conditions in the specifictions, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 10.
+     */
+    conditionBoostSpecs?: Schema$GoogleCloudRetailV2alphaSearchRequestBoostSpecConditionBoostSpec[];
+  }
+  /**
+   * Boost applies to products which match a condition.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestBoostSpecConditionBoostSpec {
+    /**
+     * Strength of the condition boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the item a big promotion. However, it does not necessarily mean that the boosted item will be the top result at all times, nor that other items will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant items. Setting to -1.0 gives the item a big demotion. However, results that are deeply relevant might still be shown. The item will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.
+     */
+    boost?: number | null;
+    /**
+     * An expression which specifies a boost condition. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost products with product ID "product_1" or "product_2", and color "Red" or "Blue": *(id: ANY("product_1", "product_2")) * *AND * *(colorFamilies: ANY("Red", "Blue")) *
+     */
+    condition?: string | null;
+  }
+  /**
+   * The specifications of dynamically generated facets.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec {
+    /**
+     * Mode of the DynamicFacet feature. Defaults to Mode.DISABLED if it's unset.
+     */
+    mode?: string | null;
+  }
+  /**
+   * A facet specification to perform faceted search.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpec {
+    /**
+     * Enables dynamic position for this facet. If set to true, the position of this facet among all facets in the response is determined by Google Retail Search. It will be ordered together with dynamic facets if dynamic facets is enabled. If set to false, the position of this facet in the response will be the same as in the request, and it will be ranked before the facets with dynamic position enable and all dynamic facets. For example, you may always want to have rating facet returned in the response, but it's not necessarily to always display the rating facet at the top. In that case, you can set enable_dynamic_position to true so that the position of rating facet in response will be determined by Google Retail Search. Another example, assuming you have the following facets in the request: * "rating", enable_dynamic_position = true * "price", enable_dynamic_position = false * "brands", enable_dynamic_position = false And also you have a dynamic facets enable, which will generate a facet 'gender'. Then the final order of the facets in the response can be ("price", "brands", "rating", "gender") or ("price", "brands", "gender", "rating") depends on how Google Retail Search orders "gender" and "rating" facets. However, notice that "price" and "brands" will always be ranked at 1st and 2nd position since their enable_dynamic_position are false.
+     */
+    enableDynamicPosition?: boolean | null;
+    /**
+     * List of keys to exclude when faceting. By default, FacetKey.key is not excluded from the filter unless it is listed in this field. For example, suppose there are 100 products with color facet "Red" and 200 products with color facet "Blue". A query containing the filter "colorFamilies:ANY("Red")" and have "colorFamilies" as FacetKey.key will by default return the "Red" with count 100. If this field contains "colorFamilies", then the query returns both the "Red" with count 100 and "Blue" with count 200, because the "colorFamilies" key is now excluded from the filter. A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    excludedFilterKeys?: string[] | null;
+    /**
+     * Required. The facet key specification.
+     */
+    facetKey?: Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpecFacetKey;
+    /**
+     * Maximum of facet values that should be returned for this facet. If unspecified, defaults to 20. The maximum allowed value is 300. Values above 300 will be coerced to 300. If this field is negative, an INVALID_ARGUMENT is returned.
+     */
+    limit?: number | null;
+  }
+  /**
+   * Specifies how a facet is computed.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpecFacetKey {
+    /**
+     * Only get facet values that contains the given strings. For example, suppose "categories" has three values "Women \> Shoe", "Women \> Dress" and "Men \> Shoe". If set "contains" to "Shoe", the "categories" facet will give only "Women \> Shoe" and "Men \> Shoe". Only supported on textual fields. Maximum is 10.
+     */
+    contains?: string[] | null;
+    /**
+     * Set only if values should be bucketized into intervals. Must be set for facets with numerical values. Must not be set for facet with text values. Maximum number of intervals is 30.
+     */
+    intervals?: Schema$GoogleCloudRetailV2alphaInterval[];
+    /**
+     * Required. Supported textual and numerical facet keys in Product object, over which the facet values are computed. Facet key is case-sensitive. Allowed facet keys when FacetKey.query is not specified: * textual_field = *# The Product.brands. * "brands"; *# The Product.categories. * "categories"; *# The Audience.genders. * | "genders"; *# The Audience.age_groups. * | "ageGroups"; *# The Product.availability. Value is one of * *# "IN_STOCK", "OUT_OF_STOCK", PREORDER", "BACKORDER". * | "availability"; *# The ColorInfo.color_families. * | "colorFamilies"; *# The ColorInfo.colors. * | "colors"; *# The Product.sizes. * | "sizes"; *# The Product.materials. * | "materials"; *# The Product.patterns. * | "patterns"; *# The Product.conditions. * | "conditions"; *# The textual custom attribute in Product object. Key can * *# be any key in the Product.attributes map * *# if the attribute values are textual. * *# map. * | "attributes.key"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.PICKUP_IN_STORE. * | "pickupInStore"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.SHIP_TO_STORE. * | "shipToStore"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.SAME_DAY_DELIVERY. * | "sameDayDelivery"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.NEXT_DAY_DELIVERY. * | "nextDayDelivery"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.CUSTOM_TYPE_1. * | "customFulfillment1"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.CUSTOM_TYPE_2. * | "customFulfillment2"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.CUSTOM_TYPE_3. * | "customFulfillment3"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.CUSTOM_TYPE_4. * | "customFulfillment4"; *# The FulfillmentInfo.ids for type *# FulfillmentInfo.Type.CUSTOM_TYPE_5. * | "customFulfillment5"; * numerical_field = *# The PriceInfo.price. * "price"; *# The discount. Computed by (original_price-price)/price * "discount"; *# The Rating.average_rating. * "rating"; *# The Rating.rating_count. * "ratingCount"; *# The numerical custom attribute in Product object. Key can * *# be any key in the Product.attributes map * *# if the attribute values are numerical. * | "attributes.key";
+     */
+    key?: string | null;
+    /**
+     * The order in which Facet.values are returned. Allowed values are: * "count desc", which means order by Facet.FacetValue.count descending. * "value desc", which means order by Facet.FacetValue.value descending. Only applies to textual facets. If not set, textual values are sorted in [natural order](https://en.wikipedia.org/wiki/Natural_sort_order); numerical intervals are sorted in the order given by FacetSpec.FacetKey.intervals; FulfillmentInfo.ids are sorted in the order given by FacetSpec.FacetKey.restricted_values.
+     */
+    orderBy?: string | null;
+    /**
+     * Only get facet values that start with the given string prefix. For example, suppose "categories" has three values "Women \> Shoe", "Women \> Dress" and "Men \> Shoe". If set "prefixes" to "Women", the "categories" facet will give only "Women \> Shoe" and "Women \> Dress". Only supported on textual fields. Maximum is 10.
+     */
+    prefixes?: string[] | null;
+    /**
+     * The query that is used to compute facet for the given facet key. When provided, it will override the default behavior of facet computation. The query syntax is the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Notice that there is no limitation on FacetKey.key when query is specified. In the response, FacetValue.value will be always "1" and FacetValue.count will be the number of results that matches the query. For example, you can set a customized facet for "shipToStore", where FacetKey.key is "customizedShipToStore", and FacetKey.query is "availability: ANY(\"IN_STOCK\") AND shipToStore: ANY(\"123\")". Then the facet will count the products that are both in stock and ship to store "123".
+     */
+    query?: string | null;
+    /**
+     * Only get facet for the given restricted values. For example, when using "pickupInStore" as key and set restricted values to ["store123", "store456"], only facets for "store123" and "store456" are returned. Only supported on textual fields and fulfillments. Maximum is 20. Must be set for the fulfillment facet keys: * pickupInStore * shipToStore * sameDayDelivery * nextDayDelivery * customFulfillment1 * customFulfillment2 * customFulfillment3 * customFulfillment4 * customFulfillment5
+     */
+    restrictedValues?: string[] | null;
+  }
+  /**
+   * Specification to determine under which conditions query expansion should occur.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec {
+    /**
+     * The condition under which query expansion should occur. Default to Condition.DISABLED.
+     */
+    condition?: string | null;
+  }
+  /**
+   * Response message for SearchService.Search method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponse {
+    /**
+     * A unique search token. This should be included in the UserEvent logs resulting from this search, which enables accurate attribution of search model performance.
+     */
+    attributionToken?: string | null;
+    /**
+     * If spell correction applies, the corrected query. Otherwise, empty.
+     */
+    correctedQuery?: string | null;
+    /**
+     * Results of facets requested by user.
+     */
+    facets?: Schema$GoogleCloudRetailV2alphaSearchResponseFacet[];
+    /**
+     * A token that can be sent as SearchRequest.page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Query expansion information for the returned results.
+     */
+    queryExpansionInfo?: Schema$GoogleCloudRetailV2alphaSearchResponseQueryExpansionInfo;
+    /**
+     * The URI of a customer-defined redirect page. If redirect action is triggered, no search will be performed, and only redirect_uri and attribution_token will be set in the response.
+     */
+    redirectUri?: string | null;
+    /**
+     * A list of matched items. The order represents the ranking.
+     */
+    results?: Schema$GoogleCloudRetailV2alphaSearchResponseSearchResult[];
+    /**
+     * The estimated total count of matched items irrespective of pagination. The count of results returned by pagination may be less than the total_size that matches.
+     */
+    totalSize?: number | null;
+  }
+  /**
+   * A facet result.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponseFacet {
+    /**
+     * Whether the facet is dynamically generated.
+     */
+    dynamicFacet?: boolean | null;
+    /**
+     * The key for this facet. E.g., "colorFamilies" or "price" or "attributes.attr1".
+     */
+    key?: string | null;
+    /**
+     * The facet values for this field.
+     */
+    values?: Schema$GoogleCloudRetailV2alphaSearchResponseFacetFacetValue[];
+  }
+  /**
+   * A facet value which contains value names and their count.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponseFacetFacetValue {
+    /**
+     * Number of items that have this facet value.
+     */
+    count?: string | null;
+    /**
+     * Interval value for a facet, such as [10, 20) for facet "price".
+     */
+    interval?: Schema$GoogleCloudRetailV2alphaInterval;
+    /**
+     * Text value of a facet, such as "Black" for facet "colorFamilies".
+     */
+    value?: string | null;
+  }
+  /**
+   * Information describing query expansion including whether expansion has occurred.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponseQueryExpansionInfo {
+    /**
+     * Bool describing whether query expansion has occurred.
+     */
+    expandedQuery?: boolean | null;
+  }
+  /**
+   * Represents the search results.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchResponseSearchResult {
+    /**
+     * Product.id of the searched Product.
+     */
+    id?: string | null;
+    /**
+     * The count of matched variant Products.
+     */
+    matchingVariantCount?: number | null;
+    /**
+     * If a variant Product matches the search query, this map indicates which Product fields are matched. The key is the Product.name, the value is a field mask of the matched Product fields. If matched attributes cannot be determined, this map will be empty. For example, a key "sku1" with field mask "products.color_info" indicates there is a match between "sku1" ColorInfo and the query.
+     */
+    matchingVariantFields?: {[key: string]: string} | null;
+    /**
+     * The product data snippet in the search response. Only Product.name is guaranteed to be populated. Product.variants contains the product variants that match the search query. If there are multiple product variants matching the query, top 5 most relevant product variants are returned and ordered by relevancy. If relevancy can be deternmined, use matching_variant_fields to look up matched product variants fields. If relevancy cannot be determined, e.g. when searching "shoe" all products in a shoe product can be a match, 5 product variants are returned but order is meaningless.
+     */
+    product?: Schema$GoogleCloudRetailV2alphaProduct;
+    /**
+     * The rollup matching variant Product attributes. The key is one of the SearchRequest.variant_rollup_keys. The values are the merged and de-duplicated Product attributes. Notice that the rollup values are respect filter. For example, when filtering by "colorFamilies:ANY(\"red\")" and rollup "colorFamilies", only "red" is returned. For textual and numerical attributes, the rollup values is a list of string or double values with type google.protobuf.ListValue. For example, if there are two variants with colors "red" and "blue", the rollup values are { key: "colorFamilies" value { list_value { values { string_value: "red" \} values { string_value: "blue" \} \} \} \} For Product.fulfillment_info, the rollup values is a double value with type google.protobuf.Value. For example, {key: "pickupInStore.store1" value { number_value: 10 \}\} means a there are 10 variants in this product are available in the store "store1".
+     */
+    variantRollupValues?: {[key: string]: any} | null;
+  }
+  /**
+   * Request message to set a specified branch as new default_branch.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSetDefaultBranchRequest {
+    /**
+     * The final component of the resource name of a branch. This field must be one of "0", "1" or "2". Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    branchId?: string | null;
+    /**
+     * Some note on this request, this can be retrieved by CatalogService.GetDefaultBranch before next valid default branch set occurs. This field must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    note?: string | null;
+  }
+  /**
+   * Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the SetInventory method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSetInventoryMetadata {}
+  /**
+   * Request message for SetInventory method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSetInventoryRequest {
+    /**
+     * If set to true, and the Product with name Product.name is not found, the inventory update will still be processed and retained for at most 1 day until the Product is created. If set to false, an INVALID_ARGUMENT error is returned if the Product is not found.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Required. The inventory information to update. The allowable fields to update are: * Product.price_info * Product.availability * Product.available_quantity * Product.fulfillment_info The updated inventory fields must be specified in SetInventoryRequest.set_mask. If SetInventoryRequest.inventory.name is empty or invalid, an INVALID_ARGUMENT error is returned. If the caller does not have permission to update the Product named in Product.name, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to update does not have existing inventory information, the provided inventory information will be inserted. If the Product to update has existing inventory information, the provided inventory information will be merged while respecting the last update time for each inventory field, using the provided or default value for SetInventoryRequest.set_time. The last update time is recorded for the following inventory fields: * Product.price_info * Product.availability * Product.available_quantity * Product.fulfillment_info If a full overwrite of inventory information while ignoring timestamps is needed, UpdateProduct should be invoked instead.
+     */
+    inventory?: Schema$GoogleCloudRetailV2alphaProduct;
+    /**
+     * Indicates which inventory fields in the provided Product to update. If not set or set with empty paths, all inventory fields will be updated. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned and the entire update will be ignored.
+     */
+    setMask?: string | null;
+    /**
+     * The time when the request is issued, used to prevent out-of-order updates on inventory fields with the last update time recorded. If not provided, the internal system time will be used.
+     */
+    setTime?: string | null;
+  }
+  /**
+   * Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the SetInventory method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSetInventoryResponse {}
+  /**
    * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.
    */
   export interface Schema$GoogleCloudRetailV2alphaUserEvent {
@@ -784,13 +1519,17 @@ export namespace retail_v2alpha {
       [key: string]: Schema$GoogleCloudRetailV2alphaCustomAttribute;
     } | null;
     /**
-     * Highly recommended for user events that are the result of PredictionService.Predict. This field enables accurate attribution of recommendation model performance. The value must be a valid PredictResponse.attribution_token for user events that are the result of PredictionService.Predict. This token enables us to accurately attribute page view or purchase back to the event and the particular predict response containing this clicked/purchased product. If user clicks on product K in the recommendation results, pass PredictResponse.attribution_token as a URL parameter to product K's page. When recording events on product K's page, log the PredictResponse.attribution_token to this field.
+     * Highly recommended for user events that are the result of PredictionService.Predict. This field enables accurate attribution of recommendation model performance. The value must be a valid PredictResponse.attribution_token for user events that are the result of PredictionService.Predict. The value must be a valid SearchResponse.attribution_token for user events that are the result of SearchService.Search. This token enables us to accurately attribute page view or purchase back to the event and the particular predict response containing this clicked/purchased product. If user clicks on product K in the recommendation results, pass PredictResponse.attribution_token as a URL parameter to product K's page. When recording events on product K's page, log the PredictResponse.attribution_token to this field.
      */
     attributionToken?: string | null;
     /**
      * The id or name of the associated shopping cart. This id is used to associate multiple items added or present in the cart before purchase. This can only be set for `add-to-cart`, `purchase-complete`, or `shopping-cart-page-view` events.
      */
     cartId?: string | null;
+    /**
+     * The main completion details related to the event. In a `completion` event, this field represents the completions returned to the end user and the clicked completion by the end user. In a `search` event, it represents the search event happens after clicking completion.
+     */
+    completionDetail?: Schema$GoogleCloudRetailV2alphaCompletionDetail;
     /**
      * Only required for UserEventService.ImportUserEvents method. Timestamp of when the user event happened.
      */
@@ -803,6 +1542,18 @@ export namespace retail_v2alpha {
      * A list of identifiers for the independent experiment groups this user event belongs to. This is used to distinguish between user events associated with different experiment setups (e.g. using Retail API, using different recommendation models).
      */
     experimentIds?: string[] | null;
+    /**
+     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the products being filtered. See SearchRequest.filter for definition and syntax. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    filter?: string | null;
+    /**
+     * An integer that specifies the current offset for pagination (the 0-indexed starting location, amongst the products deemed by the API as relevant). See SearchRequest.offset for definition. If this field is negative, an INVALID_ARGUMENT is returned. This can only be set for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    offset?: number | null;
+    /**
+     * The order in which products are returned. See SearchRequest.order_by for definition and syntax. The value must be a UTF-8 encoded string with a length limit of 1,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. This can only be set for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    orderBy?: string | null;
     /**
      * The categories associated with a category page. To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, please replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: "pageCategories" : ["Sales \> 2017 Black Friday Deals"]. Required for `category-page-view` events. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
      */
@@ -824,9 +1575,13 @@ export namespace retail_v2alpha {
      */
     referrerUri?: string | null;
     /**
-     * The user's search query. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
+     * The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     searchQuery?: string | null;
+    /**
+     * A unique identifier for tracking a visitor session with a length limit of 128 bytes. A session is an aggregation of an end user behavior in a time span. A general guideline to populate the sesion_id: 1. If user has no activity for 30 min, a new session_id should be assigned. 2. The session_id should be unique across users, suggest use uuid or add visitor_id as prefix.
+     */
+    sessionId?: string | null;
     /**
      * Complete URL (window.location.href) of the user's current page. When using the client side event reporting with JavaScript pixel and Google Tag Manager, this value is filled in automatically. Maximum length 5,000 characters.
      */
@@ -901,6 +1656,14 @@ export namespace retail_v2alpha {
     userId?: string | null;
   }
   /**
+   * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the AddFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaAddFulfillmentPlacesMetadata {}
+  /**
+   * Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the AddFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaAddFulfillmentPlacesResponse {}
+  /**
    * Configuration of destination for Export related errors.
    */
   export interface Schema$GoogleCloudRetailV2betaExportErrorsConfig {
@@ -949,6 +1712,15 @@ export namespace retail_v2alpha {
     errorsConfig?: Schema$GoogleCloudRetailV2betaExportErrorsConfig;
   }
   /**
+   * Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudRetailV2betaImportCompletionDataResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+  }
+  /**
    * Configuration of destination for Import related errors.
    */
   export interface Schema$GoogleCloudRetailV2betaImportErrorsConfig {
@@ -969,6 +1741,14 @@ export namespace retail_v2alpha {
      * Count of entries that encountered errors while processing.
      */
     failureCount?: string | null;
+    /**
+     * Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project\}/topics/{topic\}`.
+     */
+    notificationPubsubTopic?: string | null;
+    /**
+     * Id of the request / operation. This is parroting back the requestId that was passed in the request.
+     */
+    requestId?: string | null;
     /**
      * Count of entries that were processed successfully.
      */
@@ -1035,6 +1815,22 @@ export namespace retail_v2alpha {
     rejoinedUserEventsCount?: string | null;
   }
   /**
+   * Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the RemoveFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaRemoveFulfillmentPlacesMetadata {}
+  /**
+   * Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaRemoveFulfillmentPlacesResponse {}
+  /**
+   * Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the SetInventory method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaSetInventoryMetadata {}
+  /**
+   * Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the SetInventory method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaSetInventoryResponse {}
+  /**
    * A summary of import result. The UserEventImportSummary summarizes the import status for user events.
    */
   export interface Schema$GoogleCloudRetailV2betaUserEventImportSummary {
@@ -1046,6 +1842,15 @@ export namespace retail_v2alpha {
      * Count of user events imported, but with catalog information not found in the imported catalog.
      */
     unjoinedEventsCount?: string | null;
+  }
+  /**
+   * Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.
+   */
+  export interface Schema$GoogleCloudRetailV2ImportCompletionDataResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
   }
   /**
    * Configuration of destination for Import related errors.
@@ -1068,6 +1873,14 @@ export namespace retail_v2alpha {
      * Count of entries that encountered errors while processing.
      */
     failureCount?: string | null;
+    /**
+     * Pub/Sub topic for receiving notification. If this field is set, when the import is finished, a notification will be sent to specified Pub/Sub topic. The message data will be JSON string of a Operation. Format of the Pub/Sub topic is `projects/{project\}/topics/{topic\}`.
+     */
+    notificationPubsubTopic?: string | null;
+    /**
+     * Id of the request / operation. This is parroting back the requestId that was passed in the request.
+     */
+    requestId?: string | null;
     /**
      * Count of entries that were processed successfully.
      */
@@ -1133,6 +1946,22 @@ export namespace retail_v2alpha {
      */
     rejoinedUserEventsCount?: string | null;
   }
+  /**
+   * Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the RemoveFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2RemoveFulfillmentPlacesMetadata {}
+  /**
+   * Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.
+   */
+  export interface Schema$GoogleCloudRetailV2RemoveFulfillmentPlacesResponse {}
+  /**
+   * Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the SetInventory method.
+   */
+  export interface Schema$GoogleCloudRetailV2SetInventoryMetadata {}
+  /**
+   * Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the SetInventory method.
+   */
+  export interface Schema$GoogleCloudRetailV2SetInventoryResponse {}
   /**
    * A summary of import result. The UserEventImportSummary summarizes the import status for user events.
    */
@@ -1205,6 +2034,23 @@ export namespace retail_v2alpha {
      */
     message?: string | null;
   }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$GoogleTypeDate {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1231,6 +2077,7 @@ export namespace retail_v2alpha {
   export class Resource$Projects$Locations$Catalogs {
     context: APIRequestContext;
     branches: Resource$Projects$Locations$Catalogs$Branches;
+    completionData: Resource$Projects$Locations$Catalogs$Completiondata;
     operations: Resource$Projects$Locations$Catalogs$Operations;
     placements: Resource$Projects$Locations$Catalogs$Placements;
     userEvents: Resource$Projects$Locations$Catalogs$Userevents;
@@ -1239,6 +2086,8 @@ export namespace retail_v2alpha {
       this.branches = new Resource$Projects$Locations$Catalogs$Branches(
         this.context
       );
+      this.completionData =
+        new Resource$Projects$Locations$Catalogs$Completiondata(this.context);
       this.operations = new Resource$Projects$Locations$Catalogs$Operations(
         this.context
       );
@@ -1248,6 +2097,300 @@ export namespace retail_v2alpha {
       this.userEvents = new Resource$Projects$Locations$Catalogs$Userevents(
         this.context
       );
+    }
+
+    /**
+     * Completes the specified prefix with keyword suggestions. This feature is only available for users who have Retail Search enabled. Contact Retail Support (retail-search-support@google.com) if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.completeQuery({
+     *     // Required. Catalog for which the completion is performed. Full resource name of catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
+     *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // Determines which dataset to use for fetching completion. "user-data" will use the imported dataset through ImportCompletionData. "cloud-retail" will use the dataset generated by cloud retail based on user events. If leave empty, it will use the "user-data". Current supported values: * user-data * cloud-retail This option is not automatically enabled. Before using cloud-retail, contact retail-search-support@google.com first.
+     *     dataset: 'placeholder-value',
+     *     // The device type context for completion suggestions. It is useful to apply different suggestions on different device types, e.g. DESKTOP, MOBILE. If it is empty, the suggestions are across all device types. Supported formats: * UNKNOWN_DEVICE_TYPE * DESKTOP * MOBILE * A customized string starts with OTHER_, e.g. OTHER_IPHONE.
+     *     deviceType: 'placeholder-value',
+     *     // The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum number of allowed characters is 255. Only "en-US" is currently supported.
+     *     languageCodes: 'placeholder-value',
+     *     // Completion max suggestions. The maximum allowed max suggestions is 20. The default value is 20.
+     *     maxSuggestions: 'placeholder-value',
+     *     // Required. The query used to generate suggestions. The maximum number of allowed characters is 255.
+     *     query: 'placeholder-value',
+     *     // A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     visitorId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "completionResults": [],
+     *   //   "recentSearchResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Catalogs$Completequery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    completeQuery(
+      params?: Params$Resource$Projects$Locations$Catalogs$Completequery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Catalogs$Completequery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Catalogs$Completequery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Catalogs$Completequery,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Completequery
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Completequery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Completequery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+catalog}:completeQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaCompleteQueryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get which branch is currently default branch set by CatalogService.SetDefaultBranch method under a specified parent catalog. This feature is only available for users who have Retail Search enabled. Contact Retail Support (retail-search-support@google.com) if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.getDefaultBranch({
+     *     // The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
+     *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "branch": "my_branch",
+     *   //   "note": "my_note",
+     *   //   "setTime": "my_setTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDefaultBranch(
+      params: Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDefaultBranch(
+      params?: Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>;
+    getDefaultBranch(
+      params: Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDefaultBranch(
+      params: Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>
+    ): void;
+    getDefaultBranch(
+      params: Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>
+    ): void;
+    getDefaultBranch(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>
+    ): void;
+    getDefaultBranch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+catalog}:getDefaultBranch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaGetDefaultBranchResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -1430,6 +2573,7 @@ export namespace retail_v2alpha {
      *       // request body parameters
      *       // {
      *       //   "displayName": "my_displayName",
+     *       //   "merchantCenterLinkingConfig": {},
      *       //   "name": "my_name",
      *       //   "productLevelConfig": {}
      *       // }
@@ -1440,6 +2584,7 @@ export namespace retail_v2alpha {
      *   // Example response
      *   // {
      *   //   "displayName": "my_displayName",
+     *   //   "merchantCenterLinkingConfig": {},
      *   //   "name": "my_name",
      *   //   "productLevelConfig": {}
      *   // }
@@ -1541,8 +2686,188 @@ export namespace retail_v2alpha {
         );
       }
     }
+
+    /**
+     * Set a specified branch id as default branch. API methods such as SearchService.Search, ProductService.GetProduct, ProductService.ListProducts will treat requests using "default_branch" to the actual branch id set as default. For example, if `projects/x/locations/x/catalogs/x/branches/1` is set as default, setting SearchRequest.branch to `projects/x/locations/x/catalogs/x/branches/default_branch` is equivalent to setting SearchRequest.branch to `projects/x/locations/x/catalogs/x/branches/1`. Using multiple branches can be useful when developers would like to have a staging branch to test and verify for future usage. When it becomes ready, developers switch on the staging branch using this API while keeping using `projects/x/locations/x/catalogs/x/branches/default_branch` as SearchRequest.branch to route the traffic to this staging branch. CAUTION: If you have live predict/search traffic, switching the default branch could potentially cause outages if the ID space of the new branch is very different from the old one. More specifically: * PredictionService will only return product IDs from branch {newBranch\}. * SearchService will only return product IDs from branch {newBranch\} (if branch is not explicitly set). * UserEventService will only join events with products from branch {newBranch\}. This feature is only available for users who have Retail Search enabled. Contact Retail Support (retail-search-support@google.com) if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.setDefaultBranch({
+     *     // Full resource name of the catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
+     *     catalog: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "branchId": "my_branchId",
+     *       //   "note": "my_note"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setDefaultBranch(
+      params: Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setDefaultBranch(
+      params?: Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    setDefaultBranch(
+      params: Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setDefaultBranch(
+      params: Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    setDefaultBranch(
+      params: Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    setDefaultBranch(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    setDefaultBranch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+catalog}:setDefaultBranch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['catalog'],
+        pathParams: ['catalog'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Catalogs$Completequery
+    extends StandardParameters {
+    /**
+     * Required. Catalog for which the completion is performed. Full resource name of catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
+     */
+    catalog?: string;
+    /**
+     * Determines which dataset to use for fetching completion. "user-data" will use the imported dataset through ImportCompletionData. "cloud-retail" will use the dataset generated by cloud retail based on user events. If leave empty, it will use the "user-data". Current supported values: * user-data * cloud-retail This option is not automatically enabled. Before using cloud-retail, contact retail-search-support@google.com first.
+     */
+    dataset?: string;
+    /**
+     * The device type context for completion suggestions. It is useful to apply different suggestions on different device types, e.g. DESKTOP, MOBILE. If it is empty, the suggestions are across all device types. Supported formats: * UNKNOWN_DEVICE_TYPE * DESKTOP * MOBILE * A customized string starts with OTHER_, e.g. OTHER_IPHONE.
+     */
+    deviceType?: string;
+    /**
+     * The list of languages of the query. This is the BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see [Tags for Identifying Languages](https://tools.ietf.org/html/bcp47). The maximum number of allowed characters is 255. Only "en-US" is currently supported.
+     */
+    languageCodes?: string[];
+    /**
+     * Completion max suggestions. The maximum allowed max suggestions is 20. The default value is 20.
+     */
+    maxSuggestions?: number;
+    /**
+     * Required. The query used to generate suggestions. The maximum number of allowed characters is 255.
+     */
+    query?: string;
+    /**
+     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    visitorId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Getdefaultbranch
+    extends StandardParameters {
+    /**
+     * The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
+     */
+    catalog?: string;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$List
     extends StandardParameters {
     /**
@@ -1573,6 +2898,18 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaCatalog;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Setdefaultbranch
+    extends StandardParameters {
+    /**
+     * Full resource name of the catalog, such as `projects/x/locations/global/catalogs/default_catalog`.
+     */
+    catalog?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaSetDefaultBranchRequest;
   }
 
   export class Resource$Projects$Locations$Catalogs$Branches {
@@ -1752,6 +3089,162 @@ export namespace retail_v2alpha {
     }
 
     /**
+     * Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Contact Retail Support (retail-search-support@google.com) if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.addFulfillmentPlaces(
+     *       {
+     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         product:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "addTime": "my_addTime",
+     *           //   "allowMissing": false,
+     *           //   "placeIds": [],
+     *           //   "type": "my_type"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addFulfillmentPlaces(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addFulfillmentPlaces(
+      params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    addFulfillmentPlaces(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addFulfillmentPlaces(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addFulfillmentPlaces(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addFulfillmentPlaces(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addFulfillmentPlaces(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+product}:addFulfillmentPlaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['product'],
+        pathParams: ['product'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Creates a Product.
      * @example
      * ```js
@@ -1790,20 +3283,38 @@ export namespace retail_v2alpha {
      *         // request body parameters
      *         // {
      *         //   "attributes": {},
+     *         //   "audience": {},
      *         //   "availability": "my_availability",
      *         //   "availableQuantity": 0,
      *         //   "availableTime": "my_availableTime",
+     *         //   "brands": [],
      *         //   "categories": [],
+     *         //   "collectionMemberIds": [],
+     *         //   "colorInfo": {},
+     *         //   "conditions": [],
      *         //   "description": "my_description",
+     *         //   "expireTime": "my_expireTime",
+     *         //   "fulfillmentInfo": [],
+     *         //   "gtin": "my_gtin",
      *         //   "id": "my_id",
      *         //   "images": [],
+     *         //   "languageCode": "my_languageCode",
+     *         //   "materials": [],
      *         //   "name": "my_name",
+     *         //   "patterns": [],
      *         //   "priceInfo": {},
      *         //   "primaryProductId": "my_primaryProductId",
+     *         //   "promotions": [],
+     *         //   "publishTime": "my_publishTime",
+     *         //   "rating": {},
+     *         //   "retrievableFields": "my_retrievableFields",
+     *         //   "sizes": [],
      *         //   "tags": [],
      *         //   "title": "my_title",
+     *         //   "ttl": "my_ttl",
      *         //   "type": "my_type",
-     *         //   "uri": "my_uri"
+     *         //   "uri": "my_uri",
+     *         //   "variants": []
      *         // }
      *       },
      *     }
@@ -1813,20 +3324,38 @@ export namespace retail_v2alpha {
      *   // Example response
      *   // {
      *   //   "attributes": {},
+     *   //   "audience": {},
      *   //   "availability": "my_availability",
      *   //   "availableQuantity": 0,
      *   //   "availableTime": "my_availableTime",
+     *   //   "brands": [],
      *   //   "categories": [],
+     *   //   "collectionMemberIds": [],
+     *   //   "colorInfo": {},
+     *   //   "conditions": [],
      *   //   "description": "my_description",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "fulfillmentInfo": [],
+     *   //   "gtin": "my_gtin",
      *   //   "id": "my_id",
      *   //   "images": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "materials": [],
      *   //   "name": "my_name",
+     *   //   "patterns": [],
      *   //   "priceInfo": {},
      *   //   "primaryProductId": "my_primaryProductId",
+     *   //   "promotions": [],
+     *   //   "publishTime": "my_publishTime",
+     *   //   "rating": {},
+     *   //   "retrievableFields": "my_retrievableFields",
+     *   //   "sizes": [],
      *   //   "tags": [],
      *   //   "title": "my_title",
+     *   //   "ttl": "my_ttl",
      *   //   "type": "my_type",
-     *   //   "uri": "my_uri"
+     *   //   "uri": "my_uri",
+     *   //   "variants": []
      *   // }
      * }
      *
@@ -2096,20 +3625,38 @@ export namespace retail_v2alpha {
      *   // Example response
      *   // {
      *   //   "attributes": {},
+     *   //   "audience": {},
      *   //   "availability": "my_availability",
      *   //   "availableQuantity": 0,
      *   //   "availableTime": "my_availableTime",
+     *   //   "brands": [],
      *   //   "categories": [],
+     *   //   "collectionMemberIds": [],
+     *   //   "colorInfo": {},
+     *   //   "conditions": [],
      *   //   "description": "my_description",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "fulfillmentInfo": [],
+     *   //   "gtin": "my_gtin",
      *   //   "id": "my_id",
      *   //   "images": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "materials": [],
      *   //   "name": "my_name",
+     *   //   "patterns": [],
      *   //   "priceInfo": {},
      *   //   "primaryProductId": "my_primaryProductId",
+     *   //   "promotions": [],
+     *   //   "publishTime": "my_publishTime",
+     *   //   "rating": {},
+     *   //   "retrievableFields": "my_retrievableFields",
+     *   //   "sizes": [],
      *   //   "tags": [],
      *   //   "title": "my_title",
+     *   //   "ttl": "my_ttl",
      *   //   "type": "my_type",
-     *   //   "uri": "my_uri"
+     *   //   "uri": "my_uri",
+     *   //   "variants": []
      *   // }
      * }
      *
@@ -2249,6 +3796,9 @@ export namespace retail_v2alpha {
      *         // {
      *         //   "errorsConfig": {},
      *         //   "inputConfig": {},
+     *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *         //   "reconciliationMode": "my_reconciliationMode",
+     *         //   "requestId": "my_requestId",
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
@@ -2392,6 +3942,8 @@ export namespace retail_v2alpha {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.branches.products.list({
+     *     // A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List Product.Type.VARIANT Products sharing the same Product.Type.PRIMARY Product. For example: `primary_product_id = "some_product_id"` * List Products bundled in a Product.Type.COLLECTION Product. For example: `collection_product_id = "some_product_id"` * List Products with a partibular type. For example: `type = "PRIMARY"` `type = "VARIANT"` `type = "COLLECTION"` If the field is unrecognizable, an INVALID_ARGUMENT error is returned. If the specified Product.Type.PRIMARY Product or Product.Type.COLLECTION Product does not exist, a NOT_FOUND error is returned.
+     *     filter: 'placeholder-value',
      *     // Maximum number of Products to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
      *     pageSize: 'placeholder-value',
      *     // A page token ListProductsResponse.next_page_token, received from a previous ProductService.ListProducts call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ProductService.ListProducts must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
@@ -2399,15 +3951,18 @@ export namespace retail_v2alpha {
      *     // Required. The parent branch resource name, such as `projects/x/locations/global/catalogs/default_catalog/branches/0`. Use `default_branch` as the branch ID, to list products under the default branch. If the caller does not have permission to list Products under this branch, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.
      *     parent:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche',
-     *     // The fields of Product to return in the responses. If not set or empty, the following fields are returned: * Product.name * Product.id * Product.title * Product.uri * Product.images * Product.price_info If "*" is provided, all fields are returned. Product.name is always returned no matter what mask is set. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *     // The fields of Product to return in the responses. If not set or empty, the following fields are returned: * Product.name * Product.id * Product.title * Product.uri * Product.images * Product.price_info * Product.brands If "*" is provided, all fields are returned. Product.name is always returned no matter what mask is set. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
      *     readMask: 'placeholder-value',
+     *     // If true and page_token is empty, ListProductsResponse.total_size is set to the total count of matched items irrespective of pagination. Notice that setting this field to true affects the performance.
+     *     requireTotalSize: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "products": []
+     *   //   "products": [],
+     *   //   "totalSize": 0
      *   // }
      * }
      *
@@ -2551,20 +4106,38 @@ export namespace retail_v2alpha {
      *       // request body parameters
      *       // {
      *       //   "attributes": {},
+     *       //   "audience": {},
      *       //   "availability": "my_availability",
      *       //   "availableQuantity": 0,
      *       //   "availableTime": "my_availableTime",
+     *       //   "brands": [],
      *       //   "categories": [],
+     *       //   "collectionMemberIds": [],
+     *       //   "colorInfo": {},
+     *       //   "conditions": [],
      *       //   "description": "my_description",
+     *       //   "expireTime": "my_expireTime",
+     *       //   "fulfillmentInfo": [],
+     *       //   "gtin": "my_gtin",
      *       //   "id": "my_id",
      *       //   "images": [],
+     *       //   "languageCode": "my_languageCode",
+     *       //   "materials": [],
      *       //   "name": "my_name",
+     *       //   "patterns": [],
      *       //   "priceInfo": {},
      *       //   "primaryProductId": "my_primaryProductId",
+     *       //   "promotions": [],
+     *       //   "publishTime": "my_publishTime",
+     *       //   "rating": {},
+     *       //   "retrievableFields": "my_retrievableFields",
+     *       //   "sizes": [],
      *       //   "tags": [],
      *       //   "title": "my_title",
+     *       //   "ttl": "my_ttl",
      *       //   "type": "my_type",
-     *       //   "uri": "my_uri"
+     *       //   "uri": "my_uri",
+     *       //   "variants": []
      *       // }
      *     },
      *   });
@@ -2573,20 +4146,38 @@ export namespace retail_v2alpha {
      *   // Example response
      *   // {
      *   //   "attributes": {},
+     *   //   "audience": {},
      *   //   "availability": "my_availability",
      *   //   "availableQuantity": 0,
      *   //   "availableTime": "my_availableTime",
+     *   //   "brands": [],
      *   //   "categories": [],
+     *   //   "collectionMemberIds": [],
+     *   //   "colorInfo": {},
+     *   //   "conditions": [],
      *   //   "description": "my_description",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "fulfillmentInfo": [],
+     *   //   "gtin": "my_gtin",
      *   //   "id": "my_id",
      *   //   "images": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "materials": [],
      *   //   "name": "my_name",
+     *   //   "patterns": [],
      *   //   "priceInfo": {},
      *   //   "primaryProductId": "my_primaryProductId",
+     *   //   "promotions": [],
+     *   //   "publishTime": "my_publishTime",
+     *   //   "rating": {},
+     *   //   "retrievableFields": "my_retrievableFields",
+     *   //   "sizes": [],
      *   //   "tags": [],
      *   //   "title": "my_title",
+     *   //   "ttl": "my_ttl",
      *   //   "type": "my_type",
-     *   //   "uri": "my_uri"
+     *   //   "uri": "my_uri",
+     *   //   "variants": []
      *   // }
      * }
      *
@@ -2687,8 +4278,328 @@ export namespace retail_v2alpha {
         );
       }
     }
+
+    /**
+     * Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Contact Retail Support (retail-search-support@google.com) if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.removeFulfillmentPlaces(
+     *       {
+     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         product:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "allowMissing": false,
+     *           //   "placeIds": [],
+     *           //   "removeTime": "my_removeTime",
+     *           //   "type": "my_type"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeFulfillmentPlaces(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeFulfillmentPlaces(
+      params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    removeFulfillmentPlaces(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeFulfillmentPlaces(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removeFulfillmentPlaces(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removeFulfillmentPlaces(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removeFulfillmentPlaces(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2alpha/{+product}:removeFulfillmentPlaces'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['product'],
+        pathParams: ['product'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. When inventory is updated with CreateProduct and UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the CreateProduct or UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in UpdateProductRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with SetInventory, AddFulfillmentPlaces, and RemoveFulfillmentPlaces. This feature is only available for users who have Retail Search enabled. Contact Retail Support (retail-search-support@google.com) if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.setInventory({
+     *       // Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "allowMissing": false,
+     *         //   "inventory": {},
+     *         //   "setMask": "my_setMask",
+     *         //   "setTime": "my_setTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setInventory(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setInventory(
+      params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    setInventory(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setInventory(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setInventory(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setInventory(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setInventory(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}:setInventory').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     */
+    product?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create
     extends StandardParameters {
     /**
@@ -2734,6 +4645,10 @@ export namespace retail_v2alpha {
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$List
     extends StandardParameters {
     /**
+     * A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List Product.Type.VARIANT Products sharing the same Product.Type.PRIMARY Product. For example: `primary_product_id = "some_product_id"` * List Products bundled in a Product.Type.COLLECTION Product. For example: `collection_product_id = "some_product_id"` * List Products with a partibular type. For example: `type = "PRIMARY"` `type = "VARIANT"` `type = "COLLECTION"` If the field is unrecognizable, an INVALID_ARGUMENT error is returned. If the specified Product.Type.PRIMARY Product or Product.Type.COLLECTION Product does not exist, a NOT_FOUND error is returned.
+     */
+    filter?: string;
+    /**
      * Maximum number of Products to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
      */
     pageSize?: number;
@@ -2746,9 +4661,13 @@ export namespace retail_v2alpha {
      */
     parent?: string;
     /**
-     * The fields of Product to return in the responses. If not set or empty, the following fields are returned: * Product.name * Product.id * Product.title * Product.uri * Product.images * Product.price_info If "*" is provided, all fields are returned. Product.name is always returned no matter what mask is set. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     * The fields of Product to return in the responses. If not set or empty, the following fields are returned: * Product.name * Product.id * Product.title * Product.uri * Product.images * Product.price_info * Product.brands If "*" is provided, all fields are returned. Product.name is always returned no matter what mask is set. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
      */
     readMask?: string;
+    /**
+     * If true and page_token is empty, ListProductsResponse.total_size is set to the total count of matched items irrespective of pagination. Notice that setting this field to true affects the performance.
+     */
+    requireTotalSize?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch
     extends StandardParameters {
@@ -2769,6 +4688,200 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaProduct;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removefulfillmentplaces
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     */
+    product?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaRemoveFulfillmentPlacesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory
+    extends StandardParameters {
+    /**
+     * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaSetInventoryRequest;
+  }
+
+  export class Resource$Projects$Locations$Catalogs$Completiondata {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Bulk import of processed completion dataset. Request processing may be synchronous. Partial updating is not supported. This feature is only available for users who have Retail Search enabled. Contact Retail Support (retail-search-support@google.com) if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.completionData.import({
+     *     // Required. The catalog which the suggestions dataset belongs to. Format: `projects/1234/locations/global/catalogs/default_catalog`.
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "inputConfig": {},
+     *       //   "notificationPubsubTopic": "my_notificationPubsubTopic"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Catalogs$Completiondata$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Completiondata$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Completiondata$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Completiondata$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}/completionData:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Catalogs$Completiondata$Import
+    extends StandardParameters {
+    /**
+     * Required. The catalog which the suggestions dataset belongs to. Format: `projects/1234/locations/global/catalogs/default_catalog`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaImportCompletionDataRequest;
   }
 
   export class Resource$Projects$Locations$Catalogs$Operations {
@@ -3251,6 +5364,177 @@ export namespace retail_v2alpha {
         );
       }
     }
+
+    /**
+     * Performs a search. This feature is only available for users who have Retail Search enabled. Contact Retail Support (retail-search-support@google.com) if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.placements.search({
+     *     // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the set of models that will be used to make the search. We currently support one placement with the following ID: * `default_search`.
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostSpec": {},
+     *       //   "branch": "my_branch",
+     *       //   "canonicalFilter": "my_canonicalFilter",
+     *       //   "dynamicFacetSpec": {},
+     *       //   "facetSpecs": [],
+     *       //   "filter": "my_filter",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageCategories": [],
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": "my_query",
+     *       //   "queryExpansionSpec": {},
+     *       //   "relevanceThreshold": "my_relevanceThreshold",
+     *       //   "userInfo": {},
+     *       //   "variantRollupKeys": [],
+     *       //   "visitorId": "my_visitorId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Placements$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Catalogs$Placements$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaSearchResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Placements$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Placements$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Placements$Search,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Placements$Search
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaSearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaSearchResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Placements$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Placements$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+placement}:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['placement'],
+        pathParams: ['placement'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaSearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaSearchResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Predict
@@ -3264,6 +5548,18 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaPredictRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Placements$Search
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the set of models that will be used to make the search. We currently support one placement with the following ID: * `default_search`.
+     */
+    placement?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaSearchRequest;
   }
 
   export class Resource$Projects$Locations$Catalogs$Userevents {
@@ -3899,15 +6195,20 @@ export namespace retail_v2alpha {
      *       //   "attributes": {},
      *       //   "attributionToken": "my_attributionToken",
      *       //   "cartId": "my_cartId",
+     *       //   "completionDetail": {},
      *       //   "eventTime": "my_eventTime",
      *       //   "eventType": "my_eventType",
      *       //   "experimentIds": [],
+     *       //   "filter": "my_filter",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
      *       //   "pageCategories": [],
      *       //   "pageViewId": "my_pageViewId",
      *       //   "productDetails": [],
      *       //   "purchaseTransaction": {},
      *       //   "referrerUri": "my_referrerUri",
      *       //   "searchQuery": "my_searchQuery",
+     *       //   "sessionId": "my_sessionId",
      *       //   "uri": "my_uri",
      *       //   "userInfo": {},
      *       //   "visitorId": "my_visitorId"
@@ -3921,15 +6222,20 @@ export namespace retail_v2alpha {
      *   //   "attributes": {},
      *   //   "attributionToken": "my_attributionToken",
      *   //   "cartId": "my_cartId",
+     *   //   "completionDetail": {},
      *   //   "eventTime": "my_eventTime",
      *   //   "eventType": "my_eventType",
      *   //   "experimentIds": [],
+     *   //   "filter": "my_filter",
+     *   //   "offset": 0,
+     *   //   "orderBy": "my_orderBy",
      *   //   "pageCategories": [],
      *   //   "pageViewId": "my_pageViewId",
      *   //   "productDetails": [],
      *   //   "purchaseTransaction": {},
      *   //   "referrerUri": "my_referrerUri",
      *   //   "searchQuery": "my_searchQuery",
+     *   //   "sessionId": "my_sessionId",
      *   //   "uri": "my_uri",
      *   //   "userInfo": {},
      *   //   "visitorId": "my_visitorId"
