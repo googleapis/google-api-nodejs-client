@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v0.4.3...cloudsearch-v0.5.0) (2021-07-24)
+
+
+### Features
+
+* **cloudsearch:** update the API ([445a261](https://www.github.com/googleapis/google-api-nodejs-client/commit/445a261922c0b2d479dd903e4fc1079fd024cf51))
+
 ### [0.4.3](https://www.github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v0.4.2...cloudsearch-v0.4.3) (2021-06-25)
 
 
