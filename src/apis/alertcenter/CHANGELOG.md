@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v3.1.0...alertcenter-v3.1.1) (2021-07-24)
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([bffebaf](https://www.github.com/googleapis/google-api-nodejs-client/commit/bffebaf9cd5b8c69f2981569c5f87f9372e3899c))
+
 ## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v3.0.1...alertcenter-v3.1.0) (2021-06-25)
 
 

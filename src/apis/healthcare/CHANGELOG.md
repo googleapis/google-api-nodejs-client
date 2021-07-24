@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/healthcare-v2.0.0...healthcare-v2.1.0) (2021-07-24)
+
+
+### Features
+
+* **healthcare:** update the API ([a20450f](https://www.github.com/googleapis/google-api-nodejs-client/commit/a20450fd01c60f6aa5926c93d7b6c1cd05e18489))
+
 ## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/healthcare-v1.2.0...healthcare-v2.0.0) (2021-06-30)
 
 

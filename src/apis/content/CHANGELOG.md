@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/content-v3.0.0...content-v3.1.0) (2021-07-24)
+
+
+### Features
+
+* **content:** update the API ([cd4cb76](https://www.github.com/googleapis/google-api-nodejs-client/commit/cd4cb76dd5a747360ad6fb7e51f5f673779ca9d1))
+
 ## [3.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/content-v2.1.0...content-v3.0.0) (2021-06-30)
 
 

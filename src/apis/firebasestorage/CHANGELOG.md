@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v1.0.0...firebasestorage-v1.1.0) (2021-07-24)
+
+
+### Features
+
+* **firebasestorage:** update the API ([b477454](https://www.github.com/googleapis/google-api-nodejs-client/commit/b47745401c9333cab39543053bc719b441859c4f))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v0.3.0...firebasestorage-v1.0.0) (2021-07-08)
 
 
