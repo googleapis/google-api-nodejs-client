@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bustling-kayak-316501",
+  "private_key_id": "46c447662fe5c972357aadfc28635d9e886f1451",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDsm+TvCZobQ/PY\n/5Qjx26xUvZ9tLuASU22sN79vCfdt160PQ352LXgIFLijVs2GEzp3TJT9GBPfnpM\ndLA9PRuzXWJaTVR5L+GDAIU9ZyvUmH5+Q02QWxbko0Nisy+8biiyNtRE0JdcC7Bn\nNYQWbI6/IDn07L8V9NShoXSpRttHI+dfgpjDfGSZWz1J2KEhbhZBwI8kFYFqSAFf\nNQl8ZjZTF4NXCJ/L5kMKgfRr1X05WjqnspUJdMxTg8lFFgOzakPQTLfd1OcRpUQW\nj0PVfjz8QByDhXsf3VbjdNt3SSxQV+fKnv5LNIL0J28B/GT9R+UO3SjBgmW8XmWG\n2R4fVvxVAgMBAAECggEAGeUb4o9d9tLyipK6H0pR0oVeZbaUeL9NCowD86gWgtzx\nN++gqnHtwcg32gSXcW2qaUPkoKyTp8+TSe/RY/peoDw9qd1hu9uiJii17FjwwpUn\n7uClygE2GbLGirRKqqgxuwNmKtvbXN8IoNsKCDw8SS2ZOjV42knPxZq6flY7ZGcT\nJuzvsJqNbc9j2ovykN+bllqTPYkbKH67AHLtxINnUmNRsAPvuIfiBWCrsoLE9kC0\n9YgsNxx3d1W0frEO9M+VfT104a49V8ju7PWY2F+lm/eFgw14lRbDv3DvW5EFlVXL\nh/eAE5fzlXeEWj61h9q2wwCH5ilBkSm/w/vjySzyhwKBgQD7TRaygzeWaQ5slgKz\nZH49rRZt50MriJPo+CKt0jrPni8B/EybVFN6Kd2hHT+Jhc5a9oo/1FAUG3f9QtFL\n5Y62vIdGlHv7i5309sOG7JWUuH3SzBVBsCxk5hgtx5T2vMiNio0WlHPfhTKxDr+a\nO6QKU6E4ary9YVK/S4Ib6MHAvwKBgQDxCHpnb7ZkxxGq/wuopRs7HAm+uVsnQ7MU\nBiKSgeKYfIcimTDYrKAq0xcJVD59b35pD8ERQgogW2kekV+EbiqP68fLOaN6wRIm\n4qw2DJC2jiLaZBSiWbXgZ3MZoumnC8ZJgF4kNVCc9VCDI2/pKeMmWtHm2xyvI9Y0\nC4+NhCsz6wKBgQCwzvYvNv8/Rj8tywWvbf8cKdHkFZg+4uMeQKc1oPpb5TGxte+4\nQcZR527V0pxHh+s+OMPgUOLeoszzVbWoLqUQkOikkggBXaQPHCdJoN9FOeDdFVXH\nV8qEWxeb7hYy23RHkbnerygvlamqxXOtclTiJyEBbqfIntb3XIr4U/UuRQKBgHVd\n03yagQ4BgTDqkBrGisP1mykryJ8N8B1H/32nkVb/DC5kucxIApXXw9ffFa6uo7c0\n3KYyqgund0BTOVea7U63WMo0fs4/RT96ELEg3TaHb6E4KnQDivSCayGImo2kxiD0\nSOMIswA608GHd+7pXppGjv8Coq0FnkApgPU/7mmRAoGBAOpUyZxpFv2Msy6Zkeig\nJZ8r5ccxmEhT29BJ/LEm1kF4GPPNo0uXyZcrAKD2Sw0f5yPzefXkTEet0XqiDbDj\nFWLGNadH5vIXN6csjnSF94oEIBFvdpMvA4Us70y6P/MWZAD7dJOToPpRwT8RSDHP\njzjDwF1JzOroCeZ39H2txA5w\n-----END PRIVATE KEY-----\n",
+  "client_email": "https-colab-research-google-co@bustling-kayak-316501.iam.gserviceaccount.com",
+  "client_id": "110176600232640269886",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/https-colab-research-google-co%40bustling-kayak-316501.iam.gserviceaccount.com"
+}
