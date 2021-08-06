@@ -371,7 +371,7 @@
       }
     }
   },
-  "revision": "20210707",
+  "revision": "20210804",
   "rootUrl": "https://ideahub.googleapis.com/",
   "schemas": {
     "GoogleSearchIdeahubV1alphaAvailableLocale": {
@@ -415,7 +415,7 @@
       "description": "An idea activity entry.",
       "id": "GoogleSearchIdeahubV1alphaIdeaActivity",
       "properties": {
-        "ideaIds": {
+        "ideas": {
           "description": "The Idea IDs for this entry.",
           "items": {
             "type": "string"
@@ -426,7 +426,7 @@
           "description": "Unique identifier for the idea activity. Format: platforms/{platform}/properties/{property}/ideaActivities/{idea_activity}",
           "type": "string"
         },
-        "topicIds": {
+        "topics": {
           "description": "The Topic IDs for this entry.",
           "items": {
             "type": "string"
@@ -520,6 +520,10 @@
         },
         "mid": {
           "description": "The mID of the topic.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Unique identifier for the topic. Format: topics/{topic}",
           "type": "string"
         }
       },
