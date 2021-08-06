@@ -229,10 +229,17 @@ export namespace ondemandscanning_v1beta1 {
      */
     signatures?: Schema$Signature[];
   }
+  export interface Schema$BuilderConfig {
+    id?: string | null;
+  }
   /**
    * Details of a build occurrence.
    */
   export interface Schema$BuildOccurrence {
+    /**
+     * In-toto Provenance representation as defined in spec.
+     */
+    intotoProvenance?: Schema$InTotoProvenance;
     /**
      * Required. The actual provenance for the build.
      */
@@ -359,6 +366,23 @@ export namespace ondemandscanning_v1beta1 {
     waitFor?: string[] | null;
   }
   /**
+   * Indicates that the builder claims certain fields in this message to be complete.
+   */
+  export interface Schema$Completeness {
+    /**
+     * If true, the builder claims that recipe.arguments is complete, meaning that all external inputs are properly captured in the recipe.
+     */
+    arguments?: boolean | null;
+    /**
+     * If true, the builder claims that recipe.environment is claimed to be complete.
+     */
+    environment?: boolean | null;
+    /**
+     * If true, the builder claims that materials are complete, usually through some controls to prevent network access. Sometimes called "hermetic".
+     */
+    materials?: boolean | null;
+  }
+  /**
    * An indication that the compliance checks in the associated ComplianceNote were not satisfied for particular resources or a specified reason.
    */
   export interface Schema$ComplianceOccurrence {
@@ -423,10 +447,29 @@ export namespace ondemandscanning_v1beta1 {
      */
     lastScanTime?: string | null;
   }
+  export interface Schema$DSSEAttestationOccurrence {
+    /**
+     * If doing something security critical, make sure to verify the signatures in this metadata.
+     */
+    envelope?: Schema$Envelope;
+    statement?: Schema$InTotoStatement;
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * MUST match https://github.com/secure-systems-lab/dsse/blob/master/envelope.proto. An authenticated message of arbitrary type.
+   */
+  export interface Schema$Envelope {
+    payload?: string | null;
+    payloadType?: string | null;
+    signatures?: Schema$EnvelopeSignature[];
+  }
+  export interface Schema$EnvelopeSignature {
+    keyid?: string | null;
+    sig?: string | null;
+  }
   /**
    * Container message for hashes of byte content of files, used in source messages to verify integrity of source input to the build.
    */
@@ -534,6 +577,36 @@ export namespace ondemandscanning_v1beta1 {
      */
     layerInfo?: Schema$Layer[];
   }
+  export interface Schema$InTotoProvenance {
+    /**
+     * required
+     */
+    builderConfig?: Schema$BuilderConfig;
+    /**
+     * The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on. This is considered to be incomplete unless metadata.completeness.materials is true. Unset or null is equivalent to empty.
+     */
+    materials?: string[] | null;
+    metadata?: Schema$Metadata;
+    /**
+     * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
+     */
+    recipe?: Schema$Recipe;
+  }
+  /**
+   * Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always "application/vnd.in-toto+json".
+   */
+  export interface Schema$InTotoStatement {
+    /**
+     * "https://in-toto.io/Provenance/v0.1" for InTotoProvenance.
+     */
+    predicateType?: string | null;
+    provenance?: Schema$InTotoProvenance;
+    subject?: Schema$Subject[];
+    /**
+     * Always "https://in-toto.io/Statement/v0.1".
+     */
+    type?: string | null;
+  }
   export interface Schema$Jwt {
     /**
      * The compact encoding of a JWS, which is always three base64 encoded strings joined by periods. For details, see: https://tools.ietf.org/html/rfc7515.html#section-3.1
@@ -597,6 +670,31 @@ export namespace ondemandscanning_v1beta1 {
     version?: Schema$Version;
   }
   /**
+   * Other properties of the build.
+   */
+  export interface Schema$Metadata {
+    /**
+     * The timestamp of when the build completed.
+     */
+    buildFinishedOn?: string | null;
+    /**
+     * Identifies the particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis. The value SHOULD be globally unique, per in-toto Provenance spec.
+     */
+    buildInvocationId?: string | null;
+    /**
+     * The timestamp of when the build started.
+     */
+    buildStartedOn?: string | null;
+    /**
+     * Indicates that the builder claims certain fields in this message to be complete.
+     */
+    completeness?: Schema$Completeness;
+    /**
+     * If true, the builder claims that running the recipe on materials will produce bit-for-bit identical output.
+     */
+    reproducible?: boolean | null;
+  }
+  /**
    * Details about files that caused a compliance check to fail.
    */
   export interface Schema$NonCompliantFile {
@@ -641,6 +739,14 @@ export namespace ondemandscanning_v1beta1 {
      * Describes when a resource was discovered.
      */
     discovery?: Schema$DiscoveryOccurrence;
+    /**
+     * Describes an attestation of an artifact using dsse.
+     */
+    dsseAttestation?: Schema$DSSEAttestationOccurrence;
+    /**
+     * https://github.com/secure-systems-lab/dsse
+     */
+    envelope?: Schema$Envelope;
     /**
      * Describes how this resource derives from the basis in the associated note.
      */
@@ -794,6 +900,31 @@ export namespace ondemandscanning_v1beta1 {
     repoName?: string | null;
   }
   /**
+   * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
+   */
+  export interface Schema$Recipe {
+    /**
+     * Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were "make", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint.
+     */
+    arguments?: string[] | null;
+    /**
+     * Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were "make", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64.
+     */
+    definedInMaterial?: string | null;
+    /**
+     * String identifying the entry point into the build. This is often a path to a configuration file and/or a target label within that file. The syntax and meaning are defined by recipe.type. For example, if the recipe type were "make", then this would reference the directory in which to run make as well as which target to use.
+     */
+    entryPoint?: string | null;
+    /**
+     * Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy.
+     */
+    environment?: {[key: string]: string} | null;
+    /**
+     * URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.
+     */
+    type?: string | null;
+  }
+  /**
    * Metadata for any related URL information.
    */
   export interface Schema$RelatedUrl {
@@ -890,6 +1021,13 @@ export namespace ondemandscanning_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  export interface Schema$Subject {
+    /**
+     * "": ""
+     */
+    digest?: {[key: string]: string} | null;
+    name?: string | null;
   }
   /**
    * The Upgrade Distribution represents metadata about the Upgrade for each operating system (CPE). Some distributions have additional metadata around updates, classifying them into various categories and severities.
