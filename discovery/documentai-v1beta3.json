@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210719",
+  "revision": "20210731",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -1876,7 +1876,7 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
           "format": "int32",
           "type": "integer"
         },
@@ -3039,7 +3039,7 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
           "format": "int32",
           "type": "integer"
         },
@@ -4417,7 +4417,7 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
           "format": "int32",
           "type": "integer"
         },
@@ -4861,7 +4861,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ProcessorType": {
-      "description": "A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 7.",
+      "description": "A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 8.",
       "id": "GoogleCloudDocumentaiV1beta3ProcessorType",
       "properties": {
         "allowCreation": {

@@ -964,7 +964,7 @@ export namespace documentai_v1beta2 {
      */
     id?: number | null;
     /**
-     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
      */
     index?: number | null;
     /**
@@ -1823,7 +1823,7 @@ export namespace documentai_v1beta2 {
      */
     id?: number | null;
     /**
-     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
      */
     index?: number | null;
     /**
