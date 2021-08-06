@@ -608,7 +608,7 @@ export namespace servicenetworking_v1beta {
      */
     deprecationDescription?: string | null;
     /**
-     * The description is the comment in front of the selected proto element, such as a message, a method, a 'service' definition, or a field.
+     * Description of the selected proto element (e.g. a message, a method, a 'service' definition, or a field). Defaults to leading & trailing comments taken from the proto source definition of the proto element.
      */
     description?: string | null;
     /**
@@ -1077,7 +1077,7 @@ export namespace servicenetworking_v1beta {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type `"cloudsql_database"` represents databases in Google Cloud SQL.
+     * Required. The monitored resource type. For example, the type `"cloudsql_database"` represents databases in Google Cloud SQL. For a list of types, see [Monitoring resource types](https://cloud.google.com/monitoring/api/resources) and [Logging resource types](https://cloud.google.com/logging/docs/api/v2/resource-list).
      */
     type?: string | null;
   }
