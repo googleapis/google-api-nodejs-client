@@ -610,7 +610,7 @@
       }
     }
   },
-  "revision": "20210614",
+  "revision": "20210723",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -763,6 +763,28 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -1038,6 +1060,10 @@
           "$ref": "InventoryWindowsQuickFixEngineeringPackage",
           "description": "Details of a Windows Quick Fix engineering package. See https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering for info in Windows Quick Fix Engineering."
         },
+        "windowsApplication": {
+          "$ref": "InventoryWindowsApplication",
+          "description": "Details of Windows Application."
+        },
         "wuaPackage": {
           "$ref": "InventoryWindowsUpdatePackage",
           "description": "Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update."
@@ -1071,6 +1097,33 @@
         },
         "version": {
           "description": "The version of the package.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryWindowsApplication": {
+      "description": "Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class=\"external\" }",
+      "id": "InventoryWindowsApplication",
+      "properties": {
+        "displayName": {
+          "description": "The name of the application or product.",
+          "type": "string"
+        },
+        "displayVersion": {
+          "description": "The version of the product or application in string format.",
+          "type": "string"
+        },
+        "helpLink": {
+          "description": "The internet address for technical support.",
+          "type": "string"
+        },
+        "installDate": {
+          "$ref": "Date",
+          "description": "The last time this product received service. The value of this property is replaced each time a patch is applied or removed from the product or the command-line option is used to repair the product."
+        },
+        "publisher": {
+          "description": "The name of the manufacturer for the product or application.",
           "type": "string"
         }
       },
