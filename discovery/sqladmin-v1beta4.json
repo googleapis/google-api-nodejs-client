@@ -122,7 +122,7 @@
           ],
           "parameters": {
             "id": {
-              "description": "The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.",
+              "description": "The ID of the backup run to delete. To find a backup run ID, use the list method.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -162,7 +162,7 @@
           ],
           "parameters": {
             "id": {
-              "description": "The ID of this Backup Run.",
+              "description": "The ID of this backup run.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -191,7 +191,7 @@
           ]
         },
         "insert": {
-          "description": "Creates a new backup run on demand. This method is applicable only to Second Generation instances.",
+          "description": "Creates a new backup run on demand.",
           "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/backupRuns",
           "httpMethod": "POST",
           "id": "sql.backupRuns.insert",
@@ -583,7 +583,7 @@
     "flags": {
       "methods": {
         "list": {
-          "description": "List all available database flags for Cloud SQL instances.",
+          "description": "Lists all available database flags for Cloud SQL instances.",
           "flatPath": "sql/v1beta4/flags",
           "httpMethod": "GET",
           "id": "sql.flags.list",
@@ -777,7 +777,7 @@
           ]
         },
         "failover": {
-          "description": "Failover the instance to its failover replica instance. Using this operation might cause your instance to restart.",
+          "description": "Initiates a manual failover of a high availability (HA) primary instance to a standby instance, which becomes the primary instance. Users are then rerouted to the new primary. For more information, see the Overview of high availability page in the Cloud SQL documentation. If using Legacy HA (MySQL only), this causes the instance to failover to its failover replica instance.",
           "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/failover",
           "httpMethod": "POST",
           "id": "sql.instances.failover",
@@ -1452,29 +1452,12 @@
                   "location": "path",
                   "required": true,
                   "type": "string"
-                },
-                "skipVerification": {
-                  "description": "Whether to skip the verification step (VESS).",
-                  "location": "query",
-                  "type": "boolean"
-                },
-                "syncMode": {
-                  "description": "External sync mode.",
-                  "enum": [
-                    "EXTERNAL_SYNC_MODE_UNSPECIFIED",
-                    "ONLINE",
-                    "OFFLINE"
-                  ],
-                  "enumDescriptions": [
-                    "Unknown external sync mode, will be defaulted to ONLINE mode",
-                    "Online external sync will set up replication after initial data external sync",
-                    "Offline external sync only dumps and loads a one-time snapshot of the primary instance's data"
-                  ],
-                  "location": "query",
-                  "type": "string"
                 }
               },
               "path": "sql/v1beta4/projects/{project}/instances/{instance}/startExternalSync",
+              "request": {
+                "$ref": "SqlInstancesStartExternalSyncRequest"
+              },
               "response": {
                 "$ref": "Operation"
               },
@@ -1504,29 +1487,12 @@
                   "location": "path",
                   "required": true,
                   "type": "string"
-                },
-                "syncMode": {
-                  "description": "External sync mode",
-                  "enum": [
-                    "EXTERNAL_SYNC_MODE_UNSPECIFIED",
-                    "ONLINE",
-                    "OFFLINE"
-                  ],
-                  "enumDescriptions": [
-                    "Unknown external sync mode, will be defaulted to ONLINE mode",
-                    "Online external sync will set up replication after initial data external sync",
-                    "Offline external sync only dumps and loads a one-time snapshot of the primary instance's data"
-                  ],
-                  "location": "query",
-                  "type": "string"
-                },
-                "verifyConnectionOnly": {
-                  "description": "Flag to enable verifying connection only",
-                  "location": "query",
-                  "type": "boolean"
                 }
               },
               "path": "sql/v1beta4/projects/{project}/instances/{instance}/verifyExternalSyncSettings",
+              "request": {
+                "$ref": "SqlInstancesVerifyExternalSyncSettingsRequest"
+              },
               "response": {
                 "$ref": "SqlInstancesVerifyExternalSyncSettingsResponse"
               },
@@ -1911,7 +1877,7 @@
       }
     }
   },
-  "revision": "20210627",
+  "revision": "20210727",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2073,11 +2039,11 @@
         },
         "diskEncryptionConfiguration": {
           "$ref": "DiskEncryptionConfiguration",
-          "description": "Encryption configuration specific to a backup. Applies only to Second Generation instances."
+          "description": "Encryption configuration specific to a backup."
         },
         "diskEncryptionStatus": {
           "$ref": "DiskEncryptionStatus",
-          "description": "Encryption status specific to a backup. Applies only to Second Generation instances."
+          "description": "Encryption status specific to a backup."
         },
         "endTime": {
           "description": "The time the backup operation completed in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.",
@@ -2371,7 +2337,7 @@
       "id": "DatabaseFlags",
       "properties": {
         "name": {
-          "description": "The name of the flag. These flags are passed at instance startup, so include both server options and system variables for MySQL. Flags are specified with underscores, not hyphens. For more information, see Configuring Database Flags in the Cloud SQL documentation.",
+          "description": "The name of the flag. These flags are passed at instance startup, so include both server options and system variables. Flags are specified with underscores, not hyphens. For more information, see Configuring Database Flags in the Cloud SQL documentation.",
           "type": "string"
         },
         "value": {
@@ -2411,7 +2377,7 @@
           "type": "string"
         },
         "databaseVersion": {
-          "description": "The database engine type and version. The *databaseVersion* field cannot be changed after instance creation. MySQL instances: *MYSQL_8_0*, *MYSQL_5_7* (default), or *MYSQL_5_6*. PostgreSQL instances: *POSTGRES_9_6*, *POSTGRES_10*, *POSTGRES_11*, *POSTGRES_12*, or *POSTGRES_13* (default). SQL Server instances: *SQLSERVER_2017_STANDARD* (default), *SQLSERVER_2017_ENTERPRISE*, *SQLSERVER_2017_EXPRESS*, or *SQLSERVER_2017_WEB*.",
+          "description": "The database engine type and version. The *databaseVersion* field cannot be changed after instance creation. MySQL instances: *MYSQL_8_0*, *MYSQL_5_7* (default), or *MYSQL_5_6*. PostgreSQL instances: *POSTGRES_9_6*, *POSTGRES_10*, *POSTGRES_11*, *POSTGRES_12*, *POSTGRES_13* (default). SQL Server instances: *SQLSERVER_2019_STANDARD*, *SQLSERVER_2019_ENTERPRISE*, *SQLSERVER_2019_EXPRESS*, or *SQLSERVER_2019_WEB*, *SQLSERVER_2017_STANDARD* (default), *SQLSERVER_2017_ENTERPRISE*, *SQLSERVER_2017_EXPRESS*, or *SQLSERVER_2017_WEB*.",
           "enum": [
             "SQL_DATABASE_VERSION_UNSPECIFIED",
             "MYSQL_5_1",
@@ -2458,25 +2424,25 @@
         },
         "diskEncryptionConfiguration": {
           "$ref": "DiskEncryptionConfiguration",
-          "description": "Disk encryption configuration specific to an instance. Applies only to Second Generation instances."
+          "description": "Disk encryption configuration specific to an instance."
         },
         "diskEncryptionStatus": {
           "$ref": "DiskEncryptionStatus",
-          "description": "Disk encryption status specific to an instance. Applies only to Second Generation instances."
+          "description": "Disk encryption status specific to an instance."
         },
         "etag": {
           "description": "This field is deprecated and will be removed from a future version of the API. Use the *settings.settingsVersion* field instead.",
           "type": "string"
         },
         "failoverReplica": {
-          "description": "The name and status of the failover replica. This property is applicable only to Second Generation instances.",
+          "description": "The name and status of the failover replica.",
           "properties": {
             "available": {
               "description": "The availability status of the failover replica. A false status indicates that the failover replica is out of sync. The primary instance can only failover to the failover replica when the status is true.",
               "type": "boolean"
             },
             "name": {
-              "description": "The name of the failover replica. If specified at instance creation, a failover replica is created for the instance. The name doesn't include the project ID. This property is applicable only to Second Generation instances.",
+              "description": "The name of the failover replica. If specified at instance creation, a failover replica is created for the instance. The name doesn't include the project ID.",
               "type": "string"
             }
           },
@@ -2685,7 +2651,7 @@
           "description": "Configuration specific to read-replicas replicating from the on-premises primary instance."
         },
         "verifyGtidConsistency": {
-          "description": "Verify GTID consistency for demote operation. Default value: *True*. Second Generation instances only. Setting this flag to false enables you to bypass GTID consistency check between on-premises primary instance and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.",
+          "description": "Verify GTID consistency for demote operation. Default value: *True*. Setting this flag to false enables you to bypass GTID consistency check between on-premises primary instance and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.",
           "type": "boolean"
         }
       },
@@ -2958,7 +2924,7 @@
           "type": "string"
         },
         "requiresRestart": {
-          "description": "Indicates whether changing this flag will trigger a database restart. Only applicable to Second Generation instances.",
+          "description": "Indicates whether changing this flag will trigger a database restart.",
           "type": "boolean"
         },
         "type": {
@@ -3125,7 +3091,7 @@
           "type": "boolean"
         },
         "queryPlansPerMinute": {
-          "description": "Number of query plans generated by Insights per minute. Default is 5. Changing this will restart the database.",
+          "description": "Number of query execution plans captured by Insights per minute for all queries combined. Default is 5.",
           "format": "int32",
           "type": "integer"
         },
@@ -3287,6 +3253,10 @@
       "description": "IP Management configuration.",
       "id": "IpConfiguration",
       "properties": {
+        "allocatedIpRange": {
+          "description": "The name of the allocated ip range for the private ip CloudSQL instance. For example: \"google-managed-services-default\". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.",
+          "type": "string"
+        },
         "authorizedNetworks": {
           "description": "The list of external networks that are allowed to connect to the instance using the IP. In 'CIDR' notation, also known as 'slash' notation (for example: *192.168.100.0/24*).",
           "items": {
@@ -3452,6 +3422,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "MySqlSyncConfig": {
+      "description": "MySQL-specific external server sync settings.",
+      "id": "MySqlSyncConfig",
+      "properties": {},
       "type": "object"
     },
     "OnPremisesConfiguration": {
@@ -3898,7 +3874,7 @@
         },
         "ipConfiguration": {
           "$ref": "IpConfiguration",
-          "description": "The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances."
+          "description": "The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled."
         },
         "kind": {
           "description": "This is always *sql#settings*.",
@@ -4061,6 +4037,62 @@
         "reschedule": {
           "$ref": "Reschedule",
           "description": "Required. The type of the reschedule the user wants."
+        }
+      },
+      "type": "object"
+    },
+    "SqlInstancesStartExternalSyncRequest": {
+      "id": "SqlInstancesStartExternalSyncRequest",
+      "properties": {
+        "mysqlSyncConfig": {
+          "$ref": "MySqlSyncConfig",
+          "description": "MySQL-specific settings for start external sync."
+        },
+        "skipVerification": {
+          "description": "Whether to skip the verification step (VESS).",
+          "type": "boolean"
+        },
+        "syncMode": {
+          "description": "External sync mode.",
+          "enum": [
+            "EXTERNAL_SYNC_MODE_UNSPECIFIED",
+            "ONLINE",
+            "OFFLINE"
+          ],
+          "enumDescriptions": [
+            "Unknown external sync mode, will be defaulted to ONLINE mode",
+            "Online external sync will set up replication after initial data external sync",
+            "Offline external sync only dumps and loads a one-time snapshot of the primary instance's data"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlInstancesVerifyExternalSyncSettingsRequest": {
+      "id": "SqlInstancesVerifyExternalSyncSettingsRequest",
+      "properties": {
+        "mysqlSyncConfig": {
+          "$ref": "MySqlSyncConfig",
+          "description": "Optional. MySQL-specific settings for start external sync."
+        },
+        "syncMode": {
+          "description": "External sync mode",
+          "enum": [
+            "EXTERNAL_SYNC_MODE_UNSPECIFIED",
+            "ONLINE",
+            "OFFLINE"
+          ],
+          "enumDescriptions": [
+            "Unknown external sync mode, will be defaulted to ONLINE mode",
+            "Online external sync will set up replication after initial data external sync",
+            "Offline external sync only dumps and loads a one-time snapshot of the primary instance's data"
+          ],
+          "type": "string"
+        },
+        "verifyConnectionOnly": {
+          "description": "Flag to enable verifying connection only",
+          "type": "boolean"
         }
       },
       "type": "object"
