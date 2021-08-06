@@ -7770,6 +7770,8 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.update({
+     *     // If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created.
+     *     allowMissing: 'placeholder-value',
      *     // If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      *     autoConvertMissingPrices: 'placeholder-value',
      *     // Package name of the app.
@@ -7985,6 +7987,10 @@ export namespace androidpublisher_v3 {
   }
   export interface Params$Resource$Inappproducts$Update
     extends StandardParameters {
+    /**
+     * If set to true, and the in-app product with the given package_name and sku doesn't exist, the in-app product will be created.
+     */
+    allowMissing?: boolean;
     /**
      * If true the prices for all regions targeted by the parent app that don't have a price specified for this in-app product will be auto converted to the target currency based on the default price. Defaults to false.
      */
