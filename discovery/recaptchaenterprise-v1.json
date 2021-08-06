@@ -375,7 +375,7 @@
       }
     }
   },
-  "revision": "20210703",
+  "revision": "20210731",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings": {
@@ -614,6 +614,11 @@
             "$ref": "GoogleCloudRecaptchaenterpriseV1ChallengeMetrics"
           },
           "type": "array"
+        },
+        "name": {
+          "description": "Output only. The name of the metrics, in the format \"projects/{project}/keys/{key}/metrics\".",
+          "readOnly": true,
+          "type": "string"
         },
         "scoreMetrics": {
           "description": "Metrics will be continuous and in order by dates, and in the granularity of day. All Key types should have score-based data.",
