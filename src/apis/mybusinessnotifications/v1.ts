@@ -130,7 +130,7 @@ export namespace mybusinessnotifications_v1 {
    */
   export interface Schema$NotificationSetting {
     /**
-     * Required. The resource name this setting is for. This is of the form `accounts/{account_id\}/notifications/setting`.
+     * Required. The resource name this setting is for. This is of the form `accounts/{account_id\}/notificationSetting`.
      */
     name?: string | null;
     /**
@@ -310,7 +310,7 @@ export namespace mybusinessnotifications_v1 {
      *
      *   // Do the magic
      *   const res = await mybusinessnotifications.accounts.updateNotificationSetting({
-     *     // Required. The resource name this setting is for. This is of the form `accounts/{account_id\}/notifications/setting`.
+     *     // Required. The resource name this setting is for. This is of the form `accounts/{account_id\}/notificationSetting`.
      *     name: 'accounts/my-account/notificationSetting',
      *     // Required. The specific fields that should be updated. The only editable field is notification_setting.
      *     updateMask: 'placeholder-value',
@@ -440,7 +440,7 @@ export namespace mybusinessnotifications_v1 {
   export interface Params$Resource$Accounts$Updatenotificationsetting
     extends StandardParameters {
     /**
-     * Required. The resource name this setting is for. This is of the form `accounts/{account_id\}/notifications/setting`.
+     * Required. The resource name this setting is for. This is of the form `accounts/{account_id\}/notificationSetting`.
      */
     name?: string;
     /**
