@@ -157,9 +157,35 @@ export namespace dialogflow_v3beta1 {
     results?: Schema$GoogleCloudDialogflowCxV3TestCaseResult[];
   }
   /**
+   * Hierarchical advanced settings for agent/flow/page/fulfillment/parameter. Settings exposed at lower level overrides the settings exposed at higher level. Hierarchy: Agent-\>Flow-\>Page-\>Fulfillment/Parameter.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings {
+    /**
+     * Settings for logging. Settings for Dialogflow History, Contact Center messages, StackDriver logs, and speech logging. Exposed at the following levels: - Agent level.
+     */
+    loggingSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings;
+  }
+  /**
+   * Define behaviors on logging.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettingsLoggingSettings {
+    /**
+     * If true, DF Interaction logging is currently enabled.
+     */
+    enableInteractionLogging?: boolean | null;
+    /**
+     * If true, StackDriver logging is currently enabled.
+     */
+    enableStackdriverLogging?: boolean | null;
+  }
+  /**
    * Agents are best described as Natural Language Understanding (NLU) modules that transform user requests into actionable data. You can include agents in your app, product, or service to determine user intent and respond to the user in a natural way. After you create an agent, you can add Intents, Entity Types, Flows, Fulfillments, Webhooks, and so on to manage the conversation flows..
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Agent {
+    /**
+     * Hierarchical advanced settings for this agent. The settings exposed at the lower level overrides the settings exposed at the higher level.
+     */
+    advancedSettings?: Schema$GoogleCloudDialogflowCxV3beta1AdvancedSettings;
     /**
      * The URI of the agent's avatar. Avatars are used throughout the Dialogflow console and in the self-hosted [Web Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo) integration.
      */
@@ -181,7 +207,7 @@ export namespace dialogflow_v3beta1 {
      */
     enableSpellCorrection?: boolean | null;
     /**
-     * Indicates if stackdriver logging is enabled for the agent.
+     * Indicates if stackdriver logging is enabled for the agent. Please use agent.advanced_settings instead.
      */
     enableStackdriverLogging?: boolean | null;
     /**
@@ -622,7 +648,7 @@ export namespace dialogflow_v3beta1 {
      */
     endTime?: string | null;
     /**
-     * LINT.IfChange(default_experiment_length) Maximum number of days to run the experiment. If auto-rollout is not enabled, default value and maximum will be 30 days. If auto-rollout is enabled, default value and maximum will be 6 days. LINT.ThenChange(//depot/google3/cloud/ml/api/conversation/analytics/compute.cc:default_experiment_length)
+     * Maximum number of days to run the experiment. If auto-rollout is not enabled, default value and maximum will be 30 days. If auto-rollout is enabled, default value and maximum will be 6 days.
      */
     experimentLength?: string | null;
     /**
@@ -637,6 +663,18 @@ export namespace dialogflow_v3beta1 {
      * Inference result of the experiment.
      */
     result?: Schema$GoogleCloudDialogflowCxV3beta1ExperimentResult;
+    /**
+     * The configuration for auto rollout. If set, there should be exactly two variants in the experiment (control variant being the default version of the flow), the traffic allocation for the non-control variant will gradually increase to 100% when conditions are met, and eventually replace the control variant to become the default version of the flow.
+     */
+    rolloutConfig?: Schema$GoogleCloudDialogflowCxV3beta1RolloutConfig;
+    /**
+     * The reason why rollout has failed. Should only be set when state is ROLLOUT_FAILED.
+     */
+    rolloutFailureReason?: string | null;
+    /**
+     * State of the auto rollout process.
+     */
+    rolloutState?: Schema$GoogleCloudDialogflowCxV3beta1RolloutState;
     /**
      * Start time of this experiment.
      */
@@ -1733,6 +1771,10 @@ export namespace dialogflow_v3beta1 {
      */
     disableWebhook?: boolean | null;
     /**
+     * A list of flow versions to override for the request. Format: `projects//locations//agents//flows//versions/`. If version 1 of flow X is included in this list, the traffic of flow X will go through version 1 regardless of the version configuration in the environment. Each flow can have at most one version specified in this list.
+     */
+    flowVersions?: string[] | null;
+    /**
      * The geo location of this conversational query.
      */
     geoLocation?: Schema$GoogleTypeLatLng;
@@ -1990,6 +2032,57 @@ export namespace dialogflow_v3beta1 {
     restoreOption?: string | null;
   }
   /**
+   * The configuration for auto rollout.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RolloutConfig {
+    /**
+     * The conditions that are used to evaluate the failure of a rollout step. If not specified, no rollout steps will fail. E.g. "containment_rate < 10% OR average_turn_count < 3". See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition).
+     */
+    failureCondition?: string | null;
+    /**
+     * The conditions that are used to evaluate the success of a rollout step. If not specified, all rollout steps will proceed to the next one unless failure conditions are met. E.g. "containment_rate \> 60% AND callback_rate < 20%". See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition).
+     */
+    rolloutCondition?: string | null;
+    /**
+     * Steps to roll out a flow version. Steps should be sorted by percentage in ascending order.
+     */
+    rolloutSteps?: Schema$GoogleCloudDialogflowCxV3beta1RolloutConfigRolloutStep[];
+  }
+  /**
+   * A single rollout step with specified traffic allocation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RolloutConfigRolloutStep {
+    /**
+     * The name of the rollout step;
+     */
+    displayName?: string | null;
+    /**
+     * The minimum time that this step should last. Should be longer than 1 hour. If not set, the default minimum duration for each step will be 1 hour.
+     */
+    minDuration?: string | null;
+    /**
+     * The percentage of traffic allocated to the flow version of this rollout step. (0%, 100%].
+     */
+    trafficPercent?: number | null;
+  }
+  /**
+   * State of the auto-rollout process.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RolloutState {
+    /**
+     * Start time of the current step.
+     */
+    startTime?: string | null;
+    /**
+     * Display name of the current auto rollout step.
+     */
+    step?: string | null;
+    /**
+     * Index of the current step in the auto rollout steps list.
+     */
+    stepIndex?: number | null;
+  }
+  /**
    * Metadata returned for the Environments.RunContinuousTest long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1RunContinuousTestMetadata {
@@ -2042,6 +2135,10 @@ export namespace dialogflow_v3beta1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Controls conversation exporting settings to Insights after conversation is completed. If retention_strategy is set to REMOVE_AFTER_CONVERSATION, Insights export is disabled no matter what you configure here.
+     */
+    insightsExportSettings?: Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsInsightsExportSettings;
+    /**
      * [DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`
      */
     inspectTemplate?: string | null;
@@ -2065,6 +2162,15 @@ export namespace dialogflow_v3beta1 {
      * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must Set a value lower than Dialogflow's default 30d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL. Note: Interaction logging is a limited access feature. Talk to your Google representative to check availability for you.
      */
     retentionWindowDays?: number | null;
+  }
+  /**
+   * Settings for exporting conversations to [Insights](https://cloud.google.com/dialogflow/priv/docs/insights).
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsInsightsExportSettings {
+    /**
+     * If enabled, we will automatically exports conversations to Insights and Insights runs its analyzers.
+     */
+    enableInsightsExport?: boolean | null;
   }
   /**
    * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral.
@@ -6771,6 +6877,7 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advancedSettings": {},
      *       //   "avatarUri": "my_avatarUri",
      *       //   "defaultLanguageCode": "my_defaultLanguageCode",
      *       //   "description": "my_description",
@@ -6790,6 +6897,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advancedSettings": {},
      *   //   "avatarUri": "my_avatarUri",
      *   //   "defaultLanguageCode": "my_defaultLanguageCode",
      *   //   "description": "my_description",
@@ -7224,6 +7332,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advancedSettings": {},
      *   //   "avatarUri": "my_avatarUri",
      *   //   "defaultLanguageCode": "my_defaultLanguageCode",
      *   //   "description": "my_description",
@@ -7663,6 +7772,7 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "advancedSettings": {},
      *       //   "avatarUri": "my_avatarUri",
      *       //   "defaultLanguageCode": "my_defaultLanguageCode",
      *       //   "description": "my_description",
@@ -7682,6 +7792,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "advancedSettings": {},
      *   //   "avatarUri": "my_avatarUri",
      *   //   "defaultLanguageCode": "my_defaultLanguageCode",
      *   //   "description": "my_description",
@@ -10416,6 +10527,9 @@ export namespace dialogflow_v3beta1 {
      *         //   "lastUpdateTime": "my_lastUpdateTime",
      *         //   "name": "my_name",
      *         //   "result": {},
+     *         //   "rolloutConfig": {},
+     *         //   "rolloutFailureReason": "my_rolloutFailureReason",
+     *         //   "rolloutState": {},
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
      *         //   "variantsHistory": []
@@ -10435,6 +10549,9 @@ export namespace dialogflow_v3beta1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "result": {},
+     *   //   "rolloutConfig": {},
+     *   //   "rolloutFailureReason": "my_rolloutFailureReason",
+     *   //   "rolloutState": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "variantsHistory": []
@@ -10721,6 +10838,9 @@ export namespace dialogflow_v3beta1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "result": {},
+     *   //   "rolloutConfig": {},
+     *   //   "rolloutFailureReason": "my_rolloutFailureReason",
+     *   //   "rolloutState": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "variantsHistory": []
@@ -11023,6 +11143,9 @@ export namespace dialogflow_v3beta1 {
      *         //   "lastUpdateTime": "my_lastUpdateTime",
      *         //   "name": "my_name",
      *         //   "result": {},
+     *         //   "rolloutConfig": {},
+     *         //   "rolloutFailureReason": "my_rolloutFailureReason",
+     *         //   "rolloutState": {},
      *         //   "startTime": "my_startTime",
      *         //   "state": "my_state",
      *         //   "variantsHistory": []
@@ -11042,6 +11165,9 @@ export namespace dialogflow_v3beta1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "result": {},
+     *   //   "rolloutConfig": {},
+     *   //   "rolloutFailureReason": "my_rolloutFailureReason",
+     *   //   "rolloutState": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "variantsHistory": []
@@ -11199,6 +11325,9 @@ export namespace dialogflow_v3beta1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "result": {},
+     *   //   "rolloutConfig": {},
+     *   //   "rolloutFailureReason": "my_rolloutFailureReason",
+     *   //   "rolloutState": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "variantsHistory": []
@@ -11359,6 +11488,9 @@ export namespace dialogflow_v3beta1 {
      *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "result": {},
+     *   //   "rolloutConfig": {},
+     *   //   "rolloutFailureReason": "my_rolloutFailureReason",
+     *   //   "rolloutState": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
      *   //   "variantsHistory": []
@@ -22655,6 +22787,7 @@ export namespace dialogflow_v3beta1 {
      *       // request body parameters
      *       // {
      *       //   "displayName": "my_displayName",
+     *       //   "insightsExportSettings": {},
      *       //   "inspectTemplate": "my_inspectTemplate",
      *       //   "name": "my_name",
      *       //   "purgeDataTypes": [],
@@ -22669,6 +22802,7 @@ export namespace dialogflow_v3beta1 {
      *   // Example response
      *   // {
      *   //   "displayName": "my_displayName",
+     *   //   "insightsExportSettings": {},
      *   //   "inspectTemplate": "my_inspectTemplate",
      *   //   "name": "my_name",
      *   //   "purgeDataTypes": [],
@@ -22948,6 +23082,7 @@ export namespace dialogflow_v3beta1 {
      *   // Example response
      *   // {
      *   //   "displayName": "my_displayName",
+     *   //   "insightsExportSettings": {},
      *   //   "inspectTemplate": "my_inspectTemplate",
      *   //   "name": "my_name",
      *   //   "purgeDataTypes": [],
@@ -23240,6 +23375,7 @@ export namespace dialogflow_v3beta1 {
      *       // request body parameters
      *       // {
      *       //   "displayName": "my_displayName",
+     *       //   "insightsExportSettings": {},
      *       //   "inspectTemplate": "my_inspectTemplate",
      *       //   "name": "my_name",
      *       //   "purgeDataTypes": [],
@@ -23254,6 +23390,7 @@ export namespace dialogflow_v3beta1 {
      *   // Example response
      *   // {
      *   //   "displayName": "my_displayName",
+     *   //   "insightsExportSettings": {},
      *   //   "inspectTemplate": "my_inspectTemplate",
      *   //   "name": "my_name",
      *   //   "purgeDataTypes": [],

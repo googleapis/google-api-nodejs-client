@@ -7247,7 +7247,7 @@
       }
     }
   },
-  "revision": "20210625",
+  "revision": "20210802",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -12876,7 +12876,7 @@
           "description": "Configuration for connecting to a live agent. Currently, this feature is not general available, please contact Google to get access."
         },
         "languageCode": {
-          "description": "Language code for the conversation profile. If not specified, the language is en-US. Language at ConversationProfile should be set for all non en-us languages.",
+          "description": "Language code for the conversation profile. If not specified, the language is en-US. Language at ConversationProfile should be set for all non en-us languages. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: \"en-US\".",
           "type": "string"
         },
         "loggingConfig": {
@@ -12895,9 +12895,17 @@
           "$ref": "GoogleCloudDialogflowV2beta1NotificationConfig",
           "description": "Configuration for publishing conversation lifecycle events."
         },
+        "securitySettings": {
+          "description": "Name of the CX SecuritySettings reference for the agent. Format: `projects//locations//securitySettings/`.",
+          "type": "string"
+        },
         "sttConfig": {
           "$ref": "GoogleCloudDialogflowV2beta1SpeechToTextConfig",
           "description": "Settings for speech transcription."
+        },
+        "timeZone": {
+          "description": "The time zone of this conversational profile from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. Defaults to America/New_York.",
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. Update time of the conversation profile.",
@@ -16563,7 +16571,7 @@
           "type": "array"
         },
         "errorMessage": {
-          "description": "The detailed error messsage.",
+          "description": "The detailed error message.",
           "type": "string"
         },
         "severity": {

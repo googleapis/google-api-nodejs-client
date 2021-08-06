@@ -6459,7 +6459,7 @@ export namespace dialogflow_v2 {
      */
     entries?: string[] | null;
     /**
-     * The detailed error messsage.
+     * The detailed error message.
      */
     errorMessage?: string | null;
     /**

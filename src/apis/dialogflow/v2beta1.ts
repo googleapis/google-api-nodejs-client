@@ -3107,7 +3107,7 @@ export namespace dialogflow_v2beta1 {
      */
     humanAgentHandoffConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentHandoffConfig;
     /**
-     * Language code for the conversation profile. If not specified, the language is en-US. Language at ConversationProfile should be set for all non en-us languages.
+     * Language code for the conversation profile. If not specified, the language is en-US. Language at ConversationProfile should be set for all non en-us languages. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US".
      */
     languageCode?: string | null;
     /**
@@ -3127,9 +3127,17 @@ export namespace dialogflow_v2beta1 {
      */
     notificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
     /**
+     * Name of the CX SecuritySettings reference for the agent. Format: `projects//locations//securitySettings/`.
+     */
+    securitySettings?: string | null;
+    /**
      * Settings for speech transcription.
      */
     sttConfig?: Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfig;
+    /**
+     * The time zone of this conversational profile from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. Defaults to America/New_York.
+     */
+    timeZone?: string | null;
     /**
      * Output only. Update time of the conversation profile.
      */
@@ -5720,7 +5728,7 @@ export namespace dialogflow_v2beta1 {
      */
     entries?: string[] | null;
     /**
-     * The detailed error messsage.
+     * The detailed error message.
      */
     errorMessage?: string | null;
     /**
@@ -19967,7 +19975,9 @@ export namespace dialogflow_v2beta1 {
      *       //   "name": "my_name",
      *       //   "newMessageEventNotificationConfig": {},
      *       //   "notificationConfig": {},
+     *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -19986,7 +19996,9 @@ export namespace dialogflow_v2beta1 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -20268,7 +20280,9 @@ export namespace dialogflow_v2beta1 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -20565,7 +20579,9 @@ export namespace dialogflow_v2beta1 {
      *       //   "name": "my_name",
      *       //   "newMessageEventNotificationConfig": {},
      *       //   "notificationConfig": {},
+     *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -20584,7 +20600,9 @@ export namespace dialogflow_v2beta1 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -36582,7 +36600,9 @@ export namespace dialogflow_v2beta1 {
      *       //   "name": "my_name",
      *       //   "newMessageEventNotificationConfig": {},
      *       //   "notificationConfig": {},
+     *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -36601,7 +36621,9 @@ export namespace dialogflow_v2beta1 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -36885,7 +36907,9 @@ export namespace dialogflow_v2beta1 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -37184,7 +37208,9 @@ export namespace dialogflow_v2beta1 {
      *       //   "name": "my_name",
      *       //   "newMessageEventNotificationConfig": {},
      *       //   "notificationConfig": {},
+     *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -37203,7 +37229,9 @@ export namespace dialogflow_v2beta1 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
