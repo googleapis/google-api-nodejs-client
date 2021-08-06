@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20210719",
+  "revision": "20210803",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1487,7 +1487,7 @@
           "type": "string"
         },
         "orchestratorVersion": {
-          "description": "A string representing the current version of Android Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#com.android.support.test:orchestrator.",
+          "description": "Deprecated: Use AndroidX Test Orchestrator going forward. A string representing the current version of Android Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#com.android.support.test:orchestrator.",
           "type": "string"
         }
       },
