@@ -348,7 +348,7 @@
       }
     }
   },
-  "revision": "20210629",
+  "revision": "20210723",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -670,6 +670,8 @@
             "MAVEN",
             "NPM",
             "PYPI",
+            "APT",
+            "YUM",
             "PYTHON"
           ],
           "enumDescriptions": [
@@ -678,6 +680,8 @@
             "Maven package format.",
             "NPM package format.",
             "PyPI package format.",
+            "APT package format.",
+            "YUM package format.",
             "Python package format."
           ],
           "type": "string"

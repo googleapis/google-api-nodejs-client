@@ -1567,7 +1567,7 @@
       }
     }
   },
-  "revision": "20210629",
+  "revision": "20210805",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1775,7 +1775,7 @@
             "In-feed ad unit.",
             "In-article ad unit.",
             "Matched content unit.",
-            "Link ad unit. Note that link ad units are being retired, see https://support.google.com/adsense/answer/9987221."
+            "Link ad unit. Note that link ad units have now been retired, see https://support.google.com/adsense/answer/9987221."
           ],
           "type": "string"
         }

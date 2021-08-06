@@ -44,7 +44,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/access-approval/docs",
+      "documentationLink": "https://cloud.google.com/cloud-provider-access-management/access-approval/docs",
       "preferred": true
     },
     {
@@ -1090,7 +1090,7 @@
       "name": "cloudchannel",
       "version": "v1",
       "title": "Cloud Channel API",
-      "description": "",
+      "description": "The Cloud Channel API enables Google Cloud partners to have a single unified resale platform and APIs across all of Google Cloud including GCP, Workspace, Maps and Chrome.",
       "discoveryRestUrl": "https://cloudchannel.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3411,7 +3411,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/network-connectivity/docs",
+      "documentationLink": "https://cloud.google.com/network-connectivity/docs/reference/networkconnectivity/rest",
       "preferred": true
     },
     {
@@ -3452,6 +3452,36 @@
       "title": "Network Security API",
       "description": "",
       "discoveryRestUrl": "https://networksecurity.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/networking",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "networkservices:v1beta1",
+      "name": "networkservices",
+      "version": "v1beta1",
+      "title": "Network Services API",
+      "description": "",
+      "discoveryRestUrl": "https://networkservices.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/networking",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "networkservices:v1",
+      "name": "networkservices",
+      "version": "v1",
+      "title": "Network Services API",
+      "description": "",
+      "discoveryRestUrl": "https://networkservices.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3698,6 +3728,36 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/android/work/play/custom-app-api/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "policyanalyzer:v1beta1",
+      "name": "policyanalyzer",
+      "version": "v1beta1",
+      "title": "Policy Analyzer API",
+      "description": "",
+      "discoveryRestUrl": "https://policyanalyzer.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://www.google.com",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "policyanalyzer:v1",
+      "name": "policyanalyzer",
+      "version": "v1",
+      "title": "Policy Analyzer API",
+      "description": "",
+      "discoveryRestUrl": "https://policyanalyzer.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://www.google.com",
       "preferred": true
     },
     {
@@ -3998,51 +4058,6 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/memorystore/docs/redis/",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "remotebuildexecution:v1alpha",
-      "name": "remotebuildexecution",
-      "version": "v1alpha",
-      "title": "Remote Build Execution API",
-      "description": "Supplies a Remote Execution API service for tools such as bazel.",
-      "discoveryRestUrl": "https://admin-remotebuildexecution.googleapis.com/$discovery/rest?version=v1alpha",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/remote-build-execution/docs/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "remotebuildexecution:v1",
-      "name": "remotebuildexecution",
-      "version": "v1",
-      "title": "Remote Build Execution API",
-      "description": "Supplies a Remote Execution API service for tools such as bazel.",
-      "discoveryRestUrl": "https://remotebuildexecution.googleapis.com/$discovery/rest?version=v1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/remote-build-execution/docs/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "remotebuildexecution:v2",
-      "name": "remotebuildexecution",
-      "version": "v2",
-      "title": "Remote Build Execution API",
-      "description": "Supplies a Remote Execution API service for tools such as bazel.",
-      "discoveryRestUrl": "https://remotebuildexecution.googleapis.com/$discovery/rest?version=v2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/remote-build-execution/docs/",
       "preferred": true
     },
     {
@@ -4983,21 +4998,6 @@
       "title": "Chrome Verified Access API",
       "description": "API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network",
       "discoveryRestUrl": "https://verifiedaccess.googleapis.com/$discovery/rest?version=v1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/chrome/verified-access",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "verifiedaccess:v2",
-      "name": "verifiedaccess",
-      "version": "v2",
-      "title": "Chrome Verified Access API",
-      "description": "API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network",
-      "discoveryRestUrl": "https://verifiedaccess.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

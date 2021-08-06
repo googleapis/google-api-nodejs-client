@@ -659,7 +659,7 @@
       }
     }
   },
-  "revision": "20210707",
+  "revision": "20210721",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -971,7 +971,7 @@
           "enumDescriptions": [
             "TPU node state is not known/set.",
             "TPU node is being created.",
-            "TPU node has been created and is fully usable.",
+            "TPU node has been created.",
             "TPU node is restarting.",
             "TPU node is undergoing reimaging.",
             "TPU node is being deleted.",

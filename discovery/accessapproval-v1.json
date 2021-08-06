@@ -14,7 +14,7 @@
   "canonicalName": "Access Approval",
   "description": "An API for controlling access to data by Google personnel.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/access-approval/docs",
+  "documentationLink": "https://cloud.google.com/cloud-provider-access-management/access-approval/docs",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -754,7 +754,7 @@
       }
     }
   },
-  "revision": "20210625",
+  "revision": "20210730",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
     "AccessApprovalSettings": {

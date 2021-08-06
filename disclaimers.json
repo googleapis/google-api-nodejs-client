@@ -132,6 +132,10 @@
     "package": "@google-cloud/iam-credentials"
   },
   {
+    "api": "iap",
+    "package": "@google-cloud/iap"
+  },
+  {
     "api": "cloudiot",
     "package": "@google-cloud/iot"
   },
@@ -250,6 +254,10 @@
   {
     "api": "storage-api",
     "package": "@google-cloud/storage"
+  },
+  {
+    "api": "storagetransfer",
+    "package": "@google-cloud/storage-transfer"
   },
   {
     "api": "jobs",
