@@ -352,6 +352,10 @@ import {
   VERSIONS as networksecurityVersions,
   networksecurity,
 } from './networksecurity';
+import {
+  VERSIONS as networkservicesVersions,
+  networkservices,
+} from './networkservices';
 import {VERSIONS as notebooksVersions, notebooks} from './notebooks';
 import {VERSIONS as oauth2Versions, oauth2} from './oauth2';
 import {
@@ -379,6 +383,10 @@ import {
   playcustomapp,
 } from './playcustomapp';
 import {VERSIONS as plusVersions, plus} from './plus';
+import {
+  VERSIONS as policyanalyzerVersions,
+  policyanalyzer,
+} from './policyanalyzer';
 import {
   VERSIONS as policysimulatorVersions,
   policysimulator,
@@ -681,6 +689,7 @@ export const APIS: APIList = {
   networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
   networksecurity: networksecurityVersions,
+  networkservices: networkservicesVersions,
   notebooks: notebooksVersions,
   oauth2: oauth2Versions,
   ondemandscanning: ondemandscanningVersions,
@@ -693,6 +702,7 @@ export const APIS: APIList = {
   playablelocations: playablelocationsVersions,
   playcustomapp: playcustomappVersions,
   plus: plusVersions,
+  policyanalyzer: policyanalyzerVersions,
   policysimulator: policysimulatorVersions,
   policytroubleshooter: policytroubleshooterVersions,
   poly: polyVersions,
@@ -907,6 +917,7 @@ export class GeneratedAPIs {
   networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
   networksecurity = networksecurity;
+  networkservices = networkservices;
   notebooks = notebooks;
   oauth2 = oauth2;
   ondemandscanning = ondemandscanning;
@@ -919,6 +930,7 @@ export class GeneratedAPIs {
   playablelocations = playablelocations;
   playcustomapp = playcustomapp;
   plus = plus;
+  policyanalyzer = policyanalyzer;
   policysimulator = policysimulator;
   policytroubleshooter = policytroubleshooter;
   poly = poly;

@@ -3,10 +3,10 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
-          "description": "View your data across Google Cloud Platform services"
+          "description": "View your data across Google Cloud services and see the email address of your Google Account"
         },
         "https://www.googleapis.com/auth/ndev.cloudman": {
           "description": "View and manage your Google Cloud Platform management resources and deployment status information"
@@ -1588,7 +1588,7 @@
       }
     }
   },
-  "revision": "20210311",
+  "revision": "20210729",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {

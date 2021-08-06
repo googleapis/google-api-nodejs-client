@@ -263,6 +263,8 @@ export {networkconnectivity_v1alpha1} from './apis/networkconnectivity/v1alpha1'
 export {networkmanagement_v1} from './apis/networkmanagement/v1';
 export {networkmanagement_v1beta1} from './apis/networkmanagement/v1beta1';
 export {networksecurity_v1beta1} from './apis/networksecurity/v1beta1';
+export {networkservices_v1} from './apis/networkservices/v1';
+export {networkservices_v1beta1} from './apis/networkservices/v1beta1';
 export {notebooks_v1} from './apis/notebooks/v1';
 export {oauth2_v2} from './apis/oauth2/v2';
 export {ondemandscanning_v1} from './apis/ondemandscanning/v1';
@@ -280,6 +282,8 @@ export {people_v1} from './apis/people/v1';
 export {playablelocations_v3} from './apis/playablelocations/v3';
 export {playcustomapp_v1} from './apis/playcustomapp/v1';
 export {plus_v1} from './apis/plus/v1';
+export {policyanalyzer_v1} from './apis/policyanalyzer/v1';
+export {policyanalyzer_v1beta1} from './apis/policyanalyzer/v1beta1';
 export {policysimulator_v1} from './apis/policysimulator/v1';
 export {policysimulator_v1beta1} from './apis/policysimulator/v1beta1';
 export {policytroubleshooter_v1} from './apis/policytroubleshooter/v1';

@@ -3615,6 +3615,11 @@
                           "description": "Flag that specifies whether to enable sequenced rollout. If set to `true`, a best-effort attempt will be made to roll out the routing rules corresponding to this deployment and the environment changes to add this deployment in a safe order. This reduces the risk of downtime that could be caused by changing the environment group's routing before the new destination for the affected traffic is ready to receive it. This should only be necessary if the new deployment will be capturing traffic from another environment under a shared environment group or if traffic will be rerouted to a different environment due to a base path removal. The [GenerateDeployChangeReport API](GenerateDeployChangeReport) may be used to examine routing changes before issuing the deployment request, and its response will indicate if a sequenced rollout is recommended for the deployment.",
                           "location": "query",
                           "type": "boolean"
+                        },
+                        "serviceAccount": {
+                          "description": "Google Cloud IAM service account. The service account represents the identity of the deployed proxy, and determines what permissions it has. The format must be `{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`.",
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1/{+name}/deployments",
@@ -5014,6 +5019,11 @@
                           "description": "Flag that specifies whether the new deployment replaces other deployed revisions of the shared flow in the environment. Set `override` to `true` to replace other deployed revisions. By default, `override` is `false` and the deployment is rejected if other revisions of the shared flow are deployed in the environment.",
                           "location": "query",
                           "type": "boolean"
+                        },
+                        "serviceAccount": {
+                          "description": "Google Cloud IAM service account. The service account represents the identity of the deployed proxy, and determines what permissions it has. The format must be `{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`.",
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1/{+name}/deployments",
@@ -5832,6 +5842,40 @@
               "path": "v1/{+parent}/instances",
               "response": {
                 "$ref": "GoogleCloudApigeeV1ListInstancesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates an Apigee runtime instance. You can update the fields described in NodeConfig. No other fields will be updated. **Note:** Not supported for Apigee hybrid.",
+              "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.instances.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the instance. Use the following structure in your request: `organizations/{org}/instances/{instance}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "List of fields to be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1Instance"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -7011,9 +7055,38 @@
       }
     }
   },
-  "revision": "20210719",
+  "revision": "20210729",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
+    "EdgeConfigstoreBundleBadBundle": {
+      "description": "Describes why a bundle is invalid. Intended for use in error details.",
+      "id": "EdgeConfigstoreBundleBadBundle",
+      "properties": {
+        "violations": {
+          "description": "Describes all precondition violations.",
+          "items": {
+            "$ref": "EdgeConfigstoreBundleBadBundleViolation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EdgeConfigstoreBundleBadBundleViolation": {
+      "description": "A message type used to describe a single bundle validation error.",
+      "id": "EdgeConfigstoreBundleBadBundleViolation",
+      "properties": {
+        "description": {
+          "description": "A description of why the bundle is invalid and how to fix it.",
+          "type": "string"
+        },
+        "filename": {
+          "description": "The filename (including relative path from the bundle root) in which the error occurred.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleApiHttpBody": {
       "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
       "id": "GoogleApiHttpBody",
@@ -7111,10 +7184,6 @@
         "advancedApiOpsConfig": {
           "$ref": "GoogleCloudApigeeV1AdvancedApiOpsConfig",
           "description": "Configuration for the Advanced API Ops add-on."
-        },
-        "integrationConfig": {
-          "$ref": "GoogleCloudApigeeV1IntegrationConfig",
-          "description": "Configuration for the Integration add-on."
         },
         "monetizationConfig": {
           "$ref": "GoogleCloudApigeeV1MonetizationConfig",
@@ -7345,23 +7414,34 @@
       "description": "Metadata describing the API proxy",
       "id": "GoogleCloudApigeeV1ApiProxy",
       "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User labels applied to this API Proxy.",
+          "type": "object"
+        },
         "latestRevisionId": {
-          "description": "The id of the most recently created revision for this api proxy.",
+          "description": "Output only. The id of the most recently created revision for this api proxy.",
+          "readOnly": true,
           "type": "string"
         },
         "metaData": {
           "$ref": "GoogleCloudApigeeV1EntityMetadata",
-          "description": "Metadata describing the API proxy."
+          "description": "Output only. Metadata describing the API proxy.",
+          "readOnly": true
         },
         "name": {
-          "description": "Name of the API proxy.",
+          "description": "Output only. Name of the API proxy.",
+          "readOnly": true,
           "type": "string"
         },
         "revision": {
-          "description": "List of revisons defined for the API proxy.",
+          "description": "Output only. List of revisons defined for the API proxy.",
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -8436,6 +8516,10 @@
             "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict"
           },
           "type": "array"
+        },
+        "serviceAccount": {
+          "description": "The full resource name of Cloud IAM Service Account that this deployment is using, eg, `projects/-/serviceAccounts/{email}`.",
+          "type": "string"
         },
         "state": {
           "description": "Current state of the deployment. This field is not populated in List APIs.",
@@ -9534,17 +9618,6 @@
           "description": "Percentage of ingress replicas reporting this route.",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1IntegrationConfig": {
-      "description": "Configuration for the Integration add-on.",
-      "id": "GoogleCloudApigeeV1IntegrationConfig",
-      "properties": {
-        "enabled": {
-          "description": "Flag that specifies whether the Integration add-on is enabled.",
-          "type": "boolean"
         }
       },
       "type": "object"
