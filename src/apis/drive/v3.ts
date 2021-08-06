@@ -591,7 +591,7 @@ export namespace drive_v3 {
      */
     fileExtension?: string | null;
     /**
-     * The color for a folder as an RGB hex string. The supported colors are published in the folderColorPalette field of the About resource.
+     * The color for a folder or shortcut to a folder as an RGB hex string. The supported colors are published in the folderColorPalette field of the About resource.
      * If an unsupported color is specified, the closest color in the palette will be used instead.
      */
     folderColorRgb?: string | null;
@@ -5387,7 +5387,7 @@ export namespace drive_v3 {
      *     pageToken: 'placeholder-value',
      *     // A query for filtering the file results. See the "Search for Files" guide for supported syntax.
      *     q: 'placeholder-value',
-     *     // A comma-separated list of spaces to query within the corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     // A comma-separated list of spaces to query within the corpus. Supported values are 'drive' and 'appDataFolder'.
      *     spaces: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
@@ -6155,7 +6155,7 @@ export namespace drive_v3 {
      */
     q?: string;
     /**
-     * A comma-separated list of spaces to query within the corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query within the corpus. Supported values are 'drive' and 'appDataFolder'.
      */
     spaces?: string;
     /**

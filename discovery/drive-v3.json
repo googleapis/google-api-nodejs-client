@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/_Lvps3-KgyI7_IwBA-9lM1tZSh4\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/eleH2Ovi6Un0_ZoQiOMiJ_e_wYM\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -1174,7 +1174,7 @@
             },
             "spaces": {
               "default": "drive",
-              "description": "A comma-separated list of spaces to query within the corpus. Supported values are 'drive', 'appDataFolder' and 'photos'.",
+              "description": "A comma-separated list of spaces to query within the corpus. Supported values are 'drive' and 'appDataFolder'.",
               "location": "query",
               "type": "string"
             },
@@ -2191,7 +2191,7 @@
       }
     }
   },
-  "revision": "20210719",
+  "revision": "20210801",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3004,7 +3004,7 @@
           "type": "string"
         },
         "folderColorRgb": {
-          "description": "The color for a folder as an RGB hex string. The supported colors are published in the folderColorPalette field of the About resource.\nIf an unsupported color is specified, the closest color in the palette will be used instead.",
+          "description": "The color for a folder or shortcut to a folder as an RGB hex string. The supported colors are published in the folderColorPalette field of the About resource.\nIf an unsupported color is specified, the closest color in the palette will be used instead.",
           "type": "string"
         },
         "fullFileExtension": {
