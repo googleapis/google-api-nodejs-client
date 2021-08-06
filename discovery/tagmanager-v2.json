@@ -3143,7 +3143,7 @@
       }
     }
   },
-  "revision": "20210721",
+  "revision": "20210804",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4715,6 +4715,10 @@
           },
           "type": "array"
         },
+        "consentSettings": {
+          "$ref": "TagConsentSetting",
+          "description": "Consent settings of a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update"
+        },
         "containerId": {
           "description": "GTM Container ID.",
           "type": "string"
@@ -4847,6 +4851,30 @@
         "workspaceId": {
           "description": "GTM Workspace ID.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TagConsentSetting": {
+      "id": "TagConsentSetting",
+      "properties": {
+        "consentStatus": {
+          "description": "The tag's consent status. If set to NEEDED, the runtime will check that the consent types specified by the consent_type field have been granted.",
+          "enum": [
+            "notSet",
+            "notNeeded",
+            "needed"
+          ],
+          "enumDescriptions": [
+            "Default value where user has not specified any setting on it.",
+            "Tag doesn't require any additional consent settings.",
+            "Tag requires additional consent settings."
+          ],
+          "type": "string"
+        },
+        "consentType": {
+          "$ref": "Parameter",
+          "description": "The type of consents to check for during tag firing if in the consent NEEDED state. This parameter must be of type LIST where each list item is of type STRING."
         }
       },
       "type": "object"

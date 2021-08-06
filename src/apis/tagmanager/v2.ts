@@ -1088,6 +1088,10 @@ export namespace tagmanager_v2 {
      */
     blockingTriggerId?: string[] | null;
     /**
+     * Consent settings of a tag. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     */
+    consentSettings?: Schema$TagConsentSetting;
+    /**
      * GTM Container ID.
      */
     containerId?: string | null;
@@ -1179,6 +1183,16 @@ export namespace tagmanager_v2 {
      * GTM Workspace ID.
      */
     workspaceId?: string | null;
+  }
+  export interface Schema$TagConsentSetting {
+    /**
+     * The tag's consent status. If set to NEEDED, the runtime will check that the consent types specified by the consent_type field have been granted.
+     */
+    consentStatus?: string | null;
+    /**
+     * The type of consents to check for during tag firing if in the consent NEEDED state. This parameter must be of type LIST where each list item is of type STRING.
+     */
+    consentType?: Schema$Parameter;
   }
   /**
    * Represents a tag that fires after another tag in order to tear down dependencies.
@@ -8691,6 +8705,7 @@ export namespace tagmanager_v2 {
      *       //   "accountId": "my_accountId",
      *       //   "blockingRuleId": [],
      *       //   "blockingTriggerId": [],
+     *       //   "consentSettings": {},
      *       //   "containerId": "my_containerId",
      *       //   "fingerprint": "my_fingerprint",
      *       //   "firingRuleId": [],
@@ -8724,6 +8739,7 @@ export namespace tagmanager_v2 {
      *   //   "accountId": "my_accountId",
      *   //   "blockingRuleId": [],
      *   //   "blockingTriggerId": [],
+     *   //   "consentSettings": {},
      *   //   "containerId": "my_containerId",
      *   //   "fingerprint": "my_fingerprint",
      *   //   "firingRuleId": [],
@@ -9005,6 +9021,7 @@ export namespace tagmanager_v2 {
      *   //   "accountId": "my_accountId",
      *   //   "blockingRuleId": [],
      *   //   "blockingTriggerId": [],
+     *   //   "consentSettings": {},
      *   //   "containerId": "my_containerId",
      *   //   "fingerprint": "my_fingerprint",
      *   //   "firingRuleId": [],
@@ -9432,6 +9449,7 @@ export namespace tagmanager_v2 {
      *       //   "accountId": "my_accountId",
      *       //   "blockingRuleId": [],
      *       //   "blockingTriggerId": [],
+     *       //   "consentSettings": {},
      *       //   "containerId": "my_containerId",
      *       //   "fingerprint": "my_fingerprint",
      *       //   "firingRuleId": [],
@@ -9465,6 +9483,7 @@ export namespace tagmanager_v2 {
      *   //   "accountId": "my_accountId",
      *   //   "blockingRuleId": [],
      *   //   "blockingTriggerId": [],
+     *   //   "consentSettings": {},
      *   //   "containerId": "my_containerId",
      *   //   "fingerprint": "my_fingerprint",
      *   //   "firingRuleId": [],
