@@ -164,7 +164,7 @@ export namespace ideahub_v1alpha {
     /**
      * The Idea IDs for this entry.
      */
-    ideaIds?: string[] | null;
+    ideas?: string[] | null;
     /**
      * Unique identifier for the idea activity. Format: platforms/{platform\}/properties/{property\}/ideaActivities/{idea_activity\}
      */
@@ -172,7 +172,7 @@ export namespace ideahub_v1alpha {
     /**
      * The Topic IDs for this entry.
      */
-    topicIds?: string[] | null;
+    topics?: string[] | null;
     /**
      * The type of activity performed.
      */
@@ -234,6 +234,10 @@ export namespace ideahub_v1alpha {
      * The mID of the topic.
      */
     mid?: string | null;
+    /**
+     * Unique identifier for the topic. Format: topics/{topic\}
+     */
+    name?: string | null;
   }
   /**
    * Represents topic state specific to a web property.
@@ -510,9 +514,9 @@ export namespace ideahub_v1alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "ideaIds": [],
+     *       //   "ideas": [],
      *       //   "name": "my_name",
-     *       //   "topicIds": [],
+     *       //   "topics": [],
      *       //   "type": "my_type",
      *       //   "uri": "my_uri"
      *       // }
@@ -522,9 +526,9 @@ export namespace ideahub_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "ideaIds": [],
+     *   //   "ideas": [],
      *   //   "name": "my_name",
-     *   //   "topicIds": [],
+     *   //   "topics": [],
      *   //   "type": "my_type",
      *   //   "uri": "my_uri"
      *   // }
