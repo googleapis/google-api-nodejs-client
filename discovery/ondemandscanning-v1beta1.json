@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20210717",
+  "revision": "20210731",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -493,6 +493,10 @@
       "description": "Details of a build occurrence.",
       "id": "BuildOccurrence",
       "properties": {
+        "intotoProvenance": {
+          "$ref": "InTotoProvenance",
+          "description": "In-toto Provenance representation as defined in spec."
+        },
         "provenance": {
           "$ref": "BuildProvenance",
           "description": "Required. The actual provenance for the build."
@@ -575,6 +579,15 @@
       },
       "type": "object"
     },
+    "BuilderConfig": {
+      "id": "BuilderConfig",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Category": {
       "description": "The category to which the update belongs.",
       "id": "Category",
@@ -649,6 +662,25 @@
       },
       "type": "object"
     },
+    "Completeness": {
+      "description": "Indicates that the builder claims certain fields in this message to be complete.",
+      "id": "Completeness",
+      "properties": {
+        "arguments": {
+          "description": "If true, the builder claims that recipe.arguments is complete, meaning that all external inputs are properly captured in the recipe.",
+          "type": "boolean"
+        },
+        "environment": {
+          "description": "If true, the builder claims that recipe.environment is claimed to be complete.",
+          "type": "boolean"
+        },
+        "materials": {
+          "description": "If true, the builder claims that materials are complete, usually through some controls to prevent network access. Sometimes called \"hermetic\".",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ComplianceOccurrence": {
       "description": "An indication that the compliance checks in the associated ComplianceNote were not satisfied for particular resources or a specified reason.",
       "id": "ComplianceOccurrence",
@@ -661,6 +693,19 @@
             "$ref": "NonCompliantFile"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DSSEAttestationOccurrence": {
+      "id": "DSSEAttestationOccurrence",
+      "properties": {
+        "envelope": {
+          "$ref": "Envelope",
+          "description": "If doing something security critical, make sure to verify the signatures in this metadata."
+        },
+        "statement": {
+          "$ref": "InTotoStatement"
         }
       },
       "type": "object"
@@ -775,6 +820,39 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "Envelope": {
+      "description": "MUST match https://github.com/secure-systems-lab/dsse/blob/master/envelope.proto. An authenticated message of arbitrary type.",
+      "id": "Envelope",
+      "properties": {
+        "payload": {
+          "format": "byte",
+          "type": "string"
+        },
+        "payloadType": {
+          "type": "string"
+        },
+        "signatures": {
+          "items": {
+            "$ref": "EnvelopeSignature"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnvelopeSignature": {
+      "id": "EnvelopeSignature",
+      "properties": {
+        "keyid": {
+          "type": "string"
+        },
+        "sig": {
+          "format": "byte",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "FileHashes": {
@@ -910,6 +988,54 @@
       },
       "type": "object"
     },
+    "InTotoProvenance": {
+      "id": "InTotoProvenance",
+      "properties": {
+        "builderConfig": {
+          "$ref": "BuilderConfig",
+          "description": "required"
+        },
+        "materials": {
+          "description": "The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on. This is considered to be incomplete unless metadata.completeness.materials is true. Unset or null is equivalent to empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "Metadata"
+        },
+        "recipe": {
+          "$ref": "Recipe",
+          "description": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required"
+        }
+      },
+      "type": "object"
+    },
+    "InTotoStatement": {
+      "description": "Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always \"application/vnd.in-toto+json\".",
+      "id": "InTotoStatement",
+      "properties": {
+        "predicateType": {
+          "description": "\"https://in-toto.io/Provenance/v0.1\" for InTotoProvenance.",
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "InTotoProvenance"
+        },
+        "subject": {
+          "items": {
+            "$ref": "Subject"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Always \"https://in-toto.io/Statement/v0.1\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Jwt": {
       "id": "Jwt",
       "properties": {
@@ -990,6 +1116,35 @@
       },
       "type": "object"
     },
+    "Metadata": {
+      "description": "Other properties of the build.",
+      "id": "Metadata",
+      "properties": {
+        "buildFinishedOn": {
+          "description": "The timestamp of when the build completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "buildInvocationId": {
+          "description": "Identifies the particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis. The value SHOULD be globally unique, per in-toto Provenance spec.",
+          "type": "string"
+        },
+        "buildStartedOn": {
+          "description": "The timestamp of when the build started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "completeness": {
+          "$ref": "Completeness",
+          "description": "Indicates that the builder claims certain fields in this message to be complete."
+        },
+        "reproducible": {
+          "description": "If true, the builder claims that running the recipe on materials will produce bit-for-bit identical output.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "NonCompliantFile": {
       "description": "Details about files that caused a compliance check to fail.",
       "id": "NonCompliantFile",
@@ -1038,6 +1193,14 @@
           "$ref": "DiscoveryOccurrence",
           "description": "Describes when a resource was discovered."
         },
+        "dsseAttestation": {
+          "$ref": "DSSEAttestationOccurrence",
+          "description": "Describes an attestation of an artifact using dsse."
+        },
+        "envelope": {
+          "$ref": "Envelope",
+          "description": "https://github.com/secure-systems-lab/dsse"
+        },
         "image": {
           "$ref": "ImageOccurrence",
           "description": "Describes how this resource derives from the basis in the associated note."
@@ -1054,7 +1217,8 @@
             "DISCOVERY",
             "ATTESTATION",
             "UPGRADE",
-            "COMPLIANCE"
+            "COMPLIANCE",
+            "DSSE_ATTESTATION"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -1066,7 +1230,8 @@
             "The note and occurrence track the initial discovery status of a resource.",
             "This represents a logical \"role\" that can attest to artifacts.",
             "This represents an available package upgrade.",
-            "This represents a Compliance Note"
+            "This represents a Compliance Note",
+            "This represents a DSSE attestation Note"
           ],
           "type": "string"
         },
@@ -1256,6 +1421,40 @@
       },
       "type": "object"
     },
+    "Recipe": {
+      "description": "Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.",
+      "id": "Recipe",
+      "properties": {
+        "arguments": {
+          "description": "Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were \"make\", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "definedInMaterial": {
+          "description": "Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were \"make\", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64.",
+          "format": "int64",
+          "type": "string"
+        },
+        "entryPoint": {
+          "description": "String identifying the entry point into the build. This is often a path to a configuration file and/or a target label within that file. The syntax and meaning are defined by recipe.type. For example, if the recipe type were \"make\", then this would reference the directory in which to run make as well as which target to use.",
+          "type": "string"
+        },
+        "environment": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy.",
+          "type": "object"
+        },
+        "type": {
+          "description": "URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RelatedUrl": {
       "description": "Metadata for any related URL information.",
       "id": "RelatedUrl",
@@ -1379,6 +1578,22 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Subject": {
+      "id": "Subject",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "\"\": \"\"",
+          "type": "object"
+        },
+        "name": {
           "type": "string"
         }
       },
