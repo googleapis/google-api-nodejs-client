@@ -1590,7 +1590,7 @@
       }
     }
   },
-  "revision": "20210714",
+  "revision": "20210721",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -3268,7 +3268,7 @@
       "id": "SubordinateConfig",
       "properties": {
         "certificateAuthority": {
-          "description": "Required. This can refer to a CertificateAuthority in the same project that was used to create a subordinate CertificateAuthority. This field is used for information and usability purposes only. The resource name is in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
+          "description": "Required. This can refer to a CertificateAuthority that was used to create a subordinate CertificateAuthority. This field is used for information and usability purposes only. The resource name is in the format `projects/*/locations/*/caPools/*/certificateAuthorities/*`.",
           "type": "string"
         },
         "pemIssuerChain": {
