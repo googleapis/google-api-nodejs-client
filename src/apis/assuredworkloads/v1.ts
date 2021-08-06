@@ -203,7 +203,7 @@ export namespace assuredworkloads_v1 {
      */
     name?: string | null;
     /**
-     * Input only. The parent resource for the resources managed by this Assured Workload. May be either an organization or a folder. Must be the same or a child of the Workload parent. If not specified all resources are created under the Workload parent. Formats: folders/{folder_id\} organizations/{organization_id\}
+     * Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id\}
      */
     provisionedResourcesParent?: string | null;
     /**
@@ -365,7 +365,7 @@ export namespace assuredworkloads_v1 {
      */
     name?: string | null;
     /**
-     * Input only. The parent resource for the resources managed by this Assured Workload. May be either an organization or a folder. Must be the same or a child of the Workload parent. If not specified all resources are created under the Workload parent. Formats: folders/{folder_id\} organizations/{organization_id\}
+     * Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id\}
      */
     provisionedResourcesParent?: string | null;
     /**
