@@ -988,7 +988,7 @@ export namespace drive_v2 {
      */
     fileSize?: string | null;
     /**
-     * Folder color as an RGB hex string if the file is a folder. The list of supported colors is available in the folderColorPalette field of the About resource. If an unsupported color is specified, it will be changed to the closest color in the palette. Not populated for items in shared drives.
+     * Folder color as an RGB hex string if the file is a folder or a shortcut to a folder. The list of supported colors is available in the folderColorPalette field of the About resource. If an unsupported color is specified, it will be changed to the closest color in the palette.
      */
     folderColorRgb?: string | null;
     /**
@@ -7405,7 +7405,7 @@ export namespace drive_v2 {
      *     projection: 'placeholder-value',
      *     // Query string for searching files.
      *     q: 'placeholder-value',
-     *     // A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     *     // A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
      *     spaces: 'placeholder-value',
      *     // Whether the requesting application supports both My Drives and shared drives.
      *     supportsAllDrives: 'placeholder-value',
@@ -9223,7 +9223,7 @@ export namespace drive_v2 {
      */
     q?: string;
     /**
-     * A comma-separated list of spaces to query. Supported values are 'drive', 'appDataFolder' and 'photos'.
+     * A comma-separated list of spaces to query. Supported values are 'drive' and 'appDataFolder'.
      */
     spaces?: string;
     /**
