@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/chrome.management.appdetails.readonly": {
+          "description": "See detailed information about apps installed on Chrome browsers and devices managed by your organization"
+        },
         "https://www.googleapis.com/auth/chrome.management.reports.readonly": {
           "description": "See reports about devices and Chrome browsers managed within your organization"
         }
@@ -107,6 +110,97 @@
   "resources": {
     "customers": {
       "resources": {
+        "apps": {
+          "resources": {
+            "android": {
+              "methods": {
+                "get": {
+                  "description": "Get a specific app for a customer by its resource name.",
+                  "flatPath": "v1/customers/{customersId}/apps/android/{androidId}",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.apps.android.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The app for which details are being queried. Examples: \"customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2\" for the Save to Google Drive Chrome extension version 2.1.2, \"customers/my_customer/apps/android/com.google.android.apps.docs\" for the Google Drive Android app's latest version.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/apps/android/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1AppDetails"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.appdetails.readonly"
+                  ]
+                }
+              }
+            },
+            "chrome": {
+              "methods": {
+                "get": {
+                  "description": "Get a specific app for a customer by its resource name.",
+                  "flatPath": "v1/customers/{customersId}/apps/chrome/{chromeId}",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.apps.chrome.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The app for which details are being queried. Examples: \"customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2\" for the Save to Google Drive Chrome extension version 2.1.2, \"customers/my_customer/apps/android/com.google.android.apps.docs\" for the Google Drive Android app's latest version.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/apps/chrome/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1AppDetails"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.appdetails.readonly"
+                  ]
+                }
+              }
+            },
+            "web": {
+              "methods": {
+                "get": {
+                  "description": "Get a specific app for a customer by its resource name.",
+                  "flatPath": "v1/customers/{customersId}/apps/web/{webId}",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.apps.web.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The app for which details are being queried. Examples: \"customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2\" for the Save to Google Drive Chrome extension version 2.1.2, \"customers/my_customer/apps/android/com.google.android.apps.docs\" for the Google Drive Android app's latest version.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/apps/web/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1AppDetails"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.appdetails.readonly"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "reports": {
           "methods": {
             "countChromeVersions": {
@@ -288,9 +382,154 @@
       }
     }
   },
-  "revision": "20210519",
+  "revision": "20210804",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
+    "GoogleChromeManagementV1AndroidAppInfo": {
+      "description": "Android app information.",
+      "id": "GoogleChromeManagementV1AndroidAppInfo",
+      "properties": {
+        "permissions": {
+          "description": "Output only. Permissions requested by an Android app.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1AndroidAppPermission"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1AndroidAppPermission": {
+      "description": "Permission requested by an Android app.",
+      "id": "GoogleChromeManagementV1AndroidAppPermission",
+      "properties": {
+        "type": {
+          "description": "Output only. The type of the permission.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1AppDetails": {
+      "description": "Resource representing app details.",
+      "id": "GoogleChromeManagementV1AppDetails",
+      "properties": {
+        "androidAppInfo": {
+          "$ref": "GoogleChromeManagementV1AndroidAppInfo",
+          "description": "Output only. Android app information.",
+          "readOnly": true
+        },
+        "appId": {
+          "description": "Output only. Unique store identifier for the item. Examples: \"gmbmikajjgmnabiglmofipeabaddhgne\" for the Save to Google Drive Chrome extension, \"com.google.android.apps.docs\" for the Google Drive Android app.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "chromeAppInfo": {
+          "$ref": "GoogleChromeManagementV1ChromeAppInfo",
+          "description": "Output only. Chrome Web Store app information.",
+          "readOnly": true
+        },
+        "description": {
+          "description": "Output only. App's description.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "detailUri": {
+          "description": "Output only. The uri for the detail page of the item.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. App's display name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firstPublishTime": {
+          "description": "Output only. First published time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "homepageUri": {
+          "description": "Output only. Home page or Website uri.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconUri": {
+          "description": "Output only. A link to an image that can be used as an icon for the product.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isPaidApp": {
+          "description": "Output only. Indicates if the app has to be paid for OR has paid content.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "latestPublishTime": {
+          "description": "Output only. Latest published time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Format: name=customers/{customer_id}/apps/{chrome|android|web}/{app_id}@{version}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "privacyPolicyUri": {
+          "description": "Output only. The URI pointing to the privacy policy of the app, if it was provided by the developer. Version-specific field that will only be set when the requested app version is found.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publisher": {
+          "description": "Output only. The publisher of the item.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reviewNumber": {
+          "description": "Output only. Number of reviews received. Chrome Web Store review information will always be for the latest version of an app.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reviewRating": {
+          "description": "Output only. The rating of the app (on 5 stars). Chrome Web Store review information will always be for the latest version of an app.",
+          "format": "float",
+          "readOnly": true,
+          "type": "number"
+        },
+        "revisionId": {
+          "description": "Output only. App version. A new revision is committed whenever a new version of the app is published.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceError": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Output only. Information about a partial service error if applicable.",
+          "readOnly": true
+        },
+        "type": {
+          "description": "Output only. App type.",
+          "enum": [
+            "APP_ITEM_TYPE_UNSPECIFIED",
+            "CHROME",
+            "ANDROID",
+            "WEB"
+          ],
+          "enumDescriptions": [
+            "App type unspecified.",
+            "Chrome app.",
+            "ARC++ app.",
+            "Web app."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1BrowserVersion": {
       "description": "Describes a browser version and its install count.",
       "id": "GoogleChromeManagementV1BrowserVersion",
@@ -352,6 +591,89 @@
         },
         "version": {
           "description": "Output only. The full version of the installed browser.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1ChromeAppInfo": {
+      "description": "Chrome Web Store app information.",
+      "id": "GoogleChromeManagementV1ChromeAppInfo",
+      "properties": {
+        "googleOwned": {
+          "description": "Output only. Whether the app or extension is built and maintained by Google. Version-specific field that will only be set when the requested app version is found.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isCwsHosted": {
+          "description": "Output only. Whether the app or extension is in a published state in the Chrome Web Store.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isTheme": {
+          "description": "Output only. Whether the app or extension is a theme.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "minUserCount": {
+          "description": "Output only. The minimum number of users using this app.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "permissions": {
+          "description": "Output only. Every custom permission requested by the app. Version-specific field that will only be set when the requested app version is found.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1ChromeAppPermission"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "siteAccess": {
+          "description": "Output only. Every permission giving access to domains or broad host patterns. ( e.g. www.google.com). This includes the matches from content scripts as well as hosts in the permissions node of the manifest. Version-specific field that will only be set when the requested app version is found.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1ChromeAppSiteAccess"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "supportEnabled": {
+          "description": "Output only. The app developer has enabled support for their app. Version-specific field that will only be set when the requested app version is found.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1ChromeAppPermission": {
+      "description": "Permission requested by a Chrome app or extension.",
+      "id": "GoogleChromeManagementV1ChromeAppPermission",
+      "properties": {
+        "accessUserData": {
+          "description": "Output only. If available, whether this permissions grants the app/extension access to user data.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "documentationUri": {
+          "description": "Output only. If available, a URI to a page that has documentation for the current permission.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the permission.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1ChromeAppSiteAccess": {
+      "description": "Represent one host permission.",
+      "id": "GoogleChromeManagementV1ChromeAppSiteAccess",
+      "properties": {
+        "hostMatch": {
+          "description": "Output only. This can contain very specific hosts, or patterns like \"*.com\" for instance.",
           "readOnly": true,
           "type": "string"
         }
@@ -551,6 +873,33 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleRpcStatus": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "GoogleRpcStatus",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
         }
       },
       "type": "object"
