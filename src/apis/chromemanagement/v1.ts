@@ -126,6 +126,105 @@ export namespace chromemanagement_v1 {
   }
 
   /**
+   * Android app information.
+   */
+  export interface Schema$GoogleChromeManagementV1AndroidAppInfo {
+    /**
+     * Output only. Permissions requested by an Android app.
+     */
+    permissions?: Schema$GoogleChromeManagementV1AndroidAppPermission[];
+  }
+  /**
+   * Permission requested by an Android app.
+   */
+  export interface Schema$GoogleChromeManagementV1AndroidAppPermission {
+    /**
+     * Output only. The type of the permission.
+     */
+    type?: string | null;
+  }
+  /**
+   * Resource representing app details.
+   */
+  export interface Schema$GoogleChromeManagementV1AppDetails {
+    /**
+     * Output only. Android app information.
+     */
+    androidAppInfo?: Schema$GoogleChromeManagementV1AndroidAppInfo;
+    /**
+     * Output only. Unique store identifier for the item. Examples: "gmbmikajjgmnabiglmofipeabaddhgne" for the Save to Google Drive Chrome extension, "com.google.android.apps.docs" for the Google Drive Android app.
+     */
+    appId?: string | null;
+    /**
+     * Output only. Chrome Web Store app information.
+     */
+    chromeAppInfo?: Schema$GoogleChromeManagementV1ChromeAppInfo;
+    /**
+     * Output only. App's description.
+     */
+    description?: string | null;
+    /**
+     * Output only. The uri for the detail page of the item.
+     */
+    detailUri?: string | null;
+    /**
+     * Output only. App's display name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. First published time.
+     */
+    firstPublishTime?: string | null;
+    /**
+     * Output only. Home page or Website uri.
+     */
+    homepageUri?: string | null;
+    /**
+     * Output only. A link to an image that can be used as an icon for the product.
+     */
+    iconUri?: string | null;
+    /**
+     * Output only. Indicates if the app has to be paid for OR has paid content.
+     */
+    isPaidApp?: boolean | null;
+    /**
+     * Output only. Latest published time.
+     */
+    latestPublishTime?: string | null;
+    /**
+     * Output only. Format: name=customers/{customer_id\}/apps/{chrome|android|web\}/{app_id\}@{version\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The URI pointing to the privacy policy of the app, if it was provided by the developer. Version-specific field that will only be set when the requested app version is found.
+     */
+    privacyPolicyUri?: string | null;
+    /**
+     * Output only. The publisher of the item.
+     */
+    publisher?: string | null;
+    /**
+     * Output only. Number of reviews received. Chrome Web Store review information will always be for the latest version of an app.
+     */
+    reviewNumber?: string | null;
+    /**
+     * Output only. The rating of the app (on 5 stars). Chrome Web Store review information will always be for the latest version of an app.
+     */
+    reviewRating?: number | null;
+    /**
+     * Output only. App version. A new revision is committed whenever a new version of the app is published.
+     */
+    revisionId?: string | null;
+    /**
+     * Output only. Information about a partial service error if applicable.
+     */
+    serviceError?: Schema$GoogleRpcStatus;
+    /**
+     * Output only. App type.
+     */
+    type?: string | null;
+  }
+  /**
    * Describes a browser version and its install count.
    */
   export interface Schema$GoogleChromeManagementV1BrowserVersion {
@@ -149,6 +248,65 @@ export namespace chromemanagement_v1 {
      * Output only. The full version of the installed browser.
      */
     version?: string | null;
+  }
+  /**
+   * Chrome Web Store app information.
+   */
+  export interface Schema$GoogleChromeManagementV1ChromeAppInfo {
+    /**
+     * Output only. Whether the app or extension is built and maintained by Google. Version-specific field that will only be set when the requested app version is found.
+     */
+    googleOwned?: boolean | null;
+    /**
+     * Output only. Whether the app or extension is in a published state in the Chrome Web Store.
+     */
+    isCwsHosted?: boolean | null;
+    /**
+     * Output only. Whether the app or extension is a theme.
+     */
+    isTheme?: boolean | null;
+    /**
+     * Output only. The minimum number of users using this app.
+     */
+    minUserCount?: number | null;
+    /**
+     * Output only. Every custom permission requested by the app. Version-specific field that will only be set when the requested app version is found.
+     */
+    permissions?: Schema$GoogleChromeManagementV1ChromeAppPermission[];
+    /**
+     * Output only. Every permission giving access to domains or broad host patterns. ( e.g. www.google.com). This includes the matches from content scripts as well as hosts in the permissions node of the manifest. Version-specific field that will only be set when the requested app version is found.
+     */
+    siteAccess?: Schema$GoogleChromeManagementV1ChromeAppSiteAccess[];
+    /**
+     * Output only. The app developer has enabled support for their app. Version-specific field that will only be set when the requested app version is found.
+     */
+    supportEnabled?: boolean | null;
+  }
+  /**
+   * Permission requested by a Chrome app or extension.
+   */
+  export interface Schema$GoogleChromeManagementV1ChromeAppPermission {
+    /**
+     * Output only. If available, whether this permissions grants the app/extension access to user data.
+     */
+    accessUserData?: boolean | null;
+    /**
+     * Output only. If available, a URI to a page that has documentation for the current permission.
+     */
+    documentationUri?: string | null;
+    /**
+     * Output only. The type of the permission.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represent one host permission.
+   */
+  export interface Schema$GoogleChromeManagementV1ChromeAppSiteAccess {
+    /**
+     * Output only. This can contain very specific hosts, or patterns like "*.com" for instance.
+     */
+    hostMatch?: string | null;
   }
   /**
    * Response containing requested browser versions details and counts.
@@ -263,14 +421,559 @@ export namespace chromemanagement_v1 {
      */
     permissions?: string[] | null;
   }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$GoogleRpcStatus {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
 
   export class Resource$Customers {
     context: APIRequestContext;
+    apps: Resource$Customers$Apps;
     reports: Resource$Customers$Reports;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.apps = new Resource$Customers$Apps(this.context);
       this.reports = new Resource$Customers$Reports(this.context);
     }
+  }
+
+  export class Resource$Customers$Apps {
+    context: APIRequestContext;
+    android: Resource$Customers$Apps$Android;
+    chrome: Resource$Customers$Apps$Chrome;
+    web: Resource$Customers$Apps$Web;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.android = new Resource$Customers$Apps$Android(this.context);
+      this.chrome = new Resource$Customers$Apps$Chrome(this.context);
+      this.web = new Resource$Customers$Apps$Web(this.context);
+    }
+  }
+
+  export class Resource$Customers$Apps$Android {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a specific app for a customer by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.apps.android.get({
+     *     // Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     *     name: 'customers/my-customer/apps/android/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidAppInfo": {},
+     *   //   "appId": "my_appId",
+     *   //   "chromeAppInfo": {},
+     *   //   "description": "my_description",
+     *   //   "detailUri": "my_detailUri",
+     *   //   "displayName": "my_displayName",
+     *   //   "firstPublishTime": "my_firstPublishTime",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "iconUri": "my_iconUri",
+     *   //   "isPaidApp": false,
+     *   //   "latestPublishTime": "my_latestPublishTime",
+     *   //   "name": "my_name",
+     *   //   "privacyPolicyUri": "my_privacyPolicyUri",
+     *   //   "publisher": "my_publisher",
+     *   //   "reviewNumber": "my_reviewNumber",
+     *   //   "reviewRating": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "serviceError": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Apps$Android$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Apps$Android$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>;
+    get(
+      params: Params$Resource$Customers$Apps$Android$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Apps$Android$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Apps$Android$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Apps$Android$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Apps$Android$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Apps$Android$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1AppDetails>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1AppDetails>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Apps$Android$Get
+    extends StandardParameters {
+    /**
+     * Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     */
+    name?: string;
+  }
+
+  export class Resource$Customers$Apps$Chrome {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a specific app for a customer by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.apps.chrome.get({
+     *     // Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     *     name: 'customers/my-customer/apps/chrome/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidAppInfo": {},
+     *   //   "appId": "my_appId",
+     *   //   "chromeAppInfo": {},
+     *   //   "description": "my_description",
+     *   //   "detailUri": "my_detailUri",
+     *   //   "displayName": "my_displayName",
+     *   //   "firstPublishTime": "my_firstPublishTime",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "iconUri": "my_iconUri",
+     *   //   "isPaidApp": false,
+     *   //   "latestPublishTime": "my_latestPublishTime",
+     *   //   "name": "my_name",
+     *   //   "privacyPolicyUri": "my_privacyPolicyUri",
+     *   //   "publisher": "my_publisher",
+     *   //   "reviewNumber": "my_reviewNumber",
+     *   //   "reviewRating": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "serviceError": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Apps$Chrome$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Apps$Chrome$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>;
+    get(
+      params: Params$Resource$Customers$Apps$Chrome$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Apps$Chrome$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Apps$Chrome$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Apps$Chrome$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Apps$Chrome$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Apps$Chrome$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1AppDetails>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1AppDetails>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Apps$Chrome$Get
+    extends StandardParameters {
+    /**
+     * Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     */
+    name?: string;
+  }
+
+  export class Resource$Customers$Apps$Web {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a specific app for a customer by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.apps.web.get({
+     *     // Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     *     name: 'customers/my-customer/apps/web/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidAppInfo": {},
+     *   //   "appId": "my_appId",
+     *   //   "chromeAppInfo": {},
+     *   //   "description": "my_description",
+     *   //   "detailUri": "my_detailUri",
+     *   //   "displayName": "my_displayName",
+     *   //   "firstPublishTime": "my_firstPublishTime",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "iconUri": "my_iconUri",
+     *   //   "isPaidApp": false,
+     *   //   "latestPublishTime": "my_latestPublishTime",
+     *   //   "name": "my_name",
+     *   //   "privacyPolicyUri": "my_privacyPolicyUri",
+     *   //   "publisher": "my_publisher",
+     *   //   "reviewNumber": "my_reviewNumber",
+     *   //   "reviewRating": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "serviceError": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Apps$Web$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Apps$Web$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>;
+    get(
+      params: Params$Resource$Customers$Apps$Web$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Apps$Web$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Apps$Web$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Apps$Web$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1AppDetails>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1AppDetails>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Apps$Web$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Apps$Web$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1AppDetails>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1AppDetails>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Apps$Web$Get
+    extends StandardParameters {
+    /**
+     * Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     */
+    name?: string;
   }
 
   export class Resource$Customers$Reports {
