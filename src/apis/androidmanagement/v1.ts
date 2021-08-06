@@ -598,7 +598,7 @@ export namespace androidmanagement_v1 {
      */
     memoryEvents?: Schema$MemoryEvent[];
     /**
-     * Memory information. This information is only available if memoryInfoEnabled is true in the device's policy.
+     * Memory information: contains information about device memory and storage.
      */
     memoryInfo?: Schema$MemoryInfo;
     /**
@@ -1970,7 +1970,7 @@ export namespace androidmanagement_v1 {
      */
     hardwareStatusEnabled?: boolean | null;
     /**
-     * Whether memory reporting is enabled.
+     * Whether memory event reporting is enabled.
      */
     memoryInfoEnabled?: boolean | null;
     /**

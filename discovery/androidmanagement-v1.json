@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20210713",
+  "revision": "20210726",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1831,7 +1831,7 @@
         },
         "memoryInfo": {
           "$ref": "MemoryInfo",
-          "description": "Memory information. This information is only available if memoryInfoEnabled is true in the device's policy."
+          "description": "Memory information: contains information about device memory and storage."
         },
         "name": {
           "description": "The name of the device in the form enterprises/{enterpriseId}/devices/{deviceId}.",
@@ -3040,9 +3040,9 @@
             "The password must contain alphabetic (or symbol) characters.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_HIGH for application. See PasswordQuality for details.",
             "The password must contain both numeric and alphabetic (or symbol) characters.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_HIGH for application. See PasswordQuality for details.",
             "The password must meet the minimum requirements specified in passwordMinimumLength, passwordMinimumLetters, passwordMinimumSymbols, etc. For example, if passwordMinimumSymbols is 2, the password must contain at least two symbols.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_HIGH for application. In this case, the requirements in passwordMinimumLength, passwordMinimumLetters, passwordMinimumSymbols, etc are not applied. See PasswordQuality for details.",
-            "Password satisfies one of the following: pattern PIN with repeating (4444) or ordered (1234, 4321, 2468) sequencesEnforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details.",
-            "Password satisfies one of the following: PIN with no repeating (4444) or ordered (1234, 4321, 2468) sequences, length at least 4 alphabetic, length at least 4 alphanumeric, length at least 4Enforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details.",
-            "Password satisfies one of the following:On Android 12 and above: PIN with no repeating (4444) or ordered (1234, 4321, 2468) sequences, length at least 8 alphabetic, length at least 6 alphanumeric, length at least 6Enforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details."
+            "Define the low password complexity band as: pattern PIN with repeating (4444) or ordered (1234, 4321, 2468) sequencesThis sets the minimum complexity band which the password must meet.Enforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details.",
+            "Define the medium password complexity band as: PIN with no repeating (4444) or ordered (1234, 4321, 2468) sequences, length at least 4 alphabetic, length at least 4 alphanumeric, length at least 4This sets the minimum complexity band which the password must meet.Enforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details.",
+            "Define the high password complexity band as:On Android 12 and above: PIN with no repeating (4444) or ordered (1234, 4321, 2468) sequences, length at least 8 alphabetic, length at least 6 alphanumeric, length at least 6This sets the minimum complexity band which the password must meet.Enforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details."
           ],
           "type": "string"
         },
@@ -4037,7 +4037,7 @@
           "type": "boolean"
         },
         "memoryInfoEnabled": {
-          "description": "Whether memory reporting is enabled.",
+          "description": "Whether memory event reporting is enabled.",
           "type": "boolean"
         },
         "networkInfoEnabled": {
