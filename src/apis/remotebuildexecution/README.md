@@ -2,7 +2,7 @@
 
 # remotebuildexecution
 
-> Supplies a Remote Execution API service for tools such as bazel.
+> 
 
 ## Installation
 
