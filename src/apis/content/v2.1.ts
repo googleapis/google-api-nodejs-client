@@ -122,6 +122,7 @@ export namespace content_v2_1 {
     csses: Resource$Csses;
     datafeeds: Resource$Datafeeds;
     datafeedstatuses: Resource$Datafeedstatuses;
+    freelistingsprogram: Resource$Freelistingsprogram;
     liasettings: Resource$Liasettings;
     localinventory: Resource$Localinventory;
     orderinvoices: Resource$Orderinvoices;
@@ -143,6 +144,7 @@ export namespace content_v2_1 {
     settlementreports: Resource$Settlementreports;
     settlementtransactions: Resource$Settlementtransactions;
     shippingsettings: Resource$Shippingsettings;
+    shoppingadsprogram: Resource$Shoppingadsprogram;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -159,6 +161,7 @@ export namespace content_v2_1 {
       this.csses = new Resource$Csses(this.context);
       this.datafeeds = new Resource$Datafeeds(this.context);
       this.datafeedstatuses = new Resource$Datafeedstatuses(this.context);
+      this.freelistingsprogram = new Resource$Freelistingsprogram(this.context);
       this.liasettings = new Resource$Liasettings(this.context);
       this.localinventory = new Resource$Localinventory(this.context);
       this.orderinvoices = new Resource$Orderinvoices(this.context);
@@ -186,6 +189,7 @@ export namespace content_v2_1 {
         this.context
       );
       this.shippingsettings = new Resource$Shippingsettings(this.context);
+      this.shoppingadsprogram = new Resource$Shoppingadsprogram(this.context);
     }
   }
 
@@ -1706,6 +1710,52 @@ export namespace content_v2_1 {
      * The message of the first error in `errors`.
      */
     message?: string | null;
+  }
+  /**
+   * Response message for GetFreeListingsProgramStatus.
+   */
+  export interface Schema$FreeListingsProgramStatus {
+    /**
+     * Status of the program in each region. Regions with the same status and review eligibility are grouped together in `regionCodes`.
+     */
+    regionStatuses?: Schema$FreeListingsProgramStatusRegionStatus[];
+    /**
+     * If program is successfully onboarded for at least one region.
+     */
+    state?: string | null;
+  }
+  /**
+   * Status of program and region.
+   */
+  export interface Schema$FreeListingsProgramStatusRegionStatus {
+    /**
+     * Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format i.e. YYYY-MM-DD
+     */
+    disapprovalDate?: string | null;
+    /**
+     * Eligibility status of the standard free listing program.
+     */
+    eligibilityStatus?: string | null;
+    /**
+     * Eligibility status of the enhanced free listing program.
+     */
+    enhancedEligibilityStatus?: string | null;
+    /**
+     * Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.
+     */
+    ineligibilityReason?: string | null;
+    /**
+     * The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes for all the regions with the same `eligibilityStatus` and `reviewEligibility`.
+     */
+    regionCodes?: string[] | null;
+    /**
+     * If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.
+     */
+    reviewEligibilityStatus?: string | null;
+    /**
+     * These issues will be evaluated in review process. Fix all the issues before requesting the review.
+     */
+    reviewIssues?: string[] | null;
   }
   export interface Schema$GmbAccounts {
     /**
@@ -5964,9 +6014,57 @@ export namespace content_v2_1 {
     priceDelta?: string | null;
   }
   /**
+   * Request message for the RequestPhoneVerification method.
+   */
+  export interface Schema$RequestPhoneVerificationRequest {
+    /**
+     * Language code [IETF BCP 47 syntax](https://tools.ietf.org/html/bcp47) (for example, en-US). Language code is used to provide localized `SMS` and `PHONE_CALL`. Default language used is en-US if not provided.
+     */
+    languageCode?: string | null;
+    /**
+     * Phone number to be verified.
+     */
+    phoneNumber?: string | null;
+    /**
+     * Required. Two letter country code for the phone number, for example `CA` for Canadian numbers. See the [ISO 3166-1 alpha-2](https://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) officially assigned codes.
+     */
+    phoneRegionCode?: string | null;
+    /**
+     * Verification method to receive verification code.
+     */
+    phoneVerificationMethod?: string | null;
+  }
+  /**
+   * Response message for the RequestPhoneVerification method.
+   */
+  export interface Schema$RequestPhoneVerificationResponse {
+    /**
+     * The verification ID to use in subsequent calls to `verifyphonenumber`.
+     */
+    verificationId?: string | null;
+  }
+  /**
    * Request message for the RequestReviewProgram method.
    */
   export interface Schema$RequestReviewBuyOnGoogleProgramRequest {}
+  /**
+   * Request message for the RequestReviewFreeListings Program method.
+   */
+  export interface Schema$RequestReviewFreeListingsRequest {
+    /**
+     * The code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the country for which review is to be requested.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Request message for the RequestReviewShoppingAds program method.
+   */
+  export interface Schema$RequestReviewShoppingAdsRequest {
+    /**
+     * The code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the country for which review is to be requested.
+     */
+    regionCode?: string | null;
+  }
   /**
    * Return address resource.
    */
@@ -6414,7 +6512,7 @@ export namespace content_v2_1 {
      */
     pageToken?: string | null;
     /**
-     * Required. Query that defines performance metrics to retrieve and dimensions according to which the metrics are to be segmented.
+     * Required. Query that defines performance metrics to retrieve and dimensions according to which the metrics are to be segmented. For details on how to construct your query, see the [Query Language guide](https://developers.google.com/shopping-content/guides/reports/query-language/overview).
      */
     query?: string | null;
   }
@@ -6440,23 +6538,23 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * Product category (1st level) in Google's product taxonomy.
+     * [Product category (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.
      */
     categoryL1?: string | null;
     /**
-     * Product category (2nd level) in Google's product taxonomy.
+     * [Product category (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.
      */
     categoryL2?: string | null;
     /**
-     * Product category (3rd level) in Google's product taxonomy.
+     * [Product category (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.
      */
     categoryL3?: string | null;
     /**
-     * Product category (4th level) in Google's product taxonomy.
+     * [Product category (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.
      */
     categoryL4?: string | null;
     /**
-     * Product category (5th level) in Google's product taxonomy.
+     * [Product category (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.
      */
     categoryL5?: string | null;
     /**
@@ -6492,23 +6590,23 @@ export namespace content_v2_1 {
      */
     offerId?: string | null;
     /**
-     * Product category (1st level) in merchant's own product taxonomy.
+     * [Product type (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.
      */
     productTypeL1?: string | null;
     /**
-     * Product category (2nd level) in merchant's own product taxonomy.
+     * [Product type (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.
      */
     productTypeL2?: string | null;
     /**
-     * Product category (3rd level) in merchant's own product taxonomy.
+     * [Product type (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.
      */
     productTypeL3?: string | null;
     /**
-     * Product category (4th level) in merchant's own product taxonomy.
+     * [Product type (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.
      */
     productTypeL4?: string | null;
     /**
-     * Product category (5th level) in merchant's own product taxonomy.
+     * [Product type (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.
      */
     productTypeL5?: string | null;
     /**
@@ -6873,6 +6971,48 @@ export namespace content_v2_1 {
     nextPageToken?: string | null;
     resources?: Schema$ShippingSettings[];
   }
+  /**
+   * Response message for GetShoppingAdsProgramStatus.
+   */
+  export interface Schema$ShoppingAdsProgramStatus {
+    /**
+     * Status of the program in each region. Regions with the same status and review eligibility are grouped together in `regionCodes`.
+     */
+    regionStatuses?: Schema$ShoppingAdsProgramStatusRegionStatus[];
+    /**
+     * If program is successfully onboarded for at least one region.
+     */
+    state?: string | null;
+  }
+  /**
+   * Status of program and region.
+   */
+  export interface Schema$ShoppingAdsProgramStatusRegionStatus {
+    /**
+     * Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format i.e. YYYY-MM-DD
+     */
+    disapprovalDate?: string | null;
+    /**
+     * Eligibility status of the Shopping Ads program.
+     */
+    eligibilityStatus?: string | null;
+    /**
+     * Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.
+     */
+    ineligibilityReason?: string | null;
+    /**
+     * The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes for all the regions with the same `eligibilityStatus` and `reviewEligibility`.
+     */
+    regionCodes?: string[] | null;
+    /**
+     * If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.
+     */
+    reviewEligibilityStatus?: string | null;
+    /**
+     * These issues will be evaluated in review process. Fix all the issues before requesting the review.
+     */
+    reviewIssues?: string[] | null;
+  }
   export interface Schema$Table {
     /**
      * Headers of the table's columns. Optional: if not set then the table has only one dimension.
@@ -7192,6 +7332,32 @@ export namespace content_v2_1 {
      * The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.
      */
     subtableName?: string | null;
+  }
+  /**
+   * Request message for the VerifyPhoneNumber method.
+   */
+  export interface Schema$VerifyPhoneNumberRequest {
+    /**
+     * Verification method used to receive verification code.
+     */
+    phoneVerificationMethod?: string | null;
+    /**
+     * The verification code that was sent to the phone number for validation.
+     */
+    verificationCode?: string | null;
+    /**
+     * The verification ID returned by `requestphoneverification`.
+     */
+    verificationId?: string | null;
+  }
+  /**
+   * Response message for the VerifyPhoneNumber method.
+   */
+  export interface Schema$VerifyPhoneNumberResponse {
+    /**
+     * Verified phone number if verification is successful.
+     */
+    verifiedPhoneNumber?: string | null;
   }
   export interface Schema$WarehouseBasedDeliveryTime {
     /**
@@ -8542,6 +8708,158 @@ export namespace content_v2_1 {
     }
 
     /**
+     * Request verification code to start phone verification.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.requestphoneverification({
+     *     // Required. The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "languageCode": "my_languageCode",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "phoneRegionCode": "my_phoneRegionCode",
+     *       //   "phoneVerificationMethod": "my_phoneVerificationMethod"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "verificationId": "my_verificationId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    requestphoneverification(
+      params: Params$Resource$Accounts$Requestphoneverification,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    requestphoneverification(
+      params?: Params$Resource$Accounts$Requestphoneverification,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RequestPhoneVerificationResponse>;
+    requestphoneverification(
+      params: Params$Resource$Accounts$Requestphoneverification,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    requestphoneverification(
+      params: Params$Resource$Accounts$Requestphoneverification,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RequestPhoneVerificationResponse>,
+      callback: BodyResponseCallback<Schema$RequestPhoneVerificationResponse>
+    ): void;
+    requestphoneverification(
+      params: Params$Resource$Accounts$Requestphoneverification,
+      callback: BodyResponseCallback<Schema$RequestPhoneVerificationResponse>
+    ): void;
+    requestphoneverification(
+      callback: BodyResponseCallback<Schema$RequestPhoneVerificationResponse>
+    ): void;
+    requestphoneverification(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Requestphoneverification
+        | BodyResponseCallback<Schema$RequestPhoneVerificationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RequestPhoneVerificationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RequestPhoneVerificationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RequestPhoneVerificationResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Requestphoneverification;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Requestphoneverification;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/accounts/{accountId}/requestphoneverification'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RequestPhoneVerificationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RequestPhoneVerificationResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.
      * @example
      * ```js
@@ -8855,6 +9173,155 @@ export namespace content_v2_1 {
         );
       }
     }
+
+    /**
+     * Validates verification code to verify phone number for the account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.verifyphonenumber({
+     *     // Required. The ID of the account.
+     *     accountId: 'placeholder-value',
+     *     // Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "phoneVerificationMethod": "my_phoneVerificationMethod",
+     *       //   "verificationCode": "my_verificationCode",
+     *       //   "verificationId": "my_verificationId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "verifiedPhoneNumber": "my_verifiedPhoneNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    verifyphonenumber(
+      params: Params$Resource$Accounts$Verifyphonenumber,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    verifyphonenumber(
+      params?: Params$Resource$Accounts$Verifyphonenumber,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VerifyPhoneNumberResponse>;
+    verifyphonenumber(
+      params: Params$Resource$Accounts$Verifyphonenumber,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    verifyphonenumber(
+      params: Params$Resource$Accounts$Verifyphonenumber,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VerifyPhoneNumberResponse>,
+      callback: BodyResponseCallback<Schema$VerifyPhoneNumberResponse>
+    ): void;
+    verifyphonenumber(
+      params: Params$Resource$Accounts$Verifyphonenumber,
+      callback: BodyResponseCallback<Schema$VerifyPhoneNumberResponse>
+    ): void;
+    verifyphonenumber(
+      callback: BodyResponseCallback<Schema$VerifyPhoneNumberResponse>
+    ): void;
+    verifyphonenumber(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Verifyphonenumber
+        | BodyResponseCallback<Schema$VerifyPhoneNumberResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VerifyPhoneNumberResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VerifyPhoneNumberResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VerifyPhoneNumberResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Verifyphonenumber;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Verifyphonenumber;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/accounts/{accountId}/verifyphonenumber'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'accountId'],
+        pathParams: ['accountId', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VerifyPhoneNumberResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VerifyPhoneNumberResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Authinfo
@@ -8980,6 +9447,22 @@ export namespace content_v2_1 {
      */
     pageToken?: string;
   }
+  export interface Params$Resource$Accounts$Requestphoneverification
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    accountId?: string;
+    /**
+     * Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RequestPhoneVerificationRequest;
+  }
   export interface Params$Resource$Accounts$Update extends StandardParameters {
     /**
      * The ID of the account.
@@ -9010,6 +9493,22 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$AccountsUpdateLabelsRequest;
+  }
+  export interface Params$Resource$Accounts$Verifyphonenumber
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    accountId?: string;
+    /**
+     * Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VerifyPhoneNumberRequest;
   }
 
   export class Resource$Accounts$Credentials {
@@ -15215,6 +15714,299 @@ export namespace content_v2_1 {
      * The token returned by the previous request.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Freelistingsprogram {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the status and review eligibility for the free listing program.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.get({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "regionStatuses": [],
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Freelistingsprogram$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Freelistingsprogram$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FreeListingsProgramStatus>;
+    get(
+      params: Params$Resource$Freelistingsprogram$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Freelistingsprogram$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FreeListingsProgramStatus>,
+      callback: BodyResponseCallback<Schema$FreeListingsProgramStatus>
+    ): void;
+    get(
+      params: Params$Resource$Freelistingsprogram$Get,
+      callback: BodyResponseCallback<Schema$FreeListingsProgramStatus>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$FreeListingsProgramStatus>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Freelistingsprogram$Get
+        | BodyResponseCallback<Schema$FreeListingsProgramStatus>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FreeListingsProgramStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FreeListingsProgramStatus>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FreeListingsProgramStatus>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Freelistingsprogram$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Freelistingsprogram$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/freelistingsprogram'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FreeListingsProgramStatus>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FreeListingsProgramStatus>(parameters);
+      }
+    }
+
+    /**
+     * Requests a review for Free Listings program in the provided region. Important: This method is only whitelisted for selected merchants.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.freelistingsprogram.requestreview({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "regionCode": "my_regionCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    requestreview(
+      params: Params$Resource$Freelistingsprogram$Requestreview,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    requestreview(
+      params?: Params$Resource$Freelistingsprogram$Requestreview,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    requestreview(
+      params: Params$Resource$Freelistingsprogram$Requestreview,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    requestreview(
+      params: Params$Resource$Freelistingsprogram$Requestreview,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    requestreview(
+      params: Params$Resource$Freelistingsprogram$Requestreview,
+      callback: BodyResponseCallback<void>
+    ): void;
+    requestreview(callback: BodyResponseCallback<void>): void;
+    requestreview(
+      paramsOrCallback?:
+        | Params$Resource$Freelistingsprogram$Requestreview
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Freelistingsprogram$Requestreview;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Freelistingsprogram$Requestreview;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/freelistingsprogram/requestreview'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Freelistingsprogram$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Freelistingsprogram$Requestreview
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RequestReviewFreeListingsRequest;
   }
 
   export class Resource$Liasettings {
@@ -32107,5 +32899,298 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$ShippingSettings;
+  }
+
+  export class Resource$Shoppingadsprogram {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the status and review eligibility for the Shopping Ads program.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shoppingadsprogram.get({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "regionStatuses": [],
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Shoppingadsprogram$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Shoppingadsprogram$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ShoppingAdsProgramStatus>;
+    get(
+      params: Params$Resource$Shoppingadsprogram$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Shoppingadsprogram$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShoppingAdsProgramStatus>,
+      callback: BodyResponseCallback<Schema$ShoppingAdsProgramStatus>
+    ): void;
+    get(
+      params: Params$Resource$Shoppingadsprogram$Get,
+      callback: BodyResponseCallback<Schema$ShoppingAdsProgramStatus>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ShoppingAdsProgramStatus>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Shoppingadsprogram$Get
+        | BodyResponseCallback<Schema$ShoppingAdsProgramStatus>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShoppingAdsProgramStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShoppingAdsProgramStatus>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ShoppingAdsProgramStatus>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shoppingadsprogram$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Shoppingadsprogram$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/shoppingadsprogram'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShoppingAdsProgramStatus>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShoppingAdsProgramStatus>(parameters);
+      }
+    }
+
+    /**
+     * Requests a review for Shopping Ads program in the provided country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.shoppingadsprogram.requestreview({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "regionCode": "my_regionCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    requestreview(
+      params: Params$Resource$Shoppingadsprogram$Requestreview,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    requestreview(
+      params?: Params$Resource$Shoppingadsprogram$Requestreview,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    requestreview(
+      params: Params$Resource$Shoppingadsprogram$Requestreview,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    requestreview(
+      params: Params$Resource$Shoppingadsprogram$Requestreview,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    requestreview(
+      params: Params$Resource$Shoppingadsprogram$Requestreview,
+      callback: BodyResponseCallback<void>
+    ): void;
+    requestreview(callback: BodyResponseCallback<void>): void;
+    requestreview(
+      paramsOrCallback?:
+        | Params$Resource$Shoppingadsprogram$Requestreview
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Shoppingadsprogram$Requestreview;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Shoppingadsprogram$Requestreview;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/shoppingadsprogram/requestreview'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Shoppingadsprogram$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Shoppingadsprogram$Requestreview
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RequestReviewShoppingAdsRequest;
   }
 }
