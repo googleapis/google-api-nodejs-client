@@ -735,11 +735,11 @@ export namespace dlp_v2 {
     cryptoKey?: Schema$GooglePrivacyDlpV2CryptoKey;
   }
   /**
-   * This is a data encryption key (DEK) (as opposed to a key encryption key (KEK) stored by KMS). When using KMS to wrap/unwrap DEKs, be sure to set an appropriate IAM policy on the KMS CryptoKey (KEK) to ensure an attacker cannot unwrap the data crypto key.
+   * This is a data encryption key (DEK) (as opposed to a key encryption key (KEK) stored by Cloud Key Management Service (Cloud KMS). When using Cloud KMS to wrap or unwrap a DEK, be sure to set an appropriate IAM policy on the KEK to ensure an attacker cannot unwrap the DEK.
    */
   export interface Schema$GooglePrivacyDlpV2CryptoKey {
     /**
-     * Kms wrapped key
+     * Key wrapped using Cloud KMS
      */
     kmsWrapped?: Schema$GooglePrivacyDlpV2KmsWrappedCryptoKey;
     /**
@@ -1896,7 +1896,7 @@ export namespace dlp_v2 {
     kMapEstimationHistogram?: Schema$GooglePrivacyDlpV2KMapEstimationHistogramBucket[];
   }
   /**
-   * Include to use an existing data crypto key wrapped by KMS. The wrapped key must be a 128-, 192-, or 256-bit key. Authorization requires the following IAM permissions when sending a request to perform a crypto transformation using a KMS-wrapped crypto key: dlp.kms.encrypt For more information, see [Creating a wrapped key] (https://cloud.google.com/dlp/docs/create-wrapped-key).
+   * Include to use an existing data crypto key wrapped by KMS. The wrapped key must be a 128-, 192-, or 256-bit key. Authorization requires the following IAM permissions when sending a request to perform a crypto transformation using a KMS-wrapped crypto key: dlp.kms.encrypt For more information, see [Creating a wrapped key] (https://cloud.google.com/dlp/docs/create-wrapped-key). Note: When you use Cloud KMS for cryptographic operations, [charges apply](https://cloud.google.com/kms/pricing).
    */
   export interface Schema$GooglePrivacyDlpV2KmsWrappedCryptoKey {
     /**
