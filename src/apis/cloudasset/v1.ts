@@ -224,6 +224,10 @@ export namespace cloudasset_v1 {
      */
     osInventory?: Schema$Inventory;
     /**
+     * The related assets of the asset of one relationship type. One asset only represents one type of relationship.
+     */
+    relatedAssets?: Schema$RelatedAssets;
+    /**
      * A representation of the resource.
      */
     resource?: Schema$Resource;
@@ -390,6 +394,10 @@ export namespace cloudasset_v1 {
      * Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
      */
     readTime?: string | null;
+    /**
+     * A list of relationship types to export, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it snapshots specified relationships. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_types] or if any of the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it snapshots the supported relationships for all [asset_types] or returns an error if any of the [asset_types] has no relationship support. An unspecified asset types field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.
+     */
+    relationshipTypes?: string[] | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -440,6 +448,10 @@ export namespace cloudasset_v1 {
      * Required. The format will be projects/{project_number\}/feeds/{client-assigned_feed_identifier\} or folders/{folder_number\}/feeds/{client-assigned_feed_identifier\} or organizations/{organization_number\}/feeds/{client-assigned_feed_identifier\} The client-assigned feed identifier must be unique within the parent project/folder/organization.
      */
     name?: string | null;
+    /**
+     * A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it outputs specified relationship updates on the [asset_names] or the [asset_types]. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_names] or [asset_types], or any of the [asset_names] or the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it outputs the supported relationships of the types of [asset_names] and [asset_types] or returns an error if any of the [asset_names] or the [asset_types] has no replationship support. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.
+     */
+    relationshipTypes?: string[] | null;
   }
   /**
    * Output configuration for asset feed destination.
@@ -804,7 +816,7 @@ export namespace cloudasset_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/accessLevels/{short_name\}`. The maximum length of the `short_name` component is 50 characters.
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The maximum length of the `access_level` component is 50 characters.
      */
     name?: string | null;
     /**
@@ -821,7 +833,7 @@ export namespace cloudasset_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id\}`
+     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
      */
     name?: string | null;
     /**
@@ -1060,7 +1072,7 @@ export namespace cloudasset_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/servicePerimeters/{short_name\}`
+     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`
      */
     name?: string | null;
     /**
@@ -1270,7 +1282,7 @@ export namespace cloudasset_v1 {
     identity?: string | null;
   }
   /**
-   * The inventory details of a VM.
+   * This API resource represents the available inventory data for a Compute Engine virtual machine (VM) instance at a given point in time. You can use this API resource to determine the inventory data of your VM. For more information, see [Information provided by OS inventory management](https://cloud.google.com/compute/docs/instances/os-inventory-management#data-collected).
    */
   export interface Schema$Inventory {
     /**
@@ -1278,9 +1290,17 @@ export namespace cloudasset_v1 {
      */
     items?: {[key: string]: Schema$Item} | null;
     /**
+     * Output only. The `Inventory` API resource name. Format: `projects/{project_number\}/locations/{location\}/instances/{instance_id\}/inventory`
+     */
+    name?: string | null;
+    /**
      * Base level operating system information for the VM.
      */
     osInfo?: Schema$OsInfo;
+    /**
+     * Output only. Timestamp of the last reported inventory for the VM.
+     */
+    updateTime?: string | null;
   }
   /**
    * A single piece of inventory on a VM.
@@ -1528,6 +1548,57 @@ export namespace cloudasset_v1 {
      * The name of the Pub/Sub topic to publish to. Example: `projects/PROJECT_ID/topics/TOPIC_ID`.
      */
     topic?: string | null;
+  }
+  /**
+   * An asset identify in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
+   */
+  export interface Schema$RelatedAsset {
+    /**
+     * The ancestors of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     */
+    ancestors?: string[] | null;
+    /**
+     * The full name of the asset. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
+     */
+    asset?: string | null;
+    /**
+     * The type of the asset. Example: `compute.googleapis.com/Disk` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
+     */
+    assetType?: string | null;
+  }
+  /**
+   * The detailed related assets with the `relationship_type`.
+   */
+  export interface Schema$RelatedAssets {
+    /**
+     * The peer resources of the relationship.
+     */
+    assets?: Schema$RelatedAsset[];
+    /**
+     * The detailed relationship attributes.
+     */
+    relationshipAttributes?: Schema$RelationshipAttributes;
+  }
+  /**
+   * The relationship attributes which include `type`, `source_resource_type`, `target_resource_type` and `action`.
+   */
+  export interface Schema$RelationshipAttributes {
+    /**
+     * The detail of the relationship, e.g. `contains`, `attaches`
+     */
+    action?: string | null;
+    /**
+     * The source asset type. Example: `compute.googleapis.com/Instance`
+     */
+    sourceResourceType?: string | null;
+    /**
+     * The target asset type. Example: `compute.googleapis.com/Disk`
+     */
+    targetResourceType?: string | null;
+    /**
+     * The unique identifier of the relationship type. Example: `INSTANCE_TO_INSTANCEGROUP`
+     */
+    type?: string | null;
   }
   /**
    * A representation of a Google Cloud resource.
@@ -1955,6 +2026,8 @@ export namespace cloudasset_v1 {
      *     parent: '[^/]+/[^/]+',
      *     // Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
      *     readTime: 'placeholder-value',
+     *     // A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it snapshots specified relationships. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_types] or if any of the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it snapshots the supported relationships for all [asset_types] or returns an error if any of the [asset_types] has no relationship support. An unspecified asset types field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.
+     *     relationshipTypes: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2085,6 +2158,10 @@ export namespace cloudasset_v1 {
      * Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
      */
     readTime?: string;
+    /**
+     * A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it snapshots specified relationships. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_types] or if any of the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it snapshots the supported relationships for all [asset_types] or returns an error if any of the [asset_types] has no relationship support. An unspecified asset types field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.
+     */
+    relationshipTypes?: string[];
   }
 
   export class Resource$Feeds {
@@ -2141,7 +2218,8 @@ export namespace cloudasset_v1 {
      *   //   "condition": {},
      *   //   "contentType": "my_contentType",
      *   //   "feedOutputConfig": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "relationshipTypes": []
      *   // }
      * }
      *
@@ -2397,7 +2475,8 @@ export namespace cloudasset_v1 {
      *   //   "condition": {},
      *   //   "contentType": "my_contentType",
      *   //   "feedOutputConfig": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "relationshipTypes": []
      *   // }
      * }
      *
@@ -2667,7 +2746,8 @@ export namespace cloudasset_v1 {
      *   //   "condition": {},
      *   //   "contentType": "my_contentType",
      *   //   "feedOutputConfig": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "relationshipTypes": []
      *   // }
      * }
      *
@@ -3430,6 +3510,8 @@ export namespace cloudasset_v1 {
      *     'readTimeWindow.endTime': 'placeholder-value',
      *     // Start time of the time window (exclusive).
      *     'readTimeWindow.startTime': 'placeholder-value',
+     *     // Optional. A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it outputs specified relationships' history on the [asset_names]. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_names] or if any of the [asset_names]'s types doesn't belong to the source types of the [relationship_types]. * Otherwise: it outputs the supported relationships' history on the [asset_names] or returns an error if any of the [asset_names]'s types has no relationship support. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.
+     *     relationshipTypes: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3576,7 +3658,8 @@ export namespace cloudasset_v1 {
      *       //   "assetTypes": [],
      *       //   "contentType": "my_contentType",
      *       //   "outputConfig": {},
-     *       //   "readTime": "my_readTime"
+     *       //   "readTime": "my_readTime",
+     *       //   "relationshipTypes": []
      *       // }
      *     },
      *   });
@@ -4084,6 +4167,10 @@ export namespace cloudasset_v1 {
      * Start time of the time window (exclusive).
      */
     'readTimeWindow.startTime'?: string;
+    /**
+     * Optional. A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it outputs specified relationships' history on the [asset_names]. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_names] or if any of the [asset_names]'s types doesn't belong to the source types of the [relationship_types]. * Otherwise: it outputs the supported relationships' history on the [asset_names] or returns an error if any of the [asset_names]'s types has no relationship support. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.
+     */
+    relationshipTypes?: string[];
   }
   export interface Params$Resource$V1$Exportassets extends StandardParameters {
     /**
