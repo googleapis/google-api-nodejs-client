@@ -428,6 +428,42 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "requestphoneverification": {
+          "description": "Request verification code to start phone verification.",
+          "flatPath": "{merchantId}/accounts/{accountId}/requestphoneverification",
+          "httpMethod": "POST",
+          "id": "content.accounts.requestphoneverification",
+          "parameterOrder": [
+            "merchantId",
+            "accountId"
+          ],
+          "parameters": {
+            "accountId": {
+              "description": "Required. The ID of the account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/accounts/{accountId}/requestphoneverification",
+          "request": {
+            "$ref": "RequestPhoneVerificationRequest"
+          },
+          "response": {
+            "$ref": "RequestPhoneVerificationResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "update": {
           "description": "Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.",
           "flatPath": "{merchantId}/accounts/{accountId}",
@@ -495,6 +531,42 @@
           },
           "response": {
             "$ref": "AccountsUpdateLabelsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "verifyphonenumber": {
+          "description": "Validates verification code to verify phone number for the account.",
+          "flatPath": "{merchantId}/accounts/{accountId}/verifyphonenumber",
+          "httpMethod": "POST",
+          "id": "content.accounts.verifyphonenumber",
+          "parameterOrder": [
+            "merchantId",
+            "accountId"
+          ],
+          "parameters": {
+            "accountId": {
+              "description": "Required. The ID of the account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "merchantId": {
+              "description": "Required. The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and accountId must be the ID of a sub-account of this account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/accounts/{accountId}/verifyphonenumber",
+          "request": {
+            "$ref": "VerifyPhoneNumberRequest"
+          },
+          "response": {
+            "$ref": "VerifyPhoneNumberResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -1814,6 +1886,60 @@
           "path": "{merchantId}/datafeedstatuses",
           "response": {
             "$ref": "DatafeedstatusesListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
+    "freelistingsprogram": {
+      "methods": {
+        "get": {
+          "description": "Retrieves the status and review eligibility for the free listing program.",
+          "flatPath": "{merchantId}/freelistingsprogram",
+          "httpMethod": "GET",
+          "id": "content.freelistingsprogram.get",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/freelistingsprogram",
+          "response": {
+            "$ref": "FreeListingsProgramStatus"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "requestreview": {
+          "description": "Requests a review for Free Listings program in the provided region. Important: This method is only whitelisted for selected merchants.",
+          "flatPath": "{merchantId}/freelistingsprogram/requestreview",
+          "httpMethod": "POST",
+          "id": "content.freelistingsprogram.requestreview",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/freelistingsprogram/requestreview",
+          "request": {
+            "$ref": "RequestReviewFreeListingsRequest"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -5493,9 +5619,63 @@
           ]
         }
       }
+    },
+    "shoppingadsprogram": {
+      "methods": {
+        "get": {
+          "description": "Retrieves the status and review eligibility for the Shopping Ads program.",
+          "flatPath": "{merchantId}/shoppingadsprogram",
+          "httpMethod": "GET",
+          "id": "content.shoppingadsprogram.get",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/shoppingadsprogram",
+          "response": {
+            "$ref": "ShoppingAdsProgramStatus"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "requestreview": {
+          "description": "Requests a review for Shopping Ads program in the provided country.",
+          "flatPath": "{merchantId}/shoppingadsprogram/requestreview",
+          "httpMethod": "POST",
+          "id": "content.shoppingadsprogram.requestreview",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/shoppingadsprogram/requestreview",
+          "request": {
+            "$ref": "RequestReviewShoppingAdsRequest"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
     }
   },
-  "revision": "20210715",
+  "revision": "20210728",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -7555,6 +7735,121 @@
         "message": {
           "description": "The message of the first error in `errors`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FreeListingsProgramStatus": {
+      "description": "Response message for GetFreeListingsProgramStatus.",
+      "id": "FreeListingsProgramStatus",
+      "properties": {
+        "regionStatuses": {
+          "description": "Status of the program in each region. Regions with the same status and review eligibility are grouped together in `regionCodes`.",
+          "items": {
+            "$ref": "FreeListingsProgramStatusRegionStatus"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "If program is successfully onboarded for at least one region.",
+          "enum": [
+            "PROGRAM_STATE_UNSPECIFIED",
+            "ONBOARDED",
+            "NOT_ONBOARDED"
+          ],
+          "enumDescriptions": [
+            "State is not known.",
+            "Program is onboarded for at least one country.",
+            "Program is not onboarded for any country."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FreeListingsProgramStatusRegionStatus": {
+      "description": "Status of program and region.",
+      "id": "FreeListingsProgramStatusRegionStatus",
+      "properties": {
+        "disapprovalDate": {
+          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format i.e. YYYY-MM-DD",
+          "type": "string"
+        },
+        "eligibilityStatus": {
+          "description": "Eligibility status of the standard free listing program.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "APPROVED",
+            "DISAPPROVED",
+            "WARNING",
+            "UNDER_REVIEW",
+            "PENDING_REVIEW",
+            "ONBOARDING"
+          ],
+          "enumDescriptions": [
+            "State is not known.",
+            "If the account has no issues and review is completed successfully.",
+            "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
+            "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
+            "Account is under review.",
+            "Account is waiting for review to start.",
+            "Program is currently onboarding."
+          ],
+          "type": "string"
+        },
+        "enhancedEligibilityStatus": {
+          "description": "Eligibility status of the enhanced free listing program.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "APPROVED",
+            "DISAPPROVED",
+            "WARNING",
+            "UNDER_REVIEW",
+            "PENDING_REVIEW",
+            "ONBOARDING"
+          ],
+          "enumDescriptions": [
+            "State is not known.",
+            "If the account has no issues and review is completed successfully.",
+            "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
+            "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
+            "Account is under review.",
+            "Account is waiting for review to start.",
+            "Program is currently onboarding."
+          ],
+          "type": "string"
+        },
+        "ineligibilityReason": {
+          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
+          "type": "string"
+        },
+        "regionCodes": {
+          "description": "The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes for all the regions with the same `eligibilityStatus` and `reviewEligibility`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reviewEligibilityStatus": {
+          "description": "If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.",
+          "enum": [
+            "REVIEW_ELIGIBILITY_UNSPECIFIED",
+            "ELIGIBLE",
+            "INELIGIBLE"
+          ],
+          "enumDescriptions": [
+            "Review eligibility state is unknown.",
+            "Account for a region code is eligible for review.",
+            "Account for a region code is not eligible for review."
+          ],
+          "type": "string"
+        },
+        "reviewIssues": {
+          "description": "These issues will be evaluated in review process. Fix all the issues before requesting the review.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13134,10 +13429,76 @@
       },
       "type": "object"
     },
+    "RequestPhoneVerificationRequest": {
+      "description": "Request message for the RequestPhoneVerification method.",
+      "id": "RequestPhoneVerificationRequest",
+      "properties": {
+        "languageCode": {
+          "description": "Language code [IETF BCP 47 syntax](https://tools.ietf.org/html/bcp47) (for example, en-US). Language code is used to provide localized `SMS` and `PHONE_CALL`. Default language used is en-US if not provided.",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Phone number to be verified.",
+          "type": "string"
+        },
+        "phoneRegionCode": {
+          "description": "Required. Two letter country code for the phone number, for example `CA` for Canadian numbers. See the [ISO 3166-1 alpha-2](https://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) officially assigned codes.",
+          "type": "string"
+        },
+        "phoneVerificationMethod": {
+          "description": "Verification method to receive verification code.",
+          "enum": [
+            "PHONE_VERIFICATION_METHOD_UNSPECIFIED",
+            "SMS",
+            "PHONE_CALL"
+          ],
+          "enumDescriptions": [
+            "Unknown method.",
+            "Receive verification code by SMS.",
+            "Receive verification code by phone call."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestPhoneVerificationResponse": {
+      "description": "Response message for the RequestPhoneVerification method.",
+      "id": "RequestPhoneVerificationResponse",
+      "properties": {
+        "verificationId": {
+          "description": "The verification ID to use in subsequent calls to `verifyphonenumber`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RequestReviewBuyOnGoogleProgramRequest": {
       "description": "Request message for the RequestReviewProgram method.",
       "id": "RequestReviewBuyOnGoogleProgramRequest",
       "properties": {},
+      "type": "object"
+    },
+    "RequestReviewFreeListingsRequest": {
+      "description": "Request message for the RequestReviewFreeListings Program method.",
+      "id": "RequestReviewFreeListingsRequest",
+      "properties": {
+        "regionCode": {
+          "description": "The code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the country for which review is to be requested.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestReviewShoppingAdsRequest": {
+      "description": "Request message for the RequestReviewShoppingAds program method.",
+      "id": "RequestReviewShoppingAdsRequest",
+      "properties": {
+        "regionCode": {
+          "description": "The code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) of the country for which review is to be requested.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ReturnAddress": {
@@ -13793,7 +14154,7 @@
           "type": "string"
         },
         "query": {
-          "description": "Required. Query that defines performance metrics to retrieve and dimensions according to which the metrics are to be segmented.",
+          "description": "Required. Query that defines performance metrics to retrieve and dimensions according to which the metrics are to be segmented. For details on how to construct your query, see the [Query Language guide](https://developers.google.com/shopping-content/guides/reports/query-language/overview).",
           "type": "string"
         }
       },
@@ -13826,23 +14187,23 @@
           "type": "string"
         },
         "categoryL1": {
-          "description": "Product category (1st level) in Google's product taxonomy.",
+          "description": "[Product category (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.",
           "type": "string"
         },
         "categoryL2": {
-          "description": "Product category (2nd level) in Google's product taxonomy.",
+          "description": "[Product category (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.",
           "type": "string"
         },
         "categoryL3": {
-          "description": "Product category (3rd level) in Google's product taxonomy.",
+          "description": "[Product category (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.",
           "type": "string"
         },
         "categoryL4": {
-          "description": "Product category (4th level) in Google's product taxonomy.",
+          "description": "[Product category (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.",
           "type": "string"
         },
         "categoryL5": {
-          "description": "Product category (5th level) in Google's product taxonomy.",
+          "description": "[Product category (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in Google's product taxonomy.",
           "type": "string"
         },
         "currencyCode": {
@@ -13878,23 +14239,23 @@
           "type": "string"
         },
         "productTypeL1": {
-          "description": "Product category (1st level) in merchant's own product taxonomy.",
+          "description": "[Product type (1st level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.",
           "type": "string"
         },
         "productTypeL2": {
-          "description": "Product category (2nd level) in merchant's own product taxonomy.",
+          "description": "[Product type (2nd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.",
           "type": "string"
         },
         "productTypeL3": {
-          "description": "Product category (3rd level) in merchant's own product taxonomy.",
+          "description": "[Product type (3rd level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.",
           "type": "string"
         },
         "productTypeL4": {
-          "description": "Product category (4th level) in merchant's own product taxonomy.",
+          "description": "[Product type (4th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.",
           "type": "string"
         },
         "productTypeL5": {
-          "description": "Product category (5th level) in merchant's own product taxonomy.",
+          "description": "[Product type (5th level)](https://developers.google.com/shopping-content/guides/reports/segmentation#category_and_product_type) in merchant's own product taxonomy.",
           "type": "string"
         },
         "program": {
@@ -14407,6 +14768,99 @@
       },
       "type": "object"
     },
+    "ShoppingAdsProgramStatus": {
+      "description": "Response message for GetShoppingAdsProgramStatus.",
+      "id": "ShoppingAdsProgramStatus",
+      "properties": {
+        "regionStatuses": {
+          "description": "Status of the program in each region. Regions with the same status and review eligibility are grouped together in `regionCodes`.",
+          "items": {
+            "$ref": "ShoppingAdsProgramStatusRegionStatus"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "If program is successfully onboarded for at least one region.",
+          "enum": [
+            "PROGRAM_STATE_UNSPECIFIED",
+            "ONBOARDED",
+            "NOT_ONBOARDED"
+          ],
+          "enumDescriptions": [
+            "State is not known.",
+            "Program is onboarded for at least one country.",
+            "Program is not onboarded for any country."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShoppingAdsProgramStatusRegionStatus": {
+      "description": "Status of program and region.",
+      "id": "ShoppingAdsProgramStatusRegionStatus",
+      "properties": {
+        "disapprovalDate": {
+          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format i.e. YYYY-MM-DD",
+          "type": "string"
+        },
+        "eligibilityStatus": {
+          "description": "Eligibility status of the Shopping Ads program.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "APPROVED",
+            "DISAPPROVED",
+            "WARNING",
+            "UNDER_REVIEW",
+            "PENDING_REVIEW",
+            "ONBOARDING"
+          ],
+          "enumDescriptions": [
+            "State is not known.",
+            "If the account has no issues and review is completed successfully.",
+            "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
+            "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
+            "Account is under review.",
+            "Account is waiting for review to start.",
+            "Program is currently onboarding."
+          ],
+          "type": "string"
+        },
+        "ineligibilityReason": {
+          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
+          "type": "string"
+        },
+        "regionCodes": {
+          "description": "The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes for all the regions with the same `eligibilityStatus` and `reviewEligibility`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reviewEligibilityStatus": {
+          "description": "If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.",
+          "enum": [
+            "REVIEW_ELIGIBILITY_UNSPECIFIED",
+            "ELIGIBLE",
+            "INELIGIBLE"
+          ],
+          "enumDescriptions": [
+            "Review eligibility state is unknown.",
+            "Account for a region code is eligible for review.",
+            "Account for a region code is not eligible for review."
+          ],
+          "type": "string"
+        },
+        "reviewIssues": {
+          "description": "These issues will be evaluated in review process. Fix all the issues before requesting the review.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Table": {
       "id": "Table",
       "properties": {
@@ -14831,6 +15285,46 @@
         },
         "subtableName": {
           "description": "The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VerifyPhoneNumberRequest": {
+      "description": "Request message for the VerifyPhoneNumber method.",
+      "id": "VerifyPhoneNumberRequest",
+      "properties": {
+        "phoneVerificationMethod": {
+          "description": "Verification method used to receive verification code.",
+          "enum": [
+            "PHONE_VERIFICATION_METHOD_UNSPECIFIED",
+            "SMS",
+            "PHONE_CALL"
+          ],
+          "enumDescriptions": [
+            "Unknown method.",
+            "Receive verification code by SMS.",
+            "Receive verification code by phone call."
+          ],
+          "type": "string"
+        },
+        "verificationCode": {
+          "description": "The verification code that was sent to the phone number for validation.",
+          "type": "string"
+        },
+        "verificationId": {
+          "description": "The verification ID returned by `requestphoneverification`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VerifyPhoneNumberResponse": {
+      "description": "Response message for the VerifyPhoneNumber method.",
+      "id": "VerifyPhoneNumberResponse",
+      "properties": {
+        "verifiedPhoneNumber": {
+          "description": "Verified phone number if verification is successful.",
           "type": "string"
         }
       },
