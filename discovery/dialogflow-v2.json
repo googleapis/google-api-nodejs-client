@@ -6915,7 +6915,7 @@
       }
     }
   },
-  "revision": "20210706",
+  "revision": "20210802",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -13649,7 +13649,7 @@
           "type": "array"
         },
         "errorMessage": {
-          "description": "The detailed error messsage.",
+          "description": "The detailed error message.",
           "type": "string"
         },
         "severity": {
