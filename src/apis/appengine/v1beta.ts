@@ -1030,6 +1030,10 @@ export namespace appengine_v1beta {
      */
     forwardedPorts?: string[] | null;
     /**
+     * The IP mode for instances. Only applicable in the App Engine flexible environment.
+     */
+    instanceIpMode?: string | null;
+    /**
      * Tag to apply to the instance during creation. Only applicable in the App Engine flexible environment.
      */
     instanceTag?: string | null;

@@ -1595,7 +1595,7 @@
       }
     }
   },
-  "revision": "20210618",
+  "revision": "20210731",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2858,6 +2858,20 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "instanceIpMode": {
+          "description": "The IP mode for instances. Only applicable in the App Engine flexible environment.",
+          "enum": [
+            "INSTANCE_IP_MODE_UNSPECIFIED",
+            "EXTERNAL",
+            "INTERNAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified should be treated as EXTERNAL",
+            "VMs should be created with external and internal IPs",
+            "VMs should be created with internal IPs only"
+          ],
+          "type": "string"
         },
         "instanceTag": {
           "description": "Tag to apply to the instance during creation. Only applicable in the App Engine flexible environment.",
