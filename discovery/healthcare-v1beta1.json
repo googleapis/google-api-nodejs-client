@@ -4829,7 +4829,7 @@
                 "nlp": {
                   "methods": {
                     "analyzeEntities": {
-                      "description": "Analyze heathcare entity in a document. Its response includes the recognized entity mentions and the relationships between them. AnalyzeEntities uses context aware models to detect entities.",
+                      "description": "Analyze heathcare entity in a document. Its response includes the recognized entity mentions and the relationships between them. AnalyzeEntities uses context aware models to detect entities. This method can only analyze documents written in English.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/services/nlp:analyzeEntities",
                       "httpMethod": "POST",
                       "id": "healthcare.projects.locations.services.nlp.analyzeEntities",
@@ -4865,7 +4865,7 @@
       }
     }
   },
-  "revision": "20210712",
+  "revision": "20210728",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
