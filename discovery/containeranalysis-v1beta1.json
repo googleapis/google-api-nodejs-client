@@ -853,7 +853,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210723",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1600,7 +1600,10 @@
             "DEPLOYMENT",
             "DISCOVERY",
             "ATTESTATION",
-            "INTOTO"
+            "INTOTO",
+            "SBOM",
+            "SPDX_PACKAGE",
+            "SPDX_FILE"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -1611,7 +1614,10 @@
             "The note and occurrence track deployment events.",
             "The note and occurrence track the initial discovery status of a resource.",
             "This represents a logical \"role\" that can attest to artifacts.",
-            "This represents an in-toto link."
+            "This represents an in-toto link.",
+            "This represents a software bill of materials.",
+            "This represents an SPDX Package.",
+            "This represents an SPDX File."
           ],
           "type": "string"
         }
@@ -1659,6 +1665,71 @@
       },
       "type": "object"
     },
+    "DocumentNote": {
+      "description": "DocumentNote represents an SPDX Document Creation Infromation section: https://spdx.github.io/spdx-spec/2-document-creation-information/",
+      "id": "DocumentNote",
+      "properties": {
+        "dataLicence": {
+          "description": "Compliance with the SPDX specification includes populating the SPDX fields therein with data related to such fields (\"SPDX-Metadata\")",
+          "type": "string"
+        },
+        "spdxVersion": {
+          "description": "Provide a reference number that can be used to understand how to parse and interpret the rest of the file",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DocumentOccurrence": {
+      "description": "DocumentOccurrence represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/2-document-creation-information/",
+      "id": "DocumentOccurrence",
+      "properties": {
+        "createTime": {
+          "description": "Identify when the SPDX file was originally created. The date is to be specified according to combined date and time in UTC format as specified in ISO 8601 standard",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "creatorComment": {
+          "description": "A field for creators of the SPDX file to provide general comments about the creation of the SPDX file or any other relevant comment not included in the other fields",
+          "type": "string"
+        },
+        "creators": {
+          "description": "Identify who (or what, in the case of a tool) created the SPDX file. If the SPDX file was created by an individual, indicate the person's name",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "documentComment": {
+          "description": "A field for creators of the SPDX file content to provide comments to the consumers of the SPDX document",
+          "type": "string"
+        },
+        "externalDocumentRefs": {
+          "description": "Identify any external SPDX documents referenced within this SPDX document",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Identify the current SPDX document which may be referenced in relationships by other files, packages internally and documents externally",
+          "type": "string"
+        },
+        "licenseListVersion": {
+          "description": "A field for creators of the SPDX file to provide the version of the SPDX License List used when the SPDX file was created",
+          "type": "string"
+        },
+        "namespace": {
+          "description": "Provide an SPDX document specific namespace as a unique absolute Uniform Resource Identifier (URI) as specified in RFC-3986, with the exception of the ‘#’ delimiter",
+          "type": "string"
+        },
+        "title": {
+          "description": "Identify name of this document as designated by creator",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
@@ -1701,6 +1772,43 @@
       },
       "type": "object"
     },
+    "ExternalRef": {
+      "description": "An External Reference allows a Package to reference an external source of additional information, metadata, enumerations, asset identifiers, or downloadable content believed to be relevant to the Package",
+      "id": "ExternalRef",
+      "properties": {
+        "category": {
+          "description": "An External Reference allows a Package to reference an external source of additional information, metadata, enumerations, asset identifiers, or downloadable content believed to be relevant to the Package",
+          "enum": [
+            "CATEGORY_UNSPECIFIED",
+            "SECURITY",
+            "PACKAGE_MANAGER",
+            "PERSISTENT_ID",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Security (e.g. cpe22Type, cpe23Type)",
+            "Package Manager (e.g. maven-central, npm, nuget, bower, purl)",
+            "Persistent-Id (e.g. swh)",
+            "Other"
+          ],
+          "type": "string"
+        },
+        "comment": {
+          "description": "Human-readable information about the purpose and target of the reference",
+          "type": "string"
+        },
+        "locator": {
+          "description": "The unique string with no spaces necessary to access the package-specific information, metadata, or content within the target location",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of category (e.g. 'npm' for the PACKAGE_MANAGER category)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FileHashes": {
       "description": "Container message for hashes of byte content of files, used in source messages to verify integrity of source input to the build.",
       "id": "FileHashes",
@@ -1711,6 +1819,108 @@
             "$ref": "Hash"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FileNote": {
+      "description": "FileNote represents an SPDX File Information section: https://spdx.github.io/spdx-spec/4-file-information/",
+      "id": "FileNote",
+      "properties": {
+        "checksum": {
+          "description": "Provide a unique identifier to match analysis information on each specific file in a package",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fileType": {
+          "description": "This field provides information about the type of file identified",
+          "enum": [
+            "FILE_TYPE_UNSPECIFIED",
+            "SOURCE",
+            "BINARY",
+            "ARCHIVE",
+            "APPLICATION",
+            "AUDIO",
+            "IMAGE",
+            "TEXT",
+            "VIDEO",
+            "DOCUMENTATION",
+            "SPDX",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "The file is human readable source code (.c, .html, etc.)",
+            "The file is a compiled object, target image or binary executable (.o, .a, etc.)",
+            "The file represents an archive (.tar, .jar, etc.)",
+            "The file is associated with a specific application type (MIME type of application/*)",
+            "The file is associated with an audio file (MIME type of audio/* , e.g. .mp3)",
+            "The file is associated with an picture image file (MIME type of image/*, e.g., .jpg, .gif)",
+            "The file is human readable text file (MIME type of text/*)",
+            "The file is associated with a video file type (MIME type of video/*)",
+            "The file serves as documentation",
+            "The file is an SPDX document",
+            "The file doesn't fit into the above categories (generated artifacts, data files, etc.)"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "description": "Identify the full path and filename that corresponds to the file information in this section",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FileOccurrence": {
+      "description": "FileOccurrence represents an SPDX File Information section: https://spdx.github.io/spdx-spec/4-file-information/",
+      "id": "FileOccurrence",
+      "properties": {
+        "attributions": {
+          "description": "This field provides a place for the SPDX data creator to record, at the file level, acknowledgements that may be needed to be communicated in some contexts",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "comment": {
+          "description": "This field provides a place for the SPDX file creator to record any general comments about the file",
+          "type": "string"
+        },
+        "contributors": {
+          "description": "This field provides a place for the SPDX file creator to record file contributors",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "copyright": {
+          "description": "Identify the copyright holder of the file, as well as any dates present",
+          "type": "string"
+        },
+        "filesLicenseInfo": {
+          "description": "This field contains the license information actually found in the file, if any",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Uniquely identify any element in an SPDX document which may be referenced by other elements",
+          "type": "string"
+        },
+        "licenseComments": {
+          "description": "This field provides a place for the SPDX file creator to record any relevant background references or analysis that went in to arriving at the Concluded License for a file",
+          "type": "string"
+        },
+        "licenseConcluded": {
+          "description": "This field contains the license the SPDX file creator has concluded as governing the file or alternative values if the governing license cannot be determined",
+          "type": "string"
+        },
+        "notice": {
+          "description": "This field provides a place for the SPDX file creator to record license notices or other such related notices found in the file",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2406,7 +2616,10 @@
             "DEPLOYMENT",
             "DISCOVERY",
             "ATTESTATION",
-            "INTOTO"
+            "INTOTO",
+            "SBOM",
+            "SPDX_PACKAGE",
+            "SPDX_FILE"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -2417,7 +2630,10 @@
             "The note and occurrence track deployment events.",
             "The note and occurrence track the initial discovery status of a resource.",
             "This represents a logical \"role\" that can attest to artifacts.",
-            "This represents an in-toto link."
+            "This represents an in-toto link.",
+            "This represents a software bill of materials.",
+            "This represents an SPDX Package.",
+            "This represents an SPDX File."
           ],
           "type": "string"
         },
@@ -2447,9 +2663,25 @@
           },
           "type": "array"
         },
+        "sbom": {
+          "$ref": "DocumentNote",
+          "description": "A note describing SPDX Document which represents SBOM."
+        },
         "shortDescription": {
           "description": "A one sentence description of this note.",
           "type": "string"
+        },
+        "spdxFile": {
+          "$ref": "FileNote",
+          "description": "A note describing SPDX File."
+        },
+        "spdxPackage": {
+          "$ref": "PackageNote",
+          "description": "A note describing SPDX Package."
+        },
+        "spdxRelationship": {
+          "$ref": "RelationshipNote",
+          "description": "A note describing SPDX Relationship."
         },
         "updateTime": {
           "description": "Output only. The time this note was last updated. This field can be used as a filter in list requests.",
@@ -2511,7 +2743,10 @@
             "DEPLOYMENT",
             "DISCOVERY",
             "ATTESTATION",
-            "INTOTO"
+            "INTOTO",
+            "SBOM",
+            "SPDX_PACKAGE",
+            "SPDX_FILE"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -2522,7 +2757,10 @@
             "The note and occurrence track deployment events.",
             "The note and occurrence track the initial discovery status of a resource.",
             "This represents a logical \"role\" that can attest to artifacts.",
-            "This represents an in-toto link."
+            "This represents an in-toto link.",
+            "This represents a software bill of materials.",
+            "This represents an SPDX Package.",
+            "This represents an SPDX File."
           ],
           "type": "string"
         },
@@ -2541,6 +2779,22 @@
         "resource": {
           "$ref": "Resource",
           "description": "Required. Immutable. The resource for which the occurrence applies."
+        },
+        "sbom": {
+          "$ref": "DocumentOccurrence",
+          "description": "Describes a specific SPDX Document."
+        },
+        "spdxFile": {
+          "$ref": "FileOccurrence",
+          "description": "Describes a specific SPDX File."
+        },
+        "spdxPackage": {
+          "$ref": "PackageOccurrence",
+          "description": "Describes a specific SPDX Package."
+        },
+        "spdxRelationship": {
+          "$ref": "RelationshipOccurrence",
+          "description": "Describes a specific SPDX Relationship."
         },
         "updateTime": {
           "description": "Output only. The time this occurrence was last updated.",
@@ -2586,6 +2840,114 @@
         },
         "severityName": {
           "description": "Deprecated, use Details.effective_severity instead The severity (e.g., distro assigned severity) for this vulnerability.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PackageNote": {
+      "description": "PackageNote represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/",
+      "id": "PackageNote",
+      "properties": {
+        "analyzed": {
+          "description": "Indicates whether the file content of this package has been available for or subjected to analysis when creating the SPDX document",
+          "type": "boolean"
+        },
+        "attribution": {
+          "description": "A place for the SPDX data creator to record, at the package level, acknowledgements that may be needed to be communicated in some contexts",
+          "type": "string"
+        },
+        "checksum": {
+          "description": "Provide an independently reproducible mechanism that permits unique identification of a specific package that correlates to the data in this SPDX file",
+          "type": "string"
+        },
+        "copyright": {
+          "description": "Identify the copyright holders of the package, as well as any dates present",
+          "type": "string"
+        },
+        "detailedDescription": {
+          "description": "A more detailed description of the package",
+          "type": "string"
+        },
+        "downloadLocation": {
+          "description": "This section identifies the download Universal Resource Locator (URL), or a specific location within a version control system (VCS) for the package at the time that the SPDX file was created",
+          "type": "string"
+        },
+        "externalRefs": {
+          "description": "ExternalRef",
+          "items": {
+            "$ref": "ExternalRef"
+          },
+          "type": "array"
+        },
+        "filesLicenseInfo": {
+          "description": "Contain the license the SPDX file creator has concluded as governing the This field is to contain a list of all licenses found in the package. The relationship between licenses (i.e., conjunctive, disjunctive) is not specified in this field – it is simply a listing of all licenses found",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "homePage": {
+          "description": "Provide a place for the SPDX file creator to record a web site that serves as the package's home page",
+          "type": "string"
+        },
+        "licenseDeclared": {
+          "description": "List the licenses that have been declared by the authors of the package",
+          "type": "string"
+        },
+        "originator": {
+          "description": "If the package identified in the SPDX file originated from a different person or organization than identified as Package Supplier, this field identifies from where or whom the package originally came",
+          "type": "string"
+        },
+        "summaryDescription": {
+          "description": "A short description of the package",
+          "type": "string"
+        },
+        "supplier": {
+          "description": "Identify the actual distribution source for the package/directory identified in the SPDX file",
+          "type": "string"
+        },
+        "title": {
+          "description": "Identify the full name of the package as given by the Package Originator",
+          "type": "string"
+        },
+        "verificationCode": {
+          "description": "This field provides an independently reproducible mechanism identifying specific contents of a package based on the actual files (except the SPDX file itself, if it is included in the package) that make up each package and that correlates to the data in this SPDX file",
+          "type": "string"
+        },
+        "version": {
+          "description": "Identify the version of the package",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PackageOccurrence": {
+      "description": "PackageOccurrence represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/",
+      "id": "PackageOccurrence",
+      "properties": {
+        "comment": {
+          "description": "A place for the SPDX file creator to record any general comments about the package being described",
+          "type": "string"
+        },
+        "filename": {
+          "description": "Provide the actual file name of the package, or path of the directory being treated as a package",
+          "type": "string"
+        },
+        "id": {
+          "description": "Uniquely identify any element in an SPDX document which may be referenced by other elements",
+          "type": "string"
+        },
+        "licenseComments": {
+          "description": "This field provides a place for the SPDX file creator to record any relevant background information or analysis that went in to arriving at the Concluded License for a package",
+          "type": "string"
+        },
+        "licenseConcluded": {
+          "description": "package or alternative values, if the governing license cannot be determined",
+          "type": "string"
+        },
+        "sourceInfo": {
+          "description": "Provide a place for the SPDX file creator to record any relevant background information or additional comments about the origin of the package",
           "type": "string"
         }
       },
@@ -2667,6 +3029,127 @@
         },
         "url": {
           "description": "Specific URL associated with the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelationshipNote": {
+      "description": "RelationshipNote represents an SPDX Relationship section: https://spdx.github.io/spdx-spec/7-relationships-between-SPDX-elements/",
+      "id": "RelationshipNote",
+      "properties": {},
+      "type": "object"
+    },
+    "RelationshipOccurrence": {
+      "description": "RelationshipOccurrence represents an SPDX Relationship section: https://spdx.github.io/spdx-spec/7-relationships-between-SPDX-elements/",
+      "id": "RelationshipOccurrence",
+      "properties": {
+        "comment": {
+          "description": "A place for the SPDX file creator to record any general comments about the relationship",
+          "type": "string"
+        },
+        "source": {
+          "description": "Also referred to as SPDXRef-A The source SPDX element (file, package, etc)",
+          "type": "string"
+        },
+        "target": {
+          "description": "Also referred to as SPDXRef-B The target SPDC element (file, package, etc) In cases where there are \"known unknowns\", the use of the keyword NOASSERTION can be used The keywords NONE can be used to indicate that an SPDX element (package/file/snippet) has no other elements connected by some relationship to it",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of relationship between the source and target SPDX elements",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DESCRIBES",
+            "DESCRIBED_BY",
+            "CONTAINS",
+            "CONTAINED_BY",
+            "DEPENDS_ON",
+            "DEPENDENCY_OF",
+            "DEPENDENCY_MANIFEST_OF",
+            "BUILD_DEPENDENCY_OF",
+            "DEV_DEPENDENCY_OF",
+            "OPTIONAL_DEPENDENCY_OF",
+            "PROVIDED_DEPENDENCY_OF",
+            "TEST_DEPENDENCY_OF",
+            "RUNTIME_DEPENDENCY_OF",
+            "EXAMPLE_OF",
+            "GENERATES",
+            "GENERATED_FROM",
+            "ANCESTOR_OF",
+            "DESCENDANT_OF",
+            "VARIANT_OF",
+            "DISTRIBUTION_ARTIFACT",
+            "PATCH_FOR",
+            "PATCH_APPLIED",
+            "COPY_OF",
+            "FILE_ADDED",
+            "FILE_DELETED",
+            "FILE_MODIFIED",
+            "EXPANDED_FROM_ARCHIVE",
+            "DYNAMIC_LINK",
+            "STATIC_LINK",
+            "DATA_FILE_OF",
+            "TEST_CASE_OF",
+            "BUILD_TOOL_OF",
+            "DEV_TOOL_OF",
+            "TEST_OF",
+            "TEST_TOOL_OF",
+            "DOCUMENTATION_OF",
+            "OPTIONAL_COMPONENT_OF",
+            "METAFILE_OF",
+            "PACKAGE_OF",
+            "AMENDS",
+            "PREREQUISITE_FOR",
+            "HAS_PREREQUISITE",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Is to be used when SPDXRef-DOCUMENT describes SPDXRef-A",
+            "Is to be used when SPDXRef-A is described by SPDXREF-Document",
+            "Is to be used when SPDXRef-A contains SPDXRef-B",
+            "Is to be used when SPDXRef-A is contained by SPDXRef-B",
+            "Is to be used when SPDXRef-A depends on SPDXRef-B",
+            "Is to be used when SPDXRef-A is dependency of SPDXRef-B",
+            "Is to be used when SPDXRef-A is a manifest file that lists a set of dependencies for SPDXRef-B",
+            "Is to be used when SPDXRef-A is a build dependency of SPDXRef-B",
+            "Is to be used when SPDXRef-A is a development dependency of SPDXRef-B",
+            "Is to be used when SPDXRef-A is an optional dependency of SPDXRef-B",
+            "Is to be used when SPDXRef-A is a to be provided dependency of SPDXRef-B",
+            "Is to be used when SPDXRef-A is a test dependency of SPDXRef-B",
+            "Is to be used when SPDXRef-A is a dependency required for the execution of SPDXRef-B",
+            "Is to be used when SPDXRef-A is an example of SPDXRef-B",
+            "Is to be used when SPDXRef-A generates SPDXRef-B",
+            "Is to be used when SPDXRef-A was generated from SPDXRef-B",
+            "Is to be used when SPDXRef-A is an ancestor (same lineage but pre-dates) SPDXRef-B",
+            "Is to be used when SPDXRef-A is a descendant of (same lineage but postdates) SPDXRef-B",
+            "Is to be used when SPDXRef-A is a variant of (same lineage but not clear which came first) SPDXRef-B",
+            "Is to be used when distributing SPDXRef-A requires that SPDXRef-B also be distributed",
+            "Is to be used when SPDXRef-A is a patch file for (to be applied to) SPDXRef-B",
+            "Is to be used when SPDXRef-A is a patch file that has been applied to SPDXRef-B",
+            "Is to be used when SPDXRef-A is an exact copy of SPDXRef-B",
+            "Is to be used when SPDXRef-A is a file that was added to SPDXRef-B",
+            "Is to be used when SPDXRef-A is a file that was deleted from SPDXRef-B",
+            "Is to be used when SPDXRef-A is a file that was modified from SPDXRef-B",
+            "Is to be used when SPDXRef-A is expanded from the archive SPDXRef-B",
+            "Is to be used when SPDXRef-A dynamically links to SPDXRef-B",
+            "Is to be used when SPDXRef-A statically links to SPDXRef-B",
+            "Is to be used when SPDXRef-A is a data file used in SPDXRef-B",
+            "Is to be used when SPDXRef-A is a test case used in testing SPDXRef-B",
+            "Is to be used when SPDXRef-A is used to build SPDXRef-B",
+            "Is to be used when SPDXRef-A is used as a development tool for SPDXRef-B",
+            "Is to be used when SPDXRef-A is used for testing SPDXRef-B",
+            "Is to be used when SPDXRef-A is used as a test tool for SPDXRef-B",
+            "Is to be used when SPDXRef-A provides documentation of SPDXRef-B",
+            "Is to be used when SPDXRef-A is an optional component of SPDXRef-B",
+            "Is to be used when SPDXRef-A is a metafile of SPDXRef-B",
+            "Is to be used when SPDXRef-A is used as a package as part of SPDXRef-B",
+            "Is to be used when (current) SPDXRef-DOCUMENT amends the SPDX information in SPDXRef-B",
+            "Is to be used when SPDXRef-A is a prerequisite for SPDXRef-B",
+            "Is to be used when SPDXRef-A has as a prerequisite SPDXRef-B",
+            "Is to be used for a relationship which has not been defined in the formal SPDX specification. A description of the relationship should be included in the Relationship comments field"
+          ],
           "type": "string"
         }
       },
