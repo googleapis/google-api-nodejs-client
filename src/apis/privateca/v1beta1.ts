@@ -1205,7 +1205,7 @@ export namespace privateca_v1beta1 {
    */
   export interface Schema$SubordinateConfig {
     /**
-     * Required. This can refer to a CertificateAuthority in the same project that was used to create a subordinate CertificateAuthority. This field is used for information and usability purposes only. The resource name is in the format `projects/x/locations/x/certificateAuthorities/x`.
+     * Required. This can refer to a CertificateAuthority that was used to create a subordinate CertificateAuthority. This field is used for information and usability purposes only. The resource name is in the format `projects/x/locations/x/certificateAuthorities/x`.
      */
     certificateAuthority?: string | null;
     /**
