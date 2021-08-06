@@ -324,7 +324,7 @@
       }
     }
   },
-  "revision": "20210429",
+  "revision": "20210804",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyV1AdditionalTargetKeyName": {
@@ -485,6 +485,21 @@
       },
       "type": "object"
     },
+    "GoogleChromePolicyV1PolicySchemaFieldDependencies": {
+      "description": "The field and the value it must have for another field to be allowed to be set.",
+      "id": "GoogleChromePolicyV1PolicySchemaFieldDependencies",
+      "properties": {
+        "sourceField": {
+          "description": "The source field which this field depends on.",
+          "type": "string"
+        },
+        "sourceFieldValue": {
+          "description": "The value which the source field must have for this field to be allowed to be set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromePolicyV1PolicySchemaFieldDescription": {
       "description": "Provides detailed information for a particular field that is part of a PolicySchema.",
       "id": "GoogleChromePolicyV1PolicySchemaFieldDescription",
@@ -498,6 +513,14 @@
           "description": "Output only. The name of the field for associated with this description.",
           "readOnly": true,
           "type": "string"
+        },
+        "fieldDependencies": {
+          "description": "Output only. Provides a list of fields and the values they must have for this field to be allowed to be set.",
+          "items": {
+            "$ref": "GoogleChromePolicyV1PolicySchemaFieldDependencies"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "inputConstraint": {
           "description": "Output only. Any input constraints associated on the values for the field.",

@@ -243,6 +243,19 @@ export namespace chromepolicy_v1 {
     supportUri?: string | null;
   }
   /**
+   * The field and the value it must have for another field to be allowed to be set.
+   */
+  export interface Schema$GoogleChromePolicyV1PolicySchemaFieldDependencies {
+    /**
+     * The source field which this field depends on.
+     */
+    sourceField?: string | null;
+    /**
+     * The value which the source field must have for this field to be allowed to be set.
+     */
+    sourceFieldValue?: string | null;
+  }
+  /**
    * Provides detailed information for a particular field that is part of a PolicySchema.
    */
   export interface Schema$GoogleChromePolicyV1PolicySchemaFieldDescription {
@@ -254,6 +267,10 @@ export namespace chromepolicy_v1 {
      * Output only. The name of the field for associated with this description.
      */
     field?: string | null;
+    /**
+     * Output only. Provides a list of fields and the values they must have for this field to be allowed to be set.
+     */
+    fieldDependencies?: Schema$GoogleChromePolicyV1PolicySchemaFieldDependencies[];
     /**
      * Output only. Any input constraints associated on the values for the field.
      */
