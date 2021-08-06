@@ -605,7 +605,7 @@ export namespace ml_v1 {
      */
     trialId?: string | null;
     /**
-     * The web URIs for the training job. Currently for debug terminal access to the job. Only set for in-progress hyperparameter tuning trials with web access enabled.
+     * URIs for accessing [interactive shells](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) (one URI for each training node). Only available if this trial is part of a hyperparameter tuning job and the job's training_input.enable_web_access is `true`. The keys are names of each node in the training job; for example, `master-replica-0` for the master node, `worker-replica-0` for the first worker, and `ps-replica-0` for the first parameter server. The values are the URIs for each node's interactive shell.
      */
     webAccessUris?: {[key: string]: string} | null;
   }
@@ -1225,7 +1225,7 @@ export namespace ml_v1 {
      */
     args?: string[] | null;
     /**
-     * Optional. Whether to enable web access for the training job.
+     * Optional. Whether you want AI Platform Training to enable [interactive shell access](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) to training containers. If set to `true`, you can access interactive shells at the URIs given by TrainingOutput.web_access_uris or HyperparameterOutput.web_access_uris (within TrainingOutput.trials).
      */
     enableWebAccess?: boolean | null;
     /**
@@ -1358,7 +1358,7 @@ export namespace ml_v1 {
      */
     trials?: Schema$GoogleCloudMlV1__HyperparameterOutput[];
     /**
-     * Output only. The web URIs for the training job. Currently for debug terminal access to the job.
+     * Output only. URIs for accessing [interactive shells](https://cloud.google.com/ai-platform/training/docs/monitor-debug-interactive-shell) (one URI for each training node). Only available if training_input.enable_web_access is `true`. The keys are names of each node in the training job; for example, `master-replica-0` for the master node, `worker-replica-0` for the first worker, and `ps-replica-0` for the first parameter server. The values are the URIs for each node's interactive shell.
      */
     webAccessUris?: {[key: string]: string} | null;
   }
