@@ -484,7 +484,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Returns information about all data transfers in the project.",
+                  "description": "Returns information about all transfer configs owned by a project in the specified location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transferConfigs",
                   "httpMethod": "GET",
                   "id": "bigquerydatatransfer.projects.locations.transferConfigs.list",
@@ -931,7 +931,7 @@
               ]
             },
             "list": {
-              "description": "Returns information about all data transfers in the project.",
+              "description": "Returns information about all transfer configs owned by a project in the specified location.",
               "flatPath": "v1/projects/{projectsId}/transferConfigs",
               "httpMethod": "GET",
               "id": "bigquerydatatransfer.projects.transferConfigs.list",
@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20210418",
+  "revision": "20210724",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {

@@ -2397,7 +2397,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Returns information about all data transfers in the project.
+     * Returns information about all transfer configs owned by a project in the specified location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4250,7 +4250,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Returns information about all data transfers in the project.
+     * Returns information about all transfer configs owned by a project in the specified location.
      * @example
      * ```js
      * // Before running the sample:
