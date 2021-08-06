@@ -25066,7 +25066,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Analyze heathcare entity in a document. Its response includes the recognized entity mentions and the relationships between them. AnalyzeEntities uses context aware models to detect entities.
+     * Analyze heathcare entity in a document. Its response includes the recognized entity mentions and the relationships between them. AnalyzeEntities uses context aware models to detect entities. This method can only analyze documents written in English.
      * @example
      * ```js
      * // Before running the sample:
