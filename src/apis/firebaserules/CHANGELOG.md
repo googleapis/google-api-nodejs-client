@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebaserules-v0.2.1...firebaserules-v0.2.2) (2021-08-06)
+
+
+### Bug Fixes
+
+* **firebaserules:** update the API ([6eac040](https://www.github.com/googleapis/google-api-nodejs-client/commit/6eac040ba9b1e5f8ef18080a79de3d800559ac83))
+
 ### [0.2.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebaserules-v0.2.0...firebaserules-v0.2.1) (2021-07-24)
 
 

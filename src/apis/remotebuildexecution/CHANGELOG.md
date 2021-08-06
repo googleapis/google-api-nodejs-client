@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/remotebuildexecution-v1.1.1...remotebuildexecution-v1.1.2) (2021-08-06)
+
+
+### Bug Fixes
+
+* **remotebuildexecution:** update the API ([8dbf765](https://www.github.com/googleapis/google-api-nodejs-client/commit/8dbf765ee5dcc937ba405d3214e7f1e9337c1ca5))
+
 ### [1.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/remotebuildexecution-v1.1.0...remotebuildexecution-v1.1.1) (2021-07-24)
 
 

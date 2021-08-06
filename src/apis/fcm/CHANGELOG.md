@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/fcm-v0.2.1...fcm-v0.3.0) (2021-08-06)
+
+
+### Features
+
+* **fcm:** update the API ([df9cd4a](https://www.github.com/googleapis/google-api-nodejs-client/commit/df9cd4a97400d356cf2cfa3f2c0a50014532d44e))
+
 ### [0.2.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/fcm-v0.2.0...fcm-v0.2.1) (2021-06-18)
 
 
