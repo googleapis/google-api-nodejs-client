@@ -277,7 +277,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     timeout?: string | null;
     /**
-     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. If the build does not specify source or images, these keys will not be included.
+     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
      */
     timing?: {[key: string]: Schema$TimeSpan} | null;
     /**
@@ -430,6 +430,23 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Metadata for `CreateGithubEnterpriseConfig` operation.
+   */
+  export interface Schema$CreateGitHubEnterpriseConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitHubEnterprise to be created. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
+  }
+  /**
    * Metadata for the `CreateWorkerPool` operation.
    */
   export interface Schema$CreateWorkerPoolOperationMetadata {
@@ -445,6 +462,23 @@ export namespace cloudbuild_v1alpha1 {
      * The resource name of the `WorkerPool` to create. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
      */
     workerPool?: string | null;
+  }
+  /**
+   * Metadata for `DeleteGitHubEnterpriseConfig` operation.
+   */
+  export interface Schema$DeleteGitHubEnterpriseConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitHubEnterprise to be deleted. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
   }
   /**
    * Metadata for the `DeleteWorkerPool` operation.
@@ -745,6 +779,23 @@ export namespace cloudbuild_v1alpha1 {
     name?: string | null;
   }
   /**
+   * Metadata for `ProcessAppManifestCallback` operation.
+   */
+  export interface Schema$ProcessAppManifestCallbackOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitHubEnterprise to be created. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
+  }
+  /**
    * Location of the source in a Google Cloud Source Repository.
    */
   export interface Schema$RepoSource {
@@ -988,6 +1039,23 @@ export namespace cloudbuild_v1alpha1 {
      * Start of time span.
      */
     startTime?: string | null;
+  }
+  /**
+   * Metadata for `UpdateGitHubEnterpriseConfig` operation.
+   */
+  export interface Schema$UpdateGitHubEnterpriseConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitHubEnterprise to be updated. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
   }
   /**
    * Metadata for the `UpdateWorkerPool` operation.
