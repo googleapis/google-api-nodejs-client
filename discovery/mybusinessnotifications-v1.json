@@ -130,7 +130,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name this setting is for. This is of the form `accounts/{account_id}/notifications/setting`.",
+              "description": "Required. The resource name this setting is for. This is of the form `accounts/{account_id}/notificationSetting`.",
               "location": "path",
               "pattern": "^accounts/[^/]+/notificationSetting$",
               "required": true,
@@ -154,7 +154,7 @@
       }
     }
   },
-  "revision": "20210721",
+  "revision": "20210804",
   "rootUrl": "https://mybusinessnotifications.googleapis.com/",
   "schemas": {
     "NotificationSetting": {
@@ -162,7 +162,7 @@
       "id": "NotificationSetting",
       "properties": {
         "name": {
-          "description": "Required. The resource name this setting is for. This is of the form `accounts/{account_id}/notifications/setting`.",
+          "description": "Required. The resource name this setting is for. This is of the form `accounts/{account_id}/notificationSetting`.",
           "type": "string"
         },
         "notificationTypes": {
@@ -178,7 +178,8 @@
               "UPDATED_QUESTION",
               "NEW_ANSWER",
               "UPDATED_ANSWER",
-              "DUPLICATE_LOCATION"
+              "DUPLICATE_LOCATION",
+              "LOSS_OF_VOICE_OF_MERCHANT"
             ],
             "enumDescriptions": [
               "No notification type. Will not match any notifications.",
@@ -190,7 +191,8 @@
               "A question of the location is updated. The notification will provide the resource name of question.",
               "A new answer is added to the location. The notification will provide the resource name of question and answer.",
               "An answer of the location is updated. The notification will provide the resource name of question and answer.",
-              "Indicates whether there is a change in location metadata's duplicate location field."
+              "Indicates whether there is a change in location metadata's duplicate location field.",
+              "Indicates whether the location has a loss in voice of merchant status. Call GetVoiceOfMerchantState rpc for more details"
             ],
             "type": "string"
           },
