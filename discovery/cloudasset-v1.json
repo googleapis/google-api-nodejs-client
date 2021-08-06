@@ -130,7 +130,8 @@
                 "IAM_POLICY",
                 "ORG_POLICY",
                 "ACCESS_POLICY",
-                "OS_INVENTORY"
+                "OS_INVENTORY",
+                "RELATIONSHIP"
               ],
               "enumDescriptions": [
                 "Unspecified content type.",
@@ -138,7 +139,8 @@
                 "The actual IAM policy set on a resource.",
                 "The Cloud Organization Policy set on an asset.",
                 "The Cloud Access context manager Policy set on an asset.",
-                "The runtime OS Inventory information."
+                "The runtime OS Inventory information.",
+                "The related resources."
               ],
               "location": "query",
               "type": "string"
@@ -165,6 +167,12 @@
               "description": "Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.",
               "format": "google-datetime",
               "location": "query",
+              "type": "string"
+            },
+            "relationshipTypes": {
+              "description": "A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it snapshots specified relationships. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_types] or if any of the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it snapshots the supported relationships for all [asset_types] or returns an error if any of the [asset_types] has no relationship support. An unspecified asset types field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.",
+              "location": "query",
+              "repeated": true,
               "type": "string"
             }
           },
@@ -529,7 +537,8 @@
                 "IAM_POLICY",
                 "ORG_POLICY",
                 "ACCESS_POLICY",
-                "OS_INVENTORY"
+                "OS_INVENTORY",
+                "RELATIONSHIP"
               ],
               "enumDescriptions": [
                 "Unspecified content type.",
@@ -537,7 +546,8 @@
                 "The actual IAM policy set on a resource.",
                 "The Cloud Organization Policy set on an asset.",
                 "The Cloud Access context manager Policy set on an asset.",
-                "The runtime OS Inventory information."
+                "The runtime OS Inventory information.",
+                "The related resources."
               ],
               "location": "query",
               "type": "string"
@@ -559,6 +569,12 @@
               "description": "Start time of the time window (exclusive).",
               "format": "google-datetime",
               "location": "query",
+              "type": "string"
+            },
+            "relationshipTypes": {
+              "description": "Optional. A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it outputs specified relationships' history on the [asset_names]. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_names] or if any of the [asset_names]'s types doesn't belong to the source types of the [relationship_types]. * Otherwise: it outputs the supported relationships' history on the [asset_names] or returns an error if any of the [asset_names]'s types has no relationship support. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.",
+              "location": "query",
+              "repeated": true,
               "type": "string"
             }
           },
@@ -711,7 +727,7 @@
       }
     }
   },
-  "revision": "20210716",
+  "revision": "20210802",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -833,6 +849,10 @@
         "osInventory": {
           "$ref": "Inventory",
           "description": "A representation of runtime OS Inventory information. See [this topic](https://cloud.google.com/compute/docs/instances/os-inventory-management) for more information."
+        },
+        "relatedAssets": {
+          "$ref": "RelatedAssets",
+          "description": "The related assets of the asset of one relationship type. One asset only represents one type of relationship."
         },
         "resource": {
           "$ref": "Resource",
@@ -1068,7 +1088,8 @@
             "IAM_POLICY",
             "ORG_POLICY",
             "ACCESS_POLICY",
-            "OS_INVENTORY"
+            "OS_INVENTORY",
+            "RELATIONSHIP"
           ],
           "enumDescriptions": [
             "Unspecified content type.",
@@ -1076,7 +1097,8 @@
             "The actual IAM policy set on a resource.",
             "The Cloud Organization Policy set on an asset.",
             "The Cloud Access context manager Policy set on an asset.",
-            "The runtime OS Inventory information."
+            "The runtime OS Inventory information.",
+            "The related resources."
           ],
           "type": "string"
         },
@@ -1088,6 +1110,13 @@
           "description": "Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "relationshipTypes": {
+          "description": "A list of relationship types to export, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it snapshots specified relationships. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_types] or if any of the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it snapshots the supported relationships for all [asset_types] or returns an error if any of the [asset_types] has no relationship support. An unspecified asset types field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1145,7 +1174,8 @@
             "IAM_POLICY",
             "ORG_POLICY",
             "ACCESS_POLICY",
-            "OS_INVENTORY"
+            "OS_INVENTORY",
+            "RELATIONSHIP"
           ],
           "enumDescriptions": [
             "Unspecified content type.",
@@ -1153,7 +1183,8 @@
             "The actual IAM policy set on a resource.",
             "The Cloud Organization Policy set on an asset.",
             "The Cloud Access context manager Policy set on an asset.",
-            "The runtime OS Inventory information."
+            "The runtime OS Inventory information.",
+            "The related resources."
           ],
           "type": "string"
         },
@@ -1164,6 +1195,13 @@
         "name": {
           "description": "Required. The format will be projects/{project_number}/feeds/{client-assigned_feed_identifier} or folders/{folder_number}/feeds/{client-assigned_feed_identifier} or organizations/{organization_number}/feeds/{client-assigned_feed_identifier} The client-assigned feed identifier must be unique within the parent project/folder/organization.",
           "type": "string"
+        },
+        "relationshipTypes": {
+          "description": "A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it outputs specified relationship updates on the [asset_names] or the [asset_types]. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_names] or [asset_types], or any of the [asset_names] or the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it outputs the supported relationships of the types of [asset_names] and [asset_types] or returns an error if any of the [asset_names] or the [asset_types] has no replationship support. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1628,7 +1666,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/accessLevels/{short_name}`. The maximum length of the `short_name` component is 50 characters.",
+          "description": "Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy}/accessLevels/{access_level}`. The maximum length of the `access_level` component is 50 characters.",
           "type": "string"
         },
         "title": {
@@ -1647,7 +1685,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id}`",
+          "description": "Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy}`",
           "type": "string"
         },
         "parent": {
@@ -2038,7 +2076,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id}/servicePerimeters/{short_name}`",
+          "description": "Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy}/servicePerimeters/{service_perimeter}`",
           "type": "string"
         },
         "perimeterType": {
@@ -2344,7 +2382,7 @@
       "type": "object"
     },
     "Inventory": {
-      "description": "The inventory details of a VM.",
+      "description": "This API resource represents the available inventory data for a Compute Engine virtual machine (VM) instance at a given point in time. You can use this API resource to determine the inventory data of your VM. For more information, see [Information provided by OS inventory management](https://cloud.google.com/compute/docs/instances/os-inventory-management#data-collected).",
       "id": "Inventory",
       "properties": {
         "items": {
@@ -2354,9 +2392,20 @@
           "description": "Inventory items related to the VM keyed by an opaque unique identifier for each inventory item. The identifier is unique to each distinct and addressable inventory item and will change, when there is a new package version.",
           "type": "object"
         },
+        "name": {
+          "description": "Output only. The `Inventory` API resource name. Format: `projects/{project_number}/locations/{location}/instances/{instance_id}/inventory`",
+          "readOnly": true,
+          "type": "string"
+        },
         "osInfo": {
           "$ref": "OsInfo",
           "description": "Base level operating system information for the VM."
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp of the last reported inventory for the VM.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2695,6 +2744,69 @@
       "properties": {
         "topic": {
           "description": "The name of the Pub/Sub topic to publish to. Example: `projects/PROJECT_ID/topics/TOPIC_ID`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelatedAsset": {
+      "description": "An asset identify in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+      "id": "RelatedAsset",
+      "properties": {
+        "ancestors": {
+          "description": "The ancestors of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. Example: `[\"projects/123456789\", \"folders/5432\", \"organizations/1234\"]`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "asset": {
+          "description": "The full name of the asset. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.",
+          "type": "string"
+        },
+        "assetType": {
+          "description": "The type of the asset. Example: `compute.googleapis.com/Disk` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelatedAssets": {
+      "description": "The detailed related assets with the `relationship_type`.",
+      "id": "RelatedAssets",
+      "properties": {
+        "assets": {
+          "description": "The peer resources of the relationship.",
+          "items": {
+            "$ref": "RelatedAsset"
+          },
+          "type": "array"
+        },
+        "relationshipAttributes": {
+          "$ref": "RelationshipAttributes",
+          "description": "The detailed relationship attributes."
+        }
+      },
+      "type": "object"
+    },
+    "RelationshipAttributes": {
+      "description": "The relationship attributes which include `type`, `source_resource_type`, `target_resource_type` and `action`.",
+      "id": "RelationshipAttributes",
+      "properties": {
+        "action": {
+          "description": "The detail of the relationship, e.g. `contains`, `attaches`",
+          "type": "string"
+        },
+        "sourceResourceType": {
+          "description": "The source asset type. Example: `compute.googleapis.com/Instance`",
+          "type": "string"
+        },
+        "targetResourceType": {
+          "description": "The target asset type. Example: `compute.googleapis.com/Disk`",
+          "type": "string"
+        },
+        "type": {
+          "description": "The unique identifier of the relationship type. Example: `INSTANCE_TO_INSTANCEGROUP`",
           "type": "string"
         }
       },
