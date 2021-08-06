@@ -3,7 +3,10 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/firebase.messaging": {
+          "description": "Send messages and manage messaging subscriptions for your Firebase applications"
         }
       }
     }
@@ -134,7 +137,8 @@
                 "$ref": "Message"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase.messaging"
               ]
             }
           }
@@ -142,7 +146,7 @@
       }
     }
   },
-  "revision": "20210607",
+  "revision": "20210802",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
