@@ -161,7 +161,7 @@ export namespace storagetransfer_v1 {
      */
     path?: string | null;
     /**
-     * Input only. The Amazon Resource Name (ARN) of the role to support temporary credentials via `AssumeRoleWithWebIdentity`. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns). When a role ARN is provided, Transfer Service fetches temporary credentials for the session using a `AssumeRoleWithWebIdentity` call for the provided role using the GoogleServiceAccount for this project.
+     * The Amazon Resource Name (ARN) of the role to support temporary credentials via `AssumeRoleWithWebIdentity`. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns). When a role ARN is provided, Transfer Service fetches temporary credentials for the session using a `AssumeRoleWithWebIdentity` call for the provided role using the GoogleServiceAccount for this project.
      */
     roleArn?: string | null;
   }
@@ -312,6 +312,15 @@ export namespace storagetransfer_v1 {
     transferJobs?: Schema$TransferJob[];
   }
   /**
+   * Logging configure.
+   */
+  export interface Schema$LoggingConfig {
+    /**
+     * Enables the Cloud Storage transfer logs for this transfer. This is only supported for transfer jobs with PosixFilesystem sources. The default is that logs are not generated for this transfer.
+     */
+    enableOnpremGcsTransferLogs?: boolean | null;
+  }
+  /**
    * Specification to configure notifications published to Pub/Sub. Notifications are published to the customer-provided topic using the following `PubsubMessage.attributes`: * `"eventType"`: one of the EventType values * `"payloadFormat"`: one of the PayloadFormat values * `"projectId"`: the project_id of the `TransferOperation` * `"transferJobName"`: the transfer_job_name of the `TransferOperation` * `"transferOperationName"`: the name of the `TransferOperation` The `PubsubMessage.data` contains a TransferOperation resource formatted according to the specified `PayloadFormat`.
    */
   export interface Schema$NotificationConfig {
@@ -386,6 +395,15 @@ export namespace storagetransfer_v1 {
    * Request passed to PauseTransferOperation.
    */
   export interface Schema$PauseTransferOperationRequest {}
+  /**
+   * A POSIX filesystem data source or sink.
+   */
+  export interface Schema$PosixFilesystem {
+    /**
+     * Root directory path to the filesystem.
+     */
+    rootDirectory?: string | null;
+  }
   /**
    * Request passed to ResumeTransferOperation.
    */
@@ -499,6 +517,18 @@ export namespace storagetransfer_v1 {
      */
     bytesFromSourceSkippedBySync?: string | null;
     /**
+     * For transfers involving PosixFilesystem only. Number of listing failures for each directory found at the source. Potential failures when listing a directory include permission failure or block failure. If listing a directory fails, no files in the directory are transferred.
+     */
+    directoriesFailedToListFromSource?: string | null;
+    /**
+     * For transfers involving PosixFilesystem only. Number of directories found while listing. For example, if the root directory of the transfer is `base/` and there are two other directories, `a/` and `b/` under this directory, the count after listing `base/`, `base/a/` and `base/b/` is 3.
+     */
+    directoriesFoundFromSource?: string | null;
+    /**
+     * For transfers involving PosixFilesystem only. Number of successful listings for each directory found at the source.
+     */
+    directoriesSuccessfullyListedFromSource?: string | null;
+    /**
      * Objects that are copied to the data sink.
      */
     objectsCopiedToSink?: string | null;
@@ -555,6 +585,10 @@ export namespace storagetransfer_v1 {
      * The name of the most recently started TransferOperation of this JobConfig. Present if a TransferOperation has been created for this JobConfig.
      */
     latestOperationName?: string | null;
+    /**
+     * Logging configuration.
+     */
+    loggingConfig?: Schema$LoggingConfig;
     /**
      * A unique name (within the transfer project) assigned when the job is created. If this field is empty in a CreateTransferJobRequest, Storage Transfer Service assigns a unique name. Otherwise, the specified name is used as the unique name for this job. If the specified name is in use by a job, the creation request fails with an ALREADY_EXISTS error. This name must start with `"transferJobs/"` prefix and end with a letter or a number, and should be no more than 128 characters. For transfers involving PosixFilesystem, this name must start with 'transferJobs/OPI' specifically. For all other transfer types, this name must not start with 'transferJobs/OPI'. 'transferJobs/OPI' is a reserved prefix for PosixFilesystem transfers. Non-PosixFilesystem example: `"transferJobs/^(?!OPI)[A-Za-z0-9-._~]*[A-Za-z0-9]$"` PosixFilesystem example: `"transferJobs/OPI^[A-Za-z0-9-._~]*[A-Za-z0-9]$"` Applications must not rely on the enforcement of naming requirements involving OPI. Invalid job names fail with an INVALID_ARGUMENT error.
      */
@@ -670,6 +704,10 @@ export namespace storagetransfer_v1 {
      * Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects' "last modification time" do not exclude objects in a data sink.
      */
     objectConditions?: Schema$ObjectConditions;
+    /**
+     * A POSIX Filesystem data source.
+     */
+    posixDataSource?: Schema$PosixFilesystem;
     /**
      * If the option delete_objects_unique_in_sink is `true` and time-based object conditions such as 'last modification time' are specified, the request fails with an INVALID_ARGUMENT error.
      */
@@ -886,6 +924,7 @@ export namespace storagetransfer_v1 {
      *       //   "description": "my_description",
      *       //   "lastModificationTime": "my_lastModificationTime",
      *       //   "latestOperationName": "my_latestOperationName",
+     *       //   "loggingConfig": {},
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
      *       //   "projectId": "my_projectId",
@@ -904,6 +943,7 @@ export namespace storagetransfer_v1 {
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
+     *   //   "loggingConfig": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -1029,7 +1069,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.get({
-     *     // Required. " The job to get.
+     *     // Required. The job to get.
      *     jobName: 'transferJobs/.*',
      *     // Required. The ID of the Google Cloud Platform Console project that owns the job.
      *     projectId: 'placeholder-value',
@@ -1043,6 +1083,7 @@ export namespace storagetransfer_v1 {
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
+     *   //   "loggingConfig": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -1326,6 +1367,7 @@ export namespace storagetransfer_v1 {
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
      *   //   "latestOperationName": "my_latestOperationName",
+     *   //   "loggingConfig": {},
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -1572,7 +1614,7 @@ export namespace storagetransfer_v1 {
   }
   export interface Params$Resource$Transferjobs$Get extends StandardParameters {
     /**
-     * Required. " The job to get.
+     * Required. The job to get.
      */
     jobName?: string;
     /**
