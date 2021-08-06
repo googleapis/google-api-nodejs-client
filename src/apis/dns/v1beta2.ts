@@ -657,6 +657,10 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of GKE clusters per response policy.
      */
     gkeClustersPerResponsePolicy?: number | null;
+    /**
+     * Maximum allowed number of items per routing policy.
+     */
+    itemsPerRoutingPolicy?: number | null;
     kind?: string | null;
     /**
      * Maximum allowed number of managed zones in the project.
@@ -728,6 +732,10 @@ export namespace dns_v1beta2 {
      * For example, www.example.com.
      */
     name?: string | null;
+    /**
+     * Configures dynamic query responses based on geo location of querying user or a weighted round robin based routing policy. A ResourceRecordSet should only have either rrdata (static) or routing_policy (dynamic). An error is returned otherwise.
+     */
+    routingPolicy?: Schema$RRSetRoutingPolicy;
     /**
      * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
      */
@@ -874,6 +882,55 @@ export namespace dns_v1beta2 {
   export interface Schema$ResponsePolicyRulesUpdateResponse {
     header?: Schema$ResponseHeader;
     responsePolicyRule?: Schema$ResponsePolicyRule;
+  }
+  /**
+   * A RRSetRoutingPolicy represents ResourceRecordSet data that is returned dynamically with the response varying based on configured properties such as geolocation or by weighted random selection.
+   */
+  export interface Schema$RRSetRoutingPolicy {
+    geo?: Schema$RRSetRoutingPolicyGeoPolicy;
+    geoPolicy?: Schema$RRSetRoutingPolicyGeoPolicy;
+    kind?: string | null;
+    wrr?: Schema$RRSetRoutingPolicyWrrPolicy;
+    wrrPolicy?: Schema$RRSetRoutingPolicyWrrPolicy;
+  }
+  export interface Schema$RRSetRoutingPolicyGeoPolicy {
+    /**
+     * If the health check for the primary target for a geo location returns an unhealthy status, the failover target is returned instead. This failover configuration is not mandatory. If a failover is not provided, the primary target won't be healthchecked, and it returns the primarily configured rrdata irrespective of whether it is healthy or not.
+     */
+    failovers?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
+    /**
+     * The primary geo routing configuration. If there are multiple items with the same location, an error is returned instead.
+     */
+    items?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
+    kind?: string | null;
+  }
+  export interface Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem {
+    kind?: string | null;
+    /**
+     * The geo-location granularity is a GCP region. This location string should correspond to a GCP region. e.g. "us-east1", "southamerica-east1", "asia-east1", etc.
+     */
+    location?: string | null;
+    rrdatas?: string[] | null;
+    /**
+     * DNSSEC generated signatures for the above geo_rrdata.
+     */
+    signatureRrdatas?: string[] | null;
+  }
+  export interface Schema$RRSetRoutingPolicyWrrPolicy {
+    items?: Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem[];
+    kind?: string | null;
+  }
+  export interface Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem {
+    kind?: string | null;
+    rrdatas?: string[] | null;
+    /**
+     * DNSSEC generated signatures for the above wrr_rrdata.
+     */
+    signatureRrdatas?: string[] | null;
+    /**
+     * The weight corresponding to this subset of rrdata. When multiple WeightedRoundRobinPolicyItems are configured, the probability of returning an rrset is proportional to its weight relative to the sum of weights configured for all items. This weight should be non-negative.
+     */
+    weight?: number | null;
   }
 
   export class Resource$Changes {
@@ -4328,6 +4385,7 @@ export namespace dns_v1beta2 {
      *       // {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "routingPolicy": {},
      *       //   "rrdatas": [],
      *       //   "signatureRrdatas": [],
      *       //   "ttl": 0,
@@ -4341,6 +4399,7 @@ export namespace dns_v1beta2 {
      *   // {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
      *   //   "rrdatas": [],
      *   //   "signatureRrdatas": [],
      *   //   "ttl": 0,
@@ -4624,6 +4683,7 @@ export namespace dns_v1beta2 {
      *   // {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
      *   //   "rrdatas": [],
      *   //   "signatureRrdatas": [],
      *   //   "ttl": 0,
@@ -4928,6 +4988,7 @@ export namespace dns_v1beta2 {
      *       // {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "routingPolicy": {},
      *       //   "rrdatas": [],
      *       //   "signatureRrdatas": [],
      *       //   "ttl": 0,
@@ -4941,6 +5002,7 @@ export namespace dns_v1beta2 {
      *   // {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
      *   //   "rrdatas": [],
      *   //   "signatureRrdatas": [],
      *   //   "ttl": 0,
