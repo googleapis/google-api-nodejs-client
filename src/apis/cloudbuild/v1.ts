@@ -115,6 +115,7 @@ export namespace cloudbuild_v1 {
     context: APIRequestContext;
     operations: Resource$Operations;
     projects: Resource$Projects;
+    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -124,6 +125,7 @@ export namespace cloudbuild_v1 {
 
       this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -279,7 +281,7 @@ export namespace cloudbuild_v1 {
      */
     timeout?: string | null;
     /**
-     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. If the build does not specify source or images, these keys will not be included.
+     * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.
      */
     timing?: {[key: string]: Schema$TimeSpan} | null;
     /**
@@ -471,6 +473,10 @@ export namespace cloudbuild_v1 {
      */
     resourceName?: string | null;
     /**
+     * Optional. The service account used for all user-controlled operations including UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild. If no service account is set, then the standard Cloud Build service account ([PROJECT_NUM]@system.gserviceaccount.com) will be used instead. Format: `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL\}`
+     */
+    serviceAccount?: string | null;
+    /**
      * The repo and ref of the repository from which to build. This field is used only for those triggers that do not respond to SCM events. Triggers that respond to such events build source at whatever commit caused the event. This field is currently only used by Webhook, Pub/Sub, Manual, and Cron triggers.
      */
     sourceToBuild?: Schema$GitRepoSource;
@@ -530,6 +536,23 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Metadata for `CreateGithubEnterpriseConfig` operation.
+   */
+  export interface Schema$CreateGitHubEnterpriseConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitHubEnterprise to be created. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
+  }
+  /**
    * Metadata for the `CreateWorkerPool` operation.
    */
   export interface Schema$CreateWorkerPoolOperationMetadata {
@@ -545,6 +568,23 @@ export namespace cloudbuild_v1 {
      * The resource name of the `WorkerPool` to create. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`.
      */
     workerPool?: string | null;
+  }
+  /**
+   * Metadata for `DeleteGitHubEnterpriseConfig` operation.
+   */
+  export interface Schema$DeleteGitHubEnterpriseConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitHubEnterprise to be deleted. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
   }
   /**
    * Metadata for the `DeleteWorkerPool` operation.
@@ -590,9 +630,91 @@ export namespace cloudbuild_v1 {
     fileHash?: Schema$Hash[];
   }
   /**
-   * GitHubEventsConfig describes the configuration of a trigger that creates a build whenever a GitHub event is received. This message is experimental.
+   * GitHubEnterpriseConfig represents a configuration for a GitHub Enterprise server.
+   */
+  export interface Schema$GitHubEnterpriseConfig {
+    /**
+     * Required. The GitHub app id of the Cloud Build app on the GitHub Enterprise server.
+     */
+    appId?: string | null;
+    /**
+     * Output only. Time when the installation was associated with the project.
+     */
+    createTime?: string | null;
+    /**
+     * Name to display for this config.
+     */
+    displayName?: string | null;
+    /**
+     * The URL of the github enterprise host the configuration is for.
+     */
+    hostUrl?: string | null;
+    /**
+     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     */
+    name?: string | null;
+    /**
+     * Optional. The network to be used when reaching out to the GitHub Enterprise server. The VPC network must be enabled for private service connection. This should be set if the GitHub Enterprise server is hosted on-premises and not reachable by public internet. If this field is left empty, no network peering will occur and calls to the GitHub Enterprise server will be made over the public internet. Must be in the format `projects/{project\}/global/networks/{network\}`, where {project\} is a project number or id and {network\} is the name of a VPC network in the project.
+     */
+    peeredNetwork?: string | null;
+    /**
+     * Names of secrets in Secret Manager.
+     */
+    secrets?: Schema$GitHubEnterpriseSecrets;
+    /**
+     * Optional. SSL certificate to use for requests to GitHub Enterprise.
+     */
+    sslCa?: string | null;
+    /**
+     * The key that should be attached to webhook calls to the ReceiveWebhook endpoint.
+     */
+    webhookKey?: string | null;
+  }
+  /**
+   * GitHubEnterpriseSecrets represents the names of all necessary secrets in Secret Manager for a GitHub Enterprise server. Format is: projects//secrets/.
+   */
+  export interface Schema$GitHubEnterpriseSecrets {
+    /**
+     * The resource name for the OAuth client ID secret in Secret Manager.
+     */
+    oauthClientIdName?: string | null;
+    /**
+     * The resource name for the OAuth client ID secret version in Secret Manager.
+     */
+    oauthClientIdVersionName?: string | null;
+    /**
+     * The resource name for the OAuth secret in Secret Manager.
+     */
+    oauthSecretName?: string | null;
+    /**
+     * The resource name for the OAuth secret secret version in Secret Manager.
+     */
+    oauthSecretVersionName?: string | null;
+    /**
+     * The resource name for the private key secret.
+     */
+    privateKeyName?: string | null;
+    /**
+     * The resource name for the private key secret version.
+     */
+    privateKeyVersionName?: string | null;
+    /**
+     * The resource name for the webhook secret in Secret Manager.
+     */
+    webhookSecretName?: string | null;
+    /**
+     * The resource name for the webhook secret secret version in Secret Manager.
+     */
+    webhookSecretVersionName?: string | null;
+  }
+  /**
+   * GitHubEventsConfig describes the configuration of a trigger that creates a build whenever a GitHub event is received.
    */
   export interface Schema$GitHubEventsConfig {
+    /**
+     * Optional. The resource name of the github enterprise config that should be applied to this installation. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     */
+    enterpriseConfigResourceName?: string | null;
     /**
      * The installationID that emits the GitHub event.
      */
@@ -741,6 +863,15 @@ export namespace cloudbuild_v1 {
      * `BuildTriggers` for the project, sorted by `create_time` descending.
      */
     triggers?: Schema$BuildTrigger[];
+  }
+  /**
+   * RPC response object returned by ListGithubEnterpriseConfigs RPC method.
+   */
+  export interface Schema$ListGithubEnterpriseConfigsResponse {
+    /**
+     * A list of GitHubEnterpriseConfigs
+     */
+    configs?: Schema$GitHubEnterpriseConfig[];
   }
   /**
    * Response containing existing `WorkerPools`.
@@ -941,6 +1072,23 @@ export namespace cloudbuild_v1 {
      * Machine configuration for the workers in the pool.
      */
     workerConfig?: Schema$WorkerConfig;
+  }
+  /**
+   * Metadata for `ProcessAppManifestCallback` operation.
+   */
+  export interface Schema$ProcessAppManifestCallbackOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitHubEnterprise to be created. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
   }
   /**
    * PubsubConfig describes the configuration of a trigger that creates a build whenever a Pub/Sub message is published.
@@ -1279,6 +1427,23 @@ export namespace cloudbuild_v1 {
      * Start of time span.
      */
     startTime?: string | null;
+  }
+  /**
+   * Metadata for `UpdateGitHubEnterpriseConfig` operation.
+   */
+  export interface Schema$UpdateGitHubEnterpriseConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitHubEnterprise to be updated. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
   }
   /**
    * Metadata for the `UpdateWorkerPool` operation.
@@ -1683,11 +1848,14 @@ export namespace cloudbuild_v1 {
   export class Resource$Projects {
     context: APIRequestContext;
     builds: Resource$Projects$Builds;
+    githubEnterpriseConfigs: Resource$Projects$Githubenterpriseconfigs;
     locations: Resource$Projects$Locations;
     triggers: Resource$Projects$Triggers;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.builds = new Resource$Projects$Builds(this.context);
+      this.githubEnterpriseConfigs =
+        new Resource$Projects$Githubenterpriseconfigs(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
       this.triggers = new Resource$Projects$Triggers(this.context);
     }
@@ -2569,15 +2737,815 @@ export namespace cloudbuild_v1 {
     requestBody?: Schema$RetryBuildRequest;
   }
 
+  export class Resource$Projects$Githubenterpriseconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.create({
+     *     // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     *     parent: 'projects/my-project',
+     *     // ID of the project.
+     *     projectId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "hostUrl": "my_hostUrl",
+     *       //   "name": "my_name",
+     *       //   "peeredNetwork": "my_peeredNetwork",
+     *       //   "secrets": {},
+     *       //   "sslCa": "my_sslCa",
+     *       //   "webhookKey": "my_webhookKey"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Githubenterpriseconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Githubenterpriseconfigs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Githubenterpriseconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Githubenterpriseconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/githubEnterpriseConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Delete an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.delete({
+     *     // Unique identifier of the `GitHubEnterpriseConfig`
+     *     configId: 'placeholder-value',
+     *     // This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     *     name: 'projects/my-project/githubEnterpriseConfigs/my-githubEnterpriseConfig',
+     *     // ID of the project
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Githubenterpriseconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Githubenterpriseconfigs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Githubenterpriseconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Githubenterpriseconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a GitHubEnterpriseConfig. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.get({
+     *     // Unique identifier of the `GitHubEnterpriseConfig`
+     *     configId: 'placeholder-value',
+     *     // This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     *     name: 'projects/my-project/githubEnterpriseConfigs/my-githubEnterpriseConfig',
+     *     // ID of the project
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "hostUrl": "my_hostUrl",
+     *   //   "name": "my_name",
+     *   //   "peeredNetwork": "my_peeredNetwork",
+     *   //   "secrets": {},
+     *   //   "sslCa": "my_sslCa",
+     *   //   "webhookKey": "my_webhookKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Githubenterpriseconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GitHubEnterpriseConfig>;
+    get(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>,
+      callback: BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Get,
+      callback: BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GitHubEnterpriseConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Githubenterpriseconfigs$Get
+        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GitHubEnterpriseConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Githubenterpriseconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Githubenterpriseconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GitHubEnterpriseConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GitHubEnterpriseConfig>(parameters);
+      }
+    }
+
+    /**
+     * List all GitHubEnterpriseConfigs for a given project. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.list({
+     *     // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     *     parent: 'projects/my-project',
+     *     // ID of the project
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Githubenterpriseconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGithubEnterpriseConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$List,
+      callback: BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Githubenterpriseconfigs$List
+        | BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGithubEnterpriseConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Githubenterpriseconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Githubenterpriseconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/githubEnterpriseConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGithubEnterpriseConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGithubEnterpriseConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.githubEnterpriseConfigs.patch({
+     *     // Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     *     name: 'projects/my-project/githubEnterpriseConfigs/my-githubEnterpriseConfig',
+     *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "hostUrl": "my_hostUrl",
+     *       //   "name": "my_name",
+     *       //   "peeredNetwork": "my_peeredNetwork",
+     *       //   "secrets": {},
+     *       //   "sslCa": "my_sslCa",
+     *       //   "webhookKey": "my_webhookKey"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Githubenterpriseconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Githubenterpriseconfigs$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Githubenterpriseconfigs$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Githubenterpriseconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Githubenterpriseconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$Create
+    extends StandardParameters {
+    /**
+     * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     */
+    parent?: string;
+    /**
+     * ID of the project.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GitHubEnterpriseConfig;
+  }
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Unique identifier of the `GitHubEnterpriseConfig`
+     */
+    configId?: string;
+    /**
+     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     */
+    name?: string;
+    /**
+     * ID of the project
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$Get
+    extends StandardParameters {
+    /**
+     * Unique identifier of the `GitHubEnterpriseConfig`
+     */
+    configId?: string;
+    /**
+     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     */
+    name?: string;
+    /**
+     * ID of the project
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$List
+    extends StandardParameters {
+    /**
+     * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     */
+    parent?: string;
+    /**
+     * ID of the project
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Githubenterpriseconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     */
+    name?: string;
+    /**
+     * Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GitHubEnterpriseConfig;
+  }
+
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     builds: Resource$Projects$Locations$Builds;
+    githubEnterpriseConfigs: Resource$Projects$Locations$Githubenterpriseconfigs;
     operations: Resource$Projects$Locations$Operations;
     triggers: Resource$Projects$Locations$Triggers;
     workerPools: Resource$Projects$Locations$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.builds = new Resource$Projects$Locations$Builds(this.context);
+      this.githubEnterpriseConfigs =
+        new Resource$Projects$Locations$Githubenterpriseconfigs(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -3445,6 +4413,812 @@ export namespace cloudbuild_v1 {
     requestBody?: Schema$RetryBuildRequest;
   }
 
+  export class Resource$Projects$Locations$Githubenterpriseconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudbuild.projects.locations.githubEnterpriseConfigs.create({
+     *       // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // ID of the project.
+     *       projectId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "appId": "my_appId",
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "hostUrl": "my_hostUrl",
+     *         //   "name": "my_name",
+     *         //   "peeredNetwork": "my_peeredNetwork",
+     *         //   "secrets": {},
+     *         //   "sslCa": "my_sslCa",
+     *         //   "webhookKey": "my_webhookKey"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/githubEnterpriseConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Delete an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudbuild.projects.locations.githubEnterpriseConfigs.delete({
+     *       // Unique identifier of the `GitHubEnterpriseConfig`
+     *       configId: 'placeholder-value',
+     *       // This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     *       name: 'projects/my-project/locations/my-location/githubEnterpriseConfigs/my-githubEnterpriseConfig',
+     *       // ID of the project
+     *       projectId: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a GitHubEnterpriseConfig. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.githubEnterpriseConfigs.get({
+     *     // Unique identifier of the `GitHubEnterpriseConfig`
+     *     configId: 'placeholder-value',
+     *     // This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     *     name: 'projects/my-project/locations/my-location/githubEnterpriseConfigs/my-githubEnterpriseConfig',
+     *     // ID of the project
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "hostUrl": "my_hostUrl",
+     *   //   "name": "my_name",
+     *   //   "peeredNetwork": "my_peeredNetwork",
+     *   //   "secrets": {},
+     *   //   "sslCa": "my_sslCa",
+     *   //   "webhookKey": "my_webhookKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GitHubEnterpriseConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>,
+      callback: BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get,
+      callback: BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$GitHubEnterpriseConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get
+        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GitHubEnterpriseConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GitHubEnterpriseConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GitHubEnterpriseConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GitHubEnterpriseConfig>(parameters);
+      }
+    }
+
+    /**
+     * List all GitHubEnterpriseConfigs for a given project. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.githubEnterpriseConfigs.list({
+     *     // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // ID of the project
+     *     projectId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Githubenterpriseconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListGithubEnterpriseConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$List,
+      callback: BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Githubenterpriseconfigs$List
+        | BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGithubEnterpriseConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListGithubEnterpriseConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Githubenterpriseconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Githubenterpriseconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/githubEnterpriseConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGithubEnterpriseConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGithubEnterpriseConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.githubEnterpriseConfigs.patch(
+     *     {
+     *       // Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     *       name: 'projects/my-project/locations/my-location/githubEnterpriseConfigs/my-githubEnterpriseConfig',
+     *       // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "appId": "my_appId",
+     *         //   "createTime": "my_createTime",
+     *         //   "displayName": "my_displayName",
+     *         //   "hostUrl": "my_hostUrl",
+     *         //   "name": "my_name",
+     *         //   "peeredNetwork": "my_peeredNetwork",
+     *         //   "secrets": {},
+     *         //   "sslCa": "my_sslCa",
+     *         //   "webhookKey": "my_webhookKey"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create
+    extends StandardParameters {
+    /**
+     * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     */
+    parent?: string;
+    /**
+     * ID of the project.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GitHubEnterpriseConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Unique identifier of the `GitHubEnterpriseConfig`
+     */
+    configId?: string;
+    /**
+     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     */
+    name?: string;
+    /**
+     * ID of the project
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Get
+    extends StandardParameters {
+    /**
+     * Unique identifier of the `GitHubEnterpriseConfig`
+     */
+    configId?: string;
+    /**
+     * This field should contain the name of the enterprise config resource. For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     */
+    name?: string;
+    /**
+     * ID of the project
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$List
+    extends StandardParameters {
+    /**
+     * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
+     */
+    parent?: string;
+    /**
+     * ID of the project
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Optional. The full resource name for the GitHubEnterpriseConfig For example: "projects/{$project_id\}/githubEnterpriseConfig/{$config_id\}"
+     */
+    name?: string;
+    /**
+     * Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GitHubEnterpriseConfig;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3788,6 +5562,7 @@ export namespace cloudbuild_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubConfig": {},
      *       //   "resourceName": "my_resourceName",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sourceToBuild": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
@@ -3814,6 +5589,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
@@ -4093,6 +5869,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
@@ -4385,6 +6162,7 @@ export namespace cloudbuild_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubConfig": {},
      *       //   "resourceName": "my_resourceName",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sourceToBuild": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
@@ -4411,6 +6189,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
@@ -5785,6 +7564,7 @@ export namespace cloudbuild_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubConfig": {},
      *       //   "resourceName": "my_resourceName",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sourceToBuild": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
@@ -5811,6 +7591,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
@@ -6092,6 +7873,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
@@ -6383,6 +8165,7 @@ export namespace cloudbuild_v1 {
      *       //   "name": "my_name",
      *       //   "pubsubConfig": {},
      *       //   "resourceName": "my_resourceName",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "sourceToBuild": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
@@ -6409,6 +8192,7 @@ export namespace cloudbuild_v1 {
      *   //   "name": "my_name",
      *   //   "pubsubConfig": {},
      *   //   "resourceName": "my_resourceName",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "sourceToBuild": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
@@ -6929,6 +8713,158 @@ export namespace cloudbuild_v1 {
      * Name of the trigger to run the payload against
      */
     trigger?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
+
+  export class Resource$V1 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * ReceiveWebhook is called when the API receives a GitHub webhook.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.webhook({
+     *     // For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
+     *     webhookKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentType": "my_contentType",
+     *       //   "data": "my_data",
+     *       //   "extensions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    webhook(
+      params: Params$Resource$V1$Webhook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    webhook(
+      params?: Params$Resource$V1$Webhook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    webhook(
+      params: Params$Resource$V1$Webhook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    webhook(
+      params: Params$Resource$V1$Webhook,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    webhook(
+      params: Params$Resource$V1$Webhook,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    webhook(callback: BodyResponseCallback<Schema$Empty>): void;
+    webhook(
+      paramsOrCallback?:
+        | Params$Resource$V1$Webhook
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Webhook;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Webhook;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/webhook').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1$Webhook extends StandardParameters {
+    /**
+     * For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
+     */
+    webhookKey?: string;
 
     /**
      * Request body metadata

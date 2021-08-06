@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20210715",
+  "revision": "20210730",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -535,7 +535,7 @@
           "additionalProperties": {
             "$ref": "TimeSpan"
           },
-          "description": "Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. If the build does not specify source or images, these keys will not be included.",
+          "description": "Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps. * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. * SETUPBUILD: time to set up build. If the build does not specify source or images, these keys will not be included.",
           "readOnly": true,
           "type": "object"
         },
@@ -825,6 +825,27 @@
       "properties": {},
       "type": "object"
     },
+    "CreateGitHubEnterpriseConfigOperationMetadata": {
+      "description": "Metadata for `CreateGithubEnterpriseConfig` operation.",
+      "id": "CreateGitHubEnterpriseConfigOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "githubEnterpriseConfig": {
+          "description": "The resource name of the GitHubEnterprise to be created. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CreateWorkerPoolOperationMetadata": {
       "description": "Metadata for the `CreateWorkerPool` operation.",
       "id": "CreateWorkerPoolOperationMetadata",
@@ -841,6 +862,27 @@
         },
         "workerPool": {
           "description": "The resource name of the `WorkerPool` to create. Format: `projects/{project}/locations/{location}/workerPools/{worker_pool}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteGitHubEnterpriseConfigOperationMetadata": {
+      "description": "Metadata for `DeleteGitHubEnterpriseConfig` operation.",
+      "id": "DeleteGitHubEnterpriseConfigOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "githubEnterpriseConfig": {
+          "description": "The resource name of the GitHubEnterprise to be deleted. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
           "type": "string"
         }
       },
@@ -1256,6 +1298,27 @@
       },
       "type": "object"
     },
+    "ProcessAppManifestCallbackOperationMetadata": {
+      "description": "Metadata for `ProcessAppManifestCallback` operation.",
+      "id": "ProcessAppManifestCallbackOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "githubEnterpriseConfig": {
+          "description": "The resource name of the GitHubEnterprise to be created. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RepoSource": {
       "description": "Location of the source in a Google Cloud Source Repository.",
       "id": "RepoSource",
@@ -1565,6 +1628,27 @@
         "startTime": {
           "description": "Start of time span.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateGitHubEnterpriseConfigOperationMetadata": {
+      "description": "Metadata for `UpdateGitHubEnterpriseConfig` operation.",
+      "id": "UpdateGitHubEnterpriseConfigOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "githubEnterpriseConfig": {
+          "description": "The resource name of the GitHubEnterprise to be updated. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
           "type": "string"
         }
       },
