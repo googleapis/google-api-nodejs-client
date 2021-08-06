@@ -182,6 +182,10 @@ export namespace speech_v1 {
      * Sequential list of transcription results corresponding to sequential portions of audio.
      */
     results?: Schema$SpeechRecognitionResult[];
+    /**
+     * When available, billed audio seconds for the corresponding request.
+     */
+    totalBilledTime?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -340,6 +344,10 @@ export namespace speech_v1 {
      * Sequential list of transcription results corresponding to sequential portions of audio.
      */
     results?: Schema$SpeechRecognitionResult[];
+    /**
+     * When available, billed audio seconds for the corresponding request.
+     */
+    totalBilledTime?: string | null;
   }
   /**
    * Config to enable speaker diarization.
@@ -928,7 +936,8 @@ export namespace speech_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "results": []
+     *   //   "results": [],
+     *   //   "totalBilledTime": "my_totalBilledTime"
      *   // }
      * }
      *
