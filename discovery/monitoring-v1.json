@@ -114,6 +114,131 @@
   },
   "protocol": "rest",
   "resources": {
+    "locations": {
+      "resources": {
+        "global": {
+          "resources": {
+            "metricsScopes": {
+              "methods": {
+                "get": {
+                  "description": "Returns a specific Metrics Scope.",
+                  "flatPath": "v1/locations/global/metricsScopes/{metricsScopesId}",
+                  "httpMethod": "GET",
+                  "id": "monitoring.locations.global.metricsScopes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the Metrics Scope. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER}",
+                      "location": "path",
+                      "pattern": "^locations/global/metricsScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "MetricsScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/monitoring",
+                    "https://www.googleapis.com/auth/monitoring.read"
+                  ]
+                },
+                "listMetricsScopesByMonitoredProject": {
+                  "description": "Returns a list of every Metrics Scope that a specific MonitoredProject has been added to. The metrics scope representing the specified monitored project will always be the first entry in the response.",
+                  "flatPath": "v1/locations/global/metricsScopes:listMetricsScopesByMonitoredProject",
+                  "httpMethod": "GET",
+                  "id": "monitoring.locations.global.metricsScopes.listMetricsScopesByMonitoredProject",
+                  "parameterOrder": [],
+                  "parameters": {
+                    "monitoredResourceContainer": {
+                      "description": "Required. The resource name of the Monitored Project being requested. Example: projects/{MONITORED_PROJECT_ID_OR_NUMBER}",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/locations/global/metricsScopes:listMetricsScopesByMonitoredProject",
+                  "response": {
+                    "$ref": "ListMetricsScopesByMonitoredProjectResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/monitoring",
+                    "https://www.googleapis.com/auth/monitoring.read"
+                  ]
+                }
+              },
+              "resources": {
+                "projects": {
+                  "methods": {
+                    "create": {
+                      "description": "Adds a MonitoredProject with the given project ID to the specified Metrics Scope.",
+                      "flatPath": "v1/locations/global/metricsScopes/{metricsScopesId}/projects",
+                      "httpMethod": "POST",
+                      "id": "monitoring.locations.global.metricsScopes.projects.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The resource name of the existing Metrics Scope that will monitor this project. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER}",
+                          "location": "path",
+                          "pattern": "^locations/global/metricsScopes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/projects",
+                      "request": {
+                        "$ref": "MonitoredProject"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/monitoring",
+                        "https://www.googleapis.com/auth/monitoring.write"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a MonitoredProject from the specified Metrics Scope.",
+                      "flatPath": "v1/locations/global/metricsScopes/{metricsScopesId}/projects/{projectsId}",
+                      "httpMethod": "DELETE",
+                      "id": "monitoring.locations.global.metricsScopes.projects.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the MonitoredProject. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER}/projects/{MONITORED_PROJECT_ID_OR_NUMBER}Authorization requires the following Google IAM (https://cloud.google.com/iam) permissions on both the Metrics Scope and on the MonitoredProject: monitoring.metricsScopes.link",
+                          "location": "path",
+                          "pattern": "^locations/global/metricsScopes/[^/]+/projects/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/monitoring",
+                        "https://www.googleapis.com/auth/monitoring.write"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "operations": {
       "methods": {
         "get": {
@@ -316,7 +441,7 @@
       }
     }
   },
-  "revision": "20210712",
+  "revision": "20210727",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -760,6 +885,68 @@
         },
         "nextPageToken": {
           "description": "If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListMetricsScopesByMonitoredProjectResponse": {
+      "description": "Response for the ListMetricsScopesByMonitoredProject method.",
+      "id": "ListMetricsScopesByMonitoredProjectResponse",
+      "properties": {
+        "metricsScopes": {
+          "description": "A set of all metrics scopes that the specified monitored project has been added to.",
+          "items": {
+            "$ref": "MetricsScope"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MetricsScope": {
+      "description": "Represents a Metrics Scope (https://cloud.google.com/monitoring/settings#concept-scope) in Cloud Monitoring, which specifies one or more Google projects and zero or more AWS accounts to monitor together.",
+      "id": "MetricsScope",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when this Metrics Scope was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "monitoredProjects": {
+          "description": "Output only. The list of projects monitored by this Metrics Scope.",
+          "items": {
+            "$ref": "MonitoredProject"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the Monitoring Metrics Scope. On input, the resource name can be specified with the scoping project ID or number. On output, the resource name is specified with the scoping project number. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER}",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time when this Metrics Scope record was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MonitoredProject": {
+      "description": "A project being monitored (https://cloud.google.com/monitoring/settings/multiple-projects#create-multi) by a Metrics Scope.",
+      "id": "MonitoredProject",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when this MonitoredProject was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the MonitoredProject. On input, the resource name includes the scoping project ID and monitored project ID. On output, it contains the equivalent project numbers. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER}/projects/{MONITORED_PROJECT_ID_OR_NUMBER}",
           "type": "string"
         }
       },

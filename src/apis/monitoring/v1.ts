@@ -113,6 +113,7 @@ export namespace monitoring_v1 {
    */
   export class Monitoring {
     context: APIRequestContext;
+    locations: Resource$Locations;
     operations: Resource$Operations;
     projects: Resource$Projects;
 
@@ -122,6 +123,7 @@ export namespace monitoring_v1 {
         google,
       };
 
+      this.locations = new Resource$Locations(this.context);
       this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
@@ -351,6 +353,49 @@ export namespace monitoring_v1 {
      * If there are more results than have been returned, then this field is set to a non-empty value. To see the additional results, use that value as page_token in the next call to this method.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response for the ListMetricsScopesByMonitoredProject method.
+   */
+  export interface Schema$ListMetricsScopesByMonitoredProjectResponse {
+    /**
+     * A set of all metrics scopes that the specified monitored project has been added to.
+     */
+    metricsScopes?: Schema$MetricsScope[];
+  }
+  /**
+   * Represents a Metrics Scope (https://cloud.google.com/monitoring/settings#concept-scope) in Cloud Monitoring, which specifies one or more Google projects and zero or more AWS accounts to monitor together.
+   */
+  export interface Schema$MetricsScope {
+    /**
+     * Output only. The time when this Metrics Scope was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The list of projects monitored by this Metrics Scope.
+     */
+    monitoredProjects?: Schema$MonitoredProject[];
+    /**
+     * Immutable. The resource name of the Monitoring Metrics Scope. On input, the resource name can be specified with the scoping project ID or number. On output, the resource name is specified with the scoping project number. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The time when this Metrics Scope record was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * A project being monitored (https://cloud.google.com/monitoring/settings/multiple-projects#create-multi) by a Metrics Scope.
+   */
+  export interface Schema$MonitoredProject {
+    /**
+     * Output only. The time when this MonitoredProject was created.
+     */
+    createTime?: string | null;
+    /**
+     * Immutable. The resource name of the MonitoredProject. On input, the resource name includes the scoping project ID and monitored project ID. On output, it contains the equivalent project numbers. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER\}/projects/{MONITORED_PROJECT_ID_OR_NUMBER\}
+     */
+    name?: string | null;
   }
   /**
    * A mosaic layout divides the available space into a grid of blocks, and overlays the grid with tiles. Unlike GridLayout, tiles may span multiple grid blocks and can be placed at arbitrary locations in the grid.
@@ -770,6 +815,640 @@ export namespace monitoring_v1 {
      * The properties applied to the Y axis.
      */
     yAxis?: Schema$Axis;
+  }
+
+  export class Resource$Locations {
+    context: APIRequestContext;
+    global: Resource$Locations$Global;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.global = new Resource$Locations$Global(this.context);
+    }
+  }
+
+  export class Resource$Locations$Global {
+    context: APIRequestContext;
+    metricsScopes: Resource$Locations$Global$Metricsscopes;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.metricsScopes = new Resource$Locations$Global$Metricsscopes(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Locations$Global$Metricsscopes {
+    context: APIRequestContext;
+    projects: Resource$Locations$Global$Metricsscopes$Projects;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.projects = new Resource$Locations$Global$Metricsscopes$Projects(
+        this.context
+      );
+    }
+
+    /**
+     * Returns a specific Metrics Scope.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.locations.global.metricsScopes.get({
+     *     // Required. The resource name of the Metrics Scope. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER\}
+     *     name: 'locations/global/metricsScopes/my-metricsScope',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "monitoredProjects": [],
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Locations$Global$Metricsscopes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Locations$Global$Metricsscopes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$MetricsScope>;
+    get(
+      params: Params$Resource$Locations$Global$Metricsscopes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Global$Metricsscopes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$MetricsScope>,
+      callback: BodyResponseCallback<Schema$MetricsScope>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Global$Metricsscopes$Get,
+      callback: BodyResponseCallback<Schema$MetricsScope>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$MetricsScope>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Global$Metricsscopes$Get
+        | BodyResponseCallback<Schema$MetricsScope>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$MetricsScope>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$MetricsScope>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$MetricsScope> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Global$Metricsscopes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Global$Metricsscopes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$MetricsScope>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$MetricsScope>(parameters);
+      }
+    }
+
+    /**
+     * Returns a list of every Metrics Scope that a specific MonitoredProject has been added to. The metrics scope representing the specified monitored project will always be the first entry in the response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await monitoring.locations.global.metricsScopes.listMetricsScopesByMonitoredProject(
+     *       {
+     *         // Required. The resource name of the Monitored Project being requested. Example: projects/{MONITORED_PROJECT_ID_OR_NUMBER\}
+     *         monitoredResourceContainer: 'placeholder-value',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metricsScopes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listMetricsScopesByMonitoredProject(
+      params: Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listMetricsScopesByMonitoredProject(
+      params?: Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMetricsScopesByMonitoredProjectResponse>;
+    listMetricsScopesByMonitoredProject(
+      params: Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listMetricsScopesByMonitoredProject(
+      params: Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMetricsScopesByMonitoredProjectResponse>,
+      callback: BodyResponseCallback<Schema$ListMetricsScopesByMonitoredProjectResponse>
+    ): void;
+    listMetricsScopesByMonitoredProject(
+      params: Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject,
+      callback: BodyResponseCallback<Schema$ListMetricsScopesByMonitoredProjectResponse>
+    ): void;
+    listMetricsScopesByMonitoredProject(
+      callback: BodyResponseCallback<Schema$ListMetricsScopesByMonitoredProjectResponse>
+    ): void;
+    listMetricsScopesByMonitoredProject(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject
+        | BodyResponseCallback<Schema$ListMetricsScopesByMonitoredProjectResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMetricsScopesByMonitoredProjectResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMetricsScopesByMonitoredProjectResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMetricsScopesByMonitoredProjectResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/locations/global/metricsScopes:listMetricsScopesByMonitoredProject'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMetricsScopesByMonitoredProjectResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMetricsScopesByMonitoredProjectResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Global$Metricsscopes$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Metrics Scope. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Global$Metricsscopes$Listmetricsscopesbymonitoredproject
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Monitored Project being requested. Example: projects/{MONITORED_PROJECT_ID_OR_NUMBER\}
+     */
+    monitoredResourceContainer?: string;
+  }
+
+  export class Resource$Locations$Global$Metricsscopes$Projects {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Adds a MonitoredProject with the given project ID to the specified Metrics Scope.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.locations.global.metricsScopes.projects.create({
+     *     // Required. The resource name of the existing Metrics Scope that will monitor this project. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER\}
+     *     parent: 'locations/global/metricsScopes/my-metricsScope',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Locations$Global$Metricsscopes$Projects$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Locations$Global$Metricsscopes$Projects$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Locations$Global$Metricsscopes$Projects$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Global$Metricsscopes$Projects$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Global$Metricsscopes$Projects$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Global$Metricsscopes$Projects$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Global$Metricsscopes$Projects$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Global$Metricsscopes$Projects$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/projects').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a MonitoredProject from the specified Metrics Scope.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.write',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.locations.global.metricsScopes.projects.delete({
+     *     // Required. The resource name of the MonitoredProject. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER\}/projects/{MONITORED_PROJECT_ID_OR_NUMBER\}Authorization requires the following Google IAM (https://cloud.google.com/iam) permissions on both the Metrics Scope and on the MonitoredProject: monitoring.metricsScopes.link
+     *     name: 'locations/global/metricsScopes/my-metricsScope/projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Locations$Global$Metricsscopes$Projects$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Locations$Global$Metricsscopes$Projects$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Locations$Global$Metricsscopes$Projects$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Global$Metricsscopes$Projects$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Global$Metricsscopes$Projects$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Global$Metricsscopes$Projects$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Global$Metricsscopes$Projects$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Global$Metricsscopes$Projects$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Global$Metricsscopes$Projects$Create
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the existing Metrics Scope that will monitor this project. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MonitoredProject;
+  }
+  export interface Params$Resource$Locations$Global$Metricsscopes$Projects$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the MonitoredProject. Example: locations/global/metricsScopes/{SCOPING_PROJECT_ID_OR_NUMBER\}/projects/{MONITORED_PROJECT_ID_OR_NUMBER\}Authorization requires the following Google IAM (https://cloud.google.com/iam) permissions on both the Metrics Scope and on the MonitoredProject: monitoring.metricsScopes.link
+     */
+    name?: string;
   }
 
   export class Resource$Operations {

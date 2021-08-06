@@ -534,7 +534,7 @@ export namespace monitoring_v3 {
     sumOfSquaredDeviation?: number | null;
   }
   /**
-   * A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the count of values x in the Distribution such that range.min <= x < range.max.
+   * A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the estimated count of values in the Distribution that fall within the specified min and max.
    */
   export interface Schema$DistributionCut {
     /**
@@ -696,7 +696,7 @@ export namespace monitoring_v3 {
     expireTime?: string | null;
   }
   /**
-   * Range of numerical values, inclusive of min and exclusive of max. If the open range "< range.max" is desired, set range.min = -infinity. If the open range "\>= range.min" is desired, set range.max = infinity.
+   * Range of numerical values within min and max. If the open range "< range.max" is desired, set range.min = -infinity. If the open range "\>= range.min" is desired, set range.max = infinity.
    */
   export interface Schema$GoogleMonitoringV3Range {
     /**
@@ -1195,7 +1195,7 @@ export namespace monitoring_v3 {
     samplePeriod?: string | null;
   }
   /**
-   * A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min <= x < range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE.
+   * A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min <= x <= range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE.
    */
   export interface Schema$MetricRange {
     /**
