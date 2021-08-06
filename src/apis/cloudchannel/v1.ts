@@ -103,7 +103,7 @@ export namespace cloudchannel_v1 {
   /**
    * Cloud Channel API
    *
-   *
+   * The Cloud Channel API enables Google Cloud partners to have a single unified resale platform and APIs across all of Google Cloud including GCP, Workspace, Maps and Chrome.
    *
    * @example
    * ```js

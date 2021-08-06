@@ -12,7 +12,7 @@
   "baseUrl": "https://cloudchannel.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Cloudchannel",
-  "description": "",
+  "description": "The Cloud Channel API enables Google Cloud partners to have a single unified resale platform and APIs across all of Google Cloud including GCP, Workspace, Maps and Chrome.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/channel",
   "fullyEncodeReservedExpansion": true,
@@ -1533,7 +1533,7 @@
       }
     }
   },
-  "revision": "20210629",
+  "revision": "20210805",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
