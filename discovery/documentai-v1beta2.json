@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20210719",
+  "revision": "20210731",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -1567,7 +1567,7 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
           "format": "int32",
           "type": "integer"
         },
@@ -2755,7 +2755,7 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
           "format": "int32",
           "type": "integer"
         },

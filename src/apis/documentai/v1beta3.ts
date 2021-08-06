@@ -964,7 +964,7 @@ export namespace documentai_v1beta3 {
      */
     id?: number | null;
     /**
-     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
      */
     index?: number | null;
     /**
@@ -1805,7 +1805,7 @@ export namespace documentai_v1beta3 {
      */
     id?: number | null;
     /**
-     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
      */
     index?: number | null;
     /**
@@ -2799,7 +2799,7 @@ export namespace documentai_v1beta3 {
      */
     id?: number | null;
     /**
-     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
      */
     index?: number | null;
     /**
@@ -3093,7 +3093,7 @@ export namespace documentai_v1beta3 {
     type?: string | null;
   }
   /**
-   * A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 7.
+   * A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 8.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorType {
     /**
