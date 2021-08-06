@@ -179,6 +179,23 @@ export namespace osconfig_v1alpha {
     userInteraction?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -365,6 +382,10 @@ export namespace osconfig_v1alpha {
      */
     qfePackage?: Schema$InventoryWindowsQuickFixEngineeringPackage;
     /**
+     * Details of Windows Application.
+     */
+    windowsApplication?: Schema$InventoryWindowsApplication;
+    /**
      * Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update.
      */
     wuaPackage?: Schema$InventoryWindowsUpdatePackage;
@@ -397,6 +418,31 @@ export namespace osconfig_v1alpha {
      * The version of the package.
      */
     version?: string | null;
+  }
+  /**
+   * Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class="external" \}
+   */
+  export interface Schema$InventoryWindowsApplication {
+    /**
+     * The name of the application or product.
+     */
+    displayName?: string | null;
+    /**
+     * The version of the product or application in string format.
+     */
+    displayVersion?: string | null;
+    /**
+     * The internet address for technical support.
+     */
+    helpLink?: string | null;
+    /**
+     * The last time this product received service. The value of this property is replaced each time a patch is applied or removed from the product or the command-line option is used to repair the product.
+     */
+    installDate?: Schema$Date;
+    /**
+     * The name of the manufacturer for the product or application.
+     */
+    publisher?: string | null;
   }
   /**
    * Information related to a Quick Fix Engineering package. Fields are taken from Windows QuickFixEngineering Interface and match the source names: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering
