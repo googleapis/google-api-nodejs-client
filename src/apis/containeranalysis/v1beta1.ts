@@ -602,6 +602,60 @@ export namespace containeranalysis_v1beta1 {
     url?: string | null;
   }
   /**
+   * DocumentNote represents an SPDX Document Creation Infromation section: https://spdx.github.io/spdx-spec/2-document-creation-information/
+   */
+  export interface Schema$DocumentNote {
+    /**
+     * Compliance with the SPDX specification includes populating the SPDX fields therein with data related to such fields ("SPDX-Metadata")
+     */
+    dataLicence?: string | null;
+    /**
+     * Provide a reference number that can be used to understand how to parse and interpret the rest of the file
+     */
+    spdxVersion?: string | null;
+  }
+  /**
+   * DocumentOccurrence represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/2-document-creation-information/
+   */
+  export interface Schema$DocumentOccurrence {
+    /**
+     * Identify when the SPDX file was originally created. The date is to be specified according to combined date and time in UTC format as specified in ISO 8601 standard
+     */
+    createTime?: string | null;
+    /**
+     * A field for creators of the SPDX file to provide general comments about the creation of the SPDX file or any other relevant comment not included in the other fields
+     */
+    creatorComment?: string | null;
+    /**
+     * Identify who (or what, in the case of a tool) created the SPDX file. If the SPDX file was created by an individual, indicate the person's name
+     */
+    creators?: string[] | null;
+    /**
+     * A field for creators of the SPDX file content to provide comments to the consumers of the SPDX document
+     */
+    documentComment?: string | null;
+    /**
+     * Identify any external SPDX documents referenced within this SPDX document
+     */
+    externalDocumentRefs?: string[] | null;
+    /**
+     * Identify the current SPDX document which may be referenced in relationships by other files, packages internally and documents externally
+     */
+    id?: string | null;
+    /**
+     * A field for creators of the SPDX file to provide the version of the SPDX License List used when the SPDX file was created
+     */
+    licenseListVersion?: string | null;
+    /**
+     * Provide an SPDX document specific namespace as a unique absolute Uniform Resource Identifier (URI) as specified in RFC-3986, with the exception of the ‘#’ delimiter
+     */
+    namespace?: string | null;
+    /**
+     * Identify name of this document as designated by creator
+     */
+    title?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -633,6 +687,27 @@ export namespace containeranalysis_v1beta1 {
     title?: string | null;
   }
   /**
+   * An External Reference allows a Package to reference an external source of additional information, metadata, enumerations, asset identifiers, or downloadable content believed to be relevant to the Package
+   */
+  export interface Schema$ExternalRef {
+    /**
+     * An External Reference allows a Package to reference an external source of additional information, metadata, enumerations, asset identifiers, or downloadable content believed to be relevant to the Package
+     */
+    category?: string | null;
+    /**
+     * Human-readable information about the purpose and target of the reference
+     */
+    comment?: string | null;
+    /**
+     * The unique string with no spaces necessary to access the package-specific information, metadata, or content within the target location
+     */
+    locator?: string | null;
+    /**
+     * Type of category (e.g. 'npm' for the PACKAGE_MANAGER category)
+     */
+    type?: string | null;
+  }
+  /**
    * Container message for hashes of byte content of files, used in source messages to verify integrity of source input to the build.
    */
   export interface Schema$FileHashes {
@@ -640,6 +715,64 @@ export namespace containeranalysis_v1beta1 {
      * Required. Collection of file hashes.
      */
     fileHash?: Schema$Hash[];
+  }
+  /**
+   * FileNote represents an SPDX File Information section: https://spdx.github.io/spdx-spec/4-file-information/
+   */
+  export interface Schema$FileNote {
+    /**
+     * Provide a unique identifier to match analysis information on each specific file in a package
+     */
+    checksum?: string[] | null;
+    /**
+     * This field provides information about the type of file identified
+     */
+    fileType?: string | null;
+    /**
+     * Identify the full path and filename that corresponds to the file information in this section
+     */
+    title?: string | null;
+  }
+  /**
+   * FileOccurrence represents an SPDX File Information section: https://spdx.github.io/spdx-spec/4-file-information/
+   */
+  export interface Schema$FileOccurrence {
+    /**
+     * This field provides a place for the SPDX data creator to record, at the file level, acknowledgements that may be needed to be communicated in some contexts
+     */
+    attributions?: string[] | null;
+    /**
+     * This field provides a place for the SPDX file creator to record any general comments about the file
+     */
+    comment?: string | null;
+    /**
+     * This field provides a place for the SPDX file creator to record file contributors
+     */
+    contributors?: string[] | null;
+    /**
+     * Identify the copyright holder of the file, as well as any dates present
+     */
+    copyright?: string | null;
+    /**
+     * This field contains the license information actually found in the file, if any
+     */
+    filesLicenseInfo?: string[] | null;
+    /**
+     * Uniquely identify any element in an SPDX document which may be referenced by other elements
+     */
+    id?: string | null;
+    /**
+     * This field provides a place for the SPDX file creator to record any relevant background references or analysis that went in to arriving at the Concluded License for a file
+     */
+    licenseComments?: string | null;
+    /**
+     * This field contains the license the SPDX file creator has concluded as governing the file or alternative values if the governing license cannot be determined
+     */
+    licenseConcluded?: string | null;
+    /**
+     * This field provides a place for the SPDX file creator to record license notices or other such related notices found in the file
+     */
+    notice?: string | null;
   }
   /**
    * A set of properties that uniquely identify a given Docker image.
@@ -1104,9 +1237,25 @@ export namespace containeranalysis_v1beta1 {
      */
     relatedUrl?: Schema$RelatedUrl[];
     /**
+     * A note describing SPDX Document which represents SBOM.
+     */
+    sbom?: Schema$DocumentNote;
+    /**
      * A one sentence description of this note.
      */
     shortDescription?: string | null;
+    /**
+     * A note describing SPDX File.
+     */
+    spdxFile?: Schema$FileNote;
+    /**
+     * A note describing SPDX Package.
+     */
+    spdxPackage?: Schema$PackageNote;
+    /**
+     * A note describing SPDX Relationship.
+     */
+    spdxRelationship?: Schema$RelationshipNote;
     /**
      * Output only. The time this note was last updated. This field can be used as a filter in list requests.
      */
@@ -1173,6 +1322,22 @@ export namespace containeranalysis_v1beta1 {
      */
     resource?: Schema$Resource;
     /**
+     * Describes a specific SPDX Document.
+     */
+    sbom?: Schema$DocumentOccurrence;
+    /**
+     * Describes a specific SPDX File.
+     */
+    spdxFile?: Schema$FileOccurrence;
+    /**
+     * Describes a specific SPDX Package.
+     */
+    spdxPackage?: Schema$PackageOccurrence;
+    /**
+     * Describes a specific SPDX Relationship.
+     */
+    spdxRelationship?: Schema$RelationshipOccurrence;
+    /**
      * Output only. The time this occurrence was last updated.
      */
     updateTime?: string | null;
@@ -1210,6 +1375,104 @@ export namespace containeranalysis_v1beta1 {
      * Deprecated, use Details.effective_severity instead The severity (e.g., distro assigned severity) for this vulnerability.
      */
     severityName?: string | null;
+  }
+  /**
+   * PackageNote represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/
+   */
+  export interface Schema$PackageNote {
+    /**
+     * Indicates whether the file content of this package has been available for or subjected to analysis when creating the SPDX document
+     */
+    analyzed?: boolean | null;
+    /**
+     * A place for the SPDX data creator to record, at the package level, acknowledgements that may be needed to be communicated in some contexts
+     */
+    attribution?: string | null;
+    /**
+     * Provide an independently reproducible mechanism that permits unique identification of a specific package that correlates to the data in this SPDX file
+     */
+    checksum?: string | null;
+    /**
+     * Identify the copyright holders of the package, as well as any dates present
+     */
+    copyright?: string | null;
+    /**
+     * A more detailed description of the package
+     */
+    detailedDescription?: string | null;
+    /**
+     * This section identifies the download Universal Resource Locator (URL), or a specific location within a version control system (VCS) for the package at the time that the SPDX file was created
+     */
+    downloadLocation?: string | null;
+    /**
+     * ExternalRef
+     */
+    externalRefs?: Schema$ExternalRef[];
+    /**
+     * Contain the license the SPDX file creator has concluded as governing the This field is to contain a list of all licenses found in the package. The relationship between licenses (i.e., conjunctive, disjunctive) is not specified in this field – it is simply a listing of all licenses found
+     */
+    filesLicenseInfo?: string[] | null;
+    /**
+     * Provide a place for the SPDX file creator to record a web site that serves as the package's home page
+     */
+    homePage?: string | null;
+    /**
+     * List the licenses that have been declared by the authors of the package
+     */
+    licenseDeclared?: string | null;
+    /**
+     * If the package identified in the SPDX file originated from a different person or organization than identified as Package Supplier, this field identifies from where or whom the package originally came
+     */
+    originator?: string | null;
+    /**
+     * A short description of the package
+     */
+    summaryDescription?: string | null;
+    /**
+     * Identify the actual distribution source for the package/directory identified in the SPDX file
+     */
+    supplier?: string | null;
+    /**
+     * Identify the full name of the package as given by the Package Originator
+     */
+    title?: string | null;
+    /**
+     * This field provides an independently reproducible mechanism identifying specific contents of a package based on the actual files (except the SPDX file itself, if it is included in the package) that make up each package and that correlates to the data in this SPDX file
+     */
+    verificationCode?: string | null;
+    /**
+     * Identify the version of the package
+     */
+    version?: string | null;
+  }
+  /**
+   * PackageOccurrence represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/
+   */
+  export interface Schema$PackageOccurrence {
+    /**
+     * A place for the SPDX file creator to record any general comments about the package being described
+     */
+    comment?: string | null;
+    /**
+     * Provide the actual file name of the package, or path of the directory being treated as a package
+     */
+    filename?: string | null;
+    /**
+     * Uniquely identify any element in an SPDX document which may be referenced by other elements
+     */
+    id?: string | null;
+    /**
+     * This field provides a place for the SPDX file creator to record any relevant background information or analysis that went in to arriving at the Concluded License for a package
+     */
+    licenseComments?: string | null;
+    /**
+     * package or alternative values, if the governing license cannot be determined
+     */
+    licenseConcluded?: string | null;
+    /**
+     * Provide a place for the SPDX file creator to record any relevant background information or additional comments about the origin of the package
+     */
+    sourceInfo?: string | null;
   }
   /**
    * An attestation wrapper with a PGP-compatible signature. This message only supports `ATTACHED` signatures, where the payload that is signed is included alongside the signature itself in the same file.
@@ -1270,6 +1533,31 @@ export namespace containeranalysis_v1beta1 {
      * Specific URL associated with the resource.
      */
     url?: string | null;
+  }
+  /**
+   * RelationshipNote represents an SPDX Relationship section: https://spdx.github.io/spdx-spec/7-relationships-between-SPDX-elements/
+   */
+  export interface Schema$RelationshipNote {}
+  /**
+   * RelationshipOccurrence represents an SPDX Relationship section: https://spdx.github.io/spdx-spec/7-relationships-between-SPDX-elements/
+   */
+  export interface Schema$RelationshipOccurrence {
+    /**
+     * A place for the SPDX file creator to record any general comments about the relationship
+     */
+    comment?: string | null;
+    /**
+     * Also referred to as SPDXRef-A The source SPDX element (file, package, etc)
+     */
+    source?: string | null;
+    /**
+     * Also referred to as SPDXRef-B The target SPDC element (file, package, etc) In cases where there are "known unknowns", the use of the keyword NOASSERTION can be used The keywords NONE can be used to indicate that an SPDX element (package/file/snippet) has no other elements connected by some relationship to it
+     */
+    target?: string | null;
+    /**
+     * The type of relationship between the source and target SPDX elements
+     */
+    type?: string | null;
   }
   /**
    * A unique identifier for a Cloud Repo.
@@ -1761,7 +2049,11 @@ export namespace containeranalysis_v1beta1 {
      *       //   "package": {},
      *       //   "relatedNoteNames": [],
      *       //   "relatedUrl": [],
+     *       //   "sbom": {},
      *       //   "shortDescription": "my_shortDescription",
+     *       //   "spdxFile": {},
+     *       //   "spdxPackage": {},
+     *       //   "spdxRelationship": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "vulnerability": {}
      *       // }
@@ -1785,7 +2077,11 @@ export namespace containeranalysis_v1beta1 {
      *   //   "package": {},
      *   //   "relatedNoteNames": [],
      *   //   "relatedUrl": [],
+     *   //   "sbom": {},
      *   //   "shortDescription": "my_shortDescription",
+     *   //   "spdxFile": {},
+     *   //   "spdxPackage": {},
+     *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "vulnerability": {}
      *   // }
@@ -2056,7 +2352,11 @@ export namespace containeranalysis_v1beta1 {
      *   //   "package": {},
      *   //   "relatedNoteNames": [],
      *   //   "relatedUrl": [],
+     *   //   "sbom": {},
      *   //   "shortDescription": "my_shortDescription",
+     *   //   "spdxFile": {},
+     *   //   "spdxPackage": {},
+     *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "vulnerability": {}
      *   // }
@@ -2481,7 +2781,11 @@ export namespace containeranalysis_v1beta1 {
      *       //   "package": {},
      *       //   "relatedNoteNames": [],
      *       //   "relatedUrl": [],
+     *       //   "sbom": {},
      *       //   "shortDescription": "my_shortDescription",
+     *       //   "spdxFile": {},
+     *       //   "spdxPackage": {},
+     *       //   "spdxRelationship": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "vulnerability": {}
      *       // }
@@ -2505,7 +2809,11 @@ export namespace containeranalysis_v1beta1 {
      *   //   "package": {},
      *   //   "relatedNoteNames": [],
      *   //   "relatedUrl": [],
+     *   //   "sbom": {},
      *   //   "shortDescription": "my_shortDescription",
+     *   //   "spdxFile": {},
+     *   //   "spdxPackage": {},
+     *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "vulnerability": {}
      *   // }
@@ -3370,6 +3678,10 @@ export namespace containeranalysis_v1beta1 {
      *       //   "noteName": "my_noteName",
      *       //   "remediation": "my_remediation",
      *       //   "resource": {},
+     *       //   "sbom": {},
+     *       //   "spdxFile": {},
+     *       //   "spdxPackage": {},
+     *       //   "spdxRelationship": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "vulnerability": {}
      *       // }
@@ -3392,6 +3704,10 @@ export namespace containeranalysis_v1beta1 {
      *   //   "noteName": "my_noteName",
      *   //   "remediation": "my_remediation",
      *   //   "resource": {},
+     *   //   "sbom": {},
+     *   //   "spdxFile": {},
+     *   //   "spdxPackage": {},
+     *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "vulnerability": {}
      *   // }
@@ -3661,6 +3977,10 @@ export namespace containeranalysis_v1beta1 {
      *   //   "noteName": "my_noteName",
      *   //   "remediation": "my_remediation",
      *   //   "resource": {},
+     *   //   "sbom": {},
+     *   //   "spdxFile": {},
+     *   //   "spdxPackage": {},
+     *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "vulnerability": {}
      *   // }
@@ -3943,7 +4263,11 @@ export namespace containeranalysis_v1beta1 {
      *   //   "package": {},
      *   //   "relatedNoteNames": [],
      *   //   "relatedUrl": [],
+     *   //   "sbom": {},
      *   //   "shortDescription": "my_shortDescription",
+     *   //   "spdxFile": {},
+     *   //   "spdxPackage": {},
+     *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "vulnerability": {}
      *   // }
@@ -4374,6 +4698,10 @@ export namespace containeranalysis_v1beta1 {
      *       //   "noteName": "my_noteName",
      *       //   "remediation": "my_remediation",
      *       //   "resource": {},
+     *       //   "sbom": {},
+     *       //   "spdxFile": {},
+     *       //   "spdxPackage": {},
+     *       //   "spdxRelationship": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "vulnerability": {}
      *       // }
@@ -4396,6 +4724,10 @@ export namespace containeranalysis_v1beta1 {
      *   //   "noteName": "my_noteName",
      *   //   "remediation": "my_remediation",
      *   //   "resource": {},
+     *   //   "sbom": {},
+     *   //   "spdxFile": {},
+     *   //   "spdxPackage": {},
+     *   //   "spdxRelationship": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "vulnerability": {}
      *   // }
