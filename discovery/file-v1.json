@@ -672,7 +672,7 @@
       }
     }
   },
-  "revision": "20210708",
+  "revision": "20210727",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1740,7 +1740,7 @@
           "type": "string"
         },
         "denyMaintenancePeriods": {
-          "description": "Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. For V1, Maximum number of deny_maintenance_periods is expected to be one.",
+          "description": "Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. Maximum number of deny_maintenance_periods expected is one.",
           "items": {
             "$ref": "DenyMaintenancePeriod"
           },

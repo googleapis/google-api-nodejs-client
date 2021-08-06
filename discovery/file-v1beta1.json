@@ -542,6 +542,175 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "snapshots": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a snapshot.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/snapshots",
+                      "httpMethod": "POST",
+                      "id": "file.projects.locations.instances.snapshots.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The Filestore Instance to create the snapshots of, in the format projects/{project_id}/locations/{location}/instances/{instance_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "snapshotId": {
+                          "description": "Required. The ID to use for the snapshot. The ID must be unique within the specified instance. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/snapshots",
+                      "request": {
+                        "$ref": "Snapshot"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a snapshot.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/snapshots/{snapshotsId}",
+                      "httpMethod": "DELETE",
+                      "id": "file.projects.locations.instances.snapshots.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The snapshot resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}/snapshots/{snapshot_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/snapshots/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the details of a specific snapshot.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/snapshots/{snapshotsId}",
+                      "httpMethod": "GET",
+                      "id": "file.projects.locations.instances.snapshots.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The snapshot resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}/snapshots/{snapshot_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/snapshots/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Snapshot"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all snapshots in a project for either a specified location or for all locations.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/snapshots",
+                      "httpMethod": "GET",
+                      "id": "file.projects.locations.instances.snapshots.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "List filter.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Sort results. Supported values are \"name\", \"name desc\" or \"\" (unsorted).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of items to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The instance for which to retrieve snapshot information, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+parent}/snapshots",
+                      "response": {
+                        "$ref": "ListSnapshotsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the settings of a specific snapshot.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/snapshots/{snapshotsId}",
+                      "httpMethod": "PATCH",
+                      "id": "file.projects.locations.instances.snapshots.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. The resource name of the snapshot, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/snapshots/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "request": {
+                        "$ref": "Snapshot"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "operations": {
@@ -672,7 +841,7 @@
       }
     }
   },
-  "revision": "20210708",
+  "revision": "20210721",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1348,6 +1517,24 @@
       },
       "type": "object"
     },
+    "ListSnapshotsResponse": {
+      "description": "ListSnapshotsResponse is the result of ListSnapshotsRequest.",
+      "id": "ListSnapshotsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.",
+          "type": "string"
+        },
+        "snapshots": {
+          "description": "A list of snapshots in the project for the specified instance.",
+          "items": {
+            "$ref": "Snapshot"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents Google Cloud Platform location.",
       "id": "Location",
@@ -1493,7 +1680,7 @@
           "type": "string"
         },
         "reservedIpRange": {
-          "description": "A /29 CIDR block for Basic or a /23 CIDR block for High Scale in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/23. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.",
+          "description": "Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Named Address Range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. For both cases, the range value (direct CIDR value or the range value with which the named range was created) must be a /29 CIDR block for Basic tier or a /23 CIDR block for High Scale or Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/23. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.",
           "type": "string"
         }
       },
@@ -1689,6 +1876,58 @@
       },
       "type": "object"
     },
+    "Snapshot": {
+      "description": "A Cloud Filestore snapshot.",
+      "id": "Snapshot",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the snapshot was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the snapshot with 2048 characters or less. Requests with longer descriptions will be rejected.",
+          "type": "string"
+        },
+        "filesystemUsedBytes": {
+          "description": "Output only. The amount of bytes needed to allocate a full copy of the snapshot content",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Resource labels to represent user provided metadata.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The resource name of the snapshot, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The snapshot state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "READY",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "State not set.",
+            "Snapshot is being created.",
+            "Snapshot is available for use.",
+            "Snapshot is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -1762,7 +2001,7 @@
           "type": "string"
         },
         "denyMaintenancePeriods": {
-          "description": "Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. For V1, Maximum number of deny_maintenance_periods is expected to be one.",
+          "description": "Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. Maximum number of deny_maintenance_periods expected is one.",
           "items": {
             "$ref": "DenyMaintenancePeriod"
           },
