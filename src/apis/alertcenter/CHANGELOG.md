@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v3.1.1...alertcenter-v4.0.0) (2021-08-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* **alertcenter:** This release has breaking changes.
+
+### Features
+
+* **alertcenter:** update the API ([4420d33](https://www.github.com/googleapis/google-api-nodejs-client/commit/4420d33395d78d5f58efd6bcb127f4a974bd9147))
+
 ### [3.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v3.1.0...alertcenter-v3.1.1) (2021-07-24)
 
 

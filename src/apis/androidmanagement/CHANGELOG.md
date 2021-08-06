@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v1.1.1...androidmanagement-v1.1.2) (2021-08-06)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([cc55a61](https://www.github.com/googleapis/google-api-nodejs-client/commit/cc55a61f6dc8a30df96e9ade305d6f4daa26379c))
+
 ### [1.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v1.1.0...androidmanagement-v1.1.1) (2021-07-24)
 
 
