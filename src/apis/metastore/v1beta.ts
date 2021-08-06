@@ -172,6 +172,10 @@ export namespace metastore_v1beta {
      */
     name?: string | null;
     /**
+     * Output only. Services that are restoring from the backup.
+     */
+    restoringServices?: string[] | null;
+    /**
      * Output only. The revision of the service at the time of backup.
      */
     serviceRevision?: Schema$Service;
@@ -3195,6 +3199,7 @@ export namespace metastore_v1beta {
      *       //   "description": "my_description",
      *       //   "endTime": "my_endTime",
      *       //   "name": "my_name",
+     *       //   "restoringServices": [],
      *       //   "serviceRevision": {},
      *       //   "state": "my_state"
      *       // }
@@ -3475,6 +3480,7 @@ export namespace metastore_v1beta {
      *   //   "description": "my_description",
      *   //   "endTime": "my_endTime",
      *   //   "name": "my_name",
+     *   //   "restoringServices": [],
      *   //   "serviceRevision": {},
      *   //   "state": "my_state"
      *   // }
