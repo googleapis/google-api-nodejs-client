@@ -2541,7 +2541,7 @@
       }
     }
   },
-  "revision": "20210712",
+  "revision": "20210727",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3162,7 +3162,7 @@
       "type": "object"
     },
     "DistributionCut": {
-      "description": "A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the count of values x in the Distribution such that range.min <= x < range.max.",
+      "description": "A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the estimated count of values in the Distribution that fall within the specified min and max.",
       "id": "DistributionCut",
       "properties": {
         "distributionFilter": {
@@ -3427,7 +3427,7 @@
       "type": "object"
     },
     "GoogleMonitoringV3Range": {
-      "description": "Range of numerical values, inclusive of min and exclusive of max. If the open range \"< range.max\" is desired, set range.min = -infinity. If the open range \">= range.min\" is desired, set range.max = infinity.",
+      "description": "Range of numerical values within min and max. If the open range \"< range.max\" is desired, set range.min = -infinity. If the open range \">= range.min\" is desired, set range.max = infinity.",
       "id": "GoogleMonitoringV3Range",
       "properties": {
         "max": {
@@ -4161,7 +4161,7 @@
       "type": "object"
     },
     "MetricRange": {
-      "description": "A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min <= x < range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE.",
+      "description": "A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min <= x <= range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE.",
       "id": "MetricRange",
       "properties": {
         "range": {
