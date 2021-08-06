@@ -283,6 +283,10 @@ export namespace recaptchaenterprise_v1 {
      */
     challengeMetrics?: Schema$GoogleCloudRecaptchaenterpriseV1ChallengeMetrics[];
     /**
+     * Output only. The name of the metrics, in the format "projects/{project\}/keys/{key\}/metrics".
+     */
+    name?: string | null;
+    /**
      * Metrics will be continuous and in order by dates, and in the granularity of day. All Key types should have score-based data.
      */
     scoreMetrics?: Schema$GoogleCloudRecaptchaenterpriseV1ScoreMetrics[];
@@ -1209,6 +1213,7 @@ export namespace recaptchaenterprise_v1 {
      *   // Example response
      *   // {
      *   //   "challengeMetrics": [],
+     *   //   "name": "my_name",
      *   //   "scoreMetrics": [],
      *   //   "startTime": "my_startTime"
      *   // }
