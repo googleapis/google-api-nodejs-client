@@ -339,6 +339,31 @@ export namespace alertcenter_v1beta1 {
     name?: string | null;
   }
   /**
+   * An outage incident reported by Google for a Google Workspace (formerly G Suite) application.
+   */
+  export interface Schema$AppsOutage {
+    /**
+     * Link to the outage event in Google Workspace Status Dashboard
+     */
+    dashboardUri?: string | null;
+    /**
+     * Timestamp by which the next update shall be provided.
+     */
+    nextUpdateTime?: string | null;
+    /**
+     * List of products impacted by the outage.
+     */
+    products?: string[] | null;
+    /**
+     * Timestamp of the outage expected or confirmed resolution. (Used only when known).
+     */
+    resolutionTime?: string | null;
+    /**
+     * Current outage status.
+     */
+    status?: string | null;
+  }
+  /**
    * Attachment with application-specific information about an alert.
    */
   export interface Schema$Attachment {
@@ -696,27 +721,6 @@ export namespace alertcenter_v1beta1 {
      * A Google Cloud Pub/sub topic destination.
      */
     cloudPubsubTopic?: Schema$CloudPubsubTopic;
-  }
-  /**
-   * An alert that gets triggered when a user enables autoforwarding to an email which is outside of its domain
-   */
-  export interface Schema$OutOfDomainForwarding {
-    /**
-     * Email of the actor who triggered the alert.
-     */
-    actorEmail?: string | null;
-    /**
-     * The time the email forwarding was enabled
-     */
-    enableTime?: string | null;
-    /**
-     * Email to which emails are being forwarded
-     */
-    forwardeeEmail?: string | null;
-    /**
-     * IP address of the user while enabling forwarding
-     */
-    ipAddress?: string | null;
   }
   /**
    * Alert for a spike in user reported phishing. *Warning*: This type has been deprecated. Use [MailPhishing](/admin-sdk/alertcenter/reference/rest/v1beta1/MailPhishing) instead.
