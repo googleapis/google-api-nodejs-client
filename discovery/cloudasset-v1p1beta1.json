@@ -207,9 +207,22 @@
       }
     }
   },
-  "revision": "20210802",
+  "revision": "20210806",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
+    "AnalyzeIamPolicyLongrunningMetadata": {
+      "description": "Represents the metadata of the longrunning operation for the AnalyzeIamPolicyLongrunning rpc.",
+      "id": "AnalyzeIamPolicyLongrunningMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AnalyzeIamPolicyLongrunningResponse": {
       "description": "A response message for AssetService.AnalyzeIamPolicyLongrunning.",
       "id": "AnalyzeIamPolicyLongrunningResponse",

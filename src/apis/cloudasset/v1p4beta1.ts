@@ -139,6 +139,15 @@ export namespace cloudasset_v1p4beta1 {
     roles?: string[] | null;
   }
   /**
+   * Represents the metadata of the longrunning operation for the AnalyzeIamPolicyLongrunning rpc.
+   */
+  export interface Schema$AnalyzeIamPolicyLongrunningMetadata {
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+  }
+  /**
    * A response message for AssetService.AnalyzeIamPolicyLongrunning.
    */
   export interface Schema$AnalyzeIamPolicyLongrunningResponse {}
