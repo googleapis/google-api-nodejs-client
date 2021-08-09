@@ -446,6 +446,10 @@ export namespace container_v1 {
      */
     locations?: string[] | null;
     /**
+     * Logging configuration for the cluster.
+     */
+    loggingConfig?: Schema$LoggingConfig;
+    /**
      * The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     loggingService?: string | null;
@@ -461,6 +465,10 @@ export namespace container_v1 {
      * The configuration options for master authorized networks feature.
      */
     masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
+    /**
+     * Monitoring configuration for the cluster.
+     */
+    monitoringConfig?: Schema$MonitoringConfig;
     /**
      * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
@@ -567,6 +575,10 @@ export namespace container_v1 {
      */
     autoprovisioningNodePoolDefaults?: Schema$AutoprovisioningNodePoolDefaults;
     /**
+     * Defines autoscaling behaviour.
+     */
+    autoscalingProfile?: string | null;
+    /**
      * Enables automatic node pool creation and deletion.
      */
     enableNodeAutoprovisioning?: boolean | null;
@@ -628,6 +640,10 @@ export namespace container_v1 {
      */
     desiredLocations?: string[] | null;
     /**
+     * The desired logging configuration.
+     */
+    desiredLoggingConfig?: Schema$LoggingConfig;
+    /**
      * The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     desiredLoggingService?: string | null;
@@ -639,6 +655,10 @@ export namespace container_v1 {
      * The Kubernetes version to change the master to. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the default Kubernetes version
      */
     desiredMasterVersion?: string | null;
+    /**
+     * The desired monitoring configuration.
+     */
+    desiredMonitoringConfig?: Schema$MonitoringConfig;
     /**
      * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
@@ -1116,6 +1136,24 @@ export namespace container_v1 {
     subnetworks?: Schema$UsableSubnetwork[];
   }
   /**
+   * LoggingComponentConfig is cluster logging component configuration.
+   */
+  export interface Schema$LoggingComponentConfig {
+    /**
+     * Select components to collect logs. An empty set would disable all logging.
+     */
+    enableComponents?: string[] | null;
+  }
+  /**
+   * LoggingConfig is cluster logging configuration.
+   */
+  export interface Schema$LoggingConfig {
+    /**
+     * Logging components configuration
+     */
+    componentConfig?: Schema$LoggingComponentConfig;
+  }
+  /**
    * MaintenancePolicy defines the maintenance policy to be used for the cluster.
    */
   export interface Schema$MaintenancePolicy {
@@ -1216,6 +1254,24 @@ export namespace container_v1 {
      * For metrics with custom values (ratios, visual progress, etc.).
      */
     stringValue?: string | null;
+  }
+  /**
+   * MonitoringComponentConfig is cluster monitoring component configuration.
+   */
+  export interface Schema$MonitoringComponentConfig {
+    /**
+     * Select components to collect metrics. An empty set would disable all monitoring.
+     */
+    enableComponents?: string[] | null;
+  }
+  /**
+   * MonitoringConfig is cluster monitoring configuration.
+   */
+  export interface Schema$MonitoringConfig {
+    /**
+     * Monitoring components configuration
+     */
+    componentConfig?: Schema$MonitoringComponentConfig;
   }
   /**
    * NetworkConfig reports the relative names of network & subnetwork.
@@ -1400,6 +1456,23 @@ export namespace container_v1 {
     upgradeOptions?: Schema$AutoUpgradeOptions;
   }
   /**
+   * Parameters for node pool-level network config.
+   */
+  export interface Schema$NodeNetworkConfig {
+    /**
+     * Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
+     */
+    createPodRange?: boolean | null;
+    /**
+     * The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
+     */
+    podIpv4CidrBlock?: string | null;
+    /**
+     * The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
+     */
+    podRange?: string | null;
+  }
+  /**
    * NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.
    */
   export interface Schema$NodePool {
@@ -1439,6 +1512,10 @@ export namespace container_v1 {
      * The name of the node pool.
      */
     name?: string | null;
+    /**
+     * Networking configuration for this NodePool. If specified, it overrides the cluster-level defaults.
+     */
+    networkConfig?: Schema$NodeNetworkConfig;
     /**
      * [Output only] The pod CIDR block size per node in this node pool.
      */
@@ -3354,10 +3431,12 @@ export namespace container_v1 {
      *   //   "legacyAbac": {},
      *   //   "location": "my_location",
      *   //   "locations": [],
+     *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
+     *   //   "monitoringConfig": {},
      *   //   "monitoringService": "my_monitoringService",
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -6205,6 +6284,7 @@ export namespace container_v1 {
      *   //   "management": {},
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
+     *   //   "networkConfig": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -8871,10 +8951,12 @@ export namespace container_v1 {
      *   //   "legacyAbac": {},
      *   //   "location": "my_location",
      *   //   "locations": [],
+     *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
+     *   //   "monitoringConfig": {},
      *   //   "monitoringService": "my_monitoringService",
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -11745,6 +11827,7 @@ export namespace container_v1 {
      *   //   "management": {},
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
+     *   //   "networkConfig": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",

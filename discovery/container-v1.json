@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20210626",
+  "revision": "20210722",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2833,6 +2833,10 @@
           },
           "type": "array"
         },
+        "loggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "Logging configuration for the cluster."
+        },
         "loggingService": {
           "description": "The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.",
           "type": "string"
@@ -2848,6 +2852,10 @@
         "masterAuthorizedNetworksConfig": {
           "$ref": "MasterAuthorizedNetworksConfig",
           "description": "The configuration options for master authorized networks feature."
+        },
+        "monitoringConfig": {
+          "$ref": "MonitoringConfig",
+          "description": "Monitoring configuration for the cluster."
         },
         "monitoringService": {
           "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
@@ -2984,6 +2992,20 @@
           "$ref": "AutoprovisioningNodePoolDefaults",
           "description": "AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP."
         },
+        "autoscalingProfile": {
+          "description": "Defines autoscaling behaviour.",
+          "enum": [
+            "PROFILE_UNSPECIFIED",
+            "OPTIMIZE_UTILIZATION",
+            "BALANCED"
+          ],
+          "enumDescriptions": [
+            "No change to autoscaling configuration.",
+            "Prioritize optimizing utilization of resources.",
+            "Use default (balanced) autoscaling configuration."
+          ],
+          "type": "string"
+        },
         "enableNodeAutoprovisioning": {
           "description": "Enables automatic node pool creation and deletion.",
           "type": "boolean"
@@ -3063,6 +3085,10 @@
           },
           "type": "array"
         },
+        "desiredLoggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "The desired logging configuration."
+        },
         "desiredLoggingService": {
           "description": "The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.",
           "type": "string"
@@ -3074,6 +3100,10 @@
         "desiredMasterVersion": {
           "description": "The Kubernetes version to change the master to. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - \"latest\": picks the highest valid Kubernetes version - \"1.X\": picks the highest valid patch+gke.N patch in the 1.X version - \"1.X.Y\": picks the highest valid gke.N patch in the 1.X.Y version - \"1.X.Y-gke.N\": picks an explicit Kubernetes version - \"-\": picks the default Kubernetes version",
           "type": "string"
+        },
+        "desiredMonitoringConfig": {
+          "$ref": "MonitoringConfig",
+          "description": "The desired monitoring configuration."
         },
         "desiredMonitoringService": {
           "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
@@ -3671,6 +3701,41 @@
       },
       "type": "object"
     },
+    "LoggingComponentConfig": {
+      "description": "LoggingComponentConfig is cluster logging component configuration.",
+      "id": "LoggingComponentConfig",
+      "properties": {
+        "enableComponents": {
+          "description": "Select components to collect logs. An empty set would disable all logging.",
+          "items": {
+            "enum": [
+              "COMPONENT_UNSPECIFIED",
+              "SYSTEM_COMPONENTS",
+              "WORKLOADS"
+            ],
+            "enumDescriptions": [
+              "Default value. This shouldn't be used.",
+              "system components",
+              "workloads"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LoggingConfig": {
+      "description": "LoggingConfig is cluster logging configuration.",
+      "id": "LoggingConfig",
+      "properties": {
+        "componentConfig": {
+          "$ref": "LoggingComponentConfig",
+          "description": "Logging components configuration"
+        }
+      },
+      "type": "object"
+    },
     "MaintenancePolicy": {
       "description": "MaintenancePolicy defines the maintenance policy to be used for the cluster.",
       "id": "MaintenancePolicy",
@@ -3790,6 +3855,39 @@
         "stringValue": {
           "description": "For metrics with custom values (ratios, visual progress, etc.).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MonitoringComponentConfig": {
+      "description": "MonitoringComponentConfig is cluster monitoring component configuration.",
+      "id": "MonitoringComponentConfig",
+      "properties": {
+        "enableComponents": {
+          "description": "Select components to collect metrics. An empty set would disable all monitoring.",
+          "items": {
+            "enum": [
+              "COMPONENT_UNSPECIFIED",
+              "SYSTEM_COMPONENTS"
+            ],
+            "enumDescriptions": [
+              "Default value. This shouldn't be used.",
+              "system components"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MonitoringConfig": {
+      "description": "MonitoringConfig is cluster monitoring configuration.",
+      "id": "MonitoringConfig",
+      "properties": {
+        "componentConfig": {
+          "$ref": "MonitoringComponentConfig",
+          "description": "Monitoring components configuration"
         }
       },
       "type": "object"
@@ -4038,6 +4136,25 @@
       },
       "type": "object"
     },
+    "NodeNetworkConfig": {
+      "description": "Parameters for node pool-level network config.",
+      "id": "NodeNetworkConfig",
+      "properties": {
+        "createPodRange": {
+          "description": "Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
+          "type": "boolean"
+        },
+        "podIpv4CidrBlock": {
+          "description": "The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
+          "type": "string"
+        },
+        "podRange": {
+          "description": "The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodePool": {
       "description": "NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.",
       "id": "NodePool",
@@ -4087,6 +4204,10 @@
         "name": {
           "description": "The name of the node pool.",
           "type": "string"
+        },
+        "networkConfig": {
+          "$ref": "NodeNetworkConfig",
+          "description": "Networking configuration for this NodePool. If specified, it overrides the cluster-level defaults."
         },
         "podIpv4CidrSize": {
           "description": "[Output only] The pod CIDR block size per node in this node pool.",
