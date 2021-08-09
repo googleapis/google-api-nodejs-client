@@ -1940,7 +1940,7 @@ export namespace artifactregistry_v1beta2 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.list({
-     *     // The maximum number of repositories to return. Maximum page size is 10,000.
+     *     // The maximum number of repositories to return. Maximum page size is 1,000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
@@ -2541,7 +2541,7 @@ export namespace artifactregistry_v1beta2 {
   export interface Params$Resource$Projects$Locations$Repositories$List
     extends StandardParameters {
     /**
-     * The maximum number of repositories to return. Maximum page size is 10,000.
+     * The maximum number of repositories to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -3390,7 +3390,7 @@ export namespace artifactregistry_v1beta2 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.list({
-     *       // The maximum number of packages to return. Maximum page size is 10,000.
+     *       // The maximum number of packages to return. Maximum page size is 1,000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
@@ -3523,7 +3523,7 @@ export namespace artifactregistry_v1beta2 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$List
     extends StandardParameters {
     /**
-     * The maximum number of packages to return. Maximum page size is 10,000.
+     * The maximum number of packages to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -4620,7 +4620,7 @@ export namespace artifactregistry_v1beta2 {
      *       {
      *         // Optional. Sorting field and order
      *         orderBy: 'placeholder-value',
-     *         // The maximum number of versions to return. Maximum page size is 10,000.
+     *         // The maximum number of versions to return. Maximum page size is 1,000.
      *         pageSize: 'placeholder-value',
      *         // The next_page_token value returned from a previous list request, if any.
      *         pageToken: 'placeholder-value',
@@ -4768,7 +4768,7 @@ export namespace artifactregistry_v1beta2 {
      */
     orderBy?: string;
     /**
-     * The maximum number of versions to return. Maximum page size is 10,000.
+     * The maximum number of versions to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**

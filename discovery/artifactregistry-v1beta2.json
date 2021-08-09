@@ -382,7 +382,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of repositories to return. Maximum page size is 10,000.",
+                      "description": "The maximum number of repositories to return. Maximum page size is 1,000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -669,7 +669,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of packages to return. Maximum page size is 10,000.",
+                          "description": "The maximum number of packages to return. Maximum page size is 1,000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -950,7 +950,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "The maximum number of versions to return. Maximum page size is 10,000.",
+                              "description": "The maximum number of versions to return. Maximum page size is 1,000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1035,7 +1035,7 @@
       }
     }
   },
-  "revision": "20210723",
+  "revision": "20210803",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
