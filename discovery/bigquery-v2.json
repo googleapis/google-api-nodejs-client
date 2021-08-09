@@ -1683,7 +1683,7 @@
       }
     }
   },
-  "revision": "20210617",
+  "revision": "20210725",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2624,6 +2624,10 @@
           "description": "[Optional] The separator for fields in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence \"\\t\" to specify a tab separator. The default value is a comma (',').",
           "type": "string"
         },
+        "null_marker": {
+          "description": "[Optional] An custom string that will represent a NULL value in CSV import data.",
+          "type": "string"
+        },
         "quote": {
           "default": "\"",
           "description": "[Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('\"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.",
@@ -2738,6 +2742,10 @@
         "id": {
           "description": "[Output-only] The fully-qualified unique name of the dataset in the format projectId:datasetId. The dataset name without the project name is given in the datasetId field. When creating a new dataset, leave this field blank, and instead specify the datasetId field.",
           "type": "string"
+        },
+        "isCaseInsensitive": {
+          "description": "[Optional] Indicates if table names are case insensitive in the dataset.",
+          "type": "boolean"
         },
         "kind": {
           "default": "bigquery#dataset",
@@ -5771,6 +5779,10 @@
             }
           },
           "type": "object"
+        },
+        "collationSpec": {
+          "description": "Optional. Collation specification of the field. It only can be set on string type field.",
+          "type": "string"
         },
         "description": {
           "description": "[Optional] The field description. The maximum length is 1,024 characters.",

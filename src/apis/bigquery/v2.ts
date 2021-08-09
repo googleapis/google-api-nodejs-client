@@ -720,6 +720,10 @@ export namespace bigquery_v2 {
      */
     fieldDelimiter?: string | null;
     /**
+     * [Optional] An custom string that will represent a NULL value in CSV import data.
+     */
+    null_marker?: string | null;
+    /**
      * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
      */
     quote?: string | null;
@@ -776,6 +780,10 @@ export namespace bigquery_v2 {
      * [Output-only] The fully-qualified unique name of the dataset in the format projectId:datasetId. The dataset name without the project name is given in the datasetId field. When creating a new dataset, leave this field blank, and instead specify the datasetId field.
      */
     id?: string | null;
+    /**
+     * [Optional] Indicates if table names are case insensitive in the dataset.
+     */
+    isCaseInsensitive?: boolean | null;
     /**
      * [Output-only] The resource type.
      */
@@ -2880,6 +2888,10 @@ export namespace bigquery_v2 {
      */
     categories?: {names?: string[]} | null;
     /**
+     * Optional. Collation specification of the field. It only can be set on string type field.
+     */
+    collationSpec?: string | null;
+    /**
      * [Optional] The field description. The maximum length is 1,024 characters.
      */
     description?: string | null;
@@ -3446,6 +3458,7 @@ export namespace bigquery_v2 {
      *   //   "etag": "my_etag",
      *   //   "friendlyName": "my_friendlyName",
      *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
      *   //   "kind": "my_kind",
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
@@ -3591,6 +3604,7 @@ export namespace bigquery_v2 {
      *       //   "etag": "my_etag",
      *       //   "friendlyName": "my_friendlyName",
      *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
      *       //   "kind": "my_kind",
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
@@ -3614,6 +3628,7 @@ export namespace bigquery_v2 {
      *   //   "etag": "my_etag",
      *   //   "friendlyName": "my_friendlyName",
      *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
      *   //   "kind": "my_kind",
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
@@ -3903,6 +3918,7 @@ export namespace bigquery_v2 {
      *       //   "etag": "my_etag",
      *       //   "friendlyName": "my_friendlyName",
      *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
      *       //   "kind": "my_kind",
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
@@ -3926,6 +3942,7 @@ export namespace bigquery_v2 {
      *   //   "etag": "my_etag",
      *   //   "friendlyName": "my_friendlyName",
      *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
      *   //   "kind": "my_kind",
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
@@ -4073,6 +4090,7 @@ export namespace bigquery_v2 {
      *       //   "etag": "my_etag",
      *       //   "friendlyName": "my_friendlyName",
      *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
      *       //   "kind": "my_kind",
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
@@ -4096,6 +4114,7 @@ export namespace bigquery_v2 {
      *   //   "etag": "my_etag",
      *   //   "friendlyName": "my_friendlyName",
      *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
      *   //   "kind": "my_kind",
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
