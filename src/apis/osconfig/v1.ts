@@ -149,6 +149,55 @@ export namespace osconfig_v1 {
    */
   export interface Schema$CancelPatchJobRequest {}
   /**
+   * Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document
+   */
+  export interface Schema$CVSSv3 {
+    /**
+     * This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.
+     */
+    attackComplexity?: string | null;
+    /**
+     * This metric reflects the context by which vulnerability exploitation is possible.
+     */
+    attackVector?: string | null;
+    /**
+     * This metric measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability.
+     */
+    availabilityImpact?: string | null;
+    /**
+     * The base score is a function of the base metric scores. https://www.first.org/cvss/specification-document#Base-Metrics
+     */
+    baseScore?: number | null;
+    /**
+     * This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.
+     */
+    confidentialityImpact?: string | null;
+    /**
+     * The Exploitability sub-score equation is derived from the Base Exploitability metrics. https://www.first.org/cvss/specification-document#2-1-Exploitability-Metrics
+     */
+    exploitabilityScore?: number | null;
+    /**
+     * The Impact sub-score equation is derived from the Base Impact metrics.
+     */
+    impactScore?: number | null;
+    /**
+     * This metric measures the impact to integrity of a successfully exploited vulnerability.
+     */
+    integrityImpact?: string | null;
+    /**
+     * This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.
+     */
+    privilegesRequired?: string | null;
+    /**
+     * The Scope metric captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope.
+     */
+    scope?: string | null;
+    /**
+     * This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.
+     */
+    userInteraction?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -254,7 +303,7 @@ export namespace osconfig_v1 {
    */
   export interface Schema$GooSettings {}
   /**
-   * The inventory details of a VM.
+   * This API resource represents the available inventory data for a Compute Engine virtual machine (VM) instance at a given point in time. You can use this API resource to determine the inventory data of your VM. For more information, see [Information provided by OS inventory management](https://cloud.google.com/compute/docs/instances/os-inventory-management#data-collected).
    */
   export interface Schema$Inventory {
     /**
@@ -262,9 +311,17 @@ export namespace osconfig_v1 {
      */
     items?: {[key: string]: Schema$InventoryItem} | null;
     /**
+     * Output only. The `Inventory` API resource name. Format: `projects/{project_number\}/locations/{location\}/instances/{instance_id\}/inventory`
+     */
+    name?: string | null;
+    /**
      * Base level operating system information for the VM.
      */
     osInfo?: Schema$InventoryOsInfo;
+    /**
+     * Output only. Timestamp of the last reported inventory for the VM.
+     */
+    updateTime?: string | null;
   }
   /**
    * A single piece of inventory on a VM.
@@ -487,6 +544,19 @@ export namespace osconfig_v1 {
     summary?: string | null;
   }
   /**
+   * A response message for listing inventory data for all VMs in a specified location.
+   */
+  export interface Schema$ListInventoriesResponse {
+    /**
+     * List of inventory objects.
+     */
+    inventories?: Schema$Inventory[];
+    /**
+     * The pagination token to retrieve the next page of inventory objects.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -537,6 +607,19 @@ export namespace osconfig_v1 {
      * The list of patch jobs.
      */
     patchJobs?: Schema$PatchJob[];
+  }
+  /**
+   * A response message for listing vulnerability reports for all VM instances in the specified location.
+   */
+  export interface Schema$ListVulnerabilityReportsResponse {
+    /**
+     * The pagination token to retrieve the next page of vulnerabilityReports object.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of vulnerabilityReport objects.
+     */
+    vulnerabilityReports?: Schema$VulnerabilityReport[];
   }
   /**
    * Represents a monthly schedule. An example of a valid monthly schedule is "on the third Tuesday of the month" or "on the 15th of the month".
@@ -991,6 +1074,90 @@ export namespace osconfig_v1 {
     version?: string | null;
   }
   /**
+   * This API resource represents the vulnerability report for a specified Compute Engine virtual machine (VM) instance at a given point in time. For more information, see [Vulnerability reports](https://cloud.google.com/compute/docs/instances/os-inventory-management#vulnerability-reports).
+   */
+  export interface Schema$VulnerabilityReport {
+    /**
+     * Output only. The `vulnerabilityReport` API resource name. Format: `projects/{project_number\}/locations/{location\}/instances/{instance_id\}/vulnerabilityReport`
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp for when the last vulnerability report was generated for the VM.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. List of vulnerabilities affecting the VM.
+     */
+    vulnerabilities?: Schema$VulnerabilityReportVulnerability[];
+  }
+  /**
+   * A vulnerability affecting the VM instance.
+   */
+  export interface Schema$VulnerabilityReportVulnerability {
+    /**
+     * Corresponds to the `AVAILABLE_PACKAGE` inventory item on the VM. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. If there is no available fix, the field is empty. The `inventory_item` value specifies the latest `SoftwarePackage` available to the VM that fixes the vulnerability.
+     */
+    availableInventoryItemIds?: string[] | null;
+    /**
+     * The timestamp for when the vulnerability was first detected.
+     */
+    createTime?: string | null;
+    /**
+     * Contains metadata as per the upstream feed of the operating system and NVD.
+     */
+    details?: Schema$VulnerabilityReportVulnerabilityDetails;
+    /**
+     * Corresponds to the `INSTALLED_PACKAGE` inventory item on the VM. This field displays the inventory items affected by this vulnerability. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. For some distros, this field may be empty.
+     */
+    installedInventoryItemIds?: string[] | null;
+    /**
+     * The timestamp for when the vulnerability was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Contains metadata information for the vulnerability. This information is collected from the upstream feed of the operating system.
+   */
+  export interface Schema$VulnerabilityReportVulnerabilityDetails {
+    /**
+     * The CVE of the vulnerability. CVE cannot be empty and the combination of should be unique across vulnerabilities for a VM.
+     */
+    cve?: string | null;
+    /**
+     * The CVSS V2 score of this vulnerability. CVSS V2 score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.
+     */
+    cvssV2Score?: number | null;
+    /**
+     * The full description of the CVSSv3 for this vulnerability from NVD.
+     */
+    cvssV3?: Schema$CVSSv3;
+    /**
+     * The note or description describing the vulnerability from the distro.
+     */
+    description?: string | null;
+    /**
+     * Corresponds to the references attached to the `VulnerabilityDetails`.
+     */
+    references?: Schema$VulnerabilityReportVulnerabilityDetailsReference[];
+    /**
+     * Assigned severity/impact ranking from the distro.
+     */
+    severity?: string | null;
+  }
+  /**
+   * A reference for this vulnerability.
+   */
+  export interface Schema$VulnerabilityReportVulnerabilityDetailsReference {
+    /**
+     * The source of the reference e.g. NVD.
+     */
+    source?: string | null;
+    /**
+     * The url of the reference.
+     */
+    url?: string | null;
+  }
+  /**
    * Represents one week day in a month. An example is "the 4th Sunday".
    */
   export interface Schema$WeekDayOfMonth {
@@ -1376,15 +1543,674 @@ export namespace osconfig_v1 {
 
   export class Resource$Projects {
     context: APIRequestContext;
+    locations: Resource$Projects$Locations;
     patchDeployments: Resource$Projects$Patchdeployments;
     patchJobs: Resource$Projects$Patchjobs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.locations = new Resource$Projects$Locations(this.context);
       this.patchDeployments = new Resource$Projects$Patchdeployments(
         this.context
       );
       this.patchJobs = new Resource$Projects$Patchjobs(this.context);
     }
+  }
+
+  export class Resource$Projects$Locations {
+    context: APIRequestContext;
+    instances: Resource$Projects$Locations$Instances;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.instances = new Resource$Projects$Locations$Instances(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Instances {
+    context: APIRequestContext;
+    inventories: Resource$Projects$Locations$Instances$Inventories;
+    vulnerabilityReports: Resource$Projects$Locations$Instances$Vulnerabilityreports;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.inventories = new Resource$Projects$Locations$Instances$Inventories(
+        this.context
+      );
+      this.vulnerabilityReports =
+        new Resource$Projects$Locations$Instances$Vulnerabilityreports(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Instances$Inventories {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get inventory data for the specified VM instance. If the VM has no associated inventory, the message `NOT_FOUND` is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.instances.inventories.get({
+     *     // Required. API resource name for inventory resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/inventory` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either Compute Engine `instance-id` or `instance-name` can be provided.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance/inventory',
+     *     // Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": {},
+     *   //   "name": "my_name",
+     *   //   "osInfo": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Inventories$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Instances$Inventories$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Inventory>;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Inventories$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Inventories$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Inventory>,
+      callback: BodyResponseCallback<Schema$Inventory>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Inventories$Get,
+      callback: BodyResponseCallback<Schema$Inventory>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Inventory>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Inventories$Get
+        | BodyResponseCallback<Schema$Inventory>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Inventory>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Inventory>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Inventory> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Inventories$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Inventories$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Inventory>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Inventory>(parameters);
+      }
+    }
+
+    /**
+     * List inventory data for all VM instances in the specified zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.instances.inventories.list({
+     *     // If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to `ListInventories` that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     // Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "inventories": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Inventories$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Inventories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInventoriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Inventories$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Inventories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInventoriesResponse>,
+      callback: BodyResponseCallback<Schema$ListInventoriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Inventories$List,
+      callback: BodyResponseCallback<Schema$ListInventoriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListInventoriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Inventories$List
+        | BodyResponseCallback<Schema$ListInventoriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInventoriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInventoriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInventoriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Inventories$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Inventories$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/inventories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInventoriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInventoriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Inventories$Get
+    extends StandardParameters {
+    /**
+     * Required. API resource name for inventory resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/inventory` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either Compute Engine `instance-id` or `instance-name` can be provided.
+     */
+    name?: string;
+    /**
+     * Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Inventories$List
+    extends StandardParameters {
+    /**
+     * If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to `ListInventories` that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
+     */
+    parent?: string;
+    /**
+     * Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
+     */
+    view?: string;
+  }
+
+  export class Resource$Projects$Locations$Instances$Vulnerabilityreports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the vulnerability report for the specified VM instance. Only VMs with inventory data have vulnerability reports associated with them.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.instances.vulnerabilityReports.get({
+     *       // Required. API resource name for vulnerability resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/vulnerabilityReport` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either Compute Engine `instance-id` or `instance-name` can be provided.
+     *       name: 'projects/my-project/locations/my-location/instances/my-instance/vulnerabilityReport',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vulnerabilities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VulnerabilityReport>;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$VulnerabilityReport>,
+      callback: BodyResponseCallback<Schema$VulnerabilityReport>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get,
+      callback: BodyResponseCallback<Schema$VulnerabilityReport>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$VulnerabilityReport>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get
+        | BodyResponseCallback<Schema$VulnerabilityReport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VulnerabilityReport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VulnerabilityReport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VulnerabilityReport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VulnerabilityReport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VulnerabilityReport>(parameters);
+      }
+    }
+
+    /**
+     * List vulnerability reports for all VM instances in the specified zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.instances.vulnerabilityReports.list({
+     *       // If provided, this field specifies the criteria that must be met by a `vulnerabilityReport` API resource to be included in the response.
+     *       filter: 'placeholder-value',
+     *       // The maximum number of results to return.
+     *       pageSize: 'placeholder-value',
+     *       // A pagination token returned from a previous call to `ListVulnerabilityReports` that indicates where this listing should continue from.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
+     *       parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "vulnerabilityReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListVulnerabilityReportsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVulnerabilityReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListVulnerabilityReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List,
+      callback: BodyResponseCallback<Schema$ListVulnerabilityReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListVulnerabilityReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List
+        | BodyResponseCallback<Schema$ListVulnerabilityReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVulnerabilityReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVulnerabilityReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListVulnerabilityReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/vulnerabilityReports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListVulnerabilityReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListVulnerabilityReportsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$Get
+    extends StandardParameters {
+    /**
+     * Required. API resource name for vulnerability resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/vulnerabilityReport` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either Compute Engine `instance-id` or `instance-name` can be provided.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Vulnerabilityreports$List
+    extends StandardParameters {
+    /**
+     * If provided, this field specifies the criteria that must be met by a `vulnerabilityReport` API resource to be included in the response.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to `ListVulnerabilityReports` that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Patchdeployments {

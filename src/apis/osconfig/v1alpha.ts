@@ -672,6 +672,10 @@ export namespace osconfig_v1alpha {
      */
     description?: string | null;
     /**
+     * The etag for this OS policy assignment. If this is provided on update, it must match the server's etag.
+     */
+    etag?: string | null;
+    /**
      * Required. Filter to select VMs.
      */
     instanceFilter?: Schema$OSPolicyAssignmentInstanceFilter;
@@ -709,7 +713,7 @@ export namespace osconfig_v1alpha {
     uid?: string | null;
   }
   /**
-   * Message to represent the filters to select VMs for an assignment
+   * Filters to select target VMs for an assignment. If more than one filter criteria is specified below, a VM will be selected if and only if it satisfies all of them.
    */
   export interface Schema$OSPolicyAssignmentInstanceFilter {
     /**
@@ -717,7 +721,7 @@ export namespace osconfig_v1alpha {
      */
     all?: boolean | null;
     /**
-     * List of label sets used for VM exclusion. If the list has more than one label set, the VM is excluded if any of the label sets are applicable for the VM. This filter is applied last in the filtering chain and therefore a VM is guaranteed to be excluded if it satisfies one of the below label sets.
+     * List of label sets used for VM exclusion. If the list has more than one label set, the VM is excluded if any of the label sets are applicable for the VM.
      */
     exclusionLabels?: Schema$OSPolicyAssignmentLabelSet[];
     /**
@@ -725,9 +729,26 @@ export namespace osconfig_v1alpha {
      */
     inclusionLabels?: Schema$OSPolicyAssignmentLabelSet[];
     /**
-     * A VM is included if it's OS short name matches with any of the values provided in this list.
+     * List of inventories to select VMs. A VM is selected if its inventory data matches at least one of the following inventories.
+     */
+    inventories?: Schema$OSPolicyAssignmentInstanceFilterInventory[];
+    /**
+     * A VM is selected if it's OS short name matches with any of the values provided in this list.
      */
     osShortNames?: string[] | null;
+  }
+  /**
+   * VM inventory details.
+   */
+  export interface Schema$OSPolicyAssignmentInstanceFilterInventory {
+    /**
+     * Required. The OS short name
+     */
+    osShortName?: string | null;
+    /**
+     * The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of `7`, specify the following value for this field `7.*` An empty string matches all OS versions.
+     */
+    osVersion?: string | null;
   }
   /**
    * Message representing label set. * A label is a key value pair set for a VM. * A LabelSet is a set of labels. * Labels within a LabelSet are ANDed. In other words, a LabelSet is applicable for a VM only if it matches all the labels in the LabelSet. * Example: A LabelSet with 2 labels: `env=prod` and `type=webserver` will only be applicable for those VMs with both labels present.
@@ -777,7 +798,20 @@ export namespace osconfig_v1alpha {
     minWaitDuration?: string | null;
   }
   /**
-   * The `OSFilter` is used to specify the OS filtering criteria for the resource group.
+   * Filtering criteria to select VMs based on inventory details.
+   */
+  export interface Schema$OSPolicyInventoryFilter {
+    /**
+     * Required. The OS short name
+     */
+    osShortName?: string | null;
+    /**
+     * The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of `7`, specify the following value for this field `7.*` An empty string matches all OS versions.
+     */
+    osVersion?: string | null;
+  }
+  /**
+   * Filtering criteria to select VMs based on OS details.
    */
   export interface Schema$OSPolicyOSFilter {
     /**
@@ -979,6 +1013,10 @@ export namespace osconfig_v1alpha {
    * Resource groups provide a mechanism to group OS policy resources. Resource groups enable OS policy authors to create a single OS policy to be applied to VMs running different operating Systems. When the OS policy is applied to a target VM, the appropriate resource group within the OS policy is selected based on the `OSFilter` specified within the resource group.
    */
   export interface Schema$OSPolicyResourceGroup {
+    /**
+     * List of inventory filters for the resource group. The resources in this resource group are applied to the target VM if it satisfies at least one of the following inventory filters. For example, to apply this resource group to VMs running either `RHEL` or `CentOS` operating systems, specify 2 items for the list with following values: inventory_filters[0].os_short_name='rhel' and inventory_filters[1].os_short_name='centos' If the list is empty, this resource group will be applied to the target VM unconditionally.
+     */
+    inventoryFilters?: Schema$OSPolicyInventoryFilter[];
     /**
      * Used to specify the OS filter for a resource group
      */
@@ -1293,6 +1331,10 @@ export namespace osconfig_v1alpha {
    * A reference for this vulnerability.
    */
   export interface Schema$VulnerabilityReportVulnerabilityDetailsReference {
+    /**
+     * The source of the reference e.g. NVD.
+     */
+    source?: string | null;
     /**
      * The url of the reference.
      */
@@ -1836,7 +1878,7 @@ export namespace osconfig_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // A pagination token returned from a previous call to `ListInventories` that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/{instance\}` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, only hyphen or dash character is supported to list inventories across VMs.
+     *     // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
      *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
      *     view: 'placeholder-value',
@@ -1974,7 +2016,7 @@ export namespace osconfig_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/{instance\}` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, only hyphen or dash character is supported to list inventories across VMs.
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
      */
     parent?: string;
     /**
@@ -2156,7 +2198,7 @@ export namespace osconfig_v1alpha {
      *       pageSize: 'placeholder-value',
      *       // A pagination token returned from a previous call to `ListVulnerabilityReports` that indicates where this listing should continue from.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/{instance\}` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, only `-` character is supported to list vulnerability reports across VMs.
+     *       // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
      *       parent: 'projects/my-project/locations/my-location/instances/my-instance',
      *     });
      *   console.log(res.data);
@@ -2292,7 +2334,7 @@ export namespace osconfig_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/{instance\}` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, only `-` character is supported to list vulnerability reports across VMs.
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
      */
     parent?: string;
   }
@@ -2347,6 +2389,7 @@ export namespace osconfig_v1alpha {
      *       //   "baseline": false,
      *       //   "deleted": false,
      *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
      *       //   "instanceFilter": {},
      *       //   "name": "my_name",
      *       //   "osPolicies": [],
@@ -2631,6 +2674,7 @@ export namespace osconfig_v1alpha {
      *   //   "baseline": false,
      *   //   "deleted": false,
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "instanceFilter": {},
      *   //   "name": "my_name",
      *   //   "osPolicies": [],
@@ -3063,6 +3107,7 @@ export namespace osconfig_v1alpha {
      *       //   "baseline": false,
      *       //   "deleted": false,
      *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
      *       //   "instanceFilter": {},
      *       //   "name": "my_name",
      *       //   "osPolicies": [],

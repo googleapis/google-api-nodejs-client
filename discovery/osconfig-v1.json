@@ -177,6 +177,184 @@
     },
     "projects": {
       "resources": {
+        "locations": {
+          "resources": {
+            "instances": {
+              "resources": {
+                "inventories": {
+                  "methods": {
+                    "get": {
+                      "description": "Get inventory data for the specified VM instance. If the VM has no associated inventory, the message `NOT_FOUND` is returned.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/inventory",
+                      "httpMethod": "GET",
+                      "id": "osconfig.projects.locations.instances.inventories.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. API resource name for inventory resource. Format: `projects/{project}/locations/{location}/instances/{instance}/inventory` For `{project}`, either `project-number` or `project-id` can be provided. For `{instance}`, either Compute Engine `instance-id` or `instance-name` can be provided.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/inventory$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.",
+                          "enum": [
+                            "INVENTORY_VIEW_UNSPECIFIED",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The default value. The API defaults to the BASIC view.",
+                            "Returns the basic inventory information that includes `os_info`.",
+                            "Returns all fields."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Inventory"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List inventory data for all VM instances in the specified zone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/inventories",
+                      "httpMethod": "GET",
+                      "id": "osconfig.projects.locations.instances.inventories.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "If provided, this field specifies the criteria that must be met by a `Inventory` API resource to be included in the response.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of results to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A pagination token returned from a previous call to `ListInventories` that indicates where this listing should continue from.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/instances/-` For `{project}`, either `project-number` or `project-id` can be provided.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.",
+                          "enum": [
+                            "INVENTORY_VIEW_UNSPECIFIED",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The default value. The API defaults to the BASIC view.",
+                            "Returns the basic inventory information that includes `os_info`.",
+                            "Returns all fields."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/inventories",
+                      "response": {
+                        "$ref": "ListInventoriesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "vulnerabilityReports": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets the vulnerability report for the specified VM instance. Only VMs with inventory data have vulnerability reports associated with them.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/vulnerabilityReport",
+                      "httpMethod": "GET",
+                      "id": "osconfig.projects.locations.instances.vulnerabilityReports.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. API resource name for vulnerability resource. Format: `projects/{project}/locations/{location}/instances/{instance}/vulnerabilityReport` For `{project}`, either `project-number` or `project-id` can be provided. For `{instance}`, either Compute Engine `instance-id` or `instance-name` can be provided.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/vulnerabilityReport$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "VulnerabilityReport"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List vulnerability reports for all VM instances in the specified zone.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/vulnerabilityReports",
+                      "httpMethod": "GET",
+                      "id": "osconfig.projects.locations.instances.vulnerabilityReports.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "If provided, this field specifies the criteria that must be met by a `vulnerabilityReport` API resource to be included in the response.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of results to return.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A pagination token returned from a previous call to `ListVulnerabilityReports` that indicates where this listing should continue from.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/instances/-` For `{project}`, either `project-number` or `project-id` can be provided.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/vulnerabilityReports",
+                      "response": {
+                        "$ref": "ListVulnerabilityReportsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "patchDeployments": {
           "methods": {
             "create": {
@@ -476,7 +654,7 @@
       }
     }
   },
-  "revision": "20210427",
+  "revision": "20210803",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -508,6 +686,152 @@
             "By default, upgrade will be performed.",
             "Runs `apt-get dist-upgrade`.",
             "Runs `apt-get upgrade`."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CVSSv3": {
+      "description": "Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document",
+      "id": "CVSSv3",
+      "properties": {
+        "attackComplexity": {
+          "description": "This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.",
+          "enum": [
+            "ATTACK_COMPLEXITY_UNSPECIFIED",
+            "ATTACK_COMPLEXITY_LOW",
+            "ATTACK_COMPLEXITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success when attacking the vulnerable component.",
+            "A successful attack depends on conditions beyond the attacker's control. That is, a successful attack cannot be accomplished at will, but requires the attacker to invest in some measurable amount of effort in preparation or execution against the vulnerable component before a successful attack can be expected."
+          ],
+          "type": "string"
+        },
+        "attackVector": {
+          "description": "This metric reflects the context by which vulnerability exploitation is possible.",
+          "enum": [
+            "ATTACK_VECTOR_UNSPECIFIED",
+            "ATTACK_VECTOR_NETWORK",
+            "ATTACK_VECTOR_ADJACENT",
+            "ATTACK_VECTOR_LOCAL",
+            "ATTACK_VECTOR_PHYSICAL"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The vulnerable component is bound to the network stack and the set of possible attackers extends beyond the other options listed below, up to and including the entire Internet.",
+            "The vulnerable component is bound to the network stack, but the attack is limited at the protocol level to a logically adjacent topology.",
+            "The vulnerable component is not bound to the network stack and the attacker's path is via read/write/execute capabilities.",
+            "The attack requires the attacker to physically touch or manipulate the vulnerable component."
+          ],
+          "type": "string"
+        },
+        "availabilityImpact": {
+          "description": "This metric measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "baseScore": {
+          "description": "The base score is a function of the base metric scores. https://www.first.org/cvss/specification-document#Base-Metrics",
+          "format": "float",
+          "type": "number"
+        },
+        "confidentialityImpact": {
+          "description": "This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "exploitabilityScore": {
+          "description": "The Exploitability sub-score equation is derived from the Base Exploitability metrics. https://www.first.org/cvss/specification-document#2-1-Exploitability-Metrics",
+          "format": "float",
+          "type": "number"
+        },
+        "impactScore": {
+          "description": "The Impact sub-score equation is derived from the Base Impact metrics.",
+          "format": "float",
+          "type": "number"
+        },
+        "integrityImpact": {
+          "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "privilegesRequired": {
+          "description": "This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.",
+          "enum": [
+            "PRIVILEGES_REQUIRED_UNSPECIFIED",
+            "PRIVILEGES_REQUIRED_NONE",
+            "PRIVILEGES_REQUIRED_LOW",
+            "PRIVILEGES_REQUIRED_HIGH"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files of the vulnerable system to carry out an attack.",
+            "The attacker requires privileges that provide basic user capabilities that could normally affect only settings and files owned by a user. Alternatively, an attacker with Low privileges has the ability to access only non-sensitive resources.",
+            "The attacker requires privileges that provide significant (e.g., administrative) control over the vulnerable component allowing access to component-wide settings and files."
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "The Scope metric captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "SCOPE_UNCHANGED",
+            "SCOPE_CHANGED"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "An exploited vulnerability can only affect resources managed by the same security authority.",
+            "An exploited vulnerability can affect resources beyond the security scope managed by the security authority of the vulnerable component."
+          ],
+          "type": "string"
+        },
+        "userInteraction": {
+          "description": "This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.",
+          "enum": [
+            "USER_INTERACTION_UNSPECIFIED",
+            "USER_INTERACTION_NONE",
+            "USER_INTERACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The vulnerable system can be exploited without interaction from any user.",
+            "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited."
           ],
           "type": "string"
         }
@@ -658,7 +982,7 @@
       "type": "object"
     },
     "Inventory": {
-      "description": "The inventory details of a VM.",
+      "description": "This API resource represents the available inventory data for a Compute Engine virtual machine (VM) instance at a given point in time. You can use this API resource to determine the inventory data of your VM. For more information, see [Information provided by OS inventory management](https://cloud.google.com/compute/docs/instances/os-inventory-management#data-collected).",
       "id": "Inventory",
       "properties": {
         "items": {
@@ -668,9 +992,20 @@
           "description": "Inventory items related to the VM keyed by an opaque unique identifier for each inventory item. The identifier is unique to each distinct and addressable inventory item and will change, when there is a new package version.",
           "type": "object"
         },
+        "name": {
+          "description": "Output only. The `Inventory` API resource name. Format: `projects/{project_number}/locations/{location}/instances/{instance_id}/inventory`",
+          "readOnly": true,
+          "type": "string"
+        },
         "osInfo": {
           "$ref": "InventoryOsInfo",
           "description": "Base level operating system information for the VM."
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp of the last reported inventory for the VM.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -943,6 +1278,24 @@
       },
       "type": "object"
     },
+    "ListInventoriesResponse": {
+      "description": "A response message for listing inventory data for all VMs in a specified location.",
+      "id": "ListInventoriesResponse",
+      "properties": {
+        "inventories": {
+          "description": "List of inventory objects.",
+          "items": {
+            "$ref": "Inventory"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of inventory objects.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -1009,6 +1362,24 @@
           "description": "The list of patch jobs.",
           "items": {
             "$ref": "PatchJob"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListVulnerabilityReportsResponse": {
+      "description": "A response message for listing vulnerability reports for all VM instances in the specified location.",
+      "id": "ListVulnerabilityReportsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of vulnerabilityReports object.",
+          "type": "string"
+        },
+        "vulnerabilityReports": {
+          "description": "List of vulnerabilityReport objects.",
+          "items": {
+            "$ref": "VulnerabilityReport"
           },
           "type": "array"
         }
@@ -1681,6 +2052,117 @@
         },
         "version": {
           "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityReport": {
+      "description": "This API resource represents the vulnerability report for a specified Compute Engine virtual machine (VM) instance at a given point in time. For more information, see [Vulnerability reports](https://cloud.google.com/compute/docs/instances/os-inventory-management#vulnerability-reports).",
+      "id": "VulnerabilityReport",
+      "properties": {
+        "name": {
+          "description": "Output only. The `vulnerabilityReport` API resource name. Format: `projects/{project_number}/locations/{location}/instances/{instance_id}/vulnerabilityReport`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp for when the last vulnerability report was generated for the VM.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vulnerabilities": {
+          "description": "Output only. List of vulnerabilities affecting the VM.",
+          "items": {
+            "$ref": "VulnerabilityReportVulnerability"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityReportVulnerability": {
+      "description": "A vulnerability affecting the VM instance.",
+      "id": "VulnerabilityReportVulnerability",
+      "properties": {
+        "availableInventoryItemIds": {
+          "description": "Corresponds to the `AVAILABLE_PACKAGE` inventory item on the VM. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. If there is no available fix, the field is empty. The `inventory_item` value specifies the latest `SoftwarePackage` available to the VM that fixes the vulnerability.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "createTime": {
+          "description": "The timestamp for when the vulnerability was first detected.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "details": {
+          "$ref": "VulnerabilityReportVulnerabilityDetails",
+          "description": "Contains metadata as per the upstream feed of the operating system and NVD."
+        },
+        "installedInventoryItemIds": {
+          "description": "Corresponds to the `INSTALLED_PACKAGE` inventory item on the VM. This field displays the inventory items affected by this vulnerability. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. For some distros, this field may be empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "The timestamp for when the vulnerability was last modified.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityReportVulnerabilityDetails": {
+      "description": "Contains metadata information for the vulnerability. This information is collected from the upstream feed of the operating system.",
+      "id": "VulnerabilityReportVulnerabilityDetails",
+      "properties": {
+        "cve": {
+          "description": "The CVE of the vulnerability. CVE cannot be empty and the combination of should be unique across vulnerabilities for a VM.",
+          "type": "string"
+        },
+        "cvssV2Score": {
+          "description": "The CVSS V2 score of this vulnerability. CVSS V2 score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.",
+          "format": "float",
+          "type": "number"
+        },
+        "cvssV3": {
+          "$ref": "CVSSv3",
+          "description": "The full description of the CVSSv3 for this vulnerability from NVD."
+        },
+        "description": {
+          "description": "The note or description describing the vulnerability from the distro.",
+          "type": "string"
+        },
+        "references": {
+          "description": "Corresponds to the references attached to the `VulnerabilityDetails`.",
+          "items": {
+            "$ref": "VulnerabilityReportVulnerabilityDetailsReference"
+          },
+          "type": "array"
+        },
+        "severity": {
+          "description": "Assigned severity/impact ranking from the distro.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityReportVulnerabilityDetailsReference": {
+      "description": "A reference for this vulnerability.",
+      "id": "VulnerabilityReportVulnerabilityDetailsReference",
+      "properties": {
+        "source": {
+          "description": "The source of the reference e.g. NVD.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The url of the reference.",
           "type": "string"
         }
       },
