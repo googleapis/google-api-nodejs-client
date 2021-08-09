@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -339,7 +339,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the EndpointPolicy resource. It matches pattern `projects/*/locations/global/endpointPolicies/`.",
+                      "description": "Required. Name of the EndpointPolicy resource. It matches pattern `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/endpointPolicies/[^/]+$",
                       "required": true,
@@ -549,7 +549,7 @@
       }
     }
   },
-  "revision": "20210721",
+  "revision": "20210728",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -679,7 +679,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. Name of the EndpointPolicy resource. It matches pattern `projects/*/locations/global/endpointPolicies/`.",
+          "description": "Required. Name of the EndpointPolicy resource. It matches pattern `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.",
           "type": "string"
         },
         "serverTlsPolicy": {

@@ -214,7 +214,7 @@ export namespace networkservices_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Name of the EndpointPolicy resource. It matches pattern `projects/x/locations/global/endpointPolicies/`.
+     * Required. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/global/endpointPolicies/{endpoint_policy\}`.
      */
     name?: string | null;
     /**
@@ -1545,7 +1545,7 @@ export namespace networkservices_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkservices.projects.locations.endpointPolicies.patch({
-     *     // Required. Name of the EndpointPolicy resource. It matches pattern `projects/x/locations/global/endpointPolicies/`.
+     *     // Required. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/global/endpointPolicies/{endpoint_policy\}`.
      *     name: 'projects/my-project/locations/my-location/endpointPolicies/my-endpointPolicie',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the EndpointPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -2025,7 +2025,7 @@ export namespace networkservices_v1beta1 {
   export interface Params$Resource$Projects$Locations$Endpointpolicies$Patch
     extends StandardParameters {
     /**
-     * Required. Name of the EndpointPolicy resource. It matches pattern `projects/x/locations/global/endpointPolicies/`.
+     * Required. Name of the EndpointPolicy resource. It matches pattern `projects/{project\}/locations/global/endpointPolicies/{endpoint_policy\}`.
      */
     name?: string;
     /**
