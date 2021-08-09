@@ -608,7 +608,8 @@
                     "SBOM",
                     "SPDX_PACKAGE",
                     "SPDX_FILE",
-                    "SPDX_RELATIONSHIP"
+                    "SPDX_RELATIONSHIP",
+                    "DSSE_ATTESTATION"
                   ],
                   "enumDescriptions": [
                     "Unknown",
@@ -624,7 +625,8 @@
                     "This represents a software bill of materials.",
                     "This represents an SPDX Package.",
                     "This represents an SPDX File.",
-                    "This represents an SPDX Relationship."
+                    "This represents an SPDX Relationship.",
+                    "This represents a DSSE attestation Note"
                   ],
                   "location": "query",
                   "type": "string"
@@ -1227,7 +1229,7 @@
       }
     }
   },
-  "revision": "20210723",
+  "revision": "20210730",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "Artifact": {
@@ -1328,6 +1330,10 @@
       "description": "Message encapsulating build provenance details.",
       "id": "BuildDetails",
       "properties": {
+        "intotoProvenance": {
+          "$ref": "InTotoProvenance",
+          "description": "In-toto Provenance representation as defined in spec."
+        },
         "provenance": {
           "$ref": "BuildProvenance",
           "description": "The actual provenance"
@@ -1458,6 +1464,15 @@
       },
       "type": "object"
     },
+    "BuilderConfig": {
+      "id": "BuilderConfig",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CisBenchmark": {
       "description": "A compliance check that is a CIS benchmark.",
       "id": "CisBenchmark",
@@ -1526,6 +1541,25 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Completeness": {
+      "description": "Indicates that the builder claims certain fields in this message to be complete.",
+      "id": "Completeness",
+      "properties": {
+        "arguments": {
+          "description": "If true, the builder claims that recipe.arguments is complete, meaning that all external inputs are properly captured in the recipe.",
+          "type": "boolean"
+        },
+        "environment": {
+          "description": "If true, the builder claims that recipe.environment is claimed to be complete.",
+          "type": "boolean"
+        },
+        "materials": {
+          "description": "If true, the builder claims that materials are complete, usually through some controls to prevent network access. Sometimes called \"hermetic\".",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1612,6 +1646,42 @@
         },
         "operationId": {
           "description": "The ID to use for this operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DSSEAttestationNote": {
+      "description": "A note describing an attestation",
+      "id": "DSSEAttestationNote",
+      "properties": {
+        "hint": {
+          "$ref": "DSSEHint",
+          "description": "DSSEHint hints at the purpose of the attestation authority."
+        }
+      },
+      "type": "object"
+    },
+    "DSSEAttestationOccurrence": {
+      "description": "An occurrence describing an attestation on a resource",
+      "id": "DSSEAttestationOccurrence",
+      "properties": {
+        "envelope": {
+          "$ref": "Envelope",
+          "description": "If doing something security critical, make sure to verify the signatures in this metadata."
+        },
+        "statement": {
+          "$ref": "InTotoStatement"
+        }
+      },
+      "type": "object"
+    },
+    "DSSEHint": {
+      "description": "This submessage provides human-readable hints about the purpose of the authority. Because the name of a note acts as its resource reference, it is important to disambiguate the canonical name of the Note (which might be a UUID for security purposes) from \"readable\" names more suitable for debug output. Note that these hints should not be used to look up authorities in security sensitive contexts, such as when looking up attestations to verify.",
+      "id": "DSSEHint",
+      "properties": {
+        "humanReadableName": {
+          "description": "Required. The human readable name of this attestation authority, for example \"cloudbuild-prod\".",
           "type": "string"
         }
       },
@@ -1834,7 +1904,8 @@
             "SBOM",
             "SPDX_PACKAGE",
             "SPDX_FILE",
-            "SPDX_RELATIONSHIP"
+            "SPDX_RELATIONSHIP",
+            "DSSE_ATTESTATION"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -1850,7 +1921,8 @@
             "This represents a software bill of materials.",
             "This represents an SPDX Package.",
             "This represents an SPDX File.",
-            "This represents an SPDX Relationship."
+            "This represents an SPDX Relationship.",
+            "This represents a DSSE attestation Note"
           ],
           "type": "string"
         }
@@ -1967,6 +2039,45 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "Envelope": {
+      "description": "MUST match https://github.com/secure-systems-lab/dsse/blob/master/envelope.proto. An authenticated message of arbitrary type.",
+      "id": "Envelope",
+      "properties": {
+        "payload": {
+          "description": "The bytes being signed",
+          "format": "byte",
+          "type": "string"
+        },
+        "payloadType": {
+          "description": "The type of payload being signed",
+          "type": "string"
+        },
+        "signatures": {
+          "description": "The signatures over the payload",
+          "items": {
+            "$ref": "EnvelopeSignature"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "EnvelopeSignature": {
+      "description": "A DSSE signature",
+      "id": "EnvelopeSignature",
+      "properties": {
+        "keyid": {
+          "description": "A reference id to the key being used for signing",
+          "type": "string"
+        },
+        "sig": {
+          "description": "The signature itself",
+          "format": "byte",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Expr": {
@@ -2385,6 +2496,54 @@
       },
       "type": "object"
     },
+    "InTotoProvenance": {
+      "id": "InTotoProvenance",
+      "properties": {
+        "builderConfig": {
+          "$ref": "BuilderConfig",
+          "description": "required"
+        },
+        "materials": {
+          "description": "The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on. This is considered to be incomplete unless metadata.completeness.materials is true. Unset or null is equivalent to empty.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "$ref": "Metadata"
+        },
+        "recipe": {
+          "$ref": "Recipe",
+          "description": "Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required"
+        }
+      },
+      "type": "object"
+    },
+    "InTotoStatement": {
+      "description": "Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always \"application/vnd.in-toto+json\".",
+      "id": "InTotoStatement",
+      "properties": {
+        "predicateType": {
+          "description": "\"https://in-toto.io/Provenance/v0.1\" for InTotoProvenance.",
+          "type": "string"
+        },
+        "provenance": {
+          "$ref": "InTotoProvenance"
+        },
+        "subject": {
+          "items": {
+            "$ref": "Subject"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "Always \"https://in-toto.io/Statement/v0.1\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Installation": {
       "description": "This represents how a particular software package may be installed on a system.",
       "id": "Installation",
@@ -2549,6 +2708,35 @@
       },
       "type": "object"
     },
+    "Metadata": {
+      "description": "Other properties of the build.",
+      "id": "Metadata",
+      "properties": {
+        "buildFinishedOn": {
+          "description": "The timestamp of when the build completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "buildInvocationId": {
+          "description": "Identifies the particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis. The value SHOULD be globally unique, per in-toto Provenance spec.",
+          "type": "string"
+        },
+        "buildStartedOn": {
+          "description": "The timestamp of when the build started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "completeness": {
+          "$ref": "Completeness",
+          "description": "Indicates that the builder claims certain fields in this message to be complete."
+        },
+        "reproducible": {
+          "description": "If true, the builder claims that running the recipe on materials will produce bit-for-bit identical output.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "NonCompliantFile": {
       "description": "Details about files that caused a compliance check to fail.",
       "id": "NonCompliantFile",
@@ -2601,6 +2789,10 @@
           "$ref": "Discovery",
           "description": "A note describing a provider/analysis type."
         },
+        "dsseAttestation": {
+          "$ref": "DSSEAttestationNote",
+          "description": "A note describing a dsse attestation note."
+        },
         "expirationTime": {
           "description": "Time of expiration for this note, null if note does not expire.",
           "format": "google-datetime",
@@ -2622,7 +2814,8 @@
             "SBOM",
             "SPDX_PACKAGE",
             "SPDX_FILE",
-            "SPDX_RELATIONSHIP"
+            "SPDX_RELATIONSHIP",
+            "DSSE_ATTESTATION"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -2638,7 +2831,8 @@
             "This represents a software bill of materials.",
             "This represents an SPDX Package.",
             "This represents an SPDX File.",
-            "This represents an SPDX Relationship."
+            "This represents an SPDX Relationship.",
+            "This represents a DSSE attestation Note"
           ],
           "type": "string"
         },
@@ -2730,6 +2924,14 @@
           "$ref": "Discovered",
           "description": "Describes the initial scan status for this resource."
         },
+        "dsseAttestation": {
+          "$ref": "DSSEAttestationOccurrence",
+          "description": "This represents a DSSE attestation occurrence"
+        },
+        "envelope": {
+          "$ref": "Envelope",
+          "description": "https://github.com/secure-systems-lab/dsse"
+        },
         "installation": {
           "$ref": "Installation",
           "description": "Describes the installation of a package on the linked resource."
@@ -2750,7 +2952,8 @@
             "SBOM",
             "SPDX_PACKAGE",
             "SPDX_FILE",
-            "SPDX_RELATIONSHIP"
+            "SPDX_RELATIONSHIP",
+            "DSSE_ATTESTATION"
           ],
           "enumDescriptions": [
             "Unknown",
@@ -2766,7 +2969,8 @@
             "This represents a software bill of materials.",
             "This represents an SPDX Package.",
             "This represents an SPDX File.",
-            "This represents an SPDX Relationship."
+            "This represents an SPDX Relationship.",
+            "This represents a DSSE attestation Note"
           ],
           "type": "string"
         },
@@ -3048,6 +3252,40 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Recipe": {
+      "description": "Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.",
+      "id": "Recipe",
+      "properties": {
+        "arguments": {
+          "description": "Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were \"make\", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "definedInMaterial": {
+          "description": "Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were \"make\", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64.",
+          "format": "int64",
+          "type": "string"
+        },
+        "entryPoint": {
+          "description": "String identifying the entry point into the build. This is often a path to a configuration file and/or a target label within that file. The syntax and meaning are defined by recipe.type. For example, if the recipe type were \"make\", then this would reference the directory in which to run make as well as which target to use.",
+          "type": "string"
+        },
+        "environment": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy.",
+          "type": "object"
+        },
+        "type": {
+          "description": "URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3385,6 +3623,22 @@
         },
         "object": {
           "description": "Google Cloud Storage object containing source.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Subject": {
+      "id": "Subject",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "\"\": \"\"",
+          "type": "object"
+        },
+        "name": {
           "type": "string"
         }
       },
