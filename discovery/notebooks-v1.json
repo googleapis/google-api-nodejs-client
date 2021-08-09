@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -370,7 +370,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Format: `projects/{project_id}/locations/{location}/schedules/{execution_id}`",
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/executions/{execution_id}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/executions/[^/]+$",
                       "required": true,
@@ -1609,7 +1609,7 @@
       }
     }
   },
-  "revision": "20210715",
+  "revision": "20210729",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {

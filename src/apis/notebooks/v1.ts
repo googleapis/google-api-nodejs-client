@@ -2695,7 +2695,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.executions.get({
-     *     // Required. Format: `projects/{project_id\}/locations/{location\}/schedules/{execution_id\}`
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/executions/{execution_id\}`
      *     name: 'projects/my-project/locations/my-location/executions/my-execution',
      *   });
      *   console.log(res.data);
@@ -2973,7 +2973,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Executions$Get
     extends StandardParameters {
     /**
-     * Required. Format: `projects/{project_id\}/locations/{location\}/schedules/{execution_id\}`
+     * Required. Format: `projects/{project_id\}/locations/{location\}/executions/{execution_id\}`
      */
     name?: string;
   }
