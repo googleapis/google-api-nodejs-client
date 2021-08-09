@@ -112,6 +112,35 @@
       "resources": {
         "locations": {
           "methods": {
+            "generateRandomBytes": {
+              "description": "Generate random bytes using the Cloud KMS randomness source in the provided location.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:generateRandomBytes",
+              "httpMethod": "POST",
+              "id": "cloudkms.projects.locations.generateRandomBytes",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "The project-specific location in which to generate random bytes. For example, \"projects/my-project/locations/us-central1\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+location}:generateRandomBytes",
+              "request": {
+                "$ref": "GenerateRandomBytesRequest"
+              },
+              "response": {
+                "$ref": "GenerateRandomBytesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms"
+              ]
+            },
             "get": {
               "description": "Gets information about a location.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
@@ -1317,7 +1346,7 @@
       }
     }
   },
-  "revision": "20210723",
+  "revision": "20210803",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1538,6 +1567,15 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "destroyScheduledDuration": {
+          "description": "Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED. If not specified at creation time, the default duration is 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "importOnly": {
+          "description": "Immutable. Whether this key may contain imported versions only.",
+          "type": "boolean"
         },
         "labels": {
           "additionalProperties": {
@@ -2002,6 +2040,51 @@
       "properties": {
         "externalKeyUri": {
           "description": "The URI for an external resource that this CryptoKeyVersion represents.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateRandomBytesRequest": {
+      "description": "Request message for KeyManagementService.GenerateRandomBytes.",
+      "id": "GenerateRandomBytesRequest",
+      "properties": {
+        "lengthBytes": {
+          "description": "The length in bytes of the amount of randomness to retrieve. Minimum 8 bytes, maximum 1024 bytes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "protectionLevel": {
+          "description": "The ProtectionLevel to use when generating the random data. Defaults to SOFTWARE.",
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Crypto operations are performed in software.",
+            "Crypto operations are performed in a Hardware Security Module.",
+            "Crypto operations are performed by an external key manager."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateRandomBytesResponse": {
+      "description": "Response message for KeyManagementService.GenerateRandomBytes.",
+      "id": "GenerateRandomBytesResponse",
+      "properties": {
+        "data": {
+          "description": "The generated data.",
+          "format": "byte",
+          "type": "string"
+        },
+        "dataCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned GenerateRandomBytesResponse.data. An integrity check of GenerateRandomBytesResponse.data can be performed by computing the CRC32C checksum of GenerateRandomBytesResponse.data and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
           "type": "string"
         }
       },
