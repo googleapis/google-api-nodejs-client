@@ -271,11 +271,6 @@
                     "parent"
                   ],
                   "parameters": {
-                    "filter": {
-                      "description": "`filter` can be used to specify a subset of jobs. If `filter` equals `target_config=\"HttpConfig\"`, then the http target jobs are retrieved. If `filter` equals `target_config=\"PubSubConfig\"`, then the Pub/Sub target jobs are retrieved. If `filter` equals `labels.foo=value1 labels.foo=value2` then only jobs which are labeled with foo=value1 AND foo=value2 will be returned.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "legacyAppEngineCron": {
                       "description": "This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the jobs in the __cron queue will be listed instead.",
                       "location": "query",
@@ -433,7 +428,7 @@
       }
     }
   },
-  "revision": "20210730",
+  "revision": "20210713",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {

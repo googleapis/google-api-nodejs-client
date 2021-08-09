@@ -1233,8 +1233,6 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.list({
-     *     // `filter` can be used to specify a subset of jobs. If `filter` equals `target_config="HttpConfig"`, then the http target jobs are retrieved. If `filter` equals `target_config="PubSubConfig"`, then the Pub/Sub target jobs are retrieved. If `filter` equals `labels.foo=value1 labels.foo=value2` then only jobs which are labeled with foo=value1 AND foo=value2 will be returned.
-     *     filter: 'placeholder-value',
      *     // This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the jobs in the __cron queue will be listed instead.
      *     legacyAppEngineCron: 'placeholder-value',
      *     // Requested page size. The maximum page size is 500. If unspecified, the page size will be the maximum. Fewer jobs than requested might be returned, even if more jobs exist; use next_page_token to determine if more jobs exist.
@@ -1995,10 +1993,6 @@ export namespace cloudscheduler_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$List
     extends StandardParameters {
-    /**
-     * `filter` can be used to specify a subset of jobs. If `filter` equals `target_config="HttpConfig"`, then the http target jobs are retrieved. If `filter` equals `target_config="PubSubConfig"`, then the Pub/Sub target jobs are retrieved. If `filter` equals `labels.foo=value1 labels.foo=value2` then only jobs which are labeled with foo=value1 AND foo=value2 will be returned.
-     */
-    filter?: string;
     /**
      * This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the jobs in the __cron queue will be listed instead.
      */
