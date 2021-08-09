@@ -374,7 +374,7 @@
       }
     }
   },
-  "revision": "20210410",
+  "revision": "20210731",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -410,6 +410,13 @@
           "description": "The list of POSIX accounts associated with the user.",
           "items": {
             "$ref": "PosixAccount"
+          },
+          "type": "array"
+        },
+        "securityKeys": {
+          "description": "The registered security key credentials for a user.",
+          "items": {
+            "$ref": "SecurityKey"
           },
           "type": "array"
         },
@@ -488,6 +495,29 @@
       },
       "type": "object"
     },
+    "SecurityKey": {
+      "description": "The credential information for a Google registered security key.",
+      "id": "SecurityKey",
+      "properties": {
+        "privateKey": {
+          "description": "Hardware-backed private key text in SSH format.",
+          "type": "string"
+        },
+        "publicKey": {
+          "description": "Public key text in SSH format, defined by [RFC4253](\"https://www.ietf.org/rfc/rfc4253.txt\") section 6.6.",
+          "type": "string"
+        },
+        "universalTwoFactor": {
+          "$ref": "UniversalTwoFactor",
+          "description": "The U2F protocol type."
+        },
+        "webAuthn": {
+          "$ref": "WebAuthn",
+          "description": "The Web Authentication protocol type."
+        }
+      },
+      "type": "object"
+    },
     "SshPublicKey": {
       "description": "The SSH public key information associated with a Google account.",
       "id": "SshPublicKey",
@@ -509,6 +539,28 @@
         "name": {
           "description": "Output only. The canonical resource name.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UniversalTwoFactor": {
+      "description": "Security key information specific to the U2F protocol.",
+      "id": "UniversalTwoFactor",
+      "properties": {
+        "appId": {
+          "description": "Application ID for the U2F protocol.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WebAuthn": {
+      "description": "Security key information specific to the Web Authentication protocol.",
+      "id": "WebAuthn",
+      "properties": {
+        "rpId": {
+          "description": "Relying party ID for Web Authentication.",
           "type": "string"
         }
       },
