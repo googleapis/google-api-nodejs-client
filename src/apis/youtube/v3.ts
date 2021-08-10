@@ -2364,7 +2364,7 @@ export namespace youtube_v3 {
     messageDeletedDetails?: Schema$LiveChatMessageDeletedDetails;
     messageRetractedDetails?: Schema$LiveChatMessageRetractedDetails;
     /**
-     * The date and time when the message was orignally published.
+     * The date and time when the message was originally published.
      */
     publishedAt?: string | null;
     /**
@@ -4107,7 +4107,7 @@ export namespace youtube_v3 {
      */
     concurrentViewers?: string | null;
     /**
-     * The time that the broadcast is scheduled to end. If the value is empty or the property is not present, then the broadcast is scheduled to contiue indefinitely.
+     * The time that the broadcast is scheduled to end. If the value is empty or the property is not present, then the broadcast is scheduled to continue indefinitely.
      */
     scheduledEndTime?: string | null;
     /**

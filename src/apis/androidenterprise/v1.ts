@@ -656,7 +656,7 @@ export namespace androidenterprise_v1 {
      */
     failureReason?: string | null;
     /**
-     * The id of the product (e.g. "app:com.google.android.gm") for which the install failure event occured. This field will always be present.
+     * The id of the product (e.g. "app:com.google.android.gm") for which the install failure event occurred. This field will always be present.
      */
     productId?: string | null;
     /**

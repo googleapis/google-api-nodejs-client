@@ -593,7 +593,7 @@ export namespace containeranalysis_v1alpha1 {
     url?: string | null;
   }
   /**
-   * DocumentNote represents an SPDX Document Creation Infromation section: https://spdx.github.io/spdx-spec/2-document-creation-information/
+   * DocumentNote represents an SPDX Document Creation Information section: https://spdx.github.io/spdx-spec/2-document-creation-information/
    */
   export interface Schema$DocumentNote {
     /**

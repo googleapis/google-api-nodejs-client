@@ -372,7 +372,7 @@ export namespace networksecurity_v1beta1 {
     permissions?: string[] | null;
   }
   /**
-   * Specification of HTTP header match atrributes.
+   * Specification of HTTP header match attributes.
    */
   export interface Schema$HttpHeaderMatch {
     /**

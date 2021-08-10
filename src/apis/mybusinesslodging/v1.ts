@@ -845,7 +845,7 @@ export namespace mybusinesslodging_v1 {
      */
     hearingAccessibleUnitException?: string | null;
     /**
-     * Mobility-accessible bathtub. A bathtub that accomodates the physically challenged with additional railings or hand grips, a transfer seat or lift, and/or a door to enable walking into the tub.
+     * Mobility-accessible bathtub. A bathtub that accommodates the physically challenged with additional railings or hand grips, a transfer seat or lift, and/or a door to enable walking into the tub.
      */
     mobilityAccessibleBathtub?: boolean | null;
     /**
@@ -1346,7 +1346,7 @@ export namespace mybusinesslodging_v1 {
     syntheticPillowsException?: string | null;
   }
   /**
-   * Lodging of a location that provides accomodations.
+   * Lodging of a location that provides accommodations.
    */
   export interface Schema$Lodging {
     /**

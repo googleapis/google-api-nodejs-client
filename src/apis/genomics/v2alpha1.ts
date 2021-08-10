@@ -638,7 +638,7 @@ export namespace genomics_v2alpha1 {
     message?: string | null;
   }
   /**
-   * An event that occured in the operation assigned to the worker and the time of occurance.
+   * An event that occurred in the operation assigned to the worker and the time of occurrence.
    */
   export interface Schema$TimestampedEvent {
     /**

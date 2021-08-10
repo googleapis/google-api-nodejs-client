@@ -664,7 +664,7 @@ export namespace genomics_v1alpha2 {
     message?: string | null;
   }
   /**
-   * Stores the list of events and times they occured for major events in job execution.
+   * Stores the list of events and times they occurred for major events in job execution.
    */
   export interface Schema$TimestampEvent {
     /**

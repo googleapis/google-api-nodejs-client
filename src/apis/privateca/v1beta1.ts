@@ -182,7 +182,7 @@ export namespace privateca_v1beta1 {
      */
     allowedIps?: string[] | null;
     /**
-     * Optional. Contains valid RFC 3986 URIs. Glob patterns are also supported. To match across path seperators (i.e. '/') use the double star glob pattern (i.e. '**').
+     * Optional. Contains valid RFC 3986 URIs. Glob patterns are also supported. To match across path separators (i.e. '/') use the double star glob pattern (i.e. '**').
      */
     allowedUris?: string[] | null;
     /**

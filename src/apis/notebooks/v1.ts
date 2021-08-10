@@ -934,11 +934,11 @@ export namespace notebooks_v1 {
     values?: string[] | null;
   }
   /**
-   * Request for reseting a notebook instance
+   * Request for resetting a notebook instance
    */
   export interface Schema$ResetInstanceRequest {}
   /**
-   * Request for reseting a Managed Notebook Runtime.
+   * Request for resetting a Managed Notebook Runtime.
    */
   export interface Schema$ResetRuntimeRequest {}
   /**
@@ -1073,7 +1073,7 @@ export namespace notebooks_v1 {
      */
     idleShutdown?: boolean | null;
     /**
-     * Time in minutes to wait before shuting down runtime. Default: 180 minutes
+     * Time in minutes to wait before shutting down runtime. Default: 180 minutes
      */
     idleShutdownTimeout?: number | null;
     /**

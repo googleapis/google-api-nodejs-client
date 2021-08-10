@@ -1304,7 +1304,7 @@ export namespace container_v1beta1 {
      */
     name?: string | null;
     /**
-     * Whether the location is recomended for GKE cluster scheduling.
+     * Whether the location is recommended for GKE cluster scheduling.
      */
     recommended?: boolean | null;
     /**
@@ -1552,7 +1552,7 @@ export namespace container_v1beta1 {
      */
     oauthScopes?: string[] | null;
     /**
-     * Whether the nodes are created as preemptible VM instances. See: https://cloud.google.com/compute/docs/instances/preemptible for more inforamtion about preemptible VM instances.
+     * Whether the nodes are created as preemptible VM instances. See: https://cloud.google.com/compute/docs/instances/preemptible for more information about preemptible VM instances.
      */
     preemptible?: boolean | null;
     /**
