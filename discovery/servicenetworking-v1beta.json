@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/service.management": {
           "description": "Manage your Google API service configuration"
@@ -307,7 +307,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20210822",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1832,7 +1832,7 @@
       "id": "PeeredDnsDomain",
       "properties": {
         "dnsSuffix": {
-          "description": "The DNS domain name suffix e.g. `example.com.`.",
+          "description": "The DNS domain name suffix e.g. `example.com.`. Cloud DNS requires that a DNS suffix ends with a trailing dot.",
           "type": "string"
         },
         "name": {

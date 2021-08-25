@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/service.management": {
           "description": "Manage your Google API service configuration"
@@ -860,7 +860,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20210822",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -986,6 +986,10 @@
           "description": "Required. The prefix length of the subnet's IP address range. Use CIDR range notation, such as `30` to provision a subnet with an `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer's allocated range.",
           "format": "int32",
           "type": "integer"
+        },
+        "privateIpv6GoogleAccess": {
+          "description": "Optional. The private IPv6 google access type for the VMs in this subnet. For information about the access types that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.",
+          "type": "string"
         },
         "region": {
           "description": "Required. The name of a [region](/compute/docs/regions-zones) for the subnet, such `europe-west1`.",
@@ -2544,7 +2548,7 @@
       "id": "PeeredDnsDomain",
       "properties": {
         "dnsSuffix": {
-          "description": "The DNS domain name suffix e.g. `example.com.`.",
+          "description": "The DNS domain name suffix e.g. `example.com.`. Cloud DNS requires that a DNS suffix ends with a trailing dot.",
           "type": "string"
         },
         "name": {
