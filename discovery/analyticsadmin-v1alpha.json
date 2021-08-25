@@ -711,6 +711,32 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
+        "getDataRetentionSettings": {
+          "description": "Returns the singleton data retention settings for this property.",
+          "flatPath": "v1alpha/properties/{propertiesId}/dataRetentionSettings",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.properties.getDataRetentionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the settings to lookup. Format: properties/{property}/dataRetentionSettings Example: \"properties/1000/dataRetentionSettings\"",
+              "location": "path",
+              "pattern": "^properties/[^/]+/dataRetentionSettings$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDataRetentionSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "getGoogleSignalsSettings": {
           "description": "Lookup for Google Signals settings for a property.",
           "flatPath": "v1alpha/properties/{propertiesId}/googleSignalsSettings",
@@ -804,6 +830,40 @@
           },
           "response": {
             "$ref": "GoogleAnalyticsAdminV1alphaProperty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
+        "updateDataRetentionSettings": {
+          "description": "Updates the singleton data retention settings for this property.",
+          "flatPath": "v1alpha/properties/{propertiesId}/dataRetentionSettings",
+          "httpMethod": "PATCH",
+          "id": "analyticsadmin.properties.updateDataRetentionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Output only. Resource name for this DataRetentionSetting resource. Format: properties/{property}/dataRetentionSettings",
+              "location": "path",
+              "pattern": "^properties/[^/]+/dataRetentionSettings$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDataRetentionSettings"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDataRetentionSettings"
           },
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit"
@@ -3092,7 +3152,7 @@
       }
     }
   },
-  "revision": "20210721",
+  "revision": "20210824",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3440,6 +3500,10 @@
           "$ref": "GoogleAnalyticsAdminV1alphaCustomMetric",
           "description": "A snapshot of a CustomMetric resource in change history."
         },
+        "dataRetentionSettings": {
+          "$ref": "GoogleAnalyticsAdminV1alphaDataRetentionSettings",
+          "description": "A snapshot of a data retention settings resource in change history."
+        },
         "displayVideo360AdvertiserLink": {
           "$ref": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink",
           "description": "A snapshot of a DisplayVideo360AdvertiserLink resource in change history."
@@ -3681,6 +3745,42 @@
             "Metric scoped to an event."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDataRetentionSettings": {
+      "description": "Settings values for data retention. This is a singleton resource.",
+      "id": "GoogleAnalyticsAdminV1alphaDataRetentionSettings",
+      "properties": {
+        "eventDataRetention": {
+          "description": "The length of time that event-level data is retained.",
+          "enum": [
+            "RETENTION_DURATION_UNSPECIFIED",
+            "TWO_MONTHS",
+            "FOURTEEN_MONTHS",
+            "TWENTY_SIX_MONTHS",
+            "THIRTY_EIGHT_MONTHS",
+            "FIFTY_MONTHS"
+          ],
+          "enumDescriptions": [
+            "Data retention time duration is not specified.",
+            "The data retention time duration is 2 months.",
+            "The data retention time duration is 14 months.",
+            "The data retention time duration is 26 months. Available to 360 properties only.",
+            "The data retention time duration is 38 months. Available to 360 properties only.",
+            "The data retention time duration is 50 months. Available to 360 properties only."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name for this DataRetentionSetting resource. Format: properties/{property}/dataRetentionSettings",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resetUserDataOnNewActivity": {
+          "description": "If true, reset the retention period for the user identifier with every event from that user.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -4599,7 +4699,8 @@
               "CONVERSION_EVENT",
               "MEASUREMENT_PROTOCOL_SECRET",
               "CUSTOM_DIMENSION",
-              "CUSTOM_METRIC"
+              "CUSTOM_METRIC",
+              "DATA_RETENTION_SETTINGS"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -4614,7 +4715,8 @@
               "ConversionEvent resource",
               "MeasurementProtocolSecret resource",
               "CustomDimension resource",
-              "CustomMetric resource"
+              "CustomMetric resource",
+              "DataRetentionSettings resource"
             ],
             "type": "string"
           },
