@@ -3,13 +3,13 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/bigquery": {
-          "description": "View and manage your data in Google BigQuery"
+          "description": "View and manage your data in Google BigQuery and see the email address for your Google Account"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
-          "description": "View your data across Google Cloud Platform services"
+          "description": "View your data across Google Cloud services and see the email address of your Google Account"
         }
       }
     }
@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20210724",
+  "revision": "20210814",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -1316,7 +1316,7 @@
             "Type unspecified.",
             "Use OAuth 2 authorization codes that can be exchanged for a refresh token on the backend.",
             "Return an authorization code for a given Google+ page that can then be exchanged for a refresh token on the backend.",
-            "Use First Party OAuth based on Loas Owned Clients. First Party OAuth doesn't require a refresh token to get an offline access token. Instead, it uses a client-signed JWT assertion to retrieve an access token."
+            "Use First Party OAuth."
           ],
           "type": "string"
         },
@@ -1837,8 +1837,13 @@
           "type": "string"
         },
         "notificationPubsubTopic": {
-          "description": "Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish.",
+          "description": "Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish. The format for specifying a pubsub topic is: `projects/{project}/topics/{topic}`",
           "type": "string"
+        },
+        "ownerInfo": {
+          "$ref": "UserInfo",
+          "description": "Output only. Information about the user whose credentials are used to transfer data. Populated only for `transferConfigs.get` requests. In case the user information is not available, this field will not be populated.",
+          "readOnly": true
         },
         "params": {
           "additionalProperties": {
@@ -1957,7 +1962,7 @@
           "type": "string"
         },
         "notificationPubsubTopic": {
-          "description": "Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes",
+          "description": "Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes. The format for specifying a pubsub topic is: `projects/{project}/topics/{topic}`",
           "readOnly": true,
           "type": "string"
         },
@@ -2020,6 +2025,17 @@
         "userId": {
           "description": "Deprecated. Unique ID of the user on whose behalf transfer is done.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserInfo": {
+      "description": "Information about a user.",
+      "id": "UserInfo",
+      "properties": {
+        "email": {
+          "description": "E-mail address of the user.",
           "type": "string"
         }
       },
