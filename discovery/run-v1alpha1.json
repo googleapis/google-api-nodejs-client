@@ -268,7 +268,7 @@
       }
     }
   },
-  "revision": "20210730",
+  "revision": "20210813",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "ConfigMapEnvSource": {
@@ -711,7 +711,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. Type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: * \"Completed\": True when the Job has successfully completed. * \"Started\": True when the Job has successfully started running. * \"ResourcesAvailable\": True when underlying resources have been provisioned.",
+          "description": "Required. Type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/main/docs/spec/errors.md#error-conditions-and-reporting Types include: * \"Completed\": True when the Job has successfully completed. * \"Started\": True when the Job has successfully started running. * \"ResourcesAvailable\": True when underlying resources have been provisioned.",
           "type": "string"
         }
       },
@@ -1172,14 +1172,14 @@
       "type": "object"
     },
     "Volume": {
-      "description": "Not supported by Cloud Run Volume represents a named volume in a container.",
+      "description": "Volume represents a named volume in a container.",
       "id": "Volume",
       "properties": {
         "configMap": {
           "$ref": "ConfigMapVolumeSource"
         },
         "name": {
-          "description": "Volume's name.",
+          "description": "Volume's name. In Cloud Run Fully Managed, the name 'cloudsql' is reserved.",
           "type": "string"
         },
         "secret": {
@@ -1189,7 +1189,7 @@
       "type": "object"
     },
     "VolumeMount": {
-      "description": "Not supported by Cloud Run VolumeMount describes a mounting of a Volume within a container.",
+      "description": "VolumeMount describes a mounting of a Volume within a container.",
       "id": "VolumeMount",
       "properties": {
         "mountPath": {
@@ -1197,7 +1197,7 @@
           "type": "string"
         },
         "name": {
-          "description": "This must match the Name of a Volume.",
+          "description": "The name of the volume. There must be a corresponding Volume with the same name.",
           "type": "string"
         },
         "readOnly": {
