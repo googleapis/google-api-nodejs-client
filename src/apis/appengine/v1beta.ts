@@ -213,6 +213,10 @@ export namespace appengine_v1beta {
      */
     name?: string | null;
     /**
+     * The service account associated with the application. This is the app-level default identity. If no identity provided during create version, Admin API will fallback to this one.
+     */
+    serviceAccount?: string | null;
+    /**
      * Serving status of this application.
      */
     servingStatus?: string | null;
@@ -1761,6 +1765,7 @@ export namespace appengine_v1beta {
      *       //   "id": "my_id",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingStatus": "my_servingStatus"
      *       // }
      *     },
@@ -1915,6 +1920,7 @@ export namespace appengine_v1beta {
      *   //   "id": "my_id",
      *   //   "locationId": "my_locationId",
      *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "servingStatus": "my_servingStatus"
      *   // }
      * }
@@ -2058,6 +2064,7 @@ export namespace appengine_v1beta {
      *       //   "id": "my_id",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingStatus": "my_servingStatus"
      *       // }
      *     },
