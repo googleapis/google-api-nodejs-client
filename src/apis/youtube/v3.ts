@@ -2343,9 +2343,12 @@ export namespace youtube_v3 {
   export interface Schema$LiveChatMessageRetractedDetails {
     retractedMessageId?: string | null;
   }
+  /**
+   * Next ID: 29
+   */
   export interface Schema$LiveChatMessageSnippet {
     /**
-     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase
+     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase
      */
     authorChannelId?: string | null;
     /**
