@@ -148,11 +148,11 @@ export namespace policyanalyzer_v1 {
    */
   export interface Schema$GoogleCloudPolicyanalyzerV1ObservationPeriod {
     /**
-     * The observation end time.
+     * The observation end time. The time in this timestamp is always `07:00:00Z`.
      */
     endTime?: string | null;
     /**
-     * The observation start time.
+     * The observation start time. The time in this timestamp is always `07:00:00Z`.
      */
     startTime?: string | null;
   }
@@ -207,7 +207,7 @@ export namespace policyanalyzer_v1 {
     }
 
     /**
-     * Queries policy activities on GCP resources.
+     * Queries policy activities on Google Cloud resources.
      * @example
      * ```js
      * // Before running the sample:
@@ -234,13 +234,13 @@ export namespace policyanalyzer_v1 {
      *   // Do the magic
      *   const res =
      *     await policyanalyzer.projects.locations.activityTypes.activities.query({
-     *       // Optional. Optional filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=\} - service_account_key_last_authn.full_resource_name {=\}
+     *       // Optional. Filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=\} [STRING] - service_account_key_last_authn.full_resource_name {=\} [STRING]
      *       filter: 'placeholder-value',
      *       // Optional. The maximum number of results to return from this request. Max limit is 1000. Non-positive values are ignored. The presence of `nextPageToken` in the response indicates that more results might be available.
      *       pageSize: 'placeholder-value',
      *       // Optional. If present, then retrieve the next batch of results from the preceding call to this method. `pageToken` must be the value of `nextPageToken` from the previous response. The values of other method parameters should be identical to those in the previous call.
      *       pageToken: 'placeholder-value',
-     *       // Required. The container resource on which to execute the request. Acceptable formats: `projects/[PROJECT_ID|PROJECT_NUMBER]/locations/[LOCATION]/activityTypes/[ACTIVITY_TYPE]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
+     *       // Required. The container resource on which to execute the request. Acceptable formats: `projects/[PROJECT_ID|PROJECT_NUMBER]/locations/[LOCATION]/activityTypes/[ACTIVITY_TYPE]` LOCATION here refers to Google Cloud Locations: https://cloud.google.com/about/locations/
      *       parent:
      *         'projects/my-project/locations/my-location/activityTypes/my-activityType',
      *     });
@@ -359,7 +359,7 @@ export namespace policyanalyzer_v1 {
   export interface Params$Resource$Projects$Locations$Activitytypes$Activities$Query
     extends StandardParameters {
     /**
-     * Optional. Optional filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=\} - service_account_key_last_authn.full_resource_name {=\}
+     * Optional. Filter expression to restrict the activities returned. Supported filters are: - service_account_last_authn.full_resource_name {=\} [STRING] - service_account_key_last_authn.full_resource_name {=\} [STRING]
      */
     filter?: string;
     /**
@@ -371,7 +371,7 @@ export namespace policyanalyzer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The container resource on which to execute the request. Acceptable formats: `projects/[PROJECT_ID|PROJECT_NUMBER]/locations/[LOCATION]/activityTypes/[ACTIVITY_TYPE]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/
+     * Required. The container resource on which to execute the request. Acceptable formats: `projects/[PROJECT_ID|PROJECT_NUMBER]/locations/[LOCATION]/activityTypes/[ACTIVITY_TYPE]` LOCATION here refers to Google Cloud Locations: https://cloud.google.com/about/locations/
      */
     parent?: string;
   }
