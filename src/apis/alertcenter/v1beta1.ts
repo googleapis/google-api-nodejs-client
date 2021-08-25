@@ -128,6 +128,36 @@ export namespace alertcenter_v1beta1 {
   }
 
   /**
+   * Details about why an account is receiving an account suspension warning.
+   */
+  export interface Schema$AccountSuspensionDetails {
+    /**
+     * The reason why this account is receiving an account suspension warning.
+     */
+    abuseReason?: string | null;
+    /**
+     * The name of the product being abused. This is restricted to only the following values: "Gmail" "Payments" "Voice" "Workspace" "Other"
+     */
+    productName?: string | null;
+  }
+  /**
+   * A warning that the customer's account is about to be suspended.
+   */
+  export interface Schema$AccountSuspensionWarning {
+    /**
+     * The amount of time remaining to appeal an imminent suspension. After this window has elapsed, the account will be suspended. Only populated if the account suspension is in WARNING state.
+     */
+    appealWindow?: string | null;
+    /**
+     * Account suspension warning state.
+     */
+    state?: string | null;
+    /**
+     * Details about why an account is being suspended.
+     */
+    suspensionDetails?: Schema$AccountSuspensionDetails[];
+  }
+  /**
    * Alerts for user account warning events.
    */
   export interface Schema$AccountWarning {
@@ -238,7 +268,7 @@ export namespace alertcenter_v1beta1 {
      */
     securityInvestigationToolLink?: string | null;
     /**
-     * Required. A unique identifier for the system that reported the alert. This is output only after alert is created. Supported sources are any of the following: * Google Operations * Mobile device management * Gmail phishing * Data Loss Prevention * Domain wide takeout * State sponsored attack * Google identity
+     * Required. A unique identifier for the system that reported the alert. This is output only after alert is created. Supported sources are any of the following: * Google Operations * Mobile device management * Gmail phishing * Data Loss Prevention * Domain wide takeout * State sponsored attack * Google identity * Apps outage
      */
     source?: string | null;
     /**
@@ -339,7 +369,7 @@ export namespace alertcenter_v1beta1 {
     name?: string | null;
   }
   /**
-   * An outage incident reported by Google for a Google Workspace (formerly G Suite) application.
+   * An outage incident reported for a Google Workspace service.
    */
   export interface Schema$AppsOutage {
     /**
@@ -347,7 +377,7 @@ export namespace alertcenter_v1beta1 {
      */
     dashboardUri?: string | null;
     /**
-     * Timestamp by which the next update shall be provided.
+     * Timestamp by which the next update is expected to arrive.
      */
     nextUpdateTime?: string | null;
     /**
@@ -355,7 +385,7 @@ export namespace alertcenter_v1beta1 {
      */
     products?: string[] | null;
     /**
-     * Timestamp of the outage expected or confirmed resolution. (Used only when known).
+     * Timestamp when the outage is expected to be resolved, or has confirmed resolution. Provided only when known.
      */
     resolutionTime?: string | null;
     /**
