@@ -98,21 +98,6 @@
   "resources": {
     "v1": {
       "methods": {
-        "introspect": {
-          "description": "Gets information about a Google OAuth 2.0 access token issued by the Google Cloud [Security Token Service API](https://cloud.google.com/iam/docs/reference/sts/rest).",
-          "flatPath": "v1/introspect",
-          "httpMethod": "POST",
-          "id": "sts.introspect",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/introspect",
-          "request": {
-            "$ref": "GoogleIdentityStsV1IntrospectTokenRequest"
-          },
-          "response": {
-            "$ref": "GoogleIdentityStsV1IntrospectTokenResponse"
-          }
-        },
         "token": {
           "description": "Exchanges a credential for a Google OAuth 2.0 access token. The token asserts an external identity within a workload identity pool, or it applies a Credential Access Boundary to a Google access token. When you call this method, do not send the `Authorization` HTTP header in the request. This method does not require the `Authorization` header, and using the header can cause the request to fail.",
           "flatPath": "v1/token",
@@ -131,7 +116,7 @@
       }
     }
   },
-  "revision": "20210731",
+  "revision": "20210813",
   "rootUrl": "https://sts.googleapis.com/",
   "schemas": {
     "GoogleIdentityStsV1ExchangeTokenRequest": {
@@ -188,62 +173,6 @@
         },
         "token_type": {
           "description": "The type of access token. Always has the value `Bearer`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleIdentityStsV1IntrospectTokenRequest": {
-      "description": "Request message for IntrospectToken.",
-      "id": "GoogleIdentityStsV1IntrospectTokenRequest",
-      "properties": {
-        "token": {
-          "description": "Required. The OAuth 2.0 security token issued by the Security Token Service API.",
-          "type": "string"
-        },
-        "tokenTypeHint": {
-          "description": "Optional. The type of the given token. Supported values are `urn:ietf:params:oauth:token-type:access_token` and `access_token`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleIdentityStsV1IntrospectTokenResponse": {
-      "description": "Response message for IntrospectToken.",
-      "id": "GoogleIdentityStsV1IntrospectTokenResponse",
-      "properties": {
-        "active": {
-          "description": "A boolean value that indicates whether the provided access token is currently active.",
-          "type": "boolean"
-        },
-        "client_id": {
-          "description": "The client identifier for the OAuth 2.0 client that requested the provided token.",
-          "type": "string"
-        },
-        "exp": {
-          "description": "The expiration timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire.",
-          "format": "int64",
-          "type": "string"
-        },
-        "iat": {
-          "description": "The issued timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued.",
-          "format": "int64",
-          "type": "string"
-        },
-        "iss": {
-          "description": "The issuer of the provided token.",
-          "type": "string"
-        },
-        "scope": {
-          "description": "A list of scopes associated with the provided token.",
-          "type": "string"
-        },
-        "sub": {
-          "description": "The unique user ID associated with the provided token. For Google Accounts, this value is based on the Google Account's user ID. For federated identities, this value is based on the identity pool ID and the value of the mapped `google.subject` attribute.",
-          "type": "string"
-        },
-        "username": {
-          "description": "The human-readable identifier for the token principal subject. For example, if the provided token is associated with a workload identity pool, this field contains a value in the following format: `principal://iam.googleapis.com/projects//locations/global/workloadIdentityPools//subject/`",
           "type": "string"
         }
       },
