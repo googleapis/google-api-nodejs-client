@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -166,6 +166,34 @@
       "resources": {
         "builds": {
           "methods": {
+            "approve": {
+              "description": "Approves or rejects a pending build. If approved, the returned LRO will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.",
+              "flatPath": "v1/projects/{projectsId}/builds/{buildsId}:approve",
+              "httpMethod": "POST",
+              "id": "cloudbuild.projects.builds.approve",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the target build. For example: \"projects/{$project_id}/builds/{$build_id}\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/builds/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:approve",
+              "request": {
+                "$ref": "ApproveBuildRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "cancel": {
               "description": "Cancels a build in progress.",
               "flatPath": "v1/projects/{projectId}/builds/{id}:cancel",
@@ -399,7 +427,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfig/{$config_id}\"",
+                  "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
                   "location": "path",
                   "pattern": "^projects/[^/]+/githubEnterpriseConfigs/[^/]+$",
                   "required": true,
@@ -434,7 +462,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfig/{$config_id}\"",
+                  "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
                   "location": "path",
                   "pattern": "^projects/[^/]+/githubEnterpriseConfigs/[^/]+$",
                   "required": true,
@@ -494,7 +522,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfig/{$config_id}\"",
+                  "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
                   "location": "path",
                   "pattern": "^projects/[^/]+/githubEnterpriseConfigs/[^/]+$",
                   "required": true,
@@ -524,6 +552,34 @@
           "resources": {
             "builds": {
               "methods": {
+                "approve": {
+                  "description": "Approves or rejects a pending build. If approved, the returned LRO will be analogous to the LRO returned from a CreateBuild call. If rejected, the returned LRO will be immediately done.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/builds/{buildsId}:approve",
+                  "httpMethod": "POST",
+                  "id": "cloudbuild.projects.locations.builds.approve",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the target build. For example: \"projects/{$project_id}/builds/{$build_id}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/builds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:approve",
+                  "request": {
+                    "$ref": "ApproveBuildRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "cancel": {
                   "description": "Cancels a build in progress.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/builds/{buildsId}:cancel",
@@ -746,7 +802,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfig/{$config_id}\"",
+                      "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/githubEnterpriseConfigs/[^/]+$",
                       "required": true,
@@ -781,7 +837,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfig/{$config_id}\"",
+                      "description": "This field should contain the name of the enterprise config resource. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/githubEnterpriseConfigs/[^/]+$",
                       "required": true,
@@ -841,7 +897,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfig/{$config_id}\"",
+                      "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/githubEnterpriseConfigs/[^/]+$",
                       "required": true,
@@ -1652,9 +1708,71 @@
       }
     }
   },
-  "revision": "20210730",
+  "revision": "20210813",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
+    "ApprovalConfig": {
+      "description": "ApprovalConfig describes configuration for manual approval of a build.",
+      "id": "ApprovalConfig",
+      "properties": {
+        "approvalRequired": {
+          "description": "Whether or not approval is needed. If this is set on a build, it will become pending when created, and will need to be explicitly approved to start.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ApprovalResult": {
+      "description": "ApprovalResult describes the decision and associated metadata of a manual approval of a build.",
+      "id": "ApprovalResult",
+      "properties": {
+        "approvalTime": {
+          "description": "Output only. The time when the approval decision was made.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "approverAccount": {
+          "description": "Output only. Email of the user that called the ApproveBuild API to approve or reject a build at the time that the API was called.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "comment": {
+          "description": "Optional. An optional comment for this manual approval result.",
+          "type": "string"
+        },
+        "decision": {
+          "description": "Required. The decision of this manual approval.",
+          "enum": [
+            "DECISION_UNSPECIFIED",
+            "APPROVED",
+            "REJECTED"
+          ],
+          "enumDescriptions": [
+            "Default enum type. This should not be used.",
+            "Build is approved.",
+            "Build is rejected."
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "Optional. An optional URL tied to this manual approval result. This field is essentially the same as comment, except that it will be rendered by the UI differently. An example use case is a link to an external job that approved this Build.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApproveBuildRequest": {
+      "description": "Request to approve or reject a pending build.",
+      "id": "ApproveBuildRequest",
+      "properties": {
+        "approvalResult": {
+          "$ref": "ApprovalResult",
+          "description": "Approval decision and metadata."
+        }
+      },
+      "type": "object"
+    },
     "ArtifactObjects": {
       "description": "Files in the workspace to upload to Cloud Storage upon successful completion of all build steps.",
       "id": "ArtifactObjects",
@@ -1715,9 +1833,14 @@
       "type": "object"
     },
     "Build": {
-      "description": "A build resource in the Cloud Build API. At a high level, a `Build` describes where to find source code, how to build it (for example, the builder image to run on the source), and where to store the built artifacts. Fields can include the following variables, which will be expanded when the build is created: - $PROJECT_ID: the project ID of the build. - $PROJECT_NUMBER: the project number of the build. - $BUILD_ID: the autogenerated ID of the build. - $REPO_NAME: the source repository name specified by RepoSource. - $BRANCH_NAME: the branch name specified by RepoSource. - $TAG_NAME: the tag name specified by RepoSource. - $REVISION_ID or $COMMIT_SHA: the commit SHA specified by RepoSource or resolved from the specified branch or tag. - $SHORT_SHA: first 7 characters of $REVISION_ID or $COMMIT_SHA.",
+      "description": "A build resource in the Cloud Build API. At a high level, a `Build` describes where to find source code, how to build it (for example, the builder image to run on the source), and where to store the built artifacts. Fields can include the following variables, which will be expanded when the build is created: - $PROJECT_ID: the project ID of the build. - $PROJECT_NUMBER: the project number of the build. - $LOCATION: the location/region of the build. - $BUILD_ID: the autogenerated ID of the build. - $REPO_NAME: the source repository name specified by RepoSource. - $BRANCH_NAME: the branch name specified by RepoSource. - $TAG_NAME: the tag name specified by RepoSource. - $REVISION_ID or $COMMIT_SHA: the commit SHA specified by RepoSource or resolved from the specified branch or tag. - $SHORT_SHA: first 7 characters of $REVISION_ID or $COMMIT_SHA.",
       "id": "Build",
       "properties": {
+        "approval": {
+          "$ref": "BuildApproval",
+          "description": "Output only. Describes this build's approval configuration, status, and result.",
+          "readOnly": true
+        },
         "artifacts": {
           "$ref": "Artifacts",
           "description": "Artifacts produced by the build that should be uploaded upon successful completion of all build steps."
@@ -1823,6 +1946,7 @@
           "description": "Output only. Status of the build.",
           "enum": [
             "STATUS_UNKNOWN",
+            "PENDING",
             "QUEUED",
             "WORKING",
             "SUCCESS",
@@ -1834,6 +1958,7 @@
           ],
           "enumDescriptions": [
             "Status of the build is unknown.",
+            "Build has been created and is pending execution and queuing. It has not been queued.",
             "Build or step is queued; work has not yet begun.",
             "Build or step is being executed.",
             "Build or step finished successfully.",
@@ -1892,6 +2017,42 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BuildApproval": {
+      "description": "BuildApproval describes a build's approval configuration, state, and result.",
+      "id": "BuildApproval",
+      "properties": {
+        "config": {
+          "$ref": "ApprovalConfig",
+          "description": "Output only. Configuration for manual approval of this build.",
+          "readOnly": true
+        },
+        "result": {
+          "$ref": "ApprovalResult",
+          "description": "Output only. Result of manual approval for this Build.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The state of this build's approval.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "APPROVED",
+            "REJECTED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Default enum type. This should not be used.",
+            "Build approval is pending.",
+            "Build approval has been approved.",
+            "Build approval has been rejected.",
+            "Build was cancelled while it was still pending approval."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2084,6 +2245,10 @@
           "description": "Output only. Stores timing information for pulling this build step's builder image only.",
           "readOnly": true
         },
+        "script": {
+          "description": "A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.",
+          "type": "string"
+        },
         "secretEnv": {
           "description": "A list of environment variables which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`.",
           "items": {
@@ -2095,6 +2260,7 @@
           "description": "Output only. Status of the build step. At this time, build step status is only updated on build completion; step status is not updated in real-time as the build progresses.",
           "enum": [
             "STATUS_UNKNOWN",
+            "PENDING",
             "QUEUED",
             "WORKING",
             "SUCCESS",
@@ -2106,6 +2272,7 @@
           ],
           "enumDescriptions": [
             "Status of the build is unknown.",
+            "Build has been created and is pending execution and queuing. It has not been queued.",
             "Build or step is queued; work has not yet begun.",
             "Build or step is being executed.",
             "Build or step finished successfully.",
@@ -2149,6 +2316,10 @@
       "description": "Configuration for an automated build in response to source repository changes.",
       "id": "BuildTrigger",
       "properties": {
+        "approvalConfig": {
+          "$ref": "ApprovalConfig",
+          "description": "Configuration for manual approval to start a build invocation of this BuildTrigger."
+        },
         "autodetect": {
           "description": "Autodetect build configuration. The following precedence is used (case insensitive): 1. cloudbuild.yaml 2. cloudbuild.yml 3. cloudbuild.json 4. Dockerfile Currently only available for GitHub App Triggers.",
           "type": "boolean"
@@ -2176,8 +2347,12 @@
           "type": "string"
         },
         "filter": {
-          "description": "Optional. A Common Expression Language string.",
+          "description": "A Common Expression Language string.",
           "type": "string"
+        },
+        "gitFileSource": {
+          "$ref": "GitFileSource",
+          "description": "The file source describing the local or remote Build template."
         },
         "github": {
           "$ref": "GitHubEventsConfig",
@@ -2215,7 +2390,7 @@
           "type": "string"
         },
         "serviceAccount": {
-          "description": "Optional. The service account used for all user-controlled operations including UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild. If no service account is set, then the standard Cloud Build service account ([PROJECT_NUM]@system.gserviceaccount.com) will be used instead. Format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL}`",
+          "description": "The service account used for all user-controlled operations including UpdateBuildTrigger, RunBuildTrigger, CreateBuild, and CancelBuild. If no service account is set, then the standard Cloud Build service account ([PROJECT_NUM]@system.gserviceaccount.com) will be used instead. Format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT_ID_OR_EMAIL}`",
           "type": "string"
         },
         "sourceToBuild": {
@@ -2429,6 +2604,39 @@
       },
       "type": "object"
     },
+    "GitFileSource": {
+      "description": "GitFileSource describes a file within a (possibly remote) code repository.",
+      "id": "GitFileSource",
+      "properties": {
+        "path": {
+          "description": "The path of the file, with the repo root as the root of the path.",
+          "type": "string"
+        },
+        "repoType": {
+          "description": "See RepoType above.",
+          "enum": [
+            "UNKNOWN",
+            "CLOUD_SOURCE_REPOSITORIES",
+            "GITHUB"
+          ],
+          "enumDescriptions": [
+            "The default, unknown repo type.",
+            "A Google Cloud Source Repositories-hosted repo.",
+            "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise)."
+          ],
+          "type": "string"
+        },
+        "revision": {
+          "description": "The branch, tag, arbitrary ref, or SHA version of the repo to use when resolving the filename (optional). This field respects the same syntax/resolution as described here: https://git-scm.com/docs/gitrevisions If unspecified, the revision from which the trigger invocation originated is assumed to be the revision from which to read the specified path.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the repo (optional). If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GitHubEnterpriseConfig": {
       "description": "GitHubEnterpriseConfig represents a configuration for a GitHub Enterprise server.",
       "id": "GitHubEnterpriseConfig",
@@ -2453,7 +2661,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfig/{$config_id}\"",
+          "description": "Optional. The full resource name for the GitHubEnterpriseConfig For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
           "type": "string"
         },
         "peeredNetwork": {
@@ -2519,7 +2727,7 @@
       "id": "GitHubEventsConfig",
       "properties": {
         "enterpriseConfigResourceName": {
-          "description": "Optional. The resource name of the github enterprise config that should be applied to this installation. For example: \"projects/{$project_id}/githubEnterpriseConfig/{$config_id}\"",
+          "description": "Optional. The resource name of the github enterprise config that should be applied to this installation. For example: \"projects/{$project_id}/githubEnterpriseConfigs/{$config_id}\"",
           "type": "string"
         },
         "installationId": {
@@ -2953,7 +3161,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
