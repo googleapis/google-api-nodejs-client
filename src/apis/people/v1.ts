@@ -213,7 +213,7 @@ export namespace people_v1 {
     sources?: string[] | null;
   }
   /**
-   * The response to a request to create a batch of contacts.
+   * If not successful, returns BatchCreateContactsErrorDetails which contains a list of errors for each invalid contact. The response to a request to create a batch of contacts.
    */
   export interface Schema$BatchCreateContactsResponse {
     /**
@@ -261,7 +261,7 @@ export namespace people_v1 {
     updateMask?: string | null;
   }
   /**
-   * The response to a request to create a batch of contacts.
+   * If not successful, returns BatchUpdateContactsErrorDetails, a list of errors corresponding to each contact. The response to a request to update a batch of contacts.
    */
   export interface Schema$BatchUpdateContactsResponse {
     /**
@@ -605,7 +605,7 @@ export namespace people_v1 {
    */
   export interface Schema$FieldMetadata {
     /**
-     * True if the field is the primary field for the person.
+     * Output only. True if the field is the primary field for all sources in the person. Each person will have at most one field with `primary` set to true.
      */
     primary?: boolean | null;
     /**
@@ -613,7 +613,7 @@ export namespace people_v1 {
      */
     source?: Schema$Source;
     /**
-     * True if the field is the primary field for the source.
+     * True if the field is the primary field for the source. Each source must have at most one field with `source_primary` set to true.
      */
     sourcePrimary?: boolean | null;
     /**
