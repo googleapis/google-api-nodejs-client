@@ -479,6 +479,10 @@ export namespace securitycenter_v1beta2 {
      * The human readable name of project that the resource belongs to.
      */
     projectDisplayName?: string | null;
+    /**
+     * The full resource type of the resource.
+     */
+    type?: string | null;
   }
   /**
    * Response of asset discovery run

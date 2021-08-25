@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -1328,7 +1328,7 @@
       }
     }
   },
-  "revision": "20210716",
+  "revision": "20210812",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Config": {
@@ -1653,6 +1653,10 @@
         },
         "projectDisplayName": {
           "description": "The human readable name of project that the resource belongs to.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The full resource type of the resource.",
           "type": "string"
         }
       },
