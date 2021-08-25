@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/compute": {
           "description": "View and manage your Google Compute Engine resources"
@@ -12,13 +12,13 @@
           "description": "View your Google Compute Engine resources"
         },
         "https://www.googleapis.com/auth/devstorage.full_control": {
-          "description": "Manage your data and permissions in Google Cloud Storage"
+          "description": "Manage your data and permissions in Cloud Storage and see the email address for your Google Account"
         },
         "https://www.googleapis.com/auth/devstorage.read_only": {
           "description": "View your data in Google Cloud Storage"
         },
         "https://www.googleapis.com/auth/devstorage.read_write": {
-          "description": "Manage your data in Google Cloud Storage"
+          "description": "Manage your data in Cloud Storage and see the email address of your Google Account"
         }
       }
     }
@@ -10941,12 +10941,6 @@
               "location": "query",
               "type": "string"
             },
-            "secureTags": {
-              "description": "DEPRECATED: Please use resource.secure_tag instead. Secure tags to apply to this instance. These can be later modified by the update method. Maximum number of secure tags allowed is 50.",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
             "sourceInstanceTemplate": {
               "description": "Specifies instance template to create the instance. This field is optional. It can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate ",
               "location": "query",
@@ -12412,12 +12406,6 @@
               "location": "query",
               "type": "string"
             },
-            "secureTags": {
-              "description": "DEPRECATED: Please use resource.secure_tag instead. Secure tags to apply to this instance. Maximum number of secure tags allowed is 50.",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
             "zone": {
               "description": "The name of the zone for this request.",
               "location": "path",
@@ -13485,6 +13473,41 @@
           "path": "projects/{project}/global/interconnects/{resource}/getIamPolicy",
           "response": {
             "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "getMacsecConfig": {
+          "description": "Returns the interconnectMacsecConfig for the specified interconnect.",
+          "flatPath": "projects/{project}/global/interconnects/{interconnect}/getMacsecConfig",
+          "httpMethod": "GET",
+          "id": "compute.interconnects.getMacsecConfig",
+          "parameterOrder": [
+            "project",
+            "interconnect"
+          ],
+          "parameters": {
+            "interconnect": {
+              "description": "Name of the interconnect resource to query.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/interconnects/{interconnect}/getMacsecConfig",
+          "response": {
+            "$ref": "InterconnectsGetMacsecConfigResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -16701,7 +16724,7 @@
           ]
         },
         "updatePeering": {
-          "description": "Updates the specified network peering with the data included in the request Only the following fields can be modified: NetworkPeering.export_custom_routes, and NetworkPeering.import_custom_routes",
+          "description": "Updates the specified network peering with the data included in the request. You can only modify the NetworkPeering.export_custom_routes field and the NetworkPeering.import_custom_routes field.",
           "flatPath": "projects/{project}/global/networks/{network}/updatePeering",
           "httpMethod": "PATCH",
           "id": "compute.networks.updatePeering",
@@ -28717,6 +28740,67 @@
             "https://www.googleapis.com/auth/compute",
             "https://www.googleapis.com/auth/compute.readonly"
           ]
+        },
+        "update": {
+          "description": "Update share settings of the reservation.",
+          "flatPath": "projects/{project}/zones/{zone}/reservations/{reservation}",
+          "httpMethod": "PATCH",
+          "id": "compute.reservations.update",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "reservation"
+          ],
+          "parameters": {
+            "paths": {
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "reservation": {
+              "description": "Name of the reservation to update.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Update_mask indicates fields to be updated as part of this request.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "Name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/reservations/{reservation}",
+          "request": {
+            "$ref": "Reservation"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
         }
       }
     },
@@ -32199,6 +32283,11 @@
               "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.",
               "location": "query",
               "type": "boolean"
+            },
+            "serviceProject": {
+              "description": "The project id or project number in which the subnetwork is intended to be used. Only applied for Shared VPC. See [Shared VPC documentation](https://cloud.google.com/vpc/docs/shared-vpc/)",
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "projects/{project}/aggregated/subnetworks/listUsable",
@@ -37785,7 +37874,7 @@
       }
     }
   },
-  "revision": "0",
+  "revision": "20210802",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -38269,7 +38358,7 @@
       "type": "object"
     },
     "Address": {
-      "description": "Use global external addresses for GFE-based external HTTP(S) load balancers in Premium Tier. Use global internal addresses for reserved peering network range. Use regional external addresses for the following resources: - External IP addresses for VM instances - Regional external forwarding rules - Cloud NAT external IP addresses - GFE based LBs in Standard Tier - Network LBs in Premium or Standard Tier - Cloud VPN gateways (both Classic and HA) Use regional internal IP addresses for subnet IP ranges (primary and secondary). This includes: - Internal IP addresses for VM instances - Alias IP ranges of VM instances (/32 only) - Regional internal forwarding rules - Internal TCP/UDP load balancer addresses - Internal HTTP(S) load balancer addresses - Cloud DNS inbound forwarding IP addresses For more information, see Reserving a static external IP address.",
+      "description": "Represents an IP Address resource. Google Compute Engine has two IP Address resources: * [Global (external and internal)](https://cloud.google.com/compute/docs/reference/rest/alpha/globalAddresses) * [Regional (external and internal)](https://cloud.google.com/compute/docs/reference/rest/alpha/addresses) For more information, see Reserving a static external IP address.",
       "id": "Address",
       "properties": {
         "address": {
@@ -38342,7 +38431,7 @@
               "compute.addresses.insert"
             ]
           },
-          "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.",
+          "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
@@ -38351,7 +38440,7 @@
           "type": "string"
         },
         "networkTier": {
-          "description": "This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer. If this field is not specified, it is assumed to be PREMIUM.",
+          "description": "This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Internal IP addresses are always Premium Tier; global external IP addresses are always Premium Tier; regional external IP addresses can be either Standard or Premium Tier. If this field is not specified, it is assumed to be PREMIUM.",
           "enum": [
             "FIXED_STANDARD",
             "PREMIUM",
@@ -38374,14 +38463,13 @@
           "type": "integer"
         },
         "purpose": {
-          "description": "The purpose of this resource, which can be one of the following values: - `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources. - `DNS_RESOLVER` for a DNS resolver address in a subnetwork - `VPC_PEERING` for addresses that are reserved for VPC peer networks. - `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT. - `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose. ",
+          "description": "The purpose of this resource, which can be one of the following values: - GCE_ENDPOINT for addresses that are used by VM instances, alias IP ranges, load balancers, and similar resources. - DNS_RESOLVER for a DNS resolver address in a subnetwork for a Cloud DNS inbound forwarder IP addresses (regional internal IP address in a subnet of a VPC network) - VPC_PEERING for global internal IP addresses used for private services access allocated ranges. - NAT_AUTO for the regional external IP addresses used by Cloud NAT when allocating addresses using . - IPSEC_INTERCONNECT for addresses created from a private IP range that are reserved for a VLAN attachment in an *IPsec-encrypted Cloud Interconnect* configuration. These addresses are regional resources. Not currently available publicly. - `SHARED_LOADBALANCER_VIP` for an internal IP address that is assigned to multiple internal forwarding rules. - `PRIVATE_SERVICE_CONNECT` for a private network address that is used to configure Private Service Connect. Only global internal addresses can use this purpose. ",
           "enum": [
             "DNS_RESOLVER",
             "GCE_ENDPOINT",
             "IPSEC_INTERCONNECT",
             "NAT_AUTO",
             "PRIVATE_SERVICE_CONNECT",
-            "PSC_PRODUCER_NAT_RANGE",
             "SHARED_LOADBALANCER_VIP",
             "VPC_PEERING"
           ],
@@ -38391,7 +38479,6 @@
             "A regional internal IP address range reserved for the VLAN attachment that is used in IPsec-encrypted Cloud Interconnect. This regional internal IP address range must not overlap with any IP address range of subnet/route in the VPC network and its peering networks. After the VLAN attachment is created with the reserved IP address range, when creating a new VPN gateway, its interface IP address is allocated from the associated VLAN attachment’s IP address range.",
             "External IP automatically reserved for Cloud NAT.",
             "A private network IP address that can be used to configure Private Service Connect. This purpose can be specified only for GLOBAL addresses of Type INTERNAL",
-            "Internal IP range provided by producers for PSC ILB.",
             "A private network IP address that can be shared by multiple Internal Load Balancer forwarding rules.",
             "IP range for peer networks."
           ],
@@ -39082,6 +39169,21 @@
           },
           "description": "Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.",
           "type": "object"
+        },
+        "licenseCodes": {
+          "description": "Integer license codes indicating which licenses are attached to this disk.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "licenses": {
+          "description": "A list of publicly visible licenses. Reserved for Google's use.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "multiWriter": {
           "description": "Indicates whether or not the disk can be read/write attached to more than one instance.",
@@ -39980,7 +40082,7 @@
       "id": "Backend",
       "properties": {
         "balancingMode": {
-          "description": "Specifies how to determine whether the backend of a load balancer can handle additional traffic or is fully loaded. For usage guidelines, see Connection balancing mode.",
+          "description": "Specifies how to determine whether the backend of a load balancer can handle additional traffic or is fully loaded. For usage guidelines, see Connection balancing mode. Backends must use compatible balancing modes. For more information, see Restrictions and guidelines. Note: Currently, if you use the API to configure incompatible balancing modes, the configuration might be accepted even though it has no impact and will be ignored. Specifically, Backend.maxUtilization is ignored when Backend.balancingMode is RATE. In the future, this incompatible combination will be rejected.",
           "enum": [
             "CONNECTION",
             "RATE",
@@ -40041,6 +40143,7 @@
           "type": "number"
         },
         "maxUtilization": {
+          "description": "Optional parameter to define a target capacity for the UTILIZATIONbalancing mode. The valid range is [0.0, 1.0]. For usage guidelines, see Utilization balancing mode.",
           "format": "float",
           "type": "number"
         }
@@ -41555,20 +41658,6 @@
           },
           "description": "Per-instance properties to be set on individual instances. Keys of this map specify requested instance names. Can be empty if name_pattern is used.",
           "type": "object"
-        },
-        "predefinedNames": {
-          "description": "DEPRECATED: Please use per_instance_properties instead.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "secureTags": {
-          "description": "DEPRECATED: Please use instance_properties.secure_tag instead. Secure tags to apply to this instance. These can be later modified by the update method. Maximum number of secure tags allowed is 50.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         },
         "sourceInstanceTemplate": {
           "description": "Specifies the instance template from which to create instances. You may combine sourceInstanceTemplate with instanceProperties to override specific values from an existing instance template. Bulk API follows the semantics of JSON Merge Patch described by RFC 7396. It can be a full or partial URL. For example, the following are all valid URLs to an instance template: - https://www.googleapis.com/compute/v1/projects/project /global/instanceTemplates/instanceTemplate - projects/project/global/instanceTemplates/instanceTemplate - global/instanceTemplates/instanceTemplate This field is optional.",
@@ -44151,7 +44240,7 @@
           "type": "string"
         },
         "destinationRanges": {
-          "description": "If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Only IPv4 is supported.",
+          "description": "If destination ranges are specified, the firewall rule applies only to traffic that has destination IP address in these ranges. These ranges must be expressed in CIDR format. Both IPv4 and IPv6 are supported.",
           "items": {
             "type": "string"
           },
@@ -44220,7 +44309,7 @@
           "type": "string"
         },
         "sourceRanges": {
-          "description": "If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Only IPv4 is supported.",
+          "description": "If source ranges are specified, the firewall rule applies only to traffic that has a source IP address in these ranges. These ranges must be expressed in CIDR format. One or both of sourceRanges and sourceTags may be set. If both fields are set, the rule applies to traffic that has a source IP address within sourceRanges OR a source IP from a resource with a matching tag listed in the sourceTags field. The connection does not need to match both fields for the rule to apply. Both IPv4 and IPv6 are supported.",
           "items": {
             "type": "string"
           },
@@ -44710,7 +44799,7 @@
       "id": "FirewallPolicyRuleMatcher",
       "properties": {
         "destIpRanges": {
-          "description": "CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 256.",
+          "description": "CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 5000.",
           "items": {
             "type": "string"
           },
@@ -44724,7 +44813,7 @@
           "type": "array"
         },
         "srcIpRanges": {
-          "description": "CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 256.",
+          "description": "CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 5000.",
           "items": {
             "type": "string"
           },
@@ -45798,7 +45887,7 @@
     "FutureReservationsScopedList": {
       "id": "FutureReservationsScopedList",
       "properties": {
-        "resources": {
+        "futureReservations": {
           "description": "A list of future reservations contained in this scope.",
           "items": {
             "$ref": "FutureReservation"
@@ -46342,7 +46431,7 @@
       "type": "object"
     },
     "HealthCheck": {
-      "description": "Represents a Health Check resource. Google Compute Engine has two Health Check resources: * [Global](/compute/docs/reference/rest/alpha/healthChecks) * [Regional](/compute/docs/reference/rest/alpha/regionHealthChecks) Internal HTTP(S) load balancers must use regional health checks (`compute.v1.regionHealthChecks`). Traffic Director must use global health checks (`compute.v1.HealthChecks`). Internal TCP/UDP load balancers can use either regional or global health checks (`compute.v1.regionHealthChecks` or `compute.v1.HealthChecks`). External HTTP(S), TCP proxy, and SSL proxy load balancers as well as managed instance group auto-healing must use global health checks (`compute.v1.HealthChecks`). Network load balancers must use legacy HTTP health checks (httpHealthChecks). For more information, see Health checks overview.",
+      "description": "Represents a Health Check resource. Google Compute Engine has two Health Check resources: * [Global](/compute/docs/reference/rest/alpha/healthChecks) * [Regional](/compute/docs/reference/rest/alpha/regionHealthChecks) Internal HTTP(S) load balancers must use regional health checks (`compute.v1.regionHealthChecks`). Traffic Director must use global health checks (`compute.v1.HealthChecks`). Internal TCP/UDP load balancers can use either regional or global health checks (`compute.v1.regionHealthChecks` or `compute.v1.HealthChecks`). External HTTP(S), TCP proxy, and SSL proxy load balancers as well as managed instance group auto-healing must use global health checks (`compute.v1.HealthChecks`). Backend service-based network load balancers must use regional health checks (`compute.v1.regionHealthChecks`). Target pool-based network load balancers must use legacy HTTP health checks (`compute.v1.httpHealthChecks`). For more information, see Health checks overview.",
       "id": "HealthCheck",
       "properties": {
         "checkIntervalSec": {
@@ -47534,7 +47623,7 @@
       "type": "object"
     },
     "HttpHealthCheck": {
-      "description": "Represents a legacy HTTP Health Check resource. Legacy health checks are required by network load balancers. For more information, read Health Check Concepts.",
+      "description": "Represents a legacy HTTP Health Check resource. Legacy HTTP health checks are now only required by target pool-based network load balancers. For all other load balancers, including backend service-based network load balancers, and for managed instance group auto-healing, you must use modern (non-legacy) health checks. For more information, see Health checks overview .",
       "id": "HttpHealthCheck",
       "properties": {
         "checkIntervalSec": {
@@ -47950,7 +48039,7 @@
       "type": "object"
     },
     "HttpsHealthCheck": {
-      "description": "Represents a legacy HTTPS Health Check resource. Legacy health checks are required by network load balancers. For more information, read Health Check Concepts.",
+      "description": "Represents a legacy HTTPS Health Check resource. Legacy HTTPS health checks have been deprecated. If you are using a target pool-based network load balancer, you must use a legacy HTTP (not HTTPS) health check. For all other load balancers, including backend service-based network load balancers, and for managed instance group auto-healing, you must use modern (non-legacy) health checks. For more information, see Health checks overview .",
       "id": "HttpsHealthCheck",
       "properties": {
         "checkIntervalSec": {
@@ -48214,6 +48303,10 @@
           },
           "type": "array"
         },
+        "locked": {
+          "description": "A flag for marketplace VM disk created from the image, which is designed for marketplace VM disk to prevent the proprietary data on the disk from being accessed unwantedly. The flag will be inherited by the disk created from the image. The disk with locked flag set to true will be prohibited from performing the operations below: - R/W or R/O disk attach - Disk detach, if disk is created via create-on-create - Create images - Create snapshots - Create disk clone (create disk from the current disk) The image with the locked field set to true will be prohibited from performing the operations below: - Create images from the current image - Update the locked field for the current image The instance with at least one disk with locked flag set to true will be prohibited from performing the operations below: - Secondary disk attach - Create instant snapshot - Create machine images - Create instance template - Delete the instance with --keep-disk parameter set to true ",
+          "type": "boolean"
+        },
         "name": {
           "annotations": {
             "required": [
@@ -48243,7 +48336,7 @@
               "type": "string"
             },
             "source": {
-              "description": "The full Google Cloud Storage URL where the disk image is stored. In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL ",
+              "description": "The full Google Cloud Storage URL where the raw disk image archive is stored. The following are valid formats for the URL: - https://storage.googleapis.com/bucket_name/image_archive_name - https://storage.googleapis.com/bucket_name/folder_name/ image_archive_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL ",
               "type": "string"
             }
           },
@@ -48282,7 +48375,7 @@
           "type": "string"
         },
         "sourceImage": {
-          "description": "URL of the source image used to create this image. In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL ",
+          "description": "URL of the source image used to create this image. The following are valid formats for the URL: - https://www.googleapis.com/compute/v1/projects/project_id/global/ images/image_name - projects/project_id/global/images/image_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL ",
           "type": "string"
         },
         "sourceImageEncryptionKey": {
@@ -48294,7 +48387,7 @@
           "type": "string"
         },
         "sourceSnapshot": {
-          "description": "URL of the source snapshot used to create this image. In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL ",
+          "description": "URL of the source snapshot used to create this image. The following are valid formats for the URL: - https://www.googleapis.com/compute/v1/projects/project_id/global/ snapshots/snapshot_name - projects/project_id/global/snapshots/snapshot_name In order to create an image, you must provide the full or partial URL of one of the following: - The rawDisk.source URL - The sourceDisk URL - The sourceImage URL - The sourceSnapshot URL ",
           "type": "string"
         },
         "sourceSnapshotEncryptionKey": {
@@ -49470,7 +49563,7 @@
           "description": "[Output Only] The list of instance actions and the number of instances in this managed instance group that are scheduled for each of those actions."
         },
         "description": {
-          "description": "An optional description of this resource. Provide this property when you create the resource.",
+          "description": "An optional description of this resource.",
           "type": "string"
         },
         "distributionPolicy": {
@@ -49549,6 +49642,10 @@
         "serviceAccount": {
           "description": "The service account to be used as credentials for all operations performed by the managed instance group on instances. The service accounts needs all permissions required to create and delete instances. By default, the service account {projectNumber}@cloudservices.gserviceaccount.com is used.",
           "type": "string"
+        },
+        "standbyPolicy": {
+          "$ref": "InstanceGroupManagerStandbyPolicy",
+          "description": "Stanby policy for stopped and suspended instances."
         },
         "statefulPolicy": {
           "$ref": "StatefulPolicy",
@@ -49950,6 +50047,16 @@
             }
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceGroupManagerStandbyPolicy": {
+      "id": "InstanceGroupManagerStandbyPolicy",
+      "properties": {
+        "initialDelaySec": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -53049,10 +53156,6 @@
         "macAddress": {
           "description": "The MAC address of the Interconnect's bundle interface.",
           "type": "string"
-        },
-        "macsec": {
-          "$ref": "InterconnectDiagnosticsMacsecStatus",
-          "description": "Describes the status of MACsec encryption on the Interconnect's bundle interface."
         }
       },
       "type": "object"
@@ -53148,6 +53251,10 @@
         "lacpStatus": {
           "$ref": "InterconnectDiagnosticsLinkLACPStatus"
         },
+        "macsec": {
+          "$ref": "InterconnectDiagnosticsMacsecStatus",
+          "description": "Describes the status of MACsec encryption on this link."
+        },
         "receivingOpticalPower": {
           "$ref": "InterconnectDiagnosticsLinkOpticalPower",
           "description": "An InterconnectDiagnostics.LinkOpticalPower object, describing the current value and status of the received light level."
@@ -53160,38 +53267,16 @@
       "type": "object"
     },
     "InterconnectDiagnosticsMacsecStatus": {
-      "description": "Describes the status of MACsec encryption on the Interconnect's bundle interface.",
+      "description": "Describes the status of MACsec encryption on the link.",
       "id": "InterconnectDiagnosticsMacsecStatus",
       "properties": {
         "ckn": {
-          "description": "Indicates the Connectivity Association Key Name (CKN) currently being used.",
+          "description": "Indicates the Connectivity Association Key Name (CKN) currently being used if MACsec is operational.",
           "type": "string"
         },
-        "keyRolloverFailure": {
-          "description": "If true, this field indicates that the Google edge router was unable to rollover the MACsec session to the next key in the key chain. Ensure that the CKN/CAK values and the start time of the keys in your router's MACsec key chain match the output of the GetMacsecConfig API for this Interconnect. The Google edge router will retry the rollover process for grace period of 30 minutes past the start time of the new key, while maintaining the ongoing MACsec session. If the Google edge router is unable to switch to the new key within this grace period, it will terminate the MACsec session. Subsequent behavior will depend on the MACsec fail open setting on this Interconnect.",
+        "operational": {
+          "description": "Indicates whether or not MACsec is operational on this link.",
           "type": "boolean"
-        },
-        "rolloverCkn": {
-          "description": "In the event of a key rollover failure, this field indicates the CKN that the Google edge router is trying to rollover to.",
-          "type": "string"
-        },
-        "state": {
-          "description": "The current state of MACsec configuration on this Interconnect, which can take one of the following values: - INITIALIZED: MACsec has been configured on the bundle interface. The Google edge router is waiting to establish a MACsec session with the customer router on the other side of this Interconnect. In addition, when key rollover fails between the two routers, the bundle interface will return to the initialized state. - SECURED: MACsec session has been successfully established between the Google edge router and the customer router. - FAILED: MACsec configuration on the bundle interface encountered an error. - DISABLED: MACsec is explicitly disabled on this Interconnect. ",
-          "enum": [
-            "DISABLED",
-            "FAILED",
-            "INITIALIZED",
-            "SECURED",
-            "STATE_UNSPECIFIED"
-          ],
-          "enumDescriptions": [
-            "MACsec is explicitly disabled on this Interconnect.",
-            "MACsec configuration on the bundle interface encountered an error.",
-            "MACsec has been configured on the bundle interface. The Google edge router is waiting to establish a MACsec session with the customer router on the other side of this Interconnect. In addition, when key rollover fails between the two routers, the bundle interface will return to the initialized state.",
-            "MACsec session has been successfully established between the Google edge router and the customer router.",
-            "The default value."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -53590,6 +53675,43 @@
       },
       "type": "object"
     },
+    "InterconnectMacsecConfig": {
+      "description": "MACsec configuration information for the Interconnect. Contains the generated Connectivity Association Key Name (CKN) and the key (CAK) for this Interconnect.",
+      "id": "InterconnectMacsecConfig",
+      "properties": {
+        "preSharedKeys": {
+          "description": "A keychain placeholder describing a set of named key objects along with their start times. A MACsec CKN/CAK will be generated for each key in the key chain. Google router will automatically pick the key with the most recent startTime when establishing or re-establishing a MACsec secure link.",
+          "items": {
+            "$ref": "InterconnectMacsecConfigPreSharedKey"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InterconnectMacsecConfigPreSharedKey": {
+      "description": "Describes a pre-shared key used to setup MACsec in static connectivity association key (CAK) mode.",
+      "id": "InterconnectMacsecConfigPreSharedKey",
+      "properties": {
+        "cak": {
+          "description": "An auto-generated Connectivity Association Key (CAK) for this key.",
+          "type": "string"
+        },
+        "ckn": {
+          "description": "An auto-generated Connectivity Association Key Name (CKN) for this key.",
+          "type": "string"
+        },
+        "name": {
+          "description": "User provided name for this pre-shared key.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "User provided timestamp on or after which this key is valid.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InterconnectMacsecPreSharedKey": {
       "description": "Describes a pre-shared key used to setup MACsec in static connectivity association key (CAK) mode.",
       "id": "InterconnectMacsecPreSharedKey",
@@ -53689,6 +53811,20 @@
       "properties": {
         "result": {
           "$ref": "InterconnectDiagnostics"
+        }
+      },
+      "type": "object"
+    },
+    "InterconnectsGetMacsecConfigResponse": {
+      "description": "Response for the InterconnectsGetMacsecConfigRequest.",
+      "id": "InterconnectsGetMacsecConfigResponse",
+      "properties": {
+        "etag": {
+          "description": "end_interface: MixerGetResponseWithEtagBuilder",
+          "type": "string"
+        },
+        "result": {
+          "$ref": "InterconnectMacsecConfig"
         }
       },
       "type": "object"
@@ -56921,7 +57057,7 @@
           "type": "boolean"
         },
         "exportSubnetRoutesWithPublicIp": {
-          "description": "Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always exported to peers and are not controlled by this field.",
+          "description": "Whether subnet routes with public IP range are exported. The default value is true, all subnet routes are exported. IPv4 special-use ranges are always exported to peers and are not controlled by this field.",
           "type": "boolean"
         },
         "importCustomRoutes": {
@@ -56929,7 +57065,7 @@
           "type": "boolean"
         },
         "importSubnetRoutesWithPublicIp": {
-          "description": "Whether subnet routes with public IP range are imported. The default value is false. The IPv4 special-use ranges (https://en.wikipedia.org/wiki/IPv4#Special_addresses) are always imported from peers and are not controlled by this field.",
+          "description": "Whether subnet routes with public IP range are imported. The default value is false. IPv4 special-use ranges are always imported from peers and are not controlled by this field.",
           "type": "boolean"
         },
         "name": {
@@ -57151,7 +57287,7 @@
       "type": "object"
     },
     "NodeGroup": {
-      "description": "Represent a sole-tenant Node Group resource. A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes.",
+      "description": "Represents a sole-tenant Node Group resource. A sole-tenant node is a physical server that is dedicated to hosting VM instances only for your specific project. Use sole-tenant nodes to keep your instances physically separated from instances in other projects, or to group your instances together on the same host hardware. For more information, read Sole-tenant nodes.",
       "id": "NodeGroup",
       "properties": {
         "autoscalingPolicy": {
@@ -60965,6 +61101,10 @@
         "organization": {
           "description": "Optional organization ID managed by Cloud Resource Manager, for which to list shared VPC host projects. If not specified, the organization will be inferred from the project.",
           "type": "string"
+        },
+        "returnPartialPage": {
+          "description": "Opt-in for partial page behavior which provides a partial filled page (number of items on which may be smaller than maxResults) within the API deadline. If opt-in, then the user should rely on if nextPageToken is empty in the response to determine if there is a next page. Empty page is also valid and possible. The default value is false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -61739,7 +61879,7 @@
             "COMMITTED_NVIDIA_P4_GPUS",
             "COMMITTED_NVIDIA_T4_GPUS",
             "COMMITTED_NVIDIA_V100_GPUS",
-            "COMMITTED_P2D_CPUS",
+            "COMMITTED_T2D_CPUS",
             "CPUS",
             "CPUS_ALL_REGIONS",
             "DISKS_TOTAL_GB",
@@ -61794,7 +61934,6 @@
             "NVIDIA_T4_GPUS",
             "NVIDIA_T4_VWS_GPUS",
             "NVIDIA_V100_GPUS",
-            "P2D_CPUS",
             "PACKET_MIRRORINGS",
             "PD_EXTREME_TOTAL_PROVISIONED_IOPS",
             "PREEMPTIBLE_CPUS",
@@ -61833,6 +61972,7 @@
             "STATIC_BYOIP_ADDRESSES",
             "SUBNETWORKS",
             "SUBNET_RANGES_PER_NETWORK",
+            "T2D_CPUS",
             "TARGET_HTTPS_PROXIES",
             "TARGET_HTTP_PROXIES",
             "TARGET_INSTANCES",
@@ -61959,8 +62099,8 @@
             "",
             "",
             "",
-            "",
             "The total number of snapshots allowed for a single project.",
+            "",
             "",
             "",
             "",
@@ -65931,7 +66071,7 @@
           "type": "string"
         },
         "match": {
-          "description": "CEL expression that specifies the match condition that egress traffic from a VM is evaluated against. If it evaluates to true, the corresponding `action` is enforced. The following examples are valid match expressions: \"inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip, '2.2.0.0/16')\" \"destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'\"",
+          "description": "CEL expression that specifies the match condition that egress traffic from a VM is evaluated against. If it evaluates to true, the corresponding `action` is enforced. The following examples are valid match expressions for public NAT: \"inIpRange(destination.ip, '1.1.0.0/16') || inIpRange(destination.ip, '2.2.0.0/16')\" \"destination.ip == '1.1.0.1' || destination.ip == '8.8.8.8'\" The following example is a valid match expression for private NAT: \"nexthop.hub == '/projects/my-project/global/hub/hub-1'\"",
           "type": "string"
         },
         "ruleNumber": {
@@ -65946,14 +66086,14 @@
       "id": "RouterNatRuleAction",
       "properties": {
         "sourceNatActiveIps": {
-          "description": "A list of URLs of the IP resources used for this NAT rule. These IP addresses must be valid static external IP addresses assigned to the project.",
+          "description": "A list of URLs of the IP resources used for this NAT rule. These IP addresses must be valid static external IP addresses assigned to the project. This field is used for public NAT.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "sourceNatDrainIps": {
-          "description": "A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT rule only.",
+          "description": "A list of URLs of the IP resources to be drained. These IPs must be valid static external IPs that have been assigned to the NAT. These IPs should be used for updating/patching a NAT rule only. This field is used for public NAT.",
           "items": {
             "type": "string"
           },
@@ -67083,7 +67223,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type indicates the intended use of the security policy. CLOUD_ARMOR policies apply to backend services. FIREWALL policies apply to organizations.",
+          "description": "The type indicates the intended use of the security policy. CLOUD_ARMOR - Cloud Armor backend security policies can be configured to filter incoming HTTP requests targeting backend services. They filter requests before they hit the origin servers. CLOUD_ARMOR_EDGE - Cloud Armor edge security policies can be configured to filter incoming HTTP requests targeting backend services (including Cloud CDN-enabled) as well as backend buckets (GCS). They filter requests before the request is served from Google’s cache.",
           "enum": [
             "CLOUD_ARMOR",
             "CLOUD_ARMOR_EDGE",
@@ -67571,15 +67711,25 @@
           "type": "string"
         },
         "enforceOnKey": {
-          "description": "Determines the key to enforce the threshold_rps limit on. If key is \"IP\", each IP has this limit enforced separately, whereas \"ALL_IPs\" means a single limit is applied to all requests matching this rule.",
+          "description": "Determines the key to enforce the rate_limit_threshold on. Possible values are: “ALL” -- A single rate limit threshold is applied to all the requests matching this rule. This is the default value if this field 'enforce_on_key' is not configured. “ALL_IPS” -- This definition, equivalent to \"ALL\", has been depprecated. “IP” -- The source IP address of the request is the key. Each IP has this limit enforced separately. “HTTP_HEADER” -- The value of the HTTP Header whose name is configured under “enforce_on_key_name”. The key value is truncated to the first 128 bytes of the Header value. If no such header is present in the request, the key type defaults to “ALL”. “XFF_IP” -- The first IP address (i.e. the originating client IP address) specified in the list of IPs under X-Forwarded-For HTTP Header. If no such header is present or the value is not a valid IP, the key type defaults to “ALL”.",
           "enum": [
+            "ALL",
             "ALL_IPS",
-            "IP"
+            "HTTP_HEADER",
+            "IP",
+            "XFF_IP"
           ],
           "enumDescriptions": [
             "",
+            "",
+            "",
+            "",
             ""
           ],
+          "type": "string"
+        },
+        "enforceOnKeyName": {
+          "description": "Rate limit key name applicable only for the following key types: HTTP_HEADER -- Name of the HTTP Header whose value is taken as the key value.",
           "type": "string"
         },
         "exceedAction": {
@@ -67796,13 +67946,6 @@
           },
           "type": "array"
         },
-        "consumerForwardingRules": {
-          "description": "[Output Only] An array of forwarding rules for all the consumers connected to this service attachment.",
-          "items": {
-            "$ref": "ServiceAttachmentConsumerForwardingRule"
-          },
-          "type": "array"
-        },
         "consumerRejectLists": {
           "description": "Projects that are not allowed to connect to this service attachment. The project can be specified using its id or number.",
           "items": {
@@ -68009,10 +68152,6 @@
           "description": "The url of a connected endpoint.",
           "type": "string"
         },
-        "forwardingRule": {
-          "description": "The url of a consumer forwarding rule. [Deprecated] Do not use.",
-          "type": "string"
-        },
         "pscConnectionId": {
           "description": "The PSC connection id of the connected endpoint.",
           "format": "uint64",
@@ -68020,40 +68159,6 @@
         },
         "status": {
           "description": "The status of a connected endpoint to this service attachment.",
-          "enum": [
-            "ACCEPTED",
-            "CLOSED",
-            "PENDING",
-            "REJECTED",
-            "STATUS_UNSPECIFIED"
-          ],
-          "enumDescriptions": [
-            "The connection has been accepted by the producer.",
-            "The connection has been closed by the producer.",
-            "The connection is pending acceptance by the producer.",
-            "The consumer is still connected but not using the connection.",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ServiceAttachmentConsumerForwardingRule": {
-      "description": "[Output Only] A consumer forwarding rule connected to this service attachment. [Deprecated] Do not use.",
-      "id": "ServiceAttachmentConsumerForwardingRule",
-      "properties": {
-        "forwardingRule": {
-          "description": "The url of a consumer forwarding rule.",
-          "type": "string"
-        },
-        "pscConnectionId": {
-          "description": "The PSC connection id of the PSC Forwarding Rule.",
-          "format": "uint64",
-          "type": "string"
-        },
-        "status": {
-          "description": "The status of the forwarding rule.",
           "enum": [
             "ACCEPTED",
             "CLOSED",
@@ -68305,6 +68410,13 @@
       "description": "The share setting for reservations and sole tenancy node groups.",
       "id": "ShareSettings",
       "properties": {
+        "folderMap": {
+          "additionalProperties": {
+            "$ref": "ShareSettingsFolderConfig"
+          },
+          "description": "A map of folder id and folder config to specify consumer projects for this shared-reservation. This is only valid when share_type's value is DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS.",
+          "type": "object"
+        },
         "projects": {
           "description": "A List of Project names to specify consumer projects for this shared-reservation. This is only valid when share_type's value is SPECIFIC_PROJECTS.",
           "items": {
@@ -68315,15 +68427,30 @@
         "shareType": {
           "description": "Type of sharing for this shared-reservation",
           "enum": [
+            "DIRECT_PROJECTS_UNDER_SPECIFIC_FOLDERS",
+            "LOCAL",
             "ORGANIZATION",
             "SHARE_TYPE_UNSPECIFIED",
             "SPECIFIC_PROJECTS"
           ],
           "enumDescriptions": [
+            "Shared-reservation is open to direct child projects of specific folders.",
+            "Default value.",
             "Shared-reservation is open to entire Organization",
             "Default value. This value is unused.",
             "Shared-reservation is open to specific projects"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShareSettingsFolderConfig": {
+      "description": "Config for each folder in the share settings.",
+      "id": "ShareSettingsFolderConfig",
+      "properties": {
+        "folderId": {
+          "description": "The folder ID, should be same as the key of this folder config in the parent map.",
           "type": "string"
         }
       },
@@ -70473,7 +70600,7 @@
           "type": "string"
         },
         "subsetSize": {
-          "description": "The number of backends per backend group assigned to each proxy instance or each service mesh client. An input parameter to the `CONSISTENT_HASH_SUBSETTING` algorithm. Can only be set if `policy` is set to `CONSISTENT_HASH_SUBSETTING`. Can only be set if load balancing scheme is `INTERNAL_MANAGED` or 'INTERNAL_SELF_MANAGED'. 'subset_size' is optional for Internal HTTP(S) load balancing and required for Traffic Director. If you do not provide this value, Cloud Load Balancing will calculate it dynamically to optimize the number of proxies/clients visible to each backend and vice versa. Must be greater than 0. If `subset_size` is larger than the number of backends/endpoints, then subsetting is disabled.",
+          "description": "The number of backends per backend group assigned to each proxy instance or each service mesh client. An input parameter to the `CONSISTENT_HASH_SUBSETTING` algorithm. Can only be set if `policy` is set to `CONSISTENT_HASH_SUBSETTING`. Can only be set if load balancing scheme is `INTERNAL_MANAGED` or `INTERNAL_SELF_MANAGED`. `subset_size` is optional for Internal HTTP(S) load balancing and required for Traffic Director. If you do not provide this value, Cloud Load Balancing will calculate it dynamically to optimize the number of proxies/clients visible to each backend and vice versa. Must be greater than 0. If `subset_size` is larger than the number of backends/endpoints, then subsetting is disabled.",
           "format": "int32",
           "type": "integer"
         }
@@ -74327,7 +74454,7 @@
           "type": "string"
         },
         "reportNamePrefix": {
-          "description": "An optional prefix for the name of the usage report object stored in bucketName. If not supplied, defaults to usage. The report is stored as a CSV file named report_name_prefix_gce_YYYYMMDD.csv where YYYYMMDD is the day of the usage according to Pacific Time. If you supply a prefix, it should conform to Cloud Storage object naming conventions.",
+          "description": "An optional prefix for the name of the usage report object stored in bucketName. If not supplied, defaults to usage_gce. The report is stored as a CSV file named report_name_prefix_gce_YYYYMMDD.csv where YYYYMMDD is the day of the usage according to Pacific Time. If you supply a prefix, it should conform to Cloud Storage object naming conventions.",
           "type": "string"
         }
       },
@@ -74607,6 +74734,18 @@
         },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for the resource.",
+          "type": "string"
+        },
+        "stackType": {
+          "description": "The stack type for this VPN gateway to identify the IP protocols that are enabled. If not specified, IPV4_ONLY will be used.",
+          "enum": [
+            "IPV4_IPV6",
+            "IPV4_ONLY"
+          ],
+          "enumDescriptions": [
+            "Enable VPN gateway with both IPv4 and IPv6 protocols.",
+            "Enable VPN gateway with only IPv4 protocol."
+          ],
           "type": "string"
         },
         "vpnInterfaces": {
