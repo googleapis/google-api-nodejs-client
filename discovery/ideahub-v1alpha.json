@@ -105,26 +105,6 @@
           "id": "ideahub.ideas.list",
           "parameterOrder": [],
           "parameters": {
-            "creator.platform": {
-              "description": "Identifies the platform from which this user is accessing Idea Hub.",
-              "enum": [
-                "UNKNOWN",
-                "BLOGGER",
-                "SITEKIT"
-              ],
-              "enumDescriptions": [
-                "",
-                "",
-                ""
-              ],
-              "location": "query",
-              "type": "string"
-            },
-            "creator.platformId": {
-              "description": "Identifies the platform account (blog/site/etc.) for which to fetch Ideas.",
-              "location": "query",
-              "type": "string"
-            },
             "filter": {
               "description": "Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.",
               "location": "query",
@@ -238,26 +218,6 @@
                     "parent"
                   ],
                   "parameters": {
-                    "creator.platform": {
-                      "description": "Identifies the platform from which this user is accessing Idea Hub.",
-                      "enum": [
-                        "UNKNOWN",
-                        "BLOGGER",
-                        "SITEKIT"
-                      ],
-                      "enumDescriptions": [
-                        "",
-                        "",
-                        ""
-                      ],
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "creator.platformId": {
-                      "description": "Identifies the platform account (blog/site/etc.) for which to fetch Ideas.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "filter": {
                       "description": "Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.",
                       "location": "query",
@@ -371,7 +331,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20210822",
   "rootUrl": "https://ideahub.googleapis.com/",
   "schemas": {
     "GoogleSearchIdeahubV1alphaAvailableLocale": {
