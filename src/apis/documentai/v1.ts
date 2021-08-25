@@ -3927,7 +3927,7 @@ export namespace documentai_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await documentai.projects.locations.operations.cancelOperation({
+     *   const res = await documentai.projects.locations.operations.cancel({
      *     // The name of the operation resource to be cancelled.
      *     name: 'projects/my-project/locations/my-location/operations/my-operation',
      *   });
@@ -3949,34 +3949,32 @@ export namespace documentai_v1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    cancelOperation(
-      params: Params$Resource$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    cancelOperation(
-      params?: Params$Resource$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params?: Params$Resource$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    cancelOperation(
-      params: Params$Resource$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    cancelOperation(
-      params: Params$Resource$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    cancelOperation(
-      params: Params$Resource$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params: Params$Resource$Projects$Locations$Operations$Cancel,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    cancelOperation(
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancelOperation(
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    cancel(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Operations$Canceloperation
+        | Params$Resource$Projects$Locations$Operations$Cancel
         | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -3992,13 +3990,12 @@ export namespace documentai_v1 {
       | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Operations$Canceloperation;
+        {}) as Params$Resource$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Operations$Canceloperation;
+        params = {} as Params$Resource$Projects$Locations$Operations$Cancel;
         options = {};
       }
 
@@ -4011,8 +4008,8 @@ export namespace documentai_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
           },
           options
         ),
@@ -4311,7 +4308,7 @@ export namespace documentai_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Canceloperation
+  export interface Params$Resource$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
@@ -5721,11 +5718,10 @@ export namespace documentai_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res =
-     *     await documentai.uiv1beta3.projects.locations.operations.cancelOperation({
-     *       // The name of the operation resource to be cancelled.
-     *       name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *     });
+     *   const res = await documentai.uiv1beta3.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5744,34 +5740,32 @@ export namespace documentai_v1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    cancelOperation(
-      params: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    cancelOperation(
-      params?: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params?: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    cancelOperation(
-      params: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    cancelOperation(
-      params: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    cancelOperation(
-      params: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation,
+    cancel(
+      params: Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
-    cancelOperation(
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    cancelOperation(
+    cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    cancel(
       paramsOrCallback?:
-        | Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation
+        | Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel
         | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -5787,13 +5781,13 @@ export namespace documentai_v1 {
       | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation;
+        {}) as Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation;
+          {} as Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel;
         options = {};
       }
 
@@ -5806,8 +5800,11 @@ export namespace documentai_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/uiv1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
+            url: (rootUrl + '/uiv1beta3/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
           },
           options
         ),
@@ -6108,7 +6105,7 @@ export namespace documentai_v1 {
     }
   }
 
-  export interface Params$Resource$Uiv1beta3$Projects$Locations$Operations$Canceloperation
+  export interface Params$Resource$Uiv1beta3$Projects$Locations$Operations$Cancel
     extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
