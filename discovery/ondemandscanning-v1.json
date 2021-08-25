@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20210731",
+  "revision": "20210816",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1369,6 +1369,27 @@
           "$ref": "Version",
           "description": "Required. The version of the package that is installed on the resource affected by this vulnerability."
         },
+        "effectiveSeverity": {
+          "description": "Output only. The distro or language system assigned severity for this vulnerability when that is available and note provider assigned severity when it is not available.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "MINIMAL",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Minimal severity.",
+            "Low severity.",
+            "Medium severity.",
+            "High severity.",
+            "Critical severity."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "fixAvailable": {
           "description": "Output only. Whether a fix is available for this package.",
           "type": "boolean"
@@ -1384,6 +1405,10 @@
         "fixedVersion": {
           "$ref": "Version",
           "description": "Required. The version of the package this vulnerability was fixed in. Setting this to VersionKind.MAXIMUM means no fix is yet available."
+        },
+        "packageType": {
+          "description": "The type of package (e.g. OS, MAVEN, GO).",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1702,7 +1727,7 @@
           "type": "number"
         },
         "effectiveSeverity": {
-          "description": "The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity.",
+          "description": "The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity. When there are multiple PackageIssues for this vulnerability, they can have different effective severities because some might be provided by the distro while others are provided by the language ecosystem for a language pack. For this reason, it is advised to use the effective severity on the PackageIssue level. In the case where multiple PackageIssues have differing effective severities, this field should be the highest severity for any of the PackageIssues.",
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "MINIMAL",

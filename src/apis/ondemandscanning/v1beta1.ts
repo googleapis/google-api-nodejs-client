@@ -857,6 +857,10 @@ export namespace ondemandscanning_v1beta1 {
      */
     affectedVersion?: Schema$Version;
     /**
+     * Output only. The distro or language system assigned severity for this vulnerability when that is available and note provider assigned severity when it is not available.
+     */
+    effectiveSeverity?: string | null;
+    /**
      * Output only. Whether a fix is available for this package.
      */
     fixAvailable?: boolean | null;
@@ -872,6 +876,10 @@ export namespace ondemandscanning_v1beta1 {
      * Required. The version of the package this vulnerability was fixed in. Setting this to VersionKind.MAXIMUM means no fix is yet available.
      */
     fixedVersion?: Schema$Version;
+    /**
+     * The type of package (e.g. OS, MAVEN, GO).
+     */
+    packageType?: string | null;
   }
   /**
    * Details on how a particular software package was installed on a system.
@@ -1109,7 +1117,7 @@ export namespace ondemandscanning_v1beta1 {
      */
     cvssScore?: number | null;
     /**
-     * The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity.
+     * The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity. When there are multiple PackageIssues for this vulnerability, they can have different effective severities because some might be provided by the distro while others are provided by the language ecosystem for a language pack. For this reason, it is advised to use the effective severity on the PackageIssue level. In the case where multiple PackageIssues have differing effective severities, this field should be the highest severity for any of the PackageIssues.
      */
     effectiveSeverity?: string | null;
     /**
