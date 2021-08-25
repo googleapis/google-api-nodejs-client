@@ -838,6 +838,35 @@ export namespace cloudchannel_v1 {
     eventType?: string | null;
   }
   /**
+   * Request message for CloudChannelService.ImportCustomer
+   */
+  export interface Schema$GoogleCloudChannelV1ImportCustomerRequest {
+    /**
+     * Optional. The super admin of the resold customer generates this token to authorize a reseller to access their Cloud Identity and purchase entitlements on their behalf. You can omit this token after authorization. See https://support.google.com/a/answer/7643790 for more details.
+     */
+    authToken?: string | null;
+    /**
+     * Optional. Cloud Identity ID of a channel partner who will be the direct reseller for the customer's order. This field is required for 2-tier transfer scenarios and can be provided via the request Parent binding as well.
+     */
+    channelPartnerId?: string | null;
+    /**
+     * Required. Customer's Cloud Identity ID
+     */
+    cloudIdentityId?: string | null;
+    /**
+     * Optional. Specifies the customer that will receive imported Cloud Identity information. Format: accounts/{account_id\}/customers/{customer_id\}
+     */
+    customer?: string | null;
+    /**
+     * Required. Customer domain.
+     */
+    domain?: string | null;
+    /**
+     * Required. Choose to overwrite an existing customer if found. This must be set to true if there is an existing customer with a conflicting region code or domain.
+     */
+    overwriteIfExists?: boolean | null;
+  }
+  /**
    * Response message for CloudChannelService.ListChannelPartnerLinks.
    */
   export interface Schema$GoogleCloudChannelV1ListChannelPartnerLinksResponse {
@@ -3816,6 +3845,169 @@ export namespace cloudchannel_v1 {
     }
 
     /**
+     * Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.import({
+     *     // Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id\} or accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
+     *     parent: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authToken": "my_authToken",
+     *       //   "channelPartnerId": "my_channelPartnerId",
+     *       //   "cloudIdentityId": "my_cloudIdentityId",
+     *       //   "customer": "my_customer",
+     *       //   "domain": "my_domain",
+     *       //   "overwriteIfExists": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "channelPartnerId": "my_channelPartnerId",
+     *   //   "cloudIdentityId": "my_cloudIdentityId",
+     *   //   "cloudIdentityInfo": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "domain": "my_domain",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "orgDisplayName": "my_orgDisplayName",
+     *   //   "orgPostalAddress": {},
+     *   //   "primaryContactInfo": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Accounts$Channelpartnerlinks$Customers$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    import(
+      params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+    ): void;
+    import(
+      params: Params$Resource$Accounts$Channelpartnerlinks$Customers$Import,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Channelpartnerlinks$Customers$Import
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1Customer>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Channelpartnerlinks$Customers$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customers:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1Customer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1Customer>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * List Customers. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: List of Customers, or an empty list if there are no customers.
      * @example
      * ```js
@@ -4153,6 +4345,18 @@ export namespace cloudchannel_v1 {
      * Required. The resource name of the customer to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
     name?: string;
+  }
+  export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$Import
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id\} or accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudChannelV1ImportCustomerRequest;
   }
   export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$List
     extends StandardParameters {
@@ -4623,6 +4827,168 @@ export namespace cloudchannel_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1Customer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1Customer>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudchannel.accounts.customers.import({
+     *     // Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id\} or accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authToken": "my_authToken",
+     *       //   "channelPartnerId": "my_channelPartnerId",
+     *       //   "cloudIdentityId": "my_cloudIdentityId",
+     *       //   "customer": "my_customer",
+     *       //   "domain": "my_domain",
+     *       //   "overwriteIfExists": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "alternateEmail": "my_alternateEmail",
+     *   //   "channelPartnerId": "my_channelPartnerId",
+     *   //   "cloudIdentityId": "my_cloudIdentityId",
+     *   //   "cloudIdentityInfo": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "domain": "my_domain",
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "orgDisplayName": "my_orgDisplayName",
+     *   //   "orgPostalAddress": {},
+     *   //   "primaryContactInfo": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Accounts$Customers$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Accounts$Customers$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1Customer>;
+    import(
+      params: Params$Resource$Accounts$Customers$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Accounts$Customers$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+    ): void;
+    import(
+      params: Params$Resource$Accounts$Customers$Import,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Customers$Import
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Customer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1Customer>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Customers$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Customers$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/customers:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -5726,6 +6092,18 @@ export namespace cloudchannel_v1 {
      * Required. The resource name of the customer to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
     name?: string;
+  }
+  export interface Params$Resource$Accounts$Customers$Import
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id\} or accounts/{account_id\}/channelPartnerLinks/{channel_partner_id\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudChannelV1ImportCustomerRequest;
   }
   export interface Params$Resource$Accounts$Customers$List
     extends StandardParameters {

@@ -516,6 +516,34 @@
                     "https://www.googleapis.com/auth/apps.order"
                   ]
                 },
+                "import": {
+                  "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
+                  "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/customers:import",
+                  "httpMethod": "POST",
+                  "id": "cloudchannel.accounts.channelPartnerLinks.customers.import",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id} or accounts/{account_id}/channelPartnerLinks/{channel_partner_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/channelPartnerLinks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customers:import",
+                  "request": {
+                    "$ref": "GoogleCloudChannelV1ImportCustomerRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1Customer"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
                 "list": {
                   "description": "List Customers. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. Return value: List of Customers, or an empty list if there are no customers.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/customers",
@@ -663,6 +691,34 @@
                 }
               },
               "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudChannelV1Customer"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/apps.order"
+              ]
+            },
+            "import": {
+              "description": "Imports a Customer from the Cloud Identity associated with the provided Cloud Identity ID or domain before a TransferEntitlements call. If a linked Customer already exists and overwrite_if_exists is true, it will update that Customer's data. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * NOT_FOUND: Cloud Identity doesn't exist or was deleted. * INVALID_ARGUMENT: Required parameters are missing, or the auth_token is expired or invalid. * ALREADY_EXISTS: A customer already exists and has conflicting critical fields. Requires an overwrite. Return value: The Customer.",
+              "flatPath": "v1/accounts/{accountsId}/customers:import",
+              "httpMethod": "POST",
+              "id": "cloudchannel.accounts.customers.import",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The resource name of the reseller's account. Parent takes the format: accounts/{account_id} or accounts/{account_id}/channelPartnerLinks/{channel_partner_id}",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/customers:import",
+              "request": {
+                "$ref": "GoogleCloudChannelV1ImportCustomerRequest"
+              },
               "response": {
                 "$ref": "GoogleCloudChannelV1Customer"
               },
@@ -1533,7 +1589,7 @@
       }
     }
   },
-  "revision": "20210805",
+  "revision": "20210822",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2216,6 +2272,37 @@
             "License cap was changed for the entitlement."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1ImportCustomerRequest": {
+      "description": "Request message for CloudChannelService.ImportCustomer",
+      "id": "GoogleCloudChannelV1ImportCustomerRequest",
+      "properties": {
+        "authToken": {
+          "description": "Optional. The super admin of the resold customer generates this token to authorize a reseller to access their Cloud Identity and purchase entitlements on their behalf. You can omit this token after authorization. See https://support.google.com/a/answer/7643790 for more details.",
+          "type": "string"
+        },
+        "channelPartnerId": {
+          "description": "Optional. Cloud Identity ID of a channel partner who will be the direct reseller for the customer's order. This field is required for 2-tier transfer scenarios and can be provided via the request Parent binding as well.",
+          "type": "string"
+        },
+        "cloudIdentityId": {
+          "description": "Required. Customer's Cloud Identity ID",
+          "type": "string"
+        },
+        "customer": {
+          "description": "Optional. Specifies the customer that will receive imported Cloud Identity information. Format: accounts/{account_id}/customers/{customer_id}",
+          "type": "string"
+        },
+        "domain": {
+          "description": "Required. Customer domain.",
+          "type": "string"
+        },
+        "overwriteIfExists": {
+          "description": "Required. Choose to overwrite an existing customer if found. This must be set to true if there is an existing customer with a conflicting region code or domain.",
+          "type": "boolean"
         }
       },
       "type": "object"
