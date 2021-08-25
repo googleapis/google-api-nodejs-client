@@ -343,19 +343,6 @@ export namespace artifactregistry_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * The response message for Operations.ListOperations.
-   */
-  export interface Schema$ListOperationsResponse {
-    /**
-     * The standard List next-page token.
-     */
-    nextPageToken?: string | null;
-    /**
-     * A list of operations that matches the specified filter in the request.
-     */
-    operations?: Schema$Operation[];
-  }
-  /**
    * The response from listing packages.
    */
   export interface Schema$ListPackagesResponse {
@@ -479,7 +466,7 @@ export namespace artifactregistry_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -559,7 +546,7 @@ export namespace artifactregistry_v1beta1 {
    */
   export interface Schema$Tag {
     /**
-     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
+     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
      */
     name?: string | null;
     /**
@@ -1137,151 +1124,6 @@ export namespace artifactregistry_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Operations$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://artifactregistry.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Operations$Get
@@ -1290,25 +1132,6 @@ export namespace artifactregistry_v1beta1 {
      * The name of the operation resource.
      */
     name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
   }
 
   export class Resource$Projects$Locations$Repositories {
@@ -3929,7 +3752,7 @@ export namespace artifactregistry_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.tags.patch({
-     *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
+     *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
      *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
@@ -4095,7 +3918,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch
     extends StandardParameters {
     /**
-     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
+     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
      */
     name?: string;
     /**
