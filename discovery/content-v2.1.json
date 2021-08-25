@@ -5675,7 +5675,7 @@
       }
     }
   },
-  "revision": "20210728",
+  "revision": "20210812",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5769,7 +5769,7 @@
       "id": "AccountAddress",
       "properties": {
         "country": {
-          "description": "CLDR country code (e.g. \"US\"). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.",
+          "description": "CLDR country code (e.g. \"US\"). All MCA sub-accounts inherit the country of their parent MCA by default, however the country can be updated for individual sub-accounts.",
           "type": "string"
         },
         "locality": {
@@ -6731,7 +6731,7 @@
       "id": "BusinessDayConfig",
       "properties": {
         "businessDays": {
-          "description": "Regular business days. May not be empty.",
+          "description": "Regular business days, such as '\"monday\"'. May not be empty.",
           "items": {
             "type": "string"
           },
@@ -12580,10 +12580,10 @@
         },
         "product": {
           "$ref": "Product",
-          "description": "The product to insert. Only required if the method is `insert`."
+          "description": "The product to insert or update. Only required if the method is `insert` or `update`. If the `update` method is used with `updateMask` only to delete a field, then this isn't required. For example, setting `salePrice` on the `updateMask` and not providing a `product` will result in an existing sale price on the product specified by `productId` being deleted."
         },
         "productId": {
-          "description": "The ID of the product to get or delete. Only defined if the method is `get` or `delete`.",
+          "description": "The ID of the product to get or mutate. Only defined if the method is `get`, `delete`, or `update`.",
           "type": "string"
         },
         "updateMask": {
@@ -13116,12 +13116,16 @@
           "enum": [
             "REPRICING_RULE_TYPE_UNSPECIFIED",
             "TYPE_STATS_BASED",
-            "TYPE_COGS_BASED"
+            "TYPE_COGS_BASED",
+            "TYPE_SALES_VOLUME_BASED",
+            "TYPE_COMPETITIVE_PRICE"
           ],
           "enumDescriptions": [
             "Unused.",
             "Statistical measurement based rules among Google SA merchants. If this rule is chosen, repricer will adjust the offer price based on statistical metrics (currently only min is available) among other merchants who sell the same product. Details need to be provdided in the RuleDefinition.",
-            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant."
+            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant.",
+            "Sales volume based rule. Repricer will adjust the offer price based on the offer's sales volume in the past period of time defined within the rule.",
+            "Competitive price rule. Repricer will adjust the offer price based on the min price from a list of unnamed big competitors."
           ],
           "type": "string"
         }
@@ -13196,12 +13200,16 @@
           "enum": [
             "REPRICING_RULE_TYPE_UNSPECIFIED",
             "TYPE_STATS_BASED",
-            "TYPE_COGS_BASED"
+            "TYPE_COGS_BASED",
+            "TYPE_SALES_VOLUME_BASED",
+            "TYPE_COMPETITIVE_PRICE"
           ],
           "enumDescriptions": [
             "Unused.",
             "Statistical measurement based rules among Google SA merchants. If this rule is chosen, repricer will adjust the offer price based on statistical metrics (currently only min is available) among other merchants who sell the same product. Details need to be provdided in the RuleDefinition.",
-            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant."
+            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant.",
+            "Sales volume based rule. Repricer will adjust the offer price based on the offer's sales volume in the past period of time defined within the rule.",
+            "Competitive price rule. Repricer will adjust the offer price based on the min price from a list of unnamed big competitors."
           ],
           "type": "string"
         }
@@ -13358,12 +13366,16 @@
           "enum": [
             "REPRICING_RULE_TYPE_UNSPECIFIED",
             "TYPE_STATS_BASED",
-            "TYPE_COGS_BASED"
+            "TYPE_COGS_BASED",
+            "TYPE_SALES_VOLUME_BASED",
+            "TYPE_COMPETITIVE_PRICE"
           ],
           "enumDescriptions": [
             "Unused.",
             "Statistical measurement based rules among Google SA merchants. If this rule is chosen, repricer will adjust the offer price based on statistical metrics (currently only min is available) among other merchants who sell the same product. Details need to be provdided in the RuleDefinition.",
-            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant."
+            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant.",
+            "Sales volume based rule. Repricer will adjust the offer price based on the offer's sales volume in the past period of time defined within the rule.",
+            "Competitive price rule. Repricer will adjust the offer price based on the min price from a list of unnamed big competitors."
           ],
           "type": "string"
         }

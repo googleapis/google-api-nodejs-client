@@ -260,7 +260,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountAddress {
     /**
-     * CLDR country code (e.g. "US"). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.
+     * CLDR country code (e.g. "US"). All MCA sub-accounts inherit the country of their parent MCA by default, however the country can be updated for individual sub-accounts.
      */
     country?: string | null;
     /**
@@ -951,7 +951,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$BusinessDayConfig {
     /**
-     * Regular business days. May not be empty.
+     * Regular business days, such as '"monday"'. May not be empty.
      */
     businessDays?: string[] | null;
   }
@@ -5167,11 +5167,11 @@ export namespace content_v2_1 {
      */
     method?: string | null;
     /**
-     * The product to insert. Only required if the method is `insert`.
+     * The product to insert or update. Only required if the method is `insert` or `update`. If the `update` method is used with `updateMask` only to delete a field, then this isn't required. For example, setting `salePrice` on the `updateMask` and not providing a `product` will result in an existing sale price on the product specified by `productId` being deleted.
      */
     product?: Schema$Product;
     /**
-     * The ID of the product to get or delete. Only defined if the method is `get` or `delete`.
+     * The ID of the product to get or mutate. Only defined if the method is `get`, `delete`, or `update`.
      */
     productId?: string | null;
     /**
