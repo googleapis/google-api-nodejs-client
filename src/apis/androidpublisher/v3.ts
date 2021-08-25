@@ -596,7 +596,7 @@ export namespace androidpublisher_v3 {
      */
     kind?: string | null;
     /**
-     * Information about the current page.
+     * Deprecated and unset.
      */
     pageInfo?: Schema$PageInfo;
     /**
@@ -7436,7 +7436,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Lists all in-app products - both managed products and subscriptions.
+     * Lists all in-app products - both managed products and subscriptions. If an app has a large number of in-app products, the response may be paginated. In this case the response field `tokenPagination.nextPageToken` will be set and the caller should provide its value as a `token` request parameter to retrieve the next page.
      * @example
      * ```js
      * // Before running the sample:
@@ -7462,11 +7462,11 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.inappproducts.list({
-     *     // How many results the list operation should return.
+     *     // Deprecated and ignored. The page size is determined by the server.
      *     maxResults: 'placeholder-value',
      *     // Package name of the app.
      *     packageName: 'placeholder-value',
-     *     // The index of the first element to return.
+     *     // Deprecated and ignored. Set the `token` parameter to rertieve the next page.
      *     startIndex: 'placeholder-value',
      *     // Pagination token. If empty, list starts at the first product.
      *     token: 'placeholder-value',
@@ -7949,7 +7949,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Inappproducts$List
     extends StandardParameters {
     /**
-     * How many results the list operation should return.
+     * Deprecated and ignored. The page size is determined by the server.
      */
     maxResults?: number;
     /**
@@ -7957,7 +7957,7 @@ export namespace androidpublisher_v3 {
      */
     packageName?: string;
     /**
-     * The index of the first element to return.
+     * Deprecated and ignored. Set the `token` parameter to rertieve the next page.
      */
     startIndex?: number;
     /**
@@ -8381,7 +8381,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Refund a user's subscription or in-app purchase order.
+     * Refunds a user's subscription or in-app purchase order. Orders older than 1 year cannot be refunded.
      * @example
      * ```js
      * // Before running the sample:
