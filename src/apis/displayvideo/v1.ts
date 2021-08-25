@@ -495,10 +495,6 @@ export namespace displayvideo_v1 {
      */
     browserDetails?: Schema$BrowserAssignedTargetingOptionDetails;
     /**
-     * Business chain details. This field will be populated when the targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
-     */
-    businessChainDetails?: Schema$BusinessChainAssignedTargetingOptionDetails;
-    /**
      * Carrier and ISP details. This field will be populated when the targeting_type is `TARGETING_TYPE_CARRIER_AND_ISP`.
      */
     carrierAndIspDetails?: Schema$CarrierAndIspAssignedTargetingOptionDetails;
@@ -602,10 +598,6 @@ export namespace displayvideo_v1 {
      * Parental status details. This field will be populated when the targeting_type is `TARGETING_TYPE_PARENTAL_STATUS`.
      */
     parentalStatusDetails?: Schema$ParentalStatusAssignedTargetingOptionDetails;
-    /**
-     * POI details. This field will be populated when the targeting_type is `TARGETING_TYPE_POI`.
-     */
-    poiDetails?: Schema$PoiAssignedTargetingOptionDetails;
     /**
      * Proximity location list details. This field will be populated when the targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.
      */
@@ -1062,57 +1054,6 @@ export namespace displayvideo_v1 {
      * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent BulkListLineItemAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * Details for assigned Business chain targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
-   */
-  export interface Schema$BusinessChainAssignedTargetingOptionDetails {
-    /**
-     * Output only. The display name of a business chain, e.g. "KFC", "Chase Bank".
-     */
-    displayName?: string | null;
-    /**
-     * Required. The radius of the area around the business chain that will be targeted. The units of the radius are specified by proximity_radius_unit. Must be 1 to 800 if unit is `DISTANCE_UNIT_KILOMETERS` and 1 to 500 if unit is `DISTANCE_UNIT_MILES`. The minimum increment for both cases is 0.1. Inputs will be rounded to the nearest acceptable value if it is too granular, e.g. 15.57 will become 15.6.
-     */
-    proximityRadiusAmount?: number | null;
-    /**
-     * Required. The unit of distance by which the targeting radius is measured.
-     */
-    proximityRadiusUnit?: string | null;
-    /**
-     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_BUSINESS_CHAIN`.
-     */
-    targetingOptionId?: string | null;
-  }
-  /**
-   * Search terms for Business Chain targeting options. At least one of the field should be populated.
-   */
-  export interface Schema$BusinessChainSearchTerms {
-    /**
-     * The search query for the desired business chain. The query can be a prefix, e.g. "KFC", "mercede".
-     */
-    businessChain?: string | null;
-    /**
-     * The search query for the desired geo region, e.g. "Seattle", "United State".
-     */
-    region?: string | null;
-  }
-  /**
-   * Represents a targetable business chain within a geo region. This will be populated in the business_chain_details field when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
-   */
-  export interface Schema$BusinessChainTargetingOptionDetails {
-    /**
-     * Output only. The display name of the business chain, e.g. "KFC", "Chase Bank".
-     */
-    businessChain?: string | null;
-    /**
-     * Output only. The display name of the geographic region, e.g. "Ontario, Canada".
-     */
-    geoRegion?: string | null;
-    /**
-     * Output only. The type of the geographic region.
-     */
-    geoRegionType?: string | null;
   }
   /**
    * A single campaign.
@@ -3991,61 +3932,6 @@ export namespace displayvideo_v1 {
     performanceGoalType?: string | null;
   }
   /**
-   * Details for assigned POI targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_POI`.
-   */
-  export interface Schema$PoiAssignedTargetingOptionDetails {
-    /**
-     * Output only. The display name of a POI, e.g. "Times Square", "Space Needle".
-     */
-    displayName?: string | null;
-    /**
-     * Output only. Latitude of the POI rounding to 6th decimal place.
-     */
-    latitude?: number | null;
-    /**
-     * Output only. Longitude of the POI rounding to 6th decimal place.
-     */
-    longitude?: number | null;
-    /**
-     * Required. The radius of the area around the POI that will be targeted. The units of the radius are specified by proximity_radius_unit. Must be 1 to 800 if unit is `DISTANCE_UNIT_KILOMETERS` and 1 to 500 if unit is `DISTANCE_UNIT_MILES`.
-     */
-    proximityRadiusAmount?: number | null;
-    /**
-     * Required. The unit of distance by which the targeting radius is measured.
-     */
-    proximityRadiusUnit?: string | null;
-    /**
-     * Input only. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_POI`.
-     */
-    targetingOptionId?: string | null;
-  }
-  /**
-   * Search terms for POI targeting options.
-   */
-  export interface Schema$PoiSearchTerms {
-    /**
-     * The search query for the desired POI name, street address, or coordinate of the desired POI. The query can be a prefix, e.g. "Times squar", "40.7505045,-73.99562", "315 W 44th St", etc.
-     */
-    poiQuery?: string | null;
-  }
-  /**
-   * Represents a targetable point of interest(POI). This will be populated in the poi_details field when targeting_type is `TARGETING_TYPE_POI`.
-   */
-  export interface Schema$PoiTargetingOptionDetails {
-    /**
-     * Output only. The display name of a POI, e.g. "Times Square", "Space Needle".
-     */
-    displayName?: string | null;
-    /**
-     * Output only. Latitude of the POI rounding to 6th decimal place.
-     */
-    latitude?: number | null;
-    /**
-     * Output only. Longitude of the POI rounding to 6th decimal place.
-     */
-    longitude?: number | null;
-  }
-  /**
    * Settings specific to the Mediaocean Prisma tool.
    */
   export interface Schema$PrismaConfig {
@@ -4256,10 +4142,6 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string | null;
     /**
-     * Search terms for Business Chain targeting options. Can only be used when targeting_type is `TARGETING_TYPE_BUSINESS_CHAIN`.
-     */
-    businessChainSearchTerms?: Schema$BusinessChainSearchTerms;
-    /**
      * Search terms for geo region targeting options. Can only be used when targeting_type is `TARGETING_TYPE_GEO_REGION`.
      */
     geoRegionSearchTerms?: Schema$GeoRegionSearchTerms;
@@ -4271,13 +4153,9 @@ export namespace displayvideo_v1 {
      * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `SearchTargetingOptions` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string | null;
-    /**
-     * Search terms for POI targeting options. Can only be used when targeting_type is `TARGETING_TYPE_POI`.
-     */
-    poiSearchTerms?: Schema$PoiSearchTerms;
   }
   /**
-   * Response message for SearchTargetingOptionsResponse.
+   * Response message for SearchTargetingOptions.
    */
   export interface Schema$SearchTargetingOptionsResponse {
     /**
@@ -4393,10 +4271,6 @@ export namespace displayvideo_v1 {
      */
     browserDetails?: Schema$BrowserTargetingOptionDetails;
     /**
-     * Business chain resource details.
-     */
-    businessChainDetails?: Schema$BusinessChainTargetingOptionDetails;
-    /**
      * Carrier and ISP details.
      */
     carrierAndIspDetails?: Schema$CarrierAndIspTargetingOptionDetails;
@@ -4472,10 +4346,6 @@ export namespace displayvideo_v1 {
      * Parental status details.
      */
     parentalStatusDetails?: Schema$ParentalStatusTargetingOptionDetails;
-    /**
-     * POI resource details.
-     */
-    poiDetails?: Schema$PoiTargetingOptionDetails;
     /**
      * Sensitive Category details.
      */
@@ -7311,7 +7181,6 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -7338,7 +7207,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -11253,7 +11121,6 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -11280,7 +11147,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -13406,7 +13272,6 @@ export namespace displayvideo_v1 {
      *           //   "audienceGroupDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
      *           //   "browserDetails": {},
-     *           //   "businessChainDetails": {},
      *           //   "carrierAndIspDetails": {},
      *           //   "categoryDetails": {},
      *           //   "channelDetails": {},
@@ -13433,7 +13298,6 @@ export namespace displayvideo_v1 {
      *           //   "onScreenPositionDetails": {},
      *           //   "operatingSystemDetails": {},
      *           //   "parentalStatusDetails": {},
-     *           //   "poiDetails": {},
      *           //   "proximityLocationListDetails": {},
      *           //   "regionalLocationListDetails": {},
      *           //   "sensitiveCategoryExclusionDetails": {},
@@ -13459,7 +13323,6 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -13486,7 +13349,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -13796,7 +13658,6 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -13823,7 +13684,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -18170,7 +18030,6 @@ export namespace displayvideo_v1 {
      *           //   "audienceGroupDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
      *           //   "browserDetails": {},
-     *           //   "businessChainDetails": {},
      *           //   "carrierAndIspDetails": {},
      *           //   "categoryDetails": {},
      *           //   "channelDetails": {},
@@ -18197,7 +18056,6 @@ export namespace displayvideo_v1 {
      *           //   "onScreenPositionDetails": {},
      *           //   "operatingSystemDetails": {},
      *           //   "parentalStatusDetails": {},
-     *           //   "poiDetails": {},
      *           //   "proximityLocationListDetails": {},
      *           //   "regionalLocationListDetails": {},
      *           //   "sensitiveCategoryExclusionDetails": {},
@@ -18223,7 +18081,6 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -18250,7 +18107,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -18552,7 +18408,6 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -18579,7 +18434,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -19438,7 +19292,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.customBiddingAlgorithms.list({
      *     // The ID of the DV360 advertiser that has access to the custom bidding algorithm.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` - `customBiddingAlgorithmState` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. * For `customBiddingAlgorithmState`, the value is a string. We return all algorithms whose custom_bidding_algorithm_state is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` * All custom bidding algorithms for which the state is "ENABLED": `customBiddingAlgorithmState=ENABLED` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -19581,7 +19435,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` - `customBiddingAlgorithmState` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. * For `customBiddingAlgorithmState`, the value is a string. We return all algorithms whose custom_bidding_algorithm_state is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` * All custom bidding algorithms for which the state is "ENABLED": `customBiddingAlgorithmState=ENABLED` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -24963,7 +24817,6 @@ export namespace displayvideo_v1 {
      *         //   "audienceGroupDetails": {},
      *         //   "authorizedSellerStatusDetails": {},
      *         //   "browserDetails": {},
-     *         //   "businessChainDetails": {},
      *         //   "carrierAndIspDetails": {},
      *         //   "categoryDetails": {},
      *         //   "channelDetails": {},
@@ -24990,7 +24843,6 @@ export namespace displayvideo_v1 {
      *         //   "onScreenPositionDetails": {},
      *         //   "operatingSystemDetails": {},
      *         //   "parentalStatusDetails": {},
-     *         //   "poiDetails": {},
      *         //   "proximityLocationListDetails": {},
      *         //   "regionalLocationListDetails": {},
      *         //   "sensitiveCategoryExclusionDetails": {},
@@ -25015,7 +24867,6 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -25042,7 +24893,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -25338,7 +25188,6 @@ export namespace displayvideo_v1 {
      *   //   "audienceGroupDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
@@ -25365,7 +25214,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "proximityLocationListDetails": {},
      *   //   "regionalLocationListDetails": {},
      *   //   "sensitiveCategoryExclusionDetails": {},
@@ -26073,7 +25921,6 @@ export namespace displayvideo_v1 {
      *   //   "appCategoryDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
-     *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "contentInstreamPositionDetails": {},
@@ -26093,7 +25940,6 @@ export namespace displayvideo_v1 {
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
-     *   //   "poiDetails": {},
      *   //   "sensitiveCategoryDetails": {},
      *   //   "subExchangeDetails": {},
      *   //   "targetingOptionId": "my_targetingOptionId",
@@ -26370,7 +26216,7 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.targetingTypes.targetingOptions.search({
-     *     // Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_BUSINESS_CHAIN`
+     *     // Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION`
      *     targetingType: '[^/]+',
      *
      *     // Request body metadata
@@ -26378,11 +26224,9 @@ export namespace displayvideo_v1 {
      *       // request body parameters
      *       // {
      *       //   "advertiserId": "my_advertiserId",
-     *       //   "businessChainSearchTerms": {},
      *       //   "geoRegionSearchTerms": {},
      *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken",
-     *       //   "poiSearchTerms": {}
+     *       //   "pageToken": "my_pageToken"
      *       // }
      *     },
      *   });
@@ -26541,7 +26385,7 @@ export namespace displayvideo_v1 {
   export interface Params$Resource$Targetingtypes$Targetingoptions$Search
     extends StandardParameters {
     /**
-     * Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_POI` * `TARGETING_TYPE_BUSINESS_CHAIN`
+     * Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION`
      */
     targetingType?: string;
 
