@@ -1881,6 +1881,180 @@
                     }
                   }
                 },
+                "clients": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a GTM Client.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/clients",
+                      "httpMethod": "POST",
+                      "id": "tagmanager.accounts.containers.workspaces.clients.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+parent}/clients",
+                      "request": {
+                        "$ref": "Client"
+                      },
+                      "response": {
+                        "$ref": "Client"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a GTM Client.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/clients/{clientsId}",
+                      "httpMethod": "DELETE",
+                      "id": "tagmanager.accounts.containers.workspaces.clients.delete",
+                      "parameterOrder": [
+                        "path"
+                      ],
+                      "parameters": {
+                        "path": {
+                          "description": "GTM Client's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/clients/{client_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/clients/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+path}",
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a GTM Client.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/clients/{clientsId}",
+                      "httpMethod": "GET",
+                      "id": "tagmanager.accounts.containers.workspaces.clients.get",
+                      "parameterOrder": [
+                        "path"
+                      ],
+                      "parameters": {
+                        "path": {
+                          "description": "GTM Client's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/clients/{client_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/clients/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+path}",
+                      "response": {
+                        "$ref": "Client"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers",
+                        "https://www.googleapis.com/auth/tagmanager.readonly"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all GTM Clients of a GTM container workspace.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/clients",
+                      "httpMethod": "GET",
+                      "id": "tagmanager.accounts.containers.workspaces.clients.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageToken": {
+                          "description": "Continuation token for fetching the next page of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "GTM Workspace's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+parent}/clients",
+                      "response": {
+                        "$ref": "ListClientsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers",
+                        "https://www.googleapis.com/auth/tagmanager.readonly"
+                      ]
+                    },
+                    "revert": {
+                      "description": "Reverts changes to a GTM Client in a GTM Workspace.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/clients/{clientsId}:revert",
+                      "httpMethod": "POST",
+                      "id": "tagmanager.accounts.containers.workspaces.clients.revert",
+                      "parameterOrder": [
+                        "path"
+                      ],
+                      "parameters": {
+                        "fingerprint": {
+                          "description": "When provided, this fingerprint must match the fingerprint of the client in storage.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "path": {
+                          "description": "GTM Client's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/clients/{client_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/clients/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+path}:revert",
+                      "response": {
+                        "$ref": "RevertClientResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                      ]
+                    },
+                    "update": {
+                      "description": "Updates a GTM Client.",
+                      "flatPath": "tagmanager/v2/accounts/{accountsId}/containers/{containersId}/workspaces/{workspacesId}/clients/{clientsId}",
+                      "httpMethod": "PUT",
+                      "id": "tagmanager.accounts.containers.workspaces.clients.update",
+                      "parameterOrder": [
+                        "path"
+                      ],
+                      "parameters": {
+                        "fingerprint": {
+                          "description": "When provided, this fingerprint must match the fingerprint of the client in storage.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "path": {
+                          "description": "GTM Client's API relative path. Example: accounts/{account_id}/containers/{container_id}/workspaces/{workspace_id}/clients/{client_id}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/containers/[^/]+/workspaces/[^/]+/clients/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "tagmanager/v2/{+path}",
+                      "request": {
+                        "$ref": "Client"
+                      },
+                      "response": {
+                        "$ref": "Client"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/tagmanager.edit.containers"
+                      ]
+                    }
+                  }
+                },
                 "folders": {
                   "methods": {
                     "create": {
@@ -3143,7 +3317,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20210822",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -3481,6 +3655,12 @@
           "type": "string"
         },
         "name": {
+          "annotations": {
+            "required": [
+              "tagmanager.accounts.containers.workspaces.clients.create",
+              "tagmanager.accounts.containers.workspaces.clients.update"
+            ]
+          },
           "description": "Client display name. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update",
           "type": "string"
         },
@@ -3513,6 +3693,12 @@
           "type": "string"
         },
         "type": {
+          "annotations": {
+            "required": [
+              "tagmanager.accounts.containers.workspaces.clients.create",
+              "tagmanager.accounts.containers.workspaces.clients.update"
+            ]
+          },
           "description": "Client type. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update",
           "type": "string"
         },
@@ -4242,6 +4428,23 @@
       },
       "type": "object"
     },
+    "ListClientsResponse": {
+      "id": "ListClientsResponse",
+      "properties": {
+        "client": {
+          "description": "All GTM Clients of a GTM Container.",
+          "items": {
+            "$ref": "Client"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Continuation token for fetching the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListContainerVersionsResponse": {
       "description": "List container versions response.",
       "id": "ListContainerVersionsResponse",
@@ -4575,6 +4778,17 @@
         "enabled": {
           "description": "Whether the built-in variable is enabled after reversion.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RevertClientResponse": {
+      "description": "The result of reverting a client in a workspace.",
+      "id": "RevertClientResponse",
+      "properties": {
+        "client": {
+          "$ref": "Client",
+          "description": "Client as it appears in the latest container version since the last workspace synchronization operation. If no client is present, that means the client was deleted in the latest container version."
         }
       },
       "type": "object"
