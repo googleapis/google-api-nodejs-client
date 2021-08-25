@@ -720,6 +720,10 @@ export namespace bigquery_v2 {
      */
     fieldDelimiter?: string | null;
     /**
+     * [Optional] An custom string that will represent a NULL value in CSV import data.
+     */
+    null_marker?: string | null;
+    /**
      * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
      */
     quote?: string | null;
@@ -776,6 +780,10 @@ export namespace bigquery_v2 {
      * [Output-only] The fully-qualified unique name of the dataset in the format projectId:datasetId. The dataset name without the project name is given in the datasetId field. When creating a new dataset, leave this field blank, and instead specify the datasetId field.
      */
     id?: string | null;
+    /**
+     * [Optional] Indicates if table names are case insensitive in the dataset.
+     */
+    isCaseInsensitive?: boolean | null;
     /**
      * [Output-only] The resource type.
      */
@@ -2143,7 +2151,7 @@ export namespace bigquery_v2 {
     enumAsString?: boolean | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -2462,11 +2470,11 @@ export namespace bigquery_v2 {
      */
     definitionBody?: string | null;
     /**
-     * Optional. [Experimental] The description of the routine if defined.
+     * Optional. The description of the routine, if defined.
      */
     description?: string | null;
     /**
-     * Optional. [Experimental] The determinism level of the JavaScript UDF if defined.
+     * Optional. The determinism level of the JavaScript UDF, if defined.
      */
     determinismLevel?: string | null;
     /**
@@ -2486,11 +2494,11 @@ export namespace bigquery_v2 {
      */
     lastModifiedTime?: string | null;
     /**
-     * Optional. Set only if Routine is a "TABLE_VALUED_FUNCTION".
+     * Optional. Can be set only if routine_type = "TABLE_VALUED_FUNCTION". If absent, the return table type is inferred from definition_body at query time in each query that references this routine. If present, then the columns in the evaluated table result will be cast to match the column types specificed in return table type, at query time.
      */
     returnTableType?: Schema$StandardSqlTableType;
     /**
-     * Optional if language = "SQL"; required otherwise. If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: "FLOAT64"\}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64.
+     * Optional if language = "SQL"; required otherwise. Cannot be set if routine_type = "TABLE_VALUED_FUNCTION". If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: "FLOAT64"\}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64.
      */
     returnType?: Schema$StandardSqlDataType;
     /**
@@ -2879,6 +2887,10 @@ export namespace bigquery_v2 {
      * [Optional] The categories attached to this field, used for field-level access control.
      */
     categories?: {names?: string[]} | null;
+    /**
+     * Optional. Collation specification of the field. It only can be set on string type field.
+     */
+    collationSpec?: string | null;
     /**
      * [Optional] The field description. The maximum length is 1,024 characters.
      */
@@ -3446,6 +3458,7 @@ export namespace bigquery_v2 {
      *   //   "etag": "my_etag",
      *   //   "friendlyName": "my_friendlyName",
      *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
      *   //   "kind": "my_kind",
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
@@ -3591,6 +3604,7 @@ export namespace bigquery_v2 {
      *       //   "etag": "my_etag",
      *       //   "friendlyName": "my_friendlyName",
      *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
      *       //   "kind": "my_kind",
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
@@ -3614,6 +3628,7 @@ export namespace bigquery_v2 {
      *   //   "etag": "my_etag",
      *   //   "friendlyName": "my_friendlyName",
      *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
      *   //   "kind": "my_kind",
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
@@ -3903,6 +3918,7 @@ export namespace bigquery_v2 {
      *       //   "etag": "my_etag",
      *       //   "friendlyName": "my_friendlyName",
      *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
      *       //   "kind": "my_kind",
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
@@ -3926,6 +3942,7 @@ export namespace bigquery_v2 {
      *   //   "etag": "my_etag",
      *   //   "friendlyName": "my_friendlyName",
      *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
      *   //   "kind": "my_kind",
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
@@ -4073,6 +4090,7 @@ export namespace bigquery_v2 {
      *       //   "etag": "my_etag",
      *       //   "friendlyName": "my_friendlyName",
      *       //   "id": "my_id",
+     *       //   "isCaseInsensitive": false,
      *       //   "kind": "my_kind",
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
@@ -4096,6 +4114,7 @@ export namespace bigquery_v2 {
      *   //   "etag": "my_etag",
      *   //   "friendlyName": "my_friendlyName",
      *   //   "id": "my_id",
+     *   //   "isCaseInsensitive": false,
      *   //   "kind": "my_kind",
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
