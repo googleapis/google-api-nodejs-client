@@ -266,6 +266,14 @@ export namespace cloudkms_v1 {
      */
     createTime?: string | null;
     /**
+     * Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED. If not specified at creation time, the default duration is 24 hours.
+     */
+    destroyScheduledDuration?: string | null;
+    /**
+     * Immutable. Whether this key may contain imported versions only.
+     */
+    importOnly?: boolean | null;
+    /**
      * Labels with user-defined metadata. For more information, see [Labeling Keys](https://cloud.google.com/kms/docs/labeling-keys).
      */
     labels?: {[key: string]: string} | null;
@@ -506,6 +514,32 @@ export namespace cloudkms_v1 {
      * The URI for an external resource that this CryptoKeyVersion represents.
      */
     externalKeyUri?: string | null;
+  }
+  /**
+   * Request message for KeyManagementService.GenerateRandomBytes.
+   */
+  export interface Schema$GenerateRandomBytesRequest {
+    /**
+     * The length in bytes of the amount of randomness to retrieve. Minimum 8 bytes, maximum 1024 bytes.
+     */
+    lengthBytes?: number | null;
+    /**
+     * The ProtectionLevel to use when generating the random data. Defaults to SOFTWARE.
+     */
+    protectionLevel?: string | null;
+  }
+  /**
+   * Response message for KeyManagementService.GenerateRandomBytes.
+   */
+  export interface Schema$GenerateRandomBytesResponse {
+    /**
+     * The generated data.
+     */
+    data?: string | null;
+    /**
+     * Integrity verification field. A CRC32C checksum of the returned GenerateRandomBytesResponse.data. An integrity check of GenerateRandomBytesResponse.data can be performed by computing the CRC32C checksum of GenerateRandomBytesResponse.data and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.
+     */
+    dataCrc32c?: string | null;
   }
   /**
    * Request message for KeyManagementService.ImportCryptoKeyVersion.
@@ -807,7 +841,7 @@ export namespace cloudkms_v1 {
     verifiedSuccessIntegrity?: boolean | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -921,6 +955,155 @@ export namespace cloudkms_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.keyRings = new Resource$Projects$Locations$Keyrings(this.context);
+    }
+
+    /**
+     * Generate random bytes using the Cloud KMS randomness source in the provided location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.generateRandomBytes({
+     *     // The project-specific location in which to generate random bytes. For example, "projects/my-project/locations/us-central1".
+     *     location: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "lengthBytes": 0,
+     *       //   "protectionLevel": "my_protectionLevel"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "data": "my_data",
+     *   //   "dataCrc32c": "my_dataCrc32c"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateRandomBytes(
+      params: Params$Resource$Projects$Locations$Generaterandombytes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateRandomBytes(
+      params?: Params$Resource$Projects$Locations$Generaterandombytes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GenerateRandomBytesResponse>;
+    generateRandomBytes(
+      params: Params$Resource$Projects$Locations$Generaterandombytes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateRandomBytes(
+      params: Params$Resource$Projects$Locations$Generaterandombytes,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateRandomBytesResponse>,
+      callback: BodyResponseCallback<Schema$GenerateRandomBytesResponse>
+    ): void;
+    generateRandomBytes(
+      params: Params$Resource$Projects$Locations$Generaterandombytes,
+      callback: BodyResponseCallback<Schema$GenerateRandomBytesResponse>
+    ): void;
+    generateRandomBytes(
+      callback: BodyResponseCallback<Schema$GenerateRandomBytesResponse>
+    ): void;
+    generateRandomBytes(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Generaterandombytes
+        | BodyResponseCallback<Schema$GenerateRandomBytesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateRandomBytesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateRandomBytesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GenerateRandomBytesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Generaterandombytes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Generaterandombytes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+location}:generateRandomBytes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateRandomBytesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateRandomBytesResponse>(parameters);
+      }
     }
 
     /**
@@ -1201,6 +1384,18 @@ export namespace cloudkms_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Generaterandombytes
+    extends StandardParameters {
+    /**
+     * The project-specific location in which to generate random bytes. For example, "projects/my-project/locations/us-central1".
+     */
+    location?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateRandomBytesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
@@ -2228,6 +2423,8 @@ export namespace cloudkms_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "destroyScheduledDuration": "my_destroyScheduledDuration",
+     *       //   "importOnly": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "nextRotationTime": "my_nextRotationTime",
@@ -2243,6 +2440,8 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "destroyScheduledDuration": "my_destroyScheduledDuration",
+     *   //   "importOnly": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "nextRotationTime": "my_nextRotationTime",
@@ -2679,6 +2878,8 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "destroyScheduledDuration": "my_destroyScheduledDuration",
+     *   //   "importOnly": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "nextRotationTime": "my_nextRotationTime",
@@ -3108,6 +3309,8 @@ export namespace cloudkms_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "destroyScheduledDuration": "my_destroyScheduledDuration",
+     *       //   "importOnly": false,
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "nextRotationTime": "my_nextRotationTime",
@@ -3123,6 +3326,8 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "destroyScheduledDuration": "my_destroyScheduledDuration",
+     *   //   "importOnly": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "nextRotationTime": "my_nextRotationTime",
@@ -3566,6 +3771,8 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "destroyScheduledDuration": "my_destroyScheduledDuration",
+     *   //   "importOnly": false,
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "nextRotationTime": "my_nextRotationTime",
@@ -4300,7 +4507,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Schedule a CryptoKeyVersion for destruction. Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and destroy_time will be set to a time 24 hours in the future, at which point the state will be changed to DESTROYED, and the key material will be irrevocably destroyed. Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.
+     * Schedule a CryptoKeyVersion for destruction. Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED, and destroy_time will be set to the time destroy_scheduled_duration in the future. At that time, the state will automatically change to DESTROYED, and the key material will be irrevocably destroyed. Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.
      * @example
      * ```js
      * // Before running the sample:
