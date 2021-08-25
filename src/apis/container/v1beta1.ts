@@ -443,6 +443,10 @@ export namespace container_v1beta1 {
      */
     id?: string | null;
     /**
+     * Configuration for Identity Service component.
+     */
+    identityServiceConfig?: Schema$IdentityServiceConfig;
+    /**
      * The initial Kubernetes version for this cluster. Valid versions are those found in validMasterVersions returned by getServerConfig. The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "","-": picks the default Kubernetes version
      */
     initialClusterVersion?: string | null;
@@ -475,6 +479,10 @@ export namespace container_v1beta1 {
      */
     locations?: string[] | null;
     /**
+     * Logging configuration for the cluster.
+     */
+    loggingConfig?: Schema$LoggingConfig;
+    /**
      * The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     loggingService?: string | null;
@@ -498,6 +506,10 @@ export namespace container_v1beta1 {
      * The IP prefix in CIDR notation to use for the hosted master network. This prefix will be used for assigning private IP addresses to the master or set of masters, as well as the ILB VIP. This field is deprecated, use private_cluster_config.master_ipv4_cidr_block instead.
      */
     masterIpv4CidrBlock?: string | null;
+    /**
+     * Monitoring configuration for the cluster.
+     */
+    monitoringConfig?: Schema$MonitoringConfig;
     /**
      * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
@@ -690,6 +702,10 @@ export namespace container_v1beta1 {
      */
     desiredDnsConfig?: Schema$DNSConfig;
     /**
+     * The desired Identity Service component configuration.
+     */
+    desiredIdentityServiceConfig?: Schema$IdentityServiceConfig;
+    /**
      * The desired image type for the node pool. NOTE: Set the "desired_node_pool" field as well.
      */
     desiredImageType?: string | null;
@@ -706,6 +722,10 @@ export namespace container_v1beta1 {
      */
     desiredLocations?: string[] | null;
     /**
+     * The desired logging configuration.
+     */
+    desiredLoggingConfig?: Schema$LoggingConfig;
+    /**
      * The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.
      */
     desiredLoggingService?: string | null;
@@ -721,6 +741,10 @@ export namespace container_v1beta1 {
      * The Kubernetes version to change the master to. The only valid value is the latest supported version. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the default Kubernetes version
      */
     desiredMasterVersion?: string | null;
+    /**
+     * The desired monitoring configuration.
+     */
+    desiredMonitoringConfig?: Schema$MonitoringConfig;
     /**
      * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
@@ -1066,6 +1090,15 @@ export namespace container_v1beta1 {
     disabled?: boolean | null;
   }
   /**
+   * IdentityServiceConfig is configuration for Identity Service which allows customers to use external identity providers with the K8S API
+   */
+  export interface Schema$IdentityServiceConfig {
+    /**
+     * Whether to enable the Identity Service component
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * ILBSubsettingConfig contains the desired config of L4 Internal LoadBalancer subsetting on this cluster.
    */
   export interface Schema$ILBSubsettingConfig {
@@ -1313,6 +1346,24 @@ export namespace container_v1beta1 {
     type?: string | null;
   }
   /**
+   * LoggingComponentConfig is cluster logging component configuration.
+   */
+  export interface Schema$LoggingComponentConfig {
+    /**
+     * Select components to collect logs. An empty set would disable all logging.
+     */
+    enableComponents?: string[] | null;
+  }
+  /**
+   * LoggingConfig is cluster logging configuration.
+   */
+  export interface Schema$LoggingConfig {
+    /**
+     * Logging components configuration
+     */
+    componentConfig?: Schema$LoggingComponentConfig;
+  }
+  /**
    * MaintenancePolicy defines the maintenance policy to be used for the cluster.
    */
   export interface Schema$MaintenancePolicy {
@@ -1416,6 +1467,24 @@ export namespace container_v1beta1 {
     stringValue?: string | null;
   }
   /**
+   * MonitoringComponentConfig is cluster monitoring component configuration.
+   */
+  export interface Schema$MonitoringComponentConfig {
+    /**
+     * Select components to collect metrics. An empty set would disable all monitoring.
+     */
+    enableComponents?: string[] | null;
+  }
+  /**
+   * MonitoringConfig is cluster monitoring configuration.
+   */
+  export interface Schema$MonitoringConfig {
+    /**
+     * Monitoring components configuration
+     */
+    componentConfig?: Schema$MonitoringComponentConfig;
+  }
+  /**
    * NetworkConfig reports the relative names of network & subnetwork.
    */
   export interface Schema$NetworkConfig {
@@ -1511,6 +1580,10 @@ export namespace container_v1beta1 {
      * Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk.
      */
     ephemeralStorageConfig?: Schema$EphemeralStorageConfig;
+    /**
+     * Enable or disable gvnic on the node pool.
+     */
+    gvnic?: Schema$VirtualNIC;
     /**
      * The image type to use for this node. Note that for a given image type, the latest version of it will be used.
      */
@@ -1632,19 +1705,19 @@ export namespace container_v1beta1 {
     upgradeOptions?: Schema$AutoUpgradeOptions;
   }
   /**
-   * Parameters for node pool-level network config. Only applicable if `ip_allocation_policy.use_ip_aliases` is true.
+   * Parameters for node pool-level network config.
    */
   export interface Schema$NodeNetworkConfig {
     /**
-     * Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used.
+     * Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     createPodRange?: boolean | null;
     /**
-     * The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use.
+     * The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     podIpv4CidrBlock?: string | null;
     /**
-     * The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID.
+     * The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     podRange?: string | null;
   }
@@ -2596,6 +2669,10 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
+     * Enable or disable gvnic on the node pool.
+     */
+    gvnic?: Schema$VirtualNIC;
+    /**
      * Required. The desired image type for the node pool.
      */
     imageType?: string | null;
@@ -2672,6 +2749,10 @@ export namespace container_v1beta1 {
      * The release version available for upgrade.
      */
     version?: string | null;
+    /**
+     * Windows node versions info.
+     */
+    windowsVersions?: Schema$WindowsVersions;
   }
   /**
    * UpgradeEvent is a notification sent to customers by the cluster server when a resource is upgrading.
@@ -2760,6 +2841,15 @@ export namespace container_v1beta1 {
   export interface Schema$VerticalPodAutoscaling {
     /**
      * Enables vertical pod autoscaling.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Configuration of gVNIC feature.
+   */
+  export interface Schema$VirtualNIC {
+    /**
+     * Whether gVNIC features are enabled in the node pool.
      */
     enabled?: boolean | null;
   }
@@ -3864,6 +3954,7 @@ export namespace container_v1beta1 {
      *   //   "endpoint": "my_endpoint",
      *   //   "expireTime": "my_expireTime",
      *   //   "id": "my_id",
+     *   //   "identityServiceConfig": {},
      *   //   "initialClusterVersion": "my_initialClusterVersion",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
@@ -3872,12 +3963,14 @@ export namespace container_v1beta1 {
      *   //   "legacyAbac": {},
      *   //   "location": "my_location",
      *   //   "locations": [],
+     *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
      *   //   "master": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
      *   //   "masterIpv4CidrBlock": "my_masterIpv4CidrBlock",
+     *   //   "monitoringConfig": {},
      *   //   "monitoringService": "my_monitoringService",
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -7637,6 +7730,7 @@ export namespace container_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
      *       //   "labels": {},
@@ -9401,6 +9495,7 @@ export namespace container_v1beta1 {
      *   //   "endpoint": "my_endpoint",
      *   //   "expireTime": "my_expireTime",
      *   //   "id": "my_id",
+     *   //   "identityServiceConfig": {},
      *   //   "initialClusterVersion": "my_initialClusterVersion",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
@@ -9409,12 +9504,14 @@ export namespace container_v1beta1 {
      *   //   "legacyAbac": {},
      *   //   "location": "my_location",
      *   //   "locations": [],
+     *   //   "loggingConfig": {},
      *   //   "loggingService": "my_loggingService",
      *   //   "maintenancePolicy": {},
      *   //   "master": {},
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
      *   //   "masterIpv4CidrBlock": "my_masterIpv4CidrBlock",
+     *   //   "monitoringConfig": {},
      *   //   "monitoringService": "my_monitoringService",
      *   //   "name": "my_name",
      *   //   "network": "my_network",
@@ -13060,6 +13157,7 @@ export namespace container_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
      *       //   "labels": {},

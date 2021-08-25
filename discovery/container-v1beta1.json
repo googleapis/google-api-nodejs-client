@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210626",
+  "revision": "20210806",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2850,6 +2850,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "identityServiceConfig": {
+          "$ref": "IdentityServiceConfig",
+          "description": "Configuration for Identity Service component."
+        },
         "initialClusterVersion": {
           "description": "The initial Kubernetes version for this cluster. Valid versions are those found in validMasterVersions returned by getServerConfig. The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - \"latest\": picks the highest valid Kubernetes version - \"1.X\": picks the highest valid patch+gke.N patch in the 1.X version - \"1.X.Y\": picks the highest valid gke.N patch in the 1.X.Y version - \"1.X.Y-gke.N\": picks an explicit Kubernetes version - \"\",\"-\": picks the default Kubernetes version",
           "type": "string"
@@ -2889,6 +2893,10 @@
           },
           "type": "array"
         },
+        "loggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "Logging configuration for the cluster."
+        },
         "loggingService": {
           "description": "The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.",
           "type": "string"
@@ -2912,6 +2920,10 @@
         "masterIpv4CidrBlock": {
           "description": "The IP prefix in CIDR notation to use for the hosted master network. This prefix will be used for assigning private IP addresses to the master or set of masters, as well as the ILB VIP. This field is deprecated, use private_cluster_config.master_ipv4_cidr_block instead.",
           "type": "string"
+        },
+        "monitoringConfig": {
+          "$ref": "MonitoringConfig",
+          "description": "Monitoring configuration for the cluster."
         },
         "monitoringService": {
           "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
@@ -3173,6 +3185,10 @@
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
         },
+        "desiredIdentityServiceConfig": {
+          "$ref": "IdentityServiceConfig",
+          "description": "The desired Identity Service component configuration."
+        },
         "desiredImageType": {
           "description": "The desired image type for the node pool. NOTE: Set the \"desired_node_pool\" field as well.",
           "type": "string"
@@ -3192,6 +3208,10 @@
           },
           "type": "array"
         },
+        "desiredLoggingConfig": {
+          "$ref": "LoggingConfig",
+          "description": "The desired logging configuration."
+        },
         "desiredLoggingService": {
           "description": "The logging service the cluster should use to write logs. Currently available options: * `logging.googleapis.com/kubernetes` - The Cloud Logging service with a Kubernetes-native resource model * `logging.googleapis.com` - The legacy Cloud Logging service (no longer available as of GKE 1.15). * `none` - no logs will be exported from the cluster. If left as an empty string,`logging.googleapis.com/kubernetes` will be used for GKE 1.14+ or `logging.googleapis.com` for earlier versions.",
           "type": "string"
@@ -3207,6 +3227,10 @@
         "desiredMasterVersion": {
           "description": "The Kubernetes version to change the master to. The only valid value is the latest supported version. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - \"latest\": picks the highest valid Kubernetes version - \"1.X\": picks the highest valid patch+gke.N patch in the 1.X version - \"1.X.Y\": picks the highest valid gke.N patch in the 1.X.Y version - \"1.X.Y-gke.N\": picks an explicit Kubernetes version - \"-\": picks the default Kubernetes version",
           "type": "string"
+        },
+        "desiredMonitoringConfig": {
+          "$ref": "MonitoringConfig",
+          "description": "The desired monitoring configuration."
         },
         "desiredMonitoringService": {
           "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
@@ -3733,6 +3757,17 @@
       },
       "type": "object"
     },
+    "IdentityServiceConfig": {
+      "description": "IdentityServiceConfig is configuration for Identity Service which allows customers to use external identity providers with the K8S API",
+      "id": "IdentityServiceConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether to enable the Identity Service component",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "IntraNodeVisibilityConfig": {
       "description": "IntraNodeVisibilityConfig contains the desired config of the intra-node visibility on this cluster.",
       "id": "IntraNodeVisibilityConfig",
@@ -3978,6 +4013,41 @@
       },
       "type": "object"
     },
+    "LoggingComponentConfig": {
+      "description": "LoggingComponentConfig is cluster logging component configuration.",
+      "id": "LoggingComponentConfig",
+      "properties": {
+        "enableComponents": {
+          "description": "Select components to collect logs. An empty set would disable all logging.",
+          "items": {
+            "enum": [
+              "COMPONENT_UNSPECIFIED",
+              "SYSTEM_COMPONENTS",
+              "WORKLOADS"
+            ],
+            "enumDescriptions": [
+              "Default value. This shouldn't be used.",
+              "system components",
+              "workloads"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LoggingConfig": {
+      "description": "LoggingConfig is cluster logging configuration.",
+      "id": "LoggingConfig",
+      "properties": {
+        "componentConfig": {
+          "$ref": "LoggingComponentConfig",
+          "description": "Logging components configuration"
+        }
+      },
+      "type": "object"
+    },
     "MaintenancePolicy": {
       "description": "MaintenancePolicy defines the maintenance policy to be used for the cluster.",
       "id": "MaintenancePolicy",
@@ -4102,6 +4172,41 @@
         "stringValue": {
           "description": "For metrics with custom values (ratios, visual progress, etc.).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MonitoringComponentConfig": {
+      "description": "MonitoringComponentConfig is cluster monitoring component configuration.",
+      "id": "MonitoringComponentConfig",
+      "properties": {
+        "enableComponents": {
+          "description": "Select components to collect metrics. An empty set would disable all monitoring.",
+          "items": {
+            "enum": [
+              "COMPONENT_UNSPECIFIED",
+              "SYSTEM_COMPONENTS",
+              "WORKLOADS"
+            ],
+            "enumDescriptions": [
+              "Default value. This shouldn't be used.",
+              "system components",
+              "workloads"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MonitoringConfig": {
+      "description": "MonitoringConfig is cluster monitoring configuration.",
+      "id": "MonitoringConfig",
+      "properties": {
+        "componentConfig": {
+          "$ref": "MonitoringComponentConfig",
+          "description": "Monitoring components configuration"
         }
       },
       "type": "object"
@@ -4246,6 +4351,10 @@
         "ephemeralStorageConfig": {
           "$ref": "EphemeralStorageConfig",
           "description": "Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk."
+        },
+        "gvnic": {
+          "$ref": "VirtualNIC",
+          "description": "Enable or disable gvnic on the node pool."
         },
         "imageType": {
           "description": "The image type to use for this node. Note that for a given image type, the latest version of it will be used.",
@@ -4397,19 +4506,19 @@
       "type": "object"
     },
     "NodeNetworkConfig": {
-      "description": "Parameters for node pool-level network config. Only applicable if `ip_allocation_policy.use_ip_aliases` is true.",
+      "description": "Parameters for node pool-level network config.",
       "id": "NodeNetworkConfig",
       "properties": {
         "createPodRange": {
-          "description": "Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used.",
+          "description": "Input only. Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
           "type": "boolean"
         },
         "podIpv4CidrBlock": {
-          "description": "The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use.",
+          "description": "The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
           "type": "string"
         },
         "podRange": {
-          "description": "The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID.",
+          "description": "The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
           "type": "string"
         }
       },
@@ -5729,6 +5838,10 @@
           "description": "Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.",
           "type": "string"
         },
+        "gvnic": {
+          "$ref": "VirtualNIC",
+          "description": "Enable or disable gvnic on the node pool."
+        },
         "imageType": {
           "description": "Required. The desired image type for the node pool.",
           "type": "string"
@@ -5820,6 +5933,10 @@
         "version": {
           "description": "The release version available for upgrade.",
           "type": "string"
+        },
+        "windowsVersions": {
+          "$ref": "WindowsVersions",
+          "description": "Windows node versions info."
         }
       },
       "type": "object"
@@ -5951,6 +6068,17 @@
       "properties": {
         "enabled": {
           "description": "Enables vertical pod autoscaling.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "VirtualNIC": {
+      "description": "Configuration of gVNIC feature.",
+      "id": "VirtualNIC",
+      "properties": {
+        "enabled": {
+          "description": "Whether gVNIC features are enabled in the node pool.",
           "type": "boolean"
         }
       },
