@@ -696,7 +696,7 @@ export namespace monitoring_v3 {
     expireTime?: string | null;
   }
   /**
-   * Range of numerical values within min and max. If the open range "< range.max" is desired, set range.min = -infinity. If the open range "\>= range.min" is desired, set range.max = infinity.
+   * Range of numerical values within min and max.
    */
   export interface Schema$GoogleMonitoringV3Range {
     /**
@@ -1282,7 +1282,7 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type "cloudsql_database" represents databases in Google Cloud SQL.
+     * Required. The monitored resource type. For example, the type "cloudsql_database" represents databases in Google Cloud SQL. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).
      */
     type?: string | null;
   }
@@ -1895,7 +1895,7 @@ export namespace monitoring_v3 {
      */
     isInternal?: boolean | null;
     /**
-     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer
+     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer k8s_service
      */
     monitoredResource?: Schema$MonitoredResource;
     /**

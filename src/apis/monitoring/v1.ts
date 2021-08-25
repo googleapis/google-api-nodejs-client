@@ -253,6 +253,10 @@ export namespace monitoring_v1 {
      */
     plotType?: string | null;
     /**
+     * Optional. The target axis to use for plotting the metric.
+     */
+    targetAxis?: string | null;
+    /**
      * Required. Fields for querying time series data from the Stackdriver metrics API.
      */
     timeSeriesQuery?: Schema$TimeSeriesQuery;
@@ -629,6 +633,10 @@ export namespace monitoring_v1 {
      */
     label?: string | null;
     /**
+     * The target axis to use for plotting the threshold. Target axis is not allowed in a Scorecard.
+     */
+    targetAxis?: string | null;
+    /**
      * The value of the threshold. The value should be defined in the native scale of the metric.
      */
     value?: number | null;
@@ -812,6 +820,10 @@ export namespace monitoring_v1 {
      */
     xAxis?: Schema$Axis;
     /**
+     * The properties applied to the Y2 axis.
+     */
+    y2Axis?: Schema$Axis;
+    /**
      * The properties applied to the Y axis.
      */
     yAxis?: Schema$Axis;
@@ -848,7 +860,7 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * Returns a specific Metrics Scope.
+     * Returns a specific Metrics Scope, including the list of projects monitored by the specified Metrics Scope.
      * @example
      * ```js
      * // Before running the sample:
