@@ -915,7 +915,7 @@ export namespace analyticsdata_v1beta {
      */
     dateRanges?: Schema$DateRange[];
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in this filter. Metrics cannot be used in this filter.
+     * Dimension filters allow you to ask for only specific dimension values in the report. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter.
      */
     dimensionFilter?: Schema$FilterExpression;
     /**
@@ -935,7 +935,7 @@ export namespace analyticsdata_v1beta {
      */
     metricAggregations?: string[] | null;
     /**
-     * The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Metrics must be requested to be used in this filter. Dimensions cannot be used in this filter.
+     * The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Dimensions cannot be used in this filter.
      */
     metricFilter?: Schema$FilterExpression;
     /**
