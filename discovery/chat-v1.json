@@ -115,7 +115,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -145,7 +145,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -179,7 +179,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -242,7 +242,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -272,7 +272,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -306,7 +306,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -388,7 +388,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -481,7 +481,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210717",
+  "revision": "20210818",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -920,6 +920,112 @@
       },
       "type": "object"
     },
+    "CommonEventObject": {
+      "description": "Next available ID = 8",
+      "id": "CommonEventObject",
+      "properties": {
+        "formInputs": {
+          "additionalProperties": {
+            "$ref": "Inputs"
+          },
+          "description": "The keys are the string IDs associated with the widget and the values are inputs with a widget in the card.",
+          "type": "object"
+        },
+        "hostApp": {
+          "description": "The hostApp enum which indicates the app the add-on is invoked from",
+          "enum": [
+            "UNSPECIFIED_HOST_APP",
+            "GMAIL",
+            "CALENDAR",
+            "DRIVE",
+            "DEMO",
+            "DOCS",
+            "SHEETS",
+            "SLIDES",
+            "DRAWINGS",
+            "CHAT",
+            "ALL_HOST_APPS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "This is only used for aggregating logs on the server. Clients should never send these values directly."
+          ],
+          "type": "string"
+        },
+        "invokedFunction": {
+          "description": "Name of the invoked function associated with the widget. This field is currently only set for chat.",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Any additional parameters.",
+          "type": "object"
+        },
+        "platform": {
+          "description": "The platform enum which indicates the platform where the add-on is running.",
+          "enum": [
+            "UNKNOWN_PLATFORM",
+            "WEB",
+            "IOS",
+            "ANDROID"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "timeZone": {
+          "$ref": "TimeZone"
+        },
+        "userLocale": {
+          "description": "The full locale.displayName in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as \"en-US\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DateInput": {
+      "description": "Input Parameter for Date Picker widget.",
+      "id": "DateInput",
+      "properties": {
+        "msSinceEpoch": {
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DateTimeInput": {
+      "description": "Input Parameter for Date and Time Picker widget.",
+      "id": "DateTimeInput",
+      "properties": {
+        "hasDate": {
+          "type": "boolean"
+        },
+        "hasTime": {
+          "type": "boolean"
+        },
+        "msSinceEpoch": {
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeprecatedEvent": {
       "description": "Google Chat events.",
       "id": "DeprecatedEvent",
@@ -928,14 +1034,38 @@
           "$ref": "FormAction",
           "description": "The form action data associated with an interactive card that was clicked. Only populated for CARD_CLICKED events. See the [Interactive Cards guide](/chat/how-tos/cards-onclick) for more information."
         },
+        "common": {
+          "$ref": "CommonEventObject",
+          "description": "This will include form information for dialogs such as form inputs, action parameters."
+        },
         "configCompleteRedirectUrl": {
           "description": "The URL the bot should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.",
+          "type": "string"
+        },
+        "dialogEventType": {
+          "description": "The type of dialog event we have received.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "REQUEST_DIALOG",
+            "SUBMIT_DIALOG",
+            "CANCEL_DIALOG"
+          ],
+          "enumDescriptions": [
+            "This could be used when the corresponding event is not dialog related. For example an @mention.",
+            "For any user action that would result in a dialog opening.",
+            "For card click events from any dialog.",
+            "For native cancellation button."
+          ],
           "type": "string"
         },
         "eventTime": {
           "description": "The timestamp indicating when the event was dispatched.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "isDialogEvent": {
+          "description": "Whether or not this event is related to dialogs request, submit or cancel. This will be set to true when we want a request/submit/cancel event.",
+          "type": "boolean"
         },
         "message": {
           "$ref": "Message",
@@ -1982,6 +2112,25 @@
       },
       "type": "object"
     },
+    "Inputs": {
+      "description": "The inputs with widgets.",
+      "id": "Inputs",
+      "properties": {
+        "dateInput": {
+          "$ref": "DateInput"
+        },
+        "dateTimeInput": {
+          "$ref": "DateTimeInput"
+        },
+        "stringInputs": {
+          "$ref": "StringInputs"
+        },
+        "timeInput": {
+          "$ref": "TimeInput"
+        }
+      },
+      "type": "object"
+    },
     "KeyValue": {
       "description": "A UI element contains a key (label) and a value (content). And this element may also contain some actions such as onclick button.",
       "id": "KeyValue",
@@ -2210,6 +2359,12 @@
           "description": "A plain-text description of the message's cards, used when the actual cards cannot be displayed (e.g. mobile notifications).",
           "type": "string"
         },
+        "lastUpdateTime": {
+          "description": "Output only. The time at which the message was last updated in Hangouts Chat server. If the message was never updated, this field will be same as create_time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -2371,6 +2526,19 @@
       },
       "type": "object"
     },
+    "StringInputs": {
+      "description": "Input parameter for regular widgets. For single-valued widgets, it will be a single value list; for multi-valued widgets, such as checkbox, all the values are presented.",
+      "id": "StringInputs",
+      "properties": {
+        "value": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TextButton": {
       "description": "A button with text and onclick action.",
       "id": "TextButton",
@@ -2403,6 +2571,35 @@
         "name": {
           "description": "Resource name, in the form \"spaces/*/threads/*\". Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeInput": {
+      "description": "Input Parameter for Time Picker widget.",
+      "id": "TimeInput",
+      "properties": {
+        "hours": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TimeZone": {
+      "description": "The timezone id and offset. The id is the tz database time zones such as \"America/Toronto\". The user timezone offset, in milliseconds, from Coordinated Universal Time (UTC).",
+      "id": "TimeZone",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "offset": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

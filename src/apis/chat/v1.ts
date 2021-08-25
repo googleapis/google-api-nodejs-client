@@ -332,6 +332,50 @@ export namespace chat_v1 {
     red?: number | null;
   }
   /**
+   * Next available ID = 8
+   */
+  export interface Schema$CommonEventObject {
+    /**
+     * The keys are the string IDs associated with the widget and the values are inputs with a widget in the card.
+     */
+    formInputs?: {[key: string]: Schema$Inputs} | null;
+    /**
+     * The hostApp enum which indicates the app the add-on is invoked from
+     */
+    hostApp?: string | null;
+    /**
+     * Name of the invoked function associated with the widget. This field is currently only set for chat.
+     */
+    invokedFunction?: string | null;
+    /**
+     * Any additional parameters.
+     */
+    parameters?: {[key: string]: string} | null;
+    /**
+     * The platform enum which indicates the platform where the add-on is running.
+     */
+    platform?: string | null;
+    timeZone?: Schema$TimeZone;
+    /**
+     * The full locale.displayName in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as "en-US"
+     */
+    userLocale?: string | null;
+  }
+  /**
+   * Input Parameter for Date Picker widget.
+   */
+  export interface Schema$DateInput {
+    msSinceEpoch?: string | null;
+  }
+  /**
+   * Input Parameter for Date and Time Picker widget.
+   */
+  export interface Schema$DateTimeInput {
+    hasDate?: boolean | null;
+    hasTime?: boolean | null;
+    msSinceEpoch?: string | null;
+  }
+  /**
    * Google Chat events.
    */
   export interface Schema$DeprecatedEvent {
@@ -340,13 +384,25 @@ export namespace chat_v1 {
      */
     action?: Schema$FormAction;
     /**
+     * This will include form information for dialogs such as form inputs, action parameters.
+     */
+    common?: Schema$CommonEventObject;
+    /**
      * The URL the bot should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.
      */
     configCompleteRedirectUrl?: string | null;
     /**
+     * The type of dialog event we have received.
+     */
+    dialogEventType?: string | null;
+    /**
      * The timestamp indicating when the event was dispatched.
      */
     eventTime?: string | null;
+    /**
+     * Whether or not this event is related to dialogs request, submit or cancel. This will be set to true when we want a request/submit/cancel event.
+     */
+    isDialogEvent?: boolean | null;
     /**
      * The message that triggered the event, if applicable.
      */
@@ -1029,6 +1085,15 @@ export namespace chat_v1 {
     onClick?: Schema$OnClick;
   }
   /**
+   * The inputs with widgets.
+   */
+  export interface Schema$Inputs {
+    dateInput?: Schema$DateInput;
+    dateTimeInput?: Schema$DateTimeInput;
+    stringInputs?: Schema$StringInputs;
+    timeInput?: Schema$TimeInput;
+  }
+  /**
    * A UI element contains a key (label) and a value (content). And this element may also contain some actions such as onclick button.
    */
   export interface Schema$KeyValue {
@@ -1144,6 +1209,10 @@ export namespace chat_v1 {
      * A plain-text description of the message's cards, used when the actual cards cannot be displayed (e.g. mobile notifications).
      */
     fallbackText?: string | null;
+    /**
+     * Output only. The time at which the message was last updated in Hangouts Chat server. If the message was never updated, this field will be same as create_time.
+     */
+    lastUpdateTime?: string | null;
     name?: string | null;
     /**
      * Text for generating preview chips. This text will not be displayed to the user, but any links to images, web pages, videos, etc. included here will generate preview chips.
@@ -1265,6 +1334,12 @@ export namespace chat_v1 {
     type?: string | null;
   }
   /**
+   * Input parameter for regular widgets. For single-valued widgets, it will be a single value list; for multi-valued widgets, such as checkbox, all the values are presented.
+   */
+  export interface Schema$StringInputs {
+    value?: string[] | null;
+  }
+  /**
    * A button with text and onclick action.
    */
   export interface Schema$TextButton {
@@ -1291,6 +1366,20 @@ export namespace chat_v1 {
      * Resource name, in the form "spaces/x/threads/x". Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
      */
     name?: string | null;
+  }
+  /**
+   * Input Parameter for Time Picker widget.
+   */
+  export interface Schema$TimeInput {
+    hours?: number | null;
+    minutes?: number | null;
+  }
+  /**
+   * The timezone id and offset. The id is the tz database time zones such as "America/Toronto". The user timezone offset, in milliseconds, from Coordinated Universal Time (UTC).
+   */
+  export interface Schema$TimeZone {
+    id?: string | null;
+    offset?: number | null;
   }
   /**
    * A user in Google Chat.
@@ -1389,7 +1478,7 @@ export namespace chat_v1 {
      *   const res = await chat.dms.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'dms/my-dm',
-     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1403,6 +1492,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -1424,6 +1514,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -1553,7 +1644,7 @@ export namespace chat_v1 {
      *   const res = await chat.dms.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'dms/my-dm',
-     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1567,6 +1658,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -1588,6 +1680,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -1695,7 +1788,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -1710,7 +1803,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -1755,7 +1848,7 @@ export namespace chat_v1 {
      *   const res = await chat.dms.conversations.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'dms/my-dm/conversations/my-conversation',
-     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1769,6 +1862,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -1790,6 +1884,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -1899,7 +1994,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -2088,7 +2183,7 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'rooms/my-room',
-     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2102,6 +2197,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -2123,6 +2219,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -2252,7 +2349,7 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'rooms/my-room',
-     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2266,6 +2363,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -2287,6 +2385,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -2394,7 +2493,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -2409,7 +2508,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -2454,7 +2553,7 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.conversations.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'rooms/my-room/conversations/my-conversation',
-     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2468,6 +2567,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -2489,6 +2589,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -2598,7 +2699,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -2907,7 +3008,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'spaces/my-space',
-     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2921,6 +3022,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -2942,6 +3044,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -3065,7 +3168,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
@@ -3410,7 +3513,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.messages.create({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'spaces/my-space',
-     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3424,6 +3527,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -3445,6 +3549,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -3711,6 +3816,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -3851,6 +3957,7 @@ export namespace chat_v1 {
      *       //   "cards": [],
      *       //   "createTime": "my_createTime",
      *       //   "fallbackText": "my_fallbackText",
+     *       //   "lastUpdateTime": "my_lastUpdateTime",
      *       //   "name": "my_name",
      *       //   "previewText": "my_previewText",
      *       //   "sender": {},
@@ -3872,6 +3979,7 @@ export namespace chat_v1 {
      *   //   "cards": [],
      *   //   "createTime": "my_createTime",
      *   //   "fallbackText": "my_fallbackText",
+     *   //   "lastUpdateTime": "my_lastUpdateTime",
      *   //   "name": "my_name",
      *   //   "previewText": "my_previewText",
      *   //   "sender": {},
@@ -3978,7 +4086,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
 
