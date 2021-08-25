@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -1184,6 +1184,40 @@
               "path": "v1/{+parent}/apis",
               "response": {
                 "$ref": "GoogleCloudApigeeV1ListApiProxiesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates an existing API proxy.",
+              "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.apis.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. API proxy to update in the following format: `organizations/{org}/apis/{api}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/apis/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1ApiProxy"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ApiProxy"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -3902,6 +3936,219 @@
                       }
                     }
                   }
+                }
+              }
+            },
+            "archiveDeployments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ArchiveDeployment.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/archiveDeployments",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.environments.archiveDeployments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The Environment this Archive Deployment will be created in.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/archiveDeployments",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ArchiveDeployment"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an archive deployment.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/archiveDeployments/{archiveDeploymentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.environments.archiveDeployments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the Archive Deployment in the following format: `organizations/{org}/environments/{env}/archiveDeployments/{id}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/archiveDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateDownloadUrl": {
+                  "description": "Generates a signed URL for downloading the original zip file used to create an Archive Deployment. The URL is only valid for a limited period and should be used within minutes after generation. Each call returns a new upload URL.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/archiveDeployments/{archiveDeploymentsId}:generateDownloadUrl",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.environments.archiveDeployments.generateDownloadUrl",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Archive Deployment you want to download.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/archiveDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:generateDownloadUrl",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1GenerateDownloadUrlRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1GenerateDownloadUrlResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateUploadUrl": {
+                  "description": "Generates a signed URL for uploading an Archive zip file to Google Cloud Storage. Once the upload is complete, the signed URL should be passed to CreateArchiveDeployment. When uploading to the generated signed URL, please follow these restrictions: * Source file type should be a zip file. * Source file size should not exceed 1GB limit. * No credentials should be attached - the signed URLs provide access to the target bucket using internal service identity; if credentials were attached, the identity from the credentials would be used, but that identity does not have permissions to upload files to the URL. When making a HTTP PUT request, these two headers need to be specified: * `content-type: application/zip` * `x-goog-content-length-range: 0,1073741824` And this header SHOULD NOT be specified: * `Authorization: Bearer YOUR_TOKEN`",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/archiveDeployments:generateUploadUrl",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.environments.archiveDeployments.generateUploadUrl",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The organization and environment to upload to.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/archiveDeployments:generateUploadUrl",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1GenerateUploadUrlRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1GenerateUploadUrlResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the specified ArchiveDeployment.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/archiveDeployments/{archiveDeploymentsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.archiveDeployments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the Archive Deployment in the following format: `organizations/{org}/environments/{env}/archiveDeployments/{id}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/archiveDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ArchiveDeployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the ArchiveDeployments in the specified Environment.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/archiveDeployments",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.archiveDeployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An optional query used to return a subset of Archive Deployments using the semantics defined in https://google.aip.dev/160.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Maximum number of Archive Deployments to return. If unspecified, at most 25 deployments will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token, returned from a previous ListArchiveDeployments call, that you can use to retrieve the next page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the Environment for which to list Archive Deployments in the format: `organizations/{org}/environments/{env}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/archiveDeployments",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListArchiveDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing ArchiveDeployment. Labels can modified but most of the other fields are not modifiable.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/archiveDeployments/{archiveDeploymentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "apigee.organizations.environments.archiveDeployments.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Name of the Archive Deployment in the following format: `organizations/{org}/environments/{env}/archiveDeployments/{id}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/archiveDeployments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ArchiveDeployment"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ArchiveDeployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -7055,7 +7302,7 @@
       }
     }
   },
-  "revision": "20210729",
+  "revision": "20210813",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -7670,6 +7917,45 @@
         },
         "status": {
           "description": "Status of the credential.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ArchiveDeployment": {
+      "description": "Archive Deployment information.",
+      "id": "GoogleCloudApigeeV1ArchiveDeployment",
+      "properties": {
+        "createdAt": {
+          "description": "Output only. The time at which the Archive Deployment was created in milliseconds since the epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Input only. The Google Cloud Storage signed URL returned from GenerateUploadUrl and used to upload the Archive zip file.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-supplied key-value pairs used to organize ArchiveDeployments. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \\p{Ll}\\p{Lo}{0,62} Label values must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\\p{Ll}\\p{Lo}\\p{N}_-]{0,63} No more than 64 labels can be associated with a given store.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Name of the Archive Deployment in the following format: `organizations/{org}/environments/{env}/archiveDeployments/{id}`.",
+          "type": "string"
+        },
+        "operation": {
+          "description": "Output only. A reference to the LRO that created this Archive Deployment in the following format: `organizations/{org}/operations/{id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updatedAt": {
+          "description": "Output only. The time at which the Archive Deployment was updated in milliseconds since the epoch.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8959,10 +9245,38 @@
     "GoogleCloudApigeeV1Environment": {
       "id": "GoogleCloudApigeeV1Environment",
       "properties": {
+        "apiProxyType": {
+          "description": "Optional. API Proxy type supported by the environment. The type can be set when creating the Environment and cannot be changed.",
+          "enum": [
+            "API_PROXY_TYPE_UNSPECIFIED",
+            "PROGRAMMABLE",
+            "CONFIGURABLE"
+          ],
+          "enumDescriptions": [
+            "API proxy type not specified.",
+            "Programmable API Proxies enable you to develop APIs with highly flexible behavior using bundled policy configuration and one or more programming languages to describe complex sequential and/or conditional flows of logic.",
+            "Configurable API Proxies enable you to develop efficient APIs using simple configuration while complex execution control flow logic is handled by Apigee. This type only works with the ARCHIVE deployment type and cannot be combined with the PROXY deployment type."
+          ],
+          "type": "string"
+        },
         "createdAt": {
           "description": "Output only. Creation time of this environment as milliseconds since epoch.",
           "format": "int64",
           "readOnly": true,
+          "type": "string"
+        },
+        "deploymentType": {
+          "description": "Optional. Deployment type supported by the environment. The deployment type can be set when creating the environment and cannot be changed. When you enable archive deployment, you will be **prevented from performing** a [subset of actions](/apigee/docs/api-platform/local-development/overview#prevented-actions) within the environment, including: * Managing the deployment of API proxy or shared flow revisions * Creating, updating, or deleting resource files * Creating, updating, or deleting target servers",
+          "enum": [
+            "DEPLOYMENT_TYPE_UNSPECIFIED",
+            "PROXY",
+            "ARCHIVE"
+          ],
+          "enumDescriptions": [
+            "Deployment type not specified.",
+            "Proxy deployment enables you to develop and deploy API proxies using Apigee on Google Cloud. This cannot currently be combined with the CONFIGURABLE API proxy type.",
+            "Archive deployment enables you to develop API proxies locally then deploy an archive of your API proxy configuration to an environment in Apigee on Google Cloud. You will be prevented from performing a [subset of actions](/apigee/docs/api-platform/local-development/overview#prevented-actions) within the environment."
+          ],
           "type": "string"
         },
         "description": {
@@ -9012,6 +9326,10 @@
     "GoogleCloudApigeeV1EnvironmentConfig": {
       "id": "GoogleCloudApigeeV1EnvironmentConfig",
       "properties": {
+        "arcConfigLocation": {
+          "description": "The location for the config blob of API Runtime Control, aka Envoy Adapter, for op-based authentication as a URI, e.g. a Cloud Storage URI. This is only used by Envoy-based gateways.",
+          "type": "string"
+        },
         "createTime": {
           "description": "Time that the environment configuration was created.",
           "format": "google-datetime",
@@ -9048,6 +9366,10 @@
             "$ref": "GoogleCloudApigeeV1FlowHookConfig"
           },
           "type": "array"
+        },
+        "gatewayConfigLocation": {
+          "description": "The location for the gateway config blob as a URI, e.g. a Cloud Storage URI. This is only used by Envoy-based gateways.",
+          "type": "string"
         },
         "keystores": {
           "description": "List of keystores in the environment.",
@@ -9336,6 +9658,40 @@
         },
         "sharedFlowName": {
           "description": "Name of the shared flow to invoke in the following format: `organizations/{org}/sharedflows/{sharedflow}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GenerateDownloadUrlRequest": {
+      "description": "Request for GenerateDownloadUrl method.",
+      "id": "GoogleCloudApigeeV1GenerateDownloadUrlRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GenerateDownloadUrlResponse": {
+      "description": "Response for GenerateDownloadUrl method.",
+      "id": "GoogleCloudApigeeV1GenerateDownloadUrlResponse",
+      "properties": {
+        "downloadUri": {
+          "description": "The Google Cloud Storage signed URL that can be used to download the Archive zip file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GenerateUploadUrlRequest": {
+      "description": "Request for GenerateUploadUrl method.",
+      "id": "GoogleCloudApigeeV1GenerateUploadUrlRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GenerateUploadUrlResponse": {
+      "description": "Response for GenerateUploadUrl method.",
+      "id": "GoogleCloudApigeeV1GenerateUploadUrlResponse",
+      "properties": {
+        "uploadUri": {
+          "description": "The Google Cloud Storage signed URL that can be used to upload a new Archive zip file.",
           "type": "string"
         }
       },
@@ -9750,6 +10106,24 @@
             "$ref": "GoogleCloudApigeeV1App"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListArchiveDeploymentsResponse": {
+      "description": "Response for ListArchiveDeployments method.",
+      "id": "GoogleCloudApigeeV1ListArchiveDeploymentsResponse",
+      "properties": {
+        "archiveDeployments": {
+          "description": "Archive Deployments in the specified environment.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1ArchiveDeployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListArchiveDeployments request to retrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -12110,7 +12484,7 @@
       "type": "object"
     },
     "GoogleIamV1Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "GoogleIamV1Policy",
       "properties": {
         "auditConfigs": {
