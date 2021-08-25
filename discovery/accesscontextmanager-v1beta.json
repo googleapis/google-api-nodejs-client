@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -609,9 +609,15 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210814",
   "rootUrl": "https://accesscontextmanager.googleapis.com/",
   "schemas": {
+    "AccessContextManagerOperationMetadata": {
+      "description": "Metadata of Access Context Manager's Long Running Operations.",
+      "id": "AccessContextManagerOperationMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "AccessLevel": {
       "description": "An `AccessLevel` is a label that can be applied to requests to Google Cloud services, along with a list of requirements necessary for the label to be applied.",
       "id": "AccessLevel",
