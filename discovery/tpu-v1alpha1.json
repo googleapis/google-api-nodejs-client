@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -440,7 +440,7 @@
                   ]
                 },
                 "stop": {
-                  "description": "Stops a node.",
+                  "description": "Stops a node. This operation is only available with single TPU nodes.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/nodes/{nodesId}:stop",
                   "httpMethod": "POST",
                   "id": "tpu.projects.locations.nodes.stop",
@@ -669,7 +669,7 @@
       }
     }
   },
-  "revision": "20210721",
+  "revision": "20210824",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorType": {
@@ -1062,7 +1062,7 @@
           "type": "string"
         },
         "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
           "readOnly": true,
           "type": "boolean"
         },
