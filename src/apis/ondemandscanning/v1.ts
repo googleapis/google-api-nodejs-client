@@ -857,6 +857,10 @@ export namespace ondemandscanning_v1 {
      */
     affectedVersion?: Schema$Version;
     /**
+     * Output only. The distro or language system assigned severity for this vulnerability when that is available and note provider assigned severity when it is not available.
+     */
+    effectiveSeverity?: string | null;
+    /**
      * Output only. Whether a fix is available for this package.
      */
     fixAvailable?: boolean | null;
@@ -872,6 +876,10 @@ export namespace ondemandscanning_v1 {
      * Required. The version of the package this vulnerability was fixed in. Setting this to VersionKind.MAXIMUM means no fix is yet available.
      */
     fixedVersion?: Schema$Version;
+    /**
+     * The type of package (e.g. OS, MAVEN, GO).
+     */
+    packageType?: string | null;
   }
   /**
    * Details on how a particular software package was installed on a system.
@@ -904,9 +912,9 @@ export namespace ondemandscanning_v1 {
    */
   export interface Schema$Recipe {
     /**
-     * Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were "make", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint.
+     * Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were "make", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint. Since the arguments field can greatly vary in structure, depending on the builder and recipe type, this is of form "Any".
      */
-    arguments?: string[] | null;
+    arguments?: Array<{[key: string]: any}> | null;
     /**
      * Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were "make", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64.
      */
@@ -916,9 +924,9 @@ export namespace ondemandscanning_v1 {
      */
     entryPoint?: string | null;
     /**
-     * Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy.
+     * Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy. Since the environment field can greatly vary in structure, depending on the builder and recipe type, this is of form "Any".
      */
-    environment?: {[key: string]: string} | null;
+    environment?: Array<{[key: string]: any}> | null;
     /**
      * URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.
      */
@@ -1109,7 +1117,7 @@ export namespace ondemandscanning_v1 {
      */
     cvssScore?: number | null;
     /**
-     * The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity.
+     * The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity. When there are multiple PackageIssues for this vulnerability, they can have different effective severities because some might be provided by the distro while others are provided by the language ecosystem for a language pack. For this reason, it is advised to use the effective severity on the PackageIssue level. In the case where multiple PackageIssues have differing effective severities, this field should be the highest severity for any of the PackageIssues.
      */
     effectiveSeverity?: string | null;
     /**
