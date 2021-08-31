@@ -150,7 +150,7 @@ export namespace file_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}.
+     * Output only. The resource name of the backup, in the format `projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}`.
      */
     name?: string | null;
     /**
@@ -162,7 +162,7 @@ export namespace file_v1beta1 {
      */
     sourceFileShare?: string | null;
     /**
-     * The resource name of the source Cloud Filestore instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}, used to create this backup.
+     * The resource name of the source Cloud Filestore instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`, used to create this backup.
      */
     sourceInstance?: string | null;
     /**
@@ -242,7 +242,7 @@ export namespace file_v1beta1 {
      */
     capacityGb?: string | null;
     /**
-     * The name of the file share (must be 32 characters or less for High Scale SSD tier, 16 characters or less for all other tiers).
+     * The name of the file share (must be 32 characters or less for Enterprise and High Scale SSD tiers and 16 characters or less for all other tiers).
      */
     name?: string | null;
     /**
@@ -250,7 +250,7 @@ export namespace file_v1beta1 {
      */
     nfsExportOptions?: Schema$NfsExportOptions[];
     /**
-     * The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}, that this file share has been restored from.
+     * The resource name of the backup, in the format `projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}`, that this file share has been restored from.
      */
     sourceBackup?: string | null;
   }
@@ -485,11 +485,15 @@ export namespace file_v1beta1 {
      */
     fileShares?: Schema$FileShareConfig[];
     /**
+     * KMS key name used for data encryption.
+     */
+    kmsKeyName?: string | null;
+    /**
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
+     * Output only. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      */
     name?: string | null;
     /**
@@ -509,6 +513,10 @@ export namespace file_v1beta1 {
      */
     statusMessage?: string | null;
     /**
+     * Output only. field indicates all the reasons the instance is in "SUSPENDED" state.
+     */
+    suspensionReasons?: string[] | null;
+    /**
      * The service tier of the instance.
      */
     tier?: string | null;
@@ -518,7 +526,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$ListBackupsResponse {
     /**
-     * A list of backups in the project for the specified location. If the {location\} value in the request is "-", the response contains a list of backups from all locations. If any location is unreachable, the response will only return backups in reachable locations and the "unreachable" field will be populated with a list of unreachable locations.
+     * A list of backups in the project for the specified location. If the `{location\}` value in the request is "-", the response contains a list of backups from all locations. If any location is unreachable, the response will only return backups in reachable locations and the "unreachable" field will be populated with a list of unreachable locations.
      */
     backups?: Schema$Backup[];
     /**
@@ -535,7 +543,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$ListInstancesResponse {
     /**
-     * A list of instances in the project for the specified location. If the {location\} value in the request is "-", the response contains a list of instances from all locations. If any location is unreachable, the response will only return instances in reachable locations and the "unreachable" field will be populated with a list of unreachable locations.
+     * A list of instances in the project for the specified location. If the `{location\}` value in the request is "-", the response contains a list of instances from all locations. If any location is unreachable, the response will only return instances in reachable locations and the "unreachable" field will be populated with a list of unreachable locations.
      */
     instances?: Schema$Instance[];
     /**
@@ -666,7 +674,7 @@ export namespace file_v1beta1 {
      */
     connectMode?: string | null;
     /**
-     * Output only. IPv4 addresses in the format {octet 1\}.{octet 2\}.{octet 3\}.{octet 4\} or IPv6 addresses in the format {block 1\}:{block 2\}:{block 3\}:{block 4\}:{block 5\}:{block 6\}:{block 7\}:{block 8\}.
+     * Output only. IPv4 addresses in the format `{octet1\}.{octet2\}.{octet3\}.{octet4\}` or IPv6 addresses in the format `{block1\}:{block2\}:{block3\}:{block4\}:{block5\}:{block6\}:{block7\}:{block8\}`.
      */
     ipAddresses?: string[] | null;
     /**
@@ -674,11 +682,11 @@ export namespace file_v1beta1 {
      */
     modes?: string[] | null;
     /**
-     * The name of the Google Compute Engine [VPC network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected.
+     * The name of the Google Compute Engine [VPC network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected.
      */
     network?: string | null;
     /**
-     * Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Named Address Range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. For both cases, the range value (direct CIDR value or the range value with which the named range was created) must be a /29 CIDR block for Basic tier or a /23 CIDR block for High Scale or Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/23. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
+     * Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Allocated IP address range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. When the name of an allocated IP address range is specified, it must be one of the ranges associated with the private service access connection. When specified as a direct CIDR value, it must be a /29 CIDR block for Basic tier or a /24 CIDR block for High Scale or Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/reference/research/statistics/address_filters/) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/24. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
      */
     reservedIpRange?: string | null;
   }
@@ -699,7 +707,7 @@ export namespace file_v1beta1 {
      */
     anonUid?: string | null;
     /**
-     * List of either an IPv4 addresses in the format {octet 1\}.{octet 2\}.{octet 3\}.{octet 4\} or CIDR ranges in the format {octet 1\}.{octet 2\}.{octet 3\}.{octet 4\}/{mask size\} which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
+     * List of either an IPv4 addresses in the format `{octet1\}.{octet2\}.{octet3\}.{octet4\}` or CIDR ranges in the format `{octet1\}.{octet2\}.{octet3\}.{octet4\}/{mask size\}` which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
      */
     ipRanges?: string[] | null;
     /**
@@ -741,7 +749,7 @@ export namespace file_v1beta1 {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -774,11 +782,11 @@ export namespace file_v1beta1 {
      */
     fileShare?: string | null;
     /**
-     * The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}.
+     * The resource name of the backup, in the format `projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}`.
      */
     sourceBackup?: string | null;
     /**
-     * The resource name of the snapshot, in the format projects/{project_id\}/locations/{location_id\}/snapshots/{snapshot_id\}.
+     * The resource name of the snapshot, in the format `projects/{project_id\}/locations/{location_id\}/snapshots/{snapshot_id\}`.
      */
     sourceSnapshot?: string | null;
   }
@@ -820,7 +828,7 @@ export namespace file_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource name of the snapshot, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}.
+     * Output only. The resource name of the snapshot, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}`.
      */
     name?: string | null;
     /**
@@ -1256,7 +1264,7 @@ export namespace file_v1beta1 {
      *   const res = await file.projects.locations.backups.create({
      *     // Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     backupId: 'placeholder-value',
-     *     // Required. The backup's project and location, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
+     *     // Required. The backup's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1408,7 +1416,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.backups.delete({
-     *     // Required. The backup resource name, in the format projects/{project_id\}/locations/{location\}/backups/{backup_id\}
+     *     // Required. The backup resource name, in the format `projects/{project_id\}/locations/{location\}/backups/{backup_id\}`
      *     name: 'projects/my-project/locations/my-location/backups/my-backup',
      *   });
      *   console.log(res.data);
@@ -1538,7 +1546,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.backups.get({
-     *     // Required. The backup resource name, in the format projects/{project_id\}/locations/{location\}/backups/{backup_id\}.
+     *     // Required. The backup resource name, in the format `projects/{project_id\}/locations/{location\}/backups/{backup_id\}`.
      *     name: 'projects/my-project/locations/my-location/backups/my-backup',
      *   });
      *   console.log(res.data);
@@ -1683,7 +1691,7 @@ export namespace file_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve backup information, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location\} value.
+     *     // Required. The project and location for which to retrieve backup information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1817,7 +1825,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.backups.patch({
-     *     // Output only. The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}.
+     *     // Output only. The resource name of the backup, in the format `projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}`.
      *     name: 'projects/my-project/locations/my-location/backups/my-backup',
      *     // Required. Mask of fields to update. At least one path must be supplied in this field.
      *     updateMask: 'placeholder-value',
@@ -1949,7 +1957,7 @@ export namespace file_v1beta1 {
      */
     backupId?: string;
     /**
-     * Required. The backup's project and location, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
+     * Required. The backup's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
      */
     parent?: string;
 
@@ -1961,14 +1969,14 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Backups$Delete
     extends StandardParameters {
     /**
-     * Required. The backup resource name, in the format projects/{project_id\}/locations/{location\}/backups/{backup_id\}
+     * Required. The backup resource name, in the format `projects/{project_id\}/locations/{location\}/backups/{backup_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Backups$Get
     extends StandardParameters {
     /**
-     * Required. The backup resource name, in the format projects/{project_id\}/locations/{location\}/backups/{backup_id\}.
+     * Required. The backup resource name, in the format `projects/{project_id\}/locations/{location\}/backups/{backup_id\}`.
      */
     name?: string;
   }
@@ -1991,14 +1999,14 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve backup information, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location\} value.
+     * Required. The project and location for which to retrieve backup information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the `{location\}` value.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Backups$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}.
+     * Output only. The resource name of the backup, in the format `projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}`.
      */
     name?: string;
     /**
@@ -2051,7 +2059,7 @@ export namespace file_v1beta1 {
      *   const res = await file.projects.locations.instances.create({
      *     // Required. The ID of the instance to create. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     instanceId: 'placeholder-value',
-     *     // Required. The instance's project and location, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
+     *     // Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -2062,12 +2070,14 @@ export namespace file_v1beta1 {
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "networks": [],
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier"
      *       // }
      *     },
@@ -2202,7 +2212,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.delete({
-     *     // Required. The instance resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}
+     *     // Required. The instance resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -2332,7 +2342,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.get({
-     *     // Required. The instance resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}.
+     *     // Required. The instance resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -2343,12 +2353,14 @@ export namespace file_v1beta1 {
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "fileShares": [],
+     *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "networks": [],
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
      *   //   "statusMessage": "my_statusMessage",
+     *   //   "suspensionReasons": [],
      *   //   "tier": "my_tier"
      *   // }
      * }
@@ -2476,7 +2488,7 @@ export namespace file_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve instance information, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location\} value.
+     *     // Required. The project and location for which to retrieve instance information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the `{location\}` value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2612,7 +2624,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.patch({
-     *     // Output only. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
+     *     // Output only. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels"
      *     updateMask: 'placeholder-value',
@@ -2625,12 +2637,14 @@ export namespace file_v1beta1 {
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "networks": [],
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier"
      *       // }
      *     },
@@ -2762,7 +2776,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.restore({
-     *     // Required. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
+     *     // Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -2886,7 +2900,7 @@ export namespace file_v1beta1 {
      */
     instanceId?: string;
     /**
-     * Required. The instance's project and location, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
+     * Required. The instance's project and location, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
      */
     parent?: string;
 
@@ -2898,14 +2912,14 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Delete
     extends StandardParameters {
     /**
-     * Required. The instance resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}
+     * Required. The instance resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Get
     extends StandardParameters {
     /**
-     * Required. The instance resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}.
+     * Required. The instance resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
      */
     name?: string;
   }
@@ -2928,14 +2942,14 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve instance information, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location\} value.
+     * Required. The project and location for which to retrieve instance information, in the format `projects/{project_id\}/locations/{location\}`. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the `{location\}` value.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
+     * Output only. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      */
     name?: string;
     /**
@@ -2951,7 +2965,7 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Restore
     extends StandardParameters {
     /**
-     * Required. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
      */
     name?: string;
 
@@ -2994,7 +3008,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.snapshots.create({
-     *     // Required. The Filestore Instance to create the snapshots of, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}
+     *     // Required. The Filestore Instance to create the snapshots of, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Required. The ID to use for the snapshot. The ID must be unique within the specified instance. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     snapshotId: 'placeholder-value',
@@ -3143,7 +3157,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.snapshots.delete({
-     *     // Required. The snapshot resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}
+     *     // Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -3274,7 +3288,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.snapshots.get({
-     *     // Required. The snapshot resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}
+     *     // Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -3414,7 +3428,7 @@ export namespace file_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The instance for which to retrieve snapshot information, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}.
+     *     // Required. The instance for which to retrieve snapshot information, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
      *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -3550,7 +3564,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.snapshots.patch({
-     *     // Output only. The resource name of the snapshot, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}.
+     *     // Output only. The resource name of the snapshot, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}`.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance/snapshots/my-snapshot',
      *     // Required. Mask of fields to update. At least one path must be supplied in this field.
      *     updateMask: 'placeholder-value',
@@ -3673,7 +3687,7 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Snapshots$Create
     extends StandardParameters {
     /**
-     * Required. The Filestore Instance to create the snapshots of, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}
+     * Required. The Filestore Instance to create the snapshots of, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
     parent?: string;
     /**
@@ -3689,14 +3703,14 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Snapshots$Delete
     extends StandardParameters {
     /**
-     * Required. The snapshot resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}
+     * Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Snapshots$Get
     extends StandardParameters {
     /**
-     * Required. The snapshot resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}
+     * Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
      */
     name?: string;
   }
@@ -3719,14 +3733,14 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The instance for which to retrieve snapshot information, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}.
+     * Required. The instance for which to retrieve snapshot information, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Snapshots$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the snapshot, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}.
+     * Output only. The resource name of the snapshot, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}`.
      */
     name?: string;
     /**
