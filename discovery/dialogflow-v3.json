@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/dialogflow": {
           "description": "View, manage and query your Dialogflow agents"
@@ -111,6 +111,76 @@
     "projects": {
       "resources": {
         "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v3/projects/{projectsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "dialogflow.projects.locations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Resource name for the location.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "GoogleCloudLocationLocation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service.",
+              "flatPath": "v3/projects/{projectsId}/locations",
+              "httpMethod": "GET",
+              "id": "dialogflow.projects.locations.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}/locations",
+              "response": {
+                "$ref": "GoogleCloudLocationListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            }
+          },
           "resources": {
             "agents": {
               "methods": {
@@ -1551,7 +1621,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. The mask to control which fields get updated. If `update_mask` is not specified, an error will be returned.",
+                          "description": "The mask to control which fields get updated. If the mask is not present, all fields will be updated.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -3553,7 +3623,7 @@
       }
     }
   },
-  "revision": "20210802",
+  "revision": "20210823",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -6285,16 +6355,20 @@
       "description": "Represents the settings related to security issues, such as data redaction and data retention. It may take hours for updates on the settings to propagate to all the related components and take effect.",
       "id": "GoogleCloudDialogflowCxV3SecuritySettings",
       "properties": {
+        "deidentifyTemplate": {
+          "description": "[DLP](https://cloud.google.com/dlp/docs) deidentify template name. Use this template to define de-identification configuration for the content. If empty, Dialogflow replaces sensitive info with `[redacted]` text. The template name will have one of the following formats: `projects//locations//deidentifyTemplates/` OR `organizations//locations//deidentifyTemplates/` Note: `deidentify_template` must be located in the same region as the `SecuritySettings`.",
+          "type": "string"
+        },
         "displayName": {
           "description": "Required. The human-readable name of the security settings, unique within the location.",
           "type": "string"
         },
         "insightsExportSettings": {
           "$ref": "GoogleCloudDialogflowCxV3SecuritySettingsInsightsExportSettings",
-          "description": "Optional. Controls conversation exporting settings to Insights after conversation is completed. If retention_strategy is set to REMOVE_AFTER_CONVERSATION, Insights export is disabled no matter what you configure here."
+          "description": "Controls conversation exporting settings to Insights after conversation is completed. If retention_strategy is set to REMOVE_AFTER_CONVERSATION, Insights export is disabled no matter what you configure here."
         },
         "inspectTemplate": {
-          "description": "[DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`",
+          "description": "[DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//locations//inspectTemplates/` OR `organizations//locations//inspectTemplates/` Note: `inspect_template` must be located in the same region as the `SecuritySettings`.",
           "type": "string"
         },
         "name": {
@@ -9294,10 +9368,11 @@
           "type": "array"
         },
         "followupIntentInfo": {
-          "description": "Read-only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.",
+          "description": "Output only. Read-only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.",
           "items": {
             "$ref": "GoogleCloudDialogflowV2IntentFollowupIntentInfo"
           },
+          "readOnly": true,
           "type": "array"
         },
         "inputContextNames": {
@@ -9358,7 +9433,8 @@
           "type": "boolean"
         },
         "rootFollowupIntentName": {
-          "description": "Read-only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. We populate this field only in the output. Format: `projects//agent/intents/`.",
+          "description": "Output only. Read-only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. We populate this field only in the output. Format: `projects//agent/intents/`.",
+          "readOnly": true,
           "type": "string"
         },
         "trainingPhrases": {
@@ -12703,6 +12779,58 @@
         "genericMetadata": {
           "$ref": "GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata",
           "description": "The generic information of the operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudLocationListLocationsResponse": {
+      "description": "The response message for Locations.ListLocations.",
+      "id": "GoogleCloudLocationListLocationsResponse",
+      "properties": {
+        "locations": {
+          "description": "A list of locations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "GoogleCloudLocationLocation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudLocationLocation": {
+      "description": "A resource that represents Google Cloud Platform location.",
+      "id": "GoogleCloudLocationLocation",
+      "properties": {
+        "displayName": {
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "type": "object"
+        },
+        "locationId": {
+          "description": "The canonical id for this location. For example: `\"us-east1\"`.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata. For example the available capacity at the given location.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
         }
       },
       "type": "object"
