@@ -266,7 +266,7 @@ export namespace dataproc_v1 {
    */
   export interface Schema$CancelJobRequest {}
   /**
-   * Describes the identifying information, config, and status of a cluster of Compute Engine instances.
+   * Describes the identifying information, config, and status of a Dataproc cluster
    */
   export interface Schema$Cluster {
     /**
@@ -278,7 +278,7 @@ export namespace dataproc_v1 {
      */
     clusterUuid?: string | null;
     /**
-     * Required. The cluster config. Note that Dataproc may set default values, and values may change when clusters are updated.
+     * Optional. The cluster config for a cluster of Compute Engine Instances. Note that Dataproc may set default values, and values may change when clusters are updated.
      */
     config?: Schema$ClusterConfig;
     /**
@@ -311,7 +311,7 @@ export namespace dataproc_v1 {
      */
     autoscalingConfig?: Schema$AutoscalingConfig;
     /**
-     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging bucket (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a URI to a Cloud Storage bucket.
+     * Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
     configBucket?: string | null;
     /**
@@ -339,7 +339,7 @@ export namespace dataproc_v1 {
      */
     lifecycleConfig?: Schema$LifecycleConfig;
     /**
-     * Optional. The Compute Engine config settings for the master instance in a cluster.
+     * Optional. The Compute Engine config settings for the cluster's master instance.
      */
     masterConfig?: Schema$InstanceGroupConfig;
     /**
@@ -347,7 +347,7 @@ export namespace dataproc_v1 {
      */
     metastoreConfig?: Schema$MetastoreConfig;
     /**
-     * Optional. The Compute Engine config settings for additional worker instances in a cluster.
+     * Optional. The Compute Engine config settings for a cluster's secondary worker instances
      */
     secondaryWorkerConfig?: Schema$InstanceGroupConfig;
     /**
@@ -355,15 +355,15 @@ export namespace dataproc_v1 {
      */
     securityConfig?: Schema$SecurityConfig;
     /**
-     * Optional. The config settings for software inside the cluster.
+     * Optional. The config settings for cluster software.
      */
     softwareConfig?: Schema$SoftwareConfig;
     /**
-     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket. This field requires a Cloud Storage bucket name, not a URI to a Cloud Storage bucket.
+     * Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.
      */
     tempBucket?: string | null;
     /**
-     * Optional. The Compute Engine config settings for worker instances in a cluster.
+     * Optional. The Compute Engine config settings for the cluster's worker instances.
      */
     workerConfig?: Schema$InstanceGroupConfig;
   }
@@ -651,7 +651,7 @@ export namespace dataproc_v1 {
     requestedPolicyVersion?: number | null;
   }
   /**
-   * The GKE config for this cluster.
+   * The cluster's GKE config.
    */
   export interface Schema$GkeClusterConfig {
     /**
@@ -1376,7 +1376,7 @@ export namespace dataproc_v1 {
     scriptVariables?: {[key: string]: string} | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -6039,6 +6039,8 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.regions.clusters.create({
+     *     // Optional. Failure action when primary worker creation fails.
+     *     actionOnFailedPrimaryWorkers: 'placeholder-value',
      *     // Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      *     projectId: 'placeholder-value',
      *     // Required. The Dataproc region in which to handle the request.
@@ -7897,6 +7899,10 @@ export namespace dataproc_v1 {
 
   export interface Params$Resource$Projects$Regions$Clusters$Create
     extends StandardParameters {
+    /**
+     * Optional. Failure action when primary worker creation fails.
+     */
+    actionOnFailedPrimaryWorkers?: string;
     /**
      * Required. The ID of the Google Cloud Platform project that the cluster belongs to.
      */
