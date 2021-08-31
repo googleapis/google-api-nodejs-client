@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/monitoring": {
           "description": "View and write monitoring data for all of your Google and third-party Cloud and API projects"
@@ -121,7 +121,7 @@
             "metricsScopes": {
               "methods": {
                 "get": {
-                  "description": "Returns a specific Metrics Scope.",
+                  "description": "Returns a specific Metrics Scope, including the list of projects monitored by the specified Metrics Scope.",
                   "flatPath": "v1/locations/global/metricsScopes/{metricsScopesId}",
                   "httpMethod": "GET",
                   "id": "monitoring.locations.global.metricsScopes.get",
@@ -441,7 +441,7 @@
       }
     }
   },
-  "revision": "20210727",
+  "revision": "20210816",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -700,6 +700,20 @@
             "The data is plotted as a set of filled areas (one area per series), with the areas stacked vertically (the base of each area is the top of its predecessor, and the base of the first area is the X axis). Since the areas do not overlap, each is filled with a different opaque color.",
             "The data is plotted as a set of rectangular boxes (one box per series), with the boxes stacked vertically (the base of each box is the top of its predecessor, and the base of the first box is the X axis). Since the boxes do not overlap, each is filled with a different opaque color.",
             "The data is plotted as a heatmap. The series being plotted must have a DISTRIBUTION value type. The value of each bucket in the distribution is displayed as a color. This type is not currently available in the Stackdriver Monitoring application."
+          ],
+          "type": "string"
+        },
+        "targetAxis": {
+          "description": "Optional. The target axis to use for plotting the metric.",
+          "enum": [
+            "TARGET_AXIS_UNSPECIFIED",
+            "Y1",
+            "Y2"
+          ],
+          "enumDescriptions": [
+            "The target axis was not specified. Defaults to Y1.",
+            "The y_axis (the right axis of chart).",
+            "The y2_axis (the left axis of chart)."
           ],
           "type": "string"
         },
@@ -1340,6 +1354,20 @@
           "description": "A label for the threshold.",
           "type": "string"
         },
+        "targetAxis": {
+          "description": "The target axis to use for plotting the threshold. Target axis is not allowed in a Scorecard.",
+          "enum": [
+            "TARGET_AXIS_UNSPECIFIED",
+            "Y1",
+            "Y2"
+          ],
+          "enumDescriptions": [
+            "The target axis was not specified. Defaults to Y1.",
+            "The y_axis (the right axis of chart).",
+            "The y2_axis (the left axis of chart)."
+          ],
+          "type": "string"
+        },
         "value": {
           "description": "The value of the threshold. The value should be defined in the native scale of the metric.",
           "format": "double",
@@ -1565,6 +1593,10 @@
         "xAxis": {
           "$ref": "Axis",
           "description": "The properties applied to the X axis."
+        },
+        "y2Axis": {
+          "$ref": "Axis",
+          "description": "The properties applied to the Y2 axis."
         },
         "yAxis": {
           "$ref": "Axis",
