@@ -372,7 +372,7 @@ export namespace tpu_v1alpha1 {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      */
     cancelRequested?: boolean | null;
     /**
@@ -1982,7 +1982,7 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * Stops a node.
+     * Stops a node. This operation is only available with single TPU nodes.
      * @example
      * ```js
      * // Before running the sample:
