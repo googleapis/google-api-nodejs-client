@@ -215,6 +215,64 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
+   */
+  export interface Schema$Cve {
+    /**
+     * Describe Common Vulnerability Scoring System specified at https://www.first.org/cvss/v3.1/specification-document
+     */
+    cvssv3?: Schema$Cvssv3;
+    /**
+     * The unique identifier for the vulnerability. e.g. CVE-2021-34527
+     */
+    id?: string | null;
+    /**
+     * Additional information about the CVE. e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
+     */
+    references?: Schema$Reference[];
+  }
+  /**
+   * Common Vulnerability Scoring System version 3.
+   */
+  export interface Schema$Cvssv3 {
+    /**
+     * This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.
+     */
+    attackComplexity?: string | null;
+    /**
+     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. This metric reflects the context by which vulnerability exploitation is possible.
+     */
+    attackVector?: string | null;
+    /**
+     * This metric measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability.
+     */
+    availabilityImpact?: string | null;
+    /**
+     * The base score is a function of the base metric scores.
+     */
+    baseScore?: number | null;
+    /**
+     * This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.
+     */
+    confidentialityImpact?: string | null;
+    /**
+     * This metric measures the impact to integrity of a successfully exploited vulnerability.
+     */
+    integrityImpact?: string | null;
+    /**
+     * This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.
+     */
+    privilegesRequired?: string | null;
+    /**
+     * The Scope metric captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope.
+     */
+    scope?: string | null;
+    /**
+     * This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.
+     */
+    userInteraction?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -299,6 +357,10 @@ export namespace securitycenter_v1beta1 {
      * The state of the finding.
      */
     state?: string | null;
+    /**
+     * Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     */
+    vulnerability?: Schema$Vulnerability;
   }
   /**
    * Message that contains the resource name and display name of a folder resource.
@@ -589,6 +651,10 @@ export namespace securitycenter_v1beta1 {
      * The human readable name of project that the resource belongs to.
      */
     projectDisplayName?: string | null;
+    /**
+     * The full resource type of the resource.
+     */
+    type?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -841,7 +907,7 @@ export namespace securitycenter_v1beta1 {
     name?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -860,6 +926,19 @@ export namespace securitycenter_v1beta1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Additional Links
+   */
+  export interface Schema$Reference {
+    /**
+     * Source of the reference e.g. NVD
+     */
+    source?: string | null;
+    /**
+     * Uri for the mentioned source e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527.
+     */
+    uri?: string | null;
   }
   /**
    * Request message for running asset discovery for an organization.
@@ -984,6 +1063,15 @@ export namespace securitycenter_v1beta1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Refers to common vulnerability fields e.g. cve, cvss, cwe etc.
+   */
+  export interface Schema$Vulnerability {
+    /**
+     * CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     */
+    cve?: Schema$Cve;
   }
 
   export class Resource$Organizations {
