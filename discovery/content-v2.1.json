@@ -3025,6 +3025,41 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "captureOrder": {
+          "description": "Capture funds from the customer for the current order total. This method should be called after the merchant verifies that they are able and ready to start shipping the order. This method blocks until a response is received from the payment processsor. If this method succeeds, the merchant is guaranteed to receive funds for the order after shipment. If the request fails, it can be retried or the order may be cancelled. This method cannot be called after the entire order is already shipped.",
+          "flatPath": "{merchantId}/orders/{orderId}/captureOrder",
+          "httpMethod": "POST",
+          "id": "content.orders.captureOrder",
+          "parameterOrder": [
+            "merchantId",
+            "orderId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account that manages the order. This cannot be a multi-client account.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "orderId": {
+              "description": "Required. The ID of the Order.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/orders/{orderId}/captureOrder",
+          "request": {
+            "$ref": "CaptureOrderRequest"
+          },
+          "response": {
+            "$ref": "CaptureOrderResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "createtestorder": {
           "description": "Sandbox only. Creates a test order.",
           "flatPath": "{merchantId}/testorders",
@@ -4280,6 +4315,38 @@
               ]
             }
           }
+        }
+      }
+    },
+    "promotions": {
+      "methods": {
+        "create": {
+          "description": "Inserts a promotion for your Merchant Center account. If the promotion already exists, then it will update the promotion instead.",
+          "flatPath": "{merchantId}/promotions",
+          "httpMethod": "POST",
+          "id": "content.promotions.create",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The ID of the account that contains the collection.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/promotions",
+          "request": {
+            "$ref": "Promotion"
+          },
+          "response": {
+            "$ref": "Promotion"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
         }
       }
     },
@@ -5675,7 +5742,7 @@
       }
     }
   },
-  "revision": "20210728",
+  "revision": "20210827",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5769,7 +5836,7 @@
       "id": "AccountAddress",
       "properties": {
         "country": {
-          "description": "CLDR country code (e.g. \"US\"). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.",
+          "description": "CLDR country code (e.g. \"US\"). All MCA sub-accounts inherit the country of their parent MCA by default, however the country can be updated for individual sub-accounts.",
           "type": "string"
         },
         "locality": {
@@ -6731,7 +6798,7 @@
       "id": "BusinessDayConfig",
       "properties": {
         "businessDays": {
-          "description": "Regular business days. May not be empty.",
+          "description": "Regular business days, such as '\"monday\"'. May not be empty.",
           "items": {
             "type": "string"
           },
@@ -6745,15 +6812,16 @@
       "id": "BuyOnGoogleProgramStatus",
       "properties": {
         "customerServicePendingEmail": {
-          "description": "The customer service pending email.",
+          "description": "The customer service pending email. After verification this field becomes empty.",
           "type": "string"
         },
         "customerServiceVerifiedEmail": {
-          "description": "The customer service verified email.",
+          "description": "Output only. The customer service verified email.",
+          "readOnly": true,
           "type": "string"
         },
         "participationStage": {
-          "description": "The current participation stage for the program.",
+          "description": "Output only. The current participation stage for the program.",
           "enum": [
             "PROGRAM_PARTICIPATION_STAGE_UNSPECIFIED",
             "NOT_ELIGIBLE",
@@ -6775,6 +6843,34 @@
             "The review for a merchant has been rejected in a specific region code.",
             "Merchant's program participation is active for a specific region code.",
             "Participation has been paused."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CaptureOrderRequest": {
+      "description": "Request message for the CaptureOrder method.",
+      "id": "CaptureOrderRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CaptureOrderResponse": {
+      "description": "Response message for the CaptureOrder method.",
+      "id": "CaptureOrderResponse",
+      "properties": {
+        "executionStatus": {
+          "description": "The status of the execution. Only defined if the request was successful. Acceptable values are: * \"duplicate\" * \"executed\"",
+          "enum": [
+            "EXECUTION_STATUS_UNSPECIFIED",
+            "EXECUTED",
+            "DUPLICATE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The request was completed successfully.",
+            "The request was not performed because it already executed once successfully."
           ],
           "type": "string"
         }
@@ -12086,6 +12182,10 @@
           },
           "type": "array"
         },
+        "productHeight": {
+          "$ref": "ProductDimension",
+          "description": "The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
+        },
         "productHighlights": {
           "description": "Bullet points describing the most relevant highlights of a product.",
           "items": {
@@ -12093,12 +12193,24 @@
           },
           "type": "array"
         },
+        "productLength": {
+          "$ref": "ProductDimension",
+          "description": "The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
+        },
         "productTypes": {
           "description": "Categories of the item (formatted as in products data specification).",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "productWeight": {
+          "$ref": "ProductWeight",
+          "description": "The weight of the product in the units provided. The value must be between 0 (exclusive) and 2000 (inclusive)."
+        },
+        "productWidth": {
+          "$ref": "ProductDimension",
+          "description": "The width of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
         },
         "promotionIds": {
           "description": "The unique ID of a promotion.",
@@ -12225,6 +12337,21 @@
         "taxAmount": {
           "$ref": "Price",
           "description": "Tax value."
+        }
+      },
+      "type": "object"
+    },
+    "ProductDimension": {
+      "id": "ProductDimension",
+      "properties": {
+        "unit": {
+          "description": "Required. The length units. Acceptable values are: - \"`in`\" - \"`cm`\" ",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The length value represented as a number. The value can have a maximum precision of four decimal places.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -12542,6 +12669,21 @@
       },
       "type": "object"
     },
+    "ProductWeight": {
+      "id": "ProductWeight",
+      "properties": {
+        "unit": {
+          "description": "Required. The weight unit. Acceptable values are: - \"`g`\" - \"`kg`\" - \"`oz`\" - \"`lb`\" ",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The weight represented as a number. The weight can have a maximum precision of four decimal places.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ProductsCustomBatchRequest": {
       "id": "ProductsCustomBatchRequest",
       "properties": {
@@ -12580,10 +12722,10 @@
         },
         "product": {
           "$ref": "Product",
-          "description": "The product to insert. Only required if the method is `insert`."
+          "description": "The product to insert or update. Only required if the method is `insert` or `update`. If the `update` method is used with `updateMask` only to delete a field, then this isn't required. For example, setting `salePrice` on the `updateMask` and not providing a `product` will result in an existing sale price on the product specified by `productId` being deleted."
         },
         "productId": {
-          "description": "The ID of the product to get or delete. Only defined if the method is `get` or `delete`.",
+          "description": "The ID of the product to get or mutate. Only defined if the method is `get`, `delete`, or `update`.",
           "type": "string"
         },
         "updateMask": {
@@ -12760,6 +12902,234 @@
             "$ref": "ProductStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Promotion": {
+      "description": "Represents a promotion. (1) https://support.google.com/merchants/answer/2906014 (2) https://support.google.com/merchants/answer/10146130 (3) https://support.google.com/merchants/answer/9173673",
+      "id": "Promotion",
+      "properties": {
+        "brand": {
+          "description": "Product filter by brand for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "brandExclusion": {
+          "description": "Product filter by brand exclusion for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "contentLanguage": {
+          "description": "Required. The content language used as part of the unique identifier.",
+          "type": "string"
+        },
+        "couponValueType": {
+          "description": "Required. Coupon value type for the promotion.",
+          "enum": [
+            "COUPON_VALUE_TYPE_UNSPECIFIED",
+            "MONEY_OFF",
+            "PERCENT_OFF",
+            "BUY_M_GET_N_MONEY_OFF",
+            "BUY_M_GET_N_PERCENT_OFF",
+            "BUY_M_GET_MONEY_OFF",
+            "BUY_M_GET_PERCENT_OFF",
+            "FREE_GIFT",
+            "FREE_GIFT_WITH_VALUE",
+            "FREE_GIFT_WITH_ITEM_ID",
+            "FREE_SHIPPING_STANDARD",
+            "FREE_SHIPPING_OVERNIGHT",
+            "FREE_SHIPPING_TWO_DAY"
+          ],
+          "enumDescriptions": [
+            "Indicates that the coupon value type is unspecified.",
+            "Money off coupon value type.",
+            "Percent off coupon value type.",
+            "Buy M quantity, get N money off coupon value type. buy_this_quantity and get_this_quantity must be present. money_off_amount must also be present.",
+            "Buy M quantity, get N percent off coupon value type. buy_this_quantity and get_this_quantity must be present. percent_off_percentage must also be present.",
+            "Buy M quantity, get money off. buy_this_quantity and money_off_amount must be present.",
+            "Buy M quantity, get money off. buy_this_quantity and percent_off_percentage must be present.",
+            "Free gift with description only",
+            "Free gift with value (description is optional).",
+            "Free gift with item id (description is optional).",
+            "Standard free shipping coupon value type.",
+            "Overnight free shipping coupon value type.",
+            "Two day free shipping coupon value type."
+          ],
+          "type": "string"
+        },
+        "freeGiftDescription": {
+          "description": "Free gift description for the promotion.",
+          "type": "string"
+        },
+        "freeGiftItemId": {
+          "description": "Free gift item id for the promotion.",
+          "type": "string"
+        },
+        "freeGiftValue": {
+          "$ref": "PriceAmount",
+          "description": "Free gift value for the promotion."
+        },
+        "genericRedemptionCode": {
+          "description": "Generic redemption code for the promotion. To be used with the above field.",
+          "type": "string"
+        },
+        "getThisQuantityDiscounted": {
+          "description": "The number of items discounted in the promotion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "description": "Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "itemGroupId": {
+          "description": "Product filter by item group id for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "itemGroupIdExclusion": {
+          "description": "Product filter by item group id exclusion for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "itemId": {
+          "description": "Product filter by item id for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "itemIdExclusion": {
+          "description": "Product filter by item id exclusion for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "limitQuantity": {
+          "description": "Maximum purchase quantity for the promotion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "limitValue": {
+          "$ref": "PriceAmount",
+          "description": "Maximum purchase value for the promotion."
+        },
+        "longTitle": {
+          "description": "Long title for the promotion.",
+          "type": "string"
+        },
+        "minimumPurchaseAmount": {
+          "$ref": "PriceAmount",
+          "description": "Minimum purchase amount for the promotion."
+        },
+        "minimumPurchaseQuantity": {
+          "description": "Minimum purchase quantity for the promotion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "moneyBudget": {
+          "$ref": "PriceAmount",
+          "description": "Promotion cost cap of the promotion."
+        },
+        "moneyOffAmount": {
+          "$ref": "PriceAmount",
+          "description": "The money off amount offered in the promotion."
+        },
+        "offerType": {
+          "description": "Required. Type of the promotion.",
+          "enum": [
+            "OFFER_TYPE_UNSPECIFIED",
+            "NO_CODE",
+            "GENERIC_CODE"
+          ],
+          "enumDescriptions": [
+            "Unknown offer type.",
+            "Offer type without a code.",
+            "Offer type with a code."
+          ],
+          "type": "string"
+        },
+        "orderLimit": {
+          "description": "Order limit for the promotion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "percentOff": {
+          "description": "The percentage discount offered in the promotion.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "productApplicability": {
+          "description": "Required. Applicability of the promotion to either all products or only specific products.",
+          "enum": [
+            "PRODUCT_APPLICABILITY_UNSPECIFIED",
+            "ALL_PRODUCTS",
+            "PRODUCT_SPECIFIC"
+          ],
+          "enumDescriptions": [
+            "Unknown product applicability.",
+            "Applicable to all products.",
+            "Applicable to only a single product or list of products."
+          ],
+          "type": "string"
+        },
+        "promotionDestinationIds": {
+          "description": "Destination ID for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "promotionDisplayDates": {
+          "description": "String representation of the promotion display dates.",
+          "type": "string"
+        },
+        "promotionEffectiveDates": {
+          "description": "Required. String representation of the promotion effective dates.",
+          "type": "string"
+        },
+        "promotionId": {
+          "description": "Required. The user provided promotion id to uniquely identify the promotion.",
+          "type": "string"
+        },
+        "redemptionChannel": {
+          "description": "Required. Redemption channel for the promotion. At least one channel is required.",
+          "items": {
+            "enum": [
+              "REDEMPTION_CHANNEL_UNSPECIFIED",
+              "LOCAL",
+              "ONLINE"
+            ],
+            "enumDescriptions": [
+              "Indicates that the channel is unspecified.",
+              "Indicates that the channel is local.",
+              "Indicates that the channel is online."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "shippingServiceNames": {
+          "description": "Shipping service names for thse promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetCountry": {
+          "description": "Required. The target country used as part of the unique identifier.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13116,12 +13486,16 @@
           "enum": [
             "REPRICING_RULE_TYPE_UNSPECIFIED",
             "TYPE_STATS_BASED",
-            "TYPE_COGS_BASED"
+            "TYPE_COGS_BASED",
+            "TYPE_SALES_VOLUME_BASED",
+            "TYPE_COMPETITIVE_PRICE"
           ],
           "enumDescriptions": [
             "Unused.",
             "Statistical measurement based rules among Google SA merchants. If this rule is chosen, repricer will adjust the offer price based on statistical metrics (currently only min is available) among other merchants who sell the same product. Details need to be provdided in the RuleDefinition.",
-            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant."
+            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant.",
+            "Sales volume based rule. Repricer will adjust the offer price based on the offer's sales volume in the past period of time defined within the rule.",
+            "Competitive price rule. Repricer will adjust the offer price based on the min price from a list of unnamed big competitors."
           ],
           "type": "string"
         }
@@ -13196,12 +13570,16 @@
           "enum": [
             "REPRICING_RULE_TYPE_UNSPECIFIED",
             "TYPE_STATS_BASED",
-            "TYPE_COGS_BASED"
+            "TYPE_COGS_BASED",
+            "TYPE_SALES_VOLUME_BASED",
+            "TYPE_COMPETITIVE_PRICE"
           ],
           "enumDescriptions": [
             "Unused.",
             "Statistical measurement based rules among Google SA merchants. If this rule is chosen, repricer will adjust the offer price based on statistical metrics (currently only min is available) among other merchants who sell the same product. Details need to be provdided in the RuleDefinition.",
-            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant."
+            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant.",
+            "Sales volume based rule. Repricer will adjust the offer price based on the offer's sales volume in the past period of time defined within the rule.",
+            "Competitive price rule. Repricer will adjust the offer price based on the min price from a list of unnamed big competitors."
           ],
           "type": "string"
         }
@@ -13358,12 +13736,16 @@
           "enum": [
             "REPRICING_RULE_TYPE_UNSPECIFIED",
             "TYPE_STATS_BASED",
-            "TYPE_COGS_BASED"
+            "TYPE_COGS_BASED",
+            "TYPE_SALES_VOLUME_BASED",
+            "TYPE_COMPETITIVE_PRICE"
           ],
           "enumDescriptions": [
             "Unused.",
             "Statistical measurement based rules among Google SA merchants. If this rule is chosen, repricer will adjust the offer price based on statistical metrics (currently only min is available) among other merchants who sell the same product. Details need to be provdided in the RuleDefinition.",
-            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant."
+            "Cost of goods sale based rule. Repricer will adjust the offer price based on the offer's sale cost which is provided by the merchant.",
+            "Sales volume based rule. Repricer will adjust the offer price based on the offer's sales volume in the past period of time defined within the rule.",
+            "Competitive price rule. Repricer will adjust the offer price based on the min price from a list of unnamed big competitors."
           ],
           "type": "string"
         }
