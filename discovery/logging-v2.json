@@ -3,10 +3,10 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
-          "description": "View your data across Google Cloud Platform services"
+          "description": "View your data across Google Cloud services and see the email address of your Google Account"
         },
         "https://www.googleapis.com/auth/logging.admin": {
           "description": "Administrate log data for your projects"
@@ -592,7 +592,7 @@
                 "views": {
                   "methods": {
                     "create": {
-                      "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 50 views.",
+                      "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 30 views.",
                       "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}/views",
                       "httpMethod": "POST",
                       "id": "logging.billingAccounts.locations.buckets.views.create",
@@ -1811,7 +1811,7 @@
                 "views": {
                   "methods": {
                     "create": {
-                      "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 50 views.",
+                      "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 30 views.",
                       "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views",
                       "httpMethod": "POST",
                       "id": "logging.folders.locations.buckets.views.create",
@@ -2645,7 +2645,7 @@
             "views": {
               "methods": {
                 "create": {
-                  "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 50 views.",
+                  "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 30 views.",
                   "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views",
                   "httpMethod": "POST",
                   "id": "logging.locations.buckets.views.create",
@@ -3528,7 +3528,7 @@
                 "views": {
                   "methods": {
                     "create": {
-                      "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 50 views.",
+                      "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 30 views.",
                       "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views",
                       "httpMethod": "POST",
                       "id": "logging.organizations.locations.buckets.views.create",
@@ -4525,7 +4525,7 @@
                 "views": {
                   "methods": {
                     "create": {
-                      "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 50 views.",
+                      "description": "Creates a view over log entries in a log bucket. A bucket may contain a maximum of 30 views.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views",
                       "httpMethod": "POST",
                       "id": "logging.projects.locations.buckets.views.create",
@@ -5482,7 +5482,7 @@
       }
     }
   },
-  "revision": "20210726",
+  "revision": "20210817",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -6508,6 +6508,10 @@
           "description": "The resource name of the view.For example:projects/my-project/locations/global/buckets/my-bucket/views/my-view",
           "type": "string"
         },
+        "schema": {
+          "$ref": "TableSchema",
+          "description": "Describes the schema of the logs stored in the bucket that are accessible via this view.This field is only populated for views in analytics-enabled buckets."
+        },
         "updateTime": {
           "description": "Output only. The last update timestamp of the view.",
           "format": "google-datetime",
@@ -6731,7 +6735,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The monitored resource type. For example, the type \"cloudsql_database\" represents databases in Google Cloud SQL.",
+          "description": "Required. The monitored resource type. For example, the type \"cloudsql_database\" represents databases in Google Cloud SQL. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).",
           "type": "string"
         }
       },
@@ -7032,6 +7036,50 @@
           "description": "A lower bound on the count of entries omitted due to reason.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TableFieldSchema": {
+      "description": "A field in TableSchema. The fields describe the static fields in the LogEntry. Any dynamic fields generated by the customer in fields like labels and jsonPayload are not listed in the schema as they use a native JSON type field.",
+      "id": "TableFieldSchema",
+      "properties": {
+        "description": {
+          "description": "Optional. The field description.",
+          "type": "string"
+        },
+        "fields": {
+          "description": "Optional. Describes the nested schema fields if the type property is set to RECORD.",
+          "items": {
+            "$ref": "TableFieldSchema"
+          },
+          "type": "array"
+        },
+        "mode": {
+          "description": "Optional. The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The field name corresponding to fields in the LogEntry.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The field data type. Possible values include: STRING INTEGER (or INT64) FLOAT (or FLOAT64) BOOLEAN (or BOOL) TIMESTAMP RECORD (or STRUCT)Use of RECORD/STRUT indicates that the field contains a nested schema.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TableSchema": {
+      "description": "Schema of a table containing logs.",
+      "id": "TableSchema",
+      "properties": {
+        "fields": {
+          "description": "Describes the fields in a table.",
+          "items": {
+            "$ref": "TableFieldSchema"
+          },
+          "type": "array"
         }
       },
       "type": "object"
