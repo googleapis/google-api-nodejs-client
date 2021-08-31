@@ -133,6 +133,7 @@ export namespace content_v2_1 {
     pos: Resource$Pos;
     products: Resource$Products;
     productstatuses: Resource$Productstatuses;
+    promotions: Resource$Promotions;
     pubsubnotificationsettings: Resource$Pubsubnotificationsettings;
     regionalinventory: Resource$Regionalinventory;
     regions: Resource$Regions;
@@ -174,6 +175,7 @@ export namespace content_v2_1 {
       this.pos = new Resource$Pos(this.context);
       this.products = new Resource$Products(this.context);
       this.productstatuses = new Resource$Productstatuses(this.context);
+      this.promotions = new Resource$Promotions(this.context);
       this.pubsubnotificationsettings = new Resource$Pubsubnotificationsettings(
         this.context
       );
@@ -260,7 +262,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountAddress {
     /**
-     * CLDR country code (e.g. "US"). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.
+     * CLDR country code (e.g. "US"). All MCA sub-accounts inherit the country of their parent MCA by default, however the country can be updated for individual sub-accounts.
      */
     country?: string | null;
     /**
@@ -951,7 +953,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$BusinessDayConfig {
     /**
-     * Regular business days. May not be empty.
+     * Regular business days, such as '"monday"'. May not be empty.
      */
     businessDays?: string[] | null;
   }
@@ -960,17 +962,30 @@ export namespace content_v2_1 {
    */
   export interface Schema$BuyOnGoogleProgramStatus {
     /**
-     * The customer service pending email.
+     * The customer service pending email. After verification this field becomes empty.
      */
     customerServicePendingEmail?: string | null;
     /**
-     * The customer service verified email.
+     * Output only. The customer service verified email.
      */
     customerServiceVerifiedEmail?: string | null;
     /**
-     * The current participation stage for the program.
+     * Output only. The current participation stage for the program.
      */
     participationStage?: string | null;
+  }
+  /**
+   * Request message for the CaptureOrder method.
+   */
+  export interface Schema$CaptureOrderRequest {}
+  /**
+   * Response message for the CaptureOrder method.
+   */
+  export interface Schema$CaptureOrderResponse {
+    /**
+     * The status of the execution. Only defined if the request was successful. Acceptable values are: * "duplicate" * "executed"
+     */
+    executionStatus?: string | null;
   }
   export interface Schema$CarrierRate {
     /**
@@ -5012,13 +5027,29 @@ export namespace content_v2_1 {
      */
     productDetails?: Schema$ProductProductDetail[];
     /**
+     * The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
+     */
+    productHeight?: Schema$ProductDimension;
+    /**
      * Bullet points describing the most relevant highlights of a product.
      */
     productHighlights?: string[] | null;
     /**
+     * The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
+     */
+    productLength?: Schema$ProductDimension;
+    /**
      * Categories of the item (formatted as in products data specification).
      */
     productTypes?: string[] | null;
+    /**
+     * The weight of the product in the units provided. The value must be between 0 (exclusive) and 2000 (inclusive).
+     */
+    productWeight?: Schema$ProductWeight;
+    /**
+     * The width of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
+     */
+    productWidth?: Schema$ProductDimension;
     /**
      * The unique ID of a promotion.
      */
@@ -5126,6 +5157,16 @@ export namespace content_v2_1 {
      */
     taxAmount?: Schema$Price;
   }
+  export interface Schema$ProductDimension {
+    /**
+     * Required. The length units. Acceptable values are: - "`in`" - "`cm`"
+     */
+    unit?: string | null;
+    /**
+     * Required. The length value represented as a number. The value can have a maximum precision of four decimal places.
+     */
+    value?: number | null;
+  }
   export interface Schema$ProductProductDetail {
     /**
      * The name of the product detail.
@@ -5167,11 +5208,11 @@ export namespace content_v2_1 {
      */
     method?: string | null;
     /**
-     * The product to insert. Only required if the method is `insert`.
+     * The product to insert or update. Only required if the method is `insert` or `update`. If the `update` method is used with `updateMask` only to delete a field, then this isn't required. For example, setting `salePrice` on the `updateMask` and not providing a `product` will result in an existing sale price on the product specified by `productId` being deleted.
      */
     product?: Schema$Product;
     /**
-     * The ID of the product to get or delete. Only defined if the method is `get` or `delete`.
+     * The ID of the product to get or mutate. Only defined if the method is `get`, `delete`, or `update`.
      */
     productId?: string | null;
     /**
@@ -5521,6 +5562,149 @@ export namespace content_v2_1 {
      * The measure of an item.
      */
     value?: number | null;
+  }
+  export interface Schema$ProductWeight {
+    /**
+     * Required. The weight unit. Acceptable values are: - "`g`" - "`kg`" - "`oz`" - "`lb`"
+     */
+    unit?: string | null;
+    /**
+     * Required. The weight represented as a number. The weight can have a maximum precision of four decimal places.
+     */
+    value?: number | null;
+  }
+  /**
+   * Represents a promotion. (1) https://support.google.com/merchants/answer/2906014 (2) https://support.google.com/merchants/answer/10146130 (3) https://support.google.com/merchants/answer/9173673
+   */
+  export interface Schema$Promotion {
+    /**
+     * Product filter by brand for the promotion.
+     */
+    brand?: string[] | null;
+    /**
+     * Product filter by brand exclusion for the promotion.
+     */
+    brandExclusion?: string[] | null;
+    /**
+     * Required. The content language used as part of the unique identifier.
+     */
+    contentLanguage?: string | null;
+    /**
+     * Required. Coupon value type for the promotion.
+     */
+    couponValueType?: string | null;
+    /**
+     * Free gift description for the promotion.
+     */
+    freeGiftDescription?: string | null;
+    /**
+     * Free gift item id for the promotion.
+     */
+    freeGiftItemId?: string | null;
+    /**
+     * Free gift value for the promotion.
+     */
+    freeGiftValue?: Schema$PriceAmount;
+    /**
+     * Generic redemption code for the promotion. To be used with the above field.
+     */
+    genericRedemptionCode?: string | null;
+    /**
+     * The number of items discounted in the promotion.
+     */
+    getThisQuantityDiscounted?: number | null;
+    /**
+     * Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter.
+     */
+    id?: string | null;
+    /**
+     * Product filter by item group id for the promotion.
+     */
+    itemGroupId?: string[] | null;
+    /**
+     * Product filter by item group id exclusion for the promotion.
+     */
+    itemGroupIdExclusion?: string[] | null;
+    /**
+     * Product filter by item id for the promotion.
+     */
+    itemId?: string[] | null;
+    /**
+     * Product filter by item id exclusion for the promotion.
+     */
+    itemIdExclusion?: string[] | null;
+    /**
+     * Maximum purchase quantity for the promotion.
+     */
+    limitQuantity?: number | null;
+    /**
+     * Maximum purchase value for the promotion.
+     */
+    limitValue?: Schema$PriceAmount;
+    /**
+     * Long title for the promotion.
+     */
+    longTitle?: string | null;
+    /**
+     * Minimum purchase amount for the promotion.
+     */
+    minimumPurchaseAmount?: Schema$PriceAmount;
+    /**
+     * Minimum purchase quantity for the promotion.
+     */
+    minimumPurchaseQuantity?: number | null;
+    /**
+     * Promotion cost cap of the promotion.
+     */
+    moneyBudget?: Schema$PriceAmount;
+    /**
+     * The money off amount offered in the promotion.
+     */
+    moneyOffAmount?: Schema$PriceAmount;
+    /**
+     * Required. Type of the promotion.
+     */
+    offerType?: string | null;
+    /**
+     * Order limit for the promotion.
+     */
+    orderLimit?: number | null;
+    /**
+     * The percentage discount offered in the promotion.
+     */
+    percentOff?: number | null;
+    /**
+     * Required. Applicability of the promotion to either all products or only specific products.
+     */
+    productApplicability?: string | null;
+    /**
+     * Destination ID for the promotion.
+     */
+    promotionDestinationIds?: string[] | null;
+    /**
+     * String representation of the promotion display dates.
+     */
+    promotionDisplayDates?: string | null;
+    /**
+     * Required. String representation of the promotion effective dates.
+     */
+    promotionEffectiveDates?: string | null;
+    /**
+     * Required. The user provided promotion id to uniquely identify the promotion.
+     */
+    promotionId?: string | null;
+    /**
+     * Required. Redemption channel for the promotion. At least one channel is required.
+     */
+    redemptionChannel?: string[] | null;
+    /**
+     * Shipping service names for thse promotion.
+     */
+    shippingServiceNames?: string[] | null;
+    /**
+     * Required. The target country used as part of the unique identifier.
+     */
+    targetCountry?: string | null;
   }
   /**
    * Settings for Pub/Sub notifications, all methods require that the caller is a direct user of the merchant center account.
@@ -20408,6 +20592,151 @@ export namespace content_v2_1 {
     }
 
     /**
+     * Capture funds from the customer for the current order total. This method should be called after the merchant verifies that they are able and ready to start shipping the order. This method blocks until a response is received from the payment processsor. If this method succeeds, the merchant is guaranteed to receive funds for the order after shipment. If the request fails, it can be retried or the order may be cancelled. This method cannot be called after the entire order is already shipped.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.orders.captureOrder({
+     *     // Required. The ID of the account that manages the order. This cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The ID of the Order.
+     *     orderId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionStatus": "my_executionStatus"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    captureOrder(
+      params: Params$Resource$Orders$Captureorder,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    captureOrder(
+      params?: Params$Resource$Orders$Captureorder,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CaptureOrderResponse>;
+    captureOrder(
+      params: Params$Resource$Orders$Captureorder,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    captureOrder(
+      params: Params$Resource$Orders$Captureorder,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CaptureOrderResponse>,
+      callback: BodyResponseCallback<Schema$CaptureOrderResponse>
+    ): void;
+    captureOrder(
+      params: Params$Resource$Orders$Captureorder,
+      callback: BodyResponseCallback<Schema$CaptureOrderResponse>
+    ): void;
+    captureOrder(
+      callback: BodyResponseCallback<Schema$CaptureOrderResponse>
+    ): void;
+    captureOrder(
+      paramsOrCallback?:
+        | Params$Resource$Orders$Captureorder
+        | BodyResponseCallback<Schema$CaptureOrderResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CaptureOrderResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CaptureOrderResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CaptureOrderResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orders$Captureorder;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orders$Captureorder;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orders/{orderId}/captureOrder'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'orderId'],
+        pathParams: ['merchantId', 'orderId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CaptureOrderResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CaptureOrderResponse>(parameters);
+      }
+    }
+
+    /**
      * Sandbox only. Creates a test order.
      * @example
      * ```js
@@ -22906,6 +23235,22 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OrdersCancelTestOrderByCustomerRequest;
   }
+  export interface Params$Resource$Orders$Captureorder
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account that manages the order. This cannot be a multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * Required. The ID of the Order.
+     */
+    orderId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CaptureOrderRequest;
+  }
   export interface Params$Resource$Orders$Createtestorder
     extends StandardParameters {
     /**
@@ -24804,8 +25149,12 @@ export namespace content_v2_1 {
      *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
      *   //   "productDetails": [],
+     *   //   "productHeight": {},
      *   //   "productHighlights": [],
+     *   //   "productLength": {},
      *   //   "productTypes": [],
+     *   //   "productWeight": {},
+     *   //   "productWidth": {},
      *   //   "promotionIds": [],
      *   //   "salePrice": {},
      *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
@@ -25018,8 +25367,12 @@ export namespace content_v2_1 {
      *       //   "pickupSla": "my_pickupSla",
      *       //   "price": {},
      *       //   "productDetails": [],
+     *       //   "productHeight": {},
      *       //   "productHighlights": [],
+     *       //   "productLength": {},
      *       //   "productTypes": [],
+     *       //   "productWeight": {},
+     *       //   "productWidth": {},
      *       //   "promotionIds": [],
      *       //   "salePrice": {},
      *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
@@ -25110,8 +25463,12 @@ export namespace content_v2_1 {
      *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
      *   //   "productDetails": [],
+     *   //   "productHeight": {},
      *   //   "productHighlights": [],
+     *   //   "productLength": {},
      *   //   "productTypes": [],
+     *   //   "productWeight": {},
+     *   //   "productWidth": {},
      *   //   "promotionIds": [],
      *   //   "salePrice": {},
      *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
@@ -25467,8 +25824,12 @@ export namespace content_v2_1 {
      *       //   "pickupSla": "my_pickupSla",
      *       //   "price": {},
      *       //   "productDetails": [],
+     *       //   "productHeight": {},
      *       //   "productHighlights": [],
+     *       //   "productLength": {},
      *       //   "productTypes": [],
+     *       //   "productWeight": {},
+     *       //   "productWidth": {},
      *       //   "promotionIds": [],
      *       //   "salePrice": {},
      *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
@@ -25559,8 +25920,12 @@ export namespace content_v2_1 {
      *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
      *   //   "productDetails": [],
+     *   //   "productHeight": {},
      *   //   "productHighlights": [],
+     *   //   "productLength": {},
      *   //   "productTypes": [],
+     *   //   "productWeight": {},
+     *   //   "productWidth": {},
      *   //   "promotionIds": [],
      *   //   "salePrice": {},
      *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
@@ -26430,6 +26795,226 @@ export namespace content_v2_1 {
      * Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 7 days ago (default). Format is YYYY-MM-DD.
      */
     startDate?: string;
+  }
+
+  export class Resource$Promotions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Inserts a promotion for your Merchant Center account. If the promotion already exists, then it will update the promotion instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.promotions.create({
+     *     // Required. The ID of the account that contains the collection.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "brand": [],
+     *       //   "brandExclusion": [],
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "couponValueType": "my_couponValueType",
+     *       //   "freeGiftDescription": "my_freeGiftDescription",
+     *       //   "freeGiftItemId": "my_freeGiftItemId",
+     *       //   "freeGiftValue": {},
+     *       //   "genericRedemptionCode": "my_genericRedemptionCode",
+     *       //   "getThisQuantityDiscounted": 0,
+     *       //   "id": "my_id",
+     *       //   "itemGroupId": [],
+     *       //   "itemGroupIdExclusion": [],
+     *       //   "itemId": [],
+     *       //   "itemIdExclusion": [],
+     *       //   "limitQuantity": 0,
+     *       //   "limitValue": {},
+     *       //   "longTitle": "my_longTitle",
+     *       //   "minimumPurchaseAmount": {},
+     *       //   "minimumPurchaseQuantity": 0,
+     *       //   "moneyBudget": {},
+     *       //   "moneyOffAmount": {},
+     *       //   "offerType": "my_offerType",
+     *       //   "orderLimit": 0,
+     *       //   "percentOff": 0,
+     *       //   "productApplicability": "my_productApplicability",
+     *       //   "promotionDestinationIds": [],
+     *       //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *       //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *       //   "promotionId": "my_promotionId",
+     *       //   "redemptionChannel": [],
+     *       //   "shippingServiceNames": [],
+     *       //   "targetCountry": "my_targetCountry"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "brand": [],
+     *   //   "brandExclusion": [],
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "couponValueType": "my_couponValueType",
+     *   //   "freeGiftDescription": "my_freeGiftDescription",
+     *   //   "freeGiftItemId": "my_freeGiftItemId",
+     *   //   "freeGiftValue": {},
+     *   //   "genericRedemptionCode": "my_genericRedemptionCode",
+     *   //   "getThisQuantityDiscounted": 0,
+     *   //   "id": "my_id",
+     *   //   "itemGroupId": [],
+     *   //   "itemGroupIdExclusion": [],
+     *   //   "itemId": [],
+     *   //   "itemIdExclusion": [],
+     *   //   "limitQuantity": 0,
+     *   //   "limitValue": {},
+     *   //   "longTitle": "my_longTitle",
+     *   //   "minimumPurchaseAmount": {},
+     *   //   "minimumPurchaseQuantity": 0,
+     *   //   "moneyBudget": {},
+     *   //   "moneyOffAmount": {},
+     *   //   "offerType": "my_offerType",
+     *   //   "orderLimit": 0,
+     *   //   "percentOff": 0,
+     *   //   "productApplicability": "my_productApplicability",
+     *   //   "promotionDestinationIds": [],
+     *   //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *   //   "promotionId": "my_promotionId",
+     *   //   "redemptionChannel": [],
+     *   //   "shippingServiceNames": [],
+     *   //   "targetCountry": "my_targetCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Promotions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Promotions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Promotion>;
+    create(
+      params: Params$Resource$Promotions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Promotions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Promotion>,
+      callback: BodyResponseCallback<Schema$Promotion>
+    ): void;
+    create(
+      params: Params$Resource$Promotions$Create,
+      callback: BodyResponseCallback<Schema$Promotion>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Promotion>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Promotions$Create
+        | BodyResponseCallback<Schema$Promotion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Promotion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Promotion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Promotion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Promotions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Promotions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/promotions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Promotion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Promotion>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Promotions$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account that contains the collection.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Promotion;
   }
 
   export class Resource$Pubsubnotificationsettings {

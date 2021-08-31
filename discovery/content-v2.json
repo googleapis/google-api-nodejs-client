@@ -3298,7 +3298,7 @@
       }
     }
   },
-  "revision": "20210519",
+  "revision": "20210827",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4223,7 +4223,7 @@
       "id": "BusinessDayConfig",
       "properties": {
         "businessDays": {
-          "description": "Regular business days. May not be empty.",
+          "description": "Regular business days, such as '\"monday\"'. May not be empty.",
           "items": {
             "type": "string"
           },
