@@ -6,10 +6,10 @@
           "description": "View and manage your applications deployed on Google App Engine"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
-          "description": "View your data across Google Cloud Platform services"
+          "description": "View your data across Google Cloud services and see the email address of your Google Account"
         }
       }
     }
@@ -1595,7 +1595,7 @@
       }
     }
   },
-  "revision": "20210618",
+  "revision": "20210822",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -1741,6 +1741,10 @@
         },
         "name": {
           "description": "Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "The service account associated with the application. This is the app-level default identity. If no identity provided during create version, Admin API will fallback to this one.",
           "type": "string"
         },
         "servingStatus": {
