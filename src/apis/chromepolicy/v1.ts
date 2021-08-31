@@ -276,7 +276,7 @@ export namespace chromepolicy_v1 {
      */
     inputConstraint?: string | null;
     /**
-     * Output only. If the field has a set of know values, this field will provide a description for these values.
+     * Output only. If the field has a set of known values, this field will provide a description for these values.
      */
     knownValueDescriptions?: Schema$GoogleChromePolicyV1PolicySchemaFieldKnownValueDescription[];
     /**
