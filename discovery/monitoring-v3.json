@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/monitoring": {
           "description": "View and write monitoring data for all of your Google and third-party Cloud and API projects"
@@ -2541,7 +2541,7 @@
       }
     }
   },
-  "revision": "20210727",
+  "revision": "20210816",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3427,7 +3427,7 @@
       "type": "object"
     },
     "GoogleMonitoringV3Range": {
-      "description": "Range of numerical values within min and max. If the open range \"< range.max\" is desired, set range.min = -infinity. If the open range \">= range.min\" is desired, set range.max = infinity.",
+      "description": "Range of numerical values within min and max.",
       "id": "GoogleMonitoringV3Range",
       "properties": {
         "max": {
@@ -4306,7 +4306,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The monitored resource type. For example, the type \"cloudsql_database\" represents databases in Google Cloud SQL.",
+          "description": "Required. The monitored resource type. For example, the type \"cloudsql_database\" represents databases in Google Cloud SQL. For a list of types, see Monitoring resource types (https://cloud.google.com/monitoring/api/resources) and Logging resource types (https://cloud.google.com/logging/docs/api/v2/resource-list).",
           "type": "string"
         }
       },
@@ -5194,7 +5194,7 @@
         },
         "monitoredResource": {
           "$ref": "MonitoredResource",
-          "description": "The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer"
+          "description": "The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer k8s_service"
         },
         "name": {
           "description": "A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] [PROJECT_ID_OR_NUMBER] is the Workspace host project associated with the Uptime check.This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.",
