@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -269,7 +269,7 @@
       }
     }
   },
-  "revision": "20210309",
+  "revision": "20210817",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -303,6 +303,20 @@
       "properties": {
         "argument": {
           "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`",
+          "type": "string"
+        },
+        "callLogLevel": {
+          "description": "The call logging level associated to this execution.",
+          "enum": [
+            "CALL_LOG_LEVEL_UNSPECIFIED",
+            "LOG_ALL_CALLS",
+            "LOG_ERRORS_ONLY"
+          ],
+          "enumDescriptions": [
+            "No call logging specified.",
+            "Log all call steps within workflows, all call returns, and all exceptions raised.",
+            "Log only exceptions that are raised from call steps within workflows."
+          ],
           "type": "string"
         },
         "endTime": {
