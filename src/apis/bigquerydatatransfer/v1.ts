@@ -298,6 +298,15 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * A request to enroll a set of data sources so they are visible in the BigQuery UI's `Transfer` tab.
+   */
+  export interface Schema$EnrollDataSourcesRequest {
+    /**
+     * Data sources that are enrolled. It is required to provide at least one data source id.
+     */
+    dataSourceIds?: string[] | null;
+  }
+  /**
    * Returns list of supported data sources and their metadata.
    */
   export interface Schema$ListDataSourcesResponse {
@@ -519,9 +528,13 @@ export namespace bigquerydatatransfer_v1 {
      */
     nextRunTime?: string | null;
     /**
-     * Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish.
+     * Pub/Sub topic where notifications will be sent after transfer runs associated with this transfer config finish. The format for specifying a pubsub topic is: `projects/{project\}/topics/{topic\}`
      */
     notificationPubsubTopic?: string | null;
+    /**
+     * Output only. Information about the user whose credentials are used to transfer data. Populated only for `transferConfigs.get` requests. In case the user information is not available, this field will not be populated.
+     */
+    ownerInfo?: Schema$UserInfo;
     /**
      * Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      */
@@ -593,7 +606,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     name?: string | null;
     /**
-     * Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes
+     * Output only. Pub/Sub topic where a notification will be sent after this transfer run finishes. The format for specifying a pubsub topic is: `projects/{project\}/topics/{topic\}`
      */
     notificationPubsubTopic?: string | null;
     /**
@@ -629,6 +642,15 @@ export namespace bigquerydatatransfer_v1 {
      */
     userId?: string | null;
   }
+  /**
+   * Information about a user.
+   */
+  export interface Schema$UserInfo {
+    /**
+     * E-mail address of the user.
+     */
+    email?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -643,6 +665,158 @@ export namespace bigquerydatatransfer_v1 {
         this.context
       );
     }
+
+    /**
+     * Enroll data sources in a user project. This allows users to create transfer configurations for these data sources. They will also appear in the ListDataSources RPC and as such, will appear in the BigQuery UI 'https://bigquery.cloud.google.com' (and the documents can be found at https://cloud.google.com/bigquery/bigquery-web-ui and https://cloud.google.com/bigquery/docs/working-with-transfers).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.enrollDataSources({
+     *     // The name of the project resource in the form: `projects/{project_id\}`
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enrollDataSources(
+      params: Params$Resource$Projects$Enrolldatasources,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enrollDataSources(
+      params?: Params$Resource$Projects$Enrolldatasources,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    enrollDataSources(
+      params: Params$Resource$Projects$Enrolldatasources,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enrollDataSources(
+      params: Params$Resource$Projects$Enrolldatasources,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    enrollDataSources(
+      params: Params$Resource$Projects$Enrolldatasources,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    enrollDataSources(callback: BodyResponseCallback<Schema$Empty>): void;
+    enrollDataSources(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Enrolldatasources
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Enrolldatasources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Enrolldatasources;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:enrollDataSources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Enrolldatasources
+    extends StandardParameters {
+    /**
+     * The name of the project resource in the form: `projects/{project_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnrollDataSourcesRequest;
   }
 
   export class Resource$Projects$Datasources {
@@ -1141,6 +1315,145 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
+     * Enroll data sources in a user project. This allows users to create transfer configurations for these data sources. They will also appear in the ListDataSources RPC and as such, will appear in the BigQuery UI 'https://bigquery.cloud.google.com' (and the documents can be found at https://cloud.google.com/bigquery/bigquery-web-ui and https://cloud.google.com/bigquery/docs/working-with-transfers).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquerydatatransfer.projects.locations.enrollDataSources({
+     *     // The name of the project resource in the form: `projects/{project_id\}`
+     *     name: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enrollDataSources(
+      params: Params$Resource$Projects$Locations$Enrolldatasources,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enrollDataSources(
+      params?: Params$Resource$Projects$Locations$Enrolldatasources,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    enrollDataSources(
+      params: Params$Resource$Projects$Locations$Enrolldatasources,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enrollDataSources(
+      params: Params$Resource$Projects$Locations$Enrolldatasources,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    enrollDataSources(
+      params: Params$Resource$Projects$Locations$Enrolldatasources,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    enrollDataSources(callback: BodyResponseCallback<Schema$Empty>): void;
+    enrollDataSources(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Enrolldatasources
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Enrolldatasources;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Enrolldatasources;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigquerydatatransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:enrollDataSources').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets information about a location.
      * @example
      * ```js
@@ -1422,6 +1735,18 @@ export namespace bigquerydatatransfer_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Enrolldatasources
+    extends StandardParameters {
+    /**
+     * The name of the project resource in the form: `projects/{project_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnrollDataSourcesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**
@@ -1993,6 +2318,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "name": "my_name",
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *         //   "ownerInfo": {},
      *         //   "params": {},
      *         //   "schedule": "my_schedule",
      *         //   "scheduleOptions": {},
@@ -2016,6 +2342,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "ownerInfo": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -2298,6 +2625,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "ownerInfo": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -2598,6 +2926,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "name": "my_name",
      *         //   "nextRunTime": "my_nextRunTime",
      *         //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *         //   "ownerInfo": {},
      *         //   "params": {},
      *         //   "schedule": "my_schedule",
      *         //   "scheduleOptions": {},
@@ -2621,6 +2950,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "ownerInfo": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -3851,6 +4181,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *       //   "ownerInfo": {},
      *       //   "params": {},
      *       //   "schedule": "my_schedule",
      *       //   "scheduleOptions": {},
@@ -3874,6 +4205,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "ownerInfo": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -4151,6 +4483,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "ownerInfo": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
@@ -4449,6 +4782,7 @@ export namespace bigquerydatatransfer_v1 {
      *       //   "name": "my_name",
      *       //   "nextRunTime": "my_nextRunTime",
      *       //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *       //   "ownerInfo": {},
      *       //   "params": {},
      *       //   "schedule": "my_schedule",
      *       //   "scheduleOptions": {},
@@ -4472,6 +4806,7 @@ export namespace bigquerydatatransfer_v1 {
      *   //   "name": "my_name",
      *   //   "nextRunTime": "my_nextRunTime",
      *   //   "notificationPubsubTopic": "my_notificationPubsubTopic",
+     *   //   "ownerInfo": {},
      *   //   "params": {},
      *   //   "schedule": "my_schedule",
      *   //   "scheduleOptions": {},
