@@ -125,6 +125,26 @@ export namespace documentai_v1beta2 {
     }
   }
 
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response of the delete documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsResponse {}
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response of the batch move documents operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsResponse {}
   /**
    * The common metadata for long running operations.
    */
@@ -258,6 +278,19 @@ export namespace documentai_v1beta2 {
     gcsUri?: string | null;
   }
   /**
+   * Metadata of the import document operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response of the import document operation.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsResponse {}
+  /**
    * The long running operation metadata for set default processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata {
@@ -330,6 +363,12 @@ export namespace documentai_v1beta2 {
    * Response message for the undeploy processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse {}
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateDatasetOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
   /**
    * The long running operation metadata for updating the human review configuration.
    */
@@ -474,7 +513,7 @@ export namespace documentai_v1beta2 {
     uri?: string | null;
   }
   /**
-   * A phrase in the text that is a known entity type, such as a person, an organization, or location.
+   * An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentEntity {
     /**
@@ -490,7 +529,7 @@ export namespace documentai_v1beta2 {
      */
     mentionId?: string | null;
     /**
-     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.
      */
     mentionText?: string | null;
     /**
@@ -543,11 +582,19 @@ export namespace documentai_v1beta2 {
      */
     dateValue?: Schema$GoogleTypeDate;
     /**
+     * Float value.
+     */
+    floatValue?: number | null;
+    /**
+     * Integer value.
+     */
+    integerValue?: number | null;
+    /**
      * Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective 'structured_value' fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -1316,7 +1363,7 @@ export namespace documentai_v1beta2 {
     uri?: string | null;
   }
   /**
-   * A phrase in the text that is a known entity type, such as a person, an organization, or location.
+   * An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentEntity {
     /**
@@ -1332,7 +1379,7 @@ export namespace documentai_v1beta2 {
      */
     mentionId?: string | null;
     /**
-     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.
      */
     mentionText?: string | null;
     /**
@@ -1385,11 +1432,19 @@ export namespace documentai_v1beta2 {
      */
     dateValue?: Schema$GoogleTypeDate;
     /**
+     * Float value.
+     */
+    floatValue?: number | null;
+    /**
+     * Integer value.
+     */
+    integerValue?: number | null;
+    /**
      * Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective 'structured_value' fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
