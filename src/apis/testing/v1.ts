@@ -317,7 +317,7 @@ export namespace testing_v1 {
     thumbnailUrl?: string | null;
   }
   /**
-   * A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes. Next tag: 30
+   * A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes.
    */
   export interface Schema$AndroidRoboTest {
     /**
@@ -837,7 +837,7 @@ export namespace testing_v1 {
      */
     networkProfile?: string | null;
     /**
-     * List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (e.g. /private/var/mobile/Media) or within an accessible directory inside the app's filesystem (e.g. /Documents) by specifying the bundle id.
+     * List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (such as /private/var/mobile/Media) or within an accessible directory inside the app's filesystem (such as /Documents) by specifying the bundle ID.
      */
     pullDirectories?: Schema$IosDeviceFile[];
     /**
