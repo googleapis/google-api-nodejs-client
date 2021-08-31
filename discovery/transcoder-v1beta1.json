@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -355,7 +355,7 @@
       }
     }
   },
-  "revision": "20210731",
+  "revision": "20210819",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -1113,50 +1113,6 @@
       },
       "type": "object"
     },
-    "OperationMetadata": {
-      "description": "Represents the metadata of the long-running operation.",
-      "id": "OperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "createTime": {
-          "description": "Output only. The time the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. The time the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "statusDetail": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "OriginUri": {
       "description": "The origin URI.",
       "id": "OriginUri",
@@ -1463,7 +1419,7 @@
           "type": "boolean"
         },
         "bitrateBps": {
-          "description": "Required. The video bitrate in bits per second. Must be between 1 and 1,000,000,000.",
+          "description": "Required. The video bitrate in bits per second. The minimum value is 1,000. The maximum value for H264/H265 is 800,000,000. The maximum value for VP9 is 480,000,000.",
           "format": "int32",
           "type": "integer"
         },
