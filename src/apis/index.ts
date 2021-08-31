@@ -174,6 +174,10 @@ import {VERSIONS as cloudtasksVersions, cloudtasks} from './cloudtasks';
 import {VERSIONS as cloudtraceVersions, cloudtrace} from './cloudtrace';
 import {VERSIONS as composerVersions, composer} from './composer';
 import {VERSIONS as computeVersions, compute} from './compute';
+import {
+  VERSIONS as contactcenterinsightsVersions,
+  contactcenterinsights,
+} from './contactcenterinsights';
 import {VERSIONS as containerVersions, container} from './container';
 import {
   VERSIONS as containeranalysisVersions,
@@ -329,6 +333,10 @@ import {
   mybusinessaccountmanagement,
 } from './mybusinessaccountmanagement';
 import {
+  VERSIONS as mybusinessbusinessinformationVersions,
+  mybusinessbusinessinformation,
+} from './mybusinessbusinessinformation';
+import {
   VERSIONS as mybusinesslodgingVersions,
   mybusinesslodging,
 } from './mybusinesslodging';
@@ -340,6 +348,10 @@ import {
   VERSIONS as mybusinessplaceactionsVersions,
   mybusinessplaceactions,
 } from './mybusinessplaceactions';
+import {
+  VERSIONS as mybusinessverificationsVersions,
+  mybusinessverifications,
+} from './mybusinessverifications';
 import {
   VERSIONS as networkconnectivityVersions,
   networkconnectivity,
@@ -607,6 +619,7 @@ export const APIS: APIList = {
   cloudtrace: cloudtraceVersions,
   composer: composerVersions,
   compute: computeVersions,
+  contactcenterinsights: contactcenterinsightsVersions,
   container: containerVersions,
   containeranalysis: containeranalysisVersions,
   content: contentVersions,
@@ -683,9 +696,11 @@ export const APIS: APIList = {
   ml: mlVersions,
   monitoring: monitoringVersions,
   mybusinessaccountmanagement: mybusinessaccountmanagementVersions,
+  mybusinessbusinessinformation: mybusinessbusinessinformationVersions,
   mybusinesslodging: mybusinesslodgingVersions,
   mybusinessnotifications: mybusinessnotificationsVersions,
   mybusinessplaceactions: mybusinessplaceactionsVersions,
+  mybusinessverifications: mybusinessverificationsVersions,
   networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
   networksecurity: networksecurityVersions,
@@ -835,6 +850,7 @@ export class GeneratedAPIs {
   cloudtrace = cloudtrace;
   composer = composer;
   compute = compute;
+  contactcenterinsights = contactcenterinsights;
   container = container;
   containeranalysis = containeranalysis;
   content = content;
@@ -911,9 +927,11 @@ export class GeneratedAPIs {
   ml = ml;
   monitoring = monitoring;
   mybusinessaccountmanagement = mybusinessaccountmanagement;
+  mybusinessbusinessinformation = mybusinessbusinessinformation;
   mybusinesslodging = mybusinesslodging;
   mybusinessnotifications = mybusinessnotifications;
   mybusinessplaceactions = mybusinessplaceactions;
+  mybusinessverifications = mybusinessverifications;
   networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
   networksecurity = networksecurity;
