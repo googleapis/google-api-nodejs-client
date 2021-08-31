@@ -324,7 +324,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20210830",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyV1AdditionalTargetKeyName": {
@@ -528,7 +528,7 @@
           "type": "string"
         },
         "knownValueDescriptions": {
-          "description": "Output only. If the field has a set of know values, this field will provide a description for these values.",
+          "description": "Output only. If the field has a set of known values, this field will provide a description for these values.",
           "items": {
             "$ref": "GoogleChromePolicyV1PolicySchemaFieldKnownValueDescription"
           },
