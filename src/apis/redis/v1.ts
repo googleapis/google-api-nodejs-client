@@ -232,7 +232,7 @@ export namespace redis_v1 {
     gcsSource?: Schema$GcsSource;
   }
   /**
-   * A Google Cloud Redis instance. next id = 30
+   * A Google Cloud Redis instance. next id = 36
    */
   export interface Schema$Instance {
     /**
@@ -272,7 +272,7 @@ export namespace redis_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The zone where the instance will be provisioned. If not provided, the service will choose a zone for the instance. For STANDARD_HA tier, instances will be created across two zones for protection against zonal failures. If alternative_location_id is also provided, it must be different from location_id.
+     * Optional. The zone where the instance will be provisioned. If not provided, the service will choose a zone from the specified region for the instance. For standard tier, instances will be created across two zones for protection against zonal failures. If [alternative_location_id] is also provided, it must be different from [location_id].
      */
     locationId?: string | null;
     /**
