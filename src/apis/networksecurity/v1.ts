@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace networksecurity_v1beta1 {
+export namespace networksecurity_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace networksecurity_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const networksecurity = google.networksecurity('v1beta1');
+   * const networksecurity = google.networksecurity('v1');
    * ```
    */
   export class Networksecurity {
@@ -178,7 +178,7 @@ export namespace networksecurity_v1beta1 {
     /**
      * Optional. Defines a mechanism to provision client identity (public and private keys) for peer to peer authentication. The presence of this dictates mTLS.
      */
-    clientCertificate?: Schema$GoogleCloudNetworksecurityV1beta1CertificateProvider;
+    clientCertificate?: Schema$GoogleCloudNetworksecurityV1CertificateProvider;
     /**
      * Output only. The timestamp when the resource was created.
      */
@@ -257,7 +257,7 @@ export namespace networksecurity_v1beta1 {
   /**
    * Specification of certificate provider. Defines the mechanism to obtain the certificate and private key for peer to peer authentication.
    */
-  export interface Schema$GoogleCloudNetworksecurityV1beta1CertificateProvider {
+  export interface Schema$GoogleCloudNetworksecurityV1CertificateProvider {
     /**
      * The certificate provider instance specification that will be passed to the data plane, which will be used to load necessary credential information.
      */
@@ -265,12 +265,12 @@ export namespace networksecurity_v1beta1 {
     /**
      * gRPC specific configuration to access the gRPC server to obtain the cert and private key.
      */
-    grpcEndpoint?: Schema$GoogleCloudNetworksecurityV1beta1GrpcEndpoint;
+    grpcEndpoint?: Schema$GoogleCloudNetworksecurityV1GrpcEndpoint;
   }
   /**
    * Specification of the GRPC Endpoint.
    */
-  export interface Schema$GoogleCloudNetworksecurityV1beta1GrpcEndpoint {
+  export interface Schema$GoogleCloudNetworksecurityV1GrpcEndpoint {
     /**
      * Required. The target URI of the gRPC endpoint. Only UDS path is supported, and should start with “unix:”.
      */
@@ -585,7 +585,7 @@ export namespace networksecurity_v1beta1 {
     /**
      *  Defines a mechanism to provision server identity (public and private keys). Cannot be combined with `allow_open` as a permissive mode that allows both plain text and TLS is not supported.
      */
-    serverCertificate?: Schema$GoogleCloudNetworksecurityV1beta1CertificateProvider;
+    serverCertificate?: Schema$GoogleCloudNetworksecurityV1CertificateProvider;
     /**
      * Output only. The timestamp when the resource was updated.
      */
@@ -632,7 +632,7 @@ export namespace networksecurity_v1beta1 {
     /**
      * gRPC specific configuration to access the gRPC server to obtain the CA certificate.
      */
-    grpcEndpoint?: Schema$GoogleCloudNetworksecurityV1beta1GrpcEndpoint;
+    grpcEndpoint?: Schema$GoogleCloudNetworksecurityV1GrpcEndpoint;
   }
 
   export class Resource$Projects {
@@ -676,7 +676,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -774,7 +774,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -807,7 +807,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -913,7 +913,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -983,7 +983,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1099,7 +1099,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/authorizationPolicies').replace(
+            url: (rootUrl + '/v1/{+parent}/authorizationPolicies').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1135,7 +1135,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1235,7 +1235,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1268,7 +1268,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1373,7 +1373,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1406,7 +1406,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1515,7 +1515,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1551,7 +1551,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1659,7 +1659,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/authorizationPolicies').replace(
+            url: (rootUrl + '/v1/{+parent}/authorizationPolicies').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1697,7 +1697,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1813,7 +1813,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1846,7 +1846,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1962,7 +1962,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1998,7 +1998,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2112,7 +2112,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2254,7 +2254,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2372,7 +2372,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/clientTlsPolicies').replace(
+            url: (rootUrl + '/v1/{+parent}/clientTlsPolicies').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2408,7 +2408,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2509,7 +2509,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2542,7 +2542,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2643,7 +2643,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2676,7 +2676,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2783,7 +2783,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2819,7 +2819,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2926,7 +2926,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/clientTlsPolicies').replace(
+            url: (rootUrl + '/v1/{+parent}/clientTlsPolicies').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2964,7 +2964,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3080,7 +3080,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -3113,7 +3113,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3227,7 +3227,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3263,7 +3263,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3377,7 +3377,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3519,7 +3519,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3617,10 +3617,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -3653,7 +3650,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3745,7 +3742,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -3778,7 +3775,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3876,7 +3873,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3909,7 +3906,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4015,7 +4012,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4104,7 +4101,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4222,7 +4219,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/serverTlsPolicies').replace(
+            url: (rootUrl + '/v1/{+parent}/serverTlsPolicies').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4258,7 +4255,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4359,7 +4356,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -4392,7 +4389,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4493,7 +4490,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -4526,7 +4523,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4633,7 +4630,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4669,7 +4666,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4776,7 +4773,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/serverTlsPolicies').replace(
+            url: (rootUrl + '/v1/{+parent}/serverTlsPolicies').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4814,7 +4811,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4930,7 +4927,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -4963,7 +4960,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5077,7 +5074,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5113,7 +5110,7 @@ export namespace networksecurity_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const networksecurity = google.networksecurity('v1beta1');
+     * const networksecurity = google.networksecurity('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5227,7 +5224,7 @@ export namespace networksecurity_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
