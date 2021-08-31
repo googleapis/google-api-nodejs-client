@@ -1089,7 +1089,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$BusinessChainSearchTerms {
     /**
-     * The search query for the desired business chain. The query can be a prefix, e.g. "KFC", "mercede".
+     * The search query for the desired business chain. The query must be the full name of the business, e.g. "KFC", "mercedes-benz".
      */
     businessChain?: string | null;
     /**
@@ -1770,6 +1770,10 @@ export namespace displayvideo_v1 {
      */
     customBiddingAlgorithmId?: string | null;
     /**
+     * Output only. The status of custom bidding algorithm.
+     */
+    customBiddingAlgorithmState?: string | null;
+    /**
      * Required. Immutable. The type of custom bidding algorithm.
      */
     customBiddingAlgorithmType?: string | null;
@@ -1789,6 +1793,10 @@ export namespace displayvideo_v1 {
      * Immutable. The unique ID of the partner that owns the custom bidding algorithm.
      */
     partnerId?: string | null;
+    /**
+     * The IDs of the advertisers who have access to this algorithm. This field will not be set if the algorithm owner is a partner and is being retrieved using an advertiser accessor.
+     */
+    sharedAdvertiserIds?: string[] | null;
   }
   /**
    * Describes a custom list entity, such as a custom affinity or custom intent audience list.
@@ -3995,7 +4003,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PoiAssignedTargetingOptionDetails {
     /**
-     * Output only. The display name of a POI, e.g. "Times Square", "Space Needle".
+     * Output only. The display name of a POI, e.g. "Times Square", "Space Needle", followed by its full address if available.
      */
     displayName?: string | null;
     /**
@@ -4015,7 +4023,7 @@ export namespace displayvideo_v1 {
      */
     proximityRadiusUnit?: string | null;
     /**
-     * Input only. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_POI`.
+     * Required. The targeting_option_id of a TargetingOption of type `TARGETING_TYPE_POI` or reuse an existing assigned_targeting_option_id.
      */
     targetingOptionId?: string | null;
   }
@@ -4033,7 +4041,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PoiTargetingOptionDetails {
     /**
-     * Output only. The display name of a POI, e.g. "Times Square", "Space Needle".
+     * Output only. The display name of a POI(e.g. "Times Square", "Space Needle"), followed by its full address if available.
      */
     displayName?: string | null;
     /**
@@ -4277,7 +4285,7 @@ export namespace displayvideo_v1 {
     poiSearchTerms?: Schema$PoiSearchTerms;
   }
   /**
-   * Response message for SearchTargetingOptionsResponse.
+   * Response message for SearchTargetingOptions.
    */
   export interface Schema$SearchTargetingOptionsResponse {
     /**
@@ -19266,6 +19274,161 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * Creates a new custom bidding algorithm. Returns the newly created custom bidding algorithm if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *       //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
+     *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "sharedAdvertiserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
+     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Custombiddingalgorithms$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Custombiddingalgorithms$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomBiddingAlgorithm>;
+    create(
+      params: Params$Resource$Custombiddingalgorithms$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Custombiddingalgorithms$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+    ): void;
+    create(
+      params: Params$Resource$Custombiddingalgorithms$Create,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Custombiddingalgorithms$Create
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomBiddingAlgorithm>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Custombiddingalgorithms$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Custombiddingalgorithms$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/customBiddingAlgorithms').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomBiddingAlgorithm>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomBiddingAlgorithm>(parameters);
+      }
+    }
+
+    /**
      * Gets a custom bidding algorithm.
      * @example
      * ```js
@@ -19305,11 +19468,13 @@ export namespace displayvideo_v1 {
      *   // {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
      *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
      *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId"
+     *   //   "partnerId": "my_partnerId",
+     *   //   "sharedAdvertiserIds": []
      *   // }
      * }
      *
@@ -19438,7 +19603,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.customBiddingAlgorithms.list({
      *     // The ID of the DV360 advertiser that has access to the custom bidding algorithm.
      *     advertiserId: 'placeholder-value',
-     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` - `customBiddingAlgorithmState` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. * For `customBiddingAlgorithmState`, the value is a string. We return all algorithms whose custom_bidding_algorithm_state is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` * All custom bidding algorithms for which the state is "ENABLED": `customBiddingAlgorithmState=ENABLED` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -19557,8 +19722,175 @@ export namespace displayvideo_v1 {
         );
       }
     }
+
+    /**
+     * Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.customBiddingAlgorithms.patch({
+     *     // Output only. The unique ID of the custom bidding algorithm. Assigned by the system.
+     *     customBiddingAlgorithmId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *       //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
+     *       //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *       //   "displayName": "my_displayName",
+     *       //   "entityStatus": "my_entityStatus",
+     *       //   "name": "my_name",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "sharedAdvertiserIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "customBiddingAlgorithmId": "my_customBiddingAlgorithmId",
+     *   //   "customBiddingAlgorithmState": "my_customBiddingAlgorithmState",
+     *   //   "customBiddingAlgorithmType": "my_customBiddingAlgorithmType",
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "name": "my_name",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "sharedAdvertiserIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Custombiddingalgorithms$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Custombiddingalgorithms$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomBiddingAlgorithm>;
+    patch(
+      params: Params$Resource$Custombiddingalgorithms$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Custombiddingalgorithms$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+    ): void;
+    patch(
+      params: Params$Resource$Custombiddingalgorithms$Patch,
+      callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$CustomBiddingAlgorithm>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Custombiddingalgorithms$Patch
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomBiddingAlgorithm>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CustomBiddingAlgorithm>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Custombiddingalgorithms$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Custombiddingalgorithms$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customBiddingAlgorithmId'],
+        pathParams: ['customBiddingAlgorithmId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomBiddingAlgorithm>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomBiddingAlgorithm>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Custombiddingalgorithms$Create
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomBiddingAlgorithm;
+  }
   export interface Params$Resource$Custombiddingalgorithms$Get
     extends StandardParameters {
     /**
@@ -19581,7 +19913,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` The length of this field should be no more than 500 characters.
+     * Allows filtering by custom bidding algorithm fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND`. A sequence of restrictions * implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)` or `EQUALS (=)`. * The operator must be `CONTAINS (:)` for the following field: - `displayName` * The operator must be `EQUALS (=)` for the following field: - `customBiddingAlgorithmType` - `customBiddingAlgorithmState` * For `displayName`, the value is a string. We return all custom bidding algorithms whose display_name contains such string. * For `customBiddingAlgorithmType`, the value is a string. We return all algorithms whose custom_bidding_algorithm_type is equal to the given type. * For `customBiddingAlgorithmState`, the value is a string. We return all algorithms whose custom_bidding_algorithm_state is equal to the given type. Examples: * All custom bidding algorithms for which the display name contains "politics": `displayName:politics`. * All custom bidding algorithms for which the type is "SCRIPT_BASED": `customBiddingAlgorithmType=SCRIPT_BASED` * All custom bidding algorithms for which the state is "ENABLED": `customBiddingAlgorithmState=ENABLED` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -19600,6 +19932,22 @@ export namespace displayvideo_v1 {
      * The ID of the DV360 partner that has access to the custom bidding algorithm.
      */
     partnerId?: string;
+  }
+  export interface Params$Resource$Custombiddingalgorithms$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The unique ID of the custom bidding algorithm. Assigned by the system.
+     */
+    customBiddingAlgorithmId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomBiddingAlgorithm;
   }
 
   export class Resource$Customlists {
@@ -22918,6 +23266,158 @@ export namespace displayvideo_v1 {
         return createAPIRequest<Schema$GoogleBytestreamMedia>(parameters);
       }
     }
+
+    /**
+     * Uploads media. Upload is supported on the URI `/upload/media/{resource_name=**\}?upload_type=media.` **Note**: Upload requests will not be successful without including `upload_type=media` query string.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/doubleclickbidmanager',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.media.upload({
+     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
+     *     resourceName: '.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resourceName": "my_resourceName"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Media$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleBytestreamMedia>;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleBytestreamMedia>,
+      callback: BodyResponseCallback<Schema$GoogleBytestreamMedia>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      callback: BodyResponseCallback<Schema$GoogleBytestreamMedia>
+    ): void;
+    upload(callback: BodyResponseCallback<Schema$GoogleBytestreamMedia>): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Media$Upload
+        | BodyResponseCallback<Schema$GoogleBytestreamMedia>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleBytestreamMedia>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleBytestreamMedia>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleBytestreamMedia>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/media/{+resourceName}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (rootUrl + '/upload/media/{+resourceName}').replace(
+          /([^:]\/)\/+/g,
+          '$1'
+        ),
+        requiredParams: ['resourceName'],
+        pathParams: ['resourceName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleBytestreamMedia>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleBytestreamMedia>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Media$Download extends StandardParameters {
@@ -22925,6 +23425,32 @@ export namespace displayvideo_v1 {
      * Name of the media that is being downloaded. See ReadRequest.resource_name.
      */
     resourceName?: string;
+  }
+  export interface Params$Resource$Media$Upload extends StandardParameters {
+    /**
+     * Name of the media that is being downloaded. See ReadRequest.resource_name.
+     */
+    resourceName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleBytestreamMedia;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 
   export class Resource$Partners {
