@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/cloudkms": {
           "description": "View and manage your keys and secrets stored in Cloud Key Management Service"
@@ -112,6 +112,35 @@
       "resources": {
         "locations": {
           "methods": {
+            "generateRandomBytes": {
+              "description": "Generate random bytes using the Cloud KMS randomness source in the provided location.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:generateRandomBytes",
+              "httpMethod": "POST",
+              "id": "cloudkms.projects.locations.generateRandomBytes",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "The project-specific location in which to generate random bytes. For example, \"projects/my-project/locations/us-central1\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+location}:generateRandomBytes",
+              "request": {
+                "$ref": "GenerateRandomBytesRequest"
+              },
+              "response": {
+                "$ref": "GenerateRandomBytesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloudkms"
+              ]
+            },
             "get": {
               "description": "Gets information about a location.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
@@ -814,7 +843,7 @@
                           ]
                         },
                         "destroy": {
-                          "description": "Schedule a CryptoKeyVersion for destruction. Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED and destroy_time will be set to a time 24 hours in the future, at which point the state will be changed to DESTROYED, and the key material will be irrevocably destroyed. Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.",
+                          "description": "Schedule a CryptoKeyVersion for destruction. Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED, and destroy_time will be set to the time destroy_scheduled_duration in the future. At that time, the state will automatically change to DESTROYED, and the key material will be irrevocably destroyed. Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:destroy",
                           "httpMethod": "POST",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy",
@@ -895,7 +924,7 @@
                           ]
                         },
                         "import": {
-                          "description": "Imports a new CryptoKeyVersion into an existing CryptoKey using the wrapped key material provided in the request. The version ID will be assigned the next sequential id within the CryptoKey.",
+                          "description": "Import wrapped key material into a CryptoKeyVersion. All requests must specify a CryptoKey. If a CryptoKeyVersion is additionally specified in the request, key material will be reimported into that version. Otherwise, a new version will be created, and will be assigned the next sequential id within the CryptoKey.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions:import",
                           "httpMethod": "POST",
                           "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import",
@@ -904,7 +933,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The name of the CryptoKey to be imported into.",
+                              "description": "Required. The name of the CryptoKey to be imported into. The create permission is only required on this key when creating a new CryptoKeyVersion.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+$",
                               "required": true,
@@ -1317,7 +1346,7 @@
       }
     }
   },
-  "revision": "20210723",
+  "revision": "20210820",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1539,6 +1568,15 @@
           "readOnly": true,
           "type": "string"
         },
+        "destroyScheduledDuration": {
+          "description": "Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED. If not specified at creation time, the default duration is 24 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "importOnly": {
+          "description": "Immutable. Whether this key may contain imported versions only.",
+          "type": "boolean"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1676,17 +1714,17 @@
           "type": "string"
         },
         "importFailureReason": {
-          "description": "Output only. The root cause of an import failure. Only present if state is IMPORT_FAILED.",
+          "description": "Output only. The root cause of the most recent import failure. Only present if state is IMPORT_FAILED.",
           "readOnly": true,
           "type": "string"
         },
         "importJob": {
-          "description": "Output only. The name of the ImportJob used to import this CryptoKeyVersion. Only present if the underlying key material was imported.",
+          "description": "Output only. The name of the ImportJob used in the most recent import of this CryptoKeyVersion. Only present if the underlying key material was imported.",
           "readOnly": true,
           "type": "string"
         },
         "importTime": {
-          "description": "Output only. The time at which this CryptoKeyVersion's key material was imported.",
+          "description": "Output only. The time at which this CryptoKeyVersion's key material was most recently imported.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1713,6 +1751,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "reimportEligible": {
+          "description": "Output only. Whether or not this key version is eligible for reimport, by being specified as a target in ImportCryptoKeyVersionRequest.crypto_key_version.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "state": {
           "description": "The current state of the CryptoKeyVersion.",
           "enum": [
@@ -1730,7 +1773,7 @@
             "This version is still being generated. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version may be used for cryptographic operations.",
             "This version may not be used, but the key material is still available, and the version can be placed back into the ENABLED state.",
-            "This version is destroyed, and the key material is no longer stored.",
+            "This version is destroyed, and the key material is no longer stored. This version may only become ENABLED again if this version is reimport_eligible and the original key material is reimported with a call to KeyManagementService.ImportCryptoKeyVersion.",
             "This version is scheduled for destruction, and will be destroyed soon. Call RestoreCryptoKeyVersion to put it back into the DISABLED state.",
             "This version is still being imported. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason."
@@ -2007,6 +2050,51 @@
       },
       "type": "object"
     },
+    "GenerateRandomBytesRequest": {
+      "description": "Request message for KeyManagementService.GenerateRandomBytes.",
+      "id": "GenerateRandomBytesRequest",
+      "properties": {
+        "lengthBytes": {
+          "description": "The length in bytes of the amount of randomness to retrieve. Minimum 8 bytes, maximum 1024 bytes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "protectionLevel": {
+          "description": "The ProtectionLevel to use when generating the random data. Defaults to SOFTWARE.",
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Crypto operations are performed in software.",
+            "Crypto operations are performed in a Hardware Security Module.",
+            "Crypto operations are performed by an external key manager."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateRandomBytesResponse": {
+      "description": "Response message for KeyManagementService.GenerateRandomBytes.",
+      "id": "GenerateRandomBytesResponse",
+      "properties": {
+        "data": {
+          "description": "The generated data.",
+          "format": "byte",
+          "type": "string"
+        },
+        "dataCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned GenerateRandomBytesResponse.data. An integrity check of GenerateRandomBytesResponse.data can be performed by computing the CRC32C checksum of GenerateRandomBytesResponse.data and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ImportCryptoKeyVersionRequest": {
       "description": "Request message for KeyManagementService.ImportCryptoKeyVersion.",
       "id": "ImportCryptoKeyVersionRequest",
@@ -2055,6 +2143,10 @@
             "HMAC-SHA256 signing with a 256 bit key.",
             "Algorithm representing symmetric encryption by an external key manager."
           ],
+          "type": "string"
+        },
+        "cryptoKeyVersion": {
+          "description": "Optional. The optional name of an existing CryptoKeyVersion to target for an import operation. If this field is not present, a new CryptoKeyVersion containing the supplied key material is created. If this field is present, the supplied key material is imported into the existing CryptoKeyVersion. To import into an existing CryptoKeyVersion, the CryptoKeyVersion must be a child of ImportCryptoKeyVersionRequest.parent, have been previously created via ImportCryptoKeyVersion, and be in DESTROYED or IMPORT_FAILED state. The key material and algorithm must match the previous CryptoKeyVersion exactly if the CryptoKeyVersion has ever contained key material.",
           "type": "string"
         },
         "importJob": {
@@ -2501,7 +2593,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
