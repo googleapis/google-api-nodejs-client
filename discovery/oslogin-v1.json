@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/compute": {
           "description": "View and manage your Google Compute Engine resources"
@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20210329",
+  "revision": "20210813",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {

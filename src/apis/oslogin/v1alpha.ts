@@ -155,6 +155,10 @@ export namespace oslogin_v1alpha {
      */
     posixAccounts?: Schema$PosixAccount[];
     /**
+     * The registered security key credentials for a user.
+     */
+    securityKeys?: Schema$SecurityKey[];
+    /**
      * A map from SSH public key fingerprint to the associated key object.
      */
     sshPublicKeys?: {[key: string]: Schema$SshPublicKey} | null;
@@ -209,6 +213,27 @@ export namespace oslogin_v1alpha {
     username?: string | null;
   }
   /**
+   * The credential information for a Google registered security key.
+   */
+  export interface Schema$SecurityKey {
+    /**
+     * Hardware-backed private key text in SSH format.
+     */
+    privateKey?: string | null;
+    /**
+     * Public key text in SSH format, defined by [RFC4253]("https://www.ietf.org/rfc/rfc4253.txt") section 6.6.
+     */
+    publicKey?: string | null;
+    /**
+     * The U2F protocol type.
+     */
+    universalTwoFactor?: Schema$UniversalTwoFactor;
+    /**
+     * The Web Authentication protocol type.
+     */
+    webAuthn?: Schema$WebAuthn;
+  }
+  /**
    * The SSH public key information associated with a Google account.
    */
   export interface Schema$SshPublicKey {
@@ -228,6 +253,24 @@ export namespace oslogin_v1alpha {
      * Output only. The canonical resource name.
      */
     name?: string | null;
+  }
+  /**
+   * Security key information specific to the U2F protocol.
+   */
+  export interface Schema$UniversalTwoFactor {
+    /**
+     * Application ID for the U2F protocol.
+     */
+    appId?: string | null;
+  }
+  /**
+   * Security key information specific to the Web Authentication protocol.
+   */
+  export interface Schema$WebAuthn {
+    /**
+     * Relying party ID for Web Authentication.
+     */
+    rpId?: string | null;
   }
 
   export class Resource$Users {
@@ -289,6 +332,7 @@ export namespace oslogin_v1alpha {
      *   // {
      *   //   "name": "my_name",
      *   //   "posixAccounts": [],
+     *   //   "securityKeys": [],
      *   //   "sshPublicKeys": {}
      *   // }
      * }
