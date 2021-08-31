@@ -825,7 +825,7 @@
       }
     }
   },
-  "revision": "20210719",
+  "revision": "20210825",
   "rootUrl": "https://androiddeviceprovisioning.googleapis.com/",
   "schemas": {
     "ClaimDeviceRequest": {
@@ -1165,7 +1165,7 @@
           ],
           "enumDescriptions": [
             "No additional service.",
-            "Device protection service, as known as Android Enterprise Essentials. To claim a device with the device protection service you must enroll with the partnership team."
+            "Device protection service, also known as Android Enterprise Essentials. To claim a device with the device protection service you must enroll with the partnership team."
           ],
           "type": "string"
         },
