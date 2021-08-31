@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -1328,7 +1328,7 @@
       }
     }
   },
-  "revision": "20210716",
+  "revision": "20210820",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Config": {
@@ -1402,6 +1402,164 @@
           "description": "Output only. The time the settings were last updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Cve": {
+      "description": "CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org",
+      "id": "Cve",
+      "properties": {
+        "cvssv3": {
+          "$ref": "Cvssv3",
+          "description": "Describe Common Vulnerability Scoring System specified at https://www.first.org/cvss/v3.1/specification-document"
+        },
+        "id": {
+          "description": "The unique identifier for the vulnerability. e.g. CVE-2021-34527",
+          "type": "string"
+        },
+        "references": {
+          "description": "Additional information about the CVE. e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527",
+          "items": {
+            "$ref": "Reference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Cvssv3": {
+      "description": "Common Vulnerability Scoring System version 3.",
+      "id": "Cvssv3",
+      "properties": {
+        "attackComplexity": {
+          "description": "This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.",
+          "enum": [
+            "ATTACK_COMPLEXITY_UNSPECIFIED",
+            "ATTACK_COMPLEXITY_LOW",
+            "ATTACK_COMPLEXITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success when attacking the vulnerable component.",
+            "A successful attack depends on conditions beyond the attacker's control. That is, a successful attack cannot be accomplished at will, but requires the attacker to invest in some measurable amount of effort in preparation or execution against the vulnerable component before a successful attack can be expected."
+          ],
+          "type": "string"
+        },
+        "attackVector": {
+          "description": "Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. This metric reflects the context by which vulnerability exploitation is possible.",
+          "enum": [
+            "ATTACK_VECTOR_UNSPECIFIED",
+            "ATTACK_VECTOR_NETWORK",
+            "ATTACK_VECTOR_ADJACENT",
+            "ATTACK_VECTOR_LOCAL",
+            "ATTACK_VECTOR_PHYSICAL"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The vulnerable component is bound to the network stack and the set of possible attackers extends beyond the other options listed below, up to and including the entire Internet.",
+            "The vulnerable component is bound to the network stack, but the attack is limited at the protocol level to a logically adjacent topology.",
+            "The vulnerable component is not bound to the network stack and the attacker's path is via read/write/execute capabilities.",
+            "The attack requires the attacker to physically touch or manipulate the vulnerable component."
+          ],
+          "type": "string"
+        },
+        "availabilityImpact": {
+          "description": "This metric measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "baseScore": {
+          "description": "The base score is a function of the base metric scores.",
+          "format": "double",
+          "type": "number"
+        },
+        "confidentialityImpact": {
+          "description": "This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "integrityImpact": {
+          "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "privilegesRequired": {
+          "description": "This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.",
+          "enum": [
+            "PRIVILEGES_REQUIRED_UNSPECIFIED",
+            "PRIVILEGES_REQUIRED_NONE",
+            "PRIVILEGES_REQUIRED_LOW",
+            "PRIVILEGES_REQUIRED_HIGH"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files of the vulnerable system to carry out an attack.",
+            "The attacker requires privileges that provide basic user capabilities that could normally affect only settings and files owned by a user. Alternatively, an attacker with Low privileges has the ability to access only non-sensitive resources.",
+            "The attacker requires privileges that provide significant (e.g., administrative) control over the vulnerable component allowing access to component-wide settings and files."
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "The Scope metric captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "SCOPE_UNCHANGED",
+            "SCOPE_CHANGED"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "An exploited vulnerability can only affect resources managed by the same security authority.",
+            "An exploited vulnerability can affect resources beyond the security scope managed by the security authority of the vulnerable component."
+          ],
+          "type": "string"
+        },
+        "userInteraction": {
+          "description": "This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.",
+          "enum": [
+            "USER_INTERACTION_UNSPECIFIED",
+            "USER_INTERACTION_NONE",
+            "USER_INTERACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The vulnerable system can be exploited without interaction from any user.",
+            "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited."
+          ],
           "type": "string"
         }
       },
@@ -1585,6 +1743,10 @@
             "The finding has been fixed, triaged as a non-issue or otherwise addressed and is no longer active."
           ],
           "type": "string"
+        },
+        "vulnerability": {
+          "$ref": "Vulnerability",
+          "description": "Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
         }
       },
       "type": "object"
@@ -1653,6 +1815,10 @@
         },
         "projectDisplayName": {
           "description": "The human readable name of project that the resource belongs to.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The full resource type of the resource.",
           "type": "string"
         }
       },
@@ -1939,6 +2105,21 @@
       },
       "type": "object"
     },
+    "Reference": {
+      "description": "Additional Links",
+      "id": "Reference",
+      "properties": {
+        "source": {
+          "description": "Source of the reference e.g. NVD",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Uri for the mentioned source e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SecurityCenterSettings": {
       "description": "Resource capturing the settings for Security Center.",
       "id": "SecurityCenterSettings",
@@ -2050,6 +2231,17 @@
             "The premium tier."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Vulnerability": {
+      "description": "Refers to common vulnerability fields e.g. cve, cvss, cwe etc.",
+      "id": "Vulnerability",
+      "properties": {
+        "cve": {
+          "$ref": "Cve",
+          "description": "CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
         }
       },
       "type": "object"

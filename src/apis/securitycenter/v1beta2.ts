@@ -168,6 +168,64 @@ export namespace securitycenter_v1beta2 {
     updateTime?: string | null;
   }
   /**
+   * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
+   */
+  export interface Schema$Cve {
+    /**
+     * Describe Common Vulnerability Scoring System specified at https://www.first.org/cvss/v3.1/specification-document
+     */
+    cvssv3?: Schema$Cvssv3;
+    /**
+     * The unique identifier for the vulnerability. e.g. CVE-2021-34527
+     */
+    id?: string | null;
+    /**
+     * Additional information about the CVE. e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
+     */
+    references?: Schema$Reference[];
+  }
+  /**
+   * Common Vulnerability Scoring System version 3.
+   */
+  export interface Schema$Cvssv3 {
+    /**
+     * This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.
+     */
+    attackComplexity?: string | null;
+    /**
+     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. This metric reflects the context by which vulnerability exploitation is possible.
+     */
+    attackVector?: string | null;
+    /**
+     * This metric measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability.
+     */
+    availabilityImpact?: string | null;
+    /**
+     * The base score is a function of the base metric scores.
+     */
+    baseScore?: number | null;
+    /**
+     * This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.
+     */
+    confidentialityImpact?: string | null;
+    /**
+     * This metric measures the impact to integrity of a successfully exploited vulnerability.
+     */
+    integrityImpact?: string | null;
+    /**
+     * This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.
+     */
+    privilegesRequired?: string | null;
+    /**
+     * The Scope metric captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope.
+     */
+    scope?: string | null;
+    /**
+     * This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.
+     */
+    userInteraction?: string | null;
+  }
+  /**
    * Details of a subscription.
    */
   export interface Schema$Details {
@@ -265,6 +323,10 @@ export namespace securitycenter_v1beta2 {
      * The state of the finding.
      */
     state?: string | null;
+    /**
+     * Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     */
+    vulnerability?: Schema$Vulnerability;
   }
   /**
    * Message that contains the resource name and display name of a folder resource.
@@ -479,6 +541,10 @@ export namespace securitycenter_v1beta2 {
      * The human readable name of project that the resource belongs to.
      */
     projectDisplayName?: string | null;
+    /**
+     * The full resource type of the resource.
+     */
+    type?: string | null;
   }
   /**
    * Response of asset discovery run
@@ -505,6 +571,19 @@ export namespace securitycenter_v1beta2 {
      * List of ip addresses associated to the Finding.
      */
     ipAddresses?: string[] | null;
+  }
+  /**
+   * Additional Links
+   */
+  export interface Schema$Reference {
+    /**
+     * Source of the reference e.g. NVD
+     */
+    source?: string | null;
+    /**
+     * Uri for the mentioned source e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527.
+     */
+    uri?: string | null;
   }
   /**
    * Resource capturing the settings for Security Center.
@@ -581,6 +660,15 @@ export namespace securitycenter_v1beta2 {
      * The tier of SCC features this organization currently has access to.
      */
     tier?: string | null;
+  }
+  /**
+   * Refers to common vulnerability fields e.g. cve, cvss, cwe etc.
+   */
+  export interface Schema$Vulnerability {
+    /**
+     * CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)
+     */
+    cve?: Schema$Cve;
   }
   /**
    * Resource capturing the settings for the Web Security Scanner service.
