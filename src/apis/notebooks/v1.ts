@@ -173,6 +173,15 @@ export namespace notebooks_v1 {
     tag?: string | null;
   }
   /**
+   * Parameters used in Dataproc JobType executions.
+   */
+  export interface Schema$DataprocParameters {
+    /**
+     * URI for cluster used to run Dataproc execution. Format: 'projects/{PROJECT_ID\}/regions/{REGION\}/clusters/{CLUSTER_NAME\}
+     */
+    cluster?: string | null;
+  }
+  /**
    * An instance-attached disk resource.
    */
   export interface Schema$Disk {
@@ -338,9 +347,17 @@ export namespace notebooks_v1 {
      */
     containerImageUri?: string | null;
     /**
+     * Parameters used in Dataproc JobType executions.
+     */
+    dataprocParameters?: Schema$DataprocParameters;
+    /**
      * Path to the notebook file to execute. Must be in a Google Cloud Storage bucket. Format: gs://{project_id\}/{folder\}/{notebook_file_name\} Ex: gs://notebook_user/scheduled_notebooks/sentiment_notebook.ipynb
      */
     inputNotebookFile?: string | null;
+    /**
+     * The type of Job to be used on this execution.
+     */
+    jobType?: string | null;
     /**
      * Labels for execution. If execution is scheduled, a field included will be 'nbs-scheduled'. Otherwise, it is an immediate execution, and an included field will be 'nbs-immediate'. Use fields to efficiently index between various types of executions.
      */
@@ -865,7 +882,7 @@ export namespace notebooks_v1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -2695,7 +2712,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.executions.get({
-     *     // Required. Format: `projects/{project_id\}/locations/{location\}/schedules/{execution_id\}`
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/executions/{execution_id\}`
      *     name: 'projects/my-project/locations/my-location/executions/my-execution',
      *   });
      *   console.log(res.data);
@@ -2973,7 +2990,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Executions$Get
     extends StandardParameters {
     /**
-     * Required. Format: `projects/{project_id\}/locations/{location\}/schedules/{execution_id\}`
+     * Required. Format: `projects/{project_id\}/locations/{location\}/executions/{execution_id\}`
      */
     name?: string;
   }
