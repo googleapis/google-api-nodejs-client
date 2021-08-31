@@ -244,7 +244,7 @@ export namespace dataflow_v1b3 {
     table?: string | null;
   }
   /**
-   * Metadata for a Cloud BigTable connector used by the job.
+   * Metadata for a Cloud Bigtable connector used by the job.
    */
   export interface Schema$BigTableIODetails {
     /**
@@ -883,9 +883,17 @@ export namespace dataflow_v1b3 {
      */
     additionalUserLabels?: {[key: string]: string} | null;
     /**
+     * The algorithm to use for autoscaling
+     */
+    autoscalingAlgorithm?: string | null;
+    /**
      * Worker disk size, in gigabytes.
      */
     diskSizeGb?: number | null;
+    /**
+     * If true, save a heap dump before killing a thread or process which is GC thrashing or out of memory. The location of the heap file will either be echoed back to the user, or the user will be given the opportunity to download the heap file.
+     */
+    dumpHeapOnOom?: boolean | null;
     /**
      * Whether to enable Streaming Engine for the job.
      */
@@ -907,10 +915,6 @@ export namespace dataflow_v1b3 {
      */
     machineType?: string | null;
     /**
-     * The maximum number of workers to cap scaling at.
-     */
-    maxNumWorkers?: number | null;
-    /**
      * The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.
      */
     maxWorkers?: number | null;
@@ -922,6 +926,10 @@ export namespace dataflow_v1b3 {
      * The initial number of Google Compute Engine instances for the job.
      */
     numWorkers?: number | null;
+    /**
+     * Cloud Storage bucket (directory) to upload heap dumps to the given location. Enabling this implies that heap dumps should be generated on OOM (dump_heap_on_oom is set to true).
+     */
+    saveHeapDumpsToGcsPath?: string | null;
     /**
      * Docker registry location of container image to use for the 'worker harness. Default is the container for the version of the SDK. Note this field is only valid for portable pipelines.
      */
@@ -1297,7 +1305,7 @@ export namespace dataflow_v1b3 {
      */
     bigqueryDetails?: Schema$BigQueryIODetails[];
     /**
-     * Identification of a Cloud BigTable source used in the Dataflow job.
+     * Identification of a Cloud Bigtable source used in the Dataflow job.
      */
     bigTableDetails?: Schema$BigTableIODetails[];
     /**
@@ -1309,7 +1317,7 @@ export namespace dataflow_v1b3 {
      */
     fileDetails?: Schema$FileIODetails[];
     /**
-     * Identification of a PubSub source used in the Dataflow job.
+     * Identification of a Pub/Sub source used in the Dataflow job.
      */
     pubsubDetails?: Schema$PubSubIODetails[];
     /**
@@ -2094,7 +2102,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$RuntimeEnvironment {
     /**
-     * Additional experiment flags for the job.
+     * Additional experiment flags for the job, specified with the `--experiments` option.
      */
     additionalExperiments?: string[] | null;
     /**
@@ -2375,7 +2383,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string | null;
     /**
-     * PubSub snapshot metadata.
+     * Pub/Sub snapshot metadata.
      */
     pubsubMetadata?: Schema$PubsubSnapshotMetadata[];
     /**
