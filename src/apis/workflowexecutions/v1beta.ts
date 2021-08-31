@@ -155,6 +155,10 @@ export namespace workflowexecutions_v1beta {
      */
     argument?: string | null;
     /**
+     * The call logging level associated to this execution.
+     */
+    callLogLevel?: string | null;
+    /**
      * Output only. Marks the end of execution, successful or not.
      */
     endTime?: string | null;
@@ -317,6 +321,7 @@ export namespace workflowexecutions_v1beta {
      *   // Example response
      *   // {
      *   //   "argument": "my_argument",
+     *   //   "callLogLevel": "my_callLogLevel",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
@@ -456,6 +461,7 @@ export namespace workflowexecutions_v1beta {
      *         // request body parameters
      *         // {
      *         //   "argument": "my_argument",
+     *         //   "callLogLevel": "my_callLogLevel",
      *         //   "endTime": "my_endTime",
      *         //   "error": {},
      *         //   "name": "my_name",
@@ -471,6 +477,7 @@ export namespace workflowexecutions_v1beta {
      *   // Example response
      *   // {
      *   //   "argument": "my_argument",
+     *   //   "callLogLevel": "my_callLogLevel",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
@@ -612,6 +619,7 @@ export namespace workflowexecutions_v1beta {
      *   // Example response
      *   // {
      *   //   "argument": "my_argument",
+     *   //   "callLogLevel": "my_callLogLevel",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
