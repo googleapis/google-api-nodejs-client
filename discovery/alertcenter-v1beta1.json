@@ -423,9 +423,81 @@
       }
     }
   },
-  "revision": "20210720",
+  "revision": "20210830",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
+    "AccountSuspensionDetails": {
+      "description": "Details about why an account is receiving an account suspension warning.",
+      "id": "AccountSuspensionDetails",
+      "properties": {
+        "abuseReason": {
+          "description": "The reason why this account is receiving an account suspension warning.",
+          "enum": [
+            "ACCOUNT_SUSPENSION_ABUSE_REASON_UNSPECIFIED",
+            "TOS_VIOLATION",
+            "SPAM",
+            "PHISHING",
+            "TRAFFIC_PUMPING",
+            "FRAUD",
+            "NUMBER_HARVESTING",
+            "PAYMENTS_FRAUD"
+          ],
+          "enumDescriptions": [
+            "Abuse reason is unspecified.",
+            "This account is being suspended for a Terms of Service violation.",
+            "This account is being suspended for spam.",
+            "This account is being suspended for phishing.",
+            "This account is being suspended for artificially boosting traffic to a website.",
+            "This account is being suspended for fraud.",
+            "This account is being suspended for number harvesting.",
+            "This account is being suspended for payments fraud."
+          ],
+          "type": "string"
+        },
+        "productName": {
+          "description": "The name of the product being abused. This is restricted to only the following values: \"Gmail\" \"Payments\" \"Voice\" \"Workspace\" \"Other\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountSuspensionWarning": {
+      "description": "A warning that the customer's account is about to be suspended.",
+      "id": "AccountSuspensionWarning",
+      "properties": {
+        "appealWindow": {
+          "description": "The amount of time remaining to appeal an imminent suspension. After this window has elapsed, the account will be suspended. Only populated if the account suspension is in WARNING state.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "state": {
+          "description": "Account suspension warning state.",
+          "enum": [
+            "ACCOUNT_SUSPENSION_WARNING_STATE_UNSPECIFIED",
+            "WARNING",
+            "SUSPENDED",
+            "APPEAL_APPROVED",
+            "APPEAL_SUBMITTED"
+          ],
+          "enumDescriptions": [
+            "State is unspecified.",
+            "Customer is receiving a warning about imminent suspension.",
+            "Customer is being notified that their account has been suspended.",
+            "Customer is being notified that their suspension appeal was approved.",
+            "Customer has submitted their appeal, which is pending review."
+          ],
+          "type": "string"
+        },
+        "suspensionDetails": {
+          "description": "Details about why an account is being suspended.",
+          "items": {
+            "$ref": "AccountSuspensionDetails"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "AccountWarning": {
       "description": "Alerts for user account warning events.",
       "id": "AccountWarning",
@@ -558,7 +630,7 @@
           "type": "string"
         },
         "source": {
-          "description": "Required. A unique identifier for the system that reported the alert. This is output only after alert is created. Supported sources are any of the following: * Google Operations * Mobile device management * Gmail phishing * Data Loss Prevention * Domain wide takeout * State sponsored attack * Google identity",
+          "description": "Required. A unique identifier for the system that reported the alert. This is output only after alert is created. Supported sources are any of the following: * Google Operations * Mobile device management * Gmail phishing * Data Loss Prevention * Domain wide takeout * State sponsored attack * Google identity * Apps outage",
           "type": "string"
         },
         "startTime": {
@@ -689,7 +761,7 @@
       "type": "object"
     },
     "AppsOutage": {
-      "description": "An outage incident reported by Google for a Google Workspace (formerly G Suite) application.",
+      "description": "An outage incident reported for a Google Workspace service.",
       "id": "AppsOutage",
       "properties": {
         "dashboardUri": {
@@ -697,7 +769,7 @@
           "type": "string"
         },
         "nextUpdateTime": {
-          "description": "Timestamp by which the next update shall be provided.",
+          "description": "Timestamp by which the next update is expected to arrive.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -709,7 +781,7 @@
           "type": "array"
         },
         "resolutionTime": {
-          "description": "Timestamp of the outage expected or confirmed resolution. (Used only when known).",
+          "description": "Timestamp when the outage is expected to be resolved, or has confirmed resolution. Provided only when known.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -724,7 +796,7 @@
           "enumDescriptions": [
             "Status is unspecified.",
             "The incident has just been reported.",
-            "The incidnet is ongoing.",
+            "The incident is ongoing.",
             "The incident has been resolved."
           ],
           "type": "string"
