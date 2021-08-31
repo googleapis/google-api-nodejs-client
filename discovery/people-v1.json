@@ -1172,7 +1172,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20210826",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1297,7 +1297,7 @@
       "type": "object"
     },
     "BatchCreateContactsResponse": {
-      "description": "The response to a request to create a batch of contacts.",
+      "description": "If not successful, returns BatchCreateContactsErrorDetails which contains a list of errors for each invalid contact. The response to a request to create a batch of contacts.",
       "id": "BatchCreateContactsResponse",
       "properties": {
         "createdPeople": {
@@ -1382,7 +1382,7 @@
       "type": "object"
     },
     "BatchUpdateContactsResponse": {
-      "description": "The response to a request to create a batch of contacts.",
+      "description": "If not successful, returns BatchUpdateContactsErrorDetails, a list of errors corresponding to each contact. The response to a request to update a batch of contacts.",
       "id": "BatchUpdateContactsResponse",
       "properties": {
         "updateResult": {
@@ -1832,7 +1832,8 @@
       "id": "FieldMetadata",
       "properties": {
         "primary": {
-          "description": "True if the field is the primary field for the person.",
+          "description": "Output only. True if the field is the primary field for all sources in the person. Each person will have at most one field with `primary` set to true.",
+          "readOnly": true,
           "type": "boolean"
         },
         "source": {
@@ -1840,7 +1841,7 @@
           "description": "The source of the field."
         },
         "sourcePrimary": {
-          "description": "True if the field is the primary field for the source.",
+          "description": "True if the field is the primary field for the source. Each source must have at most one field with `source_primary` set to true.",
           "type": "boolean"
         },
         "verified": {
@@ -2368,6 +2369,10 @@
       "description": "A person's past or current organization. Overlapping date ranges are permitted.",
       "id": "Organization",
       "properties": {
+        "costCenter": {
+          "description": "The person's cost center at the organization.",
+          "type": "string"
+        },
         "current": {
           "description": "True if the organization is the person's current organization; false if the organization is a past organization.",
           "type": "boolean"
@@ -2388,6 +2393,11 @@
           "description": "Output only. The type of the organization translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale.",
           "readOnly": true,
           "type": "string"
+        },
+        "fullTimeEquivalentMillipercent": {
+          "description": "The person's full-time equivalent millipercent within the organization (100000 = 100%).",
+          "format": "int32",
+          "type": "integer"
         },
         "jobDescription": {
           "description": "The person's job description at the organization.",
