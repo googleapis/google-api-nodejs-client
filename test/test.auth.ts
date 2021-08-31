@@ -78,7 +78,7 @@ describe(__filename, () => {
   async function testNoTokens(blogger: APIEndpoint, client: OAuth2Client) {
     await assert.rejects(
       blogger.pages.get({blogId: '123', pageId: '123', auth: client}),
-      /No access, refresh token or API key is set./
+      /No access, refresh token/
     );
   }
 
