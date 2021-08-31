@@ -130,6 +130,10 @@ export namespace accesscontextmanager_v1 {
   }
 
   /**
+   * Metadata of Access Context Manager's Long Running Operations.
+   */
+  export interface Schema$AccessContextManagerOperationMetadata {}
+  /**
    * An `AccessLevel` is a label that can be applied to requests to Google Cloud services, along with a list of requirements necessary for the label to be applied.
    */
   export interface Schema$AccessLevel {
@@ -146,7 +150,7 @@ export namespace accesscontextmanager_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/accessLevels/{short_name\}`. The maximum length of the `short_name` component is 50 characters.
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The maximum length of the `access_level` component is 50 characters.
      */
     name?: string | null;
     /**
@@ -163,7 +167,7 @@ export namespace accesscontextmanager_v1 {
      */
     etag?: string | null;
     /**
-     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id\}`
+     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
      */
     name?: string | null;
     /**
@@ -371,6 +375,10 @@ export namespace accesscontextmanager_v1 {
      */
     name?: string | null;
   }
+  /**
+   * Currently, a completed operation means nothing. In the future, this metadata and a completed operation may indicate that the binding has taken effect and is affecting access decisions for all users.
+   */
+  export interface Schema$GcpUserAccessBindingOperationMetadata {}
   /**
    * Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the source of the request. The request must satisfy what is defined in `sources` AND identity related fields in order to match.
    */
@@ -600,7 +608,7 @@ export namespace accesscontextmanager_v1 {
      */
     description?: string | null;
     /**
-     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/servicePerimeters/{short_name\}`
+     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`
      */
     name?: string | null;
     /**
@@ -1264,7 +1272,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.patch({
-     *     // Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id\}`
+     *     // Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
      *     name: 'accessPolicies/my-accessPolicie',
      *     // Required. Mask to control which fields get updated. Must be non-empty.
      *     updateMask: 'placeholder-value',
@@ -1421,7 +1429,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{policy_id\}`
+     * Output only. Resource name of the `AccessPolicy`. Format: `accessPolicies/{access_policy\}`
      */
     name?: string;
     /**
@@ -2020,7 +2028,7 @@ export namespace accesscontextmanager_v1 {
      *
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.accessLevels.patch({
-     *     // Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/accessLevels/{short_name\}`. The maximum length of the `short_name` component is 50 characters.
+     *     // Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The maximum length of the `access_level` component is 50 characters.
      *     name: 'accessPolicies/my-accessPolicie/accessLevels/my-accessLevel',
      *     // Required. Mask to control which fields get updated. Must be non-empty.
      *     updateMask: 'placeholder-value',
@@ -2336,7 +2344,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Accesslevels$Patch
     extends StandardParameters {
     /**
-     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/accessLevels/{short_name\}`. The maximum length of the `short_name` component is 50 characters.
+     * Required. Resource name for the Access Level. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/accessLevels/{access_level\}`. The maximum length of the `access_level` component is 50 characters.
      */
     name?: string;
     /**
@@ -3097,7 +3105,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.patch(
      *     {
-     *       // Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/servicePerimeters/{short_name\}`
+     *       // Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`
      *       name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *       // Required. Mask to control which fields get updated. Must be non-empty.
      *       updateMask: 'placeholder-value',
@@ -3419,7 +3427,7 @@ export namespace accesscontextmanager_v1 {
   export interface Params$Resource$Accesspolicies$Serviceperimeters$Patch
     extends StandardParameters {
     /**
-     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/servicePerimeters/{short_name\}`
+     * Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{access_policy\}/servicePerimeters/{service_perimeter\}`
      */
     name?: string;
     /**

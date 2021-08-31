@@ -128,6 +128,10 @@ export namespace accesscontextmanager_v1beta {
   }
 
   /**
+   * Metadata of Access Context Manager's Long Running Operations.
+   */
+  export interface Schema$AccessContextManagerOperationMetadata {}
+  /**
    * An `AccessLevel` is a label that can be applied to requests to Google Cloud services, along with a list of requirements necessary for the label to be applied.
    */
   export interface Schema$AccessLevel {
