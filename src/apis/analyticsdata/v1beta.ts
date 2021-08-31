@@ -192,6 +192,44 @@ export namespace analyticsdata_v1beta {
     dimensionName?: string | null;
   }
   /**
+   * The request for compatibility information for a report's dimensions and metrics. Check compatibility provides a preview of the compatibility of a report; fields shared with the `runReport` request should be the same values as in your `runReport` request.
+   */
+  export interface Schema$CheckCompatibilityRequest {
+    /**
+     * Filters the dimensions and metrics in the response to just this compatibility. Commonly used as `”compatibilityFilter”: “COMPATIBLE”` to only return compatible dimensions & metrics.
+     */
+    compatibilityFilter?: string | null;
+    /**
+     * The filter clause of dimensions. `dimensionFilter` should be the same value as in your `runReport` request.
+     */
+    dimensionFilter?: Schema$FilterExpression;
+    /**
+     * The dimensions in this report. `dimensions` should be the same value as in your `runReport` request.
+     */
+    dimensions?: Schema$Dimension[];
+    /**
+     * The filter clause of metrics. `metricFilter` should be the same value as in your `runReport` request
+     */
+    metricFilter?: Schema$FilterExpression;
+    /**
+     * The metrics in this report. `metrics` should be the same value as in your `runReport` request.
+     */
+    metrics?: Schema$Metric[];
+  }
+  /**
+   * The compatibility response with the compatibility of each dimension & metric.
+   */
+  export interface Schema$CheckCompatibilityResponse {
+    /**
+     * The compatibility of each dimension.
+     */
+    dimensionCompatibilities?: Schema$DimensionCompatibility[];
+    /**
+     * The compatibility of each metric.
+     */
+    metricCompatibilities?: Schema$MetricCompatibility[];
+  }
+  /**
    * Defines a cohort selection criteria. A cohort is a group of users who share a common characteristic. For example, users with the same `firstSessionDate` belong to the same cohort.
    */
   export interface Schema$Cohort {
@@ -295,6 +333,19 @@ export namespace analyticsdata_v1beta {
     name?: string | null;
   }
   /**
+   * The compatibility for a single dimension.
+   */
+  export interface Schema$DimensionCompatibility {
+    /**
+     * The compatibility of this dimension. If the compatibility is COMPATIBLE, this dimension can be successfully added to the report.
+     */
+    compatibility?: string | null;
+    /**
+     * The dimension metadata contains the API name for this compatibility information. The dimension metadata also contains other helpful information like the UI name and description.
+     */
+    dimensionMetadata?: Schema$DimensionMetadata;
+  }
+  /**
    * Used to express a dimension which is the result of a formula of multiple dimensions. Example usages: 1) lower_case(dimension) 2) concatenate(dimension1, symbol, dimension2).
    */
   export interface Schema$DimensionExpression {
@@ -328,6 +379,10 @@ export namespace analyticsdata_v1beta {
      * This dimension's name. Useable in [Dimension](#Dimension)'s `name`. For example, `eventName`.
      */
     apiName?: string | null;
+    /**
+     * The display name of the category that this dimension belongs to. Similar dimensions and metrics are categorized together.
+     */
+    category?: string | null;
     /**
      * True if the dimension is a custom dimension for this property.
      */
@@ -470,6 +525,19 @@ export namespace analyticsdata_v1beta {
     name?: string | null;
   }
   /**
+   * The compatibility for a single metric.
+   */
+  export interface Schema$MetricCompatibility {
+    /**
+     * The compatibility of this metric. If the compatibility is COMPATIBLE, this metric can be successfully added to the report.
+     */
+    compatibility?: string | null;
+    /**
+     * The metric metadata contains the API name for this compatibility information. The metric metadata also contains other helpful information like the UI name and description.
+     */
+    metricMetadata?: Schema$MetricMetadata;
+  }
+  /**
    * Describes a metric column in the report. Visible metrics requested in a report produce column entries within rows and MetricHeaders. However, metrics used exclusively within filters or expressions do not produce columns in a report; correspondingly, those metrics do not produce headers.
    */
   export interface Schema$MetricHeader {
@@ -490,6 +558,10 @@ export namespace analyticsdata_v1beta {
      * A metric name. Useable in [Metric](#Metric)'s `name`. For example, `eventCount`.
      */
     apiName?: string | null;
+    /**
+     * The display name of the category that this metrics belongs to. Similar dimensions and metrics are categorized together.
+     */
+    category?: string | null;
     /**
      * True if the metric is a custom metric for this property.
      */
@@ -713,9 +785,17 @@ export namespace analyticsdata_v1beta {
    */
   export interface Schema$ResponseMetaData {
     /**
+     * The currency code used in this report. Intended to be used in formatting currency metrics like `purchaseRevenue` for visualization. If currency_code was specified in the request, this response parameter will echo the request parameter; otherwise, this response parameter is the property's current currency_code. Currency codes are string encodings of currency types from the ISO 4217 standard (https://en.wikipedia.org/wiki/ISO_4217); for example "USD", "EUR", "JPY". To learn more, see https://support.google.com/analytics/answer/9796179.
+     */
+    currencyCode?: string | null;
+    /**
      * If true, indicates some buckets of dimension combinations are rolled into "(other)" row. This can happen for high cardinality reports.
      */
     dataLossFromOtherRow?: boolean | null;
+    /**
+     * The property's current timezone. Intended to be used to interpret time-based dimensions like `hour` and `minute`. Formatted as strings from the IANA Time Zone database (https://www.iana.org/time-zones); for example "America/New_York" or "Asia/Tokyo".
+     */
+    timeZone?: string | null;
   }
   /**
    * Report data for each row. For example if RunReportRequest contains: ```none "dimensions": [ { "name": "eventName" \}, { "name": "countryId" \} ], "metrics": [ { "name": "eventCount" \} ] ``` One row with 'in_app_purchase' as the eventName, 'JP' as the countryId, and 15 as the eventCount, would be: ```none "dimensionValues": [ { "value": "in_app_purchase" \}, { "value": "JP" \} ], "metricValues": [ { "value": "15" \} ] ```
@@ -915,7 +995,7 @@ export namespace analyticsdata_v1beta {
      */
     dateRanges?: Schema$DateRange[];
     /**
-     * The filter clause of dimensions. Dimensions must be requested to be used in this filter. Metrics cannot be used in this filter.
+     * Dimension filters allow you to ask for only specific dimension values in the report. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter.
      */
     dimensionFilter?: Schema$FilterExpression;
     /**
@@ -935,7 +1015,7 @@ export namespace analyticsdata_v1beta {
      */
     metricAggregations?: string[] | null;
     /**
-     * The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Metrics must be requested to be used in this filter. Dimensions cannot be used in this filter.
+     * The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Dimensions cannot be used in this filter.
      */
     metricFilter?: Schema$FilterExpression;
     /**
@@ -1325,6 +1405,159 @@ export namespace analyticsdata_v1beta {
         );
       } else {
         return createAPIRequest<Schema$BatchRunReportsResponse>(parameters);
+      }
+    }
+
+    /**
+     * This compatibility method lists dimensions and metrics that can be added to a report request and maintain compatibility. This method fails if the request's dimensions and metrics are incompatible. In Google Analytics, reports fail if they request incompatible dimensions and/or metrics; in that case, you will need to remove dimensions and/or metrics from the incompatible report until the report is compatible. The Realtime and Core reports have different compatibility rules. This method checks compatibility for Core reports.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsdata = google.analyticsdata('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsdata.properties.checkCompatibility({
+     *     // A Google Analytics GA4 property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234 Set the Property ID to 0 for compatibility checking on dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
+     *     property: 'properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "compatibilityFilter": "my_compatibilityFilter",
+     *       //   "dimensionFilter": {},
+     *       //   "dimensions": [],
+     *       //   "metricFilter": {},
+     *       //   "metrics": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dimensionCompatibilities": [],
+     *   //   "metricCompatibilities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkCompatibility(
+      params: Params$Resource$Properties$Checkcompatibility,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkCompatibility(
+      params?: Params$Resource$Properties$Checkcompatibility,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CheckCompatibilityResponse>;
+    checkCompatibility(
+      params: Params$Resource$Properties$Checkcompatibility,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkCompatibility(
+      params: Params$Resource$Properties$Checkcompatibility,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckCompatibilityResponse>,
+      callback: BodyResponseCallback<Schema$CheckCompatibilityResponse>
+    ): void;
+    checkCompatibility(
+      params: Params$Resource$Properties$Checkcompatibility,
+      callback: BodyResponseCallback<Schema$CheckCompatibilityResponse>
+    ): void;
+    checkCompatibility(
+      callback: BodyResponseCallback<Schema$CheckCompatibilityResponse>
+    ): void;
+    checkCompatibility(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Checkcompatibility
+        | BodyResponseCallback<Schema$CheckCompatibilityResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckCompatibilityResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckCompatibilityResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CheckCompatibilityResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Checkcompatibility;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Checkcompatibility;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsdata.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+property}:checkCompatibility').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['property'],
+        pathParams: ['property'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckCompatibilityResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckCompatibilityResponse>(parameters);
       }
     }
 
@@ -1979,6 +2212,18 @@ export namespace analyticsdata_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$BatchRunReportsRequest;
+  }
+  export interface Params$Resource$Properties$Checkcompatibility
+    extends StandardParameters {
+    /**
+     * A Google Analytics GA4 property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234 Set the Property ID to 0 for compatibility checking on dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
+     */
+    property?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckCompatibilityRequest;
   }
   export interface Params$Resource$Properties$Getmetadata
     extends StandardParameters {
