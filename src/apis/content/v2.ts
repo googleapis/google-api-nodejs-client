@@ -813,7 +813,7 @@ export namespace content_v2 {
   }
   export interface Schema$BusinessDayConfig {
     /**
-     * Regular business days. May not be empty.
+     * Regular business days, such as '"monday"'. May not be empty.
      */
     businessDays?: string[] | null;
   }
