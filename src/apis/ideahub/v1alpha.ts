@@ -162,15 +162,15 @@ export namespace ideahub_v1alpha {
    */
   export interface Schema$GoogleSearchIdeahubV1alphaIdeaActivity {
     /**
-     * The Idea IDs for this entry.
+     * The Idea IDs for this entry. If empty, topics should be set.
      */
     ideas?: string[] | null;
     /**
-     * Unique identifier for the idea activity. Format: platforms/{platform\}/properties/{property\}/ideaActivities/{idea_activity\}
+     * Unique identifier for the idea activity. The name is ignored when creating an idea activity. Format: platforms/{platform\}/properties/{property\}/ideaActivities/{idea_activity\}
      */
     name?: string | null;
     /**
-     * The Topic IDs for this entry.
+     * The Topic IDs for this entry. If empty, ideas should be set.
      */
     topics?: string[] | null;
     /**
@@ -290,10 +290,6 @@ export namespace ideahub_v1alpha {
      *
      *   // Do the magic
      *   const res = await ideahub.ideas.list({
-     *     // Identifies the platform from which this user is accessing Idea Hub.
-     *     'creator.platform': 'placeholder-value',
-     *     // Identifies the platform account (blog/site/etc.) for which to fetch Ideas.
-     *     'creator.platformId': 'placeholder-value',
      *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Order semantics described below.
@@ -412,14 +408,6 @@ export namespace ideahub_v1alpha {
   }
 
   export interface Params$Resource$Ideas$List extends StandardParameters {
-    /**
-     * Identifies the platform from which this user is accessing Idea Hub.
-     */
-    'creator.platform'?: string;
-    /**
-     * Identifies the platform account (blog/site/etc.) for which to fetch Ideas.
-     */
-    'creator.platformId'?: string;
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.
      */
@@ -682,10 +670,6 @@ export namespace ideahub_v1alpha {
      *
      *   // Do the magic
      *   const res = await ideahub.platforms.properties.ideas.list({
-     *     // Identifies the platform from which this user is accessing Idea Hub.
-     *     'creator.platform': 'placeholder-value',
-     *     // Identifies the platform account (blog/site/etc.) for which to fetch Ideas.
-     *     'creator.platformId': 'placeholder-value',
      *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Order semantics described below.
@@ -809,14 +793,6 @@ export namespace ideahub_v1alpha {
 
   export interface Params$Resource$Platforms$Properties$Ideas$List
     extends StandardParameters {
-    /**
-     * Identifies the platform from which this user is accessing Idea Hub.
-     */
-    'creator.platform'?: string;
-    /**
-     * Identifies the platform account (blog/site/etc.) for which to fetch Ideas.
-     */
-    'creator.platformId'?: string;
     /**
      * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.
      */
