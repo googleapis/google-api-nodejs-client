@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20210726",
+  "revision": "20210818",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1052,6 +1052,13 @@
             "Allows the user to choose whether to enable app verification."
           ],
           "type": "string"
+        },
+        "personalAppsThatCanReadWorkNotifications": {
+          "description": "Personal apps that can read work profile notifications using a NotificationListenerService (https://developer.android.com/reference/android/service/notification/NotificationListenerService). By default, no personal apps (aside from system apps) can read work notifications. Each value in the list must be a package name.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "untrustedAppsPolicy": {
           "description": "The policy for untrusted apps (apps from unknown sources) enforced on the device. Replaces install_unknown_sources_allowed (deprecated).",
@@ -1673,6 +1680,57 @@
         },
         "uri": {
           "description": "This feature is not generally available.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CrossProfilePolicies": {
+      "description": "Cross-profile policies applied on the device.",
+      "id": "CrossProfilePolicies",
+      "properties": {
+        "crossProfileCopyPaste": {
+          "description": "Whether text copied from one profile (personal or work) can be pasted in the other profile.",
+          "enum": [
+            "CROSS_PROFILE_COPY_PASTE_UNSPECIFIED",
+            "COPY_FROM_WORK_TO_PERSONAL_DISALLOWED",
+            "CROSS_PROFILE_COPY_PASTE_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to COPY_FROM_WORK_TO_PERSONAL_DISALLOWED",
+            "Default. Prevents users from pasting into the personal profile text copied from the work profile. Text copied from the personal profile can be pasted into the work profile, and text copied from the work profile can be pasted into the work profile.",
+            "Text copied in either profile can be pasted in the other profile."
+          ],
+          "type": "string"
+        },
+        "crossProfileDataSharing": {
+          "description": "Whether data from one profile (personal or work) can be shared with apps in the other profile. Specifically controls simple data sharing via intents. Management of other cross-profile communication channels, such as contact search, copy/paste, or connected work & personal apps, are configured separately.",
+          "enum": [
+            "CROSS_PROFILE_DATA_SHARING_UNSPECIFIED",
+            "CROSS_PROFILE_DATA_SHARING_DISALLOWED",
+            "DATA_SHARING_FROM_WORK_TO_PERSONAL_DISALLOWED",
+            "CROSS_PROFILE_DATA_SHARING_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to DATA_SHARING_FROM_WORK_TO_PERSONAL_DISALLOWED.",
+            "Prevents data from being shared from both the personal profile to the work profile and the work profile to the personal profile.",
+            "Default. Prevents users from sharing data from the work profile to apps in the personal profile. Personal data can be shared with work apps.",
+            "Data from either profile can be shared with the other profile."
+          ],
+          "type": "string"
+        },
+        "showWorkContactsInPersonalProfile": {
+          "description": "Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.",
+          "enum": [
+            "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_UNSPECIFIED",
+            "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_DISALLOWED",
+            "SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to SHOW_WORK_CONTACTS_IN_PERSONAL_PROFILE_ALLOWED.",
+            "Prevents work profile contacts from appearing in personal profile contact searches and incoming calls",
+            "Default. Allows work profile contacts to appear in personal profile contact searches and incoming calls"
+          ],
           "type": "string"
         }
       },
@@ -3336,6 +3394,10 @@
         "credentialsConfigDisabled": {
           "description": "Whether configuring user credentials is disabled.",
           "type": "boolean"
+        },
+        "crossProfilePolicies": {
+          "$ref": "CrossProfilePolicies",
+          "description": "Cross-profile policies applied on the device."
         },
         "dataRoamingDisabled": {
           "description": "Whether roaming data services are disabled.",

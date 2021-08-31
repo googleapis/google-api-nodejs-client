@@ -144,6 +144,10 @@ export namespace androidmanagement_v1 {
      */
     googlePlayProtectVerifyApps?: string | null;
     /**
+     * Personal apps that can read work profile notifications using a NotificationListenerService (https://developer.android.com/reference/android/service/notification/NotificationListenerService). By default, no personal apps (aside from system apps) can read work notifications. Each value in the list must be a package name.
+     */
+    personalAppsThatCanReadWorkNotifications?: string[] | null;
+    /**
      * The policy for untrusted apps (apps from unknown sources) enforced on the device. Replaces install_unknown_sources_allowed (deprecated).
      */
     untrustedAppsPolicy?: string | null;
@@ -495,6 +499,23 @@ export namespace androidmanagement_v1 {
      * This feature is not generally available.
      */
     uri?: string | null;
+  }
+  /**
+   * Cross-profile policies applied on the device.
+   */
+  export interface Schema$CrossProfilePolicies {
+    /**
+     * Whether text copied from one profile (personal or work) can be pasted in the other profile.
+     */
+    crossProfileCopyPaste?: string | null;
+    /**
+     * Whether data from one profile (personal or work) can be shared with apps in the other profile. Specifically controls simple data sharing via intents. Management of other cross-profile communication channels, such as contact search, copy/paste, or connected work & personal apps, are configured separately.
+     */
+    crossProfileDataSharing?: string | null;
+    /**
+     * Whether contacts stored in the work profile can be shown in personal profile contact searches and incoming calls.
+     */
+    showWorkContactsInPersonalProfile?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values A month and day value, with a zero year, such as an anniversary A year on its own, with zero month and day values A year and month value, with a zero day, such as a credit card expiration dateRelated types are google.type.TimeOfDay and google.protobuf.Timestamp.
@@ -1490,6 +1511,10 @@ export namespace androidmanagement_v1 {
      * Whether configuring user credentials is disabled.
      */
     credentialsConfigDisabled?: boolean | null;
+    /**
+     * Cross-profile policies applied on the device.
+     */
+    crossProfilePolicies?: Schema$CrossProfilePolicies;
     /**
      * Whether roaming data services are disabled.
      */
@@ -5025,6 +5050,7 @@ export namespace androidmanagement_v1 {
      *   //   "complianceRules": [],
      *   //   "createWindowsDisabled": false,
      *   //   "credentialsConfigDisabled": false,
+     *   //   "crossProfilePolicies": {},
      *   //   "dataRoamingDisabled": false,
      *   //   "debuggingFeaturesAllowed": false,
      *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
@@ -5376,6 +5402,7 @@ export namespace androidmanagement_v1 {
      *       //   "complianceRules": [],
      *       //   "createWindowsDisabled": false,
      *       //   "credentialsConfigDisabled": false,
+     *       //   "crossProfilePolicies": {},
      *       //   "dataRoamingDisabled": false,
      *       //   "debuggingFeaturesAllowed": false,
      *       //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
@@ -5466,6 +5493,7 @@ export namespace androidmanagement_v1 {
      *   //   "complianceRules": [],
      *   //   "createWindowsDisabled": false,
      *   //   "credentialsConfigDisabled": false,
+     *   //   "crossProfilePolicies": {},
      *   //   "dataRoamingDisabled": false,
      *   //   "debuggingFeaturesAllowed": false,
      *   //   "defaultPermissionPolicy": "my_defaultPermissionPolicy",
