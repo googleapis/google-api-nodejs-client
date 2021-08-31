@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/compute": {
           "description": "View and manage your Google Compute Engine resources"
@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20210703",
+  "revision": "20210818",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -2392,7 +2392,7 @@
       "type": "object"
     },
     "BigTableIODetails": {
-      "description": "Metadata for a Cloud BigTable connector used by the job.",
+      "description": "Metadata for a Cloud Bigtable connector used by the job.",
       "id": "BigTableIODetails",
       "properties": {
         "instanceId": {
@@ -3314,10 +3314,28 @@
           "description": "Additional user labels to be specified for the job. Keys and values must follow the restrictions specified in the [labeling restrictions](https://cloud.google.com/compute/docs/labeling-resources#restrictions) page. An object containing a list of \"key\": value pairs. Example: { \"name\": \"wrench\", \"mass\": \"1kg\", \"count\": \"3\" }.",
           "type": "object"
         },
+        "autoscalingAlgorithm": {
+          "description": "The algorithm to use for autoscaling",
+          "enum": [
+            "AUTOSCALING_ALGORITHM_UNKNOWN",
+            "AUTOSCALING_ALGORITHM_NONE",
+            "AUTOSCALING_ALGORITHM_BASIC"
+          ],
+          "enumDescriptions": [
+            "The algorithm is unknown, or unspecified.",
+            "Disable autoscaling.",
+            "Increase worker count over time to reduce job execution time."
+          ],
+          "type": "string"
+        },
         "diskSizeGb": {
           "description": "Worker disk size, in gigabytes.",
           "format": "int32",
           "type": "integer"
+        },
+        "dumpHeapOnOom": {
+          "description": "If true, save a heap dump before killing a thread or process which is GC thrashing or out of memory. The location of the heap file will either be echoed back to the user, or the user will be given the opportunity to download the heap file.",
+          "type": "boolean"
         },
         "enableStreamingEngine": {
           "description": "Whether to enable Streaming Engine for the job.",
@@ -3359,11 +3377,6 @@
           "description": "The machine type to use for the job. Defaults to the value from the template if not specified.",
           "type": "string"
         },
-        "maxNumWorkers": {
-          "description": "The maximum number of workers to cap scaling at.",
-          "format": "int32",
-          "type": "integer"
-        },
         "maxWorkers": {
           "description": "The maximum number of Google Compute Engine instances to be made available to your pipeline during execution, from 1 to 1000.",
           "format": "int32",
@@ -3377,6 +3390,10 @@
           "description": "The initial number of Google Compute Engine instances for the job.",
           "format": "int32",
           "type": "integer"
+        },
+        "saveHeapDumpsToGcsPath": {
+          "description": "Cloud Storage bucket (directory) to upload heap dumps to the given location. Enabling this implies that heap dumps should be generated on OOM (dump_heap_on_oom is set to true).",
+          "type": "string"
         },
         "sdkContainerImage": {
           "description": "Docker registry location of container image to use for the 'worker harness. Default is the container for the version of the SDK. Note this field is only valid for portable pipelines.",
@@ -3930,7 +3947,7 @@
       "id": "JobMetadata",
       "properties": {
         "bigTableDetails": {
-          "description": "Identification of a Cloud BigTable source used in the Dataflow job.",
+          "description": "Identification of a Cloud Bigtable source used in the Dataflow job.",
           "items": {
             "$ref": "BigTableIODetails"
           },
@@ -3958,7 +3975,7 @@
           "type": "array"
         },
         "pubsubDetails": {
-          "description": "Identification of a PubSub source used in the Dataflow job.",
+          "description": "Identification of a Pub/Sub source used in the Dataflow job.",
           "items": {
             "$ref": "PubSubIODetails"
           },
@@ -5032,7 +5049,7 @@
       "id": "RuntimeEnvironment",
       "properties": {
         "additionalExperiments": {
-          "description": "Additional experiment flags for the job.",
+          "description": "Additional experiment flags for the job, specified with the `--experiments` option.",
           "items": {
             "type": "string"
           },
@@ -5420,7 +5437,7 @@
           "type": "string"
         },
         "pubsubMetadata": {
-          "description": "PubSub snapshot metadata.",
+          "description": "Pub/Sub snapshot metadata.",
           "items": {
             "$ref": "PubsubSnapshotMetadata"
           },
