@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/sqlservice.admin": {
           "description": "Manage your Google SQL Service instances"
@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "revision": "20210727",
+  "revision": "20210816",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2369,6 +2369,12 @@
           "description": "Connection name of the Cloud SQL instance used in connection strings.",
           "type": "string"
         },
+        "createTime": {
+          "description": "Output only. The time when the instance was created in RFC 3339 format (https://tools.ietf.org/html/rfc3339), for example 2012-11-15T16:19:00.094Z",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "currentDiskSize": {
           "description": "The current disk usage of the instance in bytes. This property has been deprecated. Use the \"cloudsql.googleapis.com/database/disk/bytes_used\" metric in Cloud Monitoring API instead. Please see this announcement for details.",
           "format": "int64",
@@ -2560,7 +2566,8 @@
             "PENDING_DELETE",
             "PENDING_CREATE",
             "MAINTENANCE",
-            "FAILED"
+            "FAILED",
+            "ONLINE_MAINTENANCE"
           ],
           "enumDescriptions": [
             "The state of the instance is unknown.",
@@ -2569,7 +2576,8 @@
             "The instance is being deleted.",
             "The instance is being created.",
             "The instance is down for maintenance.",
-            "The creation of the instance failed or a fatal error occurred during maintenance."
+            "The creation of the instance failed or a fatal error occurred during maintenance.",
+            "The instance is under maintenance operations and the database is available."
           ],
           "type": "string"
         },
@@ -2645,6 +2653,10 @@
         "replicaConfiguration": {
           "$ref": "DemoteMasterConfiguration",
           "description": "Configuration specific to read-replicas replicating from the on-premises primary instance."
+        },
+        "skipReplicationSetup": {
+          "description": "Flag to skip replication setup on the instance.",
+          "type": "boolean"
         },
         "verifyGtidConsistency": {
           "description": "Verify GTID consistency for demote operation. Default value: *True*. Setting this flag to false enables you to bypass GTID consistency check between on-premises primary instance and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.",
@@ -3105,6 +3117,25 @@
       },
       "type": "object"
     },
+    "InstanceReference": {
+      "description": "Reference to another Cloud SQL instance.",
+      "id": "InstanceReference",
+      "properties": {
+        "name": {
+          "description": "The name of the Cloud SQL instance being referenced. This does not include the project ID.",
+          "type": "string"
+        },
+        "project": {
+          "description": "The project ID of the Cloud SQL instance being referenced. The default is the same project ID as the instance references it.",
+          "type": "string"
+        },
+        "region": {
+          "description": "The region of the Cloud SQL instance being referenced.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InstancesCloneRequest": {
       "description": "Database instance clone request.",
       "id": "InstancesCloneRequest",
@@ -3248,7 +3279,7 @@
       "id": "IpConfiguration",
       "properties": {
         "allocatedIpRange": {
-          "description": "The name of the allocated ip range for the private ip CloudSQL instance. For example: \"google-managed-services-default\". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.",
+          "description": "The name of the allocated ip range for the private ip CloudSQL instance. For example: \"google-managed-services-default\". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.` Reserved for future use.",
           "type": "string"
         },
         "authorizedNetworks": {
@@ -3421,7 +3452,15 @@
     "MySqlSyncConfig": {
       "description": "MySQL-specific external server sync settings.",
       "id": "MySqlSyncConfig",
-      "properties": {},
+      "properties": {
+        "initialSyncFlags": {
+          "description": "Flags to use for the initial dump.",
+          "items": {
+            "$ref": "SyncFlags"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "OnPremisesConfiguration": {
@@ -3455,6 +3494,10 @@
         "password": {
           "description": "The password for connecting to on-premises instance.",
           "type": "string"
+        },
+        "sourceInstance": {
+          "$ref": "InstanceReference",
+          "description": "The reference to Cloud SQL instance if the source is Cloud SQL."
         },
         "username": {
           "description": "The username for connecting to on-premises instance.",
@@ -4324,6 +4367,21 @@
         },
         "kind": {
           "description": "This is always *sql#sslCertsList*.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SyncFlags": {
+      "description": "Initial sync flags for certain Cloud SQL APIs. Currently used for the MySQL external server initial dump.",
+      "id": "SyncFlags",
+      "properties": {
+        "name": {
+          "description": "The name of the flag.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the flag. This field must be omitted if the flag doesn't take a value.",
           "type": "string"
         }
       },
