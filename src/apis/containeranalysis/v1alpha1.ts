@@ -204,6 +204,10 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$BuildDetails {
     /**
+     * In-toto Provenance representation as defined in spec.
+     */
+    intotoProvenance?: Schema$InTotoProvenance;
+    /**
      * The actual provenance
      */
     provenance?: Schema$BuildProvenance;
@@ -211,6 +215,9 @@ export namespace containeranalysis_v1alpha1 {
      * Serialized JSON representation of the provenance, used in generating the `BuildSignature` in the corresponding Result. After verifying the signature, `provenance_bytes` can be unmarshalled and compared to the provenance to confirm that it is unchanged. A base64-encoded string representation of the provenance bytes is used for the signature in order to interoperate with openssl which expects this format for signature verification. The serialized form is captured both to avoid ambiguity in how the provenance is marshalled to json as well to prevent incompatibilities with future changes.
      */
     provenanceBytes?: string | null;
+  }
+  export interface Schema$BuilderConfig {
+    id?: string | null;
   }
   /**
    * Provenance of a build. Contains all information needed to verify the full details about the build from source to completion.
@@ -344,6 +351,23 @@ export namespace containeranalysis_v1alpha1 {
      * The ID(s) of the Command(s) that this Command depends on.
      */
     waitFor?: string[] | null;
+  }
+  /**
+   * Indicates that the builder claims certain fields in this message to be complete.
+   */
+  export interface Schema$Completeness {
+    /**
+     * If true, the builder claims that recipe.arguments is complete, meaning that all external inputs are properly captured in the recipe.
+     */
+    arguments?: boolean | null;
+    /**
+     * If true, the builder claims that recipe.environment is claimed to be complete.
+     */
+    environment?: boolean | null;
+    /**
+     * If true, the builder claims that materials are complete, usually through some controls to prevent network access. Sometimes called "hermetic".
+     */
+    materials?: boolean | null;
   }
   /**
    * ComplianceNote encapsulates all information about a specific compliance check.
@@ -647,9 +671,67 @@ export namespace containeranalysis_v1alpha1 {
     title?: string | null;
   }
   /**
+   * A note describing an attestation
+   */
+  export interface Schema$DSSEAttestationNote {
+    /**
+     * DSSEHint hints at the purpose of the attestation authority.
+     */
+    hint?: Schema$DSSEHint;
+  }
+  /**
+   * An occurrence describing an attestation on a resource
+   */
+  export interface Schema$DSSEAttestationOccurrence {
+    /**
+     * If doing something security critical, make sure to verify the signatures in this metadata.
+     */
+    envelope?: Schema$Envelope;
+    statement?: Schema$InTotoStatement;
+  }
+  /**
+   * This submessage provides human-readable hints about the purpose of the authority. Because the name of a note acts as its resource reference, it is important to disambiguate the canonical name of the Note (which might be a UUID for security purposes) from "readable" names more suitable for debug output. Note that these hints should not be used to look up authorities in security sensitive contexts, such as when looking up attestations to verify.
+   */
+  export interface Schema$DSSEHint {
+    /**
+     * Required. The human readable name of this attestation authority, for example "cloudbuild-prod".
+     */
+    humanReadableName?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * MUST match https://github.com/secure-systems-lab/dsse/blob/master/envelope.proto. An authenticated message of arbitrary type.
+   */
+  export interface Schema$Envelope {
+    /**
+     * The bytes being signed
+     */
+    payload?: string | null;
+    /**
+     * The type of payload being signed
+     */
+    payloadType?: string | null;
+    /**
+     * The signatures over the payload
+     */
+    signatures?: Schema$EnvelopeSignature[];
+  }
+  /**
+   * A DSSE signature
+   */
+  export interface Schema$EnvelopeSignature {
+    /**
+     * A reference id to the key being used for signing
+     */
+    keyid?: string | null;
+    /**
+     * The signature itself
+     */
+    sig?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -953,6 +1035,36 @@ export namespace containeranalysis_v1alpha1 {
      */
     name?: string | null;
   }
+  export interface Schema$InTotoProvenance {
+    /**
+     * required
+     */
+    builderConfig?: Schema$BuilderConfig;
+    /**
+     * The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on. This is considered to be incomplete unless metadata.completeness.materials is true. Unset or null is equivalent to empty.
+     */
+    materials?: string[] | null;
+    metadata?: Schema$Metadata;
+    /**
+     * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
+     */
+    recipe?: Schema$Recipe;
+  }
+  /**
+   * Spec defined at https://github.com/in-toto/attestation/tree/main/spec#statement The serialized InTotoStatement will be stored as Envelope.payload. Envelope.payloadType is always "application/vnd.in-toto+json".
+   */
+  export interface Schema$InTotoStatement {
+    /**
+     * "https://in-toto.io/Provenance/v0.1" for InTotoProvenance.
+     */
+    predicateType?: string | null;
+    provenance?: Schema$InTotoProvenance;
+    subject?: Schema$Subject[];
+    /**
+     * Always "https://in-toto.io/Statement/v0.1".
+     */
+    type?: string | null;
+  }
   /**
    * Layer holds metadata specific to a layer of a Docker image.
    */
@@ -1036,6 +1148,31 @@ export namespace containeranalysis_v1alpha1 {
     version?: Schema$Version;
   }
   /**
+   * Other properties of the build.
+   */
+  export interface Schema$Metadata {
+    /**
+     * The timestamp of when the build completed.
+     */
+    buildFinishedOn?: string | null;
+    /**
+     * Identifies the particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis. The value SHOULD be globally unique, per in-toto Provenance spec.
+     */
+    buildInvocationId?: string | null;
+    /**
+     * The timestamp of when the build started.
+     */
+    buildStartedOn?: string | null;
+    /**
+     * Indicates that the builder claims certain fields in this message to be complete.
+     */
+    completeness?: Schema$Completeness;
+    /**
+     * If true, the builder claims that running the recipe on materials will produce bit-for-bit identical output.
+     */
+    reproducible?: boolean | null;
+  }
+  /**
    * Details about files that caused a compliance check to fail.
    */
   export interface Schema$NonCompliantFile {
@@ -1084,6 +1221,10 @@ export namespace containeranalysis_v1alpha1 {
      * A note describing a provider/analysis type.
      */
     discovery?: Schema$Discovery;
+    /**
+     * A note describing a dsse attestation note.
+     */
+    dsseAttestation?: Schema$DSSEAttestationNote;
     /**
      * Time of expiration for this note, null if note does not expire.
      */
@@ -1173,6 +1314,14 @@ export namespace containeranalysis_v1alpha1 {
      * Describes the initial scan status for this resource.
      */
     discovered?: Schema$Discovered;
+    /**
+     * This represents a DSSE attestation occurrence
+     */
+    dsseAttestation?: Schema$DSSEAttestationOccurrence;
+    /**
+     * https://github.com/secure-systems-lab/dsse
+     */
+    envelope?: Schema$Envelope;
     /**
      * Describes the installation of a package on the linked resource.
      */
@@ -1277,9 +1426,17 @@ export namespace containeranalysis_v1alpha1 {
      */
     affectedLocation?: Schema$VulnerabilityLocation;
     /**
+     * Output only. The distro or language system assigned severity for this vulnerability when that is available and note provider assigned severity when distro or language system has not yet assigned a severity for this vulnerability.
+     */
+    effectiveSeverity?: string | null;
+    /**
      * The location of the available fix for vulnerability.
      */
     fixedLocation?: Schema$VulnerabilityLocation;
+    /**
+     * The type of package (e.g. OS, MAVEN, GO).
+     */
+    packageType?: string | null;
     severityName?: string | null;
   }
   /**
@@ -1398,7 +1555,7 @@ export namespace containeranalysis_v1alpha1 {
     signature?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1413,6 +1570,31 @@ export namespace containeranalysis_v1alpha1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
+   */
+  export interface Schema$Recipe {
+    /**
+     * Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were "make", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint.
+     */
+    arguments?: string[] | null;
+    /**
+     * Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were "make", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64.
+     */
+    definedInMaterial?: string | null;
+    /**
+     * String identifying the entry point into the build. This is often a path to a configuration file and/or a target label within that file. The syntax and meaning are defined by recipe.type. For example, if the recipe type were "make", then this would reference the directory in which to run make as well as which target to use.
+     */
+    entryPoint?: string | null;
+    /**
+     * Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy.
+     */
+    environment?: {[key: string]: string} | null;
+    /**
+     * URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.
+     */
+    type?: string | null;
   }
   /**
    * Metadata for any related URL information
@@ -1604,6 +1786,13 @@ export namespace containeranalysis_v1alpha1 {
      */
     object?: string | null;
   }
+  export interface Schema$Subject {
+    /**
+     * "": ""
+     */
+    digest?: {[key: string]: string} | null;
+    name?: string | null;
+  }
   /**
    * Request message for `TestIamPermissions` method.
    */
@@ -1724,7 +1913,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     cvssScore?: number | null;
     /**
-     * The distro assigned severity for this vulnerability when that is available and note provider assigned severity when distro has not yet assigned a severity for this vulnerability.
+     * The distro assigned severity for this vulnerability when that is available and note provider assigned severity when distro has not yet assigned a severity for this vulnerability. When there are multiple package issues for this vulnerability, they can have different effective severities because some might come from the distro and some might come from installed language packs (e.g. Maven JARs or Go binaries). For this reason, it is advised to use the effective severity on the PackageIssue level, as this field may eventually be deprecated. In the case where multiple PackageIssues have different effective severities, the one set here will be the highest severity of any of the PackageIssues.
      */
     effectiveSeverity?: string | null;
     /**
@@ -1736,7 +1925,7 @@ export namespace containeranalysis_v1alpha1 {
      */
     severity?: string | null;
     /**
-     * The type of package; whether native or non native(ruby gems, node.js packages etc)
+     * The type of package; whether native or non native(ruby gems, node.js packages etc). This may be deprecated in the future because we can have multiple PackageIssues with different package types.
      */
     type?: string | null;
   }
@@ -1843,6 +2032,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "createTime": "my_createTime",
      *       //   "deployable": {},
      *       //   "discovery": {},
+     *       //   "dsseAttestation": {},
      *       //   "expirationTime": "my_expirationTime",
      *       //   "kind": "my_kind",
      *       //   "longDescription": "my_longDescription",
@@ -1871,6 +2061,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
+     *   //   "dsseAttestation": {},
      *   //   "expirationTime": "my_expirationTime",
      *   //   "kind": "my_kind",
      *   //   "longDescription": "my_longDescription",
@@ -2146,6 +2337,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
+     *   //   "dsseAttestation": {},
      *   //   "expirationTime": "my_expirationTime",
      *   //   "kind": "my_kind",
      *   //   "longDescription": "my_longDescription",
@@ -2577,6 +2769,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "createTime": "my_createTime",
      *       //   "deployable": {},
      *       //   "discovery": {},
+     *       //   "dsseAttestation": {},
      *       //   "expirationTime": "my_expirationTime",
      *       //   "kind": "my_kind",
      *       //   "longDescription": "my_longDescription",
@@ -2605,6 +2798,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
+     *   //   "dsseAttestation": {},
      *   //   "expirationTime": "my_expirationTime",
      *   //   "kind": "my_kind",
      *   //   "longDescription": "my_longDescription",
@@ -3327,6 +3521,8 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "deployment": {},
      *       //   "derivedImage": {},
      *       //   "discovered": {},
+     *       //   "dsseAttestation": {},
+     *       //   "envelope": {},
      *       //   "installation": {},
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -3355,6 +3551,8 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "deployment": {},
      *   //   "derivedImage": {},
      *   //   "discovered": {},
+     *   //   "dsseAttestation": {},
+     *   //   "envelope": {},
      *   //   "installation": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -3630,6 +3828,8 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "deployment": {},
      *   //   "derivedImage": {},
      *   //   "discovered": {},
+     *   //   "dsseAttestation": {},
+     *   //   "envelope": {},
      *   //   "installation": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -3917,6 +4117,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
+     *   //   "dsseAttestation": {},
      *   //   "expirationTime": "my_expirationTime",
      *   //   "kind": "my_kind",
      *   //   "longDescription": "my_longDescription",
@@ -4357,6 +4558,8 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "deployment": {},
      *       //   "derivedImage": {},
      *       //   "discovered": {},
+     *       //   "dsseAttestation": {},
+     *       //   "envelope": {},
      *       //   "installation": {},
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
@@ -4385,6 +4588,8 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "deployment": {},
      *   //   "derivedImage": {},
      *   //   "discovered": {},
+     *   //   "dsseAttestation": {},
+     *   //   "envelope": {},
      *   //   "installation": {},
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
@@ -5750,6 +5955,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "createTime": "my_createTime",
      *       //   "deployable": {},
      *       //   "discovery": {},
+     *       //   "dsseAttestation": {},
      *       //   "expirationTime": "my_expirationTime",
      *       //   "kind": "my_kind",
      *       //   "longDescription": "my_longDescription",
@@ -5778,6 +5984,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
+     *   //   "dsseAttestation": {},
      *   //   "expirationTime": "my_expirationTime",
      *   //   "kind": "my_kind",
      *   //   "longDescription": "my_longDescription",
@@ -6053,6 +6260,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
+     *   //   "dsseAttestation": {},
      *   //   "expirationTime": "my_expirationTime",
      *   //   "kind": "my_kind",
      *   //   "longDescription": "my_longDescription",
@@ -6484,6 +6692,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "createTime": "my_createTime",
      *       //   "deployable": {},
      *       //   "discovery": {},
+     *       //   "dsseAttestation": {},
      *       //   "expirationTime": "my_expirationTime",
      *       //   "kind": "my_kind",
      *       //   "longDescription": "my_longDescription",
@@ -6512,6 +6721,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
+     *   //   "dsseAttestation": {},
      *   //   "expirationTime": "my_expirationTime",
      *   //   "kind": "my_kind",
      *   //   "longDescription": "my_longDescription",
