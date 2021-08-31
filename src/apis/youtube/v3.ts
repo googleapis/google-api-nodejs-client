@@ -2245,6 +2245,20 @@ export namespace youtube_v3 {
      */
     userComment?: string | null;
   }
+  export interface Schema$LiveChatMemberMilestoneChatDetails {
+    /**
+     * The name of the Level at which the viever is a member. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.
+     */
+    memberLevelName?: string | null;
+    /**
+     * The total amount of months (rounded up) the viewer has been a member that granted them this Member Milestone Chat. This is the same number of months as is being displayed to YouTube users.
+     */
+    memberMonth?: number | null;
+    /**
+     * The comment added by the member to this Member Milestone Chat. This field is empty for messages without a comment from the member.
+     */
+    userComment?: string | null;
+  }
   /**
    * A *liveChatMessage* resource represents a chat message in a YouTube Live Chat.
    */
@@ -2343,9 +2357,12 @@ export namespace youtube_v3 {
   export interface Schema$LiveChatMessageRetractedDetails {
     retractedMessageId?: string | null;
   }
+  /**
+   * Next ID: 31
+   */
   export interface Schema$LiveChatMessageSnippet {
     /**
-     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase
+     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase
      */
     authorChannelId?: string | null;
     /**
@@ -2361,8 +2378,16 @@ export namespace youtube_v3 {
      */
     hasDisplayContent?: boolean | null;
     liveChatId?: string | null;
+    /**
+     * Details about the Member Milestone Chat event, this is only set if the type is 'memberMilestoneChatEvent'.
+     */
+    memberMilestoneChatDetails?: Schema$LiveChatMemberMilestoneChatDetails;
     messageDeletedDetails?: Schema$LiveChatMessageDeletedDetails;
     messageRetractedDetails?: Schema$LiveChatMessageRetractedDetails;
+    /**
+     * Details about the New Member Announcement event, this is only set if the type is 'newSponsorEvent'. Please note that "member" is the new term for "sponsor".
+     */
+    newSponsorDetails?: Schema$LiveChatNewSponsorDetails;
     /**
      * The date and time when the message was orignally published.
      */
@@ -2450,6 +2475,16 @@ export namespace youtube_v3 {
      * Details about the moderator.
      */
     moderatorDetails?: Schema$ChannelProfileDetails;
+  }
+  export interface Schema$LiveChatNewSponsorDetails {
+    /**
+     * If the viewer just had upgraded from a lower level. For viewers that were not members at the time of purchase, this field is false.
+     */
+    isUpgrade?: boolean | null;
+    /**
+     * The name of the Level that the viewer just had joined. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.
+     */
+    memberLevelName?: string | null;
   }
   export interface Schema$LiveChatSuperChatDetails {
     /**

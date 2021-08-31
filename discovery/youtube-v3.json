@@ -3765,7 +3765,7 @@
       }
     }
   },
-  "revision": "20210706",
+  "revision": "20210828",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -8132,6 +8132,25 @@
       },
       "type": "object"
     },
+    "LiveChatMemberMilestoneChatDetails": {
+      "id": "LiveChatMemberMilestoneChatDetails",
+      "properties": {
+        "memberLevelName": {
+          "description": "The name of the Level at which the viever is a member. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.",
+          "type": "string"
+        },
+        "memberMonth": {
+          "description": "The total amount of months (rounded up) the viewer has been a member that granted them this Member Milestone Chat. This is the same number of months as is being displayed to YouTube users.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "userComment": {
+          "description": "The comment added by the member to this Member Milestone Chat. This field is empty for messages without a comment from the member.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LiveChatMessage": {
       "description": "A *liveChatMessage* resource represents a chat message in a YouTube Live Chat.",
       "id": "LiveChatMessage",
@@ -8266,10 +8285,11 @@
       "type": "object"
     },
     "LiveChatMessageSnippet": {
+      "description": "Next ID: 31",
       "id": "LiveChatMessageSnippet",
       "properties": {
         "authorChannelId": {
-          "description": "The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase",
+          "description": "The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase",
           "type": "string"
         },
         "displayMessage": {
@@ -8287,11 +8307,19 @@
         "liveChatId": {
           "type": "string"
         },
+        "memberMilestoneChatDetails": {
+          "$ref": "LiveChatMemberMilestoneChatDetails",
+          "description": "Details about the Member Milestone Chat event, this is only set if the type is 'memberMilestoneChatEvent'."
+        },
         "messageDeletedDetails": {
           "$ref": "LiveChatMessageDeletedDetails"
         },
         "messageRetractedDetails": {
           "$ref": "LiveChatMessageRetractedDetails"
+        },
+        "newSponsorDetails": {
+          "$ref": "LiveChatNewSponsorDetails",
+          "description": "Details about the New Member Announcement event, this is only set if the type is 'newSponsorEvent'. Please note that \"member\" is the new term for \"sponsor\"."
         },
         "publishedAt": {
           "description": "The date and time when the message was orignally published.",
@@ -8321,6 +8349,7 @@
             "sponsorOnlyModeStartedEvent",
             "sponsorOnlyModeEndedEvent",
             "newSponsorEvent",
+            "memberMilestoneChatEvent",
             "messageDeletedEvent",
             "messageRetractedEvent",
             "userBannedEvent",
@@ -8328,6 +8357,7 @@
             "superStickerEvent"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -8429,6 +8459,20 @@
         "moderatorDetails": {
           "$ref": "ChannelProfileDetails",
           "description": "Details about the moderator."
+        }
+      },
+      "type": "object"
+    },
+    "LiveChatNewSponsorDetails": {
+      "id": "LiveChatNewSponsorDetails",
+      "properties": {
+        "isUpgrade": {
+          "description": "If the viewer just had upgraded from a lower level. For viewers that were not members at the time of purchase, this field is false.",
+          "type": "boolean"
+        },
+        "memberLevelName": {
+          "description": "The name of the Level that the viewer just had joined. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.",
+          "type": "string"
         }
       },
       "type": "object"
