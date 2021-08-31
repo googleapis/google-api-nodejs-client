@@ -1180,7 +1180,7 @@ export namespace servicenetworking_v1beta {
    */
   export interface Schema$PeeredDnsDomain {
     /**
-     * The DNS domain name suffix e.g. `example.com.`.
+     * The DNS domain name suffix e.g. `example.com.`. Cloud DNS requires that a DNS suffix ends with a trailing dot.
      */
     dnsSuffix?: string | null;
     /**
