@@ -3,10 +3,10 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
-          "description": "View your data across Google Cloud Platform services"
+          "description": "View your data across Google Cloud services and see the email address of your Google Account"
         }
       }
     }
@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20210803",
+  "revision": "20210820",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -553,7 +553,7 @@
       "type": "object"
     },
     "AndroidRoboTest": {
-      "description": "A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes. Next tag: 30",
+      "description": "A test of an android application that explores the application on a virtual or physical Android Device, finding culprits and crashes as it goes.",
       "id": "AndroidRoboTest",
       "properties": {
         "appApk": {
@@ -597,7 +597,7 @@
             "ROBO_VERSION_2"
           ],
           "enumDescriptions": [
-            "LINT.IfChange This means that the server should choose the mode. Recommended.",
+            "This means that the server should choose the mode. Recommended.",
             "Runs Robo in UIAutomator-only mode without app resigning",
             "Runs Robo in standard Espresso with UIAutomator fallback"
           ],
@@ -1287,7 +1287,7 @@
           "type": "string"
         },
         "pullDirectories": {
-          "description": "List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (e.g. /private/var/mobile/Media) or within an accessible directory inside the app's filesystem (e.g. /Documents) by specifying the bundle id.",
+          "description": "List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (such as /private/var/mobile/Media) or within an accessible directory inside the app's filesystem (such as /Documents) by specifying the bundle ID.",
           "items": {
             "$ref": "IosDeviceFile"
           },
