@@ -486,7 +486,7 @@ export namespace run_v1alpha1 {
      */
     status?: string | null;
     /**
-     * Required. Type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: * "Completed": True when the Job has successfully completed. * "Started": True when the Job has successfully started running. * "ResourcesAvailable": True when underlying resources have been provisioned.
+     * Required. Type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/main/docs/spec/errors.md#error-conditions-and-reporting Types include: * "Completed": True when the Job has successfully completed. * "Started": True when the Job has successfully started running. * "ResourcesAvailable": True when underlying resources have been provisioned.
      */
     type?: string | null;
   }
@@ -858,18 +858,18 @@ export namespace run_v1alpha1 {
     port?: number | null;
   }
   /**
-   * Not supported by Cloud Run Volume represents a named volume in a container.
+   * Volume represents a named volume in a container.
    */
   export interface Schema$Volume {
     configMap?: Schema$ConfigMapVolumeSource;
     /**
-     * Volume's name.
+     * Volume's name. In Cloud Run Fully Managed, the name 'cloudsql' is reserved.
      */
     name?: string | null;
     secret?: Schema$SecretVolumeSource;
   }
   /**
-   * Not supported by Cloud Run VolumeMount describes a mounting of a Volume within a container.
+   * VolumeMount describes a mounting of a Volume within a container.
    */
   export interface Schema$VolumeMount {
     /**
@@ -877,7 +877,7 @@ export namespace run_v1alpha1 {
      */
     mountPath?: string | null;
     /**
-     * This must match the Name of a Volume.
+     * The name of the volume. There must be a corresponding Volume with the same name.
      */
     name?: string | null;
     /**
