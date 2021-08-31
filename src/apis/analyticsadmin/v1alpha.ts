@@ -384,6 +384,10 @@ export namespace analyticsadmin_v1alpha {
      */
     customMetric?: Schema$GoogleAnalyticsAdminV1alphaCustomMetric;
     /**
+     * A snapshot of a data retention settings resource in change history.
+     */
+    dataRetentionSettings?: Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings;
+    /**
      * A snapshot of a DisplayVideo360AdvertiserLink resource in change history.
      */
     displayVideo360AdvertiserLink?: Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink;
@@ -548,6 +552,23 @@ export namespace analyticsadmin_v1alpha {
      * Required. Immutable. The scope of this custom metric.
      */
     scope?: string | null;
+  }
+  /**
+   * Settings values for data retention. This is a singleton resource.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings {
+    /**
+     * The length of time that event-level data is retained.
+     */
+    eventDataRetention?: string | null;
+    /**
+     * Output only. Resource name for this DataRetentionSetting resource. Format: properties/{property\}/dataRetentionSettings
+     */
+    name?: string | null;
+    /**
+     * If true, reset the retention period for the user identifier with every event from that user.
+     */
+    resetUserDataOnNewActivity?: boolean | null;
   }
   /**
    * A resource message representing data sharing settings of a Google Analytics account.
@@ -4569,6 +4590,147 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Returns the singleton data retention settings for this property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.getDataRetentionSettings({
+     *     // Required. The name of the settings to lookup. Format: properties/{property\}/dataRetentionSettings Example: "properties/1000/dataRetentionSettings"
+     *     name: 'properties/my-propertie/dataRetentionSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventDataRetention": "my_eventDataRetention",
+     *   //   "name": "my_name",
+     *   //   "resetUserDataOnNewActivity": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDataRetentionSettings(
+      params: Params$Resource$Properties$Getdataretentionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getDataRetentionSettings(
+      params?: Params$Resource$Properties$Getdataretentionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>;
+    getDataRetentionSettings(
+      params: Params$Resource$Properties$Getdataretentionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDataRetentionSettings(
+      params: Params$Resource$Properties$Getdataretentionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+    ): void;
+    getDataRetentionSettings(
+      params: Params$Resource$Properties$Getdataretentionsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+    ): void;
+    getDataRetentionSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+    ): void;
+    getDataRetentionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Getdataretentionsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Getdataretentionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Getdataretentionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lookup for Google Signals settings for a property.
      * @example
      * ```js
@@ -5023,6 +5185,156 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Updates the singleton data retention settings for this property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.updateDataRetentionSettings({
+     *     // Output only. Resource name for this DataRetentionSetting resource. Format: properties/{property\}/dataRetentionSettings
+     *     name: 'properties/my-propertie/dataRetentionSettings',
+     *     // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "eventDataRetention": "my_eventDataRetention",
+     *       //   "name": "my_name",
+     *       //   "resetUserDataOnNewActivity": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eventDataRetention": "my_eventDataRetention",
+     *   //   "name": "my_name",
+     *   //   "resetUserDataOnNewActivity": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateDataRetentionSettings(
+      params: Params$Resource$Properties$Updatedataretentionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateDataRetentionSettings(
+      params?: Params$Resource$Properties$Updatedataretentionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>;
+    updateDataRetentionSettings(
+      params: Params$Resource$Properties$Updatedataretentionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateDataRetentionSettings(
+      params: Params$Resource$Properties$Updatedataretentionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+    ): void;
+    updateDataRetentionSettings(
+      params: Params$Resource$Properties$Updatedataretentionsettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+    ): void;
+    updateDataRetentionSettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+    ): void;
+    updateDataRetentionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Updatedataretentionsettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Updatedataretentionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Updatedataretentionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates Google Signals settings for a property.
      * @example
      * ```js
@@ -5193,6 +5505,13 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Properties$Getdataretentionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the settings to lookup. Format: properties/{property\}/dataRetentionSettings Example: "properties/1000/dataRetentionSettings"
+     */
+    name?: string;
+  }
   export interface Params$Resource$Properties$Getgooglesignalssettings
     extends StandardParameters {
     /**
@@ -5232,6 +5551,22 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaProperty;
+  }
+  export interface Params$Resource$Properties$Updatedataretentionsettings
+    extends StandardParameters {
+    /**
+     * Output only. Resource name for this DataRetentionSetting resource. Format: properties/{property\}/dataRetentionSettings
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings;
   }
   export interface Params$Resource$Properties$Updategooglesignalssettings
     extends StandardParameters {
