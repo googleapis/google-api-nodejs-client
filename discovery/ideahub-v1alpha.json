@@ -105,26 +105,6 @@
           "id": "ideahub.ideas.list",
           "parameterOrder": [],
           "parameters": {
-            "creator.platform": {
-              "description": "Identifies the platform from which this user is accessing Idea Hub.",
-              "enum": [
-                "UNKNOWN",
-                "BLOGGER",
-                "SITEKIT"
-              ],
-              "enumDescriptions": [
-                "",
-                "",
-                ""
-              ],
-              "location": "query",
-              "type": "string"
-            },
-            "creator.platformId": {
-              "description": "Identifies the platform account (blog/site/etc.) for which to fetch Ideas.",
-              "location": "query",
-              "type": "string"
-            },
             "filter": {
               "description": "Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.",
               "location": "query",
@@ -238,26 +218,6 @@
                     "parent"
                   ],
                   "parameters": {
-                    "creator.platform": {
-                      "description": "Identifies the platform from which this user is accessing Idea Hub.",
-                      "enum": [
-                        "UNKNOWN",
-                        "BLOGGER",
-                        "SITEKIT"
-                      ],
-                      "enumDescriptions": [
-                        "",
-                        "",
-                        ""
-                      ],
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "creator.platformId": {
-                      "description": "Identifies the platform account (blog/site/etc.) for which to fetch Ideas.",
-                      "location": "query",
-                      "type": "string"
-                    },
                     "filter": {
                       "description": "Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions are implicitly combined, as if the `AND` operator was always used. The `OR` operator is currently unsupported. * Supported functions: - `saved(bool)`: If set to true, fetches only saved ideas. If set to false, fetches all except saved ideas. Can't be simultaneously used with `dismissed(bool)`. - `dismissed(bool)`: If set to true, fetches only dismissed ideas. Can't be simultaneously used with `saved(bool)`. The `false` value is currently unsupported. Examples: * `saved(true)` * `saved(false)` * `dismissed(true)` The length of this field should be no more than 500 characters.",
                       "location": "query",
@@ -371,7 +331,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20210827",
   "rootUrl": "https://ideahub.googleapis.com/",
   "schemas": {
     "GoogleSearchIdeahubV1alphaAvailableLocale": {
@@ -416,18 +376,18 @@
       "id": "GoogleSearchIdeahubV1alphaIdeaActivity",
       "properties": {
         "ideas": {
-          "description": "The Idea IDs for this entry.",
+          "description": "The Idea IDs for this entry. If empty, topics should be set.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "name": {
-          "description": "Unique identifier for the idea activity. Format: platforms/{platform}/properties/{property}/ideaActivities/{idea_activity}",
+          "description": "Unique identifier for the idea activity. The name is ignored when creating an idea activity. Format: platforms/{platform}/properties/{property}/ideaActivities/{idea_activity}",
           "type": "string"
         },
         "topics": {
-          "description": "The Topic IDs for this entry.",
+          "description": "The Topic IDs for this entry. If empty, ideas should be set.",
           "items": {
             "type": "string"
           },
@@ -439,13 +399,15 @@
             "TYPE_UNSPECIFIED",
             "POST_DRAFTED",
             "POST_PUBLISHED",
-            "POST_DELETED"
+            "POST_DELETED",
+            "POST_UNPUBLISHED"
           ],
           "enumDescriptions": [
             "An unspecified, unknown type of idea activity.",
             "An idea activity type indicating a post has been drafted.",
             "An idea activity type indicating a post has been published.",
-            "An idea activity type indicating a post has been deleted."
+            "An idea activity type indicating a post has been deleted.",
+            "An idea activity type indicating a post has been unpublished."
           ],
           "type": "string"
         },
