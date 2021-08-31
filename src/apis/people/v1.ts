@@ -213,7 +213,7 @@ export namespace people_v1 {
     sources?: string[] | null;
   }
   /**
-   * The response to a request to create a batch of contacts.
+   * If not successful, returns BatchCreateContactsErrorDetails which contains a list of errors for each invalid contact. The response to a request to create a batch of contacts.
    */
   export interface Schema$BatchCreateContactsResponse {
     /**
@@ -261,7 +261,7 @@ export namespace people_v1 {
     updateMask?: string | null;
   }
   /**
-   * The response to a request to create a batch of contacts.
+   * If not successful, returns BatchUpdateContactsErrorDetails, a list of errors corresponding to each contact. The response to a request to update a batch of contacts.
    */
   export interface Schema$BatchUpdateContactsResponse {
     /**
@@ -605,7 +605,7 @@ export namespace people_v1 {
    */
   export interface Schema$FieldMetadata {
     /**
-     * True if the field is the primary field for the person.
+     * Output only. True if the field is the primary field for all sources in the person. Each person will have at most one field with `primary` set to true.
      */
     primary?: boolean | null;
     /**
@@ -613,7 +613,7 @@ export namespace people_v1 {
      */
     source?: Schema$Source;
     /**
-     * True if the field is the primary field for the source.
+     * True if the field is the primary field for the source. Each source must have at most one field with `source_primary` set to true.
      */
     sourcePrimary?: boolean | null;
     /**
@@ -1017,6 +1017,10 @@ export namespace people_v1 {
    */
   export interface Schema$Organization {
     /**
+     * The person's cost center at the organization.
+     */
+    costCenter?: string | null;
+    /**
      * True if the organization is the person's current organization; false if the organization is a past organization.
      */
     current?: boolean | null;
@@ -1036,6 +1040,10 @@ export namespace people_v1 {
      * Output only. The type of the organization translated and formatted in the viewer's account locale or the `Accept-Language` HTTP header locale.
      */
     formattedType?: string | null;
+    /**
+     * The person's full-time equivalent millipercent within the organization (100000 = 100%).
+     */
+    fullTimeEquivalentMillipercent?: number | null;
     /**
      * The person's job description at the organization.
      */
