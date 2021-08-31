@@ -101,7 +101,7 @@ export namespace gkehub_v1 {
   }
 
   /**
-   * GKE Hub
+   * GKE Hub API
    *
    *
    *
@@ -936,13 +936,21 @@ export namespace gkehub_v1 {
    */
   export interface Schema$MembershipEndpoint {
     /**
-     * Optional. GKE-specific information. Only present if this Membership is a GKE cluster.
+     * Optional. Specific information for a GKE-on-GCP cluster.
      */
     gkeCluster?: Schema$GkeCluster;
     /**
      * Output only. Useful Kubernetes-specific metadata.
      */
     kubernetesMetadata?: Schema$KubernetesMetadata;
+    /**
+     * Optional. Specific information for a GKE Multi-Cloud cluster.
+     */
+    multiCloudCluster?: Schema$MultiCloudCluster;
+    /**
+     * Optional. Specific information for a GKE On-Prem cluster.
+     */
+    onPremCluster?: Schema$OnPremCluster;
   }
   /**
    * MembershipFeatureSpec contains configuration information for a single Membership.
@@ -976,6 +984,19 @@ export namespace gkehub_v1 {
     code?: string | null;
   }
   /**
+   * MultiCloudCluster contains information specific to GKE Multi-Cloud clusters.
+   */
+  export interface Schema$MultiCloudCluster {
+    /**
+     * Output only. If cluster_missing is set then it denotes that API(gkemulticloud.googleapis.com) resource for this GKE Multi-Cloud cluster no longer exists.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+     */
+    resourceLink?: string | null;
+  }
+  /**
    * **Multi-cluster Ingress**: The configuration for the MultiClusterIngress feature.
    */
   export interface Schema$MultiClusterIngressFeatureSpec {
@@ -983,6 +1004,23 @@ export namespace gkehub_v1 {
      * Fully-qualified Membership name which hosts the MultiClusterIngress CRD. Example: `projects/foo-proj/locations/global/memberships/bar`
      */
     configMembership?: string | null;
+  }
+  /**
+   * OnPremCluster contains information specific to GKE On-Prem clusters.
+   */
+  export interface Schema$OnPremCluster {
+    /**
+     * Immutable. Whether the cluster is an admin cluster.
+     */
+    adminCluster?: boolean | null;
+    /**
+     * Output only. If cluster_missing is set then it denotes that API(gkeonprem.googleapis.com) resource for this GKE On-Prem cluster no longer exists.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
+     */
+    resourceLink?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1043,7 +1081,7 @@ export namespace gkehub_v1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
