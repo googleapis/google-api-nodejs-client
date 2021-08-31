@@ -3,10 +3,10 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
-          "description": "View your data across Google Cloud Platform services"
+          "description": "View your data across Google Cloud services and see the email address of your Google Account"
         }
       }
     }
@@ -209,48 +209,6 @@
                     "https://www.googleapis.com/auth/cloud-platform",
                     "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
-                },
-                "list": {
-                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/operations",
-                  "httpMethod": "GET",
-                  "id": "artifactregistry.projects.locations.operations.list",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "filter": {
-                      "description": "The standard list filter.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "name": {
-                      "description": "The name of the operation's parent resource.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "pageSize": {
-                      "description": "The standard list page size.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "The standard list page token.",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta2/{+name}/operations",
-                  "response": {
-                    "$ref": "ListOperationsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
-                  ]
                 }
               }
             },
@@ -382,7 +340,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of repositories to return. Maximum page size is 10,000.",
+                      "description": "The maximum number of repositories to return. Maximum page size is 1,000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -534,6 +492,50 @@
                     }
                   }
                 },
+                "aptartifacts": {
+                  "methods": {
+                    "upload": {
+                      "description": "Directly uploads an Apt artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.",
+                      "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/aptArtifacts:create",
+                      "httpMethod": "POST",
+                      "id": "artifactregistry.projects.locations.repositories.aptartifacts.upload",
+                      "mediaUpload": {
+                        "accept": [
+                          "*/*"
+                        ],
+                        "protocols": {
+                          "simple": {
+                            "multipart": true,
+                            "path": "/upload/v1beta2/{+parent}/aptArtifacts:create"
+                          }
+                        }
+                      },
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "The name of the parent resource where the artifacts will be uploaded.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta2/{+parent}/aptArtifacts:create",
+                      "request": {
+                        "$ref": "UploadAptArtifactRequest"
+                      },
+                      "response": {
+                        "$ref": "UploadAptArtifactMediaResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ],
+                      "supportsMediaUpload": true
+                    }
+                  }
+                },
                 "files": {
                   "methods": {
                     "get": {
@@ -555,7 +557,7 @@
                       },
                       "path": "v1beta2/{+name}",
                       "response": {
-                        "$ref": "File"
+                        "$ref": "GoogleDevtoolsArtifactregistryV1beta2File"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -669,7 +671,7 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of packages to return. Maximum page size is 10,000.",
+                          "description": "The maximum number of packages to return. Maximum page size is 1,000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -836,7 +838,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The name of the tag, for example: \"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1\". If the package or tag ID parts contain slashes, the slashes are escaped.",
+                              "description": "The name of the tag, for example: \"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1\". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\\-._~:@], anything else must be URL encoded.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/packages/[^/]+/tags/[^/]+$",
                               "required": true,
@@ -950,7 +952,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "The maximum number of versions to return. Maximum page size is 10,000.",
+                              "description": "The maximum number of versions to return. Maximum page size is 1,000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1027,6 +1029,50 @@
                       ]
                     }
                   }
+                },
+                "yumartifacts": {
+                  "methods": {
+                    "upload": {
+                      "description": "Directly uploads a Yum artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.",
+                      "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/yumArtifacts:create",
+                      "httpMethod": "POST",
+                      "id": "artifactregistry.projects.locations.repositories.yumartifacts.upload",
+                      "mediaUpload": {
+                        "accept": [
+                          "*/*"
+                        ],
+                        "protocols": {
+                          "simple": {
+                            "multipart": true,
+                            "path": "/upload/v1beta2/{+parent}/yumArtifacts:create"
+                          }
+                        }
+                      },
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "The name of the parent resource where the artifacts will be uploaded.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta2/{+parent}/yumArtifacts:create",
+                      "request": {
+                        "$ref": "UploadYumArtifactRequest"
+                      },
+                      "response": {
+                        "$ref": "UploadYumArtifactMediaResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ],
+                      "supportsMediaUpload": true
+                    }
+                  }
                 }
               }
             }
@@ -1035,7 +1081,7 @@
       }
     }
   },
-  "revision": "20210723",
+  "revision": "20210825",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1137,9 +1183,9 @@
       },
       "type": "object"
     },
-    "File": {
+    "GoogleDevtoolsArtifactregistryV1beta2File": {
       "description": "Files store content that is potentially associated with Packages or Versions.",
-      "id": "File",
+      "id": "GoogleDevtoolsArtifactregistryV1beta2File",
       "properties": {
         "createTime": {
           "description": "The time when the File was created.",
@@ -1335,7 +1381,7 @@
         "files": {
           "description": "The files returned.",
           "items": {
-            "$ref": "File"
+            "$ref": "GoogleDevtoolsArtifactregistryV1beta2File"
           },
           "type": "array"
         },
@@ -1360,24 +1406,6 @@
         "nextPageToken": {
           "description": "The standard List next-page token.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListOperationsResponse": {
-      "description": "The response message for Operations.ListOperations.",
-      "id": "ListOperationsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "The standard List next-page token.",
-          "type": "string"
-        },
-        "operations": {
-          "description": "A list of operations that matches the specified filter in the request.",
-          "items": {
-            "$ref": "Operation"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1549,7 +1577,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "bindings": {
@@ -1675,7 +1703,7 @@
       "id": "Tag",
       "properties": {
         "name": {
-          "description": "The name of the tag, for example: \"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1\". If the package or tag ID parts contain slashes, the slashes are escaped.",
+          "description": "The name of the tag, for example: \"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1\". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\\-._~:@], anything else must be URL encoded.",
           "type": "string"
         },
         "version": {
@@ -1724,6 +1752,12 @@
       },
       "type": "object"
     },
+    "UploadAptArtifactRequest": {
+      "description": "The request to upload an artifact.",
+      "id": "UploadAptArtifactRequest",
+      "properties": {},
+      "type": "object"
+    },
     "UploadAptArtifactResponse": {
       "description": "The response of the completed artifact upload operation. This response is contained in the Operation and available to users.",
       "id": "UploadAptArtifactResponse",
@@ -1747,6 +1781,12 @@
           "description": "Operation to be returned to the user."
         }
       },
+      "type": "object"
+    },
+    "UploadYumArtifactRequest": {
+      "description": "The request to upload an artifact.",
+      "id": "UploadYumArtifactRequest",
+      "properties": {},
       "type": "object"
     },
     "UploadYumArtifactResponse": {
