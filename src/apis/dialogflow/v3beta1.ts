@@ -2131,15 +2131,19 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings {
     /**
+     * [DLP](https://cloud.google.com/dlp/docs) deidentify template name. Use this template to define de-identification configuration for the content. If empty, Dialogflow replaces sensitive info with `[redacted]` text. The template name will have one of the following formats: `projects//locations//deidentifyTemplates/` OR `organizations//locations//deidentifyTemplates/` Note: `deidentify_template` must be located in the same region as the `SecuritySettings`.
+     */
+    deidentifyTemplate?: string | null;
+    /**
      * Required. The human-readable name of the security settings, unique within the location.
      */
     displayName?: string | null;
     /**
-     * Optional. Controls conversation exporting settings to Insights after conversation is completed. If retention_strategy is set to REMOVE_AFTER_CONVERSATION, Insights export is disabled no matter what you configure here.
+     * Controls conversation exporting settings to Insights after conversation is completed. If retention_strategy is set to REMOVE_AFTER_CONVERSATION, Insights export is disabled no matter what you configure here.
      */
     insightsExportSettings?: Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsInsightsExportSettings;
     /**
-     * [DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//inspectTemplates/` OR `projects//locations//inspectTemplates/` OR `organizations//inspectTemplates/`
+     * [DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//locations//inspectTemplates/` OR `organizations//locations//inspectTemplates/` Note: `inspect_template` must be located in the same region as the `SecuritySettings`.
      */
     inspectTemplate?: string | null;
     /**
@@ -5735,7 +5739,7 @@ export namespace dialogflow_v3beta1 {
      */
     events?: string[] | null;
     /**
-     * Read-only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.
+     * Output only. Read-only. Information about all followup intents that have this intent as a direct or indirect parent. We populate this field only in the output.
      */
     followupIntentInfo?: Schema$GoogleCloudDialogflowV2IntentFollowupIntentInfo[];
     /**
@@ -5783,7 +5787,7 @@ export namespace dialogflow_v3beta1 {
      */
     resetContexts?: boolean | null;
     /**
-     * Read-only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. We populate this field only in the output. Format: `projects//agent/intents/`.
+     * Output only. Read-only. The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. We populate this field only in the output. Format: `projects//agent/intents/`.
      */
     rootFollowupIntentName?: string | null;
     /**
@@ -6708,6 +6712,44 @@ export namespace dialogflow_v3beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
   }
   /**
+   * The response message for Locations.ListLocations.
+   */
+  export interface Schema$GoogleCloudLocationListLocationsResponse {
+    /**
+     * A list of locations that matches the specified filter in the request.
+     */
+    locations?: Schema$GoogleCloudLocationLocation[];
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A resource that represents Google Cloud Platform location.
+   */
+  export interface Schema$GoogleCloudLocationLocation {
+    /**
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
+     */
+    displayName?: string | null;
+    /**
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The canonical id for this location. For example: `"us-east1"`.
+     */
+    locationId?: string | null;
+    /**
+     * Service-specific metadata. For example the available capacity at the given location.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
+     */
+    name?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$GoogleLongrunningListOperationsResponse {
@@ -6806,6 +6848,321 @@ export namespace dialogflow_v3beta1 {
         this.context
       );
     }
+
+    /**
+     * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudLocationLocation>;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationLocation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationLocation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationLocation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationLocation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Get
+        | BodyResponseCallback<Schema$GoogleCloudLocationLocation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationLocation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudLocationLocation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudLocationLocation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudLocationLocation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudLocationLocation>(parameters);
+      }
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.list({
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$List
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudLocationListLocationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Get
+    extends StandardParameters {
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$List
+    extends StandardParameters {
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects$Locations$Agents {
@@ -14109,7 +14466,7 @@ export namespace dialogflow_v3beta1 {
      *     languageCode: 'placeholder-value',
      *     // The unique identifier of the flow. Format: `projects//locations//agents//flows/`.
      *     name: 'projects/my-project/locations/my-location/agents/my-agent/flows/my-flow',
-     *     // Required. The mask to control which fields get updated. If `update_mask` is not specified, an error will be returned.
+     *     // The mask to control which fields get updated. If the mask is not present, all fields will be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -14641,7 +14998,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string;
     /**
-     * Required. The mask to control which fields get updated. If `update_mask` is not specified, an error will be returned.
+     * The mask to control which fields get updated. If the mask is not present, all fields will be updated.
      */
     updateMask?: string;
 
@@ -22786,6 +23143,7 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "deidentifyTemplate": "my_deidentifyTemplate",
      *       //   "displayName": "my_displayName",
      *       //   "insightsExportSettings": {},
      *       //   "inspectTemplate": "my_inspectTemplate",
@@ -22801,6 +23159,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},
      *   //   "inspectTemplate": "my_inspectTemplate",
@@ -23081,6 +23440,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},
      *   //   "inspectTemplate": "my_inspectTemplate",
@@ -23374,6 +23734,7 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "deidentifyTemplate": "my_deidentifyTemplate",
      *       //   "displayName": "my_displayName",
      *       //   "insightsExportSettings": {},
      *       //   "inspectTemplate": "my_inspectTemplate",
@@ -23389,6 +23750,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "deidentifyTemplate": "my_deidentifyTemplate",
      *   //   "displayName": "my_displayName",
      *   //   "insightsExportSettings": {},
      *   //   "inspectTemplate": "my_inspectTemplate",
