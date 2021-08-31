@@ -199,7 +199,7 @@ export namespace artifactregistry_v1beta2 {
   /**
    * Files store content that is potentially associated with Packages or Versions.
    */
-  export interface Schema$File {
+  export interface Schema$GoogleDevtoolsArtifactregistryV1beta2File {
     /**
      * The time when the File was created.
      */
@@ -341,7 +341,7 @@ export namespace artifactregistry_v1beta2 {
     /**
      * The files returned.
      */
-    files?: Schema$File[];
+    files?: Schema$GoogleDevtoolsArtifactregistryV1beta2File[];
     /**
      * The token to retrieve the next page of files, or empty if there are no more files to return.
      */
@@ -359,19 +359,6 @@ export namespace artifactregistry_v1beta2 {
      * The standard List next-page token.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * The response message for Operations.ListOperations.
-   */
-  export interface Schema$ListOperationsResponse {
-    /**
-     * The standard List next-page token.
-     */
-    nextPageToken?: string | null;
-    /**
-     * A list of operations that matches the specified filter in the request.
-     */
-    operations?: Schema$Operation[];
   }
   /**
    * The response from listing packages.
@@ -497,7 +484,7 @@ export namespace artifactregistry_v1beta2 {
     updateTime?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -577,7 +564,7 @@ export namespace artifactregistry_v1beta2 {
    */
   export interface Schema$Tag {
     /**
-     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
+     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
      */
     name?: string | null;
     /**
@@ -613,6 +600,10 @@ export namespace artifactregistry_v1beta2 {
     operation?: Schema$Operation;
   }
   /**
+   * The request to upload an artifact.
+   */
+  export interface Schema$UploadAptArtifactRequest {}
+  /**
    * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
    */
   export interface Schema$UploadAptArtifactResponse {
@@ -630,6 +621,10 @@ export namespace artifactregistry_v1beta2 {
      */
     operation?: Schema$Operation;
   }
+  /**
+   * The request to upload an artifact.
+   */
+  export interface Schema$UploadYumArtifactRequest {}
   /**
    * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
    */
@@ -1159,151 +1154,6 @@ export namespace artifactregistry_v1beta2 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const artifactregistry = google.artifactregistry('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Operations$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://artifactregistry.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta2/{+name}/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Operations$Get
@@ -1313,35 +1163,20 @@ export namespace artifactregistry_v1beta2 {
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
-    extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-  }
 
   export class Resource$Projects$Locations$Repositories {
     context: APIRequestContext;
     aptArtifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
+    aptartifacts: Resource$Projects$Locations$Repositories$Aptartifacts;
     files: Resource$Projects$Locations$Repositories$Files;
     packages: Resource$Projects$Locations$Repositories$Packages;
     yumArtifacts: Resource$Projects$Locations$Repositories$Yumartifacts;
+    yumartifacts: Resource$Projects$Locations$Repositories$Yumartifacts;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.aptArtifacts =
+        new Resource$Projects$Locations$Repositories$Aptartifacts(this.context);
+      this.aptartifacts =
         new Resource$Projects$Locations$Repositories$Aptartifacts(this.context);
       this.files = new Resource$Projects$Locations$Repositories$Files(
         this.context
@@ -1350,6 +1185,8 @@ export namespace artifactregistry_v1beta2 {
         this.context
       );
       this.yumArtifacts =
+        new Resource$Projects$Locations$Repositories$Yumartifacts(this.context);
+      this.yumartifacts =
         new Resource$Projects$Locations$Repositories$Yumartifacts(this.context);
     }
 
@@ -1940,7 +1777,7 @@ export namespace artifactregistry_v1beta2 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.list({
-     *     // The maximum number of repositories to return. Maximum page size is 10,000.
+     *     // The maximum number of repositories to return. Maximum page size is 1,000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
@@ -2541,7 +2378,7 @@ export namespace artifactregistry_v1beta2 {
   export interface Params$Resource$Projects$Locations$Repositories$List
     extends StandardParameters {
     /**
-     * The maximum number of repositories to return. Maximum page size is 10,000.
+     * The maximum number of repositories to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -2759,6 +2596,196 @@ export namespace artifactregistry_v1beta2 {
     requestBody?: Schema$ImportAptArtifactsRequest;
   }
 
+  export class Resource$Projects$Locations$Repositories$Aptartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Directly uploads an Apt artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.aptartifacts.upload({
+     *       // The name of the parent resource where the artifacts will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadAptArtifactMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadAptArtifactMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadAptArtifactMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload,
+      callback: BodyResponseCallback<Schema$UploadAptArtifactMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadAptArtifactMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload
+        | BodyResponseCallback<Schema$UploadAptArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadAptArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadAptArtifactMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadAptArtifactMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/aptArtifacts:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/v1beta2/{+parent}/aptArtifacts:create'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadAptArtifactMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadAptArtifactMediaResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Aptartifacts$Upload
+    extends StandardParameters {
+    /**
+     * The name of the parent resource where the artifacts will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadAptArtifactRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
+  }
+
   export class Resource$Projects$Locations$Repositories$Files {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2830,7 +2857,7 @@ export namespace artifactregistry_v1beta2 {
     get(
       params?: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$File>;
+    ): GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1beta2File>;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2838,28 +2865,35 @@ export namespace artifactregistry_v1beta2 {
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$File>,
-      callback: BodyResponseCallback<Schema$File>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1beta2File>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1beta2File>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
-      callback: BodyResponseCallback<Schema$File>
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1beta2File>
     ): void;
-    get(callback: BodyResponseCallback<Schema$File>): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1beta2File>
+    ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Repositories$Files$Get
-        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1beta2File>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1beta2File>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$File>
+        | BodyResponseCallback<Schema$GoogleDevtoolsArtifactregistryV1beta2File>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$File> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleDevtoolsArtifactregistryV1beta2File>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Repositories$Files$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2892,12 +2926,14 @@ export namespace artifactregistry_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$File>(
+        createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1beta2File>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$File>(parameters);
+        return createAPIRequest<Schema$GoogleDevtoolsArtifactregistryV1beta2File>(
+          parameters
+        );
       }
     }
 
@@ -3390,7 +3426,7 @@ export namespace artifactregistry_v1beta2 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.list({
-     *       // The maximum number of packages to return. Maximum page size is 10,000.
+     *       // The maximum number of packages to return. Maximum page size is 1,000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
@@ -3523,7 +3559,7 @@ export namespace artifactregistry_v1beta2 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$List
     extends StandardParameters {
     /**
-     * The maximum number of packages to return. Maximum page size is 10,000.
+     * The maximum number of packages to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -4122,7 +4158,7 @@ export namespace artifactregistry_v1beta2 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.tags.patch({
-     *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
+     *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
      *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
@@ -4288,7 +4324,7 @@ export namespace artifactregistry_v1beta2 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch
     extends StandardParameters {
     /**
-     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
+     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package part contains slashes, the slashes are escaped. The tag part can only have characters in [a-zA-Z0-9\-._~:@], anything else must be URL encoded.
      */
     name?: string;
     /**
@@ -4620,7 +4656,7 @@ export namespace artifactregistry_v1beta2 {
      *       {
      *         // Optional. Sorting field and order
      *         orderBy: 'placeholder-value',
-     *         // The maximum number of versions to return. Maximum page size is 10,000.
+     *         // The maximum number of versions to return. Maximum page size is 1,000.
      *         pageSize: 'placeholder-value',
      *         // The next_page_token value returned from a previous list request, if any.
      *         pageToken: 'placeholder-value',
@@ -4768,7 +4804,7 @@ export namespace artifactregistry_v1beta2 {
      */
     orderBy?: string;
     /**
-     * The maximum number of versions to return. Maximum page size is 10,000.
+     * The maximum number of versions to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -4948,5 +4984,195 @@ export namespace artifactregistry_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$ImportYumArtifactsRequest;
+  }
+
+  export class Resource$Projects$Locations$Repositories$Yumartifacts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Directly uploads a Yum artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.yumartifacts.upload({
+     *       // The name of the parent resource where the artifacts will be uploaded.
+     *       parent:
+     *         'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *       media: {
+     *         mimeType: 'placeholder-value',
+     *         body: 'placeholder-value',
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "operation": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UploadYumArtifactMediaResponse>;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UploadYumArtifactMediaResponse>,
+      callback: BodyResponseCallback<Schema$UploadYumArtifactMediaResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload,
+      callback: BodyResponseCallback<Schema$UploadYumArtifactMediaResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$UploadYumArtifactMediaResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload
+        | BodyResponseCallback<Schema$UploadYumArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UploadYumArtifactMediaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UploadYumArtifactMediaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UploadYumArtifactMediaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+parent}/yumArtifacts:create').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/v1beta2/{+parent}/yumArtifacts:create'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UploadYumArtifactMediaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UploadYumArtifactMediaResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Yumartifacts$Upload
+    extends StandardParameters {
+    /**
+     * The name of the parent resource where the artifacts will be uploaded.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UploadYumArtifactRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 }
