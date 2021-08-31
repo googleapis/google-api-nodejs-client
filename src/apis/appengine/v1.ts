@@ -213,6 +213,10 @@ export namespace appengine_v1 {
      */
     name?: string | null;
     /**
+     * The service account associated with the application. This is the app-level default identity. If no identity provided during create version, Admin API will fallback to this one.
+     */
+    serviceAccount?: string | null;
+    /**
      * Serving status of this application.
      */
     servingStatus?: string | null;
@@ -624,6 +628,88 @@ export namespace appengine_v1 {
      * App Engine standard environment is available in the given location.@OutputOnly
      */
     standardEnvironmentAvailable?: boolean | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleAppengineV2mainOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Ephemeral message that may change every time the operation is polled.
+     */
+    ephemeralMessage?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+    /**
+     * Output only. Durable messages that persist on every operation poll.
+     */
+    warning?: string[] | null;
+  }
+  /**
+   * Represents the metadata of the long-running operation.
+   */
+  export interface Schema$GoogleAppengineV2OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Ephemeral message that may change every time the operation is polled.
+     */
+    ephemeralMessage?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+    /**
+     * Output only. Durable messages that persist on every operation poll.
+     */
+    warning?: string[] | null;
   }
   /**
    * Health checking configuration for VM instances. Unhealthy instances are killed and replaced with new instances. Only applicable for instances in App Engine flexible environment.
@@ -1711,6 +1797,7 @@ export namespace appengine_v1 {
      *       //   "id": "my_id",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingStatus": "my_servingStatus"
      *       // }
      *     },
@@ -1865,6 +1952,7 @@ export namespace appengine_v1 {
      *   //   "id": "my_id",
      *   //   "locationId": "my_locationId",
      *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "servingStatus": "my_servingStatus"
      *   // }
      * }
@@ -2005,6 +2093,7 @@ export namespace appengine_v1 {
      *       //   "id": "my_id",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingStatus": "my_servingStatus"
      *       // }
      *     },
