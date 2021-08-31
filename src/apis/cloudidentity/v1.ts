@@ -137,6 +137,22 @@ export namespace cloudidentity_v1 {
     hasMembership?: boolean | null;
   }
   /**
+   * Metadata for CreateGroup LRO.
+   */
+  export interface Schema$CreateGroupMetadata {}
+  /**
+   * Metadata for CreateMembership LRO.
+   */
+  export interface Schema$CreateMembershipMetadata {}
+  /**
+   * Metadata for DeleteGroup LRO.
+   */
+  export interface Schema$DeleteGroupMetadata {}
+  /**
+   * Metadata for DeleteMembership LRO.
+   */
+  export interface Schema$DeleteMembershipMetadata {}
+  /**
    * Dynamic group metadata like queries and status.
    */
   export interface Schema$DynamicGroupMetadata {
@@ -184,7 +200,7 @@ export namespace cloudidentity_v1 {
      */
     id?: string | null;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source\}`.
      */
     namespace?: string | null;
   }
@@ -197,6 +213,10 @@ export namespace cloudidentity_v1 {
      */
     expireTime?: string | null;
   }
+  /**
+   * Metadata of GetMembershipGraphResponse LRO. This is currently empty to permit future extensibility.
+   */
+  export interface Schema$GetMembershipGraphMetadata {}
   /**
    * The response message for MembershipsService.GetMembershipGraph.
    */
@@ -232,11 +252,15 @@ export namespace cloudidentity_v1 {
     supportsWorkProfile?: boolean | null;
   }
   /**
+   * Metadata for ApproveDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1ApproveDeviceUserMetadata {}
+  /**
    * Request message for approving the device to access user data.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1ApproveDeviceUserRequest {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -250,11 +274,15 @@ export namespace cloudidentity_v1 {
     deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
   /**
+   * Metadata for BlockDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1BlockDeviceUserMetadata {}
+  /**
    * Request message for blocking account on device.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -268,11 +296,15 @@ export namespace cloudidentity_v1 {
     deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
   /**
+   * Metadata for CancelWipeDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceMetadata {}
+  /**
    * Request message for cancelling an unfinished device wipe.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceRequest {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -286,11 +318,15 @@ export namespace cloudidentity_v1 {
     device?: Schema$GoogleAppsCloudidentityDevicesV1Device;
   }
   /**
+   * Metadata for CancelWipeDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserMetadata {}
+  /**
    * Request message for cancelling an unfinished user account wipe.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -348,7 +384,7 @@ export namespace cloudidentity_v1 {
      */
     managed?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id\}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device\}/deviceUsers/{device_user\}/clientState/{partner\}`, where partner corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer\}-suffix`, where `customer` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
      */
     name?: string | null;
     /**
@@ -360,6 +396,10 @@ export namespace cloudidentity_v1 {
      */
     scoreReason?: string | null;
   }
+  /**
+   * Metadata for CreateDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CreateDeviceMetadata {}
   /**
    * Additional custom attribute values may be one of these types
    */
@@ -377,6 +417,14 @@ export namespace cloudidentity_v1 {
      */
     stringValue?: string | null;
   }
+  /**
+   * Metadata for DeleteDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1DeleteDeviceMetadata {}
+  /**
+   * Metadata for DeleteDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1DeleteDeviceUserMetadata {}
   /**
    *  A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.
    */
@@ -458,7 +506,7 @@ export namespace cloudidentity_v1 {
      */
     model?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique id assigned to the Device.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}`, where device is the unique id assigned to the Device.
      */
     name?: string | null;
     /**
@@ -523,7 +571,7 @@ export namespace cloudidentity_v1 {
      */
     managementState?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where `device_user_id` uniquely identifies a user's use of a device.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device\}/deviceUsers/{device_user\}`, where `device_user` uniquely identifies a user's use of a device.
      */
     name?: string | null;
     /**
@@ -579,6 +627,10 @@ export namespace cloudidentity_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Metadata for ListEndpointApps LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1ListEndpointAppsMetadata {}
+  /**
    * Response containing resource names of the DeviceUsers associated with the caller's credentials.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse {
@@ -587,7 +639,7 @@ export namespace cloudidentity_v1 {
      */
     customer?: string | null;
     /**
-     * [Resource names](https://cloud.google.com/apis/design/resource_names) of the DeviceUsers in the format: `devices/{device_id\}/deviceUsers/{user_resource_id\}`, where device_id is the unique ID assigned to a Device and user_resource_id is the unique user ID
+     * [Resource names](https://cloud.google.com/apis/design/resource_names) of the DeviceUsers in the format: `devices/{device\}/deviceUsers/{user_resource\}`, where device is the unique ID assigned to a Device and user_resource is the unique user ID
      */
     names?: string[] | null;
     /**
@@ -596,11 +648,27 @@ export namespace cloudidentity_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Metadata for SignoutDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1SignoutDeviceUserMetadata {}
+  /**
+   * Metadata for UpdateClientState LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1UpdateClientStateMetadata {}
+  /**
+   * Metadata for UpdateDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1UpdateDeviceMetadata {}
+  /**
+   * Metadata for WipeDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceMetadata {}
+  /**
    * Request message for wiping all data on the device.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceRequest {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -614,11 +682,15 @@ export namespace cloudidentity_v1 {
     device?: Schema$GoogleAppsCloudidentityDevicesV1Device;
   }
   /**
+   * Metadata for WipeDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceUserMetadata {}
+  /**
    * Request message for starting an account wipe on device.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceUserRequest {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -660,11 +732,11 @@ export namespace cloudidentity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group\}`.
      */
     name?: string | null;
     /**
-     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source\}` for external- identity-mapped groups or `customers/{customer\}` for Google Groups. The `customer` must begin with "C" (for example, 'C046psxkn').
      */
     parent?: string | null;
     /**
@@ -741,7 +813,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$LookupMembershipNameResponse {
     /**
-     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the looked-up `Membership`. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
+     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the looked-up `Membership`. Must be of the form `groups/{group\}/memberships/{membership\}`.
      */
     name?: string | null;
   }
@@ -775,7 +847,7 @@ export namespace cloudidentity_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`. Shall be of the form `groups/{group_id\}/memberships/{membership_id\}`.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`. Shall be of the form `groups/{group\}/memberships/{membership\}`.
      */
     name?: string | null;
     /**
@@ -938,6 +1010,14 @@ export namespace cloudidentity_v1 {
     role?: string | null;
   }
   /**
+   * Metadata for UpdateGroup LRO.
+   */
+  export interface Schema$UpdateGroupMetadata {}
+  /**
+   * Metadata for UpdateMembership LRO.
+   */
+  export interface Schema$UpdateMembershipMetadata {}
+  /**
    * The details of an update to a `MembershipRole`.
    */
   export interface Schema$UpdateMembershipRolesParams {
@@ -1007,7 +1087,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.cancelWipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}`, where device is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *
      *     // Request body metadata
@@ -1149,7 +1229,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.create({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1314,9 +1394,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.delete({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}`, where device is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *   });
      *   console.log(res.data);
@@ -1446,9 +1526,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.get({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer\}`, where customer is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device\}`, where device is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *   });
      *   console.log(res.data);
@@ -1610,7 +1690,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.list({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer\}`, where customer is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
@@ -1756,7 +1836,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.wipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      *     name: 'devices/my-device',
      *
      *     // Request body metadata
@@ -1871,7 +1951,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Cancelwipe
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}`, where device is the unique ID assigned to the Device.
      */
     name?: string;
 
@@ -1882,7 +1962,7 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Devices$Create extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
 
@@ -1893,27 +1973,27 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Devices$Delete extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}`, where device is the unique ID assigned to the Device.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Get extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer\}`, where customer is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device\}`, where device is the unique ID assigned to the Device.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$List extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer\}`, where customer is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
@@ -1939,7 +2019,7 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Devices$Wipe extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -1986,7 +2066,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.approve({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *
      *     // Request body metadata
@@ -2128,7 +2208,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.block({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *
      *     // Request body metadata
@@ -2267,7 +2347,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.cancelWipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *
      *     // Request body metadata
@@ -2409,9 +2489,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.delete({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
      *   console.log(res.data);
@@ -2542,9 +2622,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.get({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
      *   console.log(res.data);
@@ -2689,7 +2769,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.list({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
@@ -2990,7 +3070,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.wipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *
      *     // Request body metadata
@@ -3106,7 +3186,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Approve
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -3118,7 +3198,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Block
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -3130,7 +3210,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Cancelwipe
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -3142,29 +3222,29 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Delete
     extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$Get
     extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$List
     extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
@@ -3218,7 +3298,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Wipe
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}/deviceUsers/{device_user\}`, where device is the unique ID assigned to the Device, and device_user is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -3261,9 +3341,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.get({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where `device_id` is the unique ID assigned to the Device, `device_user_id` is the unique ID assigned to the User and `partner_id` identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization. You may specify `-` in place of the `{device_id\}`, so the ClientState resource name can be: `devices/-/deviceUsers/{device_user_resource_id\}/clientStates/{partner_id\}`.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device\}/deviceUsers/{device_user\}/clientStates/{partner\}`, where `device` is the unique ID assigned to the Device, `device_user` is the unique ID assigned to the User and `partner` identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization. You may specify `-` in place of the `{device\}`, so the ClientState resource name can be: `devices/-/deviceUsers/{device_user_resource\}/clientStates/{partner\}`.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
      *   });
      *   console.log(res.data);
@@ -3410,7 +3490,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.list({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of client states.
      *     filter: 'placeholder-value',
@@ -3558,9 +3638,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.patch({
-     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id\}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
+     *     // Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device\}/deviceUsers/{device_user\}/clientState/{partner\}`, where partner corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer\}-suffix`, where `customer` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
      *     name: 'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
      *     // Optional. Comma-separated list of fully qualified names of fields to be updated. If not specified, all updatable fields in ClientState are updated.
      *     updateMask: 'placeholder-value',
@@ -3689,18 +3769,18 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Clientstates$Get
     extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where `device_id` is the unique ID assigned to the Device, `device_user_id` is the unique ID assigned to the User and `partner_id` identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization. You may specify `-` in place of the `{device_id\}`, so the ClientState resource name can be: `devices/-/deviceUsers/{device_user_resource_id\}/clientStates/{partner_id\}`.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device\}/deviceUsers/{device_user\}/clientStates/{partner\}`, where `device` is the unique ID assigned to the Device, `device_user` is the unique ID assigned to the User and `partner` identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization. You may specify `-` in place of the `{device\}`, so the ClientState resource name can be: `devices/-/deviceUsers/{device_user_resource\}/clientStates/{partner\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$Clientstates$List
     extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
@@ -3723,11 +3803,11 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Clientstates$Patch
     extends StandardParameters {
     /**
-     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer\}`, where customer is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id\}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device\}/deviceUsers/{device_user\}/clientState/{partner\}`, where partner corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer\}-suffix`, where `customer` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
      */
     name?: string;
     /**
@@ -3928,7 +4008,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.delete({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group\}`.
      *     name: 'groups/my-group',
      *   });
      *   console.log(res.data);
@@ -4062,7 +4142,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.get({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group\}`.
      *     name: 'groups/my-group',
      *   });
      *   console.log(res.data);
@@ -4204,7 +4284,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     *     // Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source\}` for external- identity-mapped groups or `customers/{customer\}` for Google Groups. The `customer` must begin with "C" (for example, 'C046psxkn').
      *     parent: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -4342,7 +4422,7 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.groups.lookup({
      *     // The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
      *     'groupKey.id': 'placeholder-value',
-     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
+     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source\}`.
      *     'groupKey.namespace': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4478,7 +4558,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.patch({
-     *     // Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
+     *     // Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group\}`.
      *     name: 'groups/my-group',
      *     // Required. The names of fields to update. May only contain the following fields: `display_name`, `description`, `labels`.
      *     updateMask: 'placeholder-value',
@@ -4634,7 +4714,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous search request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     *     // Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer` must begin with "C" (for example, 'C046psxkn').
      *     query: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -4755,13 +4835,13 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Groups$Delete extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Get extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group\}`.
      */
     name?: string;
   }
@@ -4775,7 +4855,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     * Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source\}` for external- identity-mapped groups or `customers/{customer\}` for Google Groups. The `customer` must begin with "C" (for example, 'C046psxkn').
      */
     parent?: string;
     /**
@@ -4789,13 +4869,13 @@ export namespace cloudidentity_v1 {
      */
     'groupKey.id'?: string;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source\}`.
      */
     'groupKey.namespace'?: string;
   }
   export interface Params$Resource$Groups$Patch extends StandardParameters {
     /**
-     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group\}`.
      */
     name?: string;
     /**
@@ -4818,7 +4898,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with "C" (for example, 'C046psxkn').
+     * Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer` must begin with "C" (for example, 'C046psxkn').
      */
     query?: string;
     /**
@@ -4864,7 +4944,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.checkTransitiveMembership({
-     *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group_id\}`, where `group_id` is the unique id assigned to the Group to which the Membership belongs to.
+     *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group\}`, where `group` is the unique id assigned to the Group to which the Membership belongs to.
      *     parent: 'groups/my-group',
      *     // Required. A CEL expression that MUST include member specification. This is a `required` field. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value'`
      *     query: 'placeholder-value',
@@ -5008,7 +5088,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.create({
-     *     // Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group_id\}`.
+     *     // Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group\}`.
      *     parent: 'groups/my-group',
      *
      *     // Request body metadata
@@ -5158,7 +5238,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.delete({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group\}/memberships/{membership\}`
      *     name: 'groups/my-group/memberships/my-membership',
      *   });
      *   console.log(res.data);
@@ -5293,7 +5373,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.get({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group\}/memberships/{membership\}`.
      *     name: 'groups/my-group/memberships/my-membership',
      *   });
      *   console.log(res.data);
@@ -5429,7 +5509,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.getMembershipGraph({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is the unique ID assigned to the Group to which the Membership belongs to. group_id can be a wildcard collection id "-". When a group_id is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group\}`, where `group` is the unique ID assigned to the Group to which the Membership belongs to. group can be a wildcard collection id "-". When a group is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
      *     parent: 'groups/my-group',
      *     // Required. A CEL expression that MUST include member specification AND label(s). Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
      *     query: 'placeholder-value',
@@ -5572,7 +5652,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous search request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
+     *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group\}`.
      *     parent: 'groups/my-group',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -5716,9 +5796,9 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.groups.memberships.lookup({
      *     // The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
      *     'memberKey.id': 'placeholder-value',
-     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
+     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source\}`.
      *     'memberKey.namespace': 'placeholder-value',
-     *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
+     *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group\}`.
      *     parent: 'groups/my-group',
      *   });
      *   console.log(res.data);
@@ -5860,7 +5940,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.modifyMembershipRoles({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group\}/memberships/{membership\}`.
      *     name: 'groups/my-group/memberships/my-membership',
      *
      *     // Request body metadata
@@ -6017,7 +6097,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
-     *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is always '-' as this API will search across all groups for a given member.
+     *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group\}`, where `group` is always '-' as this API will search across all groups for a given member.
      *     parent: 'groups/my-group',
      *     // Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels`
      *     query: 'placeholder-value',
@@ -6168,7 +6248,7 @@ export namespace cloudidentity_v1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is the unique ID assigned to the Group.
+     *       // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group\}`, where `group` is the unique ID assigned to the Group.
      *       parent: 'groups/my-group',
      *     });
      *   console.log(res.data);
@@ -6285,7 +6365,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Groups$Memberships$Checktransitivemembership
     extends StandardParameters {
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group_id\}`, where `group_id` is the unique id assigned to the Group to which the Membership belongs to.
+     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to check the transitive membership in. Format: `groups/{group\}`, where `group` is the unique id assigned to the Group to which the Membership belongs to.
      */
     parent?: string;
     /**
@@ -6296,7 +6376,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Groups$Memberships$Create
     extends StandardParameters {
     /**
-     * Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group_id\}`.
+     * Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group\}`.
      */
     parent?: string;
 
@@ -6308,21 +6388,21 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Groups$Memberships$Delete
     extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group\}/memberships/{membership\}`
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Memberships$Get
     extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group\}/memberships/{membership\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Memberships$Getmembershipgraph
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is the unique ID assigned to the Group to which the Membership belongs to. group_id can be a wildcard collection id "-". When a group_id is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group\}`, where `group` is the unique ID assigned to the Group to which the Membership belongs to. group can be a wildcard collection id "-". When a group is specified, the membership graph will be constrained to paths between the member (defined in the query) and the parent. If a wildcard collection is provided, all membership paths connected to the member will be returned.
      */
     parent?: string;
     /**
@@ -6341,7 +6421,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
+     * Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group\}`.
      */
     parent?: string;
     /**
@@ -6356,18 +6436,18 @@ export namespace cloudidentity_v1 {
      */
     'memberKey.id'?: string;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}`.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source\}`.
      */
     'memberKey.namespace'?: string;
     /**
-     * Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
+     * Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Groups$Memberships$Modifymembershiproles
     extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group\}/memberships/{membership\}`.
      */
     name?: string;
 
@@ -6387,7 +6467,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is always '-' as this API will search across all groups for a given member.
+     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group\}`, where `group` is always '-' as this API will search across all groups for a given member.
      */
     parent?: string;
     /**
@@ -6406,7 +6486,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is the unique ID assigned to the Group.
+     * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group\}`, where `group` is the unique ID assigned to the Group.
      */
     parent?: string;
   }

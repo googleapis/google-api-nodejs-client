@@ -549,6 +549,10 @@ export namespace cloudidentity_v1beta1 {
     supportsWorkProfile?: boolean | null;
   }
   /**
+   * Metadata for ApproveDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1ApproveDeviceUserMetadata {}
+  /**
    * Response message for approving the device to access user data.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1ApproveDeviceUserResponse {
@@ -557,6 +561,10 @@ export namespace cloudidentity_v1beta1 {
      */
     deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
+  /**
+   * Metadata for BlockDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1BlockDeviceUserMetadata {}
   /**
    * Response message for blocking the device from accessing user data.
    */
@@ -567,6 +575,10 @@ export namespace cloudidentity_v1beta1 {
     deviceUser?: Schema$GoogleAppsCloudidentityDevicesV1DeviceUser;
   }
   /**
+   * Metadata for CancelWipeDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceMetadata {}
+  /**
    * Response message for cancelling an unfinished device wipe.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceResponse {
@@ -575,6 +587,10 @@ export namespace cloudidentity_v1beta1 {
      */
     device?: Schema$GoogleAppsCloudidentityDevicesV1Device;
   }
+  /**
+   * Metadata for CancelWipeDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserMetadata {}
   /**
    * Response message for cancelling an unfinished user account wipe.
    */
@@ -629,7 +645,7 @@ export namespace cloudidentity_v1beta1 {
      */
     managed?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id\}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device\}/deviceUsers/{device_user\}/clientState/{partner\}`, where partner corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer\}-suffix`, where `customer` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
      */
     name?: string | null;
     /**
@@ -641,6 +657,10 @@ export namespace cloudidentity_v1beta1 {
      */
     scoreReason?: string | null;
   }
+  /**
+   * Metadata for CreateDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1CreateDeviceMetadata {}
   /**
    * Additional custom attribute values may be one of these types
    */
@@ -658,6 +678,14 @@ export namespace cloudidentity_v1beta1 {
      */
     stringValue?: string | null;
   }
+  /**
+   * Metadata for DeleteDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1DeleteDeviceMetadata {}
+  /**
+   * Metadata for DeleteDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1DeleteDeviceUserMetadata {}
   /**
    *  A Device within the Cloud Identity Devices API. Represents a Device known to Google Cloud, independent of the device ownership, type, and whether it is assigned or in use by a user.
    */
@@ -739,7 +767,7 @@ export namespace cloudidentity_v1beta1 {
      */
     model?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique id assigned to the Device.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device\}`, where device is the unique id assigned to the Device.
      */
     name?: string | null;
     /**
@@ -804,7 +832,7 @@ export namespace cloudidentity_v1beta1 {
      */
     managementState?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where `device_user_id` uniquely identifies a user's use of a device.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device\}/deviceUsers/{device_user\}`, where `device_user` uniquely identifies a user's use of a device.
      */
     name?: string | null;
     /**
@@ -821,6 +849,26 @@ export namespace cloudidentity_v1beta1 {
     userEmail?: string | null;
   }
   /**
+   * Metadata for ListEndpointApps LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1ListEndpointAppsMetadata {}
+  /**
+   * Metadata for SignoutDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1SignoutDeviceUserMetadata {}
+  /**
+   * Metadata for UpdateClientState LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1UpdateClientStateMetadata {}
+  /**
+   * Metadata for UpdateDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1UpdateDeviceMetadata {}
+  /**
+   * Metadata for WipeDevice LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceMetadata {}
+  /**
    * Response message for wiping all data on the device.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceResponse {
@@ -829,6 +877,10 @@ export namespace cloudidentity_v1beta1 {
      */
     device?: Schema$GoogleAppsCloudidentityDevicesV1Device;
   }
+  /**
+   * Metadata for WipeDeviceUser LRO.
+   */
+  export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceUserMetadata {}
   /**
    * Response message for wiping the user's account from the device.
    */
