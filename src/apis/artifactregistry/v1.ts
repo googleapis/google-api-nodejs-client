@@ -875,7 +875,7 @@ export namespace artifactregistry_v1 {
      *     // The standard list filter.
      *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
-     *     name: 'placeholder-value',
+     *     name: 'operations',
      *     // The standard list page size.
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
@@ -963,14 +963,14 @@ export namespace artifactregistry_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/operations').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
         ),
         params,
-        requiredParams: [],
-        pathParams: [],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
