@@ -692,39 +692,6 @@ export namespace transcoder_v1beta1 {
     y?: number | null;
   }
   /**
-   * Represents the metadata of the long-running operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * Output only. API version used to start the operation.
-     */
-    apiVersion?: string | null;
-    /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    cancelRequested?: boolean | null;
-    /**
-     * Output only. The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * Output only. Human-readable status of the operation, if any.
-     */
-    statusDetail?: string | null;
-    /**
-     * Output only. Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * Output only. Name of the verb executed by the operation.
-     */
-    verb?: string | null;
-  }
-  /**
    * The origin URI.
    */
   export interface Schema$OriginUri {
@@ -970,7 +937,7 @@ export namespace transcoder_v1beta1 {
      */
     bFrameCount?: number | null;
     /**
-     * Required. The video bitrate in bits per second. Must be between 1 and 1,000,000,000.
+     * Required. The video bitrate in bits per second. The minimum value is 1,000. The maximum value for H264/H265 is 800,000,000. The maximum value for VP9 is 480,000,000.
      */
     bitrateBps?: number | null;
     /**
