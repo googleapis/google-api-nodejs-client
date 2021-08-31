@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "networksecurity:v1beta1",
+  "id": "networksecurity:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://networksecurity.mtls.googleapis.com/",
   "name": "networksecurity",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "networksecurity.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta1/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "networksecurity.projects.locations.list",
               "parameterOrder": [
@@ -167,7 +167,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta1/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -181,7 +181,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new AuthorizationPolicy in a given project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.authorizationPolicies.create",
                   "parameterOrder": [
@@ -201,7 +201,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/authorizationPolicies",
+                  "path": "v1/{+parent}/authorizationPolicies",
                   "request": {
                     "$ref": "AuthorizationPolicy"
                   },
@@ -214,7 +214,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single AuthorizationPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.authorizationPolicies.delete",
                   "parameterOrder": [
@@ -229,7 +229,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -239,7 +239,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single AuthorizationPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.authorizationPolicies.get",
                   "parameterOrder": [
@@ -254,7 +254,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "AuthorizationPolicy"
                   },
@@ -264,7 +264,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.authorizationPolicies.getIamPolicy",
                   "parameterOrder": [
@@ -285,7 +285,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
                   },
@@ -295,7 +295,7 @@
                 },
                 "list": {
                   "description": "Lists AuthorizationPolicies in a given project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.authorizationPolicies.list",
                   "parameterOrder": [
@@ -321,7 +321,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/authorizationPolicies",
+                  "path": "v1/{+parent}/authorizationPolicies",
                   "response": {
                     "$ref": "ListAuthorizationPoliciesResponse"
                   },
@@ -331,7 +331,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a single AuthorizationPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.authorizationPolicies.patch",
                   "parameterOrder": [
@@ -352,7 +352,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "AuthorizationPolicy"
                   },
@@ -365,7 +365,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.authorizationPolicies.setIamPolicy",
                   "parameterOrder": [
@@ -380,7 +380,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "GoogleIamV1SetIamPolicyRequest"
                   },
@@ -393,7 +393,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/authorizationPolicies/{authorizationPoliciesId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.authorizationPolicies.testIamPermissions",
                   "parameterOrder": [
@@ -408,7 +408,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "GoogleIamV1TestIamPermissionsRequest"
                   },
@@ -425,7 +425,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new ClientTlsPolicy in a given project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.clientTlsPolicies.create",
                   "parameterOrder": [
@@ -445,7 +445,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/clientTlsPolicies",
+                  "path": "v1/{+parent}/clientTlsPolicies",
                   "request": {
                     "$ref": "ClientTlsPolicy"
                   },
@@ -458,7 +458,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single ClientTlsPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.clientTlsPolicies.delete",
                   "parameterOrder": [
@@ -473,7 +473,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -483,7 +483,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single ClientTlsPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.clientTlsPolicies.get",
                   "parameterOrder": [
@@ -498,7 +498,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ClientTlsPolicy"
                   },
@@ -508,7 +508,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.clientTlsPolicies.getIamPolicy",
                   "parameterOrder": [
@@ -529,7 +529,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
                   },
@@ -539,7 +539,7 @@
                 },
                 "list": {
                   "description": "Lists ClientTlsPolicies in a given project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.clientTlsPolicies.list",
                   "parameterOrder": [
@@ -565,7 +565,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/clientTlsPolicies",
+                  "path": "v1/{+parent}/clientTlsPolicies",
                   "response": {
                     "$ref": "ListClientTlsPoliciesResponse"
                   },
@@ -575,7 +575,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a single ClientTlsPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.clientTlsPolicies.patch",
                   "parameterOrder": [
@@ -596,7 +596,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "ClientTlsPolicy"
                   },
@@ -609,7 +609,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.clientTlsPolicies.setIamPolicy",
                   "parameterOrder": [
@@ -624,7 +624,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "GoogleIamV1SetIamPolicyRequest"
                   },
@@ -637,7 +637,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clientTlsPolicies/{clientTlsPoliciesId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.clientTlsPolicies.testIamPermissions",
                   "parameterOrder": [
@@ -652,7 +652,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "GoogleIamV1TestIamPermissionsRequest"
                   },
@@ -669,7 +669,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -684,7 +684,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -697,7 +697,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -712,7 +712,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -722,7 +722,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.operations.get",
                   "parameterOrder": [
@@ -737,7 +737,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -747,7 +747,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.operations.list",
                   "parameterOrder": [
@@ -778,7 +778,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -792,7 +792,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new ServerTlsPolicy in a given project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.serverTlsPolicies.create",
                   "parameterOrder": [
@@ -812,7 +812,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/serverTlsPolicies",
+                  "path": "v1/{+parent}/serverTlsPolicies",
                   "request": {
                     "$ref": "ServerTlsPolicy"
                   },
@@ -825,7 +825,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single ServerTlsPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}",
                   "httpMethod": "DELETE",
                   "id": "networksecurity.projects.locations.serverTlsPolicies.delete",
                   "parameterOrder": [
@@ -840,7 +840,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -850,7 +850,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single ServerTlsPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.serverTlsPolicies.get",
                   "parameterOrder": [
@@ -865,7 +865,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ServerTlsPolicy"
                   },
@@ -875,7 +875,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.serverTlsPolicies.getIamPolicy",
                   "parameterOrder": [
@@ -896,7 +896,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "GoogleIamV1Policy"
                   },
@@ -906,7 +906,7 @@
                 },
                 "list": {
                   "description": "Lists ServerTlsPolicies in a given project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies",
                   "httpMethod": "GET",
                   "id": "networksecurity.projects.locations.serverTlsPolicies.list",
                   "parameterOrder": [
@@ -932,7 +932,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/serverTlsPolicies",
+                  "path": "v1/{+parent}/serverTlsPolicies",
                   "response": {
                     "$ref": "ListServerTlsPoliciesResponse"
                   },
@@ -942,7 +942,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a single ServerTlsPolicy.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}",
                   "httpMethod": "PATCH",
                   "id": "networksecurity.projects.locations.serverTlsPolicies.patch",
                   "parameterOrder": [
@@ -963,7 +963,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "ServerTlsPolicy"
                   },
@@ -976,7 +976,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.serverTlsPolicies.setIamPolicy",
                   "parameterOrder": [
@@ -991,7 +991,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "GoogleIamV1SetIamPolicyRequest"
                   },
@@ -1004,7 +1004,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serverTlsPolicies/{serverTlsPoliciesId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "networksecurity.projects.locations.serverTlsPolicies.testIamPermissions",
                   "parameterOrder": [
@@ -1019,7 +1019,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "GoogleIamV1TestIamPermissionsRequest"
                   },
@@ -1117,7 +1117,7 @@
       "id": "ClientTlsPolicy",
       "properties": {
         "clientCertificate": {
-          "$ref": "GoogleCloudNetworksecurityV1beta1CertificateProvider",
+          "$ref": "GoogleCloudNetworksecurityV1CertificateProvider",
           "description": "Optional. Defines a mechanism to provision client identity (public and private keys) for peer to peer authentication. The presence of this dictates mTLS."
         },
         "createTime": {
@@ -1223,24 +1223,24 @@
       },
       "type": "object"
     },
-    "GoogleCloudNetworksecurityV1beta1CertificateProvider": {
+    "GoogleCloudNetworksecurityV1CertificateProvider": {
       "description": "Specification of certificate provider. Defines the mechanism to obtain the certificate and private key for peer to peer authentication.",
-      "id": "GoogleCloudNetworksecurityV1beta1CertificateProvider",
+      "id": "GoogleCloudNetworksecurityV1CertificateProvider",
       "properties": {
         "certificateProviderInstance": {
           "$ref": "CertificateProviderInstance",
           "description": "The certificate provider instance specification that will be passed to the data plane, which will be used to load necessary credential information."
         },
         "grpcEndpoint": {
-          "$ref": "GoogleCloudNetworksecurityV1beta1GrpcEndpoint",
+          "$ref": "GoogleCloudNetworksecurityV1GrpcEndpoint",
           "description": "gRPC specific configuration to access the gRPC server to obtain the cert and private key."
         }
       },
       "type": "object"
     },
-    "GoogleCloudNetworksecurityV1beta1GrpcEndpoint": {
+    "GoogleCloudNetworksecurityV1GrpcEndpoint": {
       "description": "Specification of the GRPC Endpoint.",
-      "id": "GoogleCloudNetworksecurityV1beta1GrpcEndpoint",
+      "id": "GoogleCloudNetworksecurityV1GrpcEndpoint",
       "properties": {
         "targetUri": {
           "description": "Required. The target URI of the gRPC endpoint. Only UDS path is supported, and should start with “unix:”.",
@@ -1681,7 +1681,7 @@
           "type": "string"
         },
         "serverCertificate": {
-          "$ref": "GoogleCloudNetworksecurityV1beta1CertificateProvider",
+          "$ref": "GoogleCloudNetworksecurityV1CertificateProvider",
           "description": " Defines a mechanism to provision server identity (public and private keys). Cannot be combined with `allow_open` as a permissive mode that allows both plain text and TLS is not supported."
         },
         "updateTime": {
@@ -1750,7 +1750,7 @@
           "description": "The certificate provider instance specification that will be passed to the data plane, which will be used to load necessary credential information."
         },
         "grpcEndpoint": {
-          "$ref": "GoogleCloudNetworksecurityV1beta1GrpcEndpoint",
+          "$ref": "GoogleCloudNetworksecurityV1GrpcEndpoint",
           "description": "gRPC specific configuration to access the gRPC server to obtain the CA certificate."
         }
       },
@@ -1759,6 +1759,6 @@
   },
   "servicePath": "",
   "title": "Network Security API",
-  "version": "v1beta1",
+  "version": "v1",
   "version_module": true
 }
