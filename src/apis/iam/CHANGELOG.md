@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/iam-v0.3.0...iam-v1.0.0) (2021-08-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* **iam:** This release has breaking changes.
+
+### Features
+
+* **iam:** update the API ([e5d84f5](https://www.github.com/googleapis/google-api-nodejs-client/commit/e5d84f5cf9f9f4af7f6ee093778d240cba1b2818))
+
 ## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/iam-v0.2.1...iam-v0.3.0) (2021-08-06)
 
 
