@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20210715",
+  "revision": "20210823",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AffineTransform": {
@@ -1374,6 +1374,10 @@
         "imageProperties": {
           "$ref": "ImageProperties",
           "description": "The properties of the image."
+        },
+        "placeholder": {
+          "$ref": "Placeholder",
+          "description": "Placeholders are page elements that inherit from corresponding placeholders on layouts and masters. If set, the image is a placeholder image and any inherited properties can be resolved by looking at the parent placeholder identified by the Placeholder.parent_object_id field."
         },
         "sourceUrl": {
           "description": "The source URL is the URL used to insert the image. The source URL can be empty.",
