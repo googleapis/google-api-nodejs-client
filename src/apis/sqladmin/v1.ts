@@ -465,6 +465,10 @@ export namespace sqladmin_v1 {
      */
     connectionName?: string | null;
     /**
+     * Output only. The time when the instance was created in RFC 3339 format (https://tools.ietf.org/html/rfc3339), for example 2012-11-15T16:19:00.094Z
+     */
+    createTime?: string | null;
+    /**
      * The current disk usage of the instance in bytes. This property has been deprecated. Use the "cloudsql.googleapis.com/database/disk/bytes_used" metric in Cloud Monitoring API instead. Please see this announcement for details.
      */
     currentDiskSize?: string | null;
@@ -627,6 +631,10 @@ export namespace sqladmin_v1 {
      * Configuration specific to read-replicas replicating from the on-premises primary instance.
      */
     replicaConfiguration?: Schema$DemoteMasterConfiguration;
+    /**
+     * Flag to skip replication setup on the instance.
+     */
+    skipReplicationSetup?: boolean | null;
     /**
      * Verify GTID consistency for demote operation. Default value: *True*. Setting this flag to false enables you to bypass GTID consistency check between on-premises primary instance and Cloud SQL instance during the demotion operation but also exposes you to the risk of future replication failures. Change the value value only if you know the reason for the GTID divergence and are confident that doing so will not cause any replication issues.
      */
@@ -903,6 +911,23 @@ export namespace sqladmin_v1 {
     recordClientAddress?: boolean | null;
   }
   /**
+   * Reference to another Cloud SQL instance.
+   */
+  export interface Schema$InstanceReference {
+    /**
+     * The name of the Cloud SQL instance being referenced. This does not include the project ID.
+     */
+    name?: string | null;
+    /**
+     * The project ID of the Cloud SQL instance being referenced. The default is the same project ID as the instance references it.
+     */
+    project?: string | null;
+    /**
+     * The region of the Cloud SQL instance being referenced.
+     */
+    region?: string | null;
+  }
+  /**
    * Database instance clone request.
    */
   export interface Schema$InstancesCloneRequest {
@@ -1014,7 +1039,7 @@ export namespace sqladmin_v1 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.
+     * The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.` Reserved for future use.
      */
     allocatedIpRange?: string | null;
     /**
@@ -1145,7 +1170,12 @@ export namespace sqladmin_v1 {
   /**
    * MySQL-specific external server sync settings.
    */
-  export interface Schema$MySqlSyncConfig {}
+  export interface Schema$MySqlSyncConfig {
+    /**
+     * Flags to use for the initial dump.
+     */
+    initialSyncFlags?: Schema$SyncFlags[];
+  }
   /**
    * On-premises instance configuration.
    */
@@ -1178,6 +1208,10 @@ export namespace sqladmin_v1 {
      * The password for connecting to on-premises instance.
      */
     password?: string | null;
+    /**
+     * The reference to Cloud SQL instance if the source is Cloud SQL.
+     */
+    sourceInstance?: Schema$InstanceReference;
     /**
      * The username for connecting to on-premises instance.
      */
@@ -1714,6 +1748,19 @@ export namespace sqladmin_v1 {
      * This is always *sql#sslCertsList*.
      */
     kind?: string | null;
+  }
+  /**
+   * Initial sync flags for certain Cloud SQL APIs. Currently used for the MySQL external server initial dump.
+   */
+  export interface Schema$SyncFlags {
+    /**
+     * The name of the flag.
+     */
+    name?: string | null;
+    /**
+     * The value of the flag. This field must be omitted if the flag doesn't take a value.
+     */
+    value?: string | null;
   }
   /**
    * A Google Cloud SQL service tier resource.
@@ -4972,6 +5019,7 @@ export namespace sqladmin_v1 {
      *   // {
      *   //   "backendType": "my_backendType",
      *   //   "connectionName": "my_connectionName",
+     *   //   "createTime": "my_createTime",
      *   //   "currentDiskSize": "my_currentDiskSize",
      *   //   "databaseVersion": "my_databaseVersion",
      *   //   "diskEncryptionConfiguration": {},
@@ -5285,6 +5333,7 @@ export namespace sqladmin_v1 {
      *       // {
      *       //   "backendType": "my_backendType",
      *       //   "connectionName": "my_connectionName",
+     *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
@@ -5762,6 +5811,7 @@ export namespace sqladmin_v1 {
      *       // {
      *       //   "backendType": "my_backendType",
      *       //   "connectionName": "my_connectionName",
+     *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
@@ -7163,6 +7213,7 @@ export namespace sqladmin_v1 {
      *       // {
      *       //   "backendType": "my_backendType",
      *       //   "connectionName": "my_connectionName",
+     *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
