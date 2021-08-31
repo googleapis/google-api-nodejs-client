@@ -1524,6 +1524,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "contactcenterinsights:v1",
+      "name": "contactcenterinsights",
+      "version": "v1",
+      "title": "Contact Center AI Insights API",
+      "description": "",
+      "discoveryRestUrl": "https://contactcenterinsights.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/contact-center/insights/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "container:v1beta1",
       "name": "container",
       "version": "v1beta1",
@@ -2684,7 +2699,7 @@
       "id": "gkehub:v1alpha",
       "name": "gkehub",
       "version": "v1alpha",
-      "title": "GKE Hub",
+      "title": "GKE Hub API",
       "description": "",
       "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1alpha",
       "icons": {
@@ -2699,7 +2714,7 @@
       "id": "gkehub:v1alpha2",
       "name": "gkehub",
       "version": "v1alpha2",
-      "title": "GKE Hub",
+      "title": "GKE Hub API",
       "description": "",
       "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1alpha2",
       "icons": {
@@ -2714,7 +2729,7 @@
       "id": "gkehub:v1beta",
       "name": "gkehub",
       "version": "v1beta",
-      "title": "GKE Hub",
+      "title": "GKE Hub API",
       "description": "",
       "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
@@ -2729,7 +2744,7 @@
       "id": "gkehub:v1beta1",
       "name": "gkehub",
       "version": "v1beta1",
-      "title": "GKE Hub",
+      "title": "GKE Hub API",
       "description": "",
       "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
@@ -2744,7 +2759,7 @@
       "id": "gkehub:v1",
       "name": "gkehub",
       "version": "v1",
-      "title": "GKE Hub",
+      "title": "GKE Hub API",
       "description": "",
       "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1",
       "icons": {
@@ -3356,6 +3371,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "mybusinessbusinessinformation:v1",
+      "name": "mybusinessbusinessinformation",
+      "version": "v1",
+      "title": "My Business Business Information API",
+      "description": "The My Business Business Information API provides an interface for managing business information on Google.",
+      "discoveryRestUrl": "https://mybusinessbusinessinformation.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/my-business/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "mybusinesslodging:v1",
       "name": "mybusinesslodging",
       "version": "v1",
@@ -3392,6 +3422,21 @@
       "title": "My Business Place Actions API",
       "description": "The My Business Place Actions API provides an interface for managing place action links of a location on Google.",
       "discoveryRestUrl": "https://mybusinessplaceactions.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/my-business/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "mybusinessverifications:v1",
+      "name": "mybusinessverifications",
+      "version": "v1",
+      "title": "My Business Verifications API",
+      "description": "The My Business Verifications API provides an interface for taking verifications related actions for locations.",
+      "discoveryRestUrl": "https://mybusinessverifications.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3452,6 +3497,21 @@
       "title": "Network Security API",
       "description": "",
       "discoveryRestUrl": "https://networksecurity.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/networking",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "networksecurity:v1",
+      "name": "networksecurity",
+      "version": "v1",
+      "title": "Network Security API",
+      "description": "",
+      "discoveryRestUrl": "https://networksecurity.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4143,21 +4203,6 @@
       "title": "Cloud Run Admin API",
       "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1alpha1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/run/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "run:v1beta1",
-      "name": "run",
-      "version": "v1beta1",
-      "title": "Cloud Run Admin API",
-      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
-      "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
