@@ -168,6 +168,35 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
+        "checkCompatibility": {
+          "description": "This compatibility method lists dimensions and metrics that can be added to a report request and maintain compatibility. This method fails if the request's dimensions and metrics are incompatible. In Google Analytics, reports fail if they request incompatible dimensions and/or metrics; in that case, you will need to remove dimensions and/or metrics from the incompatible report until the report is compatible. The Realtime and Core reports have different compatibility rules. This method checks compatibility for Core reports.",
+          "flatPath": "v1beta/properties/{propertiesId}:checkCompatibility",
+          "httpMethod": "POST",
+          "id": "analyticsdata.properties.checkCompatibility",
+          "parameterOrder": [
+            "property"
+          ],
+          "parameters": {
+            "property": {
+              "description": "A Google Analytics GA4 property identifier whose events are tracked. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). `property` should be the same value as in your `runReport` request. Example: properties/1234 Set the Property ID to 0 for compatibility checking on dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.",
+              "location": "path",
+              "pattern": "^properties/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta/{+property}:checkCompatibility",
+          "request": {
+            "$ref": "CheckCompatibilityRequest"
+          },
+          "response": {
+            "$ref": "CheckCompatibilityResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "getMetadata": {
           "description": "Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. In this method, a Google Analytics GA4 Property Identifier is specified in the request, and the metadata response includes Custom dimensions and metrics as well as Universal metadata. For example if a custom metric with parameter name `levels_unlocked` is registered to a property, the Metadata response will contain `customEvent:levels_unlocked`. Universal metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.",
           "flatPath": "v1beta/properties/{propertiesId}/metadata",
@@ -284,7 +313,7 @@
       }
     }
   },
-  "revision": "20210629",
+  "revision": "20210827",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "BatchRunPivotReportsRequest": {
@@ -373,6 +402,70 @@
         "dimensionName": {
           "description": "Name of a dimension. The name must refer back to a name in dimensions field of the request.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckCompatibilityRequest": {
+      "description": "The request for compatibility information for a report's dimensions and metrics. Check compatibility provides a preview of the compatibility of a report; fields shared with the `runReport` request should be the same values as in your `runReport` request.",
+      "id": "CheckCompatibilityRequest",
+      "properties": {
+        "compatibilityFilter": {
+          "description": "Filters the dimensions and metrics in the response to just this compatibility. Commonly used as `”compatibilityFilter”: “COMPATIBLE”` to only return compatible dimensions & metrics.",
+          "enum": [
+            "COMPATIBILITY_UNSPECIFIED",
+            "COMPATIBLE",
+            "INCOMPATIBLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified compatibility.",
+            "The dimension or metric is compatible. This dimension or metric can be successfully added to a report.",
+            "The dimension or metric is incompatible. This dimension or metric cannot be successfully added to a report."
+          ],
+          "type": "string"
+        },
+        "dimensionFilter": {
+          "$ref": "FilterExpression",
+          "description": "The filter clause of dimensions. `dimensionFilter` should be the same value as in your `runReport` request."
+        },
+        "dimensions": {
+          "description": "The dimensions in this report. `dimensions` should be the same value as in your `runReport` request.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "metricFilter": {
+          "$ref": "FilterExpression",
+          "description": "The filter clause of metrics. `metricFilter` should be the same value as in your `runReport` request"
+        },
+        "metrics": {
+          "description": "The metrics in this report. `metrics` should be the same value as in your `runReport` request.",
+          "items": {
+            "$ref": "Metric"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CheckCompatibilityResponse": {
+      "description": "The compatibility response with the compatibility of each dimension & metric.",
+      "id": "CheckCompatibilityResponse",
+      "properties": {
+        "dimensionCompatibilities": {
+          "description": "The compatibility of each dimension.",
+          "items": {
+            "$ref": "DimensionCompatibility"
+          },
+          "type": "array"
+        },
+        "metricCompatibilities": {
+          "description": "The compatibility of each metric.",
+          "items": {
+            "$ref": "MetricCompatibility"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -514,6 +607,31 @@
       },
       "type": "object"
     },
+    "DimensionCompatibility": {
+      "description": "The compatibility for a single dimension.",
+      "id": "DimensionCompatibility",
+      "properties": {
+        "compatibility": {
+          "description": "The compatibility of this dimension. If the compatibility is COMPATIBLE, this dimension can be successfully added to the report.",
+          "enum": [
+            "COMPATIBILITY_UNSPECIFIED",
+            "COMPATIBLE",
+            "INCOMPATIBLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified compatibility.",
+            "The dimension or metric is compatible. This dimension or metric can be successfully added to a report.",
+            "The dimension or metric is incompatible. This dimension or metric cannot be successfully added to a report."
+          ],
+          "type": "string"
+        },
+        "dimensionMetadata": {
+          "$ref": "DimensionMetadata",
+          "description": "The dimension metadata contains the API name for this compatibility information. The dimension metadata also contains other helpful information like the UI name and description."
+        }
+      },
+      "type": "object"
+    },
     "DimensionExpression": {
       "description": "Used to express a dimension which is the result of a formula of multiple dimensions. Example usages: 1) lower_case(dimension) 2) concatenate(dimension1, symbol, dimension2).",
       "id": "DimensionExpression",
@@ -550,6 +668,10 @@
       "properties": {
         "apiName": {
           "description": "This dimension's name. Useable in [Dimension](#Dimension)'s `name`. For example, `eventName`.",
+          "type": "string"
+        },
+        "category": {
+          "description": "The display name of the category that this dimension belongs to. Similar dimensions and metrics are categorized together.",
           "type": "string"
         },
         "customDefinition": {
@@ -738,6 +860,31 @@
       },
       "type": "object"
     },
+    "MetricCompatibility": {
+      "description": "The compatibility for a single metric.",
+      "id": "MetricCompatibility",
+      "properties": {
+        "compatibility": {
+          "description": "The compatibility of this metric. If the compatibility is COMPATIBLE, this metric can be successfully added to the report.",
+          "enum": [
+            "COMPATIBILITY_UNSPECIFIED",
+            "COMPATIBLE",
+            "INCOMPATIBLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified compatibility.",
+            "The dimension or metric is compatible. This dimension or metric can be successfully added to a report.",
+            "The dimension or metric is incompatible. This dimension or metric cannot be successfully added to a report."
+          ],
+          "type": "string"
+        },
+        "metricMetadata": {
+          "$ref": "MetricMetadata",
+          "description": "The metric metadata contains the API name for this compatibility information. The metric metadata also contains other helpful information like the UI name and description."
+        }
+      },
+      "type": "object"
+    },
     "MetricHeader": {
       "description": "Describes a metric column in the report. Visible metrics requested in a report produce column entries within rows and MetricHeaders. However, metrics used exclusively within filters or expressions do not produce columns in a report; correspondingly, those metrics do not produce headers.",
       "id": "MetricHeader",
@@ -789,6 +936,10 @@
       "properties": {
         "apiName": {
           "description": "A metric name. Useable in [Metric](#Metric)'s `name`. For example, `eventCount`.",
+          "type": "string"
+        },
+        "category": {
+          "description": "The display name of the category that this metrics belongs to. Similar dimensions and metrics are categorized together.",
           "type": "string"
         },
         "customDefinition": {
@@ -1131,9 +1282,17 @@
       "description": "Response's metadata carrying additional information about the report content.",
       "id": "ResponseMetaData",
       "properties": {
+        "currencyCode": {
+          "description": "The currency code used in this report. Intended to be used in formatting currency metrics like `purchaseRevenue` for visualization. If currency_code was specified in the request, this response parameter will echo the request parameter; otherwise, this response parameter is the property's current currency_code. Currency codes are string encodings of currency types from the ISO 4217 standard (https://en.wikipedia.org/wiki/ISO_4217); for example \"USD\", \"EUR\", \"JPY\". To learn more, see https://support.google.com/analytics/answer/9796179.",
+          "type": "string"
+        },
         "dataLossFromOtherRow": {
           "description": "If true, indicates some buckets of dimension combinations are rolled into \"(other)\" row. This can happen for high cardinality reports.",
           "type": "boolean"
+        },
+        "timeZone": {
+          "description": "The property's current timezone. Intended to be used to interpret time-based dimensions like `hour` and `minute`. Formatted as strings from the IANA Time Zone database (https://www.iana.org/time-zones); for example \"America/New_York\" or \"Asia/Tokyo\".",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1432,7 +1591,7 @@
         },
         "dimensionFilter": {
           "$ref": "FilterExpression",
-          "description": "The filter clause of dimensions. Dimensions must be requested to be used in this filter. Metrics cannot be used in this filter."
+          "description": "Dimension filters allow you to ask for only specific dimension values in the report. To learn more, see [Fundamentals of Dimension Filters](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#dimension_filters) for examples. Metrics cannot be used in this filter."
         },
         "dimensions": {
           "description": "The dimensions requested and displayed.",
@@ -1473,7 +1632,7 @@
         },
         "metricFilter": {
           "$ref": "FilterExpression",
-          "description": "The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Metrics must be requested to be used in this filter. Dimensions cannot be used in this filter."
+          "description": "The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Dimensions cannot be used in this filter."
         },
         "metrics": {
           "description": "The metrics requested and displayed.",
