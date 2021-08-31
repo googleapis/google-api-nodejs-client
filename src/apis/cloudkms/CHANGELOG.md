@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v2.1.0...cloudkms-v2.2.0) (2021-08-31)
+
+
+### Features
+
+* **cloudkms:** update the API ([e4dd1aa](https://www.github.com/googleapis/google-api-nodejs-client/commit/e4dd1aa3935a5f018af584ae2b341e188b24e443))
+
 ## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v2.0.1...cloudkms-v2.1.0) (2021-08-06)
 
 

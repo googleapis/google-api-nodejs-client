@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/ondemandscanning",
-  "version": "0.6.0",
+  "version": "1.0.0",
   "description": "ondemandscanning",
   "main": "build/index.js",
   "types": "build/index.d.ts",
