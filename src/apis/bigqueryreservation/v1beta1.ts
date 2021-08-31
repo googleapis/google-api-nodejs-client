@@ -1033,6 +1033,8 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await bigqueryreservation.projects.locations.capacityCommitments.delete({
+     *       // Can be used to force delete commitments even if assignments exist. Deleting commitments with assignments may cause queries to fail if they no longer have access to slots.
+     *       force: 'placeholder-value',
      *       // Required. Resource name of the capacity commitment to delete. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      *       name: 'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *     });
@@ -1910,6 +1912,10 @@ export namespace bigqueryreservation_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Delete
     extends StandardParameters {
+    /**
+     * Can be used to force delete commitments even if assignments exist. Deleting commitments with assignments may cause queries to fail if they no longer have access to slots.
+     */
+    force?: boolean;
     /**
      * Required. Resource name of the capacity commitment to delete. E.g., `projects/myproject/locations/US/capacityCommitments/123`
      */
