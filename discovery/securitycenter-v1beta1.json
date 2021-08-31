@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20210716",
+  "revision": "20210827",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -1039,6 +1039,164 @@
       "properties": {},
       "type": "object"
     },
+    "Cve": {
+      "description": "CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org",
+      "id": "Cve",
+      "properties": {
+        "cvssv3": {
+          "$ref": "Cvssv3",
+          "description": "Describe Common Vulnerability Scoring System specified at https://www.first.org/cvss/v3.1/specification-document"
+        },
+        "id": {
+          "description": "The unique identifier for the vulnerability. e.g. CVE-2021-34527",
+          "type": "string"
+        },
+        "references": {
+          "description": "Additional information about the CVE. e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527",
+          "items": {
+            "$ref": "Reference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Cvssv3": {
+      "description": "Common Vulnerability Scoring System version 3.",
+      "id": "Cvssv3",
+      "properties": {
+        "attackComplexity": {
+          "description": "This metric describes the conditions beyond the attacker's control that must exist in order to exploit the vulnerability.",
+          "enum": [
+            "ATTACK_COMPLEXITY_UNSPECIFIED",
+            "ATTACK_COMPLEXITY_LOW",
+            "ATTACK_COMPLEXITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "Specialized access conditions or extenuating circumstances do not exist. An attacker can expect repeatable success when attacking the vulnerable component.",
+            "A successful attack depends on conditions beyond the attacker's control. That is, a successful attack cannot be accomplished at will, but requires the attacker to invest in some measurable amount of effort in preparation or execution against the vulnerable component before a successful attack can be expected."
+          ],
+          "type": "string"
+        },
+        "attackVector": {
+          "description": "Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments. This metric reflects the context by which vulnerability exploitation is possible.",
+          "enum": [
+            "ATTACK_VECTOR_UNSPECIFIED",
+            "ATTACK_VECTOR_NETWORK",
+            "ATTACK_VECTOR_ADJACENT",
+            "ATTACK_VECTOR_LOCAL",
+            "ATTACK_VECTOR_PHYSICAL"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The vulnerable component is bound to the network stack and the set of possible attackers extends beyond the other options listed below, up to and including the entire Internet.",
+            "The vulnerable component is bound to the network stack, but the attack is limited at the protocol level to a logically adjacent topology.",
+            "The vulnerable component is not bound to the network stack and the attacker's path is via read/write/execute capabilities.",
+            "The attack requires the attacker to physically touch or manipulate the vulnerable component."
+          ],
+          "type": "string"
+        },
+        "availabilityImpact": {
+          "description": "This metric measures the impact to the availability of the impacted component resulting from a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "baseScore": {
+          "description": "The base score is a function of the base metric scores.",
+          "format": "double",
+          "type": "number"
+        },
+        "confidentialityImpact": {
+          "description": "This metric measures the impact to the confidentiality of the information resources managed by a software component due to a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "integrityImpact": {
+          "description": "This metric measures the impact to integrity of a successfully exploited vulnerability.",
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "High impact.",
+            "Low impact.",
+            "No impact."
+          ],
+          "type": "string"
+        },
+        "privilegesRequired": {
+          "description": "This metric describes the level of privileges an attacker must possess before successfully exploiting the vulnerability.",
+          "enum": [
+            "PRIVILEGES_REQUIRED_UNSPECIFIED",
+            "PRIVILEGES_REQUIRED_NONE",
+            "PRIVILEGES_REQUIRED_LOW",
+            "PRIVILEGES_REQUIRED_HIGH"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The attacker is unauthorized prior to attack, and therefore does not require any access to settings or files of the vulnerable system to carry out an attack.",
+            "The attacker requires privileges that provide basic user capabilities that could normally affect only settings and files owned by a user. Alternatively, an attacker with Low privileges has the ability to access only non-sensitive resources.",
+            "The attacker requires privileges that provide significant (e.g., administrative) control over the vulnerable component allowing access to component-wide settings and files."
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "description": "The Scope metric captures whether a vulnerability in one vulnerable component impacts resources in components beyond its security scope.",
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "SCOPE_UNCHANGED",
+            "SCOPE_CHANGED"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "An exploited vulnerability can only affect resources managed by the same security authority.",
+            "An exploited vulnerability can affect resources beyond the security scope managed by the security authority of the vulnerable component."
+          ],
+          "type": "string"
+        },
+        "userInteraction": {
+          "description": "This metric captures the requirement for a human user, other than the attacker, to participate in the successful compromise of the vulnerable component.",
+          "enum": [
+            "USER_INTERACTION_UNSPECIFIED",
+            "USER_INTERACTION_NONE",
+            "USER_INTERACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Invalid value.",
+            "The vulnerable system can be exploited without interaction from any user.",
+            "Successful exploitation of this vulnerability requires a user to take some action before the vulnerability can be exploited."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
@@ -1171,6 +1329,10 @@
             "The finding has been fixed, triaged as a non-issue or otherwise addressed and is no longer active."
           ],
           "type": "string"
+        },
+        "vulnerability": {
+          "$ref": "Vulnerability",
+          "description": "Represents vulnerability specific fields like cve, cvss scores etc. CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
         }
       },
       "type": "object"
@@ -1262,6 +1424,10 @@
         },
         "projectDisplayName": {
           "description": "The human readable name of project that the resource belongs to.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The full resource type of the resource.",
           "type": "string"
         }
       },
@@ -1933,7 +2099,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -1959,6 +2125,21 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Reference": {
+      "description": "Additional Links",
+      "id": "Reference",
+      "properties": {
+        "source": {
+          "description": "Source of the reference e.g. NVD",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Uri for the mentioned source e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2133,6 +2314,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Vulnerability": {
+      "description": "Refers to common vulnerability fields e.g. cve, cvss, cwe etc.",
+      "id": "Vulnerability",
+      "properties": {
+        "cve": {
+          "$ref": "Cve",
+          "description": "CVE stands for Common Vulnerabilities and Exposures (https://cve.mitre.org/about/)"
         }
       },
       "type": "object"
