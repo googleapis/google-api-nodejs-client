@@ -669,6 +669,10 @@ export namespace slides_v1 {
      */
     imageProperties?: Schema$ImageProperties;
     /**
+     * Placeholders are page elements that inherit from corresponding placeholders on layouts and masters. If set, the image is a placeholder image and any inherited properties can be resolved by looking at the parent placeholder identified by the Placeholder.parent_object_id field.
+     */
+    placeholder?: Schema$Placeholder;
+    /**
      * The source URL is the URL used to insert the image. The source URL can be empty.
      */
     sourceUrl?: string | null;
