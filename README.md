@@ -3,7 +3,6 @@
 # Google APIs Node.js Client
 
 [![npm version][npmimg]][npm]
-[![Code Coverage][codecovimg]][codecov]
 [![Downloads][downloadsimg]][downloads]
 [![Dependency Status][david-image]][david-url]
 [![Known Vulnerabilities][snyk-image]][snyk-url]
@@ -138,7 +137,7 @@ console.log(createResponse.data);
 ```
 
 ### Samples
-There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-client/tree/master/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
+There are a lot of [samples](https://github.com/googleapis/google-api-nodejs-client/tree/main/samples) 🤗  If you're trying to figure out how to use an API ... look there first! If there's a sample you need missing, feel free to file an [issue][bugs].
 
 ### API Reference
 This library has a full set of [API Reference Documentation](https://googleapis.dev/nodejs/googleapis/latest). This documentation is auto-generated, and the location may change.
@@ -649,20 +648,18 @@ We love contributions! Before submitting a Pull Request, it's always good to sta
 [stackoverflow]: http://stackoverflow.com/questions/tagged/google-api-nodejs-client
 [apiexplorer]: https://developers.google.com/apis-explorer
 [usingkeys]: https://support.google.com/cloud/answer/6158862?hl=en
-[contributing]: https://github.com/googleapis/google-api-nodejs-client/blob/master/CONTRIBUTING.md
-[license]: https://github.com/googleapis/google-api-nodejs-client/tree/master/LICENSE
+[contributing]: https://github.com/googleapis/google-api-nodejs-client/blob/main/CONTRIBUTING.md
+[license]: https://github.com/googleapis/google-api-nodejs-client/tree/main/LICENSE
 [authdocs]: https://developers.google.com/identity/protocols/OpenIDConnect
 [gaxios]: https://github.com/JustinBeckwith/gaxios
 [stream]: http://nodejs.org/api/stream.html#stream_class_stream_readable
 [releasenotes]: https://github.com/googleapis/google-api-nodejs-client/releases
 [devconsole]: https://console.cloud.google.com/apis/credentials
 [oauth]: https://developers.google.com/identity/protocols/OAuth2
-[oauthexample]: https://github.com/googleapis/google-api-nodejs-client/tree/master/samples/oauth2.js
-[options]: https://github.com/googleapis/google-api-nodejs-client/tree/master#options
+[oauthexample]: https://github.com/googleapis/google-api-nodejs-client/tree/main/samples/oauth2.js
+[options]: https://github.com/googleapis/google-api-nodejs-client/tree/main#options
 [googlecloud]: https://cloud.google.com/nodejs/docs/reference/libraries
 [googlecloudapis]: https://cloud.google.com/nodejs/docs/reference/apis
 [cloudplatform]: https://cloud.google.com/docs/
-[codecovimg]: https://codecov.io/github/googleapis/google-api-nodejs-client/coverage.svg?branch=master
-[codecov]: https://codecov.io/github/googleapis/google-api-nodejs-client?branch=master
 [downloadsimg]: https://img.shields.io/npm/dm/googleapis.svg
 [downloads]: https://www.npmjs.com/package/googleapis
