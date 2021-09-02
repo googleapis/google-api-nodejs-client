@@ -1229,7 +1229,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20210825",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "Artifact": {
@@ -3288,7 +3288,11 @@
         "arguments": {
           "description": "Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were \"make\", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint.",
           "items": {
-            "type": "string"
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
           },
           "type": "array"
         },
@@ -3302,11 +3306,15 @@
           "type": "string"
         },
         "environment": {
-          "additionalProperties": {
-            "type": "string"
-          },
           "description": "Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy.",
-          "type": "object"
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
         },
         "type": {
           "description": "URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.",
