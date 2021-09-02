@@ -4,6 +4,26 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [86.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v85.0.0...googleapis-v86.0.0) (2021-09-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **containeranalysis:** This release has breaking changes.
+
+### Features
+
+* **bigtableadmin:** update the API ([f50cc04](https://www.github.com/googleapis/google-api-nodejs-client/commit/f50cc04f678049bfb14c2aaba7d55700d60857c9))
+* **cloudasset:** update the API ([b1f2094](https://www.github.com/googleapis/google-api-nodejs-client/commit/b1f2094d470466a58238d9d2acc2e5b5d10b9fcd))
+* **containeranalysis:** update the API ([0ba0c22](https://www.github.com/googleapis/google-api-nodejs-client/commit/0ba0c2267d467850bcd9f76817bb6ed902547c41))
+* regenerate index files ([01bf480](https://www.github.com/googleapis/google-api-nodejs-client/commit/01bf480d3e35354cc3fdc7d7aa2559611d459b50))
+
+
+### Bug Fixes
+
+* **people:** update the API ([2e6d193](https://www.github.com/googleapis/google-api-nodejs-client/commit/2e6d1931bfe9a9de4eef54a37564e8e08bfc8210))
+* **pubsub:** update the API ([e2f55b2](https://www.github.com/googleapis/google-api-nodejs-client/commit/e2f55b2aac9d8ea003f1e744ca43332219b10820))
+
 ## [85.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v84.0.0...googleapis-v85.0.0) (2021-08-31)
 
 
