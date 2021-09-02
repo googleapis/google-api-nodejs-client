@@ -109,7 +109,7 @@ export async function synth(options: SynthOptions = {}) {
       data: {
         title: `${prefix}: run the generator`,
         head: branch,
-        base: 'master',
+        base: 'main',
         body: changelogs.join('\n\n').slice(0, 65000),
       },
     });
@@ -124,7 +124,7 @@ export async function synth(options: SynthOptions = {}) {
     }
     throw e;
   }
-  await execa('git', ['checkout', 'master']);
+  await execa('git', ['checkout', 'main']);
 }
 
 /**

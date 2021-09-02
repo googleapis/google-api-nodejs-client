@@ -16,7 +16,7 @@ import {request} from 'gaxios';
 import {writeFileSync} from 'fs';
 
 export const libraryListUrl =
-  'https://raw.githubusercontent.com/googleapis/google-cloud-node/master/libraries.json';
+  'https://raw.githubusercontent.com/googleapis/google-cloud-node/main/libraries.json';
 
 export interface LibraryMetadata {
   name: string;
