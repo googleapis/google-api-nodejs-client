@@ -170,7 +170,7 @@
                 "The Token application's activity reports return account information about different types of Token activity events.",
                 "The User Accounts application's activity reports return account information about different types of User Accounts activity events.",
                 "The Context-aware access activity reports return information about users' access denied events due to Context-aware access rules.",
-                "The Chrome activity reports return information about unsafe events reported in the context of the WebProtect features of BeyondCorp.",
+                "The Chrome activity reports return information about Chrome browser and Chrome OS events.",
                 "The Data Studio activity reports return information about various types of Data Studio activity events.",
                 "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers."
               ],
@@ -309,7 +309,7 @@
                 "The Token application's activity reports return account information about different types of Token activity events.",
                 "The User Accounts application's activity reports return account information about different types of User Accounts activity events.",
                 "The Context-aware access activity reports return information about users' access denied events due to Context-aware access rules.",
-                "The Chrome activity reports return information about unsafe events reported in the context of the WebProtect features of BeyondCorp.",
+                "The Chrome activity reports return information about Chrome browser and Chrome OS events.",
                 "The Data Studio activity reports return information about various types of Data Studio activity events.",
                 "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers."
               ],
@@ -631,7 +631,7 @@
       }
     }
   },
-  "revision": "20210720",
+  "revision": "20210827",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {

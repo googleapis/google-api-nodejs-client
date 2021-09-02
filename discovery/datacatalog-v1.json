@@ -183,7 +183,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The names of the project and location that the new entry group belongs to. Note: The entry group itself and its child resources might not be stored in the location specified in its name. ",
+                      "description": "Required. The names of the project and location that the new entry group belongs to. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -216,7 +216,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. The name of the entry group to delete. ",
+                      "description": "Required. The name of the entry group to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                       "required": true,
@@ -241,7 +241,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the entry group to get. ",
+                      "description": "Required. The name of the entry group to get.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                       "required": true,
@@ -336,7 +336,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name. ",
+                      "description": "The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                       "required": true,
@@ -435,7 +435,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The name of the entry group this entry belongs to. Note: The entry itself and its child resources might not be stored in the location specified in its name. ",
+                          "description": "Required. The name of the entry group this entry belongs to. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                           "required": true,
@@ -463,7 +463,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the entry to delete. ",
+                          "description": "Required. The name of the entry to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -488,7 +488,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the entry to get. ",
+                          "description": "Required. The name of the entry to get.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -583,7 +583,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name. ",
+                          "description": "Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -649,7 +649,7 @@
                           ],
                           "parameters": {
                             "parent": {
-                              "description": "Required. The name of the resource to attach this tag to. Tags can be attached to entries or entry groups. An entry can have up to 1000 attached tags. Note: The tag and its child resources might not be stored in the location specified in its name. ",
+                              "description": "Required. The name of the resource to attach this tag to. Tags can be attached to entries or entry groups. An entry can have up to 1000 attached tags. Note: The tag and its child resources might not be stored in the location specified in its name.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                               "required": true,
@@ -677,7 +677,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the tag to delete. ",
+                              "description": "Required. The name of the tag to delete.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+/tags/[^/]+$",
                               "required": true,
@@ -713,7 +713,7 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. The name of the Data Catalog resource to list the tags of. The resource can be an Entry or an EntryGroup (without `/entries/{entries}` at the end). ",
+                              "description": "Required. The name of the Data Catalog resource to list the tags of. The resource can be an Entry or an EntryGroup (without `/entries/{entries}` at the end).",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                               "required": true,
@@ -738,7 +738,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name. ",
+                              "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+/tags/[^/]+$",
                               "required": true,
@@ -778,7 +778,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The name of the resource to attach this tag to. Tags can be attached to entries or entry groups. An entry can have up to 1000 attached tags. Note: The tag and its child resources might not be stored in the location specified in its name. ",
+                          "description": "Required. The name of the resource to attach this tag to. Tags can be attached to entries or entry groups. An entry can have up to 1000 attached tags. Note: The tag and its child resources might not be stored in the location specified in its name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                           "required": true,
@@ -806,7 +806,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the tag to delete. ",
+                          "description": "Required. The name of the tag to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/tags/[^/]+$",
                           "required": true,
@@ -842,7 +842,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The name of the Data Catalog resource to list the tags of. The resource can be an Entry or an EntryGroup (without `/entries/{entries}` at the end). ",
+                          "description": "Required. The name of the Data Catalog resource to list the tags of. The resource can be an Entry or an EntryGroup (without `/entries/{entries}` at the end).",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                           "required": true,
@@ -867,7 +867,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name. ",
+                          "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/tags/[^/]+$",
                           "required": true,
@@ -907,7 +907,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions). ",
+                      "description": "Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -945,7 +945,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. The name of the tag template to delete. ",
+                      "description": "Required. The name of the tag template to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+$",
                       "required": true,
@@ -970,7 +970,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the tag template to get. ",
+                      "description": "Required. The name of the tag template to get.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+$",
                       "required": true,
@@ -1023,7 +1023,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name. ",
+                      "description": "The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+$",
                       "required": true,
@@ -1117,7 +1117,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions). ",
+                          "description": "Required. The name of the project and the template location [region](https://cloud.google.com/data-catalog/docs/concepts/regions).",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+$",
                           "required": true,
@@ -1155,7 +1155,7 @@
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Required. The name of the tag template field to delete. ",
+                          "description": "Required. The name of the tag template field to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+/fields/[^/]+$",
                           "required": true,
@@ -1180,7 +1180,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the tag template field. ",
+                          "description": "Required. The name of the tag template field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+/fields/[^/]+$",
                           "required": true,
@@ -1214,7 +1214,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the tag template. ",
+                          "description": "Required. The name of the tag template.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+/fields/[^/]+$",
                           "required": true,
@@ -1246,7 +1246,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the enum field value. ",
+                              "description": "Required. The name of the enum field value.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+/fields/[^/]+/enumValues/[^/]+$",
                               "required": true,
@@ -1282,7 +1282,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Resource name of the project that the taxonomy will belong to. ",
+                      "description": "Required. Resource name of the project that the taxonomy will belong to.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1310,7 +1310,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name of the taxonomy to delete. Note: All policy tags in this taxonomy are also deleted. ",
+                      "description": "Required. Resource name of the taxonomy to delete. Note: All policy tags in this taxonomy are also deleted.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                       "required": true,
@@ -1335,7 +1335,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Resource name of the project that the exported taxonomies belong to. ",
+                      "description": "Required. Resource name of the project that the exported taxonomies belong to.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1371,7 +1371,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name of the taxonomy to get. ",
+                      "description": "Required. Resource name of the taxonomy to get.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                       "required": true,
@@ -1424,7 +1424,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. Resource name of project that the imported taxonomies will belong to. ",
+                      "description": "Required. Resource name of project that the imported taxonomies will belong to.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1463,7 +1463,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Resource name of the project to list the taxonomies of. ",
+                      "description": "Required. Resource name of the project to list the taxonomies of.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1488,7 +1488,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs. ",
+                      "description": "Output only. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                       "required": true,
@@ -1610,7 +1610,7 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. Resource name of the taxonomy that the policy tag will belong to. ",
+                          "description": "Required. Resource name of the taxonomy that the policy tag will belong to.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                           "required": true,
@@ -1638,7 +1638,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Resource name of the policy tag to delete. Note: All of its descendant policy tags are also deleted. ",
+                          "description": "Required. Resource name of the policy tag to delete. Note: All of its descendant policy tags are also deleted.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+/policyTags/[^/]+$",
                           "required": true,
@@ -1663,7 +1663,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Resource name of the policy tag. ",
+                          "description": "Required. Resource name of the policy tag.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+/policyTags/[^/]+$",
                           "required": true,
@@ -1727,7 +1727,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. Resource name of the taxonomy to list the policy tags of. ",
+                          "description": "Required. Resource name of the taxonomy to list the policy tags of.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+$",
                           "required": true,
@@ -1752,7 +1752,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs. ",
+                          "description": "Output only. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/taxonomies/[^/]+/policyTags/[^/]+$",
                           "required": true,
@@ -1841,7 +1841,7 @@
       }
     }
   },
-  "revision": "20210811",
+  "revision": "20210827",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2211,7 +2211,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name. ",
+          "description": "Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
           "readOnly": true,
           "type": "string"
         },
@@ -2289,7 +2289,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name. ",
+          "description": "The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
           "type": "string"
         }
       },
@@ -2560,7 +2560,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs. ",
+          "description": "Output only. Resource name of this policy tag in the URL format. The policy tag manager generates unique taxonomy IDs and policy tag IDs.",
           "readOnly": true,
           "type": "string"
         },
@@ -2961,7 +2961,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name. ",
+          "description": "The resource name of the tag in URL format where tag ID is a system-generated identifier. Note: The tag itself might not be stored in the location specified in its name.",
           "type": "string"
         },
         "template": {
@@ -3051,7 +3051,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name. ",
+          "description": "The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.",
           "type": "string"
         }
       },
@@ -3118,7 +3118,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs. ",
+          "description": "Output only. Resource name of this taxonomy in URL format. Note: Policy tag manager generates unique taxonomy IDs.",
           "readOnly": true,
           "type": "string"
         },

@@ -1336,7 +1336,7 @@
       }
     }
   },
-  "revision": "20210824",
+  "revision": "20210831",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1969,12 +1969,14 @@
           "enum": [
             "STATUS_UNSPECIFIED",
             "UP_TO_DATE",
-            "UPDATING_MEMBERSHIPS"
+            "UPDATING_MEMBERSHIPS",
+            "INVALID_QUERY"
           ],
           "enumDescriptions": [
             "Default.",
             "The dynamic group is up-to-date.",
-            "The dynamic group has just been created and memberships are being updated."
+            "The dynamic group has just been created and memberships are being updated.",
+            "Group is in an unrecoverable state and its memberships can't be updated."
           ],
           "type": "string"
         },
