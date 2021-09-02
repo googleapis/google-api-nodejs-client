@@ -727,7 +727,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20210827",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1058,6 +1058,28 @@
         "feedId": {
           "description": "Required. This is the client-assigned asset feed identifier and it needs to be unique under a specific parent project/folder/organization.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2802,6 +2824,35 @@
       },
       "type": "object"
     },
+    "RelatedResource": {
+      "description": "The detailed related resource.",
+      "id": "RelatedResource",
+      "properties": {
+        "assetType": {
+          "description": "The type of the asset. Example: `compute.googleapis.com/Instance`",
+          "type": "string"
+        },
+        "fullResourceName": {
+          "description": "The full resource name of the related resource. Example: `//compute.googleapis.com/projects/my_proj_123/zones/instance/instance123`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelatedResources": {
+      "description": "The related resources of the primary resource.",
+      "id": "RelatedResources",
+      "properties": {
+        "relatedResources": {
+          "description": "The detailed related resources of the primary resource.",
+          "items": {
+            "$ref": "RelatedResource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RelationshipAttributes": {
       "description": "The relationship attributes which include `type`, `source_resource_type`, `target_resource_type` and `action`.",
       "id": "RelationshipAttributes",
@@ -2949,6 +3000,13 @@
           "description": "The project that this resource belongs to, in the form of projects/{PROJECT_NUMBER}. This field is available when the resource belongs to a project. To search against `project`: * use a field query. Example: `project:12345` * use a free text query. Example: `12345` * specify the `scope` field as this project in your search request.",
           "type": "string"
         },
+        "relationships": {
+          "additionalProperties": {
+            "$ref": "RelatedResources"
+          },
+          "description": "A map of related resources of this resource, keyed by the relationship type. A relationship type is in the format of {SourceType}_{ACTION}_{DestType}. Example: `DISK_TO_INSTANCE`, `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`. See [supported relationship types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).",
+          "type": "object"
+        },
         "state": {
           "description": "The state of this resource. Different resources types have different state definitions that are mapped from various fields of different resource types. This field is available only when the resource's proto contains it. Example: If the resource is an instance provided by Compute Engine, its state will include PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED. See `status` definition in [API Reference](https://cloud.google.com/compute/docs/reference/rest/v1/instances). If the resource is a project provided by Cloud Resource Manager, its state will include LIFECYCLE_STATE_UNSPECIFIED, ACTIVE, DELETE_REQUESTED and DELETE_IN_PROGRESS. See `lifecycleState` definition in [API Reference](https://cloud.google.com/resource-manager/reference/rest/v1/projects). To search against the `state`: * use a field query. Example: `state:RUNNING` * use a free text query. Example: `RUNNING`",
           "type": "string"
@@ -3034,6 +3092,10 @@
         "qfePackage": {
           "$ref": "WindowsQuickFixEngineeringPackage",
           "description": "Details of a Windows Quick Fix engineering package. See https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering for info in Windows Quick Fix Engineering."
+        },
+        "windowsApplication": {
+          "$ref": "WindowsApplication",
+          "description": "Details of Windows Application."
         },
         "wuaPackage": {
           "$ref": "WindowsUpdatePackage",
@@ -3188,6 +3250,33 @@
         },
         "version": {
           "description": "API version of the resource. Example: If the resource is an instance provided by Compute Engine v1 API as defined in `https://cloud.google.com/compute/docs/reference/rest/v1/instances`, version will be \"v1\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WindowsApplication": {
+      "description": "Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class=\"external\" }",
+      "id": "WindowsApplication",
+      "properties": {
+        "displayName": {
+          "description": "The name of the application or product.",
+          "type": "string"
+        },
+        "displayVersion": {
+          "description": "The version of the product or application in string format.",
+          "type": "string"
+        },
+        "helpLink": {
+          "description": "The internet address for technical support.",
+          "type": "string"
+        },
+        "installDate": {
+          "$ref": "Date",
+          "description": "The last time this product received service. The value of this property is replaced each time a patch is applied or removed from the product or the command-line option is used to repair the product."
+        },
+        "publisher": {
+          "description": "The name of the manufacturer for the product or application.",
           "type": "string"
         }
       },
