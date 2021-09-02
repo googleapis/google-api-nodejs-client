@@ -371,6 +371,23 @@ export namespace cloudasset_v1 {
     feedId?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -1589,6 +1606,28 @@ export namespace cloudasset_v1 {
     relationshipAttributes?: Schema$RelationshipAttributes;
   }
   /**
+   * The detailed related resource.
+   */
+  export interface Schema$RelatedResource {
+    /**
+     * The type of the asset. Example: `compute.googleapis.com/Instance`
+     */
+    assetType?: string | null;
+    /**
+     * The full resource name of the related resource. Example: `//compute.googleapis.com/projects/my_proj_123/zones/instance/instance123`
+     */
+    fullResourceName?: string | null;
+  }
+  /**
+   * The related resources of the primary resource.
+   */
+  export interface Schema$RelatedResources {
+    /**
+     * The detailed related resources of the primary resource.
+     */
+    relatedResources?: Schema$RelatedResource[];
+  }
+  /**
    * The relationship attributes which include `type`, `source_resource_type`, `target_resource_type` and `action`.
    */
   export interface Schema$RelationshipAttributes {
@@ -1711,6 +1750,10 @@ export namespace cloudasset_v1 {
      */
     project?: string | null;
     /**
+     * A map of related resources of this resource, keyed by the relationship type. A relationship type is in the format of {SourceType\}_{ACTION\}_{DestType\}. Example: `DISK_TO_INSTANCE`, `DISK_TO_NETWORK`, `INSTANCE_TO_INSTANCEGROUP`. See [supported relationship types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#supported_relationship_types).
+     */
+    relationships?: {[key: string]: Schema$RelatedResources} | null;
+    /**
      * The state of this resource. Different resources types have different state definitions that are mapped from various fields of different resource types. This field is available only when the resource's proto contains it. Example: If the resource is an instance provided by Compute Engine, its state will include PROVISIONING, STAGING, RUNNING, STOPPING, SUSPENDING, SUSPENDED, REPAIRING, and TERMINATED. See `status` definition in [API Reference](https://cloud.google.com/compute/docs/reference/rest/v1/instances). If the resource is a project provided by Cloud Resource Manager, its state will include LIFECYCLE_STATE_UNSPECIFIED, ACTIVE, DELETE_REQUESTED and DELETE_IN_PROGRESS. See `lifecycleState` definition in [API Reference](https://cloud.google.com/resource-manager/reference/rest/v1/projects). To search against the `state`: * use a field query. Example: `state:RUNNING` * use a free text query. Example: `RUNNING`
      */
     state?: string | null;
@@ -1778,6 +1821,10 @@ export namespace cloudasset_v1 {
      * Details of a Windows Quick Fix engineering package. See https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering for info in Windows Quick Fix Engineering.
      */
     qfePackage?: Schema$WindowsQuickFixEngineeringPackage;
+    /**
+     * Details of Windows Application.
+     */
+    windowsApplication?: Schema$WindowsApplication;
     /**
      * Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update.
      */
@@ -1892,6 +1939,31 @@ export namespace cloudasset_v1 {
      * API version of the resource. Example: If the resource is an instance provided by Compute Engine v1 API as defined in `https://cloud.google.com/compute/docs/reference/rest/v1/instances`, version will be "v1".
      */
     version?: string | null;
+  }
+  /**
+   * Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class="external" \}
+   */
+  export interface Schema$WindowsApplication {
+    /**
+     * The name of the application or product.
+     */
+    displayName?: string | null;
+    /**
+     * The version of the product or application in string format.
+     */
+    displayVersion?: string | null;
+    /**
+     * The internet address for technical support.
+     */
+    helpLink?: string | null;
+    /**
+     * The last time this product received service. The value of this property is replaced each time a patch is applied or removed from the product or the command-line option is used to repair the product.
+     */
+    installDate?: Schema$Date;
+    /**
+     * The name of the manufacturer for the product or application.
+     */
+    publisher?: string | null;
   }
   /**
    * Information related to a Quick Fix Engineering package. Fields are taken from Windows QuickFixEngineering Interface and match the source names: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering
