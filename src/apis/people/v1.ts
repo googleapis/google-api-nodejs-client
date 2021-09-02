@@ -639,7 +639,7 @@ export namespace people_v1 {
    */
   export interface Schema$Gender {
     /**
-     * The type of pronouns that should be used to address the person. The value can be custom or one of these predefined values: * `male` * `female` * `other`
+     * Free form text field for pronouns that should be used to address the person. Common values are: * `he`/`him` * `she`/`her` * `they`/`them`
      */
     addressMeAs?: string | null;
     /**
