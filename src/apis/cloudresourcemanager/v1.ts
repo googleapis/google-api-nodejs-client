@@ -811,7 +811,7 @@ export namespace cloudresourcemanager_v1 {
      */
     filter?: string | null;
     /**
-     * The maximum number of Organizations to return in the response. This field is optional.
+     * The maximum number of Organizations to return in the response. The server can return fewer organizations than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number | null;
     /**
@@ -2323,7 +2323,7 @@ export namespace cloudresourcemanager_v1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.list({
-     *     // The maximum number of items to return. This is a suggestion for the server.
+     *     // The maximum number of items to return. This is a suggestion for the server. The server can return fewer liens than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -2451,7 +2451,7 @@ export namespace cloudresourcemanager_v1 {
   }
   export interface Params$Resource$Liens$List extends StandardParameters {
     /**
-     * The maximum number of items to return. This is a suggestion for the server.
+     * The maximum number of items to return. This is a suggestion for the server. The server can return fewer liens than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**

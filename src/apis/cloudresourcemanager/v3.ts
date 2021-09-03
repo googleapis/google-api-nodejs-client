@@ -1494,7 +1494,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.list({
-     *     // Optional. The maximum number of folders to return in the response. If unspecified, server picks an appropriate default.
+     *     // Optional. The maximum number of folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
@@ -1918,7 +1918,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.search({
-     *     // Optional. The maximum number of folders to return in the response. If unspecified, server picks an appropriate default.
+     *     // Optional. The maximum number of folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `SearchFolders` that indicates from where search should continue.
      *     pageToken: 'placeholder-value',
@@ -2486,7 +2486,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Folders$List extends StandardParameters {
     /**
-     * Optional. The maximum number of folders to return in the response. If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
@@ -2530,7 +2530,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Folders$Search extends StandardParameters {
     /**
-     * Optional. The maximum number of folders to return in the response. If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
@@ -3019,7 +3019,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.liens.list({
-     *     // The maximum number of items to return. This is a suggestion for the server.
+     *     // The maximum number of items to return. This is a suggestion for the server. The server can return fewer liens than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -3147,7 +3147,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Liens$List extends StandardParameters {
     /**
-     * The maximum number of items to return. This is a suggestion for the server.
+     * The maximum number of items to return. This is a suggestion for the server. The server can return fewer liens than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
@@ -3624,7 +3624,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.search({
-     *     // Optional. The maximum number of organizations to return in the response. If unspecified, server picks an appropriate default.
+     *     // Optional. The maximum number of organizations to return in the response. The server can return fewer organizations than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `SearchOrganizations` that indicates from where listing should continue.
      *     pageToken: 'placeholder-value',
@@ -4052,7 +4052,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Organizations$Search
     extends StandardParameters {
     /**
-     * Optional. The maximum number of organizations to return in the response. If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of organizations to return in the response. The server can return fewer organizations than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
