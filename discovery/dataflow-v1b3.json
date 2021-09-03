@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20210818",
+  "revision": "20210825",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3371,6 +3371,10 @@
         },
         "kmsKeyName": {
           "description": "Name for the Cloud KMS key for the job. Key format is: projects//locations//keyRings//cryptoKeys/",
+          "type": "string"
+        },
+        "launcherMachineType": {
+          "description": "The machine type to use for launching the job. The default is n1-standard-1.",
           "type": "string"
         },
         "machineType": {
