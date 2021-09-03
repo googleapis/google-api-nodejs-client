@@ -96,7 +96,7 @@
   },
   "protocol": "rest",
   "resources": {},
-  "revision": "20210323",
+  "revision": "20210811",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -437,6 +437,12 @@
       "description": "A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance.",
       "id": "Instance",
       "properties": {
+        "createTime": {
+          "description": "Output only. A server-assigned timestamp representing when this Instance was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "displayName": {
           "description": "Required. The descriptive name for this instance as it appears in UIs. Can be changed at any time, but should be kept globally unique to avoid confusion.",
           "type": "string"
