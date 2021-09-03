@@ -329,7 +329,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig {
     /**
-     * Required. Medium of conversations used in training data.
+     * Required.
      */
     medium?: string | null;
     /**
@@ -1240,7 +1240,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig {
     /**
-     * Required. Medium of conversations used in training data.
+     * Required.
      */
     medium?: string | null;
     /**
