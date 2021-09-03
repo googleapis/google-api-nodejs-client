@@ -5697,47 +5697,6 @@
             "https://www.googleapis.com/auth/doubleclickbidmanager"
           ],
           "supportsMediaDownload": true
-        },
-        "upload": {
-          "description": "Uploads media. Upload is supported on the URI `/upload/media/{resource_name=**}?upload_type=media.` **Note**: Upload requests will not be successful without including `upload_type=media` query string.",
-          "flatPath": "media/{mediaId}",
-          "httpMethod": "POST",
-          "id": "displayvideo.media.upload",
-          "mediaUpload": {
-            "accept": [
-              "*/*"
-            ],
-            "protocols": {
-              "simple": {
-                "multipart": true,
-                "path": "/upload/media/{+resourceName}"
-              }
-            }
-          },
-          "parameterOrder": [
-            "resourceName"
-          ],
-          "parameters": {
-            "resourceName": {
-              "description": "Name of the media that is being downloaded. See ReadRequest.resource_name.",
-              "location": "path",
-              "pattern": "^.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "media/{+resourceName}",
-          "request": {
-            "$ref": "GoogleBytestreamMedia"
-          },
-          "response": {
-            "$ref": "GoogleBytestreamMedia"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/display-video",
-            "https://www.googleapis.com/auth/doubleclickbidmanager"
-          ],
-          "supportsMediaUpload": true
         }
       }
     },
@@ -7411,7 +7370,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20210902",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
