@@ -1089,7 +1089,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20210902",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2239,7 +2239,7 @@
       "id": "GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig",
       "properties": {
         "medium": {
-          "description": "Required. Medium of conversations used in training data.",
+          "description": "Required. ",
           "enum": [
             "MEDIUM_UNSPECIFIED",
             "PHONE_CALL",
@@ -3049,7 +3049,7 @@
       "id": "GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig",
       "properties": {
         "medium": {
-          "description": "Required. Medium of conversations used in training data.",
+          "description": "Required. ",
           "enum": [
             "MEDIUM_UNSPECIFIED",
             "PHONE_CALL",
