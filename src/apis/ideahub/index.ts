@@ -15,18 +15,28 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {ideahub_v1alpha} from './v1alpha';
+import {ideahub_v1beta} from './v1beta';
 
 export const VERSIONS = {
   v1alpha: ideahub_v1alpha.Ideahub,
+  v1beta: ideahub_v1beta.Ideahub,
 };
 
 export function ideahub(version: 'v1alpha'): ideahub_v1alpha.Ideahub;
 export function ideahub(
   options: ideahub_v1alpha.Options
 ): ideahub_v1alpha.Ideahub;
-export function ideahub<T = ideahub_v1alpha.Ideahub>(
+export function ideahub(version: 'v1beta'): ideahub_v1beta.Ideahub;
+export function ideahub(
+  options: ideahub_v1beta.Options
+): ideahub_v1beta.Ideahub;
+export function ideahub<T = ideahub_v1alpha.Ideahub | ideahub_v1beta.Ideahub>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha' | ideahub_v1alpha.Options
+  versionOrOptions:
+    | 'v1alpha'
+    | ideahub_v1alpha.Options
+    | 'v1beta'
+    | ideahub_v1beta.Options
 ) {
   return getAPI<T>('ideahub', versionOrOptions, VERSIONS, this);
 }
@@ -34,6 +44,7 @@ export function ideahub<T = ideahub_v1alpha.Ideahub>(
 const auth = new AuthPlus();
 export {auth};
 export {ideahub_v1alpha};
+export {ideahub_v1beta};
 export {
   AuthPlus,
   GlobalOptions,
