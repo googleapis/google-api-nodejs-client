@@ -834,6 +834,89 @@
                 },
                 "peerings": {
                   "methods": {
+                    "create": {
+                      "description": "Creates a Peering for Managed AD instance.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/peerings",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.peerings.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. Resource project name and location using the form: `projects/{project_id}/locations/global`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "peeringId": {
+                          "description": "Required. Peering Id, unique name to identify peering.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/peerings",
+                      "request": {
+                        "$ref": "Peering"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes identified Peering.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/peerings/{peeringsId}",
+                      "httpMethod": "DELETE",
+                      "id": "managedidentities.projects.locations.global.peerings.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Peering resource name using the form: `projects/{project_id}/locations/global/peerings/{peering_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/peerings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single Peering.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/peerings/{peeringsId}",
+                      "httpMethod": "GET",
+                      "id": "managedidentities.projects.locations.global.peerings.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Peering resource name using the form: `projects/{project_id}/locations/global/peerings/{peering_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/peerings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Peering"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                       "flatPath": "v1/projects/{projectsId}/locations/global/peerings/{peeringsId}:getIamPolicy",
@@ -860,6 +943,86 @@
                       "path": "v1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists Peerings in a given project.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/peerings",
+                      "httpMethod": "GET",
+                      "id": "managedidentities.projects.locations.global.peerings.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Filter specifying constraints of a list operation. For example, `peering.authorized_network=\"projects/myprojectid/global/networks/mynetwork\"`.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The next_page_token value returned from a previous List request, if any.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The resource name of the peering location using the form: `projects/{project_id}/locations/global`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/peerings",
+                      "response": {
+                        "$ref": "ListPeeringsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the labels for specified Peering.",
+                      "flatPath": "v1/projects/{projectsId}/locations/global/peerings/{peeringsId}",
+                      "httpMethod": "PATCH",
+                      "id": "managedidentities.projects.locations.global.peerings.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. Unique name of the peering in this scope including projects and location using the form: `projects/{project_id}/locations/global/peerings/{peering_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/peerings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Peering: * `labels`",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "Peering"
+                      },
+                      "response": {
+                        "$ref": "Operation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -930,7 +1093,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20210824",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1673,6 +1836,31 @@
       },
       "type": "object"
     },
+    "ListPeeringsResponse": {
+      "description": "ListPeeringsResponse is the response message for ListPeerings method.",
+      "id": "ListPeeringsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "peerings": {
+          "description": "A list of Managed Identities Service Peerings in the project.",
+          "items": {
+            "$ref": "Peering"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSqlIntegrationsResponse": {
       "description": "ListSqlIntegrationsResponse is the response message for ListSqlIntegrations method.",
       "id": "ListSqlIntegrationsResponse",
@@ -1870,6 +2058,69 @@
         },
         "verb": {
           "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Peering": {
+      "description": "Represents a Managed Service for Microsoft Active Directory Peering.",
+      "id": "Peering",
+      "properties": {
+        "authorizedNetwork": {
+          "description": "Required. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. Caller needs to make sure that CIDR subnets do not overlap between networks, else peering creation will fail.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the instance was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "domainResource": {
+          "description": "Required. Full domain resource path for the Managed AD Domain involved in peering. The resource path should be in the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user-provided metadata.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. Unique name of the peering in this scope including projects and location using the form: `projects/{project_id}/locations/global/peerings/{peering_id}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of this Peering.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "CONNECTED",
+            "DISCONNECTED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Peering is being created.",
+            "Peering is connected.",
+            "Peering is disconnected.",
+            "Peering is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusMessage": {
+          "description": "Output only. Additional information about the current status of this peering, if available.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last update time.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
