@@ -240,7 +240,7 @@
                   ]
                 },
                 "export": {
-                  "description": "Exports the specified agent to a binary file.",
+                  "description": "Exports the specified agent to a binary file. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: ExportAgentResponse",
                   "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}:export",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.locations.agents.export",
@@ -398,7 +398,7 @@
                   ]
                 },
                 "restore": {
-                  "description": "Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
+                  "description": "Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: An [Empty message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty) Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                   "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}:restore",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.locations.agents.restore",
@@ -642,7 +642,7 @@
                 "environments": {
                   "methods": {
                     "create": {
-                      "description": "Creates an Environment in the specified Agent.",
+                      "description": "Creates an Environment in the specified Agent. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: Environment",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/environments",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.environments.create",
@@ -797,7 +797,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates the specified Environment.",
+                      "description": "Updates the specified Environment. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: Environment",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/environments/{environmentsId}",
                       "httpMethod": "PATCH",
                       "id": "dialogflow.projects.locations.agents.environments.patch",
@@ -832,7 +832,7 @@
                       ]
                     },
                     "runContinuousTest": {
-                      "description": "Kicks off a continuous test under the specified Environment.",
+                      "description": "Kicks off a continuous test under the specified Environment. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: RunContinuousTestMetadata - `response`: RunContinuousTestResponse",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/environments/{environmentsId}:runContinuousTest",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.environments.runContinuousTest",
@@ -1438,7 +1438,7 @@
                       ]
                     },
                     "export": {
-                      "description": "Exports the specified flow to a binary file. Note that resources (e.g. intents, entities, webhooks) that the flow references will also be exported.",
+                      "description": "Exports the specified flow to a binary file. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: ExportFlowResponse Note that resources (e.g. intents, entities, webhooks) that the flow references will also be exported.",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}:export",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.flows.export",
@@ -1529,7 +1529,7 @@
                       ]
                     },
                     "import": {
-                      "description": "Imports the specified flow to the specified agent from a binary file. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
+                      "description": "Imports the specified flow to the specified agent from a binary file. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: ImportFlowResponse Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows:import",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.flows.import",
@@ -1640,7 +1640,7 @@
                       ]
                     },
                     "train": {
-                      "description": "Trains the specified flow. Note that only the flow in 'draft' environment is trained. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
+                      "description": "Trains the specified flow. Note that only the flow in 'draft' environment is trained. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: An [Empty message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty) Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}:train",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.flows.train",
@@ -2066,7 +2066,7 @@
                     "versions": {
                       "methods": {
                         "create": {
-                          "description": "Creates a Version in the specified Flow.",
+                          "description": "Creates a Version in the specified Flow. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: CreateVersionOperationMetadata - `response`: Version",
                           "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}/versions",
                           "httpMethod": "POST",
                           "id": "dialogflow.projects.locations.agents.flows.versions.create",
@@ -2184,7 +2184,7 @@
                           ]
                         },
                         "load": {
-                          "description": "Loads resources in the specified version to the draft flow.",
+                          "description": "Loads resources in the specified version to the draft flow. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: An [Empty message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)",
                           "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}/versions/{versionsId}:load",
                           "httpMethod": "POST",
                           "id": "dialogflow.projects.locations.agents.flows.versions.load",
@@ -2725,7 +2725,7 @@
                       ]
                     },
                     "batchRun": {
-                      "description": "Kicks off a batch run of test cases.",
+                      "description": "Kicks off a batch run of test cases. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: BatchRunTestCasesMetadata - `response`: BatchRunTestCasesResponse",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/testCases:batchRun",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.testCases.batchRun",
@@ -2826,7 +2826,7 @@
                       ]
                     },
                     "export": {
-                      "description": "Exports the test cases under the agent to a Cloud Storage bucket or a local file. Filter can be applied to export a subset of test cases.",
+                      "description": "Exports the test cases under the agent to a Cloud Storage bucket or a local file. Filter can be applied to export a subset of test cases. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ExportTestCasesMetadata - `response`: ExportTestCasesResponse",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/testCases:export",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.testCases.export",
@@ -2881,7 +2881,7 @@
                       ]
                     },
                     "import": {
-                      "description": "Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwite any existing ones. The provided ID in the imported test case is neglected.",
+                      "description": "Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwite any existing ones. The provided ID in the imported test case is neglected. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ImportTestCasesMetadata - `response`: ImportTestCasesResponse",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/testCases:import",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.testCases.import",
@@ -2997,7 +2997,7 @@
                       ]
                     },
                     "run": {
-                      "description": "Kicks off a test case run.",
+                      "description": "Kicks off a test case run. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: RunTestCaseMetadata - `response`: RunTestCaseResponse",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/testCases/{testCasesId}:run",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.agents.testCases.run",
@@ -3623,7 +3623,7 @@
       }
     }
   },
-  "revision": "20210823",
+  "revision": "20210830",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -3762,7 +3762,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. Input only. The diagnostic info output for the turn.",
+          "description": "Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.",
           "type": "object"
         },
         "differences": {
@@ -3919,7 +3919,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3ExportTestCasesMetadata": {
-      "description": "Metadata returned for the TestCases.ExportTestCases long running operation.",
+      "description": "Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3ExportTestCasesMetadata",
       "properties": {},
       "type": "object"
@@ -4740,7 +4740,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3RunTestCaseMetadata": {
-      "description": "Metadata returned for the TestCases.RunTestCase long running operation.",
+      "description": "Metadata returned for the TestCases.RunTestCase long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3RunTestCaseMetadata",
       "properties": {},
       "type": "object"
@@ -5494,7 +5494,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. Input only. The diagnostic info output for the turn.",
+          "description": "Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.",
           "type": "object"
         },
         "differences": {
@@ -6109,7 +6109,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata": {
-      "description": "Metadata returned for the TestCases.ExportTestCases long running operation.",
+      "description": "Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata",
       "properties": {},
       "type": "object"
@@ -7895,7 +7895,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata": {
-      "description": "Metadata returned for the TestCases.RunTestCase long running operation.",
+      "description": "Metadata returned for the TestCases.RunTestCase long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata",
       "properties": {},
       "type": "object"
