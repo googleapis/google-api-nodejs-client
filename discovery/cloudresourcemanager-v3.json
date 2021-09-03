@@ -216,7 +216,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The maximum number of folders to return in the response. If unspecified, server picks an appropriate default.",
+              "description": "Optional. The maximum number of folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -316,7 +316,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The maximum number of folders to return in the response. If unspecified, server picks an appropriate default.",
+              "description": "Optional. The maximum number of folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -508,7 +508,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "The maximum number of items to return. This is a suggestion for the server.",
+              "description": "The maximum number of items to return. This is a suggestion for the server. The server can return fewer liens than requested. If unspecified, server picks an appropriate default.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -630,7 +630,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The maximum number of organizations to return in the response. If unspecified, server picks an appropriate default.",
+              "description": "Optional. The maximum number of organizations to return in the response. The server can return fewer organizations than requested. If unspecified, server picks an appropriate default.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -1612,7 +1612,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20210830",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {

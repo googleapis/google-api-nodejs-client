@@ -483,7 +483,7 @@ export namespace cloudresourcemanager_v2beta1 {
    */
   export interface Schema$SearchFoldersRequest {
     /**
-     * Optional. The maximum number of folders to return in the response.
+     * Optional. The maximum number of folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number | null;
     /**
@@ -1174,7 +1174,7 @@ export namespace cloudresourcemanager_v2beta1 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.list({
-     *     // Optional. The maximum number of Folders to return in the response.
+     *     // Optional. The maximum number of Folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
@@ -2171,7 +2171,7 @@ export namespace cloudresourcemanager_v2beta1 {
   }
   export interface Params$Resource$Folders$List extends StandardParameters {
     /**
-     * Optional. The maximum number of Folders to return in the response.
+     * Optional. The maximum number of Folders to return in the response. The server can return fewer folders than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
