@@ -365,7 +365,7 @@ export namespace dialogflow_v3 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
     /**
-     * Required. Input only. The diagnostic info output for the turn.
+     * Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
@@ -490,7 +490,7 @@ export namespace dialogflow_v3 {
     flowUri?: string | null;
   }
   /**
-   * Metadata returned for the TestCases.ExportTestCases long running operation.
+   * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata {}
   /**
@@ -1087,7 +1087,7 @@ export namespace dialogflow_v3 {
     continuousTestResult?: Schema$GoogleCloudDialogflowCxV3beta1ContinuousTestResult;
   }
   /**
-   * Metadata returned for the TestCases.RunTestCase long running operation.
+   * Metadata returned for the TestCases.RunTestCase long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata {}
   /**
@@ -1521,7 +1521,7 @@ export namespace dialogflow_v3 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3Page;
     /**
-     * Required. Input only. The diagnostic info output for the turn.
+     * Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
@@ -1965,7 +1965,7 @@ export namespace dialogflow_v3 {
     flowUri?: string | null;
   }
   /**
-   * Metadata returned for the TestCases.ExportTestCases long running operation.
+   * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportTestCasesMetadata {}
   /**
@@ -3240,7 +3240,7 @@ export namespace dialogflow_v3 {
     continuousTestResult?: Schema$GoogleCloudDialogflowCxV3ContinuousTestResult;
   }
   /**
-   * Metadata returned for the TestCases.RunTestCase long running operation.
+   * Metadata returned for the TestCases.RunTestCase long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3RunTestCaseMetadata {}
   /**
@@ -7501,7 +7501,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Exports the specified agent to a binary file.
+     * Exports the specified agent to a binary file. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: ExportAgentResponse
      * @example
      * ```js
      * // Before running the sample:
@@ -8260,7 +8260,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed. Note: You should always train flows prior to sending them queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+     * Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: An [Empty message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty) Note: You should always train flows prior to sending them queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -9536,7 +9536,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Creates an Environment in the specified Agent.
+     * Creates an Environment in the specified Agent. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: Environment
      * @example
      * ```js
      * // Before running the sample:
@@ -10263,7 +10263,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Updates the specified Environment.
+     * Updates the specified Environment. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: Environment
      * @example
      * ```js
      * // Before running the sample:
@@ -10418,7 +10418,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Kicks off a continuous test under the specified Environment.
+     * Kicks off a continuous test under the specified Environment. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: RunContinuousTestMetadata - `response`: RunContinuousTestResponse
      * @example
      * ```js
      * // Before running the sample:
@@ -13683,7 +13683,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Exports the specified flow to a binary file. Note that resources (e.g. intents, entities, webhooks) that the flow references will also be exported.
+     * Exports the specified flow to a binary file. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: ExportFlowResponse Note that resources (e.g. intents, entities, webhooks) that the flow references will also be exported.
      * @example
      * ```js
      * // Before running the sample:
@@ -14122,7 +14122,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Imports the specified flow to the specified agent from a binary file. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+     * Imports the specified flow to the specified agent from a binary file. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: ImportFlowResponse Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -14585,7 +14585,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Trains the specified flow. Note that only the flow in 'draft' environment is trained. Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+     * Trains the specified flow. Note that only the flow in 'draft' environment is trained. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: An [Empty message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty) Note: You should always train a flow prior to sending it queries. See the [training documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
      * @example
      * ```js
      * // Before running the sample:
@@ -16705,7 +16705,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Creates a Version in the specified Flow.
+     * Creates a Version in the specified Flow. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: CreateVersionOperationMetadata - `response`: Version
      * @example
      * ```js
      * // Before running the sample:
@@ -17286,7 +17286,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Loads resources in the specified version to the draft flow.
+     * Loads resources in the specified version to the draft flow. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: An empty [Struct message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct) - `response`: An [Empty message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
      * @example
      * ```js
      * // Before running the sample:
@@ -19980,7 +19980,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Kicks off a batch run of test cases.
+     * Kicks off a batch run of test cases. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: BatchRunTestCasesMetadata - `response`: BatchRunTestCasesResponse
      * @example
      * ```js
      * // Before running the sample:
@@ -20445,7 +20445,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Exports the test cases under the agent to a Cloud Storage bucket or a local file. Filter can be applied to export a subset of test cases.
+     * Exports the test cases under the agent to a Cloud Storage bucket or a local file. Filter can be applied to export a subset of test cases. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ExportTestCasesMetadata - `response`: ExportTestCasesResponse
      * @example
      * ```js
      * // Before running the sample:
@@ -20744,7 +20744,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwite any existing ones. The provided ID in the imported test case is neglected.
+     * Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwite any existing ones. The provided ID in the imported test case is neglected. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: ImportTestCasesMetadata - `response`: ImportTestCasesResponse
      * @example
      * ```js
      * // Before running the sample:
@@ -21208,7 +21208,7 @@ export namespace dialogflow_v3 {
     }
 
     /**
-     * Kicks off a test case run.
+     * Kicks off a test case run. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: RunTestCaseMetadata - `response`: RunTestCaseResponse
      * @example
      * ```js
      * // Before running the sample:

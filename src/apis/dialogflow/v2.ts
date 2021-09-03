@@ -251,7 +251,7 @@ export namespace dialogflow_v2 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
     /**
-     * Required. Input only. The diagnostic info output for the turn.
+     * Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
@@ -376,7 +376,7 @@ export namespace dialogflow_v2 {
     flowUri?: string | null;
   }
   /**
-   * Metadata returned for the TestCases.ExportTestCases long running operation.
+   * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata {}
   /**
@@ -973,7 +973,7 @@ export namespace dialogflow_v2 {
     continuousTestResult?: Schema$GoogleCloudDialogflowCxV3beta1ContinuousTestResult;
   }
   /**
-   * Metadata returned for the TestCases.RunTestCase long running operation.
+   * Metadata returned for the TestCases.RunTestCase long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata {}
   /**
@@ -1386,7 +1386,7 @@ export namespace dialogflow_v2 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3Page;
     /**
-     * Required. Input only. The diagnostic info output for the turn.
+     * Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
@@ -1511,7 +1511,7 @@ export namespace dialogflow_v2 {
     flowUri?: string | null;
   }
   /**
-   * Metadata returned for the TestCases.ExportTestCases long running operation.
+   * Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportTestCasesMetadata {}
   /**
@@ -2108,7 +2108,7 @@ export namespace dialogflow_v2 {
     continuousTestResult?: Schema$GoogleCloudDialogflowCxV3ContinuousTestResult;
   }
   /**
-   * Metadata returned for the TestCases.RunTestCase long running operation.
+   * Metadata returned for the TestCases.RunTestCase long running operation. This message currently has no fields.
    */
   export interface Schema$GoogleCloudDialogflowCxV3RunTestCaseMetadata {}
   /**

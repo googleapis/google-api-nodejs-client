@@ -7315,7 +7315,7 @@
       }
     }
   },
-  "revision": "20210823",
+  "revision": "20210830",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7454,7 +7454,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. Input only. The diagnostic info output for the turn.",
+          "description": "Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.",
           "type": "object"
         },
         "differences": {
@@ -7611,7 +7611,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3ExportTestCasesMetadata": {
-      "description": "Metadata returned for the TestCases.ExportTestCases long running operation.",
+      "description": "Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3ExportTestCasesMetadata",
       "properties": {},
       "type": "object"
@@ -8432,7 +8432,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3RunTestCaseMetadata": {
-      "description": "Metadata returned for the TestCases.RunTestCase long running operation.",
+      "description": "Metadata returned for the TestCases.RunTestCase long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3RunTestCaseMetadata",
       "properties": {},
       "type": "object"
@@ -9025,7 +9025,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Required. Input only. The diagnostic info output for the turn.",
+          "description": "Required. Input only. The diagnostic info output for the turn. Required to calculate the testing coverage.",
           "type": "object"
         },
         "differences": {
@@ -9182,7 +9182,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata": {
-      "description": "Metadata returned for the TestCases.ExportTestCases long running operation.",
+      "description": "Metadata returned for the TestCases.ExportTestCases long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata",
       "properties": {},
       "type": "object"
@@ -10003,7 +10003,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata": {
-      "description": "Metadata returned for the TestCases.RunTestCase long running operation.",
+      "description": "Metadata returned for the TestCases.RunTestCase long running operation. This message currently has no fields.",
       "id": "GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata",
       "properties": {},
       "type": "object"
