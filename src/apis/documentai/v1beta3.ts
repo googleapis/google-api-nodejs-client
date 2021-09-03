@@ -762,6 +762,14 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageFormField {
     /**
+     * Created for Labeling UI to export key text. If corrections were made to the text identified by the `field_name.text_anchor`, this field will contain the correction.
+     */
+    correctedKeyText?: string | null;
+    /**
+     * Created for Labeling UI to export value text. If corrections were made to the text identified by the `field_value.text_anchor`, this field will contain the correction.
+     */
+    correctedValueText?: string | null;
+    /**
      * Layout for the FormField name. e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
      */
     fieldName?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageLayout;
@@ -1610,6 +1618,14 @@ export namespace documentai_v1beta3 {
    * A form field detected on the page.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageFormField {
+    /**
+     * Created for Labeling UI to export key text. If corrections were made to the text identified by the `field_name.text_anchor`, this field will contain the correction.
+     */
+    correctedKeyText?: string | null;
+    /**
+     * Created for Labeling UI to export value text. If corrections were made to the text identified by the `field_value.text_anchor`, this field will contain the correction.
+     */
+    correctedValueText?: string | null;
     /**
      * Layout for the FormField name. e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
      */
@@ -2612,6 +2628,14 @@ export namespace documentai_v1beta3 {
    * A form field detected on the page.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentPageFormField {
+    /**
+     * Created for Labeling UI to export key text. If corrections were made to the text identified by the `field_name.text_anchor`, this field will contain the correction.
+     */
+    correctedKeyText?: string | null;
+    /**
+     * Created for Labeling UI to export value text. If corrections were made to the text identified by the `field_value.text_anchor`, this field will contain the correction.
+     */
+    correctedValueText?: string | null;
     /**
      * Layout for the FormField name. e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc.
      */
