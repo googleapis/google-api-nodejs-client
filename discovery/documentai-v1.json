@@ -1626,6 +1626,14 @@
       "description": "A form field detected on the page.",
       "id": "GoogleCloudDocumentaiV1DocumentPageFormField",
       "properties": {
+        "correctedKeyText": {
+          "description": "Created for Labeling UI to export key text. If corrections were made to the text identified by the `field_name.text_anchor`, this field will contain the correction.",
+          "type": "string"
+        },
+        "correctedValueText": {
+          "description": "Created for Labeling UI to export value text. If corrections were made to the text identified by the `field_value.text_anchor`, this field will contain the correction.",
+          "type": "string"
+        },
         "fieldName": {
           "$ref": "GoogleCloudDocumentaiV1DocumentPageLayout",
           "description": "Layout for the FormField name. e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc."
@@ -2835,6 +2843,14 @@
       "description": "A form field detected on the page.",
       "id": "GoogleCloudDocumentaiV1beta1DocumentPageFormField",
       "properties": {
+        "correctedKeyText": {
+          "description": "Created for Labeling UI to export key text. If corrections were made to the text identified by the `field_name.text_anchor`, this field will contain the correction.",
+          "type": "string"
+        },
+        "correctedValueText": {
+          "description": "Created for Labeling UI to export value text. If corrections were made to the text identified by the `field_value.text_anchor`, this field will contain the correction.",
+          "type": "string"
+        },
         "fieldName": {
           "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageLayout",
           "description": "Layout for the FormField name. e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc."
@@ -4008,6 +4024,14 @@
       "description": "A form field detected on the page.",
       "id": "GoogleCloudDocumentaiV1beta2DocumentPageFormField",
       "properties": {
+        "correctedKeyText": {
+          "description": "Created for Labeling UI to export key text. If corrections were made to the text identified by the `field_name.text_anchor`, this field will contain the correction.",
+          "type": "string"
+        },
+        "correctedValueText": {
+          "description": "Created for Labeling UI to export value text. If corrections were made to the text identified by the `field_value.text_anchor`, this field will contain the correction.",
+          "type": "string"
+        },
         "fieldName": {
           "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageLayout",
           "description": "Layout for the FormField name. e.g. `Address`, `Email`, `Grand total`, `Phone number`, etc."
