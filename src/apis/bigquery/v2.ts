@@ -382,6 +382,12 @@ export namespace bigquery_v2 {
      */
     logType?: string | null;
   }
+  export interface Schema$AvroOptions {
+    /**
+     * [Optional] If set to true will enable interpreting logical types into their corresponding types (ie. TIMESTAMP), instead of only using their raw types (ie. INTEGER).
+     */
+    useAvroLogicalTypes?: boolean | null;
+  }
   export interface Schema$BiEngineReason {
     /**
      * [Output-only] High-level BI Engine reason for partial or disabled acceleration.
@@ -1116,6 +1122,10 @@ export namespace bigquery_v2 {
      * Try to detect schema and format options automatically. Any option specified explicitly will be honored.
      */
     autodetect?: boolean | null;
+    /**
+     * Additional properties to set if sourceFormat is set to Avro.
+     */
+    avroOptions?: Schema$AvroOptions;
     /**
      * [Optional] Additional options if sourceFormat is set to BIGTABLE.
      */
@@ -2509,6 +2519,10 @@ export namespace bigquery_v2 {
      * Required. The type of routine.
      */
     routineType?: string | null;
+    /**
+     * Optional. Can be set for procedures only. If true (default), the definition body will be validated in the creation and the updates of the procedure. For procedures with an argument of ANY TYPE, the definition body validtion is not supported at creation/update time, and thus this field must be set to false explicitly.
+     */
+    strictMode?: boolean | null;
   }
   export interface Schema$RoutineReference {
     /**
@@ -6669,7 +6683,8 @@ export namespace bigquery_v2 {
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
-     *   //   "routineType": "my_routineType"
+     *   //   "routineType": "my_routineType",
+     *   //   "strictMode": false
      *   // }
      * }
      *
@@ -6814,7 +6829,8 @@ export namespace bigquery_v2 {
      *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
-     *       //   "routineType": "my_routineType"
+     *       //   "routineType": "my_routineType",
+     *       //   "strictMode": false
      *       // }
      *     },
      *   });
@@ -6834,7 +6850,8 @@ export namespace bigquery_v2 {
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
-     *   //   "routineType": "my_routineType"
+     *   //   "routineType": "my_routineType",
+     *   //   "strictMode": false
      *   // }
      * }
      *
@@ -7129,7 +7146,8 @@ export namespace bigquery_v2 {
      *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
-     *       //   "routineType": "my_routineType"
+     *       //   "routineType": "my_routineType",
+     *       //   "strictMode": false
      *       // }
      *     },
      *   });
@@ -7149,7 +7167,8 @@ export namespace bigquery_v2 {
      *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
-     *   //   "routineType": "my_routineType"
+     *   //   "routineType": "my_routineType",
+     *   //   "strictMode": false
      *   // }
      * }
      *

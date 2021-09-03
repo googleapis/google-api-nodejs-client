@@ -1683,7 +1683,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20210828",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2133,6 +2133,16 @@
             "Data reads. Example: CloudSQL Users list"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AvroOptions": {
+      "id": "AvroOptions",
+      "properties": {
+        "useAvroLogicalTypes": {
+          "description": "[Optional] If set to true will enable interpreting logical types into their corresponding types (ie. TIMESTAMP), instead of only using their raw types (ie. INTEGER).",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3207,6 +3217,10 @@
         "autodetect": {
           "description": "Try to detect schema and format options automatically. Any option specified explicitly will be honored.",
           "type": "boolean"
+        },
+        "avroOptions": {
+          "$ref": "AvroOptions",
+          "description": "Additional properties to set if sourceFormat is set to Avro."
         },
         "bigtableOptions": {
           "$ref": "BigtableOptions",
@@ -5203,6 +5217,10 @@
             "Non-builtin permanent TVF."
           ],
           "type": "string"
+        },
+        "strictMode": {
+          "description": "Optional. Can be set for procedures only. If true (default), the definition body will be validated in the creation and the updates of the procedure. For procedures with an argument of ANY TYPE, the definition body validtion is not supported at creation/update time, and thus this field must be set to false explicitly.",
+          "type": "boolean"
         }
       },
       "type": "object"
