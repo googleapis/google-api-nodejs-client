@@ -1483,6 +1483,62 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "disable": {
+                  "description": "Disable a ServiceAccountKey. A disabled service account key can be enabled through EnableServiceAccountKey. The API is currently in preview phase.",
+                  "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}/keys/{keysId}:disable",
+                  "httpMethod": "POST",
+                  "id": "iam.projects.serviceAccounts.keys.disable",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/serviceAccounts/[^/]+/keys/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:disable",
+                  "request": {
+                    "$ref": "DisableServiceAccountKeyRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "enable": {
+                  "description": "Enable a ServiceAccountKey. The API is currently in preview phase.",
+                  "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}/keys/{keysId}:enable",
+                  "httpMethod": "POST",
+                  "id": "iam.projects.serviceAccounts.keys.enable",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}/keys/{key}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/serviceAccounts/[^/]+/keys/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:enable",
+                  "request": {
+                    "$ref": "EnableServiceAccountKeyRequest"
+                  },
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets a ServiceAccountKey.",
                   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}/keys/{keysId}",
@@ -1696,7 +1752,7 @@
       }
     }
   },
-  "revision": "20210812",
+  "revision": "20210825",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
@@ -1911,6 +1967,12 @@
       },
       "type": "object"
     },
+    "DisableServiceAccountKeyRequest": {
+      "description": "The service account key disable request.",
+      "id": "DisableServiceAccountKeyRequest",
+      "properties": {},
+      "type": "object"
+    },
     "DisableServiceAccountRequest": {
       "description": "The service account disable request.",
       "id": "DisableServiceAccountRequest",
@@ -1920,6 +1982,12 @@
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "EnableServiceAccountKeyRequest": {
+      "description": "The service account key enable request.",
+      "id": "EnableServiceAccountKeyRequest",
       "properties": {},
       "type": "object"
     },
@@ -2536,6 +2604,10 @@
       "description": "Represents a service account key. A service account has two sets of key-pairs: user-managed, and system-managed. User-managed key-pairs can be created and deleted by users. Users are responsible for rotating these keys periodically to ensure security of their service accounts. Users retain the private key of these key-pairs, and Google retains ONLY the public key. System-managed keys are automatically rotated by Google, and are used for signing for a maximum of two weeks. The rotation process is probabilistic, and usage of the new key will gradually ramp up and down over the key's lifetime. If you cache the public key set for a service account, we recommend that you update the cache every 15 minutes. User-managed keys can be added and removed at any time, so it is important to update the cache frequently. For Google-managed keys, Google will publish a key at least 6 hours before it is first used for signing and will keep publishing it for at least 6 hours after it was last used for signing. Public keys for all service accounts are also published at the OAuth2 Service Account API.",
       "id": "ServiceAccountKey",
       "properties": {
+        "disabled": {
+          "description": "The key status.",
+          "type": "boolean"
+        },
         "keyAlgorithm": {
           "description": "Specifies the algorithm (and possibly key size) for the key.",
           "enum": [

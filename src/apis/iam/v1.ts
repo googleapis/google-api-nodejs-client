@@ -273,6 +273,10 @@ export namespace iam_v1 {
     serviceAccount?: Schema$ServiceAccount;
   }
   /**
+   * The service account key disable request.
+   */
+  export interface Schema$DisableServiceAccountKeyRequest {}
+  /**
    * The service account disable request.
    */
   export interface Schema$DisableServiceAccountRequest {}
@@ -280,6 +284,10 @@ export namespace iam_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * The service account key enable request.
+   */
+  export interface Schema$EnableServiceAccountKeyRequest {}
   /**
    * The service account enable request.
    */
@@ -696,6 +704,10 @@ export namespace iam_v1 {
    * Represents a service account key. A service account has two sets of key-pairs: user-managed, and system-managed. User-managed key-pairs can be created and deleted by users. Users are responsible for rotating these keys periodically to ensure security of their service accounts. Users retain the private key of these key-pairs, and Google retains ONLY the public key. System-managed keys are automatically rotated by Google, and are used for signing for a maximum of two weeks. The rotation process is probabilistic, and usage of the new key will gradually ramp up and down over the key's lifetime. If you cache the public key set for a service account, we recommend that you update the cache every 15 minutes. User-managed keys can be added and removed at any time, so it is important to update the cache frequently. For Google-managed keys, Google will publish a key at least 6 hours before it is first used for signing and will keep publishing it for at least 6 hours after it was last used for signing. Public keys for all service accounts are also published at the OAuth2 Service Account API.
    */
   export interface Schema$ServiceAccountKey {
+    /**
+     * The key status.
+     */
+    disabled?: boolean | null;
     /**
      * Specifies the algorithm (and possibly key size) for the key.
      */
@@ -7646,6 +7658,7 @@ export namespace iam_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "disabled": false,
      *   //   "keyAlgorithm": "my_keyAlgorithm",
      *   //   "keyOrigin": "my_keyOrigin",
      *   //   "keyType": "my_keyType",
@@ -7874,6 +7887,269 @@ export namespace iam_v1 {
     }
 
     /**
+     * Disable a ServiceAccountKey. A disabled service account key can be enabled through EnableServiceAccountKey. The API is currently in preview phase.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.disable({
+     *     // Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount/keys/my-key',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    disable(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Disable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    disable(
+      params?: Params$Resource$Projects$Serviceaccounts$Keys$Disable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    disable(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Disable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    disable(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Disable,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    disable(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Disable,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    disable(callback: BodyResponseCallback<Schema$Empty>): void;
+    disable(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Keys$Disable
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Keys$Disable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Keys$Disable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:disable').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Enable a ServiceAccountKey. The API is currently in preview phase.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.projects.serviceAccounts.keys.enable({
+     *     // Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     *     name: 'projects/my-project/serviceAccounts/my-serviceAccount/keys/my-key',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    enable(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Enable,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    enable(
+      params?: Params$Resource$Projects$Serviceaccounts$Keys$Enable,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    enable(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Enable,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    enable(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Enable,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    enable(
+      params: Params$Resource$Projects$Serviceaccounts$Keys$Enable,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    enable(callback: BodyResponseCallback<Schema$Empty>): void;
+    enable(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Serviceaccounts$Keys$Enable
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Serviceaccounts$Keys$Enable;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Serviceaccounts$Keys$Enable;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:enable').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets a ServiceAccountKey.
      * @example
      * ```js
@@ -7909,6 +8185,7 @@ export namespace iam_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "disabled": false,
      *   //   "keyAlgorithm": "my_keyAlgorithm",
      *   //   "keyOrigin": "my_keyOrigin",
      *   //   "keyType": "my_keyType",
@@ -8191,6 +8468,7 @@ export namespace iam_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "disabled": false,
      *   //   "keyAlgorithm": "my_keyAlgorithm",
      *   //   "keyOrigin": "my_keyOrigin",
      *   //   "keyType": "my_keyType",
@@ -8316,6 +8594,30 @@ export namespace iam_v1 {
      * Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Disable
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DisableServiceAccountKeyRequest;
+  }
+  export interface Params$Resource$Projects$Serviceaccounts$Keys$Enable
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the service account key in the following format: `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}/keys/{key\}`. Using `-` as a wildcard for the `PROJECT_ID` will infer the project from the account. The `ACCOUNT` value can be the `email` address or the `unique_id` of the service account.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EnableServiceAccountKeyRequest;
   }
   export interface Params$Resource$Projects$Serviceaccounts$Keys$Get
     extends StandardParameters {
