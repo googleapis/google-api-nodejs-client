@@ -230,6 +230,7 @@ export {iamcredentials_v1} from './apis/iamcredentials/v1';
 export {iap_v1} from './apis/iap/v1';
 export {iap_v1beta1} from './apis/iap/v1beta1';
 export {ideahub_v1alpha} from './apis/ideahub/v1alpha';
+export {ideahub_v1beta} from './apis/ideahub/v1beta';
 export {identitytoolkit_v3} from './apis/identitytoolkit/v3';
 export {indexing_v3} from './apis/indexing/v3';
 export {jobs_v2} from './apis/jobs/v2';
