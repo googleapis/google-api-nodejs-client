@@ -163,10 +163,6 @@ export namespace container_v1beta1 {
      */
     gcePersistentDiskCsiDriverConfig?: Schema$GcePersistentDiskCsiDriverConfig;
     /**
-     * Configuration for the GCP Filestore CSI driver.
-     */
-    gcpFilestoreCsiDriverConfig?: Schema$GcpFilestoreCsiDriverConfig;
-    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -1005,15 +1001,6 @@ export namespace container_v1beta1 {
   export interface Schema$GcePersistentDiskCsiDriverConfig {
     /**
      * Whether the Compute Engine PD CSI driver is enabled for this cluster.
-     */
-    enabled?: boolean | null;
-  }
-  /**
-   * Configuration for the GCP Filestore CSI driver.
-   */
-  export interface Schema$GcpFilestoreCsiDriverConfig {
-    /**
-     * Whether the GCP Filestore CSI driver is enabled for this cluster.
      */
     enabled?: boolean | null;
   }

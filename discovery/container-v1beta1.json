@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20210810",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2526,10 +2526,6 @@
         "gcePersistentDiskCsiDriverConfig": {
           "$ref": "GcePersistentDiskCsiDriverConfig",
           "description": "Configuration for the Compute Engine Persistent Disk CSI driver."
-        },
-        "gcpFilestoreCsiDriverConfig": {
-          "$ref": "GcpFilestoreCsiDriverConfig",
-          "description": "Configuration for the GCP Filestore CSI driver."
         },
         "horizontalPodAutoscaling": {
           "$ref": "HorizontalPodAutoscaling",
@@ -3568,17 +3564,6 @@
       "properties": {
         "enabled": {
           "description": "Whether the Compute Engine PD CSI driver is enabled for this cluster.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GcpFilestoreCsiDriverConfig": {
-      "description": "Configuration for the GCP Filestore CSI driver.",
-      "id": "GcpFilestoreCsiDriverConfig",
-      "properties": {
-        "enabled": {
-          "description": "Whether the GCP Filestore CSI driver is enabled for this cluster.",
           "type": "boolean"
         }
       },
