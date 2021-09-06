@@ -32511,7 +32511,7 @@
       }
     }
   },
-  "revision": "20210812",
+  "revision": "20210820",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -36970,7 +36970,7 @@
         },
         "diskEncryptionKey": {
           "$ref": "CustomerEncryptionKey",
-          "description": "Encrypts the disk using a customer-supplied encryption key. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine). Customer-supplied encryption keys do not protect access to metadata of the disk. If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later."
+          "description": "Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key. Encryption keys do not protect access to metadata of the disk. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later. For example, to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine. After you encrypt a disk with a customer-managed key, the diskEncryptionKey.kmsKeyName is set to a key *version* name once the disk is created. The disk is encrypted with this version of the key. In the response, diskEncryptionKey.kmsKeyName appears in the following format: \"diskEncryptionKey.kmsKeyName\": \"projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeysVersions/version If you do not provide an encryption key when creating the disk, then the disk is encrypted using an automatically generated key and you don't need to provide a key to use the disk later."
         },
         "eraseWindowsVssSignature": {
           "description": "Specifies whether the disk restored from a source snapshot should erase Windows specific VSS signature.",
@@ -53115,10 +53115,12 @@
             "BACKEND_SERVICES",
             "C2D_CPUS",
             "C2_CPUS",
+            "C3_CPUS",
             "COMMITMENTS",
             "COMMITTED_A2_CPUS",
             "COMMITTED_C2D_CPUS",
             "COMMITTED_C2_CPUS",
+            "COMMITTED_C3_CPUS",
             "COMMITTED_CPUS",
             "COMMITTED_E2_CPUS",
             "COMMITTED_LICENSES",
@@ -53232,6 +53234,8 @@
             "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -57461,6 +57465,20 @@
           "format": "int32",
           "type": "integer"
         },
+        "instanceTerminationAction": {
+          "description": "Specifies the termination action for the instance.",
+          "enum": [
+            "DELETE",
+            "INSTANCE_TERMINATION_ACTION_UNSPECIFIED",
+            "STOP"
+          ],
+          "enumDescriptions": [
+            "Delete the VM.",
+            "Default value. This value is unused.",
+            "Stop the VM without storing in-memory content. default action."
+          ],
+          "type": "string"
+        },
         "locationHint": {
           "description": "An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.",
           "type": "string"
@@ -57507,6 +57525,16 @@
         "preemptible": {
           "description": "Defines whether the instance is preemptible. This can only be set during instance creation or while the instance is stopped and therefore, in a `TERMINATED` state. See Instance Life Cycle for more information on the possible instance states.",
           "type": "boolean"
+        },
+        "provisioningModel": {
+          "description": "Specifies the provisioning model of the instance.",
+          "enum": [
+            "SPOT"
+          ],
+          "enumDescriptions": [
+            "Heavily discounted, no guaranteed runtime."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -60750,7 +60778,7 @@
             "NONE"
           ],
           "enumDescriptions": [
-            "Subsetting based on consistent hashing. For Traffic Director, the number of backends per backend group (the subset size) is adjusted based on the `subset_size` parameter. For Internal HTTP(S) load balancing, the number of backends per backend group (the subset size) is dynamically adjusted in two cases: - As the number of proxy instances participating in Internal HTTP(S) load balancing increases, the subset size decreases. - When the total number of backends in a network exceeds the capacity of a single proxy instance, subset sizes are reduced automatically for each service that has backend subsetting enabled.",
+            "Subsetting based on consistent hashing. For Traffic Director, the number of backends per backend group (the subset size) is based on the `subset_size` parameter. For Internal HTTP(S) load balancing, the number of backends per backend group (the subset size) is dynamically adjusted in two cases: - As the number of proxy instances participating in Internal HTTP(S) load balancing increases, the subset size decreases. - When the total number of backends in a network exceeds the capacity of a single proxy instance, subset sizes are reduced automatically for each service that has backend subsetting enabled.",
             "No Subsetting. Clients may open connections and send traffic to all backends of this backend service. This can lead to performance issues if there is substantial imbalance in the count of clients and backends."
           ],
           "type": "string"
