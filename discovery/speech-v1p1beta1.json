@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20210825",
+  "revision": "20210810",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ClassItem": {
@@ -594,25 +594,6 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
-      "type": "object"
-    },
-    "Entry": {
-      "description": "A single replacement configuration.",
-      "id": "Entry",
-      "properties": {
-        "caseSensitive": {
-          "description": "Whether the search is case sensitive.",
-          "type": "boolean"
-        },
-        "replace": {
-          "description": "What to replace with. Max length is 100 characters.",
-          "type": "string"
-        },
-        "search": {
-          "description": "What to replace. Max length is 100 characters.",
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "ListCustomClassesResponse": {
@@ -955,10 +936,6 @@
           },
           "type": "array"
         },
-        "transcriptNormalization": {
-          "$ref": "TranscriptNormalization",
-          "description": "Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability > 0.8) and final transcripts."
-        },
         "useEnhanced": {
           "description": "Set to true to use an enhanced model for speech recognition. If `use_enhanced` is set to true and the `model` field is not set, then an appropriate enhanced model is chosen if an enhanced model exists for the audio. If `use_enhanced` is true and an enhanced version of the specified model does not exist, then the speech is recognized using the standard version of the specified model.",
           "type": "boolean"
@@ -1251,20 +1228,6 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TranscriptNormalization": {
-      "description": "Transcription normalization configuration. Use transcription normalization to automatically replace parts of the transcript with phrases of your choosing. For StreamingRecognize, this normalization only applies to stable partial transcripts (stability > 0.8) and final transcripts.",
-      "id": "TranscriptNormalization",
-      "properties": {
-        "entries": {
-          "description": "A list of replacement entries. We will perform replacement with one entry at a time. For example, the second entry in [\"cat\" => \"dog\", \"mountain cat\" => \"mountain dog\"] will never be applied because we will always process the first entry before it. At most 100 entries.",
-          "items": {
-            "$ref": "Entry"
-          },
-          "type": "array"
         }
       },
       "type": "object"
