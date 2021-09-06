@@ -8,6 +8,10 @@
     "package": "@google-cloud/api-gateway"
   },
   {
+    "api": "apigeeconnect",
+    "package": "@google-cloud/apigee-connect"
+  },
+  {
     "api": "appengine",
     "package": "@google-cloud/appengine-admin"
   },
@@ -74,6 +78,14 @@
   {
     "api": "dns",
     "package": "@google-cloud/dns"
+  },
+  {
+    "api": "documentai",
+    "package": "@google-cloud/documentai"
+  },
+  {
+    "api": "essentialcontacts",
+    "package": "@google-cloud/essential-contacts"
   },
   {
     "api": "file",
@@ -208,6 +220,10 @@
     "package": "@google-cloud/redis"
   },
   {
+    "api": "resourcesettings",
+    "package": "@google-cloud/resource-settings"
+  },
+  {
     "api": "retail",
     "package": "@google-cloud/retail"
   },
@@ -238,6 +254,10 @@
   {
     "api": "serviceusage",
     "package": "@google-cloud/service-usage"
+  },
+  {
+    "api": "shell",
+    "package": "@google-cloud/shell"
   },
   {
     "api": "spanner",
@@ -272,6 +292,10 @@
     "package": "@google-cloud/text-to-speech"
   },
   {
+    "api": "tpu",
+    "package": "@google-cloud/tpu"
+  },
+  {
     "api": "transcoder",
     "package": "@google-cloud/video-transcoder"
   },
@@ -282,6 +306,10 @@
   {
     "api": "videointelligence",
     "package": "@google-cloud/video-intelligence"
+  },
+  {
+    "api": "vpcaccess",
+    "package": "@google-cloud/vpc-access"
   },
   {
     "api": "vision",
@@ -306,10 +334,6 @@
   {
     "api": "gateway",
     "package": "@google-cloud/gke-connect-gateway"
-  },
-  {
-    "api": "apigeeconnect",
-    "package": "@google-cloud/apigee-connect"
   },
   {
     "api": "area120tables",
@@ -352,20 +376,12 @@
     "package": "@google-cloud/dataproc-metastore"
   },
   {
-    "api": "documentai",
-    "package": "@google-cloud/documentai"
-  },
-  {
     "api": "domains",
     "package": "@google-cloud/domains"
   },
   {
     "api": "clouderrorreporting",
     "package": "@google-cloud/error-reporting"
-  },
-  {
-    "api": "essentialcontacts",
-    "package": "@google-cloud/essential-contacts"
   },
   {
     "api": "eventarc",
@@ -416,16 +432,8 @@
     "package": "@google-cloud/resource-manager"
   },
   {
-    "api": "resourcesettings",
-    "package": "@google-cloud/resource-settings"
-  },
-  {
     "api": "runtimeconfig",
     "package": "@google-cloud/rcloadenv"
-  },
-  {
-    "api": "shell",
-    "package": "@google-cloud/shell"
   },
   {
     "api": "clouddebugger",
@@ -436,15 +444,7 @@
     "package": "@google-cloud/trace-agent"
   },
   {
-    "api": "tpu",
-    "package": "@google-cloud/tpu"
-  },
-  {
     "api": "aiplatform",
     "package": "@google-cloud/aiplatform"
-  },
-  {
-    "api": "vpcaccess",
-    "package": "@google-cloud/vpc-access"
   }
 ]

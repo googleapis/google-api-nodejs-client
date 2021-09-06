@@ -621,6 +621,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "bigqueryconnection:v1beta1",
+      "name": "bigqueryconnection",
+      "version": "v1beta1",
+      "title": "BigQuery Connection API",
+      "description": "Allows users to manage BigQuery connections to external data sources.",
+      "discoveryRestUrl": "https://bigqueryconnection.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bigquery/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "bigquerydatatransfer:v1",
       "name": "bigquerydatatransfer",
       "version": "v1",
