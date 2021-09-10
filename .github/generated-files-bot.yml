@@ -8,9 +8,9 @@ generatedFiles:
 - path: '.github/generated-files-bot.+(yml|yaml)'
   message: '`.github/generated-files-bot.(yml|yaml)` should be updated in [`synthtool`](https://github.com/googleapis/synthtool)'
 - path: 'README.md'
-  message: '`README.md` is managed by [`synthtool`](https://github.com/googleapis/synthtool). However, a partials file can be used to update the README, e.g.: https://github.com/googleapis/nodejs-storage/blob/master/.readme-partials.yaml'
+  message: '`README.md` is managed by [`synthtool`](https://github.com/googleapis/synthtool). However, a partials file can be used to update the README, e.g.: https://github.com/googleapis/nodejs-storage/blob/main/.readme-partials.yaml'
 - path: 'samples/README.md'
-  message: '`samples/README.md` is managed by [`synthtool`](https://github.com/googleapis/synthtool). However, a partials file can be used to update the README, e.g.: https://github.com/googleapis/nodejs-storage/blob/master/.readme-partials.yaml'
+  message: '`samples/README.md` is managed by [`synthtool`](https://github.com/googleapis/synthtool). However, a partials file can be used to update the README, e.g.: https://github.com/googleapis/nodejs-storage/blob/main/.readme-partials.yaml'
 ignoreAuthors:
 - 'gcf-owl-bot[bot]'
 - 'yoshi-automation'
