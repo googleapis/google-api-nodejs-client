@@ -36,7 +36,7 @@ Before running the samples, make sure you've followed the steps outlined in
 
 ### Access Token Auth
 
-View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/accessTokenAuth.js).
+View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/main/samples/accessTokenAuth.js).
 
 [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/accessTokenAuth.js,samples/README.md)
 
@@ -53,7 +53,7 @@ __Usage:__
 
 ### Defaultauth
 
-View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/defaultauth.js).
+View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/main/samples/defaultauth.js).
 
 [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/defaultauth.js,samples/README.md)
 
@@ -70,7 +70,7 @@ __Usage:__
 
 ### Jwt
 
-View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/jwt.js).
+View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/main/samples/jwt.js).
 
 [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/jwt.js,samples/README.md)
 
@@ -87,7 +87,7 @@ __Usage:__
 
 ### Mediaupload
 
-View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/mediaupload.js).
+View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/main/samples/mediaupload.js).
 
 [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/mediaupload.js,samples/README.md)
 
@@ -104,7 +104,7 @@ __Usage:__
 
 ### Multiple
 
-View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/multiple.js).
+View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/main/samples/multiple.js).
 
 [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/multiple.js,samples/README.md)
 
@@ -121,7 +121,7 @@ __Usage:__
 
 ### Oauth2
 
-View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/master/samples/oauth2.js).
+View the [source code](https://github.com/googleapis/google-api-nodejs-client/blob/main/samples/oauth2.js).
 
 [![Open in Cloud Shell][shell_img]](https://console.cloud.google.com/cloudshell/open?git_repo=https://github.com/googleapis/google-api-nodejs-client&page=editor&open_in_editor=samples/oauth2.js,samples/README.md)
 
