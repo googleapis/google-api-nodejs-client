@@ -1,5 +1,32 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/drive-v1.1.3...drive-v2.0.0) (2021-09-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* * fix(admin): update the API
+
+### Features
+
+* **auth:** adds support workload identity federation ([#2517](https://www.github.com/googleapis/google-api-nodejs-client/issues/2517)) ([a10707c](https://www.github.com/googleapis/google-api-nodejs-client/commit/a10707c477759e7c9ef6360a2fe800856fb600c1))
+* **drive:** update the API ([97ef9ad](https://www.github.com/googleapis/google-api-nodejs-client/commit/97ef9ad7f18fc4c944af2fe9a1ffe7b9d1523948))
+* **drive:** update the API ([ad8d08e](https://www.github.com/googleapis/google-api-nodejs-client/commit/ad8d08ebe8778b5eedd2683faf4d25423cc42ffd))
+* run the generator ([#2627](https://www.github.com/googleapis/google-api-nodejs-client/issues/2627)) ([475f6e8](https://www.github.com/googleapis/google-api-nodejs-client/commit/475f6e87bce7f2a95986d4c2859ff6104e841167))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v5 ([#2497](https://www.github.com/googleapis/google-api-nodejs-client/issues/2497)) ([fec087a](https://www.github.com/googleapis/google-api-nodejs-client/commit/fec087abcf3d994dd41c3ffa0a0c12b1f9f09dae))
+* **drive:** update the API ([65f261d](https://www.github.com/googleapis/google-api-nodejs-client/commit/65f261df7fc264b28e252346618544844d81a103))
+* **drive:** update the API ([fc1e649](https://www.github.com/googleapis/google-api-nodejs-client/commit/fc1e64948415e7de33c2c7744b4d8e7a448afb25))
+* **drive:** update the API ([ae63ae3](https://www.github.com/googleapis/google-api-nodejs-client/commit/ae63ae32a5d52016e6b3155efb3822ded5ade10c))
+* **drive:** update the API ([4a9fed1](https://www.github.com/googleapis/google-api-nodejs-client/commit/4a9fed1195be43f27df5ff84667ee8d8890e092d))
+* **drive:** update the API ([e18c6f2](https://www.github.com/googleapis/google-api-nodejs-client/commit/e18c6f2f18dd106fbb8b65bce2f6cc3aea79303a))
+* **drive:** update the API ([1aab744](https://www.github.com/googleapis/google-api-nodejs-client/commit/1aab744f36ece24b33338ba80a491ba7fa54c575))
+* **drive:** update the API ([a553bf7](https://www.github.com/googleapis/google-api-nodejs-client/commit/a553bf7b1e93137ed507913a1201e7796864f039))
+* upgrade webpack from 4 to 5  ([#2524](https://www.github.com/googleapis/google-api-nodejs-client/issues/2524)) ([ecfd8bf](https://www.github.com/googleapis/google-api-nodejs-client/commit/ecfd8bfcd06e1beabff7ec9a8c4000222379eb8d))
+
 ### [1.1.3](https://www.github.com/googleapis/google-api-nodejs-client/compare/drive-v1.1.2...drive-v1.1.3) (2021-08-06)
 
 
