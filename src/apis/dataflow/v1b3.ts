@@ -911,10 +911,6 @@ export namespace dataflow_v1b3 {
      */
     kmsKeyName?: string | null;
     /**
-     * The machine type to use for launching the job. The default is n1-standard-1.
-     */
-    launcherMachineType?: string | null;
-    /**
      * The machine type to use for the job. Defaults to the value from the template if not specified.
      */
     machineType?: string | null;
