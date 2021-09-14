@@ -3013,6 +3013,10 @@
             "part"
           ],
           "parameters": {
+            "externalChannelId": {
+              "location": "query",
+              "type": "string"
+            },
             "part": {
               "location": "query",
               "repeated": true,
@@ -3765,7 +3769,7 @@
       }
     }
   },
-  "revision": "20210828",
+  "revision": "20210912",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
