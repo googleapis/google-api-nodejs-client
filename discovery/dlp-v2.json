@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20210822",
+  "revision": "20210910",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6366,7 +6366,7 @@
         },
         "replaceConfig": {
           "$ref": "GooglePrivacyDlpV2ReplaceValueConfig",
-          "description": "Replace"
+          "description": "Replace with a specified value."
         },
         "replaceWithInfoTypeConfig": {
           "$ref": "GooglePrivacyDlpV2ReplaceWithInfoTypeConfig",
