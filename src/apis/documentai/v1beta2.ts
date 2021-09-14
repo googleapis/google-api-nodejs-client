@@ -2364,6 +2364,28 @@ export namespace documentai_v1beta2 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
+   * The long running operation metadata for delete processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for the deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse {}
+  /**
    * The long running operation metadata for disable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorMetadata {
@@ -2441,6 +2463,32 @@ export namespace documentai_v1beta2 {
     gcsDestination?: string | null;
   }
   /**
+   * The long running operation metadata for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse {}
+  /**
    * The common metadata for long running operations.
    */
   export interface Schema$GoogleCloudDocumentaiV1CommonOperationMetadata {
@@ -2461,6 +2509,63 @@ export namespace documentai_v1beta2 {
      */
     updateTime?: string | null;
   }
+  /**
+   * The long running operation metadata for delete processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for delete processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for disable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DisableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DisableProcessorResponse {}
+  /**
+   * The long running operation metadata for enable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1EnableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1EnableProcessorResponse {}
   /**
    * The status of human review on a processed document.
    */
@@ -2496,6 +2601,32 @@ export namespace documentai_v1beta2 {
      */
     gcsDestination?: string | null;
   }
+  /**
+   * The long running operation metadata for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionResponse {}
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */

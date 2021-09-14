@@ -2253,6 +2253,28 @@ export namespace documentai_v1 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
+   * The long running operation metadata for delete processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for the deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse {}
+  /**
    * The long running operation metadata for disable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorMetadata {
@@ -2330,6 +2352,32 @@ export namespace documentai_v1 {
     gcsDestination?: string | null;
   }
   /**
+   * The long running operation metadata for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse {}
+  /**
    * A bounding polygon for the detected image annotation.
    */
   export interface Schema$GoogleCloudDocumentaiV1BoundingPoly {
@@ -2363,6 +2411,50 @@ export namespace documentai_v1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * The long running operation metadata for delete processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for delete processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for disable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DisableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DisableProcessorResponse {}
   /**
    * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
    */
@@ -3098,6 +3190,19 @@ export namespace documentai_v1 {
     textAnchor?: Schema$GoogleCloudDocumentaiV1DocumentTextAnchor;
   }
   /**
+   * The long running operation metadata for enable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1EnableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1EnableProcessorResponse {}
+  /**
    * Specifies a document stored on Cloud Storage.
    */
   export interface Schema$GoogleCloudDocumentaiV1GcsDocument {
@@ -3236,6 +3341,32 @@ export namespace documentai_v1 {
      */
     gcsDestination?: string | null;
   }
+  /**
+   * The long running operation metadata for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionResponse {}
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.
    */

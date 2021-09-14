@@ -2292,6 +2292,32 @@ export namespace documentai_v1beta3 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
   }
   /**
+   * The long running operation metadata for delete processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Request message for the deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionRequest {}
+  /**
+   * Response message for the deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse {}
+  /**
    * The long running operation metadata for disable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorMetadata {
@@ -3060,6 +3086,64 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorResponse {}
   /**
+   * Evaluation metrics, either in aggregate or about a specific entity.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationMetrics {
+    /**
+     * The calculated f1 score.
+     */
+    f1Score?: number | null;
+    /**
+     * The amount of false negatives.
+     */
+    falseNegativesCount?: number | null;
+    /**
+     * The amount of false positives.
+     */
+    falsePositivesCount?: number | null;
+    /**
+     * The amount of occurrences in ground truth documents.
+     */
+    groundTruthOccurrencesCount?: number | null;
+    /**
+     * The calculated precision.
+     */
+    precision?: number | null;
+    /**
+     * The amount of occurrences in predicted documents.
+     */
+    predictedOccurrencesCount?: number | null;
+    /**
+     * The calculated recall.
+     */
+    recall?: number | null;
+    /**
+     * The amount of documents that had an occurrence of this label.
+     */
+    totalDocumentsCount?: number | null;
+    /**
+     * The amount of true positives.
+     */
+    truePositivesCount?: number | null;
+  }
+  /**
+   * Gives a short summary of an evaluation, and links to the evaluation itself.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EvaluationReference {
+    /**
+     * An aggregate of the statistics for the evaluation.
+     */
+    aggregateMetrics?: Schema$GoogleCloudDocumentaiV1beta3EvaluationMetrics;
+    /**
+     * The resource name of the evaluation.
+     */
+    evaluation?: string | null;
+    /**
+     * The resource name of the Long Running Operation for the evaluation.
+     */
+    operation?: string | null;
+  }
+  /**
    * Response message for fetch processor types.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse {
@@ -3130,6 +3214,19 @@ export namespace documentai_v1beta3 {
     processors?: Schema$GoogleCloudDocumentaiV1beta3Processor[];
   }
   /**
+   * Response message for list processors.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse {
+    /**
+     * Points to the next processor, otherwise empty.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of processors.
+     */
+    processorVersions?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion[];
+  }
+  /**
    * A vertex represents a 2D point in the image. NOTE: the normalized vertex coordinates are relative to the original image and range from 0 to 1.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3NormalizedVertex {
@@ -3184,7 +3281,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorType {
     /**
-     * Whether the processor type allows creation. If yes, user can create a processor of this processor type. Otherwise, user needs to require for whitelisting.
+     * Whether the processor type allows creation. If yes, user can create a processor of this processor type. Otherwise, user needs to request access.
      */
     allowCreation?: boolean | null;
     /**
@@ -3212,6 +3309,35 @@ export namespace documentai_v1beta3 {
      * The location id, currently must be one of [us, eu].
      */
     locationId?: string | null;
+  }
+  /**
+   * A processor version is an implementation of a processor. Each processor can have multiple versions, pre-trained by Google internally or up-trained by the customer. At a time, a processor can only have one default version version. So the processor's behavior (when processing documents) is defined by a default version.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion {
+    /**
+     * The time the processor version was created.
+     */
+    createTime?: string | null;
+    /**
+     * The display name of the processor version.
+     */
+    displayName?: string | null;
+    /**
+     * The most recently invoked evaluation for the processor version.
+     */
+    latestEvaluation?: Schema$GoogleCloudDocumentaiV1beta3EvaluationReference;
+    /**
+     * The resource name of the processor version. Format: projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}
+     */
+    name?: string | null;
+    /**
+     * The schema of the processor version. Describes the output.
+     */
+    schema?: Schema$GoogleCloudDocumentaiV1beta3Schema;
+    /**
+     * The state of the processor version.
+     */
+    state?: string | null;
   }
   /**
    * Request message for the process document method.
@@ -3320,6 +3446,95 @@ export namespace documentai_v1beta3 {
     gcsDestination?: string | null;
   }
   /**
+   * The schema defines the output of the processed document by a processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3Schema {
+    /**
+     * Description of the schema.
+     */
+    description?: string | null;
+    /**
+     * Display name to show to users.
+     */
+    displayName?: string | null;
+    /**
+     * Entity types of the schema.
+     */
+    entityTypes?: Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType[];
+  }
+  /**
+   * EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType {
+    /**
+     * Type of the entity. It must be one of the following: `document` - the entity represents a classification of a logical document. `object` - if the entity has properties it is likely an object (or or a document.) `datetime` - the entity is a date or time value. `money` - the entity represents a money value amount. `number` - the entity is a number - integer or floating point. `string` - the entity is a string value. `boolean` - the entity is a boolean value. `address` - the entity is a location address.
+     */
+    baseType?: string | null;
+    /**
+     * Description of the entity type.
+     */
+    description?: string | null;
+    /**
+     * If specified, lists all the possible values for this entity.
+     */
+    enumValues?: string[] | null;
+    /**
+     * Occurrence type limits the number of times an entity type appears in the document.
+     */
+    occurrenceType?: string | null;
+    /**
+     * Describing the nested structure of an entity. An EntityType may consist of several other EntityTypes. For example, in a document there can be an EntityType 'ID', which consists of EntityType 'name' and 'address', with corresponding attributes, such as TEXT for both types and ONCE for occurrence types.
+     */
+    properties?: Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType[];
+    /**
+     * Source of this entity type.
+     */
+    source?: string | null;
+    /**
+     * Name of the type. It must be unique within the set of same level types.
+     */
+    type?: string | null;
+  }
+  /**
+   * The long running operation metadata for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Request message for the set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionRequest {
+    /**
+     * Required. The resource name of child ProcessorVersion to use as default.
+     */
+    defaultProcessorVersion?: string | null;
+  }
+  /**
+   * Response message for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Request message for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionRequest {}
+  /**
+   * Response message for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse {}
+  /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Vertex {
@@ -3353,6 +3568,63 @@ export namespace documentai_v1beta3 {
      */
     updateTime?: string | null;
   }
+  /**
+   * The long running operation metadata for delete processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for delete processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DeployProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for disable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DisableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DisableProcessorResponse {}
+  /**
+   * The long running operation metadata for enable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1EnableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1EnableProcessorResponse {}
   /**
    * The status of human review on a processed document.
    */
@@ -3388,6 +3660,32 @@ export namespace documentai_v1beta3 {
      */
     gcsDestination?: string | null;
   }
+  /**
+   * The long running operation metadata for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for set default processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1UndeployProcessorVersionResponse {}
   /**
    * The response message for Locations.ListLocations.
    */
@@ -5331,6 +5629,148 @@ export namespace documentai_v1beta3 {
     }
 
     /**
+     * Gets a processor detail.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.processors.get({
+     *     // Required. The processor resource name.
+     *     name: 'projects/my-project/locations/my-location/processors/my-processor',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "defaultProcessorVersion": "my_defaultProcessorVersion",
+     *   //   "displayName": "my_displayName",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name",
+     *   //   "processEndpoint": "my_processEndpoint",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Processors$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3Processor>;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Processor>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Processor>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Processor>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Processor>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Get
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Processor>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Processor>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3Processor>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3Processor>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Processors$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3Processor>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3Processor>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists all processors which belong to this project.
      * @example
      * ```js
@@ -5623,6 +6063,156 @@ export namespace documentai_v1beta3 {
         );
       }
     }
+
+    /**
+     * Set the default (active) version of a Processor that will be used in ProcessDocument and BatchProcessDocuments.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.setDefaultProcessorVersion({
+     *       // Required. The resource name of the Processor to change default version.
+     *       processor:
+     *         'projects/my-project/locations/my-location/processors/my-processor',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "defaultProcessorVersion": "my_defaultProcessorVersion"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setDefaultProcessorVersion(
+      params: Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setDefaultProcessorVersion(
+      params?: Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    setDefaultProcessorVersion(
+      params: Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setDefaultProcessorVersion(
+      params: Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setDefaultProcessorVersion(
+      params: Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setDefaultProcessorVersion(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setDefaultProcessorVersion(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta3/{+processor}:setDefaultProcessorVersion'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['processor'],
+        pathParams: ['processor'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Processors$Batchprocess
@@ -5680,6 +6270,13 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3EnableProcessorRequest;
   }
+  export interface Params$Resource$Projects$Locations$Processors$Get
+    extends StandardParameters {
+    /**
+     * Required. The processor resource name.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Processors$List
     extends StandardParameters {
     /**
@@ -5706,6 +6303,18 @@ export namespace documentai_v1beta3 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ProcessRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Setdefaultprocessorversion
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Processor to change default version.
+     */
+    processor?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionRequest;
   }
 
   export class Resource$Projects$Locations$Processors$Humanreviewconfig {
@@ -6046,6 +6655,581 @@ export namespace documentai_v1beta3 {
     }
 
     /**
+     * Deletes the processor version, all artifacts under the processor version will be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.delete({
+     *       // Required. The processor version resource name to be deleted.
+     *       name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deploys the processor version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.deploy({
+     *       // Required. The processor version resource name to be deployed.
+     *       name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deploy(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Deploy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deploy(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Deploy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    deploy(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Deploy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deploy(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Deploy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deploy(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Deploy,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deploy(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deploy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Deploy
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Deploy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Deploy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}:deploy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets a processor version detail.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.get({
+     *       // Required. The processor resource name.
+     *       name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestEvaluation": {},
+     *   //   "name": "my_name",
+     *   //   "schema": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Get
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all versions of a processor.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.list({
+     *       // The maximum number of processor versions to return. If unspecified, at most 10 processor versions will be returned. The maximum value is 20; values above 20 will be coerced to 20.
+     *       pageSize: 'placeholder-value',
+     *       // We will return the processor versions sorted by creation time. The page token will point to the next processor version.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent (project, location and processor) to list all versions. Format: projects/{project\}/locations/{location\}/processors/{processor\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/processors/my-processor',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "processorVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$List
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+parent}/processorVersions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ListProcessorVersionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Processes a single document.
      * @example
      * ```js
@@ -6197,6 +7381,154 @@ export namespace documentai_v1beta3 {
         );
       }
     }
+
+    /**
+     * Undeploys the processor version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.undeploy({
+     *       // Required. The processor version resource name to be undeployed.
+     *       name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undeploy(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undeploy(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    undeploy(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undeploy(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    undeploy(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    undeploy(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    undeploy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}:undeploy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess
@@ -6211,6 +7543,47 @@ export namespace documentai_v1beta3 {
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequest;
   }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Delete
+    extends StandardParameters {
+    /**
+     * Required. The processor version resource name to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Deploy
+    extends StandardParameters {
+    /**
+     * Required. The processor version resource name to be deployed.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3DeployProcessorVersionRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Get
+    extends StandardParameters {
+    /**
+     * Required. The processor resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$List
+    extends StandardParameters {
+    /**
+     * The maximum number of processor versions to return. If unspecified, at most 10 processor versions will be returned. The maximum value is 20; values above 20 will be coerced to 20.
+     */
+    pageSize?: number;
+    /**
+     * We will return the processor versions sorted by creation time. The page token will point to the next processor version.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent (project, location and processor) to list all versions. Format: projects/{project\}/locations/{location\}/processors/{processor\}
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Processors$Processorversions$Process
     extends StandardParameters {
     /**
@@ -6222,5 +7595,17 @@ export namespace documentai_v1beta3 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ProcessRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Undeploy
+    extends StandardParameters {
+    /**
+     * Required. The processor version resource name to be undeployed.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3UndeployProcessorVersionRequest;
   }
 }
