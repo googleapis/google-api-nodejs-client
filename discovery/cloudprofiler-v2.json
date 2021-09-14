@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20210822",
+  "revision": "20210903",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
@@ -225,10 +225,10 @@
       "properties": {
         "deployment": {
           "$ref": "Deployment",
-          "description": "Deployment details."
+          "description": "Required. Deployment details."
         },
         "profileType": {
-          "description": "One or more profile types that the agent is capable of providing.",
+          "description": "Required. One or more profile types that the agent is capable of providing.",
           "items": {
             "enum": [
               "PROFILE_TYPE_UNSPECIFIED",
@@ -273,7 +273,7 @@
           "type": "string"
         },
         "target": {
-          "description": "Target is the service name used to group related deployments: * Service name for GAE Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct GCE profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.",
+          "description": "Target is the service name used to group related deployments: * Service name for App Engine Flex / Standard. * Cluster and container name for GKE. * User-specified string for direct Compute Engine profiling (e.g. Java). * Job name for Dataflow. Validation regex: `^[a-z]([-a-z0-9_.]{0,253}[a-z0-9])?$`.",
           "type": "string"
         }
       },
@@ -301,6 +301,7 @@
         },
         "name": {
           "description": "Output only. Opaque, server-assigned, unique ID for this profile.",
+          "readOnly": true,
           "type": "string"
         },
         "profileBytes": {
