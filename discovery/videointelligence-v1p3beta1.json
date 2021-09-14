@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20210813",
+  "revision": "20210902",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -4107,7 +4107,7 @@
       "id": "GoogleCloudVideointelligenceV1p3beta1_ShotChangeDetectionConfig",
       "properties": {
         "model": {
-          "description": "Model to use for shot change detection. Supported values: \"builtin/stable\" (the default if unset) and \"builtin/latest\".",
+          "description": "Model to use for shot change detection. Supported values: \"builtin/stable\" (the default if unset), \"builtin/latest\", and \"builtin/legacy\".",
           "type": "string"
         }
       },
