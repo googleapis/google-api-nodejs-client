@@ -1683,7 +1683,7 @@
       }
     }
   },
-  "revision": "20210828",
+  "revision": "20210904",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2141,7 +2141,7 @@
       "id": "AvroOptions",
       "properties": {
         "useAvroLogicalTypes": {
-          "description": "[Optional] If set to true will enable interpreting logical types into their corresponding types (ie. TIMESTAMP), instead of only using their raw types (ie. INTEGER).",
+          "description": "[Optional] If sourceFormat is set to \"AVRO\", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).",
           "type": "boolean"
         }
       },
@@ -2723,6 +2723,10 @@
         "datasetReference": {
           "$ref": "DatasetReference",
           "description": "[Required] A reference that identifies the dataset."
+        },
+        "defaultCollation": {
+          "description": "[Output-only] The default collation of the dataset.",
+          "type": "string"
         },
         "defaultEncryptionConfiguration": {
           "$ref": "EncryptionConfiguration"
@@ -3759,7 +3763,7 @@
           "description": "Time-based partitioning specification for the destination table. Only one of timePartitioning and rangePartitioning should be specified."
         },
         "useAvroLogicalTypes": {
-          "description": "[Optional] If sourceFormat is set to \"AVRO\", indicates whether to enable interpreting logical types into their corresponding types (ie. TIMESTAMP), instead of only using their raw types (ie. INTEGER).",
+          "description": "[Optional] If sourceFormat is set to \"AVRO\", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).",
           "type": "boolean"
         },
         "writeDisposition": {
@@ -5546,6 +5550,10 @@
         "creationTime": {
           "description": "[Output-only] The time when this table was created, in milliseconds since the epoch.",
           "format": "int64",
+          "type": "string"
+        },
+        "defaultCollation": {
+          "description": "[Output-only] The default collation of the table.",
           "type": "string"
         },
         "description": {

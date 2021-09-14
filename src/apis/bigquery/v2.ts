@@ -384,7 +384,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$AvroOptions {
     /**
-     * [Optional] If set to true will enable interpreting logical types into their corresponding types (ie. TIMESTAMP), instead of only using their raw types (ie. INTEGER).
+     * [Optional] If sourceFormat is set to "AVRO", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).
      */
     useAvroLogicalTypes?: boolean | null;
   }
@@ -761,6 +761,10 @@ export namespace bigquery_v2 {
      * [Required] A reference that identifies the dataset.
      */
     datasetReference?: Schema$DatasetReference;
+    /**
+     * [Output-only] The default collation of the dataset.
+     */
+    defaultCollation?: string | null;
     defaultEncryptionConfiguration?: Schema$EncryptionConfiguration;
     /**
      * [Optional] The default partition expiration for all partitioned tables in the dataset, in milliseconds. Once this property is set, all newly-created partitioned tables in the dataset will have an expirationMs property in the timePartitioning settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of defaultTableExpirationMs for partitioned tables: only one of defaultTableExpirationMs and defaultPartitionExpirationMs will be used for any new partitioned table. If you provide an explicit timePartitioning.expirationMs when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
@@ -1562,7 +1566,7 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * [Optional] If sourceFormat is set to "AVRO", indicates whether to enable interpreting logical types into their corresponding types (ie. TIMESTAMP), instead of only using their raw types (ie. INTEGER).
+     * [Optional] If sourceFormat is set to "AVRO", indicates whether to interpret logical types as the corresponding BigQuery data type (for example, TIMESTAMP), instead of using the raw type (for example, INTEGER).
      */
     useAvroLogicalTypes?: boolean | null;
     /**
@@ -2731,6 +2735,10 @@ export namespace bigquery_v2 {
      */
     creationTime?: string | null;
     /**
+     * [Output-only] The default collation of the table.
+     */
+    defaultCollation?: string | null;
+    /**
      * [Optional] A user-friendly description of this table.
      */
     description?: string | null;
@@ -3465,6 +3473,7 @@ export namespace bigquery_v2 {
      *   //   "access": [],
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
      *   //   "defaultEncryptionConfiguration": {},
      *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
      *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
@@ -3611,6 +3620,7 @@ export namespace bigquery_v2 {
      *       //   "access": [],
      *       //   "creationTime": "my_creationTime",
      *       //   "datasetReference": {},
+     *       //   "defaultCollation": "my_defaultCollation",
      *       //   "defaultEncryptionConfiguration": {},
      *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
      *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
@@ -3635,6 +3645,7 @@ export namespace bigquery_v2 {
      *   //   "access": [],
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
      *   //   "defaultEncryptionConfiguration": {},
      *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
      *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
@@ -3925,6 +3936,7 @@ export namespace bigquery_v2 {
      *       //   "access": [],
      *       //   "creationTime": "my_creationTime",
      *       //   "datasetReference": {},
+     *       //   "defaultCollation": "my_defaultCollation",
      *       //   "defaultEncryptionConfiguration": {},
      *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
      *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
@@ -3949,6 +3961,7 @@ export namespace bigquery_v2 {
      *   //   "access": [],
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
      *   //   "defaultEncryptionConfiguration": {},
      *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
      *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
@@ -4097,6 +4110,7 @@ export namespace bigquery_v2 {
      *       //   "access": [],
      *       //   "creationTime": "my_creationTime",
      *       //   "datasetReference": {},
+     *       //   "defaultCollation": "my_defaultCollation",
      *       //   "defaultEncryptionConfiguration": {},
      *       //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
      *       //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
@@ -4121,6 +4135,7 @@ export namespace bigquery_v2 {
      *   //   "access": [],
      *   //   "creationTime": "my_creationTime",
      *   //   "datasetReference": {},
+     *   //   "defaultCollation": "my_defaultCollation",
      *   //   "defaultEncryptionConfiguration": {},
      *   //   "defaultPartitionExpirationMs": "my_defaultPartitionExpirationMs",
      *   //   "defaultTableExpirationMs": "my_defaultTableExpirationMs",
@@ -8555,6 +8570,7 @@ export namespace bigquery_v2 {
      *   // {
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
+     *   //   "defaultCollation": "my_defaultCollation",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
@@ -8860,6 +8876,7 @@ export namespace bigquery_v2 {
      *       // {
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
+     *       //   "defaultCollation": "my_defaultCollation",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
      *       //   "etag": "my_etag",
@@ -8896,6 +8913,7 @@ export namespace bigquery_v2 {
      *   // {
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
+     *   //   "defaultCollation": "my_defaultCollation",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
@@ -9201,6 +9219,7 @@ export namespace bigquery_v2 {
      *       // {
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
+     *       //   "defaultCollation": "my_defaultCollation",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
      *       //   "etag": "my_etag",
@@ -9237,6 +9256,7 @@ export namespace bigquery_v2 {
      *   // {
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
+     *   //   "defaultCollation": "my_defaultCollation",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
@@ -9691,6 +9711,7 @@ export namespace bigquery_v2 {
      *       // {
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
+     *       //   "defaultCollation": "my_defaultCollation",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
      *       //   "etag": "my_etag",
@@ -9727,6 +9748,7 @@ export namespace bigquery_v2 {
      *   // {
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
+     *   //   "defaultCollation": "my_defaultCollation",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
