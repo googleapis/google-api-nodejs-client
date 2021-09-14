@@ -397,6 +397,10 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
+     * The cloud region for the instance. e.g. **us-central1**, **europe-west1**. The region cannot be changed after instance creation.
+     */
+    region?: string | null;
+    /**
      * SSL configuration.
      */
     serverCaCert?: Schema$SslCert;
@@ -719,7 +723,13 @@ export namespace sqladmin_v1beta4 {
     /**
      * Options for exporting data as CSV. *MySQL* and *PostgreSQL* instances only.
      */
-    csvExportOptions?: {selectQuery?: string} | null;
+    csvExportOptions?: {
+      escapeCharacter?: string;
+      fieldsTerminatedBy?: string;
+      linesTerminatedBy?: string;
+      quoteCharacter?: string;
+      selectQuery?: string;
+    } | null;
     /**
      * Databases to be exported. *MySQL instances:* If *fileType* is *SQL* and no database is specified, all databases are exported, except for the *mysql* system database. If *fileType* is *CSV*, you can specify one database, either by using this property or by using the *csvExportOptions.selectQuery* property, which takes precedence over this property. *PostgreSQL instances:* You must specify one database to be exported. If *fileType* is *CSV*, this database must match the one specified in the *csvExportOptions.selectQuery* property. *SQL Server instances:* You must specify one database to be exported, and the *fileType* must be *BAK*.
      */
@@ -863,7 +873,14 @@ export namespace sqladmin_v1beta4 {
     /**
      * Options for importing data as CSV.
      */
-    csvImportOptions?: {columns?: string[]; table?: string} | null;
+    csvImportOptions?: {
+      columns?: string[];
+      escapeCharacter?: string;
+      fieldsTerminatedBy?: string;
+      linesTerminatedBy?: string;
+      quoteCharacter?: string;
+      table?: string;
+    } | null;
     /**
      * The target database for the import. If *fileType* is *SQL*, this field is required only if the import file does not specify a database, and is overridden by any database specification in the import file. If *fileType* is *CSV*, one database must be specified.
      */
@@ -1476,6 +1493,10 @@ export namespace sqladmin_v1beta4 {
      */
     settingsVersion?: string | null;
     /**
+     * SQL Server specific audit configuration.
+     */
+    sqlServerAuditConfig?: Schema$SqlServerAuditConfig;
+    /**
      * Configuration to increase storage size automatically. The default value is true.
      */
     storageAutoResize?: boolean | null;
@@ -1558,6 +1579,10 @@ export namespace sqladmin_v1beta4 {
      * Flag to enable verifying connection only
      */
     verifyConnectionOnly?: boolean | null;
+    /**
+     * Optional. Flag to verify settings required by replication setup only
+     */
+    verifyReplicationOnly?: boolean | null;
   }
   /**
    * Instance verify external sync settings response.
@@ -1606,6 +1631,19 @@ export namespace sqladmin_v1beta4 {
      * The start time of any upcoming scheduled maintenance for this instance.
      */
     startTime?: string | null;
+  }
+  /**
+   * SQL Server specific audit configuration.
+   */
+  export interface Schema$SqlServerAuditConfig {
+    /**
+     * The name of the destination bucket (e.g., gs://mybucket).
+     */
+    bucket?: string | null;
+    /**
+     * This is always sql#sqlServerAuditConfig
+     */
+    kind?: string | null;
   }
   /**
    * Represents a Sql Server database on the Cloud SQL instance.
@@ -2755,6 +2793,7 @@ export namespace sqladmin_v1beta4 {
      *   //   "databaseVersion": "my_databaseVersion",
      *   //   "ipAddresses": [],
      *   //   "kind": "my_kind",
+     *   //   "region": "my_region",
      *   //   "serverCaCert": {}
      *   // }
      * }
@@ -8343,7 +8382,8 @@ export namespace sqladmin_v1beta4 {
      *       // {
      *       //   "mysqlSyncConfig": {},
      *       //   "syncMode": "my_syncMode",
-     *       //   "verifyConnectionOnly": false
+     *       //   "verifyConnectionOnly": false,
+     *       //   "verifyReplicationOnly": false
      *       // }
      *     },
      *   });
