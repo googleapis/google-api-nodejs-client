@@ -586,7 +586,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1PredictRequest {
     /**
-     * Optional. Use dryRun mode for this prediction query. If set to true, a dummy model will be used that returns arbitrary catalog items. Note that the dryRun mode should only be used for testing the API, or if the model is not ready.
+     * Optional. Use dryRun mode for this prediction query. If set to true, a fake model will be used that returns arbitrary catalog items. Note that the dryRun mode should only be used for testing the API, or if the model is not ready.
      */
     dryRun?: boolean | null;
     /**
