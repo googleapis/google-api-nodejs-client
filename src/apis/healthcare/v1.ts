@@ -143,6 +143,36 @@ export namespace healthcare_v1 {
     ttl?: string | null;
   }
   /**
+   * The request to analyze healthcare entities in a document.
+   */
+  export interface Schema$AnalyzeEntitiesRequest {
+    /**
+     * document_content is a document to be annotated.
+     */
+    documentContent?: string | null;
+    /**
+     * A list of licensed vocabularies to use in the request, in addition to the default unlicensed vocabularies.
+     */
+    licensedVocabularies?: string[] | null;
+  }
+  /**
+   * Includes recognized entity mentions and relationships between them.
+   */
+  export interface Schema$AnalyzeEntitiesResponse {
+    /**
+     * The union of all the candidate entities that the entity_mentions in this response could link to. These are UMLS concepts or normalized mention content.
+     */
+    entities?: Schema$Entity[];
+    /**
+     * entity_mentions contains all the annotated medical entities that were mentioned in the provided document.
+     */
+    entityMentions?: Schema$EntityMention[];
+    /**
+     * relationships contains all the binary relationships that were identified between entity mentions within the provided document.
+     */
+    relationships?: Schema$EntityMentionRelationship[];
+  }
+  /**
    * Archives the specified User data mapping.
    */
   export interface Schema$ArchiveUserDataMappingRequest {}
@@ -567,6 +597,77 @@ export namespace healthcare_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * The candidate entities that an entity mention could link to.
+   */
+  export interface Schema$Entity {
+    /**
+     * entity_id is a first class field entity_id uniquely identifies this concept and its meta-vocabulary. For example, "UMLS/C0000970".
+     */
+    entityId?: string | null;
+    /**
+     * preferred_term is the preferred term for this concept. For example, "Acetaminophen". For ad hoc entities formed by normalization, this is the most popular unnormalized string.
+     */
+    preferredTerm?: string | null;
+    /**
+     * Vocabulary codes are first-class fields and differentiated from the concept unique identifier (entity_id). vocabulary_codes contains the representation of this concept in particular vocabularies, such as ICD-10, SNOMED-CT and RxNORM. These are prefixed by the name of the vocabulary, followed by the unique code within that vocabulary. For example, "RXNORM/A10334543".
+     */
+    vocabularyCodes?: string[] | null;
+  }
+  /**
+   * An entity mention in the document.
+   */
+  export interface Schema$EntityMention {
+    /**
+     * The certainty assessment of the entity mention. Its value is one of: LIKELY, SOMEWHAT_LIKELY, UNCERTAIN, SOMEWHAT_UNLIKELY, UNLIKELY, CONDITIONAL
+     */
+    certaintyAssessment?: Schema$Feature;
+    /**
+     * The model's confidence in this entity mention annotation. A number between 0 and 1.
+     */
+    confidence?: number | null;
+    /**
+     * linked_entities are candidate ontological concepts that this entity mention may refer to. They are sorted by decreasing confidence.it
+     */
+    linkedEntities?: Schema$LinkedEntity[];
+    /**
+     * mention_id uniquely identifies each entity mention in a single response.
+     */
+    mentionId?: string | null;
+    /**
+     * The subject this entity mention relates to. Its value is one of: PATIENT, FAMILY_MEMBER, OTHER
+     */
+    subject?: Schema$Feature;
+    /**
+     * How this entity mention relates to the subject temporally. Its value is one of: CURRENT, CLINICAL_HISTORY, FAMILY_HISTORY, UPCOMING, ALLERGY
+     */
+    temporalAssessment?: Schema$Feature;
+    /**
+     * text is the location of the entity mention in the document.
+     */
+    text?: Schema$TextSpan;
+    /**
+     * The semantic type of the entity: UNKNOWN_ENTITY_TYPE, ALONE, ANATOMICAL_STRUCTURE, ASSISTED_LIVING, BF_RESULT, BM_RESULT, BM_UNIT, BM_VALUE, BODY_FUNCTION, BODY_MEASUREMENT, COMPLIANT, DOESNOT_FOLLOWUP, FAMILY, FOLLOWSUP, LABORATORY_DATA, LAB_RESULT, LAB_UNIT, LAB_VALUE, MEDICAL_DEVICE, MEDICINE, MED_DOSE, MED_DURATION, MED_FORM, MED_FREQUENCY, MED_ROUTE, MED_STATUS, MED_STRENGTH, MED_TOTALDOSE, MED_UNIT, NON_COMPLIANT, OTHER_LIVINGSTATUS, PROBLEM, PROCEDURE, PROCEDURE_RESULT, PROC_METHOD, REASON_FOR_NONCOMPLIANCE, SEVERITY, SUBSTANCE_ABUSE, UNCLEAR_FOLLOWUP.
+     */
+    type?: string | null;
+  }
+  /**
+   * Defines directed relationship from one entity mention to another.
+   */
+  export interface Schema$EntityMentionRelationship {
+    /**
+     * The model's confidence in this annotation. A number between 0 and 1.
+     */
+    confidence?: number | null;
+    /**
+     * object_id is the id of the object entity mention.
+     */
+    objectId?: string | null;
+    /**
+     * subject_id is the id of the subject entity mention.
+     */
+    subjectId?: string | null;
+  }
+  /**
    * Evaluate a user's Consents for all matching User data mappings. Note: User data mappings are indexed asynchronously, causing slight delays between the time mappings are created or updated and when they are included in EvaluateUserConsents results.
    */
   export interface Schema$EvaluateUserConsentsRequest {
@@ -663,6 +764,19 @@ export namespace healthcare_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * A feature of an entity mention.
+   */
+  export interface Schema$Feature {
+    /**
+     * The model's confidence in this feature annotation. A number between 0 and 1.
+     */
+    confidence?: number | null;
+    /**
+     * The value of this feature annotation. Its range depends on the type of the feature.
+     */
+    value?: string | null;
   }
   /**
    * Specifies how to handle de-identification of a FHIR store.
@@ -1056,6 +1170,15 @@ export namespace healthcare_v1 {
      */
     message?: Schema$Message;
   }
+  /**
+   * EntityMentions can be linked to multiple entities using a LinkedEntity message lets us add other fields, e.g. confidence.
+   */
+  export interface Schema$LinkedEntity {
+    /**
+     * entity_id is a concept unique identifier. These are prefixed by a string that identifies the entity coding system, followed by the unique identifier within that system. For example, "UMLS/C0000970". This also supports ad hoc entities, which are formed by normalizing entity mention content.
+     */
+    entityId?: string | null;
+  }
   export interface Schema$ListAttributeDefinitionsResponse {
     /**
      * The returned Attribute definitions. The maximum number of attributes returned is determined by the value of page_size in the ListAttributeDefinitionsRequest.
@@ -1374,7 +1497,7 @@ export namespace healthcare_v1 {
     value?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1702,6 +1825,19 @@ export namespace healthcare_v1 {
     transformations?: Schema$InfoTypeTransformation[];
   }
   /**
+   * A span of text in the provided document.
+   */
+  export interface Schema$TextSpan {
+    /**
+     * The unicode codepoint index of the beginning of this span.
+     */
+    beginOffset?: number | null;
+    /**
+     * The original text contained in this span.
+     */
+    content?: string | null;
+  }
+  /**
    * A type definition for some HL7v2 type (incl. Segments and Datatypes).
    */
   export interface Schema$Type {
@@ -1773,9 +1909,11 @@ export namespace healthcare_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     datasets: Resource$Projects$Locations$Datasets;
+    services: Resource$Projects$Locations$Services;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.datasets = new Resource$Projects$Locations$Datasets(this.context);
+      this.services = new Resource$Projects$Locations$Services(this.context);
     }
 
     /**
@@ -20187,5 +20325,182 @@ export namespace healthcare_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Services {
+    context: APIRequestContext;
+    nlp: Resource$Projects$Locations$Services$Nlp;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.nlp = new Resource$Projects$Locations$Services$Nlp(this.context);
+    }
+  }
+
+  export class Resource$Projects$Locations$Services$Nlp {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Analyze heathcare entity in a document. Its response includes the recognized entity mentions and the relationships between them. AnalyzeEntities uses context aware models to detect entities.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.services.nlp.analyzeEntities({
+     *     // The resource name of the service of the form: "projects/{project_id\}/locations/{location_id\}/services/nlp".
+     *     nlpService: 'projects/my-project/locations/my-location/services/nlp',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "documentContent": "my_documentContent",
+     *       //   "licensedVocabularies": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "entityMentions": [],
+     *   //   "relationships": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeEntities(
+      params: Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeEntities(
+      params?: Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeEntitiesResponse>;
+    analyzeEntities(
+      params: Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeEntities(
+      params: Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+    ): void;
+    analyzeEntities(
+      params: Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities,
+      callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+    ): void;
+    analyzeEntities(
+      callback: BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+    ): void;
+    analyzeEntities(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeEntitiesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeEntitiesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+nlpService}:analyzeEntities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['nlpService'],
+        pathParams: ['nlpService'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnalyzeEntitiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Services$Nlp$Analyzeentities
+    extends StandardParameters {
+    /**
+     * The resource name of the service of the form: "projects/{project_id\}/locations/{location_id\}/services/nlp".
+     */
+    nlpService?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AnalyzeEntitiesRequest;
   }
 }
