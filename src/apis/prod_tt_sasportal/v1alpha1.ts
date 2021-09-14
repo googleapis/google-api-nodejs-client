@@ -367,6 +367,14 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * If populated, the Antenna Model Pattern to use. Format is: RecordCreatorId:PatternId
      */
     antennaModel?: string | null;
+    /**
+     * CCG. A group of CBSDs in the same ICG requesting a common primary channel assignment. See CBRSA-TS-2001 V3.0.0 for more details.
+     */
+    commonChannelGroup?: string | null;
+    /**
+     * ICG. A group of CBSDs that manage their own interference with the group. See CBRSA-TS-2001 V3.0.0 for more details.
+     */
+    interferenceCoordinationGroup?: string | null;
   }
   /**
    * Information about the model of the device.
