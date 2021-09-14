@@ -2237,7 +2237,7 @@ export namespace dlp_v2 {
      */
     redactConfig?: Schema$GooglePrivacyDlpV2RedactConfig;
     /**
-     * Replace
+     * Replace with a specified value.
      */
     replaceConfig?: Schema$GooglePrivacyDlpV2ReplaceValueConfig;
     /**
