@@ -370,6 +370,84 @@ export namespace mybusinesslodging_v1 {
     wifiAvailableException?: string | null;
   }
   /**
+   * An eco certificate awarded to the hotel.
+   */
+  export interface Schema$EcoCertification {
+    /**
+     * Whether the eco certificate was awarded or not.
+     */
+    awarded?: boolean | null;
+    /**
+     * Awarded exception.
+     */
+    awardedException?: string | null;
+    /**
+     * Required. The eco certificate.
+     */
+    ecoCertificate?: string | null;
+  }
+  /**
+   * Energy efficiency practices implemented at the hotel.
+   */
+  export interface Schema$EnergyEfficiency {
+    /**
+     * Carbon free energy sources. Property sources carbon-free electricity via at least one of the following methods: on-site clean energy generation, power purchase agreement(s) with clean energy generators, green power provided by electricity supplier, or purchases of Energy Attribute Certificates (such as Renewable Energy Certificates or Guarantees of Origin).
+     */
+    carbonFreeEnergySources?: boolean | null;
+    /**
+     * Carbon free energy sources exception.
+     */
+    carbonFreeEnergySourcesException?: string | null;
+    /**
+     * Energy conservation program. The property tracks corporate-level Scope 1 and 2 GHG emissions, and Scope 3 emissions if available. The property has a commitment to implement initiatives that reduce GHG emissions year over year. The property has shown an absolute reduction in emissions for at least 2 years. Emissions are either verfied by a third-party and/or published in external communications.
+     */
+    energyConservationProgram?: boolean | null;
+    /**
+     * Energy conservation program exception.
+     */
+    energyConservationProgramException?: string | null;
+    /**
+     * Energy efficient heating and cooling systems. The property doesn't use chlorofluorocarbon (CFC)-based refrigerants in heating, ventilating, and air-conditioning systems unless a third-party audit shows it's not economically feasible. The CFC-based refrigerants which are used should have a Global Warming Potential (GWP) ≤ 10. The property uses occupancy sensors on HVAC systems in back-of-house spaces, meeting rooms, and other low-traffic areas.
+     */
+    energyEfficientHeatingAndCoolingSystems?: boolean | null;
+    /**
+     * Energy efficient heating and cooling systems exception.
+     */
+    energyEfficientHeatingAndCoolingSystemsException?: string | null;
+    /**
+     * Energy efficient lighting. At least 75% of the property's lighting is energy efficient, using lighting that is more than 45 lumens per watt – typically LED or CFL lightbulbs.
+     */
+    energyEfficientLighting?: boolean | null;
+    /**
+     * Energy efficient lighting exception.
+     */
+    energyEfficientLightingException?: string | null;
+    /**
+     * Energy saving thermostats. The property installed energy-saving thermostats throughout the building to conserve energy when rooms or areas are not in use. Energy-saving thermostats are devices that control heating/cooling in the building by learning temperature preferences and automatically adjusting to energy-saving temperatures as the default. The thermostats are automatically set to a temperature between 68-78 degrees F (20-26 °C), depending on seasonality. In the winter, set the thermostat to 68°F (20°C) when the room is occupied, lowering room temperature when unoccupied. In the summer, set the thermostat to 78°F (26°C) when the room is occupied.
+     */
+    energySavingThermostats?: boolean | null;
+    /**
+     * Energy saving thermostats exception.
+     */
+    energySavingThermostatsException?: string | null;
+    /**
+     * Output only. Green building design. True if BREEAM-* or LEED-* certified.
+     */
+    greenBuildingDesign?: boolean | null;
+    /**
+     * Output only. Green building design exception.
+     */
+    greenBuildingDesignException?: string | null;
+    /**
+     * Independent organization audits energy use. The property conducts an energy audit at least every 5 years, the results of which are either verified by a third-party and/or published in external communications. An energy audit is a detailed assessment of the facility which provides recommendations to existing operations and procedures to improve energy efficiency, available incentives or rebates,and opportunities for improvements through renovations or upgrades. Examples of organizations that conduct credible third party audits include: Engie Impact, DNV GL (EU), Dexma, and local utility providers (they often provide energy and water audits).
+     */
+    independentOrganizationAuditsEnergyUse?: boolean | null;
+    /**
+     * Independent organization audits energy use exception.
+     */
+    independentOrganizationAuditsEnergyUseException?: string | null;
+  }
+  /**
    * Enhanced cleaning measures implemented by the hotel during COVID-19.
    */
   export interface Schema$EnhancedCleaning {
@@ -1430,6 +1508,10 @@ export namespace mybusinesslodging_v1 {
      */
     someUnits?: Schema$GuestUnitFeatures;
     /**
+     * Sustainability practices implemented at the hotel.
+     */
+    sustainability?: Schema$Sustainability;
+    /**
      * Vehicles or vehicular services facilitated or owned by the property.
      */
     transportation?: Schema$Transportation;
@@ -2066,6 +2148,125 @@ export namespace mybusinesslodging_v1 {
     wakeUpCallsException?: string | null;
   }
   /**
+   * Sustainability practices implemented at the hotel.
+   */
+  export interface Schema$Sustainability {
+    /**
+     * Energy efficiency practices implemented at the hotel.
+     */
+    energyEfficiency?: Schema$EnergyEfficiency;
+    /**
+     * Sustainability certifications the hotel has been awarded.
+     */
+    sustainabilityCertifications?: Schema$SustainabilityCertifications;
+    /**
+     * Sustainable sourcing practices implemented at the hotel.
+     */
+    sustainableSourcing?: Schema$SustainableSourcing;
+    /**
+     * Waste reduction practices implemented at the hotel.
+     */
+    wasteReduction?: Schema$WasteReduction;
+    /**
+     * Water conservation practices implemented at the hotel.
+     */
+    waterConservation?: Schema$WaterConservation;
+  }
+  /**
+   * Sustainability certifications the hotel has been awarded.
+   */
+  export interface Schema$SustainabilityCertifications {
+    /**
+     * BREEAM certification.
+     */
+    breeamCertification?: string | null;
+    /**
+     * BREEAM certification exception.
+     */
+    breeamCertificationException?: string | null;
+    /**
+     * The eco certificates awarded to the hotel.
+     */
+    ecoCertifications?: Schema$EcoCertification[];
+    /**
+     * LEED certification.
+     */
+    leedCertification?: string | null;
+    /**
+     * LEED certification exception.
+     */
+    leedCertificationException?: string | null;
+  }
+  /**
+   * Sustainable sourcing practices implemented at the hotel.
+   */
+  export interface Schema$SustainableSourcing {
+    /**
+     * Eco friendly toiletries. Soap, shampoo, lotion, and other toiletries provided for guests have a nationally or internationally recognized sustainability certification, such as USDA Organic, EU Organic, or cruelty-free.
+     */
+    ecoFriendlyToiletries?: boolean | null;
+    /**
+     * Eco friendly toiletries exception.
+     */
+    ecoFriendlyToiletriesException?: string | null;
+    /**
+     * Locally sourced food and beverages. Property sources locally in order to lower the environmental footprint from reduced transportation and to stimulate the local economy. Products produced less than 62 miles from the establishment are normally considered as locally produced.
+     */
+    locallySourcedFoodAndBeverages?: boolean | null;
+    /**
+     * Locally sourced food and beverages exception.
+     */
+    locallySourcedFoodAndBeveragesException?: string | null;
+    /**
+     * Organic cage free eggs. The property sources 100% certified organic and cage-free eggs (shell, liquid, and egg products). Cage-free means hens are able to walk, spread their wings and lay their eggs in nests).
+     */
+    organicCageFreeEggs?: boolean | null;
+    /**
+     * Organic cage free eggs exception.
+     */
+    organicCageFreeEggsException?: string | null;
+    /**
+     * Organic food and beverages. At least 25% of food and beverages, by spend, are certified organic. Organic means products that are certified to one of the organic standard listed in the IFOAM family of standards. Qualifying certifications include USDA Organic and EU Organic, among others.
+     */
+    organicFoodAndBeverages?: boolean | null;
+    /**
+     * Organic food and beverages exception.
+     */
+    organicFoodAndBeveragesException?: string | null;
+    /**
+     * Responsible purchasing policy. The property has a responsible procurement policy in place. Responsible means integration of social, ethical, and/or environmental performance factors into the procurement process when selecting suppliers.
+     */
+    responsiblePurchasingPolicy?: boolean | null;
+    /**
+     * Responsible purchasing policy exception.
+     */
+    responsiblePurchasingPolicyException?: string | null;
+    /**
+     * Responsibly sources seafood. The property does not source seafood from the Monterey Bay Aquarium Seafood Watch "avoid" list, and must sustainably source seafood listed as "good alternative," "eco-certified," and "best choice". The property has a policy outlining a commitment to source Marine Stewardship Council (MSC) and/or Aquaculture Stewardship Council (ASC) Chain of Custody certified seafood.
+     */
+    responsiblySourcesSeafood?: boolean | null;
+    /**
+     * Responsibly sources seafood exception.
+     */
+    responsiblySourcesSeafoodException?: string | null;
+    /**
+     * Vegan meals. The property provides vegan menu options for guests. Vegan food does not contain animal products or byproducts.
+     */
+    veganMeals?: boolean | null;
+    /**
+     * Vegan meals exception.
+     */
+    veganMealsException?: string | null;
+    /**
+     * Vegetarian meals. The property provides vegetarian menu options for guests. Vegetarian food does not contain animal products.
+     */
+    vegetarianMeals?: boolean | null;
+    /**
+     * Vegetarian meals exception.
+     */
+    vegetarianMealsException?: string | null;
+  }
+  /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$TimeOfDay {
@@ -2215,6 +2416,192 @@ export namespace mybusinesslodging_v1 {
      * Valley view exception.
      */
     valleyViewException?: string | null;
+  }
+  /**
+   * Waste reduction practices implemented at the hotel.
+   */
+  export interface Schema$WasteReduction {
+    /**
+     * Compostable food containers and cutlery. 100% of food service containers and to-go cutlery are compostable, and reusable utensils are offered wherever possible. Compostable materials are capable of undergoing biological decomposition in a compost site, such that material is not visually distinguishable and breaks down into carbon dioxide, water, inorganic compounds, and biomass.
+     */
+    compostableFoodContainersAndCutlery?: boolean | null;
+    /**
+     * Compostable food containers and cutlery exception.
+     */
+    compostableFoodContainersAndCutleryException?: string | null;
+    /**
+     * Composts excess food. The property has a program and/or policy for diverting waste from landfill by composting food and yard waste, either through compost collection and off-site processing or on-site compost processing.
+     */
+    compostsExcessFood?: boolean | null;
+    /**
+     * Composts excess food exception.
+     */
+    compostsExcessFoodException?: string | null;
+    /**
+     * Donates excess food. The property has a program and/or policy for diverting waste from landfill that may include efforts to donate for human consumption or divert food for animal feed.
+     */
+    donatesExcessFood?: boolean | null;
+    /**
+     * Donates excess food exception.
+     */
+    donatesExcessFoodException?: string | null;
+    /**
+     * Food waste reduction program. The property has established a food waste reduction and donation program, aiming to reduce food waste by half. These programs typically use tools such as the Hotel Kitchen Toolkit and others to track waste and measure progress.
+     */
+    foodWasteReductionProgram?: boolean | null;
+    /**
+     * Food waste reduction program exception.
+     */
+    foodWasteReductionProgramException?: string | null;
+    /**
+     * No single use plastic straws. The property bans single-use plastic straws.
+     */
+    noSingleUsePlasticStraws?: boolean | null;
+    /**
+     * No single use plastic straws exception.
+     */
+    noSingleUsePlasticStrawsException?: string | null;
+    /**
+     * No single use plastic water bottles. The property bans single-use plastic water bottles.
+     */
+    noSingleUsePlasticWaterBottles?: boolean | null;
+    /**
+     * No single use plastic water bottles exception.
+     */
+    noSingleUsePlasticWaterBottlesException?: string | null;
+    /**
+     * No styrofoam food containers. The property eliminates the use of Styrofoam in disposable food service items.
+     */
+    noStyrofoamFoodContainers?: boolean | null;
+    /**
+     * No styrofoam food containers exception.
+     */
+    noStyrofoamFoodContainersException?: string | null;
+    /**
+     * Recycling program. The property has a recycling program, aligned with LEED waste requirements, and a policy outlining efforts to send less than 50% of waste to landfill. The recycling program includes storage locations for recyclable materials, including mixed paper, corrugated cardboard, glass, plastics, and metals.
+     */
+    recyclingProgram?: boolean | null;
+    /**
+     * Recycling program exception.
+     */
+    recyclingProgramException?: string | null;
+    /**
+     * Refillable toiletry containers. The property has replaced miniature individual containers with refillable amenity dispensers for shampoo, conditioner, soap, and lotion.
+     */
+    refillableToiletryContainers?: boolean | null;
+    /**
+     * Refillable toiletry containers exception.
+     */
+    refillableToiletryContainersException?: string | null;
+    /**
+     * Safely disposes batteries. The property safely stores and disposes batteries.
+     */
+    safelyDisposesBatteries?: boolean | null;
+    /**
+     * Safely disposes batteries exception.
+     */
+    safelyDisposesBatteriesException?: string | null;
+    /**
+     * Safely disposes electronics. The property has a reputable recycling program that keeps hazardous electronic parts and chemical compounds out of landfills, dumps and other unauthorized abandonment sites, and recycles/reuses applicable materials. (e.g. certified electronics recyclers).
+     */
+    safelyDisposesElectronics?: boolean | null;
+    /**
+     * Safely disposes electronics exception.
+     */
+    safelyDisposesElectronicsException?: string | null;
+    /**
+     * Safely disposes lightbulbs. The property safely stores and disposes lightbulbs.
+     */
+    safelyDisposesLightbulbs?: boolean | null;
+    /**
+     * Safely disposes lightbulbs exception.
+     */
+    safelyDisposesLightbulbsException?: string | null;
+    /**
+     * Safely handles hazardous substances. The property has a hazardous waste management program aligned wit GreenSeal and LEED requirements, and meets all regulatory requirements for hazardous waste disposal and recycling. Hazardous means substances that are classified as "hazardous" by an authoritative body (such as OSHA or DOT), are labeled with signal words such as "Danger," "Caution," "Warning," or are flammable, corrosive, or ignitable. Requirements include: - The property shall maintain records of the efforts it has made to replace the hazardous substances it uses with less hazardous alternatives. - An inventory of the hazardous materials stored on-site. - Products intended for cleaning, dishwashing, laundry, and pool maintenance shall be stored in clearly labeled containers. These containers shall be checked regularly for leaks, and replaced a necessary. - Spill containment devices shall be installed to collect spills, drips, or leaching of chemicals.
+     */
+    safelyHandlesHazardousSubstances?: boolean | null;
+    /**
+     * Safely handles hazardous substances exception.
+     */
+    safelyHandlesHazardousSubstancesException?: string | null;
+    /**
+     * Soap donation program. The property participates in a soap donation program such as Clean the World or something similar.
+     */
+    soapDonationProgram?: boolean | null;
+    /**
+     * Soap donation program exception.
+     */
+    soapDonationProgramException?: string | null;
+    /**
+     * Toiletry donation program. The property participates in a toiletry donation program such as Clean the World or something similar.
+     */
+    toiletryDonationProgram?: boolean | null;
+    /**
+     * Toiletry donation program exception.
+     */
+    toiletryDonationProgramException?: string | null;
+    /**
+     * Water bottle filling stations. The property offers water stations throughout the building for guest use.
+     */
+    waterBottleFillingStations?: boolean | null;
+    /**
+     * Water bottle filling stations exception.
+     */
+    waterBottleFillingStationsException?: string | null;
+  }
+  /**
+   * Water conservation practices implemented at the hotel.
+   */
+  export interface Schema$WaterConservation {
+    /**
+     * Independent organization audits water use. The property conducts a water conservation audit every 5 years, the results of which are either verified by a third-party and/or published in external communications. A water conservation audit is a detailed assessment of the facility, providing recommendations to existing operations and procedures to improve water efficiency, available incentives or rebates, and opportunities for improvements through renovations or upgrades. Examples of organizations who conduct credible third party audits include: Engie Impact, and local utility providers (they often provide energy and water audits).
+     */
+    independentOrganizationAuditsWaterUse?: boolean | null;
+    /**
+     * Independent organization audits water use exception.
+     */
+    independentOrganizationAuditsWaterUseException?: string | null;
+    /**
+     * Linen reuse program. The property offers a linen reuse program.
+     */
+    linenReuseProgram?: boolean | null;
+    /**
+     * Linen reuse program exception.
+     */
+    linenReuseProgramException?: string | null;
+    /**
+     * Towel reuse program. The property offers a towel reuse program.
+     */
+    towelReuseProgram?: boolean | null;
+    /**
+     * Towel reuse program exception.
+     */
+    towelReuseProgramException?: string | null;
+    /**
+     * Water saving showers. All of the property's guest rooms have shower heads that use no more than 2.0 gallons per minute (gpm).
+     */
+    waterSavingShowers?: boolean | null;
+    /**
+     * Water saving showers exception.
+     */
+    waterSavingShowersException?: string | null;
+    /**
+     * Water saving sinks. All of the property's guest rooms have bathroom faucets that use a maximum of 1.5 gallons per minute (gpm), public restroom faucets do not exceed 0.5 gpm, and kitchen faucets (excluding faucets used exclusively for filling operations) do not exceed 2.2 gpm.
+     */
+    waterSavingSinks?: boolean | null;
+    /**
+     * Water saving sinks exception.
+     */
+    waterSavingSinksException?: string | null;
+    /**
+     * Water saving toilets. All of the property's toilets use 1.6 gallons per flush, or less.
+     */
+    waterSavingToilets?: boolean | null;
+    /**
+     * Water saving toilets exception.
+     */
+    waterSavingToiletsException?: string | null;
   }
   /**
    * Guest facilities at the property to promote or maintain health, beauty, and fitness.
@@ -2374,6 +2761,7 @@ export namespace mybusinesslodging_v1 {
      *   //   "property": {},
      *   //   "services": {},
      *   //   "someUnits": {},
+     *   //   "sustainability": {},
      *   //   "transportation": {},
      *   //   "wellness": {}
      *   // }
@@ -2524,6 +2912,7 @@ export namespace mybusinesslodging_v1 {
      *       //   "property": {},
      *       //   "services": {},
      *       //   "someUnits": {},
+     *       //   "sustainability": {},
      *       //   "transportation": {},
      *       //   "wellness": {}
      *       // }
@@ -2553,6 +2942,7 @@ export namespace mybusinesslodging_v1 {
      *   //   "property": {},
      *   //   "services": {},
      *   //   "someUnits": {},
+     *   //   "sustainability": {},
      *   //   "transportation": {},
      *   //   "wellness": {}
      *   // }
