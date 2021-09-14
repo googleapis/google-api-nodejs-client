@@ -478,6 +478,14 @@ export namespace gkehub_v1alpha2 {
      * Optional. The in-cluster Kubernetes Resources that should be applied for a correctly registered cluster, in the steady state. These resources: * Ensure that the cluster is exclusively registered to one and only one Hub Membership. * Propagate Workload Pool Information available in the Membership Authority field. * Ensure proper initial configuration of default Hub Features.
      */
     kubernetesResource?: Schema$KubernetesResource;
+    /**
+     * Optional. Specific information for a GKE Multi-Cloud cluster.
+     */
+    multiCloudCluster?: Schema$MultiCloudCluster;
+    /**
+     * Optional. Specific information for a GKE On-Prem cluster.
+     */
+    onPremCluster?: Schema$OnPremCluster;
   }
   /**
    * MembershipState describes the state of a Membership resource.
@@ -487,6 +495,36 @@ export namespace gkehub_v1alpha2 {
      * Output only. The current state of the Membership resource.
      */
     code?: string | null;
+  }
+  /**
+   * MultiCloudCluster contains information specific to GKE Multi-Cloud clusters.
+   */
+  export interface Schema$MultiCloudCluster {
+    /**
+     * Output only. If cluster_missing is set then it denotes that API(gkemulticloud.googleapis.com) resource for this GKE Multi-Cloud cluster no longer exists.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+     */
+    resourceLink?: string | null;
+  }
+  /**
+   * OnPremCluster contains information specific to GKE On-Prem clusters.
+   */
+  export interface Schema$OnPremCluster {
+    /**
+     * Immutable. Whether the cluster is an admin cluster.
+     */
+    adminCluster?: boolean | null;
+    /**
+     * Output only. If cluster_missing is set then it denotes that API(gkeonprem.googleapis.com) resource for this GKE On-Prem cluster no longer exists.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
+     */
+    resourceLink?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
