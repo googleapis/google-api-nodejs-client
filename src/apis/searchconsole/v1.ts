@@ -372,7 +372,7 @@ export namespace searchconsole_v1 {
    */
   export interface Schema$WmxSitemapContent {
     /**
-     * The number of URLs from the sitemap that were indexed (of the content type).
+     * *Deprecated; do not use.*
      */
     indexed?: string | null;
     /**

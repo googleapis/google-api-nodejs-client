@@ -373,7 +373,7 @@
       }
     }
   },
-  "revision": "20210308",
+  "revision": "20210903",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "ApiDataRow": {
@@ -876,7 +876,7 @@
       "id": "WmxSitemapContent",
       "properties": {
         "indexed": {
-          "description": "The number of URLs from the sitemap that were indexed (of the content type).",
+          "description": "*Deprecated; do not use.*",
           "format": "int64",
           "type": "string"
         },
