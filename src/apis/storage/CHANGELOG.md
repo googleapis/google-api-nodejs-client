@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/storage-v0.2.1...storage-v0.3.0) (2021-09-14)
+
+
+### Features
+
+* **auth:** adds support workload identity federation ([#2517](https://www.github.com/googleapis/google-api-nodejs-client/issues/2517)) ([a10707c](https://www.github.com/googleapis/google-api-nodejs-client/commit/a10707c477759e7c9ef6360a2fe800856fb600c1))
+* **storage:** update the API ([201e3fc](https://www.github.com/googleapis/google-api-nodejs-client/commit/201e3fcbc8837d4761733b6300bc9ccc7beda033))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v5 ([#2497](https://www.github.com/googleapis/google-api-nodejs-client/issues/2497)) ([fec087a](https://www.github.com/googleapis/google-api-nodejs-client/commit/fec087abcf3d994dd41c3ffa0a0c12b1f9f09dae))
+* **storage:** update the API ([17b2535](https://www.github.com/googleapis/google-api-nodejs-client/commit/17b25356831617dfdf1c5ad804263caeca3463a1))
+* **storage:** update the API ([7c8a240](https://www.github.com/googleapis/google-api-nodejs-client/commit/7c8a24037c8823e08af71b11e7d5f9f27874e738))
+* upgrade webpack from 4 to 5  ([#2524](https://www.github.com/googleapis/google-api-nodejs-client/issues/2524)) ([ecfd8bf](https://www.github.com/googleapis/google-api-nodejs-client/commit/ecfd8bfcd06e1beabff7ec9a8c4000222379eb8d))
+
 ### [0.2.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/storage-v0.2.0...storage-v0.2.1) (2021-05-23)
 
 

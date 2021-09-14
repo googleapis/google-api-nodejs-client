@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/analytics-v2.0.1...analytics-v2.1.0) (2021-09-14)
+
+
+### Features
+
+* **auth:** adds support workload identity federation ([#2517](https://www.github.com/googleapis/google-api-nodejs-client/issues/2517)) ([a10707c](https://www.github.com/googleapis/google-api-nodejs-client/commit/a10707c477759e7c9ef6360a2fe800856fb600c1))
+
+
+### Bug Fixes
+
+* **analytics:** update the API ([7cfc580](https://www.github.com/googleapis/google-api-nodejs-client/commit/7cfc5802254fd8fdc21a284ac3cd25bdd0a55a2b))
+* **analytics:** update the API ([00b6596](https://www.github.com/googleapis/google-api-nodejs-client/commit/00b6596c161293989c98752d2b7065f0985f3406))
+* **analytics:** update the API ([3731e4b](https://www.github.com/googleapis/google-api-nodejs-client/commit/3731e4bb328720e1beb8a318e6ca5fd5c622ee6d))
+* **deps:** update dependency googleapis-common to v5 ([#2497](https://www.github.com/googleapis/google-api-nodejs-client/issues/2497)) ([fec087a](https://www.github.com/googleapis/google-api-nodejs-client/commit/fec087abcf3d994dd41c3ffa0a0c12b1f9f09dae))
+* upgrade webpack from 4 to 5  ([#2524](https://www.github.com/googleapis/google-api-nodejs-client/issues/2524)) ([ecfd8bf](https://www.github.com/googleapis/google-api-nodejs-client/commit/ecfd8bfcd06e1beabff7ec9a8c4000222379eb8d))
+
 ### [2.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/analytics-v2.0.0...analytics-v2.0.1) (2021-05-23)
 
 

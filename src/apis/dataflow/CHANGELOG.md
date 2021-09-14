@@ -1,5 +1,37 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/dataflow-v1.0.0...dataflow-v2.0.0) (2021-09-14)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataflow:** This release has breaking changes.
+* **dataflow:** This release has breaking changes.
+* #### admin:directory_v1
+
+### Features
+
+* **auth:** adds support workload identity federation ([#2517](https://www.github.com/googleapis/google-api-nodejs-client/issues/2517)) ([a10707c](https://www.github.com/googleapis/google-api-nodejs-client/commit/a10707c477759e7c9ef6360a2fe800856fb600c1))
+* **dataflow:** update the API ([cf45e79](https://www.github.com/googleapis/google-api-nodejs-client/commit/cf45e7941be5e98d1825b88bf587e8ca597875d8))
+* **dataflow:** update the API ([25915d9](https://www.github.com/googleapis/google-api-nodejs-client/commit/25915d93c572775f859e4999272a71f7bfd73080))
+* **dataflow:** update the API ([0a99c38](https://www.github.com/googleapis/google-api-nodejs-client/commit/0a99c38870fd9133273b0d383932223cc385b8fc))
+* **dataflow:** update the API ([3de2ec2](https://www.github.com/googleapis/google-api-nodejs-client/commit/3de2ec2df50b5f91f3feaea549e598212a50955e))
+* **dataflow:** update the API ([fa626cd](https://www.github.com/googleapis/google-api-nodejs-client/commit/fa626cd26cb476f24b097a3b86ef29d6c562ce2a))
+* **dataflow:** update the API ([0ed2b79](https://www.github.com/googleapis/google-api-nodejs-client/commit/0ed2b796a27ca9f9c3c00876a693b03609a86520))
+* **dataflow:** update the API ([f5c0f97](https://www.github.com/googleapis/google-api-nodejs-client/commit/f5c0f97382941ca0de085e56d46d1565f4295cbe))
+* **dataflow:** update the API ([4da06b2](https://www.github.com/googleapis/google-api-nodejs-client/commit/4da06b2b11f5431f4b87235b0d1cb9a3fa438948))
+* **dataflow:** update the API ([4e54b04](https://www.github.com/googleapis/google-api-nodejs-client/commit/4e54b04cd0e664bf290c7a23002db5eb288fe8ea))
+* run the generator ([#2548](https://www.github.com/googleapis/google-api-nodejs-client/issues/2548)) ([339726b](https://www.github.com/googleapis/google-api-nodejs-client/commit/339726b5310e7ea5437e15642cb899c215127f8f))
+
+
+### Bug Fixes
+
+* **dataflow:** update the API ([788af70](https://www.github.com/googleapis/google-api-nodejs-client/commit/788af708fb07a7d243242b887a00719180ee4810))
+* **dataflow:** update the API ([b345a79](https://www.github.com/googleapis/google-api-nodejs-client/commit/b345a797f77b915298baef973fb5ee414797cae5))
+* **dataflow:** update the API ([2a55e7a](https://www.github.com/googleapis/google-api-nodejs-client/commit/2a55e7aa19448b2ef67384a4986fd84cad3cf813))
+* **deps:** update dependency googleapis-common to v5 ([#2497](https://www.github.com/googleapis/google-api-nodejs-client/issues/2497)) ([fec087a](https://www.github.com/googleapis/google-api-nodejs-client/commit/fec087abcf3d994dd41c3ffa0a0c12b1f9f09dae))
+* upgrade webpack from 4 to 5  ([#2524](https://www.github.com/googleapis/google-api-nodejs-client/issues/2524)) ([ecfd8bf](https://www.github.com/googleapis/google-api-nodejs-client/commit/ecfd8bfcd06e1beabff7ec9a8c4000222379eb8d))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/dataflow-v0.7.0...dataflow-v1.0.0) (2021-08-31)
 
 
