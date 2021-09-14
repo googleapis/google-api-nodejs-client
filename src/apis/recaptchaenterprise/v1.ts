@@ -130,6 +130,10 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AndroidKeySettings {
     /**
+     * If set to true, it means allowed_package_names will not be enforced.
+     */
+    allowAllPackageNames?: boolean | null;
+    /**
      * Android package names of apps allowed to use the key. Example: 'com.companyname.appname'
      */
     allowedPackageNames?: string[] | null;
@@ -219,6 +223,10 @@ export namespace recaptchaenterprise_v1 {
    * Settings specific to keys that can be used by iOS apps.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1IOSKeySettings {
+    /**
+     * If set to true, it means allowed_bundle_ids will not be enforced.
+     */
+    allowAllBundleIds?: boolean | null;
     /**
      * iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'
      */
