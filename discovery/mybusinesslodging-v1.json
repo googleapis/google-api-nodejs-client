@@ -194,7 +194,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210910",
   "rootUrl": "https://mybusinesslodging.googleapis.com/",
   "schemas": {
     "Accessibility": {
@@ -769,6 +769,246 @@
         },
         "wifiAvailableException": {
           "description": "Wifi available exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EcoCertification": {
+      "description": "An eco certificate awarded to the hotel.",
+      "id": "EcoCertification",
+      "properties": {
+        "awarded": {
+          "description": "Whether the eco certificate was awarded or not.",
+          "type": "boolean"
+        },
+        "awardedException": {
+          "description": "Awarded exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "ecoCertificate": {
+          "description": "Required. The eco certificate.",
+          "enum": [
+            "ECO_CERTIFICATE_UNSPECIFIED",
+            "ISO14001",
+            "ISO50001",
+            "ASIAN_ECOTOURISM",
+            "BIOSPHERE_RESPOSNIBLE_TOURISM",
+            "BUREAU_VERITAS",
+            "CONTROL_UNION",
+            "EARTHCHECK",
+            "ECO_CERTIFICATION_MALTA",
+            "ECOTOURISM_AUSTRALIAS_ECO",
+            "GREAT_GREEN_DEAL",
+            "GREEN_GLOBE",
+            "GREEN_GROWTH2050",
+            "GREEN_KEY",
+            "GREEN_KEY_ECO_RATING",
+            "GREEN_SEAL",
+            "GREEN_STAR",
+            "GREEN_TOURISM_ACTIVE",
+            "HILTON_LIGHTSTAY",
+            "HOSTELLING_INTERNATIONALS_QUALITY_AND_SUSTAINABILITY",
+            "HOTELES_MAS_VERDES",
+            "NORDIC_SWAN_ECOLABEL",
+            "PREFERRED_BY_NATURE_SUSTAINABLE_TOURISM",
+            "SUSTAINABLE_TRAVEL_IRELAND",
+            "TOF_TIGERS_INITITIVES_PUG",
+            "TRAVELIFE",
+            "UNITED_CERTIFICATION_SYSTEMS_LIMITED",
+            "VIREO_SRL"
+          ],
+          "enumDescriptions": [
+            "Default EcoCertificate. Do not use.",
+            "ISO14001.",
+            "ISO50001.",
+            "Asian Ecotourism Standard for Accommodations (AESA).",
+            "Biosphere Responsible Tourism Standard.",
+            "Bureau Veritas.",
+            "Control Union.",
+            "EarthCheck.",
+            "Eco-Certification Malta Standard.",
+            "Ecotourism Australia's ECO Certification Standard.",
+            "GREAT Green Deal Certification.",
+            "Green Globe.",
+            "Green Growth 2050 Standard.",
+            "Green Key.",
+            "Geen Key Eco Rating.",
+            "Green Seal.",
+            "Green Star Hotel Standard.",
+            "Green Tourism Active Standard.",
+            "Hilton LightStay.",
+            "Hostelling International's Quality and Sustainability Standard.",
+            "Hoteles más Verdes (AHT) Standard.",
+            "Nordic Swan Ecolabel.",
+            "Preferred by Nature Sustainable Tourism Standard for Accommodation.",
+            "Sustainable Travel Ireland – GSTC Industry Criteria.",
+            "TOFTigers Initiative's Pug Standard.",
+            "Travelife Standard for Hotels & Accommodations.",
+            "United Certification Systems Limited.",
+            "Vireo Srl."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EnergyEfficiency": {
+      "description": "Energy efficiency practices implemented at the hotel.",
+      "id": "EnergyEfficiency",
+      "properties": {
+        "carbonFreeEnergySources": {
+          "description": "Carbon free energy sources. Property sources carbon-free electricity via at least one of the following methods: on-site clean energy generation, power purchase agreement(s) with clean energy generators, green power provided by electricity supplier, or purchases of Energy Attribute Certificates (such as Renewable Energy Certificates or Guarantees of Origin).",
+          "type": "boolean"
+        },
+        "carbonFreeEnergySourcesException": {
+          "description": "Carbon free energy sources exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "energyConservationProgram": {
+          "description": "Energy conservation program. The property tracks corporate-level Scope 1 and 2 GHG emissions, and Scope 3 emissions if available. The property has a commitment to implement initiatives that reduce GHG emissions year over year. The property has shown an absolute reduction in emissions for at least 2 years. Emissions are either verfied by a third-party and/or published in external communications.",
+          "type": "boolean"
+        },
+        "energyConservationProgramException": {
+          "description": "Energy conservation program exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "energyEfficientHeatingAndCoolingSystems": {
+          "description": "Energy efficient heating and cooling systems. The property doesn't use chlorofluorocarbon (CFC)-based refrigerants in heating, ventilating, and air-conditioning systems unless a third-party audit shows it's not economically feasible. The CFC-based refrigerants which are used should have a Global Warming Potential (GWP) ≤ 10. The property uses occupancy sensors on HVAC systems in back-of-house spaces, meeting rooms, and other low-traffic areas.",
+          "type": "boolean"
+        },
+        "energyEfficientHeatingAndCoolingSystemsException": {
+          "description": "Energy efficient heating and cooling systems exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "energyEfficientLighting": {
+          "description": "Energy efficient lighting. At least 75% of the property's lighting is energy efficient, using lighting that is more than 45 lumens per watt – typically LED or CFL lightbulbs.",
+          "type": "boolean"
+        },
+        "energyEfficientLightingException": {
+          "description": "Energy efficient lighting exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "energySavingThermostats": {
+          "description": "Energy saving thermostats. The property installed energy-saving thermostats throughout the building to conserve energy when rooms or areas are not in use. Energy-saving thermostats are devices that control heating/cooling in the building by learning temperature preferences and automatically adjusting to energy-saving temperatures as the default. The thermostats are automatically set to a temperature between 68-78 degrees F (20-26 °C), depending on seasonality. In the winter, set the thermostat to 68°F (20°C) when the room is occupied, lowering room temperature when unoccupied. In the summer, set the thermostat to 78°F (26°C) when the room is occupied.",
+          "type": "boolean"
+        },
+        "energySavingThermostatsException": {
+          "description": "Energy saving thermostats exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "greenBuildingDesign": {
+          "description": "Output only. Green building design. True if BREEAM-* or LEED-* certified.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "greenBuildingDesignException": {
+          "description": "Output only. Green building design exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "independentOrganizationAuditsEnergyUse": {
+          "description": "Independent organization audits energy use. The property conducts an energy audit at least every 5 years, the results of which are either verified by a third-party and/or published in external communications. An energy audit is a detailed assessment of the facility which provides recommendations to existing operations and procedures to improve energy efficiency, available incentives or rebates,and opportunities for improvements through renovations or upgrades. Examples of organizations that conduct credible third party audits include: Engie Impact, DNV GL (EU), Dexma, and local utility providers (they often provide energy and water audits).",
+          "type": "boolean"
+        },
+        "independentOrganizationAuditsEnergyUseException": {
+          "description": "Independent organization audits energy use exception.",
           "enum": [
             "EXCEPTION_UNSPECIFIED",
             "UNDER_CONSTRUCTION",
@@ -3148,6 +3388,10 @@
           "description": "Output only. Some units on the property have as much as these attributes.",
           "readOnly": true
         },
+        "sustainability": {
+          "$ref": "Sustainability",
+          "description": "Sustainability practices implemented at the hotel."
+        },
         "transportation": {
           "$ref": "Transportation",
           "description": "Vehicles or vehicular services facilitated or owned by the property."
@@ -4661,6 +4905,288 @@
       },
       "type": "object"
     },
+    "Sustainability": {
+      "description": "Sustainability practices implemented at the hotel.",
+      "id": "Sustainability",
+      "properties": {
+        "energyEfficiency": {
+          "$ref": "EnergyEfficiency",
+          "description": "Energy efficiency practices implemented at the hotel."
+        },
+        "sustainabilityCertifications": {
+          "$ref": "SustainabilityCertifications",
+          "description": "Sustainability certifications the hotel has been awarded."
+        },
+        "sustainableSourcing": {
+          "$ref": "SustainableSourcing",
+          "description": "Sustainable sourcing practices implemented at the hotel."
+        },
+        "wasteReduction": {
+          "$ref": "WasteReduction",
+          "description": "Waste reduction practices implemented at the hotel."
+        },
+        "waterConservation": {
+          "$ref": "WaterConservation",
+          "description": "Water conservation practices implemented at the hotel."
+        }
+      },
+      "type": "object"
+    },
+    "SustainabilityCertifications": {
+      "description": "Sustainability certifications the hotel has been awarded.",
+      "id": "SustainabilityCertifications",
+      "properties": {
+        "breeamCertification": {
+          "description": "BREEAM certification.",
+          "enum": [
+            "BREEAM_CERTIFICATION_UNSPECIFIED",
+            "NO_BREEAM_CERTIFICATION",
+            "BREEAM_PASS",
+            "BREEAM_GOOD",
+            "BREEAM_VERY_GOOD",
+            "BREEAM_EXCELLENT",
+            "BREEAM_OUTSTANDING"
+          ],
+          "enumDescriptions": [
+            "Default BreeamCertification. Do not use.",
+            "Not certified.",
+            "BREEAM Pass.",
+            "BREEAM Good.",
+            "BREEAM Very Good.",
+            "BREEAM Excellent.",
+            "BREEAM Outstanding."
+          ],
+          "type": "string"
+        },
+        "breeamCertificationException": {
+          "description": "BREEAM certification exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "ecoCertifications": {
+          "description": "The eco certificates awarded to the hotel.",
+          "items": {
+            "$ref": "EcoCertification"
+          },
+          "type": "array"
+        },
+        "leedCertification": {
+          "description": "LEED certification.",
+          "enum": [
+            "LEED_CERTIFICATION_UNSPECIFIED",
+            "NO_LEED_CERTIFICATION",
+            "LEED_CERTIFIED",
+            "LEED_SILVER",
+            "LEED_GOLD",
+            "LEED_PLATINUM"
+          ],
+          "enumDescriptions": [
+            "Default LeedCertification. Do not use.",
+            "Not certified.",
+            "LEED Certified.",
+            "LEED Silver.",
+            "LEED Gold.",
+            "LEED Platinum."
+          ],
+          "type": "string"
+        },
+        "leedCertificationException": {
+          "description": "LEED certification exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SustainableSourcing": {
+      "description": "Sustainable sourcing practices implemented at the hotel.",
+      "id": "SustainableSourcing",
+      "properties": {
+        "ecoFriendlyToiletries": {
+          "description": "Eco friendly toiletries. Soap, shampoo, lotion, and other toiletries provided for guests have a nationally or internationally recognized sustainability certification, such as USDA Organic, EU Organic, or cruelty-free.",
+          "type": "boolean"
+        },
+        "ecoFriendlyToiletriesException": {
+          "description": "Eco friendly toiletries exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "locallySourcedFoodAndBeverages": {
+          "description": "Locally sourced food and beverages. Property sources locally in order to lower the environmental footprint from reduced transportation and to stimulate the local economy. Products produced less than 62 miles from the establishment are normally considered as locally produced.",
+          "type": "boolean"
+        },
+        "locallySourcedFoodAndBeveragesException": {
+          "description": "Locally sourced food and beverages exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "organicCageFreeEggs": {
+          "description": "Organic cage free eggs. The property sources 100% certified organic and cage-free eggs (shell, liquid, and egg products). Cage-free means hens are able to walk, spread their wings and lay their eggs in nests).",
+          "type": "boolean"
+        },
+        "organicCageFreeEggsException": {
+          "description": "Organic cage free eggs exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "organicFoodAndBeverages": {
+          "description": "Organic food and beverages. At least 25% of food and beverages, by spend, are certified organic. Organic means products that are certified to one of the organic standard listed in the IFOAM family of standards. Qualifying certifications include USDA Organic and EU Organic, among others.",
+          "type": "boolean"
+        },
+        "organicFoodAndBeveragesException": {
+          "description": "Organic food and beverages exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "responsiblePurchasingPolicy": {
+          "description": "Responsible purchasing policy. The property has a responsible procurement policy in place. Responsible means integration of social, ethical, and/or environmental performance factors into the procurement process when selecting suppliers.",
+          "type": "boolean"
+        },
+        "responsiblePurchasingPolicyException": {
+          "description": "Responsible purchasing policy exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "responsiblySourcesSeafood": {
+          "description": "Responsibly sources seafood. The property does not source seafood from the Monterey Bay Aquarium Seafood Watch \"avoid\" list, and must sustainably source seafood listed as \"good alternative,\" \"eco-certified,\" and \"best choice\". The property has a policy outlining a commitment to source Marine Stewardship Council (MSC) and/or Aquaculture Stewardship Council (ASC) Chain of Custody certified seafood.",
+          "type": "boolean"
+        },
+        "responsiblySourcesSeafoodException": {
+          "description": "Responsibly sources seafood exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "veganMeals": {
+          "description": "Vegan meals. The property provides vegan menu options for guests. Vegan food does not contain animal products or byproducts.",
+          "type": "boolean"
+        },
+        "veganMealsException": {
+          "description": "Vegan meals exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "vegetarianMeals": {
+          "description": "Vegetarian meals. The property provides vegetarian menu options for guests. Vegetarian food does not contain animal products.",
+          "type": "boolean"
+        },
+        "vegetarianMealsException": {
+          "description": "Vegetarian meals exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TimeOfDay": {
       "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
       "id": "TimeOfDay",
@@ -4985,6 +5511,460 @@
         },
         "valleyViewException": {
           "description": "Valley view exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WasteReduction": {
+      "description": "Waste reduction practices implemented at the hotel.",
+      "id": "WasteReduction",
+      "properties": {
+        "compostableFoodContainersAndCutlery": {
+          "description": "Compostable food containers and cutlery. 100% of food service containers and to-go cutlery are compostable, and reusable utensils are offered wherever possible. Compostable materials are capable of undergoing biological decomposition in a compost site, such that material is not visually distinguishable and breaks down into carbon dioxide, water, inorganic compounds, and biomass.",
+          "type": "boolean"
+        },
+        "compostableFoodContainersAndCutleryException": {
+          "description": "Compostable food containers and cutlery exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "compostsExcessFood": {
+          "description": "Composts excess food. The property has a program and/or policy for diverting waste from landfill by composting food and yard waste, either through compost collection and off-site processing or on-site compost processing.",
+          "type": "boolean"
+        },
+        "compostsExcessFoodException": {
+          "description": "Composts excess food exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "donatesExcessFood": {
+          "description": "Donates excess food. The property has a program and/or policy for diverting waste from landfill that may include efforts to donate for human consumption or divert food for animal feed.",
+          "type": "boolean"
+        },
+        "donatesExcessFoodException": {
+          "description": "Donates excess food exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "foodWasteReductionProgram": {
+          "description": "Food waste reduction program. The property has established a food waste reduction and donation program, aiming to reduce food waste by half. These programs typically use tools such as the Hotel Kitchen Toolkit and others to track waste and measure progress.",
+          "type": "boolean"
+        },
+        "foodWasteReductionProgramException": {
+          "description": "Food waste reduction program exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "noSingleUsePlasticStraws": {
+          "description": "No single use plastic straws. The property bans single-use plastic straws.",
+          "type": "boolean"
+        },
+        "noSingleUsePlasticStrawsException": {
+          "description": "No single use plastic straws exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "noSingleUsePlasticWaterBottles": {
+          "description": "No single use plastic water bottles. The property bans single-use plastic water bottles.",
+          "type": "boolean"
+        },
+        "noSingleUsePlasticWaterBottlesException": {
+          "description": "No single use plastic water bottles exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "noStyrofoamFoodContainers": {
+          "description": "No styrofoam food containers. The property eliminates the use of Styrofoam in disposable food service items.",
+          "type": "boolean"
+        },
+        "noStyrofoamFoodContainersException": {
+          "description": "No styrofoam food containers exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "recyclingProgram": {
+          "description": "Recycling program. The property has a recycling program, aligned with LEED waste requirements, and a policy outlining efforts to send less than 50% of waste to landfill. The recycling program includes storage locations for recyclable materials, including mixed paper, corrugated cardboard, glass, plastics, and metals.",
+          "type": "boolean"
+        },
+        "recyclingProgramException": {
+          "description": "Recycling program exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "refillableToiletryContainers": {
+          "description": "Refillable toiletry containers. The property has replaced miniature individual containers with refillable amenity dispensers for shampoo, conditioner, soap, and lotion.",
+          "type": "boolean"
+        },
+        "refillableToiletryContainersException": {
+          "description": "Refillable toiletry containers exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "safelyDisposesBatteries": {
+          "description": "Safely disposes batteries. The property safely stores and disposes batteries.",
+          "type": "boolean"
+        },
+        "safelyDisposesBatteriesException": {
+          "description": "Safely disposes batteries exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "safelyDisposesElectronics": {
+          "description": "Safely disposes electronics. The property has a reputable recycling program that keeps hazardous electronic parts and chemical compounds out of landfills, dumps and other unauthorized abandonment sites, and recycles/reuses applicable materials. (e.g. certified electronics recyclers).",
+          "type": "boolean"
+        },
+        "safelyDisposesElectronicsException": {
+          "description": "Safely disposes electronics exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "safelyDisposesLightbulbs": {
+          "description": "Safely disposes lightbulbs. The property safely stores and disposes lightbulbs.",
+          "type": "boolean"
+        },
+        "safelyDisposesLightbulbsException": {
+          "description": "Safely disposes lightbulbs exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "safelyHandlesHazardousSubstances": {
+          "description": "Safely handles hazardous substances. The property has a hazardous waste management program aligned wit GreenSeal and LEED requirements, and meets all regulatory requirements for hazardous waste disposal and recycling. Hazardous means substances that are classified as \"hazardous\" by an authoritative body (such as OSHA or DOT), are labeled with signal words such as \"Danger,\" \"Caution,\" \"Warning,\" or are flammable, corrosive, or ignitable. Requirements include: - The property shall maintain records of the efforts it has made to replace the hazardous substances it uses with less hazardous alternatives. - An inventory of the hazardous materials stored on-site. - Products intended for cleaning, dishwashing, laundry, and pool maintenance shall be stored in clearly labeled containers. These containers shall be checked regularly for leaks, and replaced a necessary. - Spill containment devices shall be installed to collect spills, drips, or leaching of chemicals.",
+          "type": "boolean"
+        },
+        "safelyHandlesHazardousSubstancesException": {
+          "description": "Safely handles hazardous substances exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "soapDonationProgram": {
+          "description": "Soap donation program. The property participates in a soap donation program such as Clean the World or something similar.",
+          "type": "boolean"
+        },
+        "soapDonationProgramException": {
+          "description": "Soap donation program exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "toiletryDonationProgram": {
+          "description": "Toiletry donation program. The property participates in a toiletry donation program such as Clean the World or something similar.",
+          "type": "boolean"
+        },
+        "toiletryDonationProgramException": {
+          "description": "Toiletry donation program exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "waterBottleFillingStations": {
+          "description": "Water bottle filling stations. The property offers water stations throughout the building for guest use.",
+          "type": "boolean"
+        },
+        "waterBottleFillingStationsException": {
+          "description": "Water bottle filling stations exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WaterConservation": {
+      "description": "Water conservation practices implemented at the hotel.",
+      "id": "WaterConservation",
+      "properties": {
+        "independentOrganizationAuditsWaterUse": {
+          "description": "Independent organization audits water use. The property conducts a water conservation audit every 5 years, the results of which are either verified by a third-party and/or published in external communications. A water conservation audit is a detailed assessment of the facility, providing recommendations to existing operations and procedures to improve water efficiency, available incentives or rebates, and opportunities for improvements through renovations or upgrades. Examples of organizations who conduct credible third party audits include: Engie Impact, and local utility providers (they often provide energy and water audits).",
+          "type": "boolean"
+        },
+        "independentOrganizationAuditsWaterUseException": {
+          "description": "Independent organization audits water use exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "linenReuseProgram": {
+          "description": "Linen reuse program. The property offers a linen reuse program.",
+          "type": "boolean"
+        },
+        "linenReuseProgramException": {
+          "description": "Linen reuse program exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "towelReuseProgram": {
+          "description": "Towel reuse program. The property offers a towel reuse program.",
+          "type": "boolean"
+        },
+        "towelReuseProgramException": {
+          "description": "Towel reuse program exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "waterSavingShowers": {
+          "description": "Water saving showers. All of the property's guest rooms have shower heads that use no more than 2.0 gallons per minute (gpm).",
+          "type": "boolean"
+        },
+        "waterSavingShowersException": {
+          "description": "Water saving showers exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "waterSavingSinks": {
+          "description": "Water saving sinks. All of the property's guest rooms have bathroom faucets that use a maximum of 1.5 gallons per minute (gpm), public restroom faucets do not exceed 0.5 gpm, and kitchen faucets (excluding faucets used exclusively for filling operations) do not exceed 2.2 gpm.",
+          "type": "boolean"
+        },
+        "waterSavingSinksException": {
+          "description": "Water saving sinks exception.",
+          "enum": [
+            "EXCEPTION_UNSPECIFIED",
+            "UNDER_CONSTRUCTION",
+            "DEPENDENT_ON_SEASON",
+            "DEPENDENT_ON_DAY_OF_WEEK"
+          ],
+          "enumDescriptions": [
+            "Default unspecified exception. Use this only if a more specific exception does not match.",
+            "Amenity or service is unavailable due to ongoing work orders.",
+            "Amenity or service availability is seasonal.",
+            "Amenity or service availability depends on the day of the week."
+          ],
+          "type": "string"
+        },
+        "waterSavingToilets": {
+          "description": "Water saving toilets. All of the property's toilets use 1.6 gallons per flush, or less.",
+          "type": "boolean"
+        },
+        "waterSavingToiletsException": {
+          "description": "Water saving toilets exception.",
           "enum": [
             "EXCEPTION_UNSPECIFIED",
             "UNDER_CONSTRUCTION",
