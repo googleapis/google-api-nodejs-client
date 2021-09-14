@@ -14338,6 +14338,8 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.tests.insert({
+     *     externalChannelId: 'placeholder-value',
+     *
      *     part: 'placeholder-value',
      *
      *     // Request body metadata
@@ -14451,6 +14453,10 @@ export namespace youtube_v3 {
   }
 
   export interface Params$Resource$Tests$Insert extends StandardParameters {
+    /**
+     *
+     */
+    externalChannelId?: string;
     /**
      *
      */
