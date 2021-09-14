@@ -12692,6 +12692,445 @@
         }
       }
     },
+    "instantSnapshots": {
+      "methods": {
+        "delete": {
+          "description": "Deletes the specified InstantSnapshot resource. Keep in mind that deleting a single instantSnapshot might not necessarily delete all the data on that instantSnapshot. If any data on the instantSnapshot that is marked for deletion is needed for subsequent instantSnapshots, the data will be moved to the next corresponding instantSnapshot. For more information, see Deleting instantSnapshots.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
+          "httpMethod": "DELETE",
+          "id": "compute.instantSnapshots.delete",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instantSnapshot"
+          ],
+          "parameters": {
+            "instantSnapshot": {
+              "description": "Name of the InstantSnapshot resource to delete.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "export": {
+          "description": "Export the changed blocks between two instant snapshots to a customer's bucket in the user specified format.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}/export",
+          "httpMethod": "POST",
+          "id": "compute.instantSnapshots.export",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instantSnapshot"
+          ],
+          "parameters": {
+            "instantSnapshot": {
+              "description": "Name of the instant snapshot to export.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}/export",
+          "request": {
+            "$ref": "InstantSnapshotsExportRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "get": {
+          "description": "Returns the specified InstantSnapshot resource in the specified zone.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
+          "httpMethod": "GET",
+          "id": "compute.instantSnapshots.get",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instantSnapshot"
+          ],
+          "parameters": {
+            "instantSnapshot": {
+              "description": "Name of the InstantSnapshot resource to return.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
+          "response": {
+            "$ref": "InstantSnapshot"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such policy or resource exists.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/getIamPolicy",
+          "httpMethod": "GET",
+          "id": "compute.instantSnapshots.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "insert": {
+          "description": "Creates an instant snapshot in the specified zone.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots",
+          "httpMethod": "POST",
+          "id": "compute.instantSnapshots.insert",
+          "parameterOrder": [
+            "project",
+            "zone"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "Name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots",
+          "request": {
+            "$ref": "InstantSnapshot"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "list": {
+          "description": "Retrieves the list of InstantSnapshot resources contained within the specified zone.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots",
+          "httpMethod": "GET",
+          "id": "compute.instantSnapshots.list",
+          "parameterOrder": [
+            "project",
+            "zone"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = \"Intel Skylake\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = \"Intel Skylake\") OR (cpuPlatform = \"Intel Broadwell\") AND (scheduling.automaticRestart = true) ```",
+              "location": "query",
+              "type": "string"
+            },
+            "maxResults": {
+              "default": "500",
+              "description": "The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)",
+              "format": "uint32",
+              "location": "query",
+              "minimum": "0",
+              "type": "integer"
+            },
+            "orderBy": {
+              "description": "Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy=\"creationTimestamp desc\"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageToken": {
+              "description": "Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.",
+              "location": "query",
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.",
+              "location": "query",
+              "type": "boolean"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots",
+          "response": {
+            "$ref": "InstantSnapshotList"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setIamPolicy",
+          "httpMethod": "POST",
+          "id": "compute.instantSnapshots.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "ZoneSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setLabels": {
+          "description": "Sets the labels on a instantSnapshot in the given zone. To learn more about labels, read the Labeling Resources documentation.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setLabels",
+          "httpMethod": "POST",
+          "id": "compute.instantSnapshots.setLabels",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setLabels",
+          "request": {
+            "$ref": "ZoneSetLabelsRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource.",
+          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/testIamPermissions",
+          "httpMethod": "POST",
+          "id": "compute.instantSnapshots.testIamPermissions",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/testIamPermissions",
+          "request": {
+            "$ref": "TestPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        }
+      }
+    },
     "interconnectAttachments": {
       "methods": {
         "aggregatedList": {
@@ -37148,445 +37587,6 @@
         }
       }
     },
-    "zoneInstantSnapshots": {
-      "methods": {
-        "delete": {
-          "description": "Deletes the specified InstantSnapshot resource. Keep in mind that deleting a single instantSnapshot might not necessarily delete all the data on that instantSnapshot. If any data on the instantSnapshot that is marked for deletion is needed for subsequent instantSnapshots, the data will be moved to the next corresponding instantSnapshot. For more information, see Deleting instantSnapshots.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
-          "httpMethod": "DELETE",
-          "id": "compute.zoneInstantSnapshots.delete",
-          "parameterOrder": [
-            "project",
-            "zone",
-            "instantSnapshot"
-          ],
-          "parameters": {
-            "instantSnapshot": {
-              "description": "Name of the InstantSnapshot resource to delete.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
-              "required": true,
-              "type": "string"
-            },
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
-              "location": "query",
-              "type": "string"
-            },
-            "zone": {
-              "description": "The name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute"
-          ]
-        },
-        "export": {
-          "description": "Export the changed blocks between two instant snapshots to a customer's bucket in the user specified format.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}/export",
-          "httpMethod": "POST",
-          "id": "compute.zoneInstantSnapshots.export",
-          "parameterOrder": [
-            "project",
-            "zone",
-            "instantSnapshot"
-          ],
-          "parameters": {
-            "instantSnapshot": {
-              "description": "Name of the instant snapshot to export.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
-              "required": true,
-              "type": "string"
-            },
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
-              "location": "query",
-              "type": "string"
-            },
-            "zone": {
-              "description": "The name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}/export",
-          "request": {
-            "$ref": "ZoneInstantSnapshotsExportRequest"
-          },
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute"
-          ]
-        },
-        "get": {
-          "description": "Returns the specified InstantSnapshot resource in the specified zone.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
-          "httpMethod": "GET",
-          "id": "compute.zoneInstantSnapshots.get",
-          "parameterOrder": [
-            "project",
-            "zone",
-            "instantSnapshot"
-          ],
-          "parameters": {
-            "instantSnapshot": {
-              "description": "Name of the InstantSnapshot resource to return.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
-              "required": true,
-              "type": "string"
-            },
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "zone": {
-              "description": "The name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots/{instantSnapshot}",
-          "response": {
-            "$ref": "InstantSnapshot"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute",
-            "https://www.googleapis.com/auth/compute.readonly"
-          ]
-        },
-        "getIamPolicy": {
-          "description": "Gets the access control policy for a resource. May be empty if no such policy or resource exists.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/getIamPolicy",
-          "httpMethod": "GET",
-          "id": "compute.zoneInstantSnapshots.getIamPolicy",
-          "parameterOrder": [
-            "project",
-            "zone",
-            "resource"
-          ],
-          "parameters": {
-            "optionsRequestedPolicyVersion": {
-              "description": "Requested IAM Policy version.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "resource": {
-              "description": "Name or id of the resource for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
-              "required": true,
-              "type": "string"
-            },
-            "zone": {
-              "description": "The name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/getIamPolicy",
-          "response": {
-            "$ref": "Policy"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute",
-            "https://www.googleapis.com/auth/compute.readonly"
-          ]
-        },
-        "insert": {
-          "description": "Creates an instant snapshot in the specified zone.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots",
-          "httpMethod": "POST",
-          "id": "compute.zoneInstantSnapshots.insert",
-          "parameterOrder": [
-            "project",
-            "zone"
-          ],
-          "parameters": {
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
-              "location": "query",
-              "type": "string"
-            },
-            "zone": {
-              "description": "Name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots",
-          "request": {
-            "$ref": "InstantSnapshot"
-          },
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute"
-          ]
-        },
-        "list": {
-          "description": "Retrieves the list of InstantSnapshot resources contained within the specified zone.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots",
-          "httpMethod": "GET",
-          "id": "compute.zoneInstantSnapshots.list",
-          "parameterOrder": [
-            "project",
-            "zone"
-          ],
-          "parameters": {
-            "filter": {
-              "description": "A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = \"Intel Skylake\") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = \"Intel Skylake\") OR (cpuPlatform = \"Intel Broadwell\") AND (scheduling.automaticRestart = true) ```",
-              "location": "query",
-              "type": "string"
-            },
-            "maxResults": {
-              "default": "500",
-              "description": "The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)",
-              "format": "uint32",
-              "location": "query",
-              "minimum": "0",
-              "type": "integer"
-            },
-            "orderBy": {
-              "description": "Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy=\"creationTimestamp desc\"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.",
-              "location": "query",
-              "type": "string"
-            },
-            "pageToken": {
-              "description": "Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.",
-              "location": "query",
-              "type": "string"
-            },
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "returnPartialSuccess": {
-              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false.",
-              "location": "query",
-              "type": "boolean"
-            },
-            "zone": {
-              "description": "The name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots",
-          "response": {
-            "$ref": "InstantSnapshotList"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute",
-            "https://www.googleapis.com/auth/compute.readonly"
-          ]
-        },
-        "setIamPolicy": {
-          "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setIamPolicy",
-          "httpMethod": "POST",
-          "id": "compute.zoneInstantSnapshots.setIamPolicy",
-          "parameterOrder": [
-            "project",
-            "zone",
-            "resource"
-          ],
-          "parameters": {
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "resource": {
-              "description": "Name or id of the resource for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
-              "required": true,
-              "type": "string"
-            },
-            "zone": {
-              "description": "The name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setIamPolicy",
-          "request": {
-            "$ref": "ZoneSetPolicyRequest"
-          },
-          "response": {
-            "$ref": "Policy"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute"
-          ]
-        },
-        "setLabels": {
-          "description": "Sets the labels on a instantSnapshot in the given zone. To learn more about labels, read the Labeling Resources documentation.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setLabels",
-          "httpMethod": "POST",
-          "id": "compute.zoneInstantSnapshots.setLabels",
-          "parameterOrder": [
-            "project",
-            "zone",
-            "resource"
-          ],
-          "parameters": {
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
-              "location": "query",
-              "type": "string"
-            },
-            "resource": {
-              "description": "Name or id of the resource for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
-              "required": true,
-              "type": "string"
-            },
-            "zone": {
-              "description": "The name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/setLabels",
-          "request": {
-            "$ref": "ZoneSetLabelsRequest"
-          },
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute"
-          ]
-        },
-        "testIamPermissions": {
-          "description": "Returns permissions that a caller has on the specified resource.",
-          "flatPath": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/testIamPermissions",
-          "httpMethod": "POST",
-          "id": "compute.zoneInstantSnapshots.testIamPermissions",
-          "parameterOrder": [
-            "project",
-            "zone",
-            "resource"
-          ],
-          "parameters": {
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "resource": {
-              "description": "Name or id of the resource for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
-              "required": true,
-              "type": "string"
-            },
-            "zone": {
-              "description": "The name of the zone for this request.",
-              "location": "path",
-              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/zones/{zone}/instantSnapshots/{resource}/testIamPermissions",
-          "request": {
-            "$ref": "TestPermissionsRequest"
-          },
-          "response": {
-            "$ref": "TestPermissionsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute",
-            "https://www.googleapis.com/auth/compute.readonly"
-          ]
-        }
-      }
-    },
     "zoneOperations": {
       "methods": {
         "delete": {
@@ -37874,7 +37874,7 @@
       }
     }
   },
-  "revision": "20210812",
+  "revision": "20210820",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -42655,7 +42655,7 @@
         },
         "diskEncryptionKey": {
           "$ref": "CustomerEncryptionKey",
-          "description": "Encrypts the disk using a customer-supplied encryption key. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later (e.g. to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine). Customer-supplied encryption keys do not protect access to metadata of the disk. If you do not provide an encryption key when creating the disk, then the disk will be encrypted using an automatically generated key and you do not need to provide a key to use the disk later."
+          "description": "Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key. Encryption keys do not protect access to metadata of the disk. After you encrypt a disk with a customer-supplied key, you must provide the same key if you use the disk later. For example, to create a disk snapshot, to create a disk image, to create a machine image, or to attach the disk to a virtual machine. After you encrypt a disk with a customer-managed key, the diskEncryptionKey.kmsKeyName is set to a key *version* name once the disk is created. The disk is encrypted with this version of the key. In the response, diskEncryptionKey.kmsKeyName appears in the following format: \"diskEncryptionKey.kmsKeyName\": \"projects/kms_project_id/locations/region/keyRings/ key_region/cryptoKeys/key /cryptoKeysVersions/version If you do not provide an encryption key when creating the disk, then the disk is encrypted using an automatically generated key and you don't need to provide a key to use the disk later."
         },
         "eraseWindowsVssSignature": {
           "description": "Specifies whether the disk restored from a source snapshot should erase Windows specific VSS signature.",
@@ -52307,6 +52307,16 @@
       },
       "type": "object"
     },
+    "InstantSnapshotsExportRequest": {
+      "id": "InstantSnapshotsExportRequest",
+      "properties": {
+        "exportParams": {
+          "$ref": "InstantSnapshotExportParams",
+          "description": "Parameters to export the changed blocks."
+        }
+      },
+      "type": "object"
+    },
     "Int64RangeMatch": {
       "description": "HttpRouteRuleMatch criteria for field values that must stay within the specified integer range.",
       "id": "Int64RangeMatch",
@@ -61882,10 +61892,12 @@
             "BACKEND_SERVICES",
             "C2D_CPUS",
             "C2_CPUS",
+            "C3_CPUS",
             "COMMITMENTS",
             "COMMITTED_A2_CPUS",
             "COMMITTED_C2D_CPUS",
             "COMMITTED_C2_CPUS",
+            "COMMITTED_C3_CPUS",
             "COMMITTED_CPUS",
             "COMMITTED_E2_CPUS",
             "COMMITTED_LICENSES",
@@ -62007,6 +62019,8 @@
             "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -70629,7 +70643,7 @@
             "NONE"
           ],
           "enumDescriptions": [
-            "Subsetting based on consistent hashing. For Traffic Director, the number of backends per backend group (the subset size) is adjusted based on the `subset_size` parameter. For Internal HTTP(S) load balancing, the number of backends per backend group (the subset size) is dynamically adjusted in two cases: - As the number of proxy instances participating in Internal HTTP(S) load balancing increases, the subset size decreases. - When the total number of backends in a network exceeds the capacity of a single proxy instance, subset sizes are reduced automatically for each service that has backend subsetting enabled.",
+            "Subsetting based on consistent hashing. For Traffic Director, the number of backends per backend group (the subset size) is based on the `subset_size` parameter. For Internal HTTP(S) load balancing, the number of backends per backend group (the subset size) is dynamically adjusted in two cases: - As the number of proxy instances participating in Internal HTTP(S) load balancing increases, the subset size decreases. - When the total number of backends in a network exceeds the capacity of a single proxy instance, subset sizes are reduced automatically for each service that has backend subsetting enabled.",
             "No Subsetting. Clients may open connections and send traffic to all backends of this backend service. This can lead to performance issues if there is substantial imbalance in the count of clients and backends."
           ],
           "type": "string"
@@ -75991,16 +76005,6 @@
         "supportsPzs": {
           "description": "[Output Only] Reserved for future use.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "ZoneInstantSnapshotsExportRequest": {
-      "id": "ZoneInstantSnapshotsExportRequest",
-      "properties": {
-        "exportParams": {
-          "$ref": "InstantSnapshotExportParams",
-          "description": "Parameters to export the changed blocks."
         }
       },
       "type": "object"
