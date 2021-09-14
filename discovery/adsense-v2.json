@@ -1567,7 +1567,7 @@
       }
     }
   },
-  "revision": "20210805",
+  "revision": "20210911",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1682,8 +1682,8 @@
           ],
           "enumDescriptions": [
             "State unspecified.",
-            "Ad unit has been activated by the user and can serve ads.",
-            "Ad unit has been archived by the user and can no longer serve ads."
+            "Ad unit has been activated by the user.",
+            "Ad unit has been archived by the user. Note that archived ad units are only removed from the default view in the UI. Archived ad units can still serve ads."
           ],
           "type": "string"
         }

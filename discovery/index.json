@@ -621,6 +621,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "bigqueryconnection:v1beta1",
+      "name": "bigqueryconnection",
+      "version": "v1beta1",
+      "title": "BigQuery Connection API",
+      "description": "Allows users to manage BigQuery connections to external data sources.",
+      "discoveryRestUrl": "https://bigqueryconnection.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bigquery/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "bigquerydatatransfer:v1",
       "name": "bigquerydatatransfer",
       "version": "v1",
@@ -1746,21 +1761,6 @@
       },
       "documentationLink": "https://cloud.google.com/database-migration/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "dataproc:v1beta2",
-      "name": "dataproc",
-      "version": "v1beta2",
-      "title": "Cloud Dataproc API",
-      "description": "Manages Hadoop-based clusters and jobs on Google Cloud Platform.",
-      "discoveryRestUrl": "https://dataproc.googleapis.com/$discovery/rest?version=v1beta2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/dataproc/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",

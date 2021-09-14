@@ -1840,6 +1840,56 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getBalance": {
+              "description": "Gets the account balance for the developer.",
+              "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/balance",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.developers.getBalance",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Account balance for the developer. Use the following structure in your request: `organizations/{org}/developers/{developer}/balance`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/developers/[^/]+/balance$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1DeveloperBalance"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getMonetizationConfig": {
+              "description": "Gets the monetization configuration for the developer.",
+              "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/monetizationConfig",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.developers.getMonetizationConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Monetization configuration for the developer. Use the following structure in your request: `organizations/{org}/developers/{developer}/monetizationConfig`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/developers/[^/]+/monetizationConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1DeveloperMonetizationConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists all developers in an organization by email address. By default, the response does not include company developers. Set the `includeCompany` query parameter to `true` to include company developers. **Note**: A maximum of 1000 developers are returned in the response. You paginate the list of developers returned using the `startKey` and `count` query parameters.",
               "flatPath": "v1/organizations/{organizationsId}/developers",
@@ -1949,6 +1999,34 @@
               },
               "response": {
                 "$ref": "GoogleCloudApigeeV1Developer"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateMonetizationConfig": {
+              "description": "Updates the monetization configuration for the developer.",
+              "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/monetizationConfig",
+              "httpMethod": "PUT",
+              "id": "apigee.organizations.developers.updateMonetizationConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Monetization configuration for the developer. Use the following structure in your request: `organizations/{org}/developers/{developer}/monetizationConfig`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/developers/[^/]+/monetizationConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1DeveloperMonetizationConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1DeveloperMonetizationConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -2628,6 +2706,38 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudApigeeV1Attribute"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "balance": {
+              "methods": {
+                "credit": {
+                  "description": "Credits the account balance for the developer.",
+                  "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/balance:credit",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.developers.balance.credit",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Account balance for the developer. Use the following structure in your request: `organizations/{org}/developers/{developer}/balance`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/developers/[^/]+/balance$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:credit",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1CreditDeveloperBalanceRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1DeveloperBalance"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -7302,7 +7412,7 @@
       }
     }
   },
-  "revision": "20210826",
+  "revision": "20210902",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -8331,6 +8441,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1CreditDeveloperBalanceRequest": {
+      "description": "Request for CreditDeveloperBalance.",
+      "id": "GoogleCloudApigeeV1CreditDeveloperBalanceRequest",
+      "properties": {
+        "transactionAmount": {
+          "$ref": "GoogleTypeMoney",
+          "description": "The amount of money to be credited. The wallet corresponding to the currency specified within `transaction_amount` will be updated. For example, if you specified `currency_code` within `transaction_amount` as \"USD\", then the amount would be added to the wallet which has the \"USD\" currency or if no such wallet exists, a new wallet will be created with the \"USD\" currency."
+        },
+        "transactionId": {
+          "description": "Each transaction_id uniquely identifies a credit balance request. If multiple requests are received with the same transaction_id, only one of them will be considered.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1CustomReport": {
       "id": "GoogleCloudApigeeV1CustomReport",
       "properties": {
@@ -9160,6 +9285,59 @@
         },
         "status": {
           "description": "Status of the credential. Valid values include `approved` or `revoked`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DeveloperBalance": {
+      "description": "Account balance for the developer.",
+      "id": "GoogleCloudApigeeV1DeveloperBalance",
+      "properties": {
+        "wallets": {
+          "description": "Output only. List of all wallets. Each individual wallet stores the account balance for a particular currency.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DeveloperBalanceWallet"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DeveloperBalanceWallet": {
+      "description": "Wallet used to manage an account balance for a particular currency.",
+      "id": "GoogleCloudApigeeV1DeveloperBalanceWallet",
+      "properties": {
+        "balance": {
+          "$ref": "GoogleTypeMoney",
+          "description": "Current remaining balance of the developer for a particular currency."
+        },
+        "lastCreditTime": {
+          "description": "Output only. Time at which the developer last added credit to the account in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DeveloperMonetizationConfig": {
+      "description": "Monetization configuration for the developer.",
+      "id": "GoogleCloudApigeeV1DeveloperMonetizationConfig",
+      "properties": {
+        "billingType": {
+          "description": "Billing type.",
+          "enum": [
+            "BILLING_TYPE_UNSPECIFIED",
+            "PREPAID",
+            "POSTPAID"
+          ],
+          "enumDescriptions": [
+            "The default/unset value.",
+            "Developer pays in advance for the use of APIs and the charged amount is deducted from their account balance.",
+            "Developer does not maintain an account balance. The API provider bills the developer for API usage."
+          ],
           "type": "string"
         }
       },
