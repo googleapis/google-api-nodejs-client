@@ -1524,6 +1524,43 @@ export namespace dataproc_v1 {
     kerberosConfig?: Schema$KerberosConfig;
   }
   /**
+   * Metadata describing the Session operation.
+   */
+  export interface Schema$SessionOperationMetadata {
+    /**
+     * The time when the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Short description of the operation.
+     */
+    description?: string | null;
+    /**
+     * The time when the operation was finished.
+     */
+    doneTime?: string | null;
+    /**
+     * Labels associated with the operation.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The operation type.
+     */
+    operationType?: string | null;
+    /**
+     * Name of the session for the operation.
+     */
+    session?: string | null;
+    /**
+     * Session UUID for the operation.
+     */
+    sessionUuid?: string | null;
+    /**
+     * Warnings encountered during operation execution.
+     */
+    warnings?: string[] | null;
+  }
+  /**
    * Request message for SetIamPolicy method.
    */
   export interface Schema$SetIamPolicyRequest {
