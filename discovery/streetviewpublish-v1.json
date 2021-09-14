@@ -330,7 +330,7 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Required. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The only filter supported at the moment is `placeId`.",
+              "description": "Optional. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The only filter supported at the moment is `placeId`.",
               "location": "query",
               "type": "string"
             },
@@ -375,7 +375,7 @@
       }
     }
   },
-  "revision": "20210519",
+  "revision": "20210910",
   "rootUrl": "https://streetviewpublish.googleapis.com/",
   "schemas": {
     "BatchDeletePhotosRequest": {
@@ -635,6 +635,11 @@
         "uploadReference": {
           "$ref": "UploadRef",
           "description": "Required when creating a photo. Input only. The resource URL where the photo bytes are uploaded to."
+        },
+        "uploadTime": {
+          "description": "Time when the image was uploaded.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "viewCount": {
           "description": "Output only. View count of the photo.",
