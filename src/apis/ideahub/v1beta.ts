@@ -156,6 +156,31 @@ export namespace ideahub_v1beta {
     topics?: Schema$GoogleSearchIdeahubV1betaTopic[];
   }
   /**
+   * An idea activity entry.
+   */
+  export interface Schema$GoogleSearchIdeahubV1betaIdeaActivity {
+    /**
+     * The Idea IDs for this entry. If empty, topics should be set.
+     */
+    ideas?: string[] | null;
+    /**
+     * Unique identifier for the idea activity. The name is ignored when creating an idea activity. Format: platforms/{platform\}/properties/{property\}/ideaActivities/{idea_activity\}
+     */
+    name?: string | null;
+    /**
+     * The Topic IDs for this entry. If empty, ideas should be set.
+     */
+    topics?: string[] | null;
+    /**
+     * The type of activity performed.
+     */
+    type?: string | null;
+    /**
+     * The uri the activity relates to.
+     */
+    uri?: string | null;
+  }
+  /**
    * Represents idea state specific to a web property.
    */
   export interface Schema$GoogleSearchIdeahubV1betaIdeaState {
@@ -241,12 +266,16 @@ export namespace ideahub_v1beta {
 
   export class Resource$Platforms$Properties {
     context: APIRequestContext;
+    ideaActivities: Resource$Platforms$Properties$Ideaactivities;
     ideas: Resource$Platforms$Properties$Ideas;
     ideaStates: Resource$Platforms$Properties$Ideastates;
     locales: Resource$Platforms$Properties$Locales;
     topicStates: Resource$Platforms$Properties$Topicstates;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.ideaActivities = new Resource$Platforms$Properties$Ideaactivities(
+        this.context
+      );
       this.ideas = new Resource$Platforms$Properties$Ideas(this.context);
       this.ideaStates = new Resource$Platforms$Properties$Ideastates(
         this.context
@@ -256,6 +285,181 @@ export namespace ideahub_v1beta {
         this.context
       );
     }
+  }
+
+  export class Resource$Platforms$Properties$Ideaactivities {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an idea activity entry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/ideahub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const ideahub = google.ideahub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await ideahub.platforms.properties.ideaActivities.create({
+     *     // Required. The parent resource where this idea activity will be created. Format: platforms/{platform\}/property/{property\}
+     *     parent: 'platforms/my-platform/properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ideas": [],
+     *       //   "name": "my_name",
+     *       //   "topics": [],
+     *       //   "type": "my_type",
+     *       //   "uri": "my_uri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ideas": [],
+     *   //   "name": "my_name",
+     *   //   "topics": [],
+     *   //   "type": "my_type",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Platforms$Properties$Ideaactivities$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Platforms$Properties$Ideaactivities$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleSearchIdeahubV1betaIdeaActivity>;
+    create(
+      params: Params$Resource$Platforms$Properties$Ideaactivities$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Platforms$Properties$Ideaactivities$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleSearchIdeahubV1betaIdeaActivity>,
+      callback: BodyResponseCallback<Schema$GoogleSearchIdeahubV1betaIdeaActivity>
+    ): void;
+    create(
+      params: Params$Resource$Platforms$Properties$Ideaactivities$Create,
+      callback: BodyResponseCallback<Schema$GoogleSearchIdeahubV1betaIdeaActivity>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleSearchIdeahubV1betaIdeaActivity>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Platforms$Properties$Ideaactivities$Create
+        | BodyResponseCallback<Schema$GoogleSearchIdeahubV1betaIdeaActivity>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleSearchIdeahubV1betaIdeaActivity>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleSearchIdeahubV1betaIdeaActivity>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleSearchIdeahubV1betaIdeaActivity>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Platforms$Properties$Ideaactivities$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Platforms$Properties$Ideaactivities$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ideahub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/ideaActivities').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleSearchIdeahubV1betaIdeaActivity>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleSearchIdeahubV1betaIdeaActivity>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Platforms$Properties$Ideaactivities$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this idea activity will be created. Format: platforms/{platform\}/property/{property\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleSearchIdeahubV1betaIdeaActivity;
   }
 
   export class Resource$Platforms$Properties$Ideas {
