@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20210830",
+  "revision": "20210907",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -771,6 +771,79 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1DeleteProcessorMetadata": {
+      "description": "The long running operation metadata for delete processor method.",
+      "id": "GoogleCloudDocumentaiV1DeleteProcessorMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata": {
+      "description": "The long running operation metadata for delete processor version method.",
+      "id": "GoogleCloudDocumentaiV1DeleteProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DeployProcessorVersionMetadata": {
+      "description": "The long running operation metadata for deploy processor version method.",
+      "id": "GoogleCloudDocumentaiV1DeployProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DeployProcessorVersionResponse": {
+      "description": "Response message for the deploy processor version method.",
+      "id": "GoogleCloudDocumentaiV1DeployProcessorVersionResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DisableProcessorMetadata": {
+      "description": "The long running operation metadata for disable processor method.",
+      "id": "GoogleCloudDocumentaiV1DisableProcessorMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DisableProcessorResponse": {
+      "description": "Response message for the disable processor method. Intentionally empty proto for adding fields in future.",
+      "id": "GoogleCloudDocumentaiV1DisableProcessorResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1EnableProcessorMetadata": {
+      "description": "The long running operation metadata for enable processor method.",
+      "id": "GoogleCloudDocumentaiV1EnableProcessorMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1EnableProcessorResponse": {
+      "description": "Response message for the enable processor method. Intentionally empty proto for adding fields in future.",
+      "id": "GoogleCloudDocumentaiV1EnableProcessorResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1HumanReviewStatus": {
       "description": "The status of human review on a processed document.",
       "id": "GoogleCloudDocumentaiV1HumanReviewStatus",
@@ -824,6 +897,40 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata": {
+      "description": "The long running operation metadata for set default processor version method.",
+      "id": "GoogleCloudDocumentaiV1SetDefaultProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse": {
+      "description": "Response message for set default processor version method.",
+      "id": "GoogleCloudDocumentaiV1SetDefaultProcessorVersionResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata": {
+      "description": "The long running operation metadata for the undeploy processor version method.",
+      "id": "GoogleCloudDocumentaiV1UndeployProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1UndeployProcessorVersionResponse": {
+      "description": "Response message for the undeploy processor version method.",
+      "id": "GoogleCloudDocumentaiV1UndeployProcessorVersionResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse": {
@@ -3483,6 +3590,34 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata": {
+      "description": "The long running operation metadata for delete processor version method.",
+      "id": "GoogleCloudDocumentaiV1beta3DeleteProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata": {
+      "description": "The long running operation metadata for deploy processor version method.",
+      "id": "GoogleCloudDocumentaiV1beta3DeployProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse": {
+      "description": "Response message for the deploy processor version method.",
+      "id": "GoogleCloudDocumentaiV1beta3DeployProcessorVersionResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3DisableProcessorMetadata": {
       "description": "The long running operation metadata for disable processor method.",
       "id": "GoogleCloudDocumentaiV1beta3DisableProcessorMetadata",
@@ -3604,6 +3739,40 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata": {
+      "description": "The long running operation metadata for set default processor version method.",
+      "id": "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse": {
+      "description": "Response message for set default processor version method.",
+      "id": "GoogleCloudDocumentaiV1beta3SetDefaultProcessorVersionResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata": {
+      "description": "The long running operation metadata for the undeploy processor version method.",
+      "id": "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse": {
+      "description": "Response message for the undeploy processor version method.",
+      "id": "GoogleCloudDocumentaiV1beta3UndeployProcessorVersionResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleLongrunningOperation": {
