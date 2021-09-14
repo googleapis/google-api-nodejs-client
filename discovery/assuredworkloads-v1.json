@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20210906",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -369,7 +369,8 @@
             "US_REGIONAL_ACCESS",
             "HIPAA",
             "HITRUST",
-            "EU_REGIONS_AND_SUPPORT"
+            "EU_REGIONS_AND_SUPPORT",
+            "CA_REGIONS_AND_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -380,7 +381,8 @@
             "Assured Workloads For US Regions data protection controls",
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
-            "Assured Workloads For EU Regions and Support controls"
+            "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For Canada Regions and Support controls"
           ],
           "type": "string"
         },
@@ -437,7 +439,8 @@
             "US_REGIONAL_ACCESS",
             "HIPAA",
             "HITRUST",
-            "EU_REGIONS_AND_SUPPORT"
+            "EU_REGIONS_AND_SUPPORT",
+            "CA_REGIONS_AND_SUPPORT"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -448,7 +451,8 @@
             "Assured Workloads For US Regions data protection controls",
             "Health Insurance Portability and Accountability Act controls",
             "Health Information Trust Alliance controls",
-            "Assured Workloads For EU Regions and Support controls"
+            "Assured Workloads For EU Regions and Support controls",
+            "Assured Workloads For Canada Regions and Support controls"
           ],
           "type": "string"
         },
