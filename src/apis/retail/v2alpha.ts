@@ -498,7 +498,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaFulfillmentInfo {
     /**
-     * The IDs for this type, such as the store IDs for FulfillmentInfo.type.pickup-in-store or the region IDs for FulfillmentInfo.type.same-day-delivery. A maximum of 2000 values are allowed. Each value must be a string with a length limit of 10 characters, matching the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an INVALID_ARGUMENT error is returned.
+     * The IDs for this type, such as the store IDs for FulfillmentInfo.type.pickup-in-store or the region IDs for FulfillmentInfo.type.same-day-delivery. A maximum of 3000 values are allowed. Each value must be a string with a length limit of 30 characters, matching the pattern [a-zA-Z0-9_-]+, such as "store1" or "REGION-2". Otherwise, an INVALID_ARGUMENT error is returned.
      */
     placeIds?: string[] | null;
     /**
@@ -1199,7 +1199,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchRequest {
     /**
-     * Boost specification to boost certain products. See more details at this [user guide](/retail/private/docs/boosting).
+     * Boost specification to boost certain products. See more details at this [user guide](https://cloud.google.com/retail/docs/boosting).
      */
     boostSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestBoostSpec;
     /**
@@ -1219,7 +1219,7 @@ export namespace retail_v2alpha {
      */
     facetSpecs?: Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpec[];
     /**
-     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the products being filtered. Filter expression is case-sensitive. See more details at this [user guide](/retail/private/docs/filter-and-order#filter). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
+     * The filter syntax consists of an expression language for constructing a predicate from one or more fields of the products being filtered. Filter expression is case-sensitive. See more details at this [user guide](https://cloud.google.com/retail/docs/filter-and-order#filter). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      */
     filter?: string | null;
     /**
@@ -1227,7 +1227,7 @@ export namespace retail_v2alpha {
      */
     offset?: number | null;
     /**
-     * The order in which products are returned. Products can be ordered by a field in an Product object. Leave it unset if ordered by relevance. OrderBy expression is case-sensitive. See more details at this [user guide](/retail/private/docs/filter-and-order#order). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
+     * The order in which products are returned. Products can be ordered by a field in an Product object. Leave it unset if ordered by relevance. OrderBy expression is case-sensitive. See more details at this [user guide](https://cloud.google.com/retail/docs/filter-and-order#order). If this field is unrecognizable, an INVALID_ARGUMENT is returned.
      */
     orderBy?: string | null;
     /**
@@ -1247,11 +1247,11 @@ export namespace retail_v2alpha {
      */
     query?: string | null;
     /**
-     * The query expansion specification that specifies the conditions under which query expansion will occur. See more details at this [user guide](/retail/private/docs/result-size#query_expansion).
+     * The query expansion specification that specifies the conditions under which query expansion will occur. See more details at this [user guide](https://cloud.google.com/retail/docs/result-size#query_expansion).
      */
     queryExpansionSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestQueryExpansionSpec;
     /**
-     * The relevance threshold of the search results. Defaults to RelevanceThreshold.HIGH, which means only the most relevant results are shown, and the least number of results are returned. See more details at this [user guide](/retail/private/docs/result-size#relevance_thresholding).
+     * The relevance threshold of the search results. Defaults to RelevanceThreshold.HIGH, which means only the most relevant results are shown, and the least number of results are returned. See more details at this [user guide](https://cloud.google.com/retail/docs/result-size#relevance_thresholding).
      */
     relevanceThreshold?: string | null;
     /**
@@ -1445,7 +1445,7 @@ export namespace retail_v2alpha {
      */
     expandedQuery?: boolean | null;
     /**
-     * Number of pinned results. This field will only be set when expansion happens and SearchRequest.query_expansion_spec.pin_unexpanded_results is set to true.
+     * Number of pinned results. This field will only be set when expansion happens and SearchRequest.QueryExpansionSpec.pin_unexpanded_results is set to true.
      */
     pinnedResultCount?: string | null;
   }
@@ -1531,7 +1531,7 @@ export namespace retail_v2alpha {
      */
     attributionToken?: string | null;
     /**
-     * The id or name of the associated shopping cart. This id is used to associate multiple items added or present in the cart before purchase. This can only be set for `add-to-cart`, `purchase-complete`, or `shopping-cart-page-view` events.
+     * The ID or name of the associated shopping cart. This ID is used to associate multiple items added or present in the cart before purchase. This can only be set for `add-to-cart`, `purchase-complete`, or `shopping-cart-page-view` events.
      */
     cartId?: string | null;
     /**
@@ -1567,11 +1567,11 @@ export namespace retail_v2alpha {
      */
     pageCategories?: string[] | null;
     /**
-     * A unique id of a web page view. This should be kept the same for all user events triggered from the same pageview. For example, an item detail page view could trigger multiple events as the user is browsing the page. The `pageViewId` property should be kept the same for all these events so that they can be grouped together properly. When using the client side event reporting with JavaScript pixel and Google Tag Manager, this value is filled in automatically.
+     * A unique ID of a web page view. This should be kept the same for all user events triggered from the same pageview. For example, an item detail page view could trigger multiple events as the user is browsing the page. The `pageViewId` property should be kept the same for all these events so that they can be grouped together properly. When using the client side event reporting with JavaScript pixel and Google Tag Manager, this value is filled in automatically.
      */
     pageViewId?: string | null;
     /**
-     * The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `detail-page-view` * `purchase-complete` In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished broswing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new `search` event with different product_details is desired. The end user may have not finished broswing the whole page yet.
+     * The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `detail-page-view` * `purchase-complete` In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished browsing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new `search` event with different product_details is desired. The end user may have not finished browsing the whole page yet.
      */
     productDetails?: Schema$GoogleCloudRetailV2alphaProductDetail[];
     /**
