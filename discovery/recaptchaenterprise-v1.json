@@ -375,13 +375,17 @@
       }
     }
   },
-  "revision": "20210822",
+  "revision": "20210903",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings": {
       "description": "Settings specific to keys that can be used by Android apps.",
       "id": "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings",
       "properties": {
+        "allowAllPackageNames": {
+          "description": "If set to true, it means allowed_package_names will not be enforced.",
+          "type": "boolean"
+        },
         "allowedPackageNames": {
           "description": "Android package names of apps allowed to use the key. Example: 'com.companyname.appname'",
           "items": {
@@ -533,6 +537,10 @@
       "description": "Settings specific to keys that can be used by iOS apps.",
       "id": "GoogleCloudRecaptchaenterpriseV1IOSKeySettings",
       "properties": {
+        "allowAllBundleIds": {
+          "description": "If set to true, it means allowed_bundle_ids will not be enforced.",
+          "type": "boolean"
+        },
         "allowedBundleIds": {
           "description": "iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'",
           "items": {
