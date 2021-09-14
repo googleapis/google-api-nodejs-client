@@ -4717,24 +4717,6 @@
     },
     "customBiddingAlgorithms": {
       "methods": {
-        "create": {
-          "description": "Creates a new custom bidding algorithm. Returns the newly created custom bidding algorithm if successful.",
-          "flatPath": "v1/customBiddingAlgorithms",
-          "httpMethod": "POST",
-          "id": "displayvideo.customBiddingAlgorithms.create",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/customBiddingAlgorithms",
-          "request": {
-            "$ref": "CustomBiddingAlgorithm"
-          },
-          "response": {
-            "$ref": "CustomBiddingAlgorithm"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/display-video"
-          ]
-        },
         "get": {
           "description": "Gets a custom bidding algorithm.",
           "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}",
@@ -4817,41 +4799,6 @@
           "path": "v1/customBiddingAlgorithms",
           "response": {
             "$ref": "ListCustomBiddingAlgorithmsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/display-video"
-          ]
-        },
-        "patch": {
-          "description": "Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful.",
-          "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}",
-          "httpMethod": "PATCH",
-          "id": "displayvideo.customBiddingAlgorithms.patch",
-          "parameterOrder": [
-            "customBiddingAlgorithmId"
-          ],
-          "parameters": {
-            "customBiddingAlgorithmId": {
-              "description": "Output only. The unique ID of the custom bidding algorithm. Assigned by the system.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "updateMask": {
-              "description": "Required. The mask to control which fields to update.",
-              "format": "google-fieldmask",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}",
-          "request": {
-            "$ref": "CustomBiddingAlgorithm"
-          },
-          "response": {
-            "$ref": "CustomBiddingAlgorithm"
           },
           "scopes": [
             "https://www.googleapis.com/auth/display-video"
@@ -7370,7 +7317,7 @@
       }
     }
   },
-  "revision": "20210902",
+  "revision": "20210913",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8949,11 +8896,11 @@
       "description": "Search terms for Business Chain targeting options. At least one of the field should be populated.",
       "id": "BusinessChainSearchTerms",
       "properties": {
-        "businessChain": {
+        "businessChainQuery": {
           "description": "The search query for the desired business chain. The query must be the full name of the business, e.g. \"KFC\", \"mercedes-benz\".",
           "type": "string"
         },
-        "region": {
+        "regionQuery": {
           "description": "The search query for the desired geo region, e.g. \"Seattle\", \"United State\".",
           "type": "string"
         }
