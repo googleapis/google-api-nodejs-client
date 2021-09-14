@@ -2963,7 +2963,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_ShotChangeDetectionConfig {
     /**
-     * Model to use for shot change detection. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".
+     * Model to use for shot change detection. Supported values: "builtin/stable" (the default if unset), "builtin/latest", and "builtin/legacy".
      */
     model?: string | null;
   }
