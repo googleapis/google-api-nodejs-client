@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20210813",
+  "revision": "20210909",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -768,7 +768,7 @@
       "type": "object"
     },
     "Instance": {
-      "description": "A Google Cloud Redis instance. next id = 36",
+      "description": "A Google Cloud Redis instance. next id = 37",
       "id": "Instance",
       "properties": {
         "alternativeLocationId": {
