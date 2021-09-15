@@ -290,6 +290,32 @@ export namespace pubsublite_v1 {
     partitionCursors?: Schema$PartitionCursor[];
   }
   /**
+   * Response for ListReservations.
+   */
+  export interface Schema$ListReservationsResponse {
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of reservation in the requested parent. The order of the reservations is unspecified.
+     */
+    reservations?: Schema$Reservation[];
+  }
+  /**
+   * Response for ListReservationTopics.
+   */
+  export interface Schema$ListReservationTopicsResponse {
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The names of topics attached to the reservation. The order of the topics is unspecified.
+     */
+    topics?: string[] | null;
+  }
+  /**
    * Response for ListSubscriptions.
    */
   export interface Schema$ListSubscriptionsResponse {
@@ -405,6 +431,28 @@ export namespace pubsublite_v1 {
     partition?: string | null;
   }
   /**
+   * Metadata about a reservation resource.
+   */
+  export interface Schema$Reservation {
+    /**
+     * The name of the reservation. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     */
+    name?: string | null;
+    /**
+     * The reserved throughput capacity. Every unit of throughput capacity is equivalent to 1 MiB/s of published messages or 2 MiB/s of subscribed messages. Any topics which are declared as using capacity from a Reservation will consume resources from this reservation instead of being charged individually.
+     */
+    throughputCapacity?: string | null;
+  }
+  /**
+   * The settings for this topic's Reservation usage.
+   */
+  export interface Schema$ReservationConfig {
+    /**
+     * The Reservation to use for this topic's throughput capacity. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     */
+    throughputReservation?: string | null;
+  }
+  /**
    * The settings for a topic's message retention.
    */
   export interface Schema$RetentionConfig {
@@ -494,6 +542,10 @@ export namespace pubsublite_v1 {
      */
     partitionConfig?: Schema$PartitionConfig;
     /**
+     * The settings for this topic's Reservation usage.
+     */
+    reservationConfig?: Schema$ReservationConfig;
+    /**
      * The settings for this topic's message retention.
      */
     retentionConfig?: Schema$RetentionConfig;
@@ -529,11 +581,15 @@ export namespace pubsublite_v1 {
   export class Resource$Admin$Projects$Locations {
     context: APIRequestContext;
     operations: Resource$Admin$Projects$Locations$Operations;
+    reservations: Resource$Admin$Projects$Locations$Reservations;
     subscriptions: Resource$Admin$Projects$Locations$Subscriptions;
     topics: Resource$Admin$Projects$Locations$Topics;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Admin$Projects$Locations$Operations(
+        this.context
+      );
+      this.reservations = new Resource$Admin$Projects$Locations$Reservations(
         this.context
       );
       this.subscriptions = new Resource$Admin$Projects$Locations$Subscriptions(
@@ -1122,6 +1178,921 @@ export namespace pubsublite_v1 {
     pageSize?: number;
     /**
      * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Admin$Projects$Locations$Reservations {
+    context: APIRequestContext;
+    topics: Resource$Admin$Projects$Locations$Reservations$Topics;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.topics = new Resource$Admin$Projects$Locations$Reservations$Topics(
+        this.context
+      );
+    }
+
+    /**
+     * Creates a new reservation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsublite.admin.projects.locations.reservations.create({
+     *     // Required. The parent location in which to create the reservation. Structured like `projects/{project_number\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. The ID to use for the reservation, which will become the final component of the reservation's name. This value is structured like: `my-reservation-name`.
+     *     reservationId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "throughputCapacity": "my_throughputCapacity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "throughputCapacity": "my_throughputCapacity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Admin$Projects$Locations$Reservations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Reservation>;
+    create(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Reservation>,
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    create(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Create,
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Reservation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Admin$Projects$Locations$Reservations$Create
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Admin$Projects$Locations$Reservations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Reservations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/admin/{+parent}/reservations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Reservation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Reservation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified reservation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsublite.admin.projects.locations.reservations.delete({
+     *     // Required. The name of the reservation to delete. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     *     name: 'projects/my-project/locations/my-location/reservations/my-reservation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Admin$Projects$Locations$Reservations$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Admin$Projects$Locations$Reservations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Admin$Projects$Locations$Reservations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Reservations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Returns the reservation configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsublite.admin.projects.locations.reservations.get({
+     *     // Required. The name of the reservation whose configuration to return. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     *     name: 'projects/my-project/locations/my-location/reservations/my-reservation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "throughputCapacity": "my_throughputCapacity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Admin$Projects$Locations$Reservations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Reservation>;
+    get(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Reservation>,
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    get(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Get,
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Reservation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Admin$Projects$Locations$Reservations$Get
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Admin$Projects$Locations$Reservations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Reservations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Reservation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Reservation>(parameters);
+      }
+    }
+
+    /**
+     * Returns the list of reservations for the given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsublite.admin.projects.locations.reservations.list({
+     *     // The maximum number of reservations to return. The service may return fewer than this value. If unset or zero, all reservations for the parent will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListReservations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservations` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent whose reservations are to be listed. Structured like `projects/{project_number\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "reservations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Admin$Projects$Locations$Reservations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReservationsResponse>;
+    list(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReservationsResponse>,
+      callback: BodyResponseCallback<Schema$ListReservationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$List,
+      callback: BodyResponseCallback<Schema$ListReservationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListReservationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Admin$Projects$Locations$Reservations$List
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReservationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReservationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Admin$Projects$Locations$Reservations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Reservations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/admin/{+parent}/reservations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReservationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReservationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates properties of the specified reservation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsublite.admin.projects.locations.reservations.patch({
+     *     // The name of the reservation. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     *     name: 'projects/my-project/locations/my-location/reservations/my-reservation',
+     *     // Required. A mask specifying the reservation fields to change.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "throughputCapacity": "my_throughputCapacity"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "throughputCapacity": "my_throughputCapacity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Admin$Projects$Locations$Reservations$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Reservation>;
+    patch(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Reservation>,
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    patch(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Patch,
+      callback: BodyResponseCallback<Schema$Reservation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Reservation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Admin$Projects$Locations$Reservations$Patch
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Reservation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Reservation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Admin$Projects$Locations$Reservations$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Reservations$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/admin/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Reservation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Reservation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent location in which to create the reservation. Structured like `projects/{project_number\}/locations/{location\}`.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the reservation, which will become the final component of the reservation's name. This value is structured like: `my-reservation-name`.
+     */
+    reservationId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Reservation;
+  }
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the reservation to delete. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the reservation whose configuration to return. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$List
+    extends StandardParameters {
+    /**
+     * The maximum number of reservations to return. The service may return fewer than this value. If unset or zero, all reservations for the parent will be returned.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListReservations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservations` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent whose reservations are to be listed. Structured like `projects/{project_number\}/locations/{location\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Patch
+    extends StandardParameters {
+    /**
+     * The name of the reservation. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     */
+    name?: string;
+    /**
+     * Required. A mask specifying the reservation fields to change.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Reservation;
+  }
+
+  export class Resource$Admin$Projects$Locations$Reservations$Topics {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the topics attached to the specified reservation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await pubsublite.admin.projects.locations.reservations.topics.list({
+     *       // Required. The name of the reservation whose topics to list. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     *       name: 'projects/my-project/locations/my-location/reservations/my-reservation',
+     *       // The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the given reservation will be returned.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListReservationTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservationTopics` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "topics": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Topics$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Admin$Projects$Locations$Reservations$Topics$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReservationTopicsResponse>;
+    list(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Topics$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Topics$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReservationTopicsResponse>,
+      callback: BodyResponseCallback<Schema$ListReservationTopicsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Admin$Projects$Locations$Reservations$Topics$List,
+      callback: BodyResponseCallback<Schema$ListReservationTopicsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListReservationTopicsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Admin$Projects$Locations$Reservations$Topics$List
+        | BodyResponseCallback<Schema$ListReservationTopicsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReservationTopicsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReservationTopicsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReservationTopicsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Admin$Projects$Locations$Reservations$Topics$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Reservations$Topics$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/admin/{+name}/topics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReservationTopicsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReservationTopicsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Admin$Projects$Locations$Reservations$Topics$List
+    extends StandardParameters {
+    /**
+     * Required. The name of the reservation whose topics to list. Structured like: projects/{project_number\}/locations/{location\}/reservations/{reservation_id\}
+     */
+    name?: string;
+    /**
+     * The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the given reservation will be returned.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListReservationTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservationTopics` must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -2086,6 +3057,7 @@ export namespace pubsublite_v1 {
      *       // {
      *       //   "name": "my_name",
      *       //   "partitionConfig": {},
+     *       //   "reservationConfig": {},
      *       //   "retentionConfig": {}
      *       // }
      *     },
@@ -2096,6 +3068,7 @@ export namespace pubsublite_v1 {
      *   // {
      *   //   "name": "my_name",
      *   //   "partitionConfig": {},
+     *   //   "reservationConfig": {},
      *   //   "retentionConfig": {}
      *   // }
      * }
@@ -2351,6 +3324,7 @@ export namespace pubsublite_v1 {
      *   // {
      *   //   "name": "my_name",
      *   //   "partitionConfig": {},
+     *   //   "reservationConfig": {},
      *   //   "retentionConfig": {}
      *   // }
      * }
@@ -2748,6 +3722,7 @@ export namespace pubsublite_v1 {
      *       // {
      *       //   "name": "my_name",
      *       //   "partitionConfig": {},
+     *       //   "reservationConfig": {},
      *       //   "retentionConfig": {}
      *       // }
      *     },
@@ -2758,6 +3733,7 @@ export namespace pubsublite_v1 {
      *   // {
      *   //   "name": "my_name",
      *   //   "partitionConfig": {},
+     *   //   "reservationConfig": {},
      *   //   "retentionConfig": {}
      *   // }
      * }

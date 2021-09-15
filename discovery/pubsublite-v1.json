@@ -234,6 +234,205 @@
                     }
                   }
                 },
+                "reservations": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new reservation.",
+                      "flatPath": "v1/admin/projects/{projectsId}/locations/{locationsId}/reservations",
+                      "httpMethod": "POST",
+                      "id": "pubsublite.admin.projects.locations.reservations.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent location in which to create the reservation. Structured like `projects/{project_number}/locations/{location}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "reservationId": {
+                          "description": "Required. The ID to use for the reservation, which will become the final component of the reservation's name. This value is structured like: `my-reservation-name`.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/admin/{+parent}/reservations",
+                      "request": {
+                        "$ref": "Reservation"
+                      },
+                      "response": {
+                        "$ref": "Reservation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes the specified reservation.",
+                      "flatPath": "v1/admin/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}",
+                      "httpMethod": "DELETE",
+                      "id": "pubsublite.admin.projects.locations.reservations.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the reservation to delete. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/admin/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Returns the reservation configuration.",
+                      "flatPath": "v1/admin/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}",
+                      "httpMethod": "GET",
+                      "id": "pubsublite.admin.projects.locations.reservations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the reservation whose configuration to return. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/admin/{+name}",
+                      "response": {
+                        "$ref": "Reservation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns the list of reservations for the given project.",
+                      "flatPath": "v1/admin/projects/{projectsId}/locations/{locationsId}/reservations",
+                      "httpMethod": "GET",
+                      "id": "pubsublite.admin.projects.locations.reservations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of reservations to return. The service may return fewer than this value. If unset or zero, all reservations for the parent will be returned.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous `ListReservations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservations` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent whose reservations are to be listed. Structured like `projects/{project_number}/locations/{location}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/admin/{+parent}/reservations",
+                      "response": {
+                        "$ref": "ListReservationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates properties of the specified reservation.",
+                      "flatPath": "v1/admin/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}",
+                      "httpMethod": "PATCH",
+                      "id": "pubsublite.admin.projects.locations.reservations.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the reservation. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Required. A mask specifying the reservation fields to change.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/admin/{+name}",
+                      "request": {
+                        "$ref": "Reservation"
+                      },
+                      "response": {
+                        "$ref": "Reservation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "topics": {
+                      "methods": {
+                        "list": {
+                          "description": "Lists the topics attached to the specified reservation.",
+                          "flatPath": "v1/admin/projects/{projectsId}/locations/{locationsId}/reservations/{reservationsId}/topics",
+                          "httpMethod": "GET",
+                          "id": "pubsublite.admin.projects.locations.reservations.topics.list",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the reservation whose topics to list. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of topics to return. The service may return fewer than this value. If unset or zero, all topics for the given reservation will be returned.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A page token, received from a previous `ListReservationTopics` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReservationTopics` must match the call that provided the page token.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/admin/{+name}/topics",
+                          "response": {
+                            "$ref": "ListReservationTopicsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "subscriptions": {
                   "methods": {
                     "create": {
@@ -841,7 +1040,7 @@
       }
     }
   },
-  "revision": "20210824",
+  "revision": "20210909",
   "rootUrl": "https://pubsublite.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -1061,6 +1260,42 @@
       },
       "type": "object"
     },
+    "ListReservationTopicsResponse": {
+      "description": "Response for ListReservationTopics.",
+      "id": "ListReservationTopicsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.",
+          "type": "string"
+        },
+        "topics": {
+          "description": "The names of topics attached to the reservation. The order of the topics is unspecified.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListReservationsResponse": {
+      "description": "Response for ListReservations.",
+      "id": "ListReservationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token that can be sent as `page_token` to retrieve the next page of results. If this field is omitted, there are no more results.",
+          "type": "string"
+        },
+        "reservations": {
+          "description": "The list of reservation in the requested parent. The order of the reservations is unspecified.",
+          "items": {
+            "$ref": "Reservation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSubscriptionsResponse": {
       "description": "Response for ListSubscriptions.",
       "id": "ListSubscriptionsResponse",
@@ -1212,6 +1447,33 @@
       },
       "type": "object"
     },
+    "Reservation": {
+      "description": "Metadata about a reservation resource.",
+      "id": "Reservation",
+      "properties": {
+        "name": {
+          "description": "The name of the reservation. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+          "type": "string"
+        },
+        "throughputCapacity": {
+          "description": "The reserved throughput capacity. Every unit of throughput capacity is equivalent to 1 MiB/s of published messages or 2 MiB/s of subscribed messages. Any topics which are declared as using capacity from a Reservation will consume resources from this reservation instead of being charged individually.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationConfig": {
+      "description": "The settings for this topic's Reservation usage.",
+      "id": "ReservationConfig",
+      "properties": {
+        "throughputReservation": {
+          "description": "The Reservation to use for this topic's throughput capacity. Structured like: projects/{project_number}/locations/{location}/reservations/{reservation_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RetentionConfig": {
       "description": "The settings for a topic's message retention.",
       "id": "RetentionConfig",
@@ -1334,6 +1596,10 @@
         "partitionConfig": {
           "$ref": "PartitionConfig",
           "description": "The settings for this topic's partitions."
+        },
+        "reservationConfig": {
+          "$ref": "ReservationConfig",
+          "description": "The settings for this topic's Reservation usage."
         },
         "retentionConfig": {
           "$ref": "RetentionConfig",
