@@ -115,7 +115,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -145,7 +145,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -179,7 +179,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -242,7 +242,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -272,7 +272,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -306,7 +306,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -388,7 +388,7 @@
               "type": "string"
             },
             "threadKey": {
-              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
               "type": "string"
             }
@@ -481,7 +481,7 @@
                   "type": "string"
                 },
                 "threadKey": {
-                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
                   "type": "string"
                 }
@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210822",
+  "revision": "20210911",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -743,7 +743,7 @@
       "type": "object"
     },
     "Attachment": {
-      "description": "An attachment in Hangouts Chat.",
+      "description": "An attachment in Google Chat.",
       "id": "Attachment",
       "properties": {
         "attachmentDataRef": {
@@ -1073,7 +1073,7 @@
         },
         "space": {
           "$ref": "Space",
-          "description": "The room or DM in which the event occurred."
+          "description": "The space in which the event occurred."
         },
         "threadKey": {
           "description": "The bot-defined key for the thread related to the event. See the thread_key field of the `spaces.message.create` request for more information.",
@@ -1094,9 +1094,9 @@
           ],
           "enumDescriptions": [
             "Default value for the enum. DO NOT USE.",
-            "A message was sent in a room or direct message.",
-            "The bot was added to a room or DM.",
-            "The bot was removed from a room or DM.",
+            "A message was sent in a space.",
+            "The bot was added to a space.",
+            "The bot was removed from a space.",
             "The bot's interactive card was clicked."
           ],
           "type": "string"
@@ -2282,7 +2282,7 @@
       "type": "object"
     },
     "Membership": {
-      "description": "Represents a membership relation in Hangouts Chat.",
+      "description": "Represents a membership relation in Google Chat.",
       "id": "Membership",
       "properties": {
         "createTime": {
@@ -2292,7 +2292,7 @@
         },
         "member": {
           "$ref": "User",
-          "description": "A User in Hangout Chat"
+          "description": "A user in Google Chat."
         },
         "name": {
           "type": "string"
@@ -2317,7 +2317,7 @@
       "type": "object"
     },
     "Message": {
-      "description": "A message in Hangouts Chat.",
+      "description": "A message in Google Chat.",
       "id": "Message",
       "properties": {
         "actionResponse": {
@@ -2350,7 +2350,7 @@
           "type": "array"
         },
         "createTime": {
-          "description": "Output only. The time at which the message was created in Hangouts Chat server.",
+          "description": "Output only. The time at which the message was created in Google Chat server.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2360,7 +2360,7 @@
           "type": "string"
         },
         "lastUpdateTime": {
-          "description": "Output only. The time at which the message was last updated in Hangouts Chat server. If the message was never updated, this field will be same as create_time.",
+          "description": "Output only. The time at which the message was last updated in Google Chat server. If the message was never updated, this field will be same as create_time.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2490,11 +2490,11 @@
       "type": "object"
     },
     "Space": {
-      "description": "A room or DM in Hangouts Chat.",
+      "description": "A space in Google Chat. Spaces are conversations between two or more users or 1:1 messages between a user and a Chat bot.",
       "id": "Space",
       "properties": {
         "displayName": {
-          "description": "Output only. The display name (only if the space is a room). Please note that this field might not be populated in direct messages between humans.",
+          "description": "Output only. The display name (only if the space is of type `ROOM`). Please note that this field might not be populated in direct messages between humans.",
           "type": "string"
         },
         "name": {
@@ -2518,8 +2518,8 @@
           ],
           "enumDescriptions": [
             "",
-            "Multi-user spaces such as rooms and DMs between humans.",
-            "1:1 Direct Message between a human and a bot, where all messages are flat."
+            "Conversations between two or more humans.",
+            "1:1 Direct Message between a human and a Chat bot, where all messages are flat."
           ],
           "type": "string"
         }
@@ -2565,7 +2565,7 @@
       "type": "object"
     },
     "Thread": {
-      "description": "A thread in Hangouts Chat.",
+      "description": "A thread in Google Chat.",
       "id": "Thread",
       "properties": {
         "name": {
