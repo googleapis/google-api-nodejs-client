@@ -32372,7 +32372,7 @@
           ]
         },
         "wait": {
-          "description": "Waits for the specified Operation resource to return as `DONE` or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method differs from the `GET` method in that it waits for no more than the default deadline (2 minutes) and then returns the current state of the operation, which might be `DONE` or still in progress. This method is called on a best-effort basis. Specifically: - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds. - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not `DONE`. ",
+          "description": "Waits for the specified Operation resource to return as `DONE` or for the request to approach the 2 minute deadline, and retrieves the specified Operation resource. This method waits for no more than the 2 minutes and then returns the current state of the operation, which might be `DONE` or still in progress. This method is called on a best-effort basis. Specifically: - In uncommon cases, when the server is overloaded, the request might return before the default deadline is reached, or might return after zero seconds. - If the default deadline is reached, there is no guarantee that the operation is actually done when the method returns. Be prepared to retry if the operation is not `DONE`. ",
           "flatPath": "projects/{project}/zones/{zone}/operations/{operation}/wait",
           "httpMethod": "POST",
           "id": "compute.zoneOperations.wait",
@@ -32511,7 +32511,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20210907",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -38831,7 +38831,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Deprecated, please use short name instead. User-provided name of the Organization firewall plicy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
+          "description": "Deprecated, please use short name instead. User-provided name of the Organization firewall policy. The name should be unique in the organization in which the firewall policy is created. This name must be set on creation and cannot be changed. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
@@ -56493,7 +56493,7 @@
         },
         "bfd": {
           "$ref": "RouterBgpPeerBfd",
-          "description": "BFD configuration for the BGP peering. Not currently available publicly."
+          "description": "BFD configuration for the BGP peering."
         },
         "enable": {
           "description": "The status of the BGP peer connection. If set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.",
@@ -56562,22 +56562,22 @@
       "id": "RouterBgpPeerBfd",
       "properties": {
         "minReceiveInterval": {
-          "description": "The minimum interval, in milliseconds, between BFD control packets received from the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the transmit interval of the other router. Not currently available publicly. If set, this value must be between 1000 and 30000. The default is 1000.",
+          "description": "The minimum interval, in milliseconds, between BFD control packets received from the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the transmit interval of the other router. If set, this value must be between 1000 and 30000. The default is 1000.",
           "format": "uint32",
           "type": "integer"
         },
         "minTransmitInterval": {
-          "description": "The minimum interval, in milliseconds, between BFD control packets transmitted to the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the corresponding receive interval of the other router. Not currently available publicly. If set, this value must be between 1000 and 30000. The default is 1000.",
+          "description": "The minimum interval, in milliseconds, between BFD control packets transmitted to the peer router. The actual value is negotiated between the two routers and is equal to the greater of this value and the corresponding receive interval of the other router. If set, this value must be between 1000 and 30000. The default is 1000.",
           "format": "uint32",
           "type": "integer"
         },
         "multiplier": {
-          "description": "The number of consecutive BFD packets that must be missed before BFD declares that a peer is unavailable. Not currently available publicly. If set, the value must be a value between 5 and 16. The default is 5.",
+          "description": "The number of consecutive BFD packets that must be missed before BFD declares that a peer is unavailable. If set, the value must be a value between 5 and 16. The default is 5.",
           "format": "uint32",
           "type": "integer"
         },
         "sessionInitializationMode": {
-          "description": "The BFD session initialization mode for this BGP peer. Not currently available publicly. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.",
+          "description": "The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer. The default is PASSIVE.",
           "enum": [
             "ACTIVE",
             "DISABLED",
@@ -58767,6 +58767,13 @@
       "description": "The share setting for reservations and sole tenancy node groups.",
       "id": "ShareSettings",
       "properties": {
+        "projectMap": {
+          "additionalProperties": {
+            "$ref": "ShareSettingsProjectConfig"
+          },
+          "description": "A map of project id and project config. Using map format to ease add-to/remove-from the Project list in PATCH command. In future we will deprecate (And later remove) the array one.",
+          "type": "object"
+        },
         "projects": {
           "description": "A List of Project names to specify consumer projects for this shared-reservation. This is only valid when share_type's value is SPECIFIC_PROJECTS.",
           "items": {
@@ -58786,6 +58793,17 @@
             "Default value. This value is unused.",
             "Shared-reservation is open to specific projects"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ShareSettingsProjectConfig": {
+      "description": "Config for each project in the share settings.",
+      "id": "ShareSettingsProjectConfig",
+      "properties": {
+        "projectId": {
+          "description": "The project ID, should be same as the key of this project config in the parent map.",
           "type": "string"
         }
       },
@@ -59298,7 +59316,7 @@
           "type": "array"
         },
         "postKeyRevocationActionType": {
-          "description": "PostKeyRevocationActionType of the instance.",
+          "description": "PostKeyRevocationActionType of the instance. (will be deprecated soon)",
           "enum": [
             "NOOP",
             "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
@@ -60241,7 +60259,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. Only networks that are in the distributed mode can have subnetworks. This field can be set only at resource creation time.",
+          "description": "The URL of the network to which this subnetwork belongs, provided by the client when initially creating the subnetwork. This field can be set only at resource creation time.",
           "type": "string"
         },
         "privateIpGoogleAccess": {
