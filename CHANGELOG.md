@@ -4,6 +4,28 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [86.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v86.0.0...googleapis-v86.1.0) (2021-09-15)
+
+
+### Features
+
+* **compute:** update the API ([5a1d98c](https://www.github.com/googleapis/google-api-nodejs-client/commit/5a1d98cdcc09a66579051b0203e7fd3418fe3ad0))
+* **content:** update the API ([c1610af](https://www.github.com/googleapis/google-api-nodejs-client/commit/c1610af29309daddf7f3b876a1a6cd121b3e2556))
+* **dataflow:** update the API ([35c5b29](https://www.github.com/googleapis/google-api-nodejs-client/commit/35c5b29807ca2ceb0507ddb852985eeae0ccb661))
+* **documentai:** update the API ([6a36b1e](https://www.github.com/googleapis/google-api-nodejs-client/commit/6a36b1eae7f288ca9735f2f34cbd9924d6c96689))
+* **pubsublite:** update the API ([9ba5722](https://www.github.com/googleapis/google-api-nodejs-client/commit/9ba5722613911182efd684301f880cdbc99e34d8))
+* regenerate index files ([658eb91](https://www.github.com/googleapis/google-api-nodejs-client/commit/658eb91d53ffa2b75f43b2acb13af5bad000721c))
+* **sasportal:** update the API ([8676621](https://www.github.com/googleapis/google-api-nodejs-client/commit/867662190df9f6d0c8e9a5ee023078417d751591))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([15ded89](https://www.github.com/googleapis/google-api-nodejs-client/commit/15ded89ac195d1063e65074cd9695530cef282fb))
+* **cloudtasks:** update the API ([1d2d18f](https://www.github.com/googleapis/google-api-nodejs-client/commit/1d2d18f282e3e8fb3b79ae99bbb470d1692a2069))
+* **iam:** update the API ([9df3cbe](https://www.github.com/googleapis/google-api-nodejs-client/commit/9df3cbe516e00a789333c07bd20707b765b234b8))
+* **policyanalyzer:** update the API ([e50ddb4](https://www.github.com/googleapis/google-api-nodejs-client/commit/e50ddb4d0fca875dc4a915b7e527a65fa261d537))
+* **redis:** update the API ([f586645](https://www.github.com/googleapis/google-api-nodejs-client/commit/f586645d7ec66e0dcd013542e2cd03b573180d42))
+
 ## [86.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v85.0.0...googleapis-v86.0.0) (2021-09-14)
 
 

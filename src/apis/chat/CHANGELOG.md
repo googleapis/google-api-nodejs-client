@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/chat-v3.0.0...chat-v3.0.1) (2021-09-15)
+
+
+### Bug Fixes
+
+* **chat:** update the API ([15ded89](https://www.github.com/googleapis/google-api-nodejs-client/commit/15ded89ac195d1063e65074cd9695530cef282fb))
+
 ## [3.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/chat-v2.1.0...chat-v3.0.0) (2021-09-14)
 
 

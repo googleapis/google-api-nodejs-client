@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/content-v4.0.0...content-v4.1.0) (2021-09-15)
+
+
+### Features
+
+* **content:** update the API ([c1610af](https://www.github.com/googleapis/google-api-nodejs-client/commit/c1610af29309daddf7f3b876a1a6cd121b3e2556))
+
 ## [4.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/content-v3.3.0...content-v4.0.0) (2021-09-14)
 
 
