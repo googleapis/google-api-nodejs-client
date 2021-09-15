@@ -2975,7 +2975,7 @@ export namespace iam_v1 {
      *   const res = await iam.projects.locations.workloadIdentityPools.patch({
      *     // Output only. The resource name of the pool.
      *     name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
-     *     // Required. The list of fields update.
+     *     // Required. The list of fields to update.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3288,7 +3288,7 @@ export namespace iam_v1 {
      */
     name?: string;
     /**
-     * Required. The list of fields update.
+     * Required. The list of fields to update.
      */
     updateMask?: string;
 

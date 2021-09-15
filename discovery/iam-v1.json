@@ -522,7 +522,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The list of fields update.",
+                      "description": "Required. The list of fields to update.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1752,7 +1752,7 @@
       }
     }
   },
-  "revision": "20210825",
+  "revision": "20210909",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
