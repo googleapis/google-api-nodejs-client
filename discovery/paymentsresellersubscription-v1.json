@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20210701",
+  "revision": "20210914",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
@@ -395,7 +395,7 @@
             "Accidential purchase.",
             "Payment is past due.",
             "User account closed.",
-            "Used for notification only, do not use in Cancel API. Cancallation due to upgrade or downgrade.",
+            "Used for notification only, do not use in Cancel API. Cancellation due to upgrade or downgrade.",
             "Other reason."
           ],
           "type": "string"
@@ -770,7 +770,7 @@
             "Accidential purchase.",
             "Payment is past due.",
             "User account closed.",
-            "Used for notification only, do not use in Cancel API. Cancallation due to upgrade or downgrade.",
+            "Used for notification only, do not use in Cancel API. Cancellation due to upgrade or downgrade.",
             "Other reason."
           ],
           "type": "string"
