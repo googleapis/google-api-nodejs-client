@@ -302,6 +302,10 @@ export namespace content_v2_1 {
      */
     customerService?: Schema$AccountCustomerService;
     /**
+     * The 10-digit [Korean business registration number](https://support.google.com/merchants/answer/9037766) separated with dashes in the format: XXX-XX-XXXXX. This field will only be updated if explicitly set.
+     */
+    koreanBusinessRegistrationNumber?: string | null;
+    /**
      * The phone number of the business.
      */
     phoneNumber?: string | null;
@@ -962,13 +966,37 @@ export namespace content_v2_1 {
    */
   export interface Schema$BuyOnGoogleProgramStatus {
     /**
+     * The business models in which merchant participates.
+     */
+    businessModel?: string[] | null;
+    /**
      * The customer service pending email. After verification this field becomes empty.
      */
     customerServicePendingEmail?: string | null;
     /**
+     * The pending phone number specified for BuyOnGoogle program. It might be different than account level phone number. In order to update this field the customer_service_pending_phone_region_code must also be set. After verification this field becomes empty.
+     */
+    customerServicePendingPhoneNumber?: string | null;
+    /**
+     * Two letter country code for the pending phone number, for example `CA` for Canadian numbers. See the [ISO 3166-1 alpha-2](https://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) officially assigned codes. In order to update this field the customer_service_pending_phone_number must also be set. After verification this field becomes empty.
+     */
+    customerServicePendingPhoneRegionCode?: string | null;
+    /**
      * Output only. The customer service verified email.
      */
     customerServiceVerifiedEmail?: string | null;
+    /**
+     * Output only. The verified phone number specified for BuyOnGoogle program. It might be different than account level phone number.
+     */
+    customerServiceVerifiedPhoneNumber?: string | null;
+    /**
+     * Output only. Two letter country code for the verified phone number, for example `CA` for Canadian numbers. See the [ISO 3166-1 alpha-2](https://wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) officially assigned codes.
+     */
+    customerServiceVerifiedPhoneRegionCode?: string | null;
+    /**
+     * The channels through which the merchant is selling.
+     */
+    onlineSalesChannel?: string | null;
     /**
      * Output only. The current participation stage for the program.
      */
@@ -7539,7 +7567,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$VerifyPhoneNumberResponse {
     /**
-     * Verified phone number if verification is successful.
+     * Verified phone number if verification is successful. This phone number can only be replaced by another verified phone number.
      */
     verifiedPhoneNumber?: string | null;
   }
@@ -9359,7 +9387,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Validates verification code to verify phone number for the account.
+     * Validates verification code to verify phone number for the account. If successful this will overwrite the value of `accounts.businessinformation.phoneNumber`. Only verified phone number will replace an existing verified phone number.
      * @example
      * ```js
      * // Before running the sample:
@@ -12226,7 +12254,7 @@ export namespace content_v2_1 {
      *   const res = await content.buyongoogleprograms.activate({
      *     // Required. The ID of the account.
      *     merchantId: 'placeholder-value',
-     *     // The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      *     regionCode: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12357,15 +12385,21 @@ export namespace content_v2_1 {
      *   const res = await content.buyongoogleprograms.get({
      *     // Required. The ID of the account.
      *     merchantId: 'placeholder-value',
-     *     // The Program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     // Required. The Program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      *     regionCode: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
+     *   //   "businessModel": [],
      *   //   "customerServicePendingEmail": "my_customerServicePendingEmail",
+     *   //   "customerServicePendingPhoneNumber": "my_customerServicePendingPhoneNumber",
+     *   //   "customerServicePendingPhoneRegionCode": "my_customerServicePendingPhoneRegionCode",
      *   //   "customerServiceVerifiedEmail": "my_customerServiceVerifiedEmail",
+     *   //   "customerServiceVerifiedPhoneNumber": "my_customerServiceVerifiedPhoneNumber",
+     *   //   "customerServiceVerifiedPhoneRegionCode": "my_customerServiceVerifiedPhoneRegionCode",
+     *   //   "onlineSalesChannel": "my_onlineSalesChannel",
      *   //   "participationStage": "my_participationStage"
      *   // }
      * }
@@ -12496,7 +12530,7 @@ export namespace content_v2_1 {
      *   const res = await content.buyongoogleprograms.onboard({
      *     // Required. The ID of the account.
      *     merchantId: 'placeholder-value',
-     *     // The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      *     regionCode: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12601,6 +12635,171 @@ export namespace content_v2_1 {
     }
 
     /**
+     * Updates the status of the BoG program for your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.buyongoogleprograms.patch({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     regionCode: 'placeholder-value',
+     *     // The list of fields to update. If the update mask is not provided, then all the fields set in buyOnGoogleProgramStatus will be updated. Clearing fields is only possible if update mask is provided.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "businessModel": [],
+     *       //   "customerServicePendingEmail": "my_customerServicePendingEmail",
+     *       //   "customerServicePendingPhoneNumber": "my_customerServicePendingPhoneNumber",
+     *       //   "customerServicePendingPhoneRegionCode": "my_customerServicePendingPhoneRegionCode",
+     *       //   "customerServiceVerifiedEmail": "my_customerServiceVerifiedEmail",
+     *       //   "customerServiceVerifiedPhoneNumber": "my_customerServiceVerifiedPhoneNumber",
+     *       //   "customerServiceVerifiedPhoneRegionCode": "my_customerServiceVerifiedPhoneRegionCode",
+     *       //   "onlineSalesChannel": "my_onlineSalesChannel",
+     *       //   "participationStage": "my_participationStage"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "businessModel": [],
+     *   //   "customerServicePendingEmail": "my_customerServicePendingEmail",
+     *   //   "customerServicePendingPhoneNumber": "my_customerServicePendingPhoneNumber",
+     *   //   "customerServicePendingPhoneRegionCode": "my_customerServicePendingPhoneRegionCode",
+     *   //   "customerServiceVerifiedEmail": "my_customerServiceVerifiedEmail",
+     *   //   "customerServiceVerifiedPhoneNumber": "my_customerServiceVerifiedPhoneNumber",
+     *   //   "customerServiceVerifiedPhoneRegionCode": "my_customerServiceVerifiedPhoneRegionCode",
+     *   //   "onlineSalesChannel": "my_onlineSalesChannel",
+     *   //   "participationStage": "my_participationStage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Buyongoogleprograms$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Buyongoogleprograms$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuyOnGoogleProgramStatus>;
+    patch(
+      params: Params$Resource$Buyongoogleprograms$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Buyongoogleprograms$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>,
+      callback: BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+    ): void;
+    patch(
+      params: Params$Resource$Buyongoogleprograms$Patch,
+      callback: BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Buyongoogleprograms$Patch
+        | BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BuyOnGoogleProgramStatus>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyongoogleprograms$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyongoogleprograms$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionCode'],
+        pathParams: ['merchantId', 'regionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BuyOnGoogleProgramStatus>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BuyOnGoogleProgramStatus>(parameters);
+      }
+    }
+
+    /**
      * Pauses the BoG program in your Merchant Center account. Important: This method is only whitelisted for selected merchants.
      * @example
      * ```js
@@ -12629,7 +12828,7 @@ export namespace content_v2_1 {
      *   const res = await content.buyongoogleprograms.pause({
      *     // Required. The ID of the account.
      *     merchantId: 'placeholder-value',
-     *     // The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      *     regionCode: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12760,7 +12959,7 @@ export namespace content_v2_1 {
      *   const res = await content.buyongoogleprograms.requestreview({
      *     // Required. The ID of the account.
      *     merchantId: 'placeholder-value',
-     *     // The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     // Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      *     regionCode: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12870,7 +13069,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     * Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      */
     regionCode?: string;
 
@@ -12886,7 +13085,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The Program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     * Required. The Program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      */
     regionCode?: string;
   }
@@ -12897,7 +13096,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     * Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      */
     regionCode?: string;
 
@@ -12906,6 +13105,26 @@ export namespace content_v2_1 {
      */
     requestBody?: Schema$OnboardBuyOnGoogleProgramRequest;
   }
+  export interface Params$Resource$Buyongoogleprograms$Patch
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+    /**
+     * Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     */
+    regionCode?: string;
+    /**
+     * The list of fields to update. If the update mask is not provided, then all the fields set in buyOnGoogleProgramStatus will be updated. Clearing fields is only possible if update mask is provided.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BuyOnGoogleProgramStatus;
+  }
   export interface Params$Resource$Buyongoogleprograms$Pause
     extends StandardParameters {
     /**
@@ -12913,7 +13132,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     * Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      */
     regionCode?: string;
 
@@ -12929,7 +13148,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     * Required. The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
      */
     regionCode?: string;
 

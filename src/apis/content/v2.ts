@@ -248,6 +248,10 @@ export namespace content_v2 {
      */
     customerService?: Schema$AccountCustomerService;
     /**
+     * The 10-digit [Korean business registration number](https://support.google.com/merchants/answer/9037766) separated with dashes in the format: XXX-XX-XXXXX. This field will only be updated if explicitly set.
+     */
+    koreanBusinessRegistrationNumber?: string | null;
+    /**
      * The phone number of the business.
      */
     phoneNumber?: string | null;
