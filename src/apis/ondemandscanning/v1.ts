@@ -169,6 +169,10 @@ export namespace ondemandscanning_v1 {
    */
   export interface Schema$AnalyzePackagesRequestV1 {
     /**
+     * Whether to include OSV data in the scan.
+     */
+    includeOsvData?: boolean | null;
+    /**
      * The packages to analyze.
      */
     packages?: Schema$PackageData[];
@@ -1963,6 +1967,7 @@ export namespace ondemandscanning_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "includeOsvData": false,
      *       //   "packages": [],
      *       //   "resourceUri": "my_resourceUri"
      *       // }
