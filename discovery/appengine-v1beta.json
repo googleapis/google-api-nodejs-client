@@ -1595,7 +1595,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20210911",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2313,7 +2313,7 @@
           "type": "string"
         },
         "description": {
-          "description": "An optional string description of this rule. This field has a maximum length of 100 characters.",
+          "description": "An optional string description of this rule. This field has a maximum length of 400 characters.",
           "type": "string"
         },
         "priority": {

@@ -600,7 +600,7 @@ export namespace appengine_v1 {
      */
     action?: string | null;
     /**
-     * An optional string description of this rule. This field has a maximum length of 100 characters.
+     * An optional string description of this rule. This field has a maximum length of 400 characters.
      */
     description?: string | null;
     /**
