@@ -1482,6 +1482,10 @@ export namespace healthcare_v1 {
      * Byte(s) to use as the segment terminator. If this is unset, '\r' is used as segment terminator, matching the HL7 version 2 specification.
      */
     segmentTerminator?: string | null;
+    /**
+     * Immutable. Determines the version of the unschematized parser to be used when `schema` is not given. This field is immutable after store creation.
+     */
+    version?: string | null;
   }
   /**
    * A patient identifier and associated type.
@@ -1670,6 +1674,10 @@ export namespace healthcare_v1 {
      * Schema type definitions that are layered based on their VersionSources that match the incoming message. Type definitions present in higher indices override those in lower indices with the same type name if their VersionSources all match an incoming message.
      */
     types?: Schema$Hl7TypesConfig[];
+    /**
+     * Determines how unexpected segments (segments not matched to the schema) are handled.
+     */
+    unexpectedSegmentHandling?: string | null;
   }
   /**
    * An HL7v2 Segment.
