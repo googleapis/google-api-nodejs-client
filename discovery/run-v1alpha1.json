@@ -268,7 +268,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20210910",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "ConfigMapEnvSource": {
@@ -525,6 +525,33 @@
       },
       "type": "object"
     },
+    "GoogleRpcStatus": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "GoogleRpcStatus",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HTTPGetAction": {
       "description": "Not supported by Cloud Run HTTPGetAction describes an action based on HTTP Get requests.",
       "id": "HTTPGetAction",
@@ -562,6 +589,22 @@
         "value": {
           "description": "The header field value",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceAttemptResult": {
+      "description": "Result of an instance attempt.",
+      "id": "InstanceAttemptResult",
+      "properties": {
+        "exitCode": {
+          "description": "Optional. The exit code of this attempt. This may be unset if the container was unable to exit cleanly with a code due to some other failure. See status field for possible failure details.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Optional. The status of this attempt. If the status code is OK, then the attempt succeeded."
         }
       },
       "type": "object"
@@ -623,6 +666,10 @@
           "description": "Required. Index of the instance, unique per Job, and beginning at 0.",
           "format": "int32",
           "type": "integer"
+        },
+        "lastAttemptResult": {
+          "$ref": "InstanceAttemptResult",
+          "description": "Optional. Result of the last attempt of this instance. +optional"
         },
         "lastExitCode": {
           "description": "Optional. Last exit code seen for this instance. +optional",

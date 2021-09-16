@@ -332,6 +332,23 @@ export namespace run_v1alpha1 {
     command?: string[] | null;
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$GoogleRpcStatus {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * Not supported by Cloud Run HTTPGetAction describes an action based on HTTP Get requests.
    */
   export interface Schema$HTTPGetAction {
@@ -364,6 +381,19 @@ export namespace run_v1alpha1 {
      * The header field value
      */
     value?: string | null;
+  }
+  /**
+   * Result of an instance attempt.
+   */
+  export interface Schema$InstanceAttemptResult {
+    /**
+     * Optional. The exit code of this attempt. This may be unset if the container was unable to exit cleanly with a code due to some other failure. See status field for possible failure details.
+     */
+    exitCode?: number | null;
+    /**
+     * Optional. The status of this attempt. If the status code is OK, then the attempt succeeded.
+     */
+    status?: Schema$GoogleRpcStatus;
   }
   /**
    * InstanceSpec is a description of an instance.
@@ -410,6 +440,10 @@ export namespace run_v1alpha1 {
      * Required. Index of the instance, unique per Job, and beginning at 0.
      */
     index?: number | null;
+    /**
+     * Optional. Result of the last attempt of this instance. +optional
+     */
+    lastAttemptResult?: Schema$InstanceAttemptResult;
     /**
      * Optional. Last exit code seen for this instance. +optional
      */
