@@ -136,7 +136,7 @@
                 "Resource metadata.",
                 "The actual IAM policy set on a resource.",
                 "The Cloud Organization Policy set on an asset.",
-                "The Cloud Access context mananger Policy set on an asset."
+                "The Cloud Access context manager Policy set on an asset."
               ],
               "location": "query",
               "type": "string"
@@ -177,7 +177,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20210910",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AnalyzeIamPolicyLongrunningMetadata": {
