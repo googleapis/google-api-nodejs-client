@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/dataflow-v2.1.0...dataflow-v3.0.0) (2021-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataflow:** This release has breaking changes.
+
+### Features
+
+* **dataflow:** update the API ([7d6c909](https://www.github.com/googleapis/google-api-nodejs-client/commit/7d6c9095289748b99e0a4280eeb0dc6f0b11c62e))
+
 ## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/dataflow-v2.0.0...dataflow-v2.1.0) (2021-09-15)
 
 
