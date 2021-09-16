@@ -4,6 +4,28 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [87.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v86.1.0...googleapis-v87.0.0) (2021-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* **dataflow:** This release has breaking changes.
+
+### Features
+
+* **dataflow:** update the API ([7d6c909](https://www.github.com/googleapis/google-api-nodejs-client/commit/7d6c9095289748b99e0a4280eeb0dc6f0b11c62e))
+* **healthcare:** update the API ([f75c5cc](https://www.github.com/googleapis/google-api-nodejs-client/commit/f75c5ccf76434e395c81783a99c5dacda4b107dd))
+* **ondemandscanning:** update the API ([8a0c2c4](https://www.github.com/googleapis/google-api-nodejs-client/commit/8a0c2c454252e9f3230a1de4a89202d02884f95e))
+* regenerate index files ([49f945c](https://www.github.com/googleapis/google-api-nodejs-client/commit/49f945c5370971e6bf26a7786be346488382be71))
+* **run:** update the API ([4074c76](https://www.github.com/googleapis/google-api-nodejs-client/commit/4074c7689d426332bbd4d29c7ae4f5a96ce9547a))
+
+
+### Bug Fixes
+
+* **appengine:** update the API ([8ffd802](https://www.github.com/googleapis/google-api-nodejs-client/commit/8ffd8020725f69d5de7cf9ab62485b8fdfc12786))
+* **cloudasset:** update the API ([abeb116](https://www.github.com/googleapis/google-api-nodejs-client/commit/abeb116a0f2237bce8654721884aba3892c6e48f))
+* **sqladmin:** update the API ([ea7b0a2](https://www.github.com/googleapis/google-api-nodejs-client/commit/ea7b0a2821fcfaf2410a2cf9cc27518a107a3cf9))
+
 ## [86.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v86.0.0...googleapis-v86.1.0) (2021-09-15)
 
 
