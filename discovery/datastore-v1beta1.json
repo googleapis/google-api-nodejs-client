@@ -17,6 +17,7 @@
   "description": "Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/datastore/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -167,7 +168,7 @@
       }
     }
   },
-  "revision": "20210816",
+  "revision": "20210901",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "GoogleDatastoreAdminV1CommonMetadata": {

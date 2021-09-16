@@ -17,6 +17,7 @@
   "description": "Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/datastore/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -625,7 +626,7 @@
       }
     }
   },
-  "revision": "20210816",
+  "revision": "20210901",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
@@ -1633,12 +1634,12 @@
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
-            "Less than.",
-            "Less than or equal.",
-            "Greater than.",
-            "Greater than or equal.",
-            "Equal.",
-            "Has ancestor."
+            "The given `property` is less than the given `value`. Requires: * That `property` comes first in `order_by`.",
+            "The given `property` is less than or equal to the given `value`. Requires: * That `property` comes first in `order_by`.",
+            "The given `property` is greater than the given `value`. Requires: * That `property` comes first in `order_by`.",
+            "The given `property` is greater than or equal to the given `value`. Requires: * That `property` comes first in `order_by`.",
+            "The given `property` is equal to the given `value`.",
+            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key."
           ],
           "type": "string"
         },
