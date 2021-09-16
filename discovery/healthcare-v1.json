@@ -3956,7 +3956,7 @@
       }
     }
   },
-  "revision": "20210830",
+  "revision": "20210909",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -5886,6 +5886,20 @@
           "description": "Byte(s) to use as the segment terminator. If this is unset, '\\r' is used as segment terminator, matching the HL7 version 2 specification.",
           "format": "byte",
           "type": "string"
+        },
+        "version": {
+          "description": "Immutable. Determines the version of the unschematized parser to be used when `schema` is not given. This field is immutable after store creation.",
+          "enum": [
+            "PARSER_VERSION_UNSPECIFIED",
+            "V1",
+            "V2"
+          ],
+          "enumDescriptions": [
+            "Unspecified parser version, equivalent to V1.",
+            "The `parsed_data` includes every given non-empty message field except the Field Separator (MSH-1) field. As a result, the parsed MSH segment starts with the MSH-2 field and the field numbers are off-by-one with respect to the HL7 standard.",
+            "The `parsed_data` includes every given non-empty message field."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6158,6 +6172,22 @@
             "$ref": "Hl7TypesConfig"
           },
           "type": "array"
+        },
+        "unexpectedSegmentHandling": {
+          "description": "Determines how unexpected segments (segments not matched to the schema) are handled.",
+          "enum": [
+            "UNEXPECTED_SEGMENT_HANDLING_MODE_UNSPECIFIED",
+            "FAIL",
+            "SKIP",
+            "PARSE"
+          ],
+          "enumDescriptions": [
+            "Unspecified handling mode, equivalent to FAIL.",
+            "Unexpected segments fail to parse and return an error.",
+            "Unexpected segments do not fail, but are omitted from the output.",
+            "Unexpected segments do not fail, but are parsed in place and added to the current group. If a segment has a type definition, it is used, otherwise it is parsed as VARIES."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
