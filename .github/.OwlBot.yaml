@@ -12,4 +12,4 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 docker:
-  image: gcr.io/repo-automation-bots/owlbot-nodejs:latest
+  image: gcr.io/cloud-devrel-public-resources/owlbot-nodejs:latest
