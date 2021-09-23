@@ -14501,6 +14501,8 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.thirdPartyLinks.delete({
+     *     // Channel ID to which changes should be applied, for delegation.
+     *     externalChannelId: 'placeholder-value',
      *     // Delete the partner links with the given linking token.
      *     linkingToken: 'placeholder-value',
      *     // Do not use. Required for compatibility.
@@ -14627,6 +14629,8 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.thirdPartyLinks.insert({
+     *     // Channel ID to which changes should be applied, for delegation.
+     *     externalChannelId: 'placeholder-value',
      *     // The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.
      *     part: 'placeholder-value',
      *
@@ -14772,6 +14776,8 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.thirdPartyLinks.list({
+     *     // Channel ID to which changes should be applied, for delegation.
+     *     externalChannelId: 'placeholder-value',
      *     // Get a third party link with the given linking token.
      *     linkingToken: 'placeholder-value',
      *     // The *part* parameter specifies the thirdPartyLink resource parts that the API response will include. Supported values are linkingToken, status, and snippet.
@@ -14909,6 +14915,8 @@ export namespace youtube_v3 {
      *
      *   // Do the magic
      *   const res = await youtube.thirdPartyLinks.update({
+     *     // Channel ID to which changes should be applied, for delegation.
+     *     externalChannelId: 'placeholder-value',
      *     // The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.
      *     part: 'placeholder-value',
      *
@@ -15031,6 +15039,10 @@ export namespace youtube_v3 {
   export interface Params$Resource$Thirdpartylinks$Delete
     extends StandardParameters {
     /**
+     * Channel ID to which changes should be applied, for delegation.
+     */
+    externalChannelId?: string;
+    /**
      * Delete the partner links with the given linking token.
      */
     linkingToken?: string;
@@ -15046,6 +15058,10 @@ export namespace youtube_v3 {
   export interface Params$Resource$Thirdpartylinks$Insert
     extends StandardParameters {
     /**
+     * Channel ID to which changes should be applied, for delegation.
+     */
+    externalChannelId?: string;
+    /**
      * The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.
      */
     part?: string[];
@@ -15057,6 +15073,10 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Thirdpartylinks$List
     extends StandardParameters {
+    /**
+     * Channel ID to which changes should be applied, for delegation.
+     */
+    externalChannelId?: string;
     /**
      * Get a third party link with the given linking token.
      */
@@ -15072,6 +15092,10 @@ export namespace youtube_v3 {
   }
   export interface Params$Resource$Thirdpartylinks$Update
     extends StandardParameters {
+    /**
+     * Channel ID to which changes should be applied, for delegation.
+     */
+    externalChannelId?: string;
     /**
      * The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.
      */
