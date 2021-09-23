@@ -329,7 +329,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig {
     /**
-     * Required.
+     * A filter to reduce the conversations used for training the model to a specific subset.
+     */
+    filter?: string | null;
+    /**
+     * Medium of conversations used in training data. This field is being deprecated. To specify the medium to be used in training a new issue model, set the `medium` field on `filter`.
      */
     medium?: string | null;
     /**
@@ -772,6 +776,10 @@ export namespace contactcenterinsights_v1 {
      * The name of the participant provided by Dialogflow. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}/participants/{participant\}
      */
     dialogflowParticipantName?: string | null;
+    /**
+     * Obfuscated user ID from Dialogflow.
+     */
+    obfuscatedExternalUserId?: string | null;
     /**
      * The role of the participant.
      */
@@ -1240,7 +1248,11 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig {
     /**
-     * Required.
+     * A filter to reduce the conversations used for training the model to a specific subset.
+     */
+    filter?: string | null;
+    /**
+     * Medium of conversations used in training data. This field is being deprecated. To specify the medium to be used in training a new issue model, set the `medium` field on `filter`.
      */
     medium?: string | null;
     /**
@@ -1405,6 +1417,10 @@ export namespace contactcenterinsights_v1 {
      * Required. The type of this phrase matcher.
      */
     type?: string | null;
+    /**
+     * Output only. The most recent time at which the phrase matcher was updated.
+     */
+    updateTime?: string | null;
     /**
      * The customized version tag to use for the phrase matcher. If not specified, it will default to `revision_id`.
      */
@@ -6148,6 +6164,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "revisionId": "my_revisionId",
      *         //   "roleMatch": "my_roleMatch",
      *         //   "type": "my_type",
+     *         //   "updateTime": "my_updateTime",
      *         //   "versionTag": "my_versionTag"
      *         // }
      *       },
@@ -6165,6 +6182,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "revisionId": "my_revisionId",
      *   //   "roleMatch": "my_roleMatch",
      *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime",
      *   //   "versionTag": "my_versionTag"
      *   // }
      * }
@@ -6444,6 +6462,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "revisionId": "my_revisionId",
      *   //   "roleMatch": "my_roleMatch",
      *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime",
      *   //   "versionTag": "my_versionTag"
      *   // }
      * }
