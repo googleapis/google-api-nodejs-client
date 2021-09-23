@@ -210,7 +210,7 @@ export namespace notebooks_v1 {
      */
     index?: string | null;
     /**
-     * Indicates the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: NVME SCSI
+     * Indicates the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: * NVME * SCSI
      */
     interface?: string | null;
     /**
@@ -222,7 +222,7 @@ export namespace notebooks_v1 {
      */
     licenses?: string[] | null;
     /**
-     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: READ_ONLY READ_WRITE
+     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: * READ_ONLY * READ_WRITE
      */
     mode?: string | null;
     /**
@@ -230,7 +230,7 @@ export namespace notebooks_v1 {
      */
     source?: string | null;
     /**
-     * Indicates the type of the disk, either SCRATCH or PERSISTENT. Valid values: PERSISTENT SCRATCH
+     * Indicates the type of the disk, either SCRATCH or PERSISTENT. Valid values: * PERSISTENT * SCRATCH
      */
     type?: string | null;
   }
@@ -318,7 +318,7 @@ export namespace notebooks_v1 {
      */
     jobUri?: string | null;
     /**
-     * Output only. The resource name of the execute. Format: `projects/{project_id\}/locations/{location\}/execution/{execution_id\}
+     * Output only. The resource name of the execute. Format: `projects/{project_id\}/locations/{location\}/executions/{execution_id\}`
      */
     name?: string | null;
     /**
@@ -351,7 +351,7 @@ export namespace notebooks_v1 {
      */
     dataprocParameters?: Schema$DataprocParameters;
     /**
-     * Path to the notebook file to execute. Must be in a Google Cloud Storage bucket. Format: gs://{project_id\}/{folder\}/{notebook_file_name\} Ex: gs://notebook_user/scheduled_notebooks/sentiment_notebook.ipynb
+     * Path to the notebook file to execute. Must be in a Google Cloud Storage bucket. Format: gs://{bucket_name\}/{folder\}/{notebook_file_name\} Ex: gs://notebook_user/scheduled_notebooks/sentiment_notebook.ipynb
      */
     inputNotebookFile?: string | null;
     /**
@@ -363,11 +363,11 @@ export namespace notebooks_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. The following types are supported: - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96` Alternatively, you can use the following legacy machine types: - `standard` - `large_model` - `complex_model_s` - `complex_model_m` - `complex_model_l` - `standard_gpu` - `complex_model_m_gpu` - `complex_model_l_gpu` - `standard_p100` - `complex_model_m_p100` - `standard_v100` - `large_model_v100` - `complex_model_m_v100` - `complex_model_l_v100` Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPU.
+     * Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. The following types are supported: - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96` Alternatively, you can use the following legacy machine types: - `standard` - `large_model` - `complex_model_s` - `complex_model_m` - `complex_model_l` - `standard_gpu` - `complex_model_m_gpu` - `complex_model_l_gpu` - `standard_p100` - `complex_model_m_p100` - `standard_v100` - `large_model_v100` - `complex_model_m_v100` - `complex_model_l_v100` Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPU](https://cloud.google.com/ai-platform/training/docs/using-tpus#configuring_a_custom_tpu_machine).
      */
     masterType?: string | null;
     /**
-     * Path to the notebook folder to write to. Must be in a Google Cloud Storage bucket path. Format: gs://{project_id\}/{folder\} Ex: gs://notebook_user/scheduled_notebooks
+     * Path to the notebook folder to write to. Must be in a Google Cloud Storage bucket path. Format: gs://{bucket_name\}/{folder\} Ex: gs://notebook_user/scheduled_notebooks
      */
     outputNotebookFolder?: string | null;
     /**
@@ -386,6 +386,10 @@ export namespace notebooks_v1 {
      * The email address of a service account to use when running the execution. You must have the `iam.serviceAccounts.actAs` permission for the specified service account.
      */
     serviceAccount?: string | null;
+    /**
+     * Parameters used in Vertex AI JobType executions.
+     */
+    vertexAiParameters?: Schema$VertexAIParameters;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -426,7 +430,7 @@ export namespace notebooks_v1 {
    */
   export interface Schema$GuestOsFeature {
     /**
-     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options. Valid values: FEATURE_TYPE_UNSPECIFIED MULTI_IP_SUBNET SECURE_BOOT UEFI_COMPATIBLE VIRTIO_SCSI_MULTIQUEUE WINDOWS
+     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options. Valid values: * FEATURE_TYPE_UNSPECIFIED * MULTI_IP_SUBNET * SECURE_BOOT * UEFI_COMPATIBLE * VIRTIO_SCSI_MULTIQUEUE * WINDOWS
      */
     type?: string | null;
   }
@@ -576,7 +580,7 @@ export namespace notebooks_v1 {
    */
   export interface Schema$InstanceConfig {
     /**
-     * Verifies core internal services are running. More info: go/notebooks-health
+     * Verifies core internal services are running.
      */
     enableHealthMonitoring?: boolean | null;
     /**
@@ -717,7 +721,7 @@ export namespace notebooks_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * An Local attached disk resource.
+   * A Local attached disk resource.
    */
   export interface Schema$LocalDisk {
     /**
@@ -745,7 +749,7 @@ export namespace notebooks_v1 {
      */
     initializeParams?: Schema$LocalDiskInitializeParams;
     /**
-     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: NVME SCSI
+     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: * NVME * SCSI
      */
     interface?: string | null;
     /**
@@ -757,7 +761,7 @@ export namespace notebooks_v1 {
      */
     licenses?: string[] | null;
     /**
-     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: READ_ONLY READ_WRITE
+     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: * READ_ONLY * READ_WRITE
      */
     mode?: string | null;
     /**
@@ -765,7 +769,7 @@ export namespace notebooks_v1 {
      */
     source?: string | null;
     /**
-     * Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT. Valid values: PERSISTENT SCRATCH
+     * Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT. Valid values: * PERSISTENT * SCRATCH
      */
     type?: string | null;
   }
@@ -1090,7 +1094,7 @@ export namespace notebooks_v1 {
      */
     idleShutdown?: boolean | null;
     /**
-     * Time in minutes to wait before shuting down runtime. Default: 180 minutes
+     * Time in minutes to wait before shutting down runtime. Default: 180 minutes
      */
     idleShutdownTimeout?: number | null;
     /**
@@ -1115,7 +1119,7 @@ export namespace notebooks_v1 {
      */
     createTime?: string | null;
     /**
-     * Cron-tab formatted schedule by which the job will execute Format: minute, hour, day of month, month, day of week e.g. 0 0 * * WED = every Wednesday More examples: https://crontab.guru/examples.html
+     * Cron-tab formatted schedule by which the job will execute. Format: minute, hour, day of month, month, day of week, e.g. 0 0 * * WED = every Wednesday More examples: https://crontab.guru/examples.html
      */
     cronSchedule?: string | null;
     /**
@@ -1149,7 +1153,7 @@ export namespace notebooks_v1 {
     updateTime?: string | null;
   }
   /**
-   * Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check GPUs on Compute Engine to find a valid combination. TPUs are not supported.
+   * Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus) to find a valid combination. TPUs are not supported.
    */
   export interface Schema$SchedulerAcceleratorConfig {
     /**
@@ -1362,6 +1366,15 @@ export namespace notebooks_v1 {
    * Request for upgrading a notebook instance
    */
   export interface Schema$UpgradeInstanceRequest {}
+  /**
+   * Parameters used in Vertex AI JobType executions.
+   */
+  export interface Schema$VertexAIParameters {
+    /**
+     * The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the Job should be peered. For example, `projects/12345/global/networks/myVPC`. [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project\}/global/networks/{network\}`. Where {project\} is a project number, as in `12345`, and {network\} is a network name. Private services access must already be configured for the network. If left unspecified, the job is not peered with any network.
+     */
+    network?: string | null;
+  }
   /**
    * Runtime using Virtual Machine for computing.
    */
@@ -2405,7 +2418,7 @@ export namespace notebooks_v1 {
     }
 
     /**
-     * Creates a new Scheduled Notebook in a given project and location.
+     * Creates a new Execution in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
