@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20210824",
+  "revision": "20210920",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -618,9 +618,25 @@
             "FILTER_INSERTION_ORDER_GOAL_VALUE",
             "FILTER_OMID_CAPABLE",
             "FILTER_VENDOR_MEASUREMENT_MODE",
-            "FILTER_IMPRESSION_LOSS_REJECTION_REASON"
+            "FILTER_IMPRESSION_LOSS_REJECTION_REASON",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_START",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_FIRST_QUARTILE",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_MID_POINT",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_THIRD_QUARTILE",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_COMPLETE",
+            "FILTER_VERIFICATION_VIDEO_RESIZED",
+            "FILTER_VERIFICATION_AUDIBILITY_START",
+            "FILTER_VERIFICATION_AUDIBILITY_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
@@ -1268,9 +1284,25 @@
               "FILTER_INSERTION_ORDER_GOAL_VALUE",
               "FILTER_OMID_CAPABLE",
               "FILTER_VENDOR_MEASUREMENT_MODE",
-              "FILTER_IMPRESSION_LOSS_REJECTION_REASON"
+              "FILTER_IMPRESSION_LOSS_REJECTION_REASON",
+              "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_START",
+              "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_FIRST_QUARTILE",
+              "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_MID_POINT",
+              "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_THIRD_QUARTILE",
+              "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_COMPLETE",
+              "FILTER_VERIFICATION_VIDEO_RESIZED",
+              "FILTER_VERIFICATION_AUDIBILITY_START",
+              "FILTER_VERIFICATION_AUDIBILITY_COMPLETE"
             ],
             "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
               "",
               "",
               "",
@@ -2032,9 +2064,11 @@
               "METRIC_WIN_LOSS_DEAL_AVAILABLE_REQUESTS",
               "METRIC_WIN_LOSS_LINEITEM_AVAILABLE_REQUESTS",
               "METRIC_WIN_LOSS_DEAL_TARGETED_IMPRESSIONS",
-              "METRIC_WIN_LOSS_LINEITEM_TARGETED_IMPRESSIONS"
+              "METRIC_WIN_LOSS_LINEITEM_TARGETED_IMPRESSIONS",
+              "METRIC_VERIFICATION_VIDEO_PLAYER_SIZE_MEASURABLE_IMPRESSIONS"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -2924,9 +2958,25 @@
             "FILTER_INSERTION_ORDER_GOAL_VALUE",
             "FILTER_OMID_CAPABLE",
             "FILTER_VENDOR_MEASUREMENT_MODE",
-            "FILTER_IMPRESSION_LOSS_REJECTION_REASON"
+            "FILTER_IMPRESSION_LOSS_REJECTION_REASON",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_START",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_FIRST_QUARTILE",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_MID_POINT",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_THIRD_QUARTILE",
+            "FILTER_VERIFICATION_VIDEO_PLAYER_SIZE_COMPLETE",
+            "FILTER_VERIFICATION_VIDEO_RESIZED",
+            "FILTER_VERIFICATION_AUDIBILITY_START",
+            "FILTER_VERIFICATION_AUDIBILITY_COMPLETE"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             "",
