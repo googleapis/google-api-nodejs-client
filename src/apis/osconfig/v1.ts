@@ -196,6 +196,23 @@ export namespace osconfig_v1 {
     userInteraction?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -412,6 +429,10 @@ export namespace osconfig_v1 {
      */
     qfePackage?: Schema$InventoryWindowsQuickFixEngineeringPackage;
     /**
+     * Details of Windows Application.
+     */
+    windowsApplication?: Schema$InventoryWindowsApplication;
+    /**
      * Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update.
      */
     wuaPackage?: Schema$InventoryWindowsUpdatePackage;
@@ -444,6 +465,31 @@ export namespace osconfig_v1 {
      * The version of the package.
      */
     version?: string | null;
+  }
+  /**
+   * Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class="external" \}
+   */
+  export interface Schema$InventoryWindowsApplication {
+    /**
+     * The name of the application or product.
+     */
+    displayName?: string | null;
+    /**
+     * The version of the product or application in string format.
+     */
+    displayVersion?: string | null;
+    /**
+     * The internet address for technical support.
+     */
+    helpLink?: string | null;
+    /**
+     * The last time this product received service. The value of this property is replaced each time a patch is applied or removed from the product or the command-line option is used to repair the product.
+     */
+    installDate?: Schema$Date;
+    /**
+     * The name of the manufacturer for the product or application.
+     */
+    publisher?: string | null;
   }
   /**
    * Information related to a Quick Fix Engineering package. Fields are taken from Windows QuickFixEngineering Interface and match the source names: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering
@@ -555,6 +601,32 @@ export namespace osconfig_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * A response message for listing all revisions for a OS policy assignment.
+   */
+  export interface Schema$ListOSPolicyAssignmentRevisionsResponse {
+    /**
+     * The pagination token to retrieve the next page of OS policy assignment revisions.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The OS policy assignment revisions
+     */
+    osPolicyAssignments?: Schema$OSPolicyAssignment[];
+  }
+  /**
+   * A response message for listing all assignments under given parent.
+   */
+  export interface Schema$ListOSPolicyAssignmentsResponse {
+    /**
+     * The pagination token to retrieve the next page of OS policy assignments.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of assignments
+     */
+    osPolicyAssignments?: Schema$OSPolicyAssignment[];
+  }
+  /**
    * A response message for listing patch deployments.
    */
   export interface Schema$ListPatchDeploymentsResponse {
@@ -629,6 +701,156 @@ export namespace osconfig_v1 {
     executeTime?: string | null;
   }
   /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$Operation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$Status;
+    /**
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
+     */
+    name?: string | null;
+    /**
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
+  }
+  /**
+   * An OS policy defines the desired state configuration for a VM.
+   */
+  export interface Schema$OSPolicy {
+    /**
+     * This flag determines the OS policy compliance status when none of the resource groups within the policy are applicable for a VM. Set this value to `true` if the policy needs to be reported as compliant even if the policy has nothing to validate or enforce.
+     */
+    allowNoResourceGroupMatch?: boolean | null;
+    /**
+     * Policy description. Length of the description is limited to 1024 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. The id of the OS policy with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the assignment.
+     */
+    id?: string | null;
+    /**
+     * Required. Policy mode
+     */
+    mode?: string | null;
+    /**
+     * Required. List of resource groups for the policy. For a particular VM, resource groups are evaluated in the order specified and the first resource group that is applicable is selected and the rest are ignored. If none of the resource groups are applicable for a VM, the VM is considered to be non-compliant w.r.t this policy. This behavior can be toggled by the flag `allow_no_resource_group_match`
+     */
+    resourceGroups?: Schema$OSPolicyResourceGroup[];
+  }
+  /**
+   * OS policy assignment is an API resource that is used to apply a set of OS policies to a dynamically targeted group of Compute Engine VM instances. An OS policy is used to define the desired state configuration for a Compute Engine VM instance through a set of configuration resources that provide capabilities such as installing or removing software packages, or executing a script. For more information, see [OS policy and OS policy assignment](https://cloud.google.com/compute/docs/os-configuration-management/working-with-os-policies).
+   */
+  export interface Schema$OSPolicyAssignment {
+    /**
+     * Output only. Indicates that this revision has been successfully rolled out in this zone and new VMs will be assigned OS policies from this revision. For a given OS policy assignment, there is only one revision with a value of `true` for this field.
+     */
+    baseline?: boolean | null;
+    /**
+     * Output only. Indicates that this revision deletes the OS policy assignment.
+     */
+    deleted?: boolean | null;
+    /**
+     * OS policy assignment description. Length of the description is limited to 1024 characters.
+     */
+    description?: string | null;
+    /**
+     * The etag for this OS policy assignment. If this is provided on update, it must match the server's etag.
+     */
+    etag?: string | null;
+    /**
+     * Required. Filter to select VMs.
+     */
+    instanceFilter?: Schema$OSPolicyAssignmentInstanceFilter;
+    /**
+     * Resource name. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id\}` This field is ignored when you create an OS policy assignment.
+     */
+    name?: string | null;
+    /**
+     * Required. List of OS policies to be applied to the VMs.
+     */
+    osPolicies?: Schema$OSPolicy[];
+    /**
+     * Output only. Indicates that reconciliation is in progress for the revision. This value is `true` when the `rollout_state` is one of: * IN_PROGRESS * CANCELLING
+     */
+    reconciling?: boolean | null;
+    /**
+     * Output only. The timestamp that the revision was created.
+     */
+    revisionCreateTime?: string | null;
+    /**
+     * Output only. The assignment revision ID A new revision is committed whenever a rollout is triggered for a OS policy assignment
+     */
+    revisionId?: string | null;
+    /**
+     * Required. Rollout to deploy the OS policy assignment. A rollout is triggered in the following situations: 1) OSPolicyAssignment is created. 2) OSPolicyAssignment is updated and the update contains changes to one of the following fields: - instance_filter - os_policies 3) OSPolicyAssignment is deleted.
+     */
+    rollout?: Schema$OSPolicyAssignmentRollout;
+    /**
+     * Output only. OS policy assignment rollout state
+     */
+    rolloutState?: string | null;
+    /**
+     * Output only. Server generated unique id for the OS policy assignment resource.
+     */
+    uid?: string | null;
+  }
+  /**
+   * Filters to select target VMs for an assignment. If more than one filter criteria is specified below, a VM will be selected if and only if it satisfies all of them.
+   */
+  export interface Schema$OSPolicyAssignmentInstanceFilter {
+    /**
+     * Target all VMs in the project. If true, no other criteria is permitted.
+     */
+    all?: boolean | null;
+    /**
+     * List of label sets used for VM exclusion. If the list has more than one label set, the VM is excluded if any of the label sets are applicable for the VM.
+     */
+    exclusionLabels?: Schema$OSPolicyAssignmentLabelSet[];
+    /**
+     * List of label sets used for VM inclusion. If the list has more than one `LabelSet`, the VM is included if any of the label sets are applicable for the VM.
+     */
+    inclusionLabels?: Schema$OSPolicyAssignmentLabelSet[];
+    /**
+     * List of inventories to select VMs. A VM is selected if its inventory data matches at least one of the following inventories.
+     */
+    inventories?: Schema$OSPolicyAssignmentInstanceFilterInventory[];
+  }
+  /**
+   * VM inventory details.
+   */
+  export interface Schema$OSPolicyAssignmentInstanceFilterInventory {
+    /**
+     * Required. The OS short name
+     */
+    osShortName?: string | null;
+    /**
+     * The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of `7`, specify the following value for this field `7.*` An empty string matches all OS versions.
+     */
+    osVersion?: string | null;
+  }
+  /**
+   * Message representing label set. * A label is a key value pair set for a VM. * A LabelSet is a set of labels. * Labels within a LabelSet are ANDed. In other words, a LabelSet is applicable for a VM only if it matches all the labels in the LabelSet. * Example: A LabelSet with 2 labels: `env=prod` and `type=webserver` will only be applicable for those VMs with both labels present.
+   */
+  export interface Schema$OSPolicyAssignmentLabelSet {
+    /**
+     * Labels are identified by key/value pairs in this map. A VM should contain all the key/value pairs specified in this map to be selected.
+     */
+    labels?: {[key: string]: string} | null;
+  }
+  /**
    * OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.
    */
   export interface Schema$OSPolicyAssignmentOperationMetadata {
@@ -652,6 +874,397 @@ export namespace osconfig_v1 {
      * Rollout update time
      */
     rolloutUpdateTime?: string | null;
+  }
+  /**
+   * Message to configure the rollout at the zonal level for the OS policy assignment.
+   */
+  export interface Schema$OSPolicyAssignmentRollout {
+    /**
+     * Required. The maximum number (or percentage) of VMs per zone to disrupt at any given moment.
+     */
+    disruptionBudget?: Schema$FixedOrPercent;
+    /**
+     * Required. This determines the minimum duration of time to wait after the configuration changes are applied through the current rollout. A VM continues to count towards the `disruption_budget` at least until this duration of time has passed after configuration changes are applied.
+     */
+    minWaitDuration?: string | null;
+  }
+  /**
+   * Filtering criteria to select VMs based on inventory details.
+   */
+  export interface Schema$OSPolicyInventoryFilter {
+    /**
+     * Required. The OS short name
+     */
+    osShortName?: string | null;
+    /**
+     * The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of `7`, specify the following value for this field `7.*` An empty string matches all OS versions.
+     */
+    osVersion?: string | null;
+  }
+  /**
+   * An OS policy resource is used to define the desired state configuration and provides a specific functionality like installing/removing packages, executing a script etc. The system ensures that resources are always in their desired state by taking necessary actions if they have drifted from their desired state.
+   */
+  export interface Schema$OSPolicyResource {
+    /**
+     * Exec resource
+     */
+    exec?: Schema$OSPolicyResourceExecResource;
+    /**
+     * File resource
+     */
+    file?: Schema$OSPolicyResourceFileResource;
+    /**
+     * Required. The id of the resource with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the OS policy.
+     */
+    id?: string | null;
+    /**
+     * Package resource
+     */
+    pkg?: Schema$OSPolicyResourcePackageResource;
+    /**
+     * Package repository resource
+     */
+    repository?: Schema$OSPolicyResourceRepositoryResource;
+  }
+  /**
+   * A resource that allows executing scripts on the VM. The `ExecResource` has 2 stages: `validate` and `enforce` and both stages accept a script as an argument to execute. When the `ExecResource` is applied by the agent, it first executes the script in the `validate` stage. The `validate` stage can signal that the `ExecResource` is already in the desired state by returning an exit code of `100`. If the `ExecResource` is not in the desired state, it should return an exit code of `101`. Any other exit code returned by this stage is considered an error. If the `ExecResource` is not in the desired state based on the exit code from the `validate` stage, the agent proceeds to execute the script from the `enforce` stage. If the `ExecResource` is already in the desired state, the `enforce` stage will not be run. Similar to `validate` stage, the `enforce` stage should return an exit code of `100` to indicate that the resource in now in its desired state. Any other exit code is considered an error. NOTE: An exit code of `100` was chosen over `0` (and `101` vs `1`) to have an explicit indicator of `in desired state`, `not in desired state` and errors. Because, for example, Powershell will always return an exit code of `0` unless an `exit` statement is provided in the script. So, for reasons of consistency and being explicit, exit codes `100` and `101` were chosen.
+   */
+  export interface Schema$OSPolicyResourceExecResource {
+    /**
+     * What to run to bring this resource into the desired state. An exit code of 100 indicates "success", any other exit code indicates a failure running enforce.
+     */
+    enforce?: Schema$OSPolicyResourceExecResourceExec;
+    /**
+     * Required. What to run to validate this resource is in the desired state. An exit code of 100 indicates "in desired state", and exit code of 101 indicates "not in desired state". Any other exit code indicates a failure running validate.
+     */
+    validate?: Schema$OSPolicyResourceExecResourceExec;
+  }
+  /**
+   * A file or script to execute.
+   */
+  export interface Schema$OSPolicyResourceExecResourceExec {
+    /**
+     * Optional arguments to pass to the source during execution.
+     */
+    args?: string[] | null;
+    /**
+     * A remote or local file.
+     */
+    file?: Schema$OSPolicyResourceFile;
+    /**
+     * Required. The script interpreter to use.
+     */
+    interpreter?: string | null;
+    /**
+     * Only recorded for enforce Exec. Path to an output file (that is created by this Exec) whose content will be recorded in OSPolicyResourceCompliance after a successful run. Absence or failure to read this file will result in this ExecResource being non-compliant. Output file size is limited to 100K bytes.
+     */
+    outputFilePath?: string | null;
+    /**
+     * An inline script. The size of the script is limited to 1024 characters.
+     */
+    script?: string | null;
+  }
+  /**
+   * A remote or local file.
+   */
+  export interface Schema$OSPolicyResourceFile {
+    /**
+     * Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified.
+     */
+    allowInsecure?: boolean | null;
+    /**
+     * A Cloud Storage object.
+     */
+    gcs?: Schema$OSPolicyResourceFileGcs;
+    /**
+     * A local path within the VM to use.
+     */
+    localPath?: string | null;
+    /**
+     * A generic remote file.
+     */
+    remote?: Schema$OSPolicyResourceFileRemote;
+  }
+  /**
+   * Specifies a file available as a Cloud Storage Object.
+   */
+  export interface Schema$OSPolicyResourceFileGcs {
+    /**
+     * Required. Bucket of the Cloud Storage object.
+     */
+    bucket?: string | null;
+    /**
+     * Generation number of the Cloud Storage object.
+     */
+    generation?: string | null;
+    /**
+     * Required. Name of the Cloud Storage object.
+     */
+    object?: string | null;
+  }
+  /**
+   * Specifies a file available via some URI.
+   */
+  export interface Schema$OSPolicyResourceFileRemote {
+    /**
+     * SHA256 checksum of the remote file.
+     */
+    sha256Checksum?: string | null;
+    /**
+     * Required. URI from which to fetch the object. It should contain both the protocol and path following the format `{protocol\}://{location\}`.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A resource that manages the state of a file.
+   */
+  export interface Schema$OSPolicyResourceFileResource {
+    /**
+     * A a file with this content. The size of the content is limited to 1024 characters.
+     */
+    content?: string | null;
+    /**
+     * A remote or local source.
+     */
+    file?: Schema$OSPolicyResourceFile;
+    /**
+     * Required. The absolute path of the file within the VM.
+     */
+    path?: string | null;
+    /**
+     * Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit number with the 4 bit corresponding to the read permissions, the 2 bit corresponds to the write bit, and the one bit corresponds to the execute permission. Default behavior is 755. Below are some examples of permissions and their associated values: read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4
+     */
+    permissions?: string | null;
+    /**
+     * Required. Desired state of the file.
+     */
+    state?: string | null;
+  }
+  /**
+   * Resource groups provide a mechanism to group OS policy resources. Resource groups enable OS policy authors to create a single OS policy to be applied to VMs running different operating Systems. When the OS policy is applied to a target VM, the appropriate resource group within the OS policy is selected based on the `OSFilter` specified within the resource group.
+   */
+  export interface Schema$OSPolicyResourceGroup {
+    /**
+     * List of inventory filters for the resource group. The resources in this resource group are applied to the target VM if it satisfies at least one of the following inventory filters. For example, to apply this resource group to VMs running either `RHEL` or `CentOS` operating systems, specify 2 items for the list with following values: inventory_filters[0].os_short_name='rhel' and inventory_filters[1].os_short_name='centos' If the list is empty, this resource group will be applied to the target VM unconditionally.
+     */
+    inventoryFilters?: Schema$OSPolicyInventoryFilter[];
+    /**
+     * Required. List of resources configured for this resource group. The resources are executed in the exact order specified here.
+     */
+    resources?: Schema$OSPolicyResource[];
+  }
+  /**
+   * A resource that manages a system package.
+   */
+  export interface Schema$OSPolicyResourcePackageResource {
+    /**
+     * A package managed by Apt.
+     */
+    apt?: Schema$OSPolicyResourcePackageResourceAPT;
+    /**
+     * A deb package file.
+     */
+    deb?: Schema$OSPolicyResourcePackageResourceDeb;
+    /**
+     * Required. The desired state the agent should maintain for this package.
+     */
+    desiredState?: string | null;
+    /**
+     * A package managed by GooGet.
+     */
+    googet?: Schema$OSPolicyResourcePackageResourceGooGet;
+    /**
+     * An MSI package.
+     */
+    msi?: Schema$OSPolicyResourcePackageResourceMSI;
+    /**
+     * An rpm package file.
+     */
+    rpm?: Schema$OSPolicyResourcePackageResourceRPM;
+    /**
+     * A package managed by YUM.
+     */
+    yum?: Schema$OSPolicyResourcePackageResourceYUM;
+    /**
+     * A package managed by Zypper.
+     */
+    zypper?: Schema$OSPolicyResourcePackageResourceZypper;
+  }
+  /**
+   * A package managed by APT. - install: `apt-get update && apt-get -y install [name]` - remove: `apt-get -y remove [name]`
+   */
+  export interface Schema$OSPolicyResourcePackageResourceAPT {
+    /**
+     * Required. Package name.
+     */
+    name?: string | null;
+  }
+  /**
+   * A deb package file. dpkg packages only support INSTALLED state.
+   */
+  export interface Schema$OSPolicyResourcePackageResourceDeb {
+    /**
+     * Whether dependencies should also be installed. - install when false: `dpkg -i package` - install when true: `apt-get update && apt-get -y install package.deb`
+     */
+    pullDeps?: boolean | null;
+    /**
+     * Required. A deb package.
+     */
+    source?: Schema$OSPolicyResourceFile;
+  }
+  /**
+   * A package managed by GooGet. - install: `googet -noconfirm install package` - remove: `googet -noconfirm remove package`
+   */
+  export interface Schema$OSPolicyResourcePackageResourceGooGet {
+    /**
+     * Required. Package name.
+     */
+    name?: string | null;
+  }
+  /**
+   * An MSI package. MSI packages only support INSTALLED state.
+   */
+  export interface Schema$OSPolicyResourcePackageResourceMSI {
+    /**
+     * Additional properties to use during installation. This should be in the format of Property=Setting. Appended to the defaults of `ACTION=INSTALL REBOOT=ReallySuppress`.
+     */
+    properties?: string[] | null;
+    /**
+     * Required. The MSI package.
+     */
+    source?: Schema$OSPolicyResourceFile;
+  }
+  /**
+   * An RPM package file. RPM packages only support INSTALLED state.
+   */
+  export interface Schema$OSPolicyResourcePackageResourceRPM {
+    /**
+     * Whether dependencies should also be installed. - install when false: `rpm --upgrade --replacepkgs package.rpm` - install when true: `yum -y install package.rpm` or `zypper -y install package.rpm`
+     */
+    pullDeps?: boolean | null;
+    /**
+     * Required. An rpm package.
+     */
+    source?: Schema$OSPolicyResourceFile;
+  }
+  /**
+   * A package managed by YUM. - install: `yum -y install package` - remove: `yum -y remove package`
+   */
+  export interface Schema$OSPolicyResourcePackageResourceYUM {
+    /**
+     * Required. Package name.
+     */
+    name?: string | null;
+  }
+  /**
+   * A package managed by Zypper. - install: `zypper -y install package` - remove: `zypper -y rm package`
+   */
+  export interface Schema$OSPolicyResourcePackageResourceZypper {
+    /**
+     * Required. Package name.
+     */
+    name?: string | null;
+  }
+  /**
+   * A resource that manages a package repository.
+   */
+  export interface Schema$OSPolicyResourceRepositoryResource {
+    /**
+     * An Apt Repository.
+     */
+    apt?: Schema$OSPolicyResourceRepositoryResourceAptRepository;
+    /**
+     * A Goo Repository.
+     */
+    goo?: Schema$OSPolicyResourceRepositoryResourceGooRepository;
+    /**
+     * A Yum Repository.
+     */
+    yum?: Schema$OSPolicyResourceRepositoryResourceYumRepository;
+    /**
+     * A Zypper Repository.
+     */
+    zypper?: Schema$OSPolicyResourceRepositoryResourceZypperRepository;
+  }
+  /**
+   * Represents a single apt package repository. These will be added to a repo file that will be managed at `/etc/apt/sources.list.d/google_osconfig.list`.
+   */
+  export interface Schema$OSPolicyResourceRepositoryResourceAptRepository {
+    /**
+     * Required. Type of archive files in this repository.
+     */
+    archiveType?: string | null;
+    /**
+     * Required. List of components for this repository. Must contain at least one item.
+     */
+    components?: string[] | null;
+    /**
+     * Required. Distribution of this repository.
+     */
+    distribution?: string | null;
+    /**
+     * URI of the key file for this repository. The agent maintains a keyring at `/etc/apt/trusted.gpg.d/osconfig_agent_managed.gpg`.
+     */
+    gpgKey?: string | null;
+    /**
+     * Required. URI for this repository.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents a Goo package repository. These are added to a repo file that is managed at `C:/ProgramData/GooGet/repos/google_osconfig.repo`.
+   */
+  export interface Schema$OSPolicyResourceRepositoryResourceGooRepository {
+    /**
+     * Required. The name of the repository.
+     */
+    name?: string | null;
+    /**
+     * Required. The url of the repository.
+     */
+    url?: string | null;
+  }
+  /**
+   * Represents a single yum package repository. These are added to a repo file that is managed at `/etc/yum.repos.d/google_osconfig.repo`.
+   */
+  export interface Schema$OSPolicyResourceRepositoryResourceYumRepository {
+    /**
+     * Required. The location of the repository directory.
+     */
+    baseUrl?: string | null;
+    /**
+     * The display name of the repository.
+     */
+    displayName?: string | null;
+    /**
+     * URIs of GPG keys.
+     */
+    gpgKeys?: string[] | null;
+    /**
+     * Required. A one word, unique name for this repository. This is the `repo id` in the yum config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for resource conflicts.
+     */
+    id?: string | null;
+  }
+  /**
+   * Represents a single zypper package repository. These are added to a repo file that is managed at `/etc/zypp/repos.d/google_osconfig.repo`.
+   */
+  export interface Schema$OSPolicyResourceRepositoryResourceZypperRepository {
+    /**
+     * Required. The location of the repository directory.
+     */
+    baseUrl?: string | null;
+    /**
+     * The display name of the repository.
+     */
+    displayName?: string | null;
+    /**
+     * URIs of GPG keys.
+     */
+    gpgKeys?: string[] | null;
+    /**
+     * Required. A one word, unique name for this repository. This is the `repo id` in the zypper config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for GuestPolicy conflicts.
+     */
+    id?: string | null;
   }
   /**
    * Patch configuration specifications. Contains details on how to apply the patch(es) to a VM instance.
@@ -983,6 +1596,23 @@ export namespace osconfig_v1 {
     weekly?: Schema$WeeklySchedule;
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
    */
   export interface Schema$TimeOfDay {
@@ -1208,9 +1838,12 @@ export namespace osconfig_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     instances: Resource$Projects$Locations$Instances;
+    osPolicyAssignments: Resource$Projects$Locations$Ospolicyassignments;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.instances = new Resource$Projects$Locations$Instances(this.context);
+      this.osPolicyAssignments =
+        new Resource$Projects$Locations$Ospolicyassignments(this.context);
     }
   }
 
@@ -1860,6 +2493,961 @@ export namespace osconfig_v1 {
      * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/-` For `{project\}`, either `project-number` or `project-id` can be provided.
      */
     parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Ospolicyassignments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create an OS policy assignment. This method also creates the first revision of the OS policy assignment. This method returns a long running operation (LRO) that contains the rollout details. The rollout can be cancelled by cancelling the LRO. For more information, see [Method: projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.osPolicyAssignments.create({
+     *     // Required. The logical name of the OS policy assignment in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
+     *     osPolicyAssignmentId: 'placeholder-value',
+     *     // Required. The parent resource name in the form: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "baseline": false,
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "instanceFilter": {},
+     *       //   "name": "my_name",
+     *       //   "osPolicies": [],
+     *       //   "reconciling": false,
+     *       //   "revisionCreateTime": "my_revisionCreateTime",
+     *       //   "revisionId": "my_revisionId",
+     *       //   "rollout": {},
+     *       //   "rolloutState": "my_rolloutState",
+     *       //   "uid": "my_uid"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Ospolicyassignments$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ospolicyassignments$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ospolicyassignments$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/osPolicyAssignments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Delete the OS policy assignment. This method creates a new revision of the OS policy assignment. This method returns a long running operation (LRO) that contains the rollout details. The rollout can be cancelled by cancelling the LRO. If the LRO completes and is not cancelled, all revisions associated with the OS policy assignment are deleted. For more information, see [Method: projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.osPolicyAssignments.delete({
+     *     // Required. The name of the OS policy assignment to be deleted
+     *     name: 'projects/my-project/locations/my-location/osPolicyAssignments/my-osPolicyAssignment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Ospolicyassignments$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ospolicyassignments$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ospolicyassignments$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve an existing OS policy assignment. This method always returns the latest revision. In order to retrieve a previous revision of the assignment, also provide the revision ID in the `name` parameter.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.osPolicyAssignments.get({
+     *     // Required. The resource name of OS policy assignment. Format: `projects/{project\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment\}@{revisionId\}`
+     *     name: 'projects/my-project/locations/my-location/osPolicyAssignments/my-osPolicyAssignment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "baseline": false,
+     *   //   "deleted": false,
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "instanceFilter": {},
+     *   //   "name": "my_name",
+     *   //   "osPolicies": [],
+     *   //   "reconciling": false,
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "rollout": {},
+     *   //   "rolloutState": "my_rolloutState",
+     *   //   "uid": "my_uid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Ospolicyassignments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OSPolicyAssignment>;
+    get(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$OSPolicyAssignment>,
+      callback: BodyResponseCallback<Schema$OSPolicyAssignment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Get,
+      callback: BodyResponseCallback<Schema$OSPolicyAssignment>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$OSPolicyAssignment>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ospolicyassignments$Get
+        | BodyResponseCallback<Schema$OSPolicyAssignment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OSPolicyAssignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OSPolicyAssignment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$OSPolicyAssignment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ospolicyassignments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OSPolicyAssignment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OSPolicyAssignment>(parameters);
+      }
+    }
+
+    /**
+     * List the OS policy assignments under the parent resource. For each OS policy assignment, the latest revision is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.osPolicyAssignments.list({
+     *     // The maximum number of assignments to return.
+     *     pageSize: 'placeholder-value',
+     *     // A pagination token returned from a previous call to `ListOSPolicyAssignments` that indicates where this listing should continue from.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "osPolicyAssignments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Ospolicyassignments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOSPolicyAssignmentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentsResponse>,
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$List,
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ospolicyassignments$List
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOSPolicyAssignmentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ospolicyassignments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ospolicyassignments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/osPolicyAssignments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOSPolicyAssignmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOSPolicyAssignmentsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * List the OS policy assignment revisions for a given OS policy assignment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.osPolicyAssignments.listRevisions({
+     *       // Required. The name of the OS policy assignment to list revisions for.
+     *       name: 'projects/my-project/locations/my-location/osPolicyAssignments/my-osPolicyAssignment',
+     *       // The maximum number of revisions to return.
+     *       pageSize: 'placeholder-value',
+     *       // A pagination token returned from a previous call to `ListOSPolicyAssignmentRevisions` that indicates where this listing should continue from.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "osPolicyAssignments": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listRevisions(
+      params?: Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOSPolicyAssignmentRevisionsResponse>;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentRevisionsResponse>
+    ): void;
+    listRevisions(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions,
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentRevisionsResponse>
+    ): void;
+    listRevisions(
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentRevisionsResponse>
+    ): void;
+    listRevisions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentRevisionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentRevisionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOSPolicyAssignmentRevisionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:listRevisions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOSPolicyAssignmentRevisionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOSPolicyAssignmentRevisionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update an existing OS policy assignment. This method creates a new revision of the OS policy assignment. This method returns a long running operation (LRO) that contains the rollout details. The rollout can be cancelled by cancelling the LRO. For more information, see [Method: projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.locations.osPolicyAssignments.patch({
+     *     // Resource name. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id\}` This field is ignored when you create an OS policy assignment.
+     *     name: 'projects/my-project/locations/my-location/osPolicyAssignments/my-osPolicyAssignment',
+     *     // Optional. Field mask that controls which fields of the assignment should be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "baseline": false,
+     *       //   "deleted": false,
+     *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
+     *       //   "instanceFilter": {},
+     *       //   "name": "my_name",
+     *       //   "osPolicies": [],
+     *       //   "reconciling": false,
+     *       //   "revisionCreateTime": "my_revisionCreateTime",
+     *       //   "revisionId": "my_revisionId",
+     *       //   "rollout": {},
+     *       //   "rolloutState": "my_rolloutState",
+     *       //   "uid": "my_uid"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Ospolicyassignments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ospolicyassignments$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ospolicyassignments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Create
+    extends StandardParameters {
+    /**
+     * Required. The logical name of the OS policy assignment in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
+     */
+    osPolicyAssignmentId?: string;
+    /**
+     * Required. The parent resource name in the form: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OSPolicyAssignment;
+  }
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the OS policy assignment to be deleted
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of OS policy assignment. Format: `projects/{project\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment\}@{revisionId\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$List
+    extends StandardParameters {
+    /**
+     * The maximum number of assignments to return.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to `ListOSPolicyAssignments` that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Listrevisions
+    extends StandardParameters {
+    /**
+     * Required. The name of the OS policy assignment to list revisions for.
+     */
+    name?: string;
+    /**
+     * The maximum number of revisions to return.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to `ListOSPolicyAssignmentRevisions` that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Patch
+    extends StandardParameters {
+    /**
+     * Resource name. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id\}` This field is ignored when you create an OS policy assignment.
+     */
+    name?: string;
+    /**
+     * Optional. Field mask that controls which fields of the assignment should be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OSPolicyAssignment;
   }
 
   export class Resource$Projects$Patchdeployments {
