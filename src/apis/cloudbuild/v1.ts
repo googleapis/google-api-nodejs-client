@@ -2997,7 +2997,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Create an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * Create an association between a GCP project and a GitHub Enterprise server.
      * @example
      * ```js
      * // Before running the sample:
@@ -3148,7 +3148,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Delete an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * Delete an association between a GCP project and a GitHub Enterprise server.
      * @example
      * ```js
      * // Before running the sample:
@@ -3282,7 +3282,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Retrieve a GitHubEnterpriseConfig. This API is experimental.
+     * Retrieve a GitHubEnterpriseConfig.
      * @example
      * ```js
      * // Before running the sample:
@@ -3425,7 +3425,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * List all GitHubEnterpriseConfigs for a given project. This API is experimental.
+     * List all GitHubEnterpriseConfigs for a given project.
      * @example
      * ```js
      * // Before running the sample:
@@ -3565,7 +3565,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Update an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * Update an association between a GCP project and a GitHub Enterprise server.
      * @example
      * ```js
      * // Before running the sample:
@@ -4829,7 +4829,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Create an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * Create an association between a GCP project and a GitHub Enterprise server.
      * @example
      * ```js
      * // Before running the sample:
@@ -4982,7 +4982,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Delete an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * Delete an association between a GCP project and a GitHub Enterprise server.
      * @example
      * ```js
      * // Before running the sample:
@@ -5118,7 +5118,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Retrieve a GitHubEnterpriseConfig. This API is experimental.
+     * Retrieve a GitHubEnterpriseConfig.
      * @example
      * ```js
      * // Before running the sample:
@@ -5262,7 +5262,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * List all GitHubEnterpriseConfigs for a given project. This API is experimental.
+     * List all GitHubEnterpriseConfigs for a given project.
      * @example
      * ```js
      * // Before running the sample:
@@ -5403,7 +5403,7 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Update an association between a GCP project and a GitHub Enterprise server. This API is experimental.
+     * Update an association between a GCP project and a GitHub Enterprise server.
      * @example
      * ```js
      * // Before running the sample:
