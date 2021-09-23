@@ -126,7 +126,7 @@ export namespace bigqueryreservation_v1beta1 {
   }
 
   /**
-   * A Assignment allows a project to submit jobs of a certain type using slots from the specified reservation.
+   * An assignment allows a project to submit jobs of a certain type using slots from the specified reservation.
    */
   export interface Schema$Assignment {
     /**
@@ -270,7 +270,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     creationTime?: string | null;
     /**
-     * If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the slot capacity specified above at most.
+     * If false, any query or pipeline job using this reservation will use idle slots from other reservations within the same admin project. If true, a query or pipeline job using this reservation will execute with the slot capacity specified in the slot_capacity field at most.
      */
     ignoreIdleSlots?: boolean | null;
     /**

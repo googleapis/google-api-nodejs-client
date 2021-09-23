@@ -786,11 +786,11 @@
       }
     }
   },
-  "revision": "20210822",
+  "revision": "20210910",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
-      "description": "A Assignment allows a project to submit jobs of a certain type using slots from the specified reservation.",
+      "description": "An assignment allows a project to submit jobs of a certain type using slots from the specified reservation.",
       "id": "Assignment",
       "properties": {
         "assignee": {
@@ -1041,7 +1041,7 @@
           "type": "string"
         },
         "ignoreIdleSlots": {
-          "description": "If false, any query using this reservation will use idle slots from other reservations within the same admin project. If true, a query using this reservation will execute with the slot capacity specified above at most.",
+          "description": "If false, any query or pipeline job using this reservation will use idle slots from other reservations within the same admin project. If true, a query or pipeline job using this reservation will execute with the slot capacity specified in the slot_capacity field at most.",
           "type": "boolean"
         },
         "name": {
