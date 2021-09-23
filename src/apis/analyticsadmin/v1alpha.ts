@@ -1070,6 +1070,10 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaProperty {
     /**
+     * Immutable. The resource name of the parent account Format: accounts/{account_id\} Example: "accounts/123"
+     */
+    account?: string | null;
+    /**
      * Output only. Time when the entity was originally created.
      */
     createTime?: string | null;
@@ -1213,7 +1217,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaUserLink {
     /**
-     * Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/read predefinedRoles/collaborate predefinedRoles/edit predefinedRoles/manage-users Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.
+     * Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/read predefinedRoles/collaborate predefinedRoles/edit predefinedRoles/admin Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.
      */
     directRoles?: string[] | null;
     /**
@@ -4162,6 +4166,7 @@ export namespace analyticsadmin_v1alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "account": "my_account",
      *       //   "createTime": "my_createTime",
      *       //   "currencyCode": "my_currencyCode",
      *       //   "deleteTime": "my_deleteTime",
@@ -4180,6 +4185,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "account": "my_account",
      *   //   "createTime": "my_createTime",
      *   //   "currencyCode": "my_currencyCode",
      *   //   "deleteTime": "my_deleteTime",
@@ -4329,6 +4335,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "account": "my_account",
      *   //   "createTime": "my_createTime",
      *   //   "currencyCode": "my_currencyCode",
      *   //   "deleteTime": "my_deleteTime",
@@ -4478,6 +4485,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "account": "my_account",
      *   //   "createTime": "my_createTime",
      *   //   "currencyCode": "my_currencyCode",
      *   //   "deleteTime": "my_deleteTime",
@@ -5055,6 +5063,7 @@ export namespace analyticsadmin_v1alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "account": "my_account",
      *       //   "createTime": "my_createTime",
      *       //   "currencyCode": "my_currencyCode",
      *       //   "deleteTime": "my_deleteTime",
@@ -5073,6 +5082,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "account": "my_account",
      *   //   "createTime": "my_createTime",
      *   //   "currencyCode": "my_currencyCode",
      *   //   "deleteTime": "my_deleteTime",
