@@ -3049,6 +3049,11 @@
             "type"
           ],
           "parameters": {
+            "externalChannelId": {
+              "description": "Channel ID to which changes should be applied, for delegation.",
+              "location": "query",
+              "type": "string"
+            },
             "linkingToken": {
               "description": "Delete the partner links with the given linking token.",
               "location": "query",
@@ -3087,6 +3092,11 @@
             "part"
           ],
           "parameters": {
+            "externalChannelId": {
+              "description": "Channel ID to which changes should be applied, for delegation.",
+              "location": "query",
+              "type": "string"
+            },
             "part": {
               "description": "The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.",
               "location": "query",
@@ -3112,6 +3122,11 @@
             "part"
           ],
           "parameters": {
+            "externalChannelId": {
+              "description": "Channel ID to which changes should be applied, for delegation.",
+              "location": "query",
+              "type": "string"
+            },
             "linkingToken": {
               "description": "Get a third party link with the given linking token.",
               "location": "query",
@@ -3152,6 +3167,11 @@
             "part"
           ],
           "parameters": {
+            "externalChannelId": {
+              "description": "Channel ID to which changes should be applied, for delegation.",
+              "location": "query",
+              "type": "string"
+            },
             "part": {
               "description": "The *part* parameter specifies the thirdPartyLink resource parts that the API request and response will include. Supported values are linkingToken, status, and snippet.",
               "location": "query",
@@ -3769,7 +3789,7 @@
       }
     }
   },
-  "revision": "20210912",
+  "revision": "20210920",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
