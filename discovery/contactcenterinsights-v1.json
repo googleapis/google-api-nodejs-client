@@ -1089,7 +1089,7 @@
       }
     }
   },
-  "revision": "20210902",
+  "revision": "20210918",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1581,6 +1581,10 @@
         },
         "dialogflowParticipantName": {
           "description": "The name of the participant provided by Dialogflow. Format: projects/{project}/locations/{location}/conversations/{conversation}/participants/{participant}",
+          "type": "string"
+        },
+        "obfuscatedExternalUserId": {
+          "description": "Obfuscated user ID from Dialogflow.",
           "type": "string"
         },
         "role": {
@@ -2238,8 +2242,12 @@
       "description": "Configs for the input data used to create the issue model.",
       "id": "GoogleCloudContactcenterinsightsV1IssueModelInputDataConfig",
       "properties": {
+        "filter": {
+          "description": "A filter to reduce the conversations used for training the model to a specific subset.",
+          "type": "string"
+        },
         "medium": {
-          "description": "Required. ",
+          "description": "Medium of conversations used in training data. This field is being deprecated. To specify the medium to be used in training a new issue model, set the `medium` field on `filter`.",
           "enum": [
             "MEDIUM_UNSPECIFIED",
             "PHONE_CALL",
@@ -2544,6 +2552,12 @@
             "Must meet all phrase match rule groups or there is no match.",
             "If any of the phrase match rule groups are met, there is a match."
           ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the phrase matcher was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "versionTag": {
@@ -3048,8 +3062,12 @@
       "description": "Configs for the input data used to create the issue model.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1IssueModelInputDataConfig",
       "properties": {
+        "filter": {
+          "description": "A filter to reduce the conversations used for training the model to a specific subset.",
+          "type": "string"
+        },
         "medium": {
-          "description": "Required. ",
+          "description": "Medium of conversations used in training data. This field is being deprecated. To specify the medium to be used in training a new issue model, set the `medium` field on `filter`.",
           "enum": [
             "MEDIUM_UNSPECIFIED",
             "PHONE_CALL",
