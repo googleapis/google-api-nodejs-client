@@ -567,6 +567,19 @@ export namespace osconfig_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * A response message for listing OS Policy assignment reports including the page of results and page token.
+   */
+  export interface Schema$ListOSPolicyAssignmentReportsResponse {
+    /**
+     * The pagination token to retrieve the next page of OS policy assignment report objects.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of OS policy assignment reports.
+     */
+    osPolicyAssignmentReports?: Schema$OSPolicyAssignmentReport[];
+  }
+  /**
    * A response message for listing all revisions for a OS policy assignment.
    */
   export interface Schema$ListOSPolicyAssignmentRevisionsResponse {
@@ -783,6 +796,103 @@ export namespace osconfig_v1alpha {
      * Rollout update time
      */
     rolloutUpdateTime?: string | null;
+  }
+  /**
+   * A report of the OS policy assignment status for a given instance.
+   */
+  export interface Schema$OSPolicyAssignmentReport {
+    /**
+     * The Compute Engine VM instance name.
+     */
+    instance?: string | null;
+    /**
+     * Unique identifier of the last attempted run to apply the OS policies associated with this assignment on the VM. This ID is logged by the OS Config agent while applying the OS policies associated with this assignment on the VM. NOTE: If the service is unable to successfully connect to the agent for this run, then this id will not be available in the agent logs.
+     */
+    lastRunId?: string | null;
+    /**
+     * The `OSPolicyAssignmentReport` API resource name. Format: `projects/{project_number\}/locations/{location\}/instances/{instance_id\}/osPolicyAssignments/{os_policy_assignment_id\}/report`
+     */
+    name?: string | null;
+    /**
+     * Reference to the `OSPolicyAssignment` API resource that the `OSPolicy` belongs to. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id@revision_id\}`
+     */
+    osPolicyAssignment?: string | null;
+    /**
+     * Compliance data for each `OSPolicy` that is applied to the VM.
+     */
+    osPolicyCompliances?: Schema$OSPolicyAssignmentReportOSPolicyCompliance[];
+    /**
+     * Timestamp for when the report was last generated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Compliance data for an OS policy
+   */
+  export interface Schema$OSPolicyAssignmentReportOSPolicyCompliance {
+    /**
+     * The compliance state of the OS policy.
+     */
+    complianceState?: string | null;
+    /**
+     * The reason for the OS policy to be in an unknown compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. If populated, the field can contain one of the following values: * `vm-not-running`: The VM was not running. * `os-policies-not-supported-by-agent`: The version of the OS Config agent running on the VM does not support running OS policies. * `no-agent-detected`: The OS Config agent is not detected for the VM. * `resource-execution-errors`: The OS Config agent encountered errors while executing one or more resources in the policy. See `os_policy_resource_compliances` for details. * `task-timeout`: The task sent to the agent to apply the policy timed out. * `unexpected-agent-state`: The OS Config agent did not report the final status of the task that attempted to apply the policy. Instead, the agent unexpectedly started working on a different task. This mostly happens when the agent or VM unexpectedly restarts while applying OS policies. * `internal-service-errors`: Internal service errors were encountered while attempting to apply the policy.
+     */
+    complianceStateReason?: string | null;
+    /**
+     * The OS policy id
+     */
+    osPolicyId?: string | null;
+    /**
+     * Compliance data for each resource within the policy that is applied to the VM.
+     */
+    osPolicyResourceCompliances?: Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance[];
+  }
+  /**
+   * Compliance data for an OS policy resource.
+   */
+  export interface Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance {
+    /**
+     * The compliance state of the resource.
+     */
+    complianceState?: string | null;
+    /**
+     * A reason for the resource to be in the given compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. The following values are supported when `compliance_state == UNKNOWN` * `execution-errors`: Errors were encountered by the agent while executing the resource and the compliance state couldn't be determined. * `execution-skipped-by-agent`: Resource execution was skipped by the agent because errors were encountered while executing prior resources in the OS policy. * `os-policy-execution-attempt-failed`: The execution of the OS policy containing this resource failed and the compliance state couldn't be determined.
+     */
+    complianceStateReason?: string | null;
+    /**
+     * Ordered list of configuration completed by the agent for the OS policy resource.
+     */
+    configSteps?: Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep[];
+    /**
+     * ExecResource specific output.
+     */
+    execResourceOutput?: Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput;
+    /**
+     * The ID of the OS policy resource.
+     */
+    osPolicyResourceId?: string | null;
+  }
+  /**
+   * ExecResource specific output.
+   */
+  export interface Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput {
+    /**
+     * Output from enforcement phase output file (if run). Output size is limited to 100K bytes.
+     */
+    enforcementOutput?: string | null;
+  }
+  /**
+   * Step performed by the OS Config agent for configuring an `OSPolicy` resource to its desired state.
+   */
+  export interface Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep {
+    /**
+     * An error message recorded during the execution of this step. Only populated if errors were encountered during this step execution.
+     */
+    errorMessage?: string | null;
+    /**
+     * Configuration step type.
+     */
+    type?: string | null;
   }
   /**
    * Message to configure the rollout at the zonal level for the OS policy assignment.
@@ -1694,12 +1804,17 @@ export namespace osconfig_v1alpha {
   export class Resource$Projects$Locations$Instances {
     context: APIRequestContext;
     inventories: Resource$Projects$Locations$Instances$Inventories;
+    osPolicyAssignments: Resource$Projects$Locations$Instances$Ospolicyassignments;
     vulnerabilityReports: Resource$Projects$Locations$Instances$Vulnerabilityreports;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.inventories = new Resource$Projects$Locations$Instances$Inventories(
         this.context
       );
+      this.osPolicyAssignments =
+        new Resource$Projects$Locations$Instances$Ospolicyassignments(
+          this.context
+        );
       this.vulnerabilityReports =
         new Resource$Projects$Locations$Instances$Vulnerabilityreports(
           this.context
@@ -2023,6 +2138,343 @@ export namespace osconfig_v1alpha {
      * Inventory view indicating what information should be included in the inventory resource. If unspecified, the default view is BASIC.
      */
     view?: string;
+  }
+
+  export class Resource$Projects$Locations$Instances$Ospolicyassignments {
+    context: APIRequestContext;
+    reports: Resource$Projects$Locations$Instances$Ospolicyassignments$Reports;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.reports =
+        new Resource$Projects$Locations$Instances$Ospolicyassignments$Reports(
+          this.context
+        );
+    }
+
+    /**
+     * Get the OS policy asssignment report for the specified Compute Engine VM instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.instances.osPolicyAssignments.getReport({
+     *       // Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
+     *       name: 'projects/my-project/locations/my-location/instances/my-instance/osPolicyAssignments/my-osPolicyAssignment/report',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "instance": "my_instance",
+     *   //   "lastRunId": "my_lastRunId",
+     *   //   "name": "my_name",
+     *   //   "osPolicyAssignment": "my_osPolicyAssignment",
+     *   //   "osPolicyCompliances": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getReport(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getReport(
+      params?: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OSPolicyAssignmentReport>;
+    getReport(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getReport(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>,
+      callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+    ): void;
+    getReport(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+    ): void;
+    getReport(
+      callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+    ): void;
+    getReport(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport
+        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$OSPolicyAssignmentReport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OSPolicyAssignmentReport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OSPolicyAssignmentReport>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport
+    extends StandardParameters {
+    /**
+     * Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Locations$Instances$Ospolicyassignments$Reports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List OS policy asssignment reports for all Compute Engine VM instances in the specified zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.instances.osPolicyAssignments.reports.list(
+     *       {
+     *         // If provided, this field specifies the criteria that must be met by the `OSPolicyAssignmentReport` API resource that is included in the response.
+     *         filter: 'placeholder-value',
+     *         // The maximum number of results to return.
+     *         pageSize: 'placeholder-value',
+     *         // A pagination token returned from a previous call to the `ListOSPolicyAssignmentReports` method that indicates where this listing should continue from.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/reports` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either `instance-name`, `instance-id`, or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all instances in the project/location. For `{assignment\}`, either `assignment-id` or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all OSPolicyAssignments in the project/location. Either {instance\} or {assignment\} must be `-`. For example: `projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/-/reports` returns all reports for the instance `projects/{project\}/locations/{location\}/instances/-/osPolicyAssignments/{assignment-id\}/reports` returns all the reports for the given assignment across all instances. `projects/{project\}/locations/{location\}/instances/-/osPolicyAssignments/-/reports` returns all the reports for all assignments across all instances.
+     *         parent:
+     *           'projects/my-project/locations/my-location/instances/my-instance/osPolicyAssignments/my-osPolicyAssignment',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "osPolicyAssignmentReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOSPolicyAssignmentReportsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOSPolicyAssignmentReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOSPolicyAssignmentReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOSPolicyAssignmentReportsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List
+    extends StandardParameters {
+    /**
+     * If provided, this field specifies the criteria that must be met by the `OSPolicyAssignmentReport` API resource that is included in the response.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to the `ListOSPolicyAssignmentReports` method that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/reports` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either `instance-name`, `instance-id`, or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all instances in the project/location. For `{assignment\}`, either `assignment-id` or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all OSPolicyAssignments in the project/location. Either {instance\} or {assignment\} must be `-`. For example: `projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/-/reports` returns all reports for the instance `projects/{project\}/locations/{location\}/instances/-/osPolicyAssignments/{assignment-id\}/reports` returns all the reports for the given assignment across all instances. `projects/{project\}/locations/{location\}/instances/-/osPolicyAssignments/-/reports` returns all the reports for all assignments across all instances.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Instances$Vulnerabilityreports {

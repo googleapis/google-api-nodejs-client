@@ -282,6 +282,199 @@
                   }
                 }
               }
+            },
+            "osPolicyAssignments": {
+              "methods": {
+                "create": {
+                  "description": "Create an OS policy assignment. This method also creates the first revision of the OS policy assignment. This method returns a long running operation (LRO) that contains the rollout details. The rollout can be cancelled by cancelling the LRO. For more information, see [Method: projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/osPolicyAssignments",
+                  "httpMethod": "POST",
+                  "id": "osconfig.projects.locations.osPolicyAssignments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "osPolicyAssignmentId": {
+                      "description": "Required. The logical name of the OS policy assignment in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name in the form: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/osPolicyAssignments",
+                  "request": {
+                    "$ref": "OSPolicyAssignment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete the OS policy assignment. This method creates a new revision of the OS policy assignment. This method returns a long running operation (LRO) that contains the rollout details. The rollout can be cancelled by cancelling the LRO. If the LRO completes and is not cancelled, all revisions associated with the OS policy assignment are deleted. For more information, see [Method: projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/osPolicyAssignments/{osPolicyAssignmentsId}",
+                  "httpMethod": "DELETE",
+                  "id": "osconfig.projects.locations.osPolicyAssignments.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the OS policy assignment to be deleted",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/osPolicyAssignments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieve an existing OS policy assignment. This method always returns the latest revision. In order to retrieve a previous revision of the assignment, also provide the revision ID in the `name` parameter.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/osPolicyAssignments/{osPolicyAssignmentsId}",
+                  "httpMethod": "GET",
+                  "id": "osconfig.projects.locations.osPolicyAssignments.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of OS policy assignment. Format: `projects/{project}/locations/{location}/osPolicyAssignments/{os_policy_assignment}@{revisionId}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/osPolicyAssignments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "OSPolicyAssignment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List the OS policy assignments under the parent resource. For each OS policy assignment, the latest revision is returned.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/osPolicyAssignments",
+                  "httpMethod": "GET",
+                  "id": "osconfig.projects.locations.osPolicyAssignments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of assignments to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A pagination token returned from a previous call to `ListOSPolicyAssignments` that indicates where this listing should continue from.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/osPolicyAssignments",
+                  "response": {
+                    "$ref": "ListOSPolicyAssignmentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "listRevisions": {
+                  "description": "List the OS policy assignment revisions for a given OS policy assignment.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/osPolicyAssignments/{osPolicyAssignmentsId}:listRevisions",
+                  "httpMethod": "GET",
+                  "id": "osconfig.projects.locations.osPolicyAssignments.listRevisions",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the OS policy assignment to list revisions for.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/osPolicyAssignments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of revisions to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A pagination token returned from a previous call to `ListOSPolicyAssignmentRevisions` that indicates where this listing should continue from.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:listRevisions",
+                  "response": {
+                    "$ref": "ListOSPolicyAssignmentRevisionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update an existing OS policy assignment. This method creates a new revision of the OS policy assignment. This method returns a long running operation (LRO) that contains the rollout details. The rollout can be cancelled by cancelling the LRO. For more information, see [Method: projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/osPolicyAssignments/{osPolicyAssignmentsId}",
+                  "httpMethod": "PATCH",
+                  "id": "osconfig.projects.locations.osPolicyAssignments.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Resource name. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id}` This field is ignored when you create an OS policy assignment.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/osPolicyAssignments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask that controls which fields of the assignment should be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "OSPolicyAssignment"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         },
@@ -584,7 +777,7 @@
       }
     }
   },
-  "revision": "20210821",
+  "revision": "20210914",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -772,6 +965,28 @@
       "description": "Message for canceling a patch job.",
       "id": "CancelPatchJobRequest",
       "properties": {},
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -1054,6 +1269,10 @@
           "$ref": "InventoryWindowsQuickFixEngineeringPackage",
           "description": "Details of a Windows Quick Fix engineering package. See https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering for info in Windows Quick Fix Engineering."
         },
+        "windowsApplication": {
+          "$ref": "InventoryWindowsApplication",
+          "description": "Details of Windows Application."
+        },
         "wuaPackage": {
           "$ref": "InventoryWindowsUpdatePackage",
           "description": "Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update."
@@ -1087,6 +1306,33 @@
         },
         "version": {
           "description": "The version of the package.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryWindowsApplication": {
+      "description": "Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class=\"external\" }",
+      "id": "InventoryWindowsApplication",
+      "properties": {
+        "displayName": {
+          "description": "The name of the application or product.",
+          "type": "string"
+        },
+        "displayVersion": {
+          "description": "The version of the product or application in string format.",
+          "type": "string"
+        },
+        "helpLink": {
+          "description": "The internet address for technical support.",
+          "type": "string"
+        },
+        "installDate": {
+          "$ref": "Date",
+          "description": "The last time this product received service. The value of this property is replaced each time a patch is applied or removed from the product or the command-line option is used to repair the product."
+        },
+        "publisher": {
+          "description": "The name of the manufacturer for the product or application.",
           "type": "string"
         }
       },
@@ -1226,6 +1472,42 @@
       },
       "type": "object"
     },
+    "ListOSPolicyAssignmentRevisionsResponse": {
+      "description": "A response message for listing all revisions for a OS policy assignment.",
+      "id": "ListOSPolicyAssignmentRevisionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of OS policy assignment revisions.",
+          "type": "string"
+        },
+        "osPolicyAssignments": {
+          "description": "The OS policy assignment revisions",
+          "items": {
+            "$ref": "OSPolicyAssignment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListOSPolicyAssignmentsResponse": {
+      "description": "A response message for listing all assignments under given parent.",
+      "id": "ListOSPolicyAssignmentsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of OS policy assignments.",
+          "type": "string"
+        },
+        "osPolicyAssignments": {
+          "description": "The list of assignments",
+          "items": {
+            "$ref": "OSPolicyAssignment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListPatchDeploymentsResponse": {
       "description": "A response message for listing patch deployments.",
       "id": "ListPatchDeploymentsResponse",
@@ -1314,6 +1596,191 @@
       },
       "type": "object"
     },
+    "OSPolicy": {
+      "description": "An OS policy defines the desired state configuration for a VM.",
+      "id": "OSPolicy",
+      "properties": {
+        "allowNoResourceGroupMatch": {
+          "description": "This flag determines the OS policy compliance status when none of the resource groups within the policy are applicable for a VM. Set this value to `true` if the policy needs to be reported as compliant even if the policy has nothing to validate or enforce.",
+          "type": "boolean"
+        },
+        "description": {
+          "description": "Policy description. Length of the description is limited to 1024 characters.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Required. The id of the OS policy with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the assignment.",
+          "type": "string"
+        },
+        "mode": {
+          "description": "Required. Policy mode",
+          "enum": [
+            "MODE_UNSPECIFIED",
+            "VALIDATION",
+            "ENFORCEMENT"
+          ],
+          "enumDescriptions": [
+            "Invalid mode",
+            "This mode checks if the configuration resources in the policy are in their desired state. No actions are performed if they are not in the desired state. This mode is used for reporting purposes.",
+            "This mode checks if the configuration resources in the policy are in their desired state, and if not, enforces the desired state."
+          ],
+          "type": "string"
+        },
+        "resourceGroups": {
+          "description": "Required. List of resource groups for the policy. For a particular VM, resource groups are evaluated in the order specified and the first resource group that is applicable is selected and the rest are ignored. If none of the resource groups are applicable for a VM, the VM is considered to be non-compliant w.r.t this policy. This behavior can be toggled by the flag `allow_no_resource_group_match`",
+          "items": {
+            "$ref": "OSPolicyResourceGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignment": {
+      "description": "OS policy assignment is an API resource that is used to apply a set of OS policies to a dynamically targeted group of Compute Engine VM instances. An OS policy is used to define the desired state configuration for a Compute Engine VM instance through a set of configuration resources that provide capabilities such as installing or removing software packages, or executing a script. For more information, see [OS policy and OS policy assignment](https://cloud.google.com/compute/docs/os-configuration-management/working-with-os-policies).",
+      "id": "OSPolicyAssignment",
+      "properties": {
+        "baseline": {
+          "description": "Output only. Indicates that this revision has been successfully rolled out in this zone and new VMs will be assigned OS policies from this revision. For a given OS policy assignment, there is only one revision with a value of `true` for this field.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "deleted": {
+          "description": "Output only. Indicates that this revision deletes the OS policy assignment.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "description": {
+          "description": "OS policy assignment description. Length of the description is limited to 1024 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "The etag for this OS policy assignment. If this is provided on update, it must match the server's etag.",
+          "type": "string"
+        },
+        "instanceFilter": {
+          "$ref": "OSPolicyAssignmentInstanceFilter",
+          "description": "Required. Filter to select VMs."
+        },
+        "name": {
+          "description": "Resource name. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id}` This field is ignored when you create an OS policy assignment.",
+          "type": "string"
+        },
+        "osPolicies": {
+          "description": "Required. List of OS policies to be applied to the VMs.",
+          "items": {
+            "$ref": "OSPolicy"
+          },
+          "type": "array"
+        },
+        "reconciling": {
+          "description": "Output only. Indicates that reconciliation is in progress for the revision. This value is `true` when the `rollout_state` is one of: * IN_PROGRESS * CANCELLING",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "revisionCreateTime": {
+          "description": "Output only. The timestamp that the revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Output only. The assignment revision ID A new revision is committed whenever a rollout is triggered for a OS policy assignment",
+          "readOnly": true,
+          "type": "string"
+        },
+        "rollout": {
+          "$ref": "OSPolicyAssignmentRollout",
+          "description": "Required. Rollout to deploy the OS policy assignment. A rollout is triggered in the following situations: 1) OSPolicyAssignment is created. 2) OSPolicyAssignment is updated and the update contains changes to one of the following fields: - instance_filter - os_policies 3) OSPolicyAssignment is deleted."
+        },
+        "rolloutState": {
+          "description": "Output only. OS policy assignment rollout state",
+          "enum": [
+            "ROLLOUT_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "Invalid value",
+            "The rollout is in progress.",
+            "The rollout is being cancelled.",
+            "The rollout is cancelled.",
+            "The rollout has completed successfully."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Server generated unique id for the OS policy assignment resource.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentInstanceFilter": {
+      "description": "Filters to select target VMs for an assignment. If more than one filter criteria is specified below, a VM will be selected if and only if it satisfies all of them.",
+      "id": "OSPolicyAssignmentInstanceFilter",
+      "properties": {
+        "all": {
+          "description": "Target all VMs in the project. If true, no other criteria is permitted.",
+          "type": "boolean"
+        },
+        "exclusionLabels": {
+          "description": "List of label sets used for VM exclusion. If the list has more than one label set, the VM is excluded if any of the label sets are applicable for the VM.",
+          "items": {
+            "$ref": "OSPolicyAssignmentLabelSet"
+          },
+          "type": "array"
+        },
+        "inclusionLabels": {
+          "description": "List of label sets used for VM inclusion. If the list has more than one `LabelSet`, the VM is included if any of the label sets are applicable for the VM.",
+          "items": {
+            "$ref": "OSPolicyAssignmentLabelSet"
+          },
+          "type": "array"
+        },
+        "inventories": {
+          "description": "List of inventories to select VMs. A VM is selected if its inventory data matches at least one of the following inventories.",
+          "items": {
+            "$ref": "OSPolicyAssignmentInstanceFilterInventory"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentInstanceFilterInventory": {
+      "description": "VM inventory details.",
+      "id": "OSPolicyAssignmentInstanceFilterInventory",
+      "properties": {
+        "osShortName": {
+          "description": "Required. The OS short name",
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of `7`, specify the following value for this field `7.*` An empty string matches all OS versions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentLabelSet": {
+      "description": "Message representing label set. * A label is a key value pair set for a VM. * A LabelSet is a set of labels. * Labels within a LabelSet are ANDed. In other words, a LabelSet is applicable for a VM only if it matches all the labels in the LabelSet. * Example: A LabelSet with 2 labels: `env=prod` and `type=webserver` will only be applicable for those VMs with both labels present.",
+      "id": "OSPolicyAssignmentLabelSet",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels are identified by key/value pairs in this map. A VM should contain all the key/value pairs specified in this map to be selected.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "OSPolicyAssignmentOperationMetadata": {
       "description": "OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.",
       "id": "OSPolicyAssignmentOperationMetadata",
@@ -1369,6 +1836,510 @@
       },
       "type": "object"
     },
+    "OSPolicyAssignmentRollout": {
+      "description": "Message to configure the rollout at the zonal level for the OS policy assignment.",
+      "id": "OSPolicyAssignmentRollout",
+      "properties": {
+        "disruptionBudget": {
+          "$ref": "FixedOrPercent",
+          "description": "Required. The maximum number (or percentage) of VMs per zone to disrupt at any given moment."
+        },
+        "minWaitDuration": {
+          "description": "Required. This determines the minimum duration of time to wait after the configuration changes are applied through the current rollout. A VM continues to count towards the `disruption_budget` at least until this duration of time has passed after configuration changes are applied.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyInventoryFilter": {
+      "description": "Filtering criteria to select VMs based on inventory details.",
+      "id": "OSPolicyInventoryFilter",
+      "properties": {
+        "osShortName": {
+          "description": "Required. The OS short name",
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "The OS version Prefix matches are supported if asterisk(*) is provided as the last character. For example, to match all versions with a major version of `7`, specify the following value for this field `7.*` An empty string matches all OS versions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResource": {
+      "description": "An OS policy resource is used to define the desired state configuration and provides a specific functionality like installing/removing packages, executing a script etc. The system ensures that resources are always in their desired state by taking necessary actions if they have drifted from their desired state.",
+      "id": "OSPolicyResource",
+      "properties": {
+        "exec": {
+          "$ref": "OSPolicyResourceExecResource",
+          "description": "Exec resource"
+        },
+        "file": {
+          "$ref": "OSPolicyResourceFileResource",
+          "description": "File resource"
+        },
+        "id": {
+          "description": "Required. The id of the resource with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the OS policy.",
+          "type": "string"
+        },
+        "pkg": {
+          "$ref": "OSPolicyResourcePackageResource",
+          "description": "Package resource"
+        },
+        "repository": {
+          "$ref": "OSPolicyResourceRepositoryResource",
+          "description": "Package repository resource"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceExecResource": {
+      "description": "A resource that allows executing scripts on the VM. The `ExecResource` has 2 stages: `validate` and `enforce` and both stages accept a script as an argument to execute. When the `ExecResource` is applied by the agent, it first executes the script in the `validate` stage. The `validate` stage can signal that the `ExecResource` is already in the desired state by returning an exit code of `100`. If the `ExecResource` is not in the desired state, it should return an exit code of `101`. Any other exit code returned by this stage is considered an error. If the `ExecResource` is not in the desired state based on the exit code from the `validate` stage, the agent proceeds to execute the script from the `enforce` stage. If the `ExecResource` is already in the desired state, the `enforce` stage will not be run. Similar to `validate` stage, the `enforce` stage should return an exit code of `100` to indicate that the resource in now in its desired state. Any other exit code is considered an error. NOTE: An exit code of `100` was chosen over `0` (and `101` vs `1`) to have an explicit indicator of `in desired state`, `not in desired state` and errors. Because, for example, Powershell will always return an exit code of `0` unless an `exit` statement is provided in the script. So, for reasons of consistency and being explicit, exit codes `100` and `101` were chosen.",
+      "id": "OSPolicyResourceExecResource",
+      "properties": {
+        "enforce": {
+          "$ref": "OSPolicyResourceExecResourceExec",
+          "description": "What to run to bring this resource into the desired state. An exit code of 100 indicates \"success\", any other exit code indicates a failure running enforce."
+        },
+        "validate": {
+          "$ref": "OSPolicyResourceExecResourceExec",
+          "description": "Required. What to run to validate this resource is in the desired state. An exit code of 100 indicates \"in desired state\", and exit code of 101 indicates \"not in desired state\". Any other exit code indicates a failure running validate."
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceExecResourceExec": {
+      "description": "A file or script to execute.",
+      "id": "OSPolicyResourceExecResourceExec",
+      "properties": {
+        "args": {
+          "description": "Optional arguments to pass to the source during execution.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "file": {
+          "$ref": "OSPolicyResourceFile",
+          "description": "A remote or local file."
+        },
+        "interpreter": {
+          "description": "Required. The script interpreter to use.",
+          "enum": [
+            "INTERPRETER_UNSPECIFIED",
+            "NONE",
+            "SHELL",
+            "POWERSHELL"
+          ],
+          "enumDescriptions": [
+            "Defaults to NONE.",
+            "If an interpreter is not specified, the source is executed directly. This execution, without an interpreter, only succeeds for executables and scripts that have shebang lines.",
+            "Indicates that the script runs with `/bin/sh` on Linux and `cmd.exe` on Windows.",
+            "Indicates that the script runs with PowerShell."
+          ],
+          "type": "string"
+        },
+        "outputFilePath": {
+          "description": "Only recorded for enforce Exec. Path to an output file (that is created by this Exec) whose content will be recorded in OSPolicyResourceCompliance after a successful run. Absence or failure to read this file will result in this ExecResource being non-compliant. Output file size is limited to 100K bytes.",
+          "type": "string"
+        },
+        "script": {
+          "description": "An inline script. The size of the script is limited to 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceFile": {
+      "description": "A remote or local file.",
+      "id": "OSPolicyResourceFile",
+      "properties": {
+        "allowInsecure": {
+          "description": "Defaults to false. When false, files are subject to validations based on the file type: Remote: A checksum must be specified. Cloud Storage: An object generation number must be specified.",
+          "type": "boolean"
+        },
+        "gcs": {
+          "$ref": "OSPolicyResourceFileGcs",
+          "description": "A Cloud Storage object."
+        },
+        "localPath": {
+          "description": "A local path within the VM to use.",
+          "type": "string"
+        },
+        "remote": {
+          "$ref": "OSPolicyResourceFileRemote",
+          "description": "A generic remote file."
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceFileGcs": {
+      "description": "Specifies a file available as a Cloud Storage Object.",
+      "id": "OSPolicyResourceFileGcs",
+      "properties": {
+        "bucket": {
+          "description": "Required. Bucket of the Cloud Storage object.",
+          "type": "string"
+        },
+        "generation": {
+          "description": "Generation number of the Cloud Storage object.",
+          "format": "int64",
+          "type": "string"
+        },
+        "object": {
+          "description": "Required. Name of the Cloud Storage object.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceFileRemote": {
+      "description": "Specifies a file available via some URI.",
+      "id": "OSPolicyResourceFileRemote",
+      "properties": {
+        "sha256Checksum": {
+          "description": "SHA256 checksum of the remote file.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. URI from which to fetch the object. It should contain both the protocol and path following the format `{protocol}://{location}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceFileResource": {
+      "description": "A resource that manages the state of a file.",
+      "id": "OSPolicyResourceFileResource",
+      "properties": {
+        "content": {
+          "description": "A a file with this content. The size of the content is limited to 1024 characters.",
+          "type": "string"
+        },
+        "file": {
+          "$ref": "OSPolicyResourceFile",
+          "description": "A remote or local source."
+        },
+        "path": {
+          "description": "Required. The absolute path of the file within the VM.",
+          "type": "string"
+        },
+        "permissions": {
+          "description": "Consists of three octal digits which represent, in order, the permissions of the owner, group, and other users for the file (similarly to the numeric mode used in the linux chmod utility). Each digit represents a three bit number with the 4 bit corresponding to the read permissions, the 2 bit corresponds to the write bit, and the one bit corresponds to the execute permission. Default behavior is 755. Below are some examples of permissions and their associated values: read, write, and execute: 7 read and execute: 5 read and write: 6 read only: 4",
+          "type": "string"
+        },
+        "state": {
+          "description": "Required. Desired state of the file.",
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "PRESENT",
+            "ABSENT",
+            "CONTENTS_MATCH"
+          ],
+          "enumDescriptions": [
+            "Unspecified is invalid.",
+            "Ensure file at path is present.",
+            "Ensure file at path is absent.",
+            "Ensure the contents of the file at path matches. If the file does not exist it will be created."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceGroup": {
+      "description": "Resource groups provide a mechanism to group OS policy resources. Resource groups enable OS policy authors to create a single OS policy to be applied to VMs running different operating Systems. When the OS policy is applied to a target VM, the appropriate resource group within the OS policy is selected based on the `OSFilter` specified within the resource group.",
+      "id": "OSPolicyResourceGroup",
+      "properties": {
+        "inventoryFilters": {
+          "description": "List of inventory filters for the resource group. The resources in this resource group are applied to the target VM if it satisfies at least one of the following inventory filters. For example, to apply this resource group to VMs running either `RHEL` or `CentOS` operating systems, specify 2 items for the list with following values: inventory_filters[0].os_short_name='rhel' and inventory_filters[1].os_short_name='centos' If the list is empty, this resource group will be applied to the target VM unconditionally.",
+          "items": {
+            "$ref": "OSPolicyInventoryFilter"
+          },
+          "type": "array"
+        },
+        "resources": {
+          "description": "Required. List of resources configured for this resource group. The resources are executed in the exact order specified here.",
+          "items": {
+            "$ref": "OSPolicyResource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourcePackageResource": {
+      "description": "A resource that manages a system package.",
+      "id": "OSPolicyResourcePackageResource",
+      "properties": {
+        "apt": {
+          "$ref": "OSPolicyResourcePackageResourceAPT",
+          "description": "A package managed by Apt."
+        },
+        "deb": {
+          "$ref": "OSPolicyResourcePackageResourceDeb",
+          "description": "A deb package file."
+        },
+        "desiredState": {
+          "description": "Required. The desired state the agent should maintain for this package.",
+          "enum": [
+            "DESIRED_STATE_UNSPECIFIED",
+            "INSTALLED",
+            "REMOVED"
+          ],
+          "enumDescriptions": [
+            "Unspecified is invalid.",
+            "Ensure that the package is installed.",
+            "The agent ensures that the package is not installed and uninstalls it if detected."
+          ],
+          "type": "string"
+        },
+        "googet": {
+          "$ref": "OSPolicyResourcePackageResourceGooGet",
+          "description": "A package managed by GooGet."
+        },
+        "msi": {
+          "$ref": "OSPolicyResourcePackageResourceMSI",
+          "description": "An MSI package."
+        },
+        "rpm": {
+          "$ref": "OSPolicyResourcePackageResourceRPM",
+          "description": "An rpm package file."
+        },
+        "yum": {
+          "$ref": "OSPolicyResourcePackageResourceYUM",
+          "description": "A package managed by YUM."
+        },
+        "zypper": {
+          "$ref": "OSPolicyResourcePackageResourceZypper",
+          "description": "A package managed by Zypper."
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourcePackageResourceAPT": {
+      "description": "A package managed by APT. - install: `apt-get update && apt-get -y install [name]` - remove: `apt-get -y remove [name]`",
+      "id": "OSPolicyResourcePackageResourceAPT",
+      "properties": {
+        "name": {
+          "description": "Required. Package name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourcePackageResourceDeb": {
+      "description": "A deb package file. dpkg packages only support INSTALLED state.",
+      "id": "OSPolicyResourcePackageResourceDeb",
+      "properties": {
+        "pullDeps": {
+          "description": "Whether dependencies should also be installed. - install when false: `dpkg -i package` - install when true: `apt-get update && apt-get -y install package.deb`",
+          "type": "boolean"
+        },
+        "source": {
+          "$ref": "OSPolicyResourceFile",
+          "description": "Required. A deb package."
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourcePackageResourceGooGet": {
+      "description": "A package managed by GooGet. - install: `googet -noconfirm install package` - remove: `googet -noconfirm remove package`",
+      "id": "OSPolicyResourcePackageResourceGooGet",
+      "properties": {
+        "name": {
+          "description": "Required. Package name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourcePackageResourceMSI": {
+      "description": "An MSI package. MSI packages only support INSTALLED state.",
+      "id": "OSPolicyResourcePackageResourceMSI",
+      "properties": {
+        "properties": {
+          "description": "Additional properties to use during installation. This should be in the format of Property=Setting. Appended to the defaults of `ACTION=INSTALL REBOOT=ReallySuppress`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "source": {
+          "$ref": "OSPolicyResourceFile",
+          "description": "Required. The MSI package."
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourcePackageResourceRPM": {
+      "description": "An RPM package file. RPM packages only support INSTALLED state.",
+      "id": "OSPolicyResourcePackageResourceRPM",
+      "properties": {
+        "pullDeps": {
+          "description": "Whether dependencies should also be installed. - install when false: `rpm --upgrade --replacepkgs package.rpm` - install when true: `yum -y install package.rpm` or `zypper -y install package.rpm`",
+          "type": "boolean"
+        },
+        "source": {
+          "$ref": "OSPolicyResourceFile",
+          "description": "Required. An rpm package."
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourcePackageResourceYUM": {
+      "description": "A package managed by YUM. - install: `yum -y install package` - remove: `yum -y remove package`",
+      "id": "OSPolicyResourcePackageResourceYUM",
+      "properties": {
+        "name": {
+          "description": "Required. Package name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourcePackageResourceZypper": {
+      "description": "A package managed by Zypper. - install: `zypper -y install package` - remove: `zypper -y rm package`",
+      "id": "OSPolicyResourcePackageResourceZypper",
+      "properties": {
+        "name": {
+          "description": "Required. Package name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceRepositoryResource": {
+      "description": "A resource that manages a package repository.",
+      "id": "OSPolicyResourceRepositoryResource",
+      "properties": {
+        "apt": {
+          "$ref": "OSPolicyResourceRepositoryResourceAptRepository",
+          "description": "An Apt Repository."
+        },
+        "goo": {
+          "$ref": "OSPolicyResourceRepositoryResourceGooRepository",
+          "description": "A Goo Repository."
+        },
+        "yum": {
+          "$ref": "OSPolicyResourceRepositoryResourceYumRepository",
+          "description": "A Yum Repository."
+        },
+        "zypper": {
+          "$ref": "OSPolicyResourceRepositoryResourceZypperRepository",
+          "description": "A Zypper Repository."
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceRepositoryResourceAptRepository": {
+      "description": "Represents a single apt package repository. These will be added to a repo file that will be managed at `/etc/apt/sources.list.d/google_osconfig.list`.",
+      "id": "OSPolicyResourceRepositoryResourceAptRepository",
+      "properties": {
+        "archiveType": {
+          "description": "Required. Type of archive files in this repository.",
+          "enum": [
+            "ARCHIVE_TYPE_UNSPECIFIED",
+            "DEB",
+            "DEB_SRC"
+          ],
+          "enumDescriptions": [
+            "Unspecified is invalid.",
+            "Deb indicates that the archive contains binary files.",
+            "Deb-src indicates that the archive contains source files."
+          ],
+          "type": "string"
+        },
+        "components": {
+          "description": "Required. List of components for this repository. Must contain at least one item.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "distribution": {
+          "description": "Required. Distribution of this repository.",
+          "type": "string"
+        },
+        "gpgKey": {
+          "description": "URI of the key file for this repository. The agent maintains a keyring at `/etc/apt/trusted.gpg.d/osconfig_agent_managed.gpg`.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. URI for this repository.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceRepositoryResourceGooRepository": {
+      "description": "Represents a Goo package repository. These are added to a repo file that is managed at `C:/ProgramData/GooGet/repos/google_osconfig.repo`.",
+      "id": "OSPolicyResourceRepositoryResourceGooRepository",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the repository.",
+          "type": "string"
+        },
+        "url": {
+          "description": "Required. The url of the repository.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceRepositoryResourceYumRepository": {
+      "description": "Represents a single yum package repository. These are added to a repo file that is managed at `/etc/yum.repos.d/google_osconfig.repo`.",
+      "id": "OSPolicyResourceRepositoryResourceYumRepository",
+      "properties": {
+        "baseUrl": {
+          "description": "Required. The location of the repository directory.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the repository.",
+          "type": "string"
+        },
+        "gpgKeys": {
+          "description": "URIs of GPG keys.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. A one word, unique name for this repository. This is the `repo id` in the yum config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for resource conflicts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyResourceRepositoryResourceZypperRepository": {
+      "description": "Represents a single zypper package repository. These are added to a repo file that is managed at `/etc/zypp/repos.d/google_osconfig.repo`.",
+      "id": "OSPolicyResourceRepositoryResourceZypperRepository",
+      "properties": {
+        "baseUrl": {
+          "description": "Required. The location of the repository directory.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the repository.",
+          "type": "string"
+        },
+        "gpgKeys": {
+          "description": "URIs of GPG keys.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "id": {
+          "description": "Required. A one word, unique name for this repository. This is the `repo id` in the zypper config file and also the `display_name` if `display_name` is omitted. This id is also used as the unique identifier when checking for GuestPolicy conflicts.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OneTimeSchedule": {
       "description": "Sets the time for a one time patch deployment. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
       "id": "OneTimeSchedule",
@@ -1377,6 +2348,41 @@
           "description": "Required. The desired patch job execution time.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Operation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "Operation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -1861,6 +2867,33 @@
         "weekly": {
           "$ref": "WeeklySchedule",
           "description": "Required. Schedule with weekly executions."
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
         }
       },
       "type": "object"

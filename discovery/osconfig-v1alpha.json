@@ -281,6 +281,82 @@
                     }
                   }
                 },
+                "osPolicyAssignments": {
+                  "methods": {
+                    "getReport": {
+                      "description": "Get the OS policy asssignment report for the specified Compute Engine VM instance.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/report",
+                      "httpMethod": "GET",
+                      "id": "osconfig.projects.locations.instances.osPolicyAssignments.getReport",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. API resource name for OS policy assignment report. Format: `/projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/report` For `{project}`, either `project-number` or `project-id` can be provided. For `{instance_id}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id}`, the OSPolicyAssignment id must be provided.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/osPolicyAssignments/[^/]+/report$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "OSPolicyAssignmentReport"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "reports": {
+                      "methods": {
+                        "list": {
+                          "description": "List OS policy asssignment reports for all Compute Engine VM instances in the specified zone.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/reports",
+                          "httpMethod": "GET",
+                          "id": "osconfig.projects.locations.instances.osPolicyAssignments.reports.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "If provided, this field specifies the criteria that must be met by the `OSPolicyAssignmentReport` API resource that is included in the response.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "The maximum number of results to return.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "A pagination token returned from a previous call to the `ListOSPolicyAssignmentReports` method that indicates where this listing should continue from.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent resource name. Format: `projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/reports` For `{project}`, either `project-number` or `project-id` can be provided. For `{instance}`, either `instance-name`, `instance-id`, or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all instances in the project/location. For `{assignment}`, either `assignment-id` or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all OSPolicyAssignments in the project/location. Either {instance} or {assignment} must be `-`. For example: `projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/-/reports` returns all reports for the instance `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/{assignment-id}/reports` returns all the reports for the given assignment across all instances. `projects/{project}/locations/{location}/instances/-/osPolicyAssignments/-/reports` returns all the reports for all assignments across all instances.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/osPolicyAssignments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+parent}/reports",
+                          "response": {
+                            "$ref": "ListOSPolicyAssignmentReportsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
                 "vulnerabilityReports": {
                   "methods": {
                     "get": {
@@ -610,7 +686,7 @@
       }
     }
   },
-  "revision": "20210821",
+  "revision": "20210914",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -1281,6 +1357,24 @@
       },
       "type": "object"
     },
+    "ListOSPolicyAssignmentReportsResponse": {
+      "description": "A response message for listing OS Policy assignment reports including the page of results and page token.",
+      "id": "ListOSPolicyAssignmentReportsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The pagination token to retrieve the next page of OS policy assignment report objects.",
+          "type": "string"
+        },
+        "osPolicyAssignmentReports": {
+          "description": "List of OS policy assignment reports.",
+          "items": {
+            "$ref": "OSPolicyAssignmentReport"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListOSPolicyAssignmentRevisionsResponse": {
       "description": "A response message for listing all revisions for a OS policy assignment.",
       "id": "ListOSPolicyAssignmentRevisionsResponse",
@@ -1577,6 +1671,158 @@
         "rolloutUpdateTime": {
           "description": "Rollout update time",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentReport": {
+      "description": "A report of the OS policy assignment status for a given instance.",
+      "id": "OSPolicyAssignmentReport",
+      "properties": {
+        "instance": {
+          "description": "The Compute Engine VM instance name.",
+          "type": "string"
+        },
+        "lastRunId": {
+          "description": "Unique identifier of the last attempted run to apply the OS policies associated with this assignment on the VM. This ID is logged by the OS Config agent while applying the OS policies associated with this assignment on the VM. NOTE: If the service is unable to successfully connect to the agent for this run, then this id will not be available in the agent logs.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The `OSPolicyAssignmentReport` API resource name. Format: `projects/{project_number}/locations/{location}/instances/{instance_id}/osPolicyAssignments/{os_policy_assignment_id}/report`",
+          "type": "string"
+        },
+        "osPolicyAssignment": {
+          "description": "Reference to the `OSPolicyAssignment` API resource that the `OSPolicy` belongs to. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id@revision_id}`",
+          "type": "string"
+        },
+        "osPolicyCompliances": {
+          "description": "Compliance data for each `OSPolicy` that is applied to the VM.",
+          "items": {
+            "$ref": "OSPolicyAssignmentReportOSPolicyCompliance"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Timestamp for when the report was last generated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentReportOSPolicyCompliance": {
+      "description": "Compliance data for an OS policy",
+      "id": "OSPolicyAssignmentReportOSPolicyCompliance",
+      "properties": {
+        "complianceState": {
+          "description": "The compliance state of the OS policy.",
+          "enum": [
+            "UNKNOWN",
+            "COMPLIANT",
+            "NON_COMPLIANT"
+          ],
+          "enumDescriptions": [
+            "The policy is in an unknown compliance state. Refer to the field `compliance_state_reason` to learn the exact reason for the policy to be in this compliance state.",
+            "Policy is compliant. The policy is compliant if all the underlying resources are also compliant.",
+            "Policy is non-compliant. The policy is non-compliant if one or more underlying resources are non-compliant."
+          ],
+          "type": "string"
+        },
+        "complianceStateReason": {
+          "description": "The reason for the OS policy to be in an unknown compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. If populated, the field can contain one of the following values: * `vm-not-running`: The VM was not running. * `os-policies-not-supported-by-agent`: The version of the OS Config agent running on the VM does not support running OS policies. * `no-agent-detected`: The OS Config agent is not detected for the VM. * `resource-execution-errors`: The OS Config agent encountered errors while executing one or more resources in the policy. See `os_policy_resource_compliances` for details. * `task-timeout`: The task sent to the agent to apply the policy timed out. * `unexpected-agent-state`: The OS Config agent did not report the final status of the task that attempted to apply the policy. Instead, the agent unexpectedly started working on a different task. This mostly happens when the agent or VM unexpectedly restarts while applying OS policies. * `internal-service-errors`: Internal service errors were encountered while attempting to apply the policy.",
+          "type": "string"
+        },
+        "osPolicyId": {
+          "description": "The OS policy id",
+          "type": "string"
+        },
+        "osPolicyResourceCompliances": {
+          "description": "Compliance data for each resource within the policy that is applied to the VM.",
+          "items": {
+            "$ref": "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance": {
+      "description": "Compliance data for an OS policy resource.",
+      "id": "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance",
+      "properties": {
+        "complianceState": {
+          "description": "The compliance state of the resource.",
+          "enum": [
+            "UNKNOWN",
+            "COMPLIANT",
+            "NON_COMPLIANT"
+          ],
+          "enumDescriptions": [
+            "The resource is in an unknown compliance state. To get more details about why the policy is in this state, review the output of the `compliance_state_reason` field.",
+            "Resource is compliant.",
+            "Resource is non-compliant."
+          ],
+          "type": "string"
+        },
+        "complianceStateReason": {
+          "description": "A reason for the resource to be in the given compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. The following values are supported when `compliance_state == UNKNOWN` * `execution-errors`: Errors were encountered by the agent while executing the resource and the compliance state couldn't be determined. * `execution-skipped-by-agent`: Resource execution was skipped by the agent because errors were encountered while executing prior resources in the OS policy. * `os-policy-execution-attempt-failed`: The execution of the OS policy containing this resource failed and the compliance state couldn't be determined.",
+          "type": "string"
+        },
+        "configSteps": {
+          "description": "Ordered list of configuration completed by the agent for the OS policy resource.",
+          "items": {
+            "$ref": "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep"
+          },
+          "type": "array"
+        },
+        "execResourceOutput": {
+          "$ref": "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput",
+          "description": "ExecResource specific output."
+        },
+        "osPolicyResourceId": {
+          "description": "The ID of the OS policy resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput": {
+      "description": "ExecResource specific output.",
+      "id": "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput",
+      "properties": {
+        "enforcementOutput": {
+          "description": "Output from enforcement phase output file (if run). Output size is limited to 100K bytes.",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep": {
+      "description": "Step performed by the OS Config agent for configuring an `OSPolicy` resource to its desired state.",
+      "id": "OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep",
+      "properties": {
+        "errorMessage": {
+          "description": "An error message recorded during the execution of this step. Only populated if errors were encountered during this step execution.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Configuration step type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "VALIDATION",
+            "DESIRED_STATE_CHECK",
+            "DESIRED_STATE_ENFORCEMENT",
+            "DESIRED_STATE_CHECK_POST_ENFORCEMENT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Checks for resource conflicts such as schema errors.",
+            "Checks the current status of the desired state for a resource.",
+            "Enforces the desired state for a resource that is not in desired state.",
+            "Re-checks the status of the desired state. This check is done for a resource after the enforcement of all OS policies. This step is used to determine the final desired state status for the resource. It accounts for any resources that might have drifted from their desired state due to side effects from executing other resources."
+          ],
           "type": "string"
         }
       },
