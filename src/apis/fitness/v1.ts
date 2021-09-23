@@ -189,7 +189,7 @@ export namespace fitness_v1 {
      */
     bucketByTime?: Schema$BucketByTime;
     /**
-     * The end of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive.
+     * The end of a window of time. Data that intersects with this time window will be aggregated. The time is in milliseconds since epoch, inclusive. The maximum allowed difference between start_time_millis // and end_time_millis is 7776000000 (roughly 90 days).
      */
     endTimeMillis?: string | null;
     /**
