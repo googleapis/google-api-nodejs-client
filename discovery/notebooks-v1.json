@@ -303,7 +303,7 @@
             "executions": {
               "methods": {
                 "create": {
-                  "description": "Creates a new Scheduled Notebook in a given project and location.",
+                  "description": "Creates a new Execution in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/executions",
                   "httpMethod": "POST",
                   "id": "notebooks.projects.locations.executions.create",
@@ -1609,7 +1609,7 @@
       }
     }
   },
-  "revision": "20210812",
+  "revision": "20210916",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1744,7 +1744,7 @@
           "type": "string"
         },
         "interface": {
-          "description": "Indicates the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: NVME SCSI",
+          "description": "Indicates the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: * NVME * SCSI",
           "type": "string"
         },
         "kind": {
@@ -1759,7 +1759,7 @@
           "type": "array"
         },
         "mode": {
-          "description": "The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: READ_ONLY READ_WRITE",
+          "description": "The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: * READ_ONLY * READ_WRITE",
           "type": "string"
         },
         "source": {
@@ -1767,7 +1767,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Indicates the type of the disk, either SCRATCH or PERSISTENT. Valid values: PERSISTENT SCRATCH",
+          "description": "Indicates the type of the disk, either SCRATCH or PERSISTENT. Valid values: * PERSISTENT * SCRATCH",
           "type": "string"
         }
       },
@@ -1881,7 +1881,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the execute. Format: `projects/{project_id}/locations/{location}/execution/{execution_id}",
+          "description": "Output only. The resource name of the execute. Format: `projects/{project_id}/locations/{location}/executions/{execution_id}`",
           "readOnly": true,
           "type": "string"
         },
@@ -1912,7 +1912,7 @@
             "The job failed. `error_message` should contain the details of the failure.",
             "The job is being cancelled. `error_message` should describe the reason for the cancellation.",
             "The job has been cancelled. `error_message` should describe the reason for the cancellation.",
-            "The jobs has become expired (added for uCAIP jobs) https://cloud.google.com/vertex-ai/docs/reference/rest/v1/JobState",
+            "The job has become expired (relevant to Vertex AI jobs) https://cloud.google.com/vertex-ai/docs/reference/rest/v1/JobState",
             "The Execution is being created."
           ],
           "readOnly": true,
@@ -1944,7 +1944,7 @@
           "description": "Parameters used in Dataproc JobType executions."
         },
         "inputNotebookFile": {
-          "description": "Path to the notebook file to execute. Must be in a Google Cloud Storage bucket. Format: gs://{project_id}/{folder}/{notebook_file_name} Ex: gs://notebook_user/scheduled_notebooks/sentiment_notebook.ipynb",
+          "description": "Path to the notebook file to execute. Must be in a Google Cloud Storage bucket. Format: gs://{bucket_name}/{folder}/{notebook_file_name} Ex: gs://notebook_user/scheduled_notebooks/sentiment_notebook.ipynb",
           "type": "string"
         },
         "jobType": {
@@ -1969,11 +1969,11 @@
           "type": "object"
         },
         "masterType": {
-          "description": "Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. The following types are supported: - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96` Alternatively, you can use the following legacy machine types: - `standard` - `large_model` - `complex_model_s` - `complex_model_m` - `complex_model_l` - `standard_gpu` - `complex_model_m_gpu` - `complex_model_l_gpu` - `standard_p100` - `complex_model_m_p100` - `standard_v100` - `large_model_v100` - `complex_model_m_v100` - `complex_model_l_v100` Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPU.",
+          "description": "Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. The following types are supported: - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96` Alternatively, you can use the following legacy machine types: - `standard` - `large_model` - `complex_model_s` - `complex_model_m` - `complex_model_l` - `standard_gpu` - `complex_model_m_gpu` - `complex_model_l_gpu` - `standard_p100` - `complex_model_m_p100` - `standard_v100` - `large_model_v100` - `complex_model_m_v100` - `complex_model_l_v100` Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPU](https://cloud.google.com/ai-platform/training/docs/using-tpus#configuring_a_custom_tpu_machine).",
           "type": "string"
         },
         "outputNotebookFolder": {
-          "description": "Path to the notebook folder to write to. Must be in a Google Cloud Storage bucket path. Format: gs://{project_id}/{folder} Ex: gs://notebook_user/scheduled_notebooks",
+          "description": "Path to the notebook folder to write to. Must be in a Google Cloud Storage bucket path. Format: gs://{bucket_name}/{folder} Ex: gs://notebook_user/scheduled_notebooks",
           "type": "string"
         },
         "parameters": {
@@ -2002,13 +2002,17 @@
             "A large number of workers with many parameter servers.",
             "A single worker instance with a K80 GPU.",
             "A single worker instance with a Cloud TPU.",
-            "The CUSTOM tier is not a set tier, but rather enables you to use your own cluster specification. When you use this tier, set values to configure your processing cluster according to these guidelines: * You _must_ set `TrainingInput.masterType` to specify the type of machine to use for your master node. This is the only required setting. * You _may_ set `TrainingInput.workerCount` to specify the number of workers to use. If you specify one or more workers, you _must_ also set `TrainingInput.workerType` to specify the type of machine to use for your worker nodes. * You _may_ set `TrainingInput.parameterServerCount` to specify the number of parameter servers to use. If you specify one or more parameter servers, you _must_ also set `TrainingInput.parameterServerType` to specify the type of machine to use for your parameter servers. Note that all of your workers must use the same machine type, which can be different from your parameter server type and master type. Your parameter servers must likewise use the same machine type, which can be different from your worker type and master type."
+            "The CUSTOM tier is not a set tier, but rather enables you to use your own cluster specification. When you use this tier, set values to configure your processing cluster according to these guidelines: * You _must_ set `ExecutionTemplate.masterType` to specify the type of machine to use for your master node. This is the only required setting."
           ],
           "type": "string"
         },
         "serviceAccount": {
           "description": "The email address of a service account to use when running the execution. You must have the `iam.serviceAccounts.actAs` permission for the specified service account.",
           "type": "string"
+        },
+        "vertexAiParameters": {
+          "$ref": "VertexAIParameters",
+          "description": "Parameters used in Vertex AI JobType executions."
         }
       },
       "type": "object"
@@ -2075,7 +2079,7 @@
       "id": "GuestOsFeature",
       "properties": {
         "type": {
-          "description": "The ID of a supported feature. Read Enabling guest operating system features to see a list of available options. Valid values: FEATURE_TYPE_UNSPECIFIED MULTI_IP_SUBNET SECURE_BOOT UEFI_COMPATIBLE VIRTIO_SCSI_MULTIQUEUE WINDOWS",
+          "description": "The ID of a supported feature. Read Enabling guest operating system features to see a list of available options. Valid values: * FEATURE_TYPE_UNSPECIFIED * MULTI_IP_SUBNET * SECURE_BOOT * UEFI_COMPATIBLE * VIRTIO_SCSI_MULTIQUEUE * WINDOWS",
           "type": "string"
         }
       },
@@ -2328,7 +2332,7 @@
       "id": "InstanceConfig",
       "properties": {
         "enableHealthMonitoring": {
-          "description": "Verifies core internal services are running. More info: go/notebooks-health",
+          "description": "Verifies core internal services are running.",
           "type": "boolean"
         },
         "notebookUpgradeSchedule": {
@@ -2523,7 +2527,7 @@
       "type": "object"
     },
     "LocalDisk": {
-      "description": "An Local attached disk resource.",
+      "description": "A Local attached disk resource.",
       "id": "LocalDisk",
       "properties": {
         "autoDelete": {
@@ -2560,7 +2564,7 @@
           "description": "Input only. Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both."
         },
         "interface": {
-          "description": "Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: NVME SCSI",
+          "description": "Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: * NVME * SCSI",
           "type": "string"
         },
         "kind": {
@@ -2577,7 +2581,7 @@
           "type": "array"
         },
         "mode": {
-          "description": "The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: READ_ONLY READ_WRITE",
+          "description": "The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: * READ_ONLY * READ_WRITE",
           "type": "string"
         },
         "source": {
@@ -2585,7 +2589,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT. Valid values: PERSISTENT SCRATCH",
+          "description": "Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT. Valid values: * PERSISTENT * SCRATCH",
           "type": "string"
         }
       },
@@ -3086,7 +3090,7 @@
           "type": "boolean"
         },
         "idleShutdownTimeout": {
-          "description": "Time in minutes to wait before shuting down runtime. Default: 180 minutes",
+          "description": "Time in minutes to wait before shutting down runtime. Default: 180 minutes",
           "format": "int32",
           "type": "integer"
         },
@@ -3116,7 +3120,7 @@
           "type": "string"
         },
         "cronSchedule": {
-          "description": "Cron-tab formatted schedule by which the job will execute Format: minute, hour, day of month, month, day of week e.g. 0 0 * * WED = every Wednesday More examples: https://crontab.guru/examples.html",
+          "description": "Cron-tab formatted schedule by which the job will execute. Format: minute, hour, day of month, month, day of week, e.g. 0 0 * * WED = every Wednesday More examples: https://crontab.guru/examples.html",
           "type": "string"
         },
         "description": {
@@ -3180,7 +3184,7 @@
       "type": "object"
     },
     "SchedulerAcceleratorConfig": {
-      "description": "Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check GPUs on Compute Engine to find a valid combination. TPUs are not supported.",
+      "description": "Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus) to find a valid combination. TPUs are not supported.",
       "id": "SchedulerAcceleratorConfig",
       "properties": {
         "coreCount": {
@@ -3521,6 +3525,17 @@
       "description": "Request for upgrading a notebook instance",
       "id": "UpgradeInstanceRequest",
       "properties": {},
+      "type": "object"
+    },
+    "VertexAIParameters": {
+      "description": "Parameters used in Vertex AI JobType executions.",
+      "id": "VertexAIParameters",
+      "properties": {
+        "network": {
+          "description": "The full name of the Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the Job should be peered. For example, `projects/12345/global/networks/myVPC`. [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert) is of the form `projects/{project}/global/networks/{network}`. Where {project} is a project number, as in `12345`, and {network} is a network name. Private services access must already be configured for the network. If left unspecified, the job is not peered with any network.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "VirtualMachine": {
