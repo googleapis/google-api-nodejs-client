@@ -32511,7 +32511,7 @@
       }
     }
   },
-  "revision": "20210907",
+  "revision": "20210916",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -35060,6 +35060,7 @@
           "description": "Specifies the load balancer type. A backend service created for one type of load balancer cannot be used with another. For more information, refer to Choosing a load balancer.",
           "enum": [
             "EXTERNAL",
+            "EXTERNAL_MANAGED",
             "INTERNAL",
             "INTERNAL_MANAGED",
             "INTERNAL_SELF_MANAGED",
@@ -35067,6 +35068,7 @@
           ],
           "enumDescriptions": [
             "Signifies that this will be used for external HTTP(S), SSL Proxy, TCP Proxy, or Network Load Balancing",
+            "Signifies that this will be used for External Managed HTTP(S), SSL Proxy, or TCP Proxy Load Balancing.",
             "Signifies that this will be used for Internal TCP/UDP Load Balancing.",
             "Signifies that this will be used for Internal HTTP(S) Load Balancing.",
             "Signifies that this will be used by Traffic Director.",
@@ -39257,12 +39259,14 @@
           "description": "Specifies the forwarding rule type. For more information about forwarding rules, refer to Forwarding rule concepts.",
           "enum": [
             "EXTERNAL",
+            "EXTERNAL_MANAGED",
             "INTERNAL",
             "INTERNAL_MANAGED",
             "INTERNAL_SELF_MANAGED",
             "INVALID"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

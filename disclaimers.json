@@ -188,6 +188,10 @@
     "package": "@google-cloud/language"
   },
   {
+    "api": "networkmanagement",
+    "package": "@google-cloud/network-management"
+  },
+  {
     "api": "orgpolicy",
     "package": "@google-cloud/org-policy"
   },
@@ -304,6 +308,10 @@
     "package": "@google-cloud/translate"
   },
   {
+    "api": "aiplatform",
+    "package": "@google-cloud/aiplatform"
+  },
+  {
     "api": "videointelligence",
     "package": "@google-cloud/video-intelligence"
   },
@@ -416,10 +424,6 @@
     "package": "@google-cloud/network-connectivity"
   },
   {
-    "api": "networkmanagement",
-    "package": "@google-cloud/network-management"
-  },
-  {
     "api": "phishingprotection",
     "package": "@google-cloud/phishing-protection"
   },
@@ -442,9 +446,5 @@
   {
     "api": "cloudtrace",
     "package": "@google-cloud/trace-agent"
-  },
-  {
-    "api": "aiplatform",
-    "package": "@google-cloud/aiplatform"
   }
 ]
