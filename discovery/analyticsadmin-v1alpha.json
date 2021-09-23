@@ -3152,7 +3152,7 @@
       }
     }
   },
-  "revision": "20210831",
+  "revision": "20210922",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -4464,6 +4464,10 @@
       "description": "A resource message representing a Google Analytics GA4 property.",
       "id": "GoogleAnalyticsAdminV1alphaProperty",
       "properties": {
+        "account": {
+          "description": "Immutable. The resource name of the parent account Format: accounts/{account_id} Example: \"accounts/123\"",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Time when the entity was originally created.",
           "format": "google-datetime",
@@ -4759,7 +4763,7 @@
       "id": "GoogleAnalyticsAdminV1alphaUserLink",
       "properties": {
         "directRoles": {
-          "description": "Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/read predefinedRoles/collaborate predefinedRoles/edit predefinedRoles/manage-users Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.",
+          "description": "Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/read predefinedRoles/collaborate predefinedRoles/edit predefinedRoles/admin Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.",
           "items": {
             "type": "string"
           },
