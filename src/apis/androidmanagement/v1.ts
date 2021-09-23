@@ -258,6 +258,10 @@ export namespace androidmanagement_v1 {
      */
     disabled?: boolean | null;
     /**
+     * Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app.
+     */
+    extensionConfig?: Schema$ExtensionConfig;
+    /**
      * The type of installation to perform.
      */
     installType?: string | null;
@@ -838,6 +842,19 @@ export namespace androidmanagement_v1 {
      * Terms and conditions that must be accepted when provisioning a device for this enterprise. A page of terms is generated for each value in this list.
      */
     termsAndConditions?: Schema$TermsAndConditions[];
+  }
+  /**
+   * Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline.
+   */
+  export interface Schema$ExtensionConfig {
+    /**
+     * Fully qualified class name of the receiver service class for Android Device Policy to notify the extension app of any local command status updates.
+     */
+    notificationReceiver?: string | null;
+    /**
+     * Hex-encoded SHA256 hash of the signing certificate of the extension app. Only hexadecimal string representations of 64 characters are valid.If not specified, the signature for the corresponding package name is obtained from the Play Store instead.If this list is empty, the signature of the extension app on the device must match the signature obtained from the Play Store for the app to be able to communicate with Android Device Policy.If this list is not empty, the signature of the extension app on the device must match one of the entries in this list for the app to be able to communicate with Android Device Policy.In production use cases, it is recommended to leave this empty.
+     */
+    signingKeyFingerprintsSha256?: string[] | null;
   }
   /**
    * Data hosted at an external location. The data is to be downloaded by Android Device Policy and verified against the hash.

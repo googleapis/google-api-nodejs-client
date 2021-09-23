@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20210825",
+  "revision": "20210916",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1299,6 +1299,10 @@
         "disabled": {
           "description": "Whether the app is disabled. When disabled, the app data is still preserved.",
           "type": "boolean"
+        },
+        "extensionConfig": {
+          "$ref": "ExtensionConfig",
+          "description": "Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app."
         },
         "installType": {
           "description": "The type of installation to perform.",
@@ -2223,6 +2227,24 @@
           "description": "Terms and conditions that must be accepted when provisioning a device for this enterprise. A page of terms is generated for each value in this list.",
           "items": {
             "$ref": "TermsAndConditions"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExtensionConfig": {
+      "description": "Configuration to enable an app as an extension app, with the capability of interacting with Android Device Policy offline.",
+      "id": "ExtensionConfig",
+      "properties": {
+        "notificationReceiver": {
+          "description": "Fully qualified class name of the receiver service class for Android Device Policy to notify the extension app of any local command status updates.",
+          "type": "string"
+        },
+        "signingKeyFingerprintsSha256": {
+          "description": "Hex-encoded SHA256 hash of the signing certificate of the extension app. Only hexadecimal string representations of 64 characters are valid.If not specified, the signature for the corresponding package name is obtained from the Play Store instead.If this list is empty, the signature of the extension app on the device must match the signature obtained from the Play Store for the app to be able to communicate with Android Device Policy.If this list is not empty, the signature of the extension app on the device must match one of the entries in this list for the app to be able to communicate with Android Device Policy.In production use cases, it is recommended to leave this empty.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
