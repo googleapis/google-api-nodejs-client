@@ -2568,7 +2568,7 @@
       }
     }
   },
-  "revision": "20210617",
+  "revision": "20210922",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -2835,7 +2835,7 @@
           "type": "string"
         },
         "clientName": {
-          "description": "Name used to represent this client to publishers. You may have multiple clients that map to the same entity, but for each client the combination of `clientName` and entity must be unique. You can specify this field as empty.",
+          "description": "Name used to represent this client to publishers. You may have multiple clients that map to the same entity, but for each client the combination of `clientName` and entity must be unique. You can specify this field as empty. Maximum length of 255 characters is allowed.",
           "type": "string"
         },
         "entityId": {

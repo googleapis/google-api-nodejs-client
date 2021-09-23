@@ -308,7 +308,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     clientAccountId?: string | null;
     /**
-     * Name used to represent this client to publishers. You may have multiple clients that map to the same entity, but for each client the combination of `clientName` and entity must be unique. You can specify this field as empty.
+     * Name used to represent this client to publishers. You may have multiple clients that map to the same entity, but for each client the combination of `clientName` and entity must be unique. You can specify this field as empty. Maximum length of 255 characters is allowed.
      */
     clientName?: string | null;
     /**
