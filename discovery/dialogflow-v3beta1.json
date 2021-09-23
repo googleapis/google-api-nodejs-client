@@ -696,6 +696,35 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     },
+                    "deployFlow": {
+                      "description": "Deploys a flow to the specified Environment. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: DeployFlowMetadata - `response`: DeployFlowResponse",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/environments/{environmentsId}:deployFlow",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.environments.deployFlow",
+                      "parameterOrder": [
+                        "environment"
+                      ],
+                      "parameters": {
+                        "environment": {
+                          "description": "Required. The environment to deploy the flow to. Format: `projects//locations//agents// environments/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/environments/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+environment}:deployFlow",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1DeployFlowRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
                     "get": {
                       "description": "Retrieves the specified Environment.",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/environments/{environmentsId}",
@@ -895,6 +924,73 @@
                           "path": "v3beta1/{+parent}/continuousTestResults",
                           "response": {
                             "$ref": "GoogleCloudDialogflowCxV3beta1ListContinuousTestResultsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        }
+                      }
+                    },
+                    "deployments": {
+                      "methods": {
+                        "get": {
+                          "description": "Retrieves the specified Deployment.",
+                          "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/environments/{environmentsId}/deployments/{deploymentsId}",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.environments.deployments.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the Deployment. Format: `projects//locations//agents//environments//deployments/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/environments/[^/]+/deployments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3beta1/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1Deployment"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "list": {
+                          "description": "Returns the list of all deployments in the specified Environment.",
+                          "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/environments/{environmentsId}/deployments",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.environments.deployments.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "The maximum number of items to return in a single page. By default 20 and at most 100.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "The next_page_token value returned from a previous list request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The Environment to list all environments for. Format: `projects//locations//agents//environments/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/environments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3beta1/{+parent}/deployments",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform",
@@ -3493,7 +3589,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.",
+                      "description": "Resource name of the settings. Required for the SecuritySettingsService.UpdateSecuritySettings method. SecuritySettingsService.CreateSecuritySettings populates the name automatically. Format: `projects//locations//securitySettings/`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/securitySettings/[^/]+$",
                       "required": true,
@@ -3623,7 +3719,7 @@
       }
     }
   },
-  "revision": "20210830",
+  "revision": "20210918",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -3832,6 +3928,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3DeployFlowMetadata": {
+      "description": "Metadata returned for the Environments.DeployFlow long running operation.",
+      "id": "GoogleCloudDialogflowCxV3DeployFlowMetadata",
+      "properties": {
+        "testErrors": {
+          "description": "Errors of running deployment tests.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3TestError"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3DeployFlowResponse": {
+      "description": "The response message for Environments.DeployFlow.",
+      "id": "GoogleCloudDialogflowCxV3DeployFlowResponse",
+      "properties": {
+        "deployment": {
+          "description": "The name of the flow version Deployment. Format: `projects//locations//agents// environments//deployments/`.",
+          "type": "string"
+        },
+        "environment": {
+          "$ref": "GoogleCloudDialogflowCxV3Environment",
+          "description": "The updated environment where the flow is deployed."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3DtmfInput": {
       "description": "Represents the input for dtmf event.",
       "id": "GoogleCloudDialogflowCxV3DtmfInput",
@@ -3842,6 +3967,75 @@
         },
         "finishDigit": {
           "description": "The finish digit (if any).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3Environment": {
+      "description": "Represents an environment for an agent. You can create multiple versions of your agent and publish them to separate environments. When you edit an agent, you are editing the draft agent. At any point, you can save the draft agent as an agent version, which is an immutable snapshot of your agent. When you save the draft agent, it is published to the default environment. When you create agent versions, you can publish them to custom environments. You can create a variety of custom environments for testing, development, production, etc.",
+      "id": "GoogleCloudDialogflowCxV3Environment",
+      "properties": {
+        "description": {
+          "description": "The human-readable description of the environment. The maximum length is 500 characters. If exceeded, the request is rejected.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The human-readable name of the environment (unique in an agent). Limit of 64 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the environment. Format: `projects//locations//agents//environments/`.",
+          "type": "string"
+        },
+        "testCasesConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig",
+          "description": "The test cases config for continuous tests of this environment."
+        },
+        "updateTime": {
+          "description": "Output only. Update time of this environment.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "versionConfigs": {
+          "description": "Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig": {
+      "description": "The configuration for continuous tests.",
+      "id": "GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig",
+      "properties": {
+        "enableContinuousRun": {
+          "description": "Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.",
+          "type": "boolean"
+        },
+        "enablePredeploymentRun": {
+          "description": "Whether to run test cases in TestCasesConfig.test_cases before deploying a flow version to the environment. Default false.",
+          "type": "boolean"
+        },
+        "testCases": {
+          "description": "A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations/ /agents//testCases/`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3EnvironmentVersionConfig": {
+      "description": "Configuration for the version.",
+      "id": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig",
+      "properties": {
+        "version": {
+          "description": "Required. Format: projects//locations//agents//flows//versions/.",
           "type": "string"
         }
       },
@@ -5564,6 +5758,109 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1DeployFlowMetadata": {
+      "description": "Metadata returned for the Environments.DeployFlow long running operation.",
+      "id": "GoogleCloudDialogflowCxV3beta1DeployFlowMetadata",
+      "properties": {
+        "testErrors": {
+          "description": "Errors of running deployment tests.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1TestError"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1DeployFlowRequest": {
+      "description": "The request message for Environments.DeployFlow.",
+      "id": "GoogleCloudDialogflowCxV3beta1DeployFlowRequest",
+      "properties": {
+        "flowVersion": {
+          "description": "Required. The flow version to deploy. Format: `projects//locations//agents// flows//versions/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1DeployFlowResponse": {
+      "description": "The response message for Environments.DeployFlow.",
+      "id": "GoogleCloudDialogflowCxV3beta1DeployFlowResponse",
+      "properties": {
+        "deployment": {
+          "description": "The name of the flow version deployment. Format: `projects//locations//agents// environments//deployments/`.",
+          "type": "string"
+        },
+        "environment": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1Environment",
+          "description": "The updated environment where the flow is deployed."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1Deployment": {
+      "description": "Represents an deployment in an environment. A deployment happens when a flow version configured to be active in the environment. You can configure running pre-deployment steps, e.g. running validation test cases, experiment auto-rollout, etc.",
+      "id": "GoogleCloudDialogflowCxV3beta1Deployment",
+      "properties": {
+        "endTime": {
+          "description": "End time of this deployment.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "flowVersion": {
+          "description": "The name of the flow version for this deployment. Format: projects//locations//agents//flows//versions/.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the deployment. Format: projects//locations//agents//environments//deployments/.",
+          "type": "string"
+        },
+        "result": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1DeploymentResult",
+          "description": "Result of the deployment."
+        },
+        "startTime": {
+          "description": "Start time of this deployment.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The current state of the deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "State unspecified.",
+            "The deployment is running.",
+            "The deployment succeeded.",
+            "The deployment failed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1DeploymentResult": {
+      "description": "Result of the deployment.",
+      "id": "GoogleCloudDialogflowCxV3beta1DeploymentResult",
+      "properties": {
+        "deploymentTestResults": {
+          "description": "Results of test cases running before the deployment. Format: `projects//locations//agents//testCases//results/`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "experiment": {
+          "description": "The name of the experiment triggered by this deployment. Format: projects//locations//agents//environments//experiments/.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1DetectIntentRequest": {
       "description": "The request to detect user's intent.",
       "id": "GoogleCloudDialogflowCxV3beta1DetectIntentRequest",
@@ -5750,6 +6047,10 @@
           "description": "The name of the environment. Format: `projects//locations//agents//environments/`.",
           "type": "string"
         },
+        "testCasesConfig": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig",
+          "description": "The test cases config for continuous tests of this environment."
+        },
         "updateTime": {
           "description": "Output only. Update time of this environment.",
           "format": "google-datetime",
@@ -5760,6 +6061,28 @@
           "description": "Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig": {
+      "description": "The configuration for continuous tests.",
+      "id": "GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig",
+      "properties": {
+        "enableContinuousRun": {
+          "description": "Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.",
+          "type": "boolean"
+        },
+        "enablePredeploymentRun": {
+          "description": "Whether to run test cases in TestCasesConfig.test_cases before deploying a flow version to the environment. Default false.",
+          "type": "boolean"
+        },
+        "testCases": {
+          "description": "A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations/ /agents//testCases/`",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -6824,6 +7147,24 @@
           "description": "The list of continuous test results.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1ContinuousTestResult"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse": {
+      "description": "The response message for Deployments.ListDeployments.",
+      "id": "GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse",
+      "properties": {
+        "deployments": {
+          "description": "The list of deployments. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn't the last page.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Deployment"
           },
           "type": "array"
         },
@@ -7943,7 +8284,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.",
+          "description": "Resource name of the settings. Required for the SecuritySettingsService.UpdateSecuritySettings method. SecuritySettingsService.CreateSecuritySettings populates the name automatically. Format: `projects//locations//securitySettings/`.",
           "type": "string"
         },
         "purgeDataTypes": {

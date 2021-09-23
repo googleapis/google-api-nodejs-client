@@ -438,6 +438,79 @@ export namespace dialogflow_v3beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
   }
   /**
+   * Metadata returned for the Environments.DeployFlow long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DeployFlowMetadata {
+    /**
+     * Errors of running deployment tests.
+     */
+    testErrors?: Schema$GoogleCloudDialogflowCxV3beta1TestError[];
+  }
+  /**
+   * The request message for Environments.DeployFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DeployFlowRequest {
+    /**
+     * Required. The flow version to deploy. Format: `projects//locations//agents// flows//versions/`.
+     */
+    flowVersion?: string | null;
+  }
+  /**
+   * The response message for Environments.DeployFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DeployFlowResponse {
+    /**
+     * The name of the flow version deployment. Format: `projects//locations//agents// environments//deployments/`.
+     */
+    deployment?: string | null;
+    /**
+     * The updated environment where the flow is deployed.
+     */
+    environment?: Schema$GoogleCloudDialogflowCxV3beta1Environment;
+  }
+  /**
+   * Represents an deployment in an environment. A deployment happens when a flow version configured to be active in the environment. You can configure running pre-deployment steps, e.g. running validation test cases, experiment auto-rollout, etc.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Deployment {
+    /**
+     * End time of this deployment.
+     */
+    endTime?: string | null;
+    /**
+     * The name of the flow version for this deployment. Format: projects//locations//agents//flows//versions/.
+     */
+    flowVersion?: string | null;
+    /**
+     * The name of the deployment. Format: projects//locations//agents//environments//deployments/.
+     */
+    name?: string | null;
+    /**
+     * Result of the deployment.
+     */
+    result?: Schema$GoogleCloudDialogflowCxV3beta1DeploymentResult;
+    /**
+     * Start time of this deployment.
+     */
+    startTime?: string | null;
+    /**
+     * The current state of the deployment.
+     */
+    state?: string | null;
+  }
+  /**
+   * Result of the deployment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DeploymentResult {
+    /**
+     * Results of test cases running before the deployment. Format: `projects//locations//agents//testCases//results/`.
+     */
+    deploymentTestResults?: string[] | null;
+    /**
+     * The name of the experiment triggered by this deployment. Format: projects//locations//agents//environments//experiments/.
+     */
+    experiment?: string | null;
+  }
+  /**
    * The request to detect user's intent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1DetectIntentRequest {
@@ -572,6 +645,10 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
+     * The test cases config for continuous tests of this environment.
+     */
+    testCasesConfig?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig;
+    /**
      * Output only. Update time of this environment.
      */
     updateTime?: string | null;
@@ -579,6 +656,23 @@ export namespace dialogflow_v3beta1 {
      * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
      */
     versionConfigs?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig[];
+  }
+  /**
+   * The configuration for continuous tests.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig {
+    /**
+     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.
+     */
+    enableContinuousRun?: boolean | null;
+    /**
+     * Whether to run test cases in TestCasesConfig.test_cases before deploying a flow version to the environment. Default false.
+     */
+    enablePredeploymentRun?: boolean | null;
+    /**
+     * A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations/ /agents//testCases/`
+     */
+    testCases?: string[] | null;
   }
   /**
    * Configuration for the version.
@@ -1344,6 +1438,19 @@ export namespace dialogflow_v3beta1 {
      * The list of continuous test results.
      */
     continuousTestResults?: Schema$GoogleCloudDialogflowCxV3beta1ContinuousTestResult[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for Deployments.ListDeployments.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse {
+    /**
+     * The list of deployments. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn't the last page.
+     */
+    deployments?: Schema$GoogleCloudDialogflowCxV3beta1Deployment[];
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
@@ -2147,7 +2254,7 @@ export namespace dialogflow_v3beta1 {
      */
     inspectTemplate?: string | null;
     /**
-     * Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
+     * Resource name of the settings. Required for the SecuritySettingsService.UpdateSecuritySettings method. SecuritySettingsService.CreateSecuritySettings populates the name automatically. Format: `projects//locations//securitySettings/`.
      */
     name?: string | null;
     /**
@@ -3007,6 +3114,28 @@ export namespace dialogflow_v3beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
   }
   /**
+   * Metadata returned for the Environments.DeployFlow long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3DeployFlowMetadata {
+    /**
+     * Errors of running deployment tests.
+     */
+    testErrors?: Schema$GoogleCloudDialogflowCxV3TestError[];
+  }
+  /**
+   * The response message for Environments.DeployFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3DeployFlowResponse {
+    /**
+     * The name of the flow version Deployment. Format: `projects//locations//agents// environments//deployments/`.
+     */
+    deployment?: string | null;
+    /**
+     * The updated environment where the flow is deployed.
+     */
+    environment?: Schema$GoogleCloudDialogflowCxV3Environment;
+  }
+  /**
    * Represents the input for dtmf event.
    */
   export interface Schema$GoogleCloudDialogflowCxV3DtmfInput {
@@ -3018,6 +3147,61 @@ export namespace dialogflow_v3beta1 {
      * The finish digit (if any).
      */
     finishDigit?: string | null;
+  }
+  /**
+   * Represents an environment for an agent. You can create multiple versions of your agent and publish them to separate environments. When you edit an agent, you are editing the draft agent. At any point, you can save the draft agent as an agent version, which is an immutable snapshot of your agent. When you save the draft agent, it is published to the default environment. When you create agent versions, you can publish them to custom environments. You can create a variety of custom environments for testing, development, production, etc.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3Environment {
+    /**
+     * The human-readable description of the environment. The maximum length is 500 characters. If exceeded, the request is rejected.
+     */
+    description?: string | null;
+    /**
+     * Required. The human-readable name of the environment (unique in an agent). Limit of 64 characters.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the environment. Format: `projects//locations//agents//environments/`.
+     */
+    name?: string | null;
+    /**
+     * The test cases config for continuous tests of this environment.
+     */
+    testCasesConfig?: Schema$GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig;
+    /**
+     * Output only. Update time of this environment.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
+     */
+    versionConfigs?: Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig[];
+  }
+  /**
+   * The configuration for continuous tests.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig {
+    /**
+     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.
+     */
+    enableContinuousRun?: boolean | null;
+    /**
+     * Whether to run test cases in TestCasesConfig.test_cases before deploying a flow version to the environment. Default false.
+     */
+    enablePredeploymentRun?: boolean | null;
+    /**
+     * A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations/ /agents//testCases/`
+     */
+    testCases?: string[] | null;
+  }
+  /**
+   * Configuration for the version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig {
+    /**
+     * Required. Format: projects//locations//agents//flows//versions/.
+     */
+    version?: string | null;
   }
   /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
@@ -9520,12 +9704,17 @@ export namespace dialogflow_v3beta1 {
   export class Resource$Projects$Locations$Agents$Environments {
     context: APIRequestContext;
     continuousTestResults: Resource$Projects$Locations$Agents$Environments$Continuoustestresults;
+    deployments: Resource$Projects$Locations$Agents$Environments$Deployments;
     experiments: Resource$Projects$Locations$Agents$Environments$Experiments;
     sessions: Resource$Projects$Locations$Agents$Environments$Sessions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.continuousTestResults =
         new Resource$Projects$Locations$Agents$Environments$Continuoustestresults(
+          this.context
+        );
+      this.deployments =
+        new Resource$Projects$Locations$Agents$Environments$Deployments(
           this.context
         );
       this.experiments =
@@ -9578,6 +9767,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
+     *       //   "testCasesConfig": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "versionConfigs": []
      *       // }
@@ -9826,6 +10016,160 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
+     * Deploys a flow to the specified Environment. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: DeployFlowMetadata - `response`: DeployFlowResponse
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.agents.environments.deployFlow({
+     *       // Required. The environment to deploy the flow to. Format: `projects//locations//agents// environments/`.
+     *       environment:
+     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "flowVersion": "my_flowVersion"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deployFlow(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployflow,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deployFlow(
+      params?: Params$Resource$Projects$Locations$Agents$Environments$Deployflow,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    deployFlow(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployflow,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deployFlow(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployflow,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deployFlow(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployflow,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deployFlow(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    deployFlow(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Environments$Deployflow
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Environments$Deployflow;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Environments$Deployflow;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+environment}:deployFlow').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves the specified Environment.
      * @example
      * ```js
@@ -9865,6 +10209,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
+     *   //   "testCasesConfig": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "versionConfigs": []
      *   // }
@@ -10306,6 +10651,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
+     *       //   "testCasesConfig": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "versionConfigs": []
      *       // }
@@ -10590,6 +10936,18 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployflow
+    extends StandardParameters {
+    /**
+     * Required. The environment to deploy the flow to. Format: `projects//locations//agents// environments/`.
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1DeployFlowRequest;
+  }
   export interface Params$Resource$Projects$Locations$Agents$Environments$Get
     extends StandardParameters {
     /**
@@ -10826,6 +11184,330 @@ export namespace dialogflow_v3beta1 {
     pageToken?: string;
     /**
      * Required. The environment to list results for. Format: `projects//locations//agents// environments/`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Agents$Environments$Deployments {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves the specified Deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.agents.environments.deployments.get({
+     *       // Required. The name of the Deployment. Format: `projects//locations//agents//environments//deployments/`.
+     *       name: 'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment/deployments/my-deployment',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "flowVersion": "my_flowVersion",
+     *   //   "name": "my_name",
+     *   //   "result": {},
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Deployment>;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Deployment>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Deployment>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Deployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Deployment>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all deployments in the specified Environment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.agents.environments.deployments.list({
+     *       // The maximum number of items to return in a single page. By default 20 and at most 100.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous list request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The Environment to list all environments for. Format: `projects//locations//agents//environments/`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deployments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployments$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Environments$Deployments$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployments$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployments$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Deployments$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Environments$Deployments$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Environments$Deployments$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Environments$Deployments$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}/deployments').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListDeploymentsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployments$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the Deployment. Format: `projects//locations//agents//environments//deployments/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Deployments$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return in a single page. By default 20 and at most 100.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The Environment to list all environments for. Format: `projects//locations//agents//environments/`.
      */
     parent?: string;
   }
@@ -23725,7 +24407,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.securitySettings.patch({
-     *     // Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
+     *     // Resource name of the settings. Required for the SecuritySettingsService.UpdateSecuritySettings method. SecuritySettingsService.CreateSecuritySettings populates the name automatically. Format: `projects//locations//securitySettings/`.
      *     name: 'projects/my-project/locations/my-location/securitySettings/my-securitySetting',
      *     // Required. The mask to control which fields get updated. If the mask is not present, all fields will be updated.
      *     updateMask: 'placeholder-value',
@@ -23905,7 +24587,7 @@ export namespace dialogflow_v3beta1 {
   export interface Params$Resource$Projects$Locations$Securitysettings$Patch
     extends StandardParameters {
     /**
-     * Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
+     * Resource name of the settings. Required for the SecuritySettingsService.UpdateSecuritySettings method. SecuritySettingsService.CreateSecuritySettings populates the name automatically. Format: `projects//locations//securitySettings/`.
      */
     name?: string;
     /**

@@ -303,6 +303,28 @@ export namespace dialogflow_v2beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
   }
   /**
+   * Metadata returned for the Environments.DeployFlow long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DeployFlowMetadata {
+    /**
+     * Errors of running deployment tests.
+     */
+    testErrors?: Schema$GoogleCloudDialogflowCxV3beta1TestError[];
+  }
+  /**
+   * The response message for Environments.DeployFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DeployFlowResponse {
+    /**
+     * The name of the flow version deployment. Format: `projects//locations//agents// environments//deployments/`.
+     */
+    deployment?: string | null;
+    /**
+     * The updated environment where the flow is deployed.
+     */
+    environment?: Schema$GoogleCloudDialogflowCxV3beta1Environment;
+  }
+  /**
    * Represents the input for dtmf event.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1DtmfInput {
@@ -314,6 +336,61 @@ export namespace dialogflow_v2beta1 {
      * The finish digit (if any).
      */
     finishDigit?: string | null;
+  }
+  /**
+   * Represents an environment for an agent. You can create multiple versions of your agent and publish them to separate environments. When you edit an agent, you are editing the draft agent. At any point, you can save the draft agent as an agent version, which is an immutable snapshot of your agent. When you save the draft agent, it is published to the default environment. When you create agent versions, you can publish them to custom environments. You can create a variety of custom environments for testing, development, production, etc.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1Environment {
+    /**
+     * The human-readable description of the environment. The maximum length is 500 characters. If exceeded, the request is rejected.
+     */
+    description?: string | null;
+    /**
+     * Required. The human-readable name of the environment (unique in an agent). Limit of 64 characters.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the environment. Format: `projects//locations//agents//environments/`.
+     */
+    name?: string | null;
+    /**
+     * The test cases config for continuous tests of this environment.
+     */
+    testCasesConfig?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig;
+    /**
+     * Output only. Update time of this environment.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
+     */
+    versionConfigs?: Schema$GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig[];
+  }
+  /**
+   * The configuration for continuous tests.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig {
+    /**
+     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.
+     */
+    enableContinuousRun?: boolean | null;
+    /**
+     * Whether to run test cases in TestCasesConfig.test_cases before deploying a flow version to the environment. Default false.
+     */
+    enablePredeploymentRun?: boolean | null;
+    /**
+     * A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations/ /agents//testCases/`
+     */
+    testCases?: string[] | null;
+  }
+  /**
+   * Configuration for the version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig {
+    /**
+     * Required. Format: projects//locations//agents//flows//versions/.
+     */
+    version?: string | null;
   }
   /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
@@ -1438,6 +1515,28 @@ export namespace dialogflow_v2beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
   }
   /**
+   * Metadata returned for the Environments.DeployFlow long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3DeployFlowMetadata {
+    /**
+     * Errors of running deployment tests.
+     */
+    testErrors?: Schema$GoogleCloudDialogflowCxV3TestError[];
+  }
+  /**
+   * The response message for Environments.DeployFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3DeployFlowResponse {
+    /**
+     * The name of the flow version Deployment. Format: `projects//locations//agents// environments//deployments/`.
+     */
+    deployment?: string | null;
+    /**
+     * The updated environment where the flow is deployed.
+     */
+    environment?: Schema$GoogleCloudDialogflowCxV3Environment;
+  }
+  /**
    * Represents the input for dtmf event.
    */
   export interface Schema$GoogleCloudDialogflowCxV3DtmfInput {
@@ -1449,6 +1548,61 @@ export namespace dialogflow_v2beta1 {
      * The finish digit (if any).
      */
     finishDigit?: string | null;
+  }
+  /**
+   * Represents an environment for an agent. You can create multiple versions of your agent and publish them to separate environments. When you edit an agent, you are editing the draft agent. At any point, you can save the draft agent as an agent version, which is an immutable snapshot of your agent. When you save the draft agent, it is published to the default environment. When you create agent versions, you can publish them to custom environments. You can create a variety of custom environments for testing, development, production, etc.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3Environment {
+    /**
+     * The human-readable description of the environment. The maximum length is 500 characters. If exceeded, the request is rejected.
+     */
+    description?: string | null;
+    /**
+     * Required. The human-readable name of the environment (unique in an agent). Limit of 64 characters.
+     */
+    displayName?: string | null;
+    /**
+     * The name of the environment. Format: `projects//locations//agents//environments/`.
+     */
+    name?: string | null;
+    /**
+     * The test cases config for continuous tests of this environment.
+     */
+    testCasesConfig?: Schema$GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig;
+    /**
+     * Output only. Update time of this environment.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. A list of configurations for flow versions. You should include version configs for all flows that are reachable from `Start Flow` in the agent. Otherwise, an error will be returned.
+     */
+    versionConfigs?: Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig[];
+  }
+  /**
+   * The configuration for continuous tests.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig {
+    /**
+     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.
+     */
+    enableContinuousRun?: boolean | null;
+    /**
+     * Whether to run test cases in TestCasesConfig.test_cases before deploying a flow version to the environment. Default false.
+     */
+    enablePredeploymentRun?: boolean | null;
+    /**
+     * A list of test case names to run. They should be under the same agent. Format of each test case name: `projects//locations/ /agents//testCases/`
+     */
+    testCases?: string[] | null;
+  }
+  /**
+   * Configuration for the version.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3EnvironmentVersionConfig {
+    /**
+     * Required. Format: projects//locations//agents//flows//versions/.
+     */
+    version?: string | null;
   }
   /**
    * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
@@ -5290,6 +5444,10 @@ export namespace dialogflow_v2beta1 {
      */
     payload?: {[key: string]: any} | null;
     /**
+     * A signal that the client should transfer the phone call connected to this agent to a third-party endpoint.
+     */
+    telephonyTransferCall?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall;
+    /**
      * Returns a text response.
      */
     text?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageText;
@@ -5306,6 +5464,19 @@ export namespace dialogflow_v2beta1 {
      * Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.
      */
     metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents the signal that telles the client to transfer the phone call connected to the agent to a third-party endpoint.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageTelephonyTransferCall {
+    /**
+     * Transfer the call to a phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+     */
+    phoneNumber?: string | null;
+    /**
+     * Transfer the call to a SIP endpoint.
+     */
+    sipUri?: string | null;
   }
   /**
    * The text response message.
