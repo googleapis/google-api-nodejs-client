@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/aU_AfbgJseV_CROUWisMyD1Ni98\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/xmRYWoqR1fGbYPMtae-2VJ1FfBg\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -1659,7 +1659,7 @@
           ]
         },
         "patch": {
-          "description": "Updates file metadata and/or content. This method supports patch semantics.",
+          "description": "Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might might change automatically, such as modifiedDate. This method supports patch semantics.",
           "httpMethod": "PATCH",
           "id": "drive.files.patch",
           "parameterOrder": [
@@ -1931,7 +1931,7 @@
           ]
         },
         "update": {
-          "description": "Updates file metadata and/or content.",
+          "description": "Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as modifiedDate. This method supports patch semantics.",
           "httpMethod": "PUT",
           "id": "drive.files.update",
           "mediaUpload": {
@@ -3527,7 +3527,7 @@
       }
     }
   },
-  "revision": "20210801",
+  "revision": "20210919",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
