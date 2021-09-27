@@ -352,7 +352,7 @@
       }
     }
   },
-  "revision": "20210825",
+  "revision": "20210918",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -673,7 +673,6 @@
             "DOCKER",
             "MAVEN",
             "NPM",
-            "PYPI",
             "APT",
             "YUM",
             "PYTHON"
@@ -683,7 +682,6 @@
             "Docker package format.",
             "Maven package format.",
             "NPM package format.",
-            "PyPI package format.",
             "APT package format.",
             "YUM package format.",
             "Python package format."
