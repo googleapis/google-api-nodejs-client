@@ -586,7 +586,7 @@
       }
     }
   },
-  "revision": "20210629",
+  "revision": "20210923",
   "rootUrl": "https://area120tables.googleapis.com/",
   "schemas": {
     "BatchCreateRowsRequest": {
@@ -689,6 +689,10 @@
         "name": {
           "description": "column name",
           "type": "string"
+        },
+        "readonly": {
+          "description": "Optional. Indicates that values for the column cannot be set by the user.",
+          "type": "boolean"
         },
         "relationshipDetails": {
           "$ref": "RelationshipDetails",
