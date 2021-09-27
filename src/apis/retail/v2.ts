@@ -282,6 +282,10 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesResponse {}
   /**
+   * Metadata related to the EnrollSolution method. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaEnrollSolutionMetadata {}
+  /**
    * Configuration of destination for Export related errors.
    */
   export interface Schema$GoogleCloudRetailV2alphaExportErrorsConfig {
@@ -717,7 +721,7 @@ export namespace retail_v2 {
      */
     colorFamilies?: string[] | null;
     /**
-     * The color display names, which may be different from standard color family names, such as the color aliases used in the website frontend. Normally it is expected to have only 1 color. May consider using single "Mixed" instead of multiple values. A maximum of 5 colors are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).
+     * The color display names, which may be different from standard color family names, such as the color aliases used in the website frontend. Normally it is expected to have only 1 color. May consider using single "Mixed" instead of multiple values. A maximum of 25 colors are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).
      */
     colors?: string[] | null;
   }
@@ -1240,7 +1244,7 @@ export namespace retail_v2 {
      */
     materials?: string[] | null;
     /**
-     * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
+     * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
      */
     name?: string | null;
     /**
@@ -4055,7 +4059,7 @@ export namespace retail_v2 {
      *   const res = await retail.projects.locations.catalogs.branches.products.patch({
      *     // If set to true, and the Product is not found, a new Product will be created. In this situation, `update_mask` is ignored.
      *     allowMissing: 'placeholder-value',
-     *     // Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
+     *     // Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
      *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
      *     // Indicates which fields in the provided Product to update. The immutable and output only fields are NOT supported. If not set, all supported fields (the fields that are neither immutable nor output only) are updated. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
      *     updateMask: 'placeholder-value',
@@ -4420,7 +4424,7 @@ export namespace retail_v2 {
      *   // Do the magic
      *   const res =
      *     await retail.projects.locations.catalogs.branches.products.setInventory({
-     *       // Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
+     *       // Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
      *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
      *
      *       // Request body metadata
@@ -4630,7 +4634,7 @@ export namespace retail_v2 {
      */
     allowMissing?: boolean;
     /**
-     * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
+     * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
      */
     name?: string;
     /**
@@ -4658,7 +4662,7 @@ export namespace retail_v2 {
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory
     extends StandardParameters {
     /**
-     * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
+     * Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.
      */
     name?: string;
 
