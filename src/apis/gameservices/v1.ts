@@ -977,7 +977,7 @@ export namespace gameservices_v1 {
      */
     in?: string[] | null;
     /**
-     * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
+     * The config returned to callers of CheckPolicy for any entries that match the LOG action.
      */
     logConfig?: Schema$LogConfig[];
     /**
