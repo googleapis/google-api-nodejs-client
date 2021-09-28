@@ -3062,9 +3062,29 @@ export namespace bigquery_v2 {
      */
     batchSize?: string | null;
     /**
+     * Booster type for boosted tree models.
+     */
+    boosterType?: string | null;
+    /**
      * If true, clean spikes and dips in the input time series.
      */
     cleanSpikesAndDips?: boolean | null;
+    /**
+     * Subsample ratio of columns for each level for boosted tree models.
+     */
+    colsampleBylevel?: number | null;
+    /**
+     * Subsample ratio of columns for each node(split) for boosted tree models.
+     */
+    colsampleBynode?: number | null;
+    /**
+     * Subsample ratio of columns when constructing each tree for boosted tree models.
+     */
+    colsampleBytree?: number | null;
+    /**
+     * Type of normalization algorithm for boosted tree models using dart booster.
+     */
+    dartNormalizeType?: string | null;
     /**
      * The data frequency of a time series.
      */
@@ -3178,6 +3198,10 @@ export namespace bigquery_v2 {
      */
     minSplitLoss?: number | null;
     /**
+     * Minimum sum of instance weight needed in a child for boosted tree models.
+     */
+    minTreeChildWeight?: string | null;
+    /**
      * Google Cloud Storage URI from which the model was imported. Only applicable for imported models.
      */
     modelUri?: string | null;
@@ -3193,6 +3217,10 @@ export namespace bigquery_v2 {
      * Num factors specified for matrix factorization models.
      */
     numFactors?: string | null;
+    /**
+     * Number of parallel trees constructed during each iteration for boosted tree models.
+     */
+    numParallelTree?: string | null;
     /**
      * Optimization strategy for training linear regression models.
      */
@@ -3221,6 +3249,10 @@ export namespace bigquery_v2 {
      * Column to be designated as time series timestamp for ARIMA model.
      */
     timeSeriesTimestampColumn?: string | null;
+    /**
+     * Tree construction algorithm for boosted tree models.
+     */
+    treeMethod?: string | null;
     /**
      * User column specified for matrix factorization models.
      */
@@ -4476,7 +4508,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Requests that a job is deleted. This call will return when the job is deleted. This method is available in limited preview.
+     * Requests the deletion of the metadata of a job. This call returns when the job's metadata is deleted.
      * @example
      * ```js
      * // Before running the sample:
@@ -4505,11 +4537,11 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.jobs.delete({
-     *     // Required. Job ID of the job to be deleted. If this is a parent job which has child jobs, all child jobs will be deleted as well. Deletion of child jobs directly is not allowed.
+     *     // Required. Job ID of the job for which metadata is to be deleted. If this is a parent job which has child jobs, the metadata from all child jobs will be deleted as well. Direct deletion of the metadata of child jobs is not allowed.
      *     jobId: '[^/]+',
      *     // The geographic location of the job. Required. See details at: https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
      *     location: 'placeholder-value',
-     *     // Required. Project ID of the job to be deleted.
+     *     // Required. Project ID of the job for which metadata is to be deleted.
      *     projectId: '[^/]+',
      *   });
      *   console.log(res.data);
@@ -5408,7 +5440,7 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$Delete extends StandardParameters {
     /**
-     * Required. Job ID of the job to be deleted. If this is a parent job which has child jobs, all child jobs will be deleted as well. Deletion of child jobs directly is not allowed.
+     * Required. Job ID of the job for which metadata is to be deleted. If this is a parent job which has child jobs, the metadata from all child jobs will be deleted as well. Direct deletion of the metadata of child jobs is not allowed.
      */
     jobId?: string;
     /**
@@ -5416,7 +5448,7 @@ export namespace bigquery_v2 {
      */
     location?: string;
     /**
-     * Required. Project ID of the job to be deleted.
+     * Required. Project ID of the job for which metadata is to be deleted.
      */
     projectId?: string;
   }
