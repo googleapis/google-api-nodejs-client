@@ -532,7 +532,7 @@
                               "type": "boolean"
                             },
                             "name": {
-                              "description": "Immutable. Full resource name of the product, such as `projects/*/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be \"default_branch\".",
+                              "description": "Immutable. Full resource name of the product, such as `projects/*/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/branches/[^/]+/products/.*$",
                               "required": true,
@@ -594,7 +594,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Immutable. Full resource name of the product, such as `projects/*/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be \"default_branch\".",
+                              "description": "Immutable. Full resource name of the product, such as `projects/*/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/branches/[^/]+/products/.*$",
                               "required": true,
@@ -1012,7 +1012,7 @@
       }
     }
   },
-  "revision": "20210906",
+  "revision": "20210924",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1480,7 +1480,7 @@
           "type": "array"
         },
         "colors": {
-          "description": "The color display names, which may be different from standard color family names, such as the color aliases used in the website frontend. Normally it is expected to have only 1 color. May consider using single \"Mixed\" instead of multiple values. A maximum of 5 colors are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).",
+          "description": "The color display names, which may be different from standard color family names, such as the color aliases used in the website frontend. Normally it is expected to have only 1 color. May consider using single \"Mixed\" instead of multiple values. A maximum of 25 colors are allowed. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [color](https://support.google.com/merchants/answer/6324487). Schema.org property [Product.color](https://schema.org/color).",
           "items": {
             "type": "string"
           },
@@ -1602,6 +1602,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaEnrollSolutionMetadata": {
+      "description": "Metadata related to the EnrollSolution method. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudRetailV2alphaEnrollSolutionMetadata",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudRetailV2alphaExportErrorsConfig": {
@@ -2285,7 +2291,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Immutable. Full resource name of the product, such as `projects/*/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be \"default_branch\".",
+          "description": "Immutable. Full resource name of the product, such as `projects/*/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`.",
           "type": "string"
         },
         "patterns": {
