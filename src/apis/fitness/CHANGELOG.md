@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/fitness-v1.0.0...fitness-v1.0.1) (2021-09-28)
+
+
+### Bug Fixes
+
+* **fitness:** update the API ([46263e5](https://www.github.com/googleapis/google-api-nodejs-client/commit/46263e527ba7f7b90d231194be1333a54994ccdc))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/fitness-v0.2.0...fitness-v1.0.0) (2021-09-14)
 
 
