@@ -430,7 +430,7 @@
       }
     }
   },
-  "revision": "20210826",
+  "revision": "20210916",
   "rootUrl": "https://clouderrorreporting.googleapis.com/",
   "schemas": {
     "DeleteEventsResponse": {
@@ -676,7 +676,7 @@
           "description": "Optional. A description of the context in which the error occurred."
         },
         "eventTime": {
-          "description": "Optional. Time when the event occurred. If not provided, the time when the event was received by the Error Reporting system will be used.",
+          "description": "Optional. Time when the event occurred. If not provided, the time when the event was received by the Error Reporting system is used. If provided, the time must not exceed the [logs retention period](https://cloud.google.com/logging/quotas#logs_retention_periods) in the past, or be more than 24 hours in the future. If an invalid time is provided, then an error is returned.",
           "format": "google-datetime",
           "type": "string"
         },
