@@ -7887,7 +7887,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Disable a ServiceAccountKey. A disabled service account key can be enabled through EnableServiceAccountKey. The API is currently in preview phase.
+     * Disable a ServiceAccountKey. A disabled service account key can be enabled through EnableServiceAccountKey.
      * @example
      * ```js
      * // Before running the sample:
@@ -8020,7 +8020,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Enable a ServiceAccountKey. The API is currently in preview phase.
+     * Enable a ServiceAccountKey.
      * @example
      * ```js
      * // Before running the sample:
