@@ -1357,7 +1357,7 @@
       }
     }
   },
-  "revision": "20210818",
+  "revision": "20210915",
   "rootUrl": "https://gameservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2664,7 +2664,7 @@
           "type": "array"
         },
         "logConfig": {
-          "description": "The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.",
+          "description": "The config returned to callers of CheckPolicy for any entries that match the LOG action.",
           "items": {
             "$ref": "LogConfig"
           },
