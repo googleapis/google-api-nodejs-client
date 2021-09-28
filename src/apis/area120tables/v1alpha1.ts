@@ -201,6 +201,10 @@ export namespace area120tables_v1alpha1 {
      */
     name?: string | null;
     /**
+     * Optional. Indicates that values for the column cannot be set by the user.
+     */
+    readonly?: boolean | null;
+    /**
      * Optional. Additional details about a relationship column. Specified when data_type is relationship.
      */
     relationshipDetails?: Schema$RelationshipDetails;
