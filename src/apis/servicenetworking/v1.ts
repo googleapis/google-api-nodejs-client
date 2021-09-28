@@ -229,6 +229,10 @@ export namespace servicenetworking_v1 {
      */
     ipPrefixLength?: number | null;
     /**
+     * Optional. Enable outside allocation using public IP addresses. Any public IP range may be specified. If this field is provided, we will not use customer reserved ranges for this primary IP range.
+     */
+    outsideAllocationPublicIpRange?: string | null;
+    /**
      * Optional. The private IPv6 google access type for the VMs in this subnet. For information about the access types that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.
      */
     privateIpv6GoogleAccess?: string | null;
@@ -1518,6 +1522,10 @@ export namespace servicenetworking_v1 {
      */
     ipPrefixLength?: number | null;
     /**
+     * Optional. Enable outside allocation using public IP addresses. Any public IP range may be specified. If this field is provided, we will not use customer reserved ranges for this secondary IP range.
+     */
+    outsideAllocationPublicIpRange?: string | null;
+    /**
      * Required. A name for the secondary IP range. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.
      */
     rangeName?: string | null;
@@ -2516,6 +2524,7 @@ export namespace servicenetworking_v1 {
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "description": "my_description",
      *       //   "ipPrefixLength": 0,
+     *       //   "outsideAllocationPublicIpRange": "my_outsideAllocationPublicIpRange",
      *       //   "privateIpv6GoogleAccess": "my_privateIpv6GoogleAccess",
      *       //   "region": "my_region",
      *       //   "requestedAddress": "my_requestedAddress",

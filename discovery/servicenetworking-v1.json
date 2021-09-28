@@ -860,7 +860,7 @@
       }
     }
   },
-  "revision": "20210824",
+  "revision": "20210924",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -986,6 +986,10 @@
           "description": "Required. The prefix length of the subnet's IP address range. Use CIDR range notation, such as `30` to provision a subnet with an `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer's allocated range.",
           "format": "int32",
           "type": "integer"
+        },
+        "outsideAllocationPublicIpRange": {
+          "description": "Optional. Enable outside allocation using public IP addresses. Any public IP range may be specified. If this field is provided, we will not use customer reserved ranges for this primary IP range.",
+          "type": "string"
         },
         "privateIpv6GoogleAccess": {
           "description": "Optional. The private IPv6 google access type for the VMs in this subnet. For information about the access types that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.",
@@ -2821,6 +2825,10 @@
           "description": "Required. The prefix length of the secondary IP range. Use CIDR range notation, such as `30` to provision a secondary IP range with an `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer's allocated range.",
           "format": "int32",
           "type": "integer"
+        },
+        "outsideAllocationPublicIpRange": {
+          "description": "Optional. Enable outside allocation using public IP addresses. Any public IP range may be specified. If this field is provided, we will not use customer reserved ranges for this secondary IP range.",
+          "type": "string"
         },
         "rangeName": {
           "description": "Required. A name for the secondary IP range. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.",
