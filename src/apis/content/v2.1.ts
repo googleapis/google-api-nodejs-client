@@ -306,7 +306,7 @@ export namespace content_v2_1 {
      */
     koreanBusinessRegistrationNumber?: string | null;
     /**
-     * The phone number of the business.
+     * ! The phone number of the business. This can only be updated if a verified ! phone number is not already set. To replace a verified phone number use ! the `Accounts.requestphoneverification` and ! `Accounts.verifyphonenumber`.
      */
     phoneNumber?: string | null;
   }
@@ -2367,7 +2367,7 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed // specification.
+     * Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed specification.
      */
     pickupMethod?: string | null;
     /**
@@ -5718,6 +5718,14 @@ export namespace content_v2_1 {
      * Required. Applicability of the promotion to either all products or only specific products.
      */
     productApplicability?: string | null;
+    /**
+     * Product filter by product type for the promotion.
+     */
+    productType?: string[] | null;
+    /**
+     * Product filter by product type exclusion for the promotion.
+     */
+    productTypeExclusion?: string[] | null;
     /**
      * Destination ID for the promotion.
      */
@@ -27095,6 +27103,8 @@ export namespace content_v2_1 {
      *       //   "orderLimit": 0,
      *       //   "percentOff": 0,
      *       //   "productApplicability": "my_productApplicability",
+     *       //   "productType": [],
+     *       //   "productTypeExclusion": [],
      *       //   "promotionDestinationIds": [],
      *       //   "promotionDisplayDates": "my_promotionDisplayDates",
      *       //   "promotionEffectiveDates": "my_promotionEffectiveDates",
@@ -27134,6 +27144,8 @@ export namespace content_v2_1 {
      *   //   "orderLimit": 0,
      *   //   "percentOff": 0,
      *   //   "productApplicability": "my_productApplicability",
+     *   //   "productType": [],
+     *   //   "productTypeExclusion": [],
      *   //   "promotionDestinationIds": [],
      *   //   "promotionDisplayDates": "my_promotionDisplayDates",
      *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
