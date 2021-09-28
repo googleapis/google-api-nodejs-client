@@ -604,6 +604,36 @@ export namespace monitoring_v1 {
     message?: string | null;
   }
   /**
+   * Groups a time series query definition with table options.
+   */
+  export interface Schema$TableDataSet {
+    /**
+     * Optional. The lower bound on data point frequency for this data set, implemented by specifying the minimum alignment period to use in a time series query For example, if the data is published once every 10 minutes, the min_alignment_period should be at least 10 minutes. It would not make sense to fetch and align data at one minute intervals.
+     */
+    minAlignmentPeriod?: string | null;
+    /**
+     * Optional. Table display options for configuring how the table is rendered.
+     */
+    tableDisplayOptions?: Schema$TableDisplayOptions;
+    /**
+     * Optional. A template string for naming TimeSeries in the resulting data set. This should be a string with interpolations of the form ${label_name\}, which will resolve to the label's value i.e. "${resource.labels.project_id\}."
+     */
+    tableTemplate?: string | null;
+    /**
+     * Required. Fields for querying time series data from the Stackdriver metrics API.
+     */
+    timeSeriesQuery?: Schema$TimeSeriesQuery;
+  }
+  /**
+   * Table display options that can be reused.
+   */
+  export interface Schema$TableDisplayOptions {
+    /**
+     * Optional. Columns to display in the table. Leave empty to display all available columns. Note: This field is for future features and is not currently used.
+     */
+    shownColumns?: string[] | null;
+  }
+  /**
    * A widget that displays textual content.
    */
   export interface Schema$Text {
@@ -738,6 +768,15 @@ export namespace monitoring_v1 {
     unitOverride?: string | null;
   }
   /**
+   * A table that displays time series data.
+   */
+  export interface Schema$TimeSeriesTable {
+    /**
+     * Required. The data displayed in this table.
+     */
+    dataSets?: Schema$TableDataSet[];
+  }
+  /**
    * A protocol buffer message type.
    */
   export interface Schema$Type {
@@ -786,6 +825,10 @@ export namespace monitoring_v1 {
      * A raw string or markdown displaying textual content.
      */
     text?: Schema$Text;
+    /**
+     * A widget that displays time series data in a tabular format.
+     */
+    timeSeriesTable?: Schema$TimeSeriesTable;
     /**
      * Optional. The title of the widget.
      */

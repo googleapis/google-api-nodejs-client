@@ -441,7 +441,7 @@
       }
     }
   },
-  "revision": "20210816",
+  "revision": "20210922",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -1293,6 +1293,44 @@
       },
       "type": "object"
     },
+    "TableDataSet": {
+      "description": "Groups a time series query definition with table options.",
+      "id": "TableDataSet",
+      "properties": {
+        "minAlignmentPeriod": {
+          "description": "Optional. The lower bound on data point frequency for this data set, implemented by specifying the minimum alignment period to use in a time series query For example, if the data is published once every 10 minutes, the min_alignment_period should be at least 10 minutes. It would not make sense to fetch and align data at one minute intervals.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "tableDisplayOptions": {
+          "$ref": "TableDisplayOptions",
+          "description": "Optional. Table display options for configuring how the table is rendered."
+        },
+        "tableTemplate": {
+          "description": "Optional. A template string for naming TimeSeries in the resulting data set. This should be a string with interpolations of the form ${label_name}, which will resolve to the label's value i.e. \"${resource.labels.project_id}.\"",
+          "type": "string"
+        },
+        "timeSeriesQuery": {
+          "$ref": "TimeSeriesQuery",
+          "description": "Required. Fields for querying time series data from the Stackdriver metrics API."
+        }
+      },
+      "type": "object"
+    },
+    "TableDisplayOptions": {
+      "description": "Table display options that can be reused.",
+      "id": "TableDisplayOptions",
+      "properties": {
+        "shownColumns": {
+          "description": "Optional. Columns to display in the table. Leave empty to display all available columns. Note: This field is for future features and is not currently used.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Text": {
       "description": "A widget that displays textual content.",
       "id": "Text",
@@ -1484,6 +1522,20 @@
       },
       "type": "object"
     },
+    "TimeSeriesTable": {
+      "description": "A table that displays time series data.",
+      "id": "TimeSeriesTable",
+      "properties": {
+        "dataSets": {
+          "description": "Required. The data displayed in this table.",
+          "items": {
+            "$ref": "TableDataSet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Type": {
       "description": "A protocol buffer message type.",
       "id": "Type",
@@ -1551,6 +1603,10 @@
         "text": {
           "$ref": "Text",
           "description": "A raw string or markdown displaying textual content."
+        },
+        "timeSeriesTable": {
+          "$ref": "TimeSeriesTable",
+          "description": "A widget that displays time series data in a tabular format."
         },
         "title": {
           "description": "Optional. The title of the widget.",
