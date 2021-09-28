@@ -338,7 +338,7 @@
           ]
         },
         "delete": {
-          "description": "Requests that a job is deleted. This call will return when the job is deleted. This method is available in limited preview.",
+          "description": "Requests the deletion of the metadata of a job. This call returns when the job's metadata is deleted.",
           "flatPath": "projects/{projectsId}/jobs/{jobsId}/delete",
           "httpMethod": "DELETE",
           "id": "bigquery.jobs.delete",
@@ -348,7 +348,7 @@
           ],
           "parameters": {
             "jobId": {
-              "description": "Required. Job ID of the job to be deleted. If this is a parent job which has child jobs, all child jobs will be deleted as well. Deletion of child jobs directly is not allowed.",
+              "description": "Required. Job ID of the job for which metadata is to be deleted. If this is a parent job which has child jobs, the metadata from all child jobs will be deleted as well. Direct deletion of the metadata of child jobs is not allowed.",
               "location": "path",
               "pattern": "^[^/]+$",
               "required": true,
@@ -360,7 +360,7 @@
               "type": "string"
             },
             "projectId": {
-              "description": "Required. Project ID of the job to be deleted.",
+              "description": "Required. Project ID of the job for which metadata is to be deleted.",
               "location": "path",
               "pattern": "^[^/]+$",
               "required": true,
@@ -1683,7 +1683,7 @@
       }
     }
   },
-  "revision": "20210904",
+  "revision": "20210919",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -1868,7 +1868,7 @@
               "YEARLY"
             ],
             "enumDescriptions": [
-              "",
+              "Unspecified seasonal period.",
               "No seasonality",
               "Daily period, 24 hours.",
               "Weekly period, 7 days.",
@@ -1935,7 +1935,7 @@
               "YEARLY"
             ],
             "enumDescriptions": [
-              "",
+              "Unspecified seasonal period.",
               "No seasonality",
               "Daily period, 24 hours.",
               "Weekly period, 7 days.",
@@ -2007,7 +2007,7 @@
               "YEARLY"
             ],
             "enumDescriptions": [
-              "",
+              "Unspecified seasonal period.",
               "No seasonality",
               "Daily period, 24 hours.",
               "Weekly period, 7 days.",
@@ -2063,7 +2063,7 @@
               "YEARLY"
             ],
             "enumDescriptions": [
-              "",
+              "Unspecified seasonal period.",
               "No seasonality",
               "Daily period, 24 hours.",
               "Weekly period, 7 days.",
@@ -6087,9 +6087,52 @@
           "format": "int64",
           "type": "string"
         },
+        "boosterType": {
+          "description": "Booster type for boosted tree models.",
+          "enum": [
+            "BOOSTER_TYPE_UNSPECIFIED",
+            "GBTREE",
+            "DART"
+          ],
+          "enumDescriptions": [
+            "Unspecified booster type.",
+            "Gbtree booster.",
+            "Dart booster."
+          ],
+          "type": "string"
+        },
         "cleanSpikesAndDips": {
           "description": "If true, clean spikes and dips in the input time series.",
           "type": "boolean"
+        },
+        "colsampleBylevel": {
+          "description": "Subsample ratio of columns for each level for boosted tree models.",
+          "format": "double",
+          "type": "number"
+        },
+        "colsampleBynode": {
+          "description": "Subsample ratio of columns for each node(split) for boosted tree models.",
+          "format": "double",
+          "type": "number"
+        },
+        "colsampleBytree": {
+          "description": "Subsample ratio of columns when constructing each tree for boosted tree models.",
+          "format": "double",
+          "type": "number"
+        },
+        "dartNormalizeType": {
+          "description": "Type of normalization algorithm for boosted tree models using dart booster.",
+          "enum": [
+            "DART_NORMALIZE_TYPE_UNSPECIFIED",
+            "TREE",
+            "FOREST"
+          ],
+          "enumDescriptions": [
+            "Unspecified dart normalize type.",
+            "New trees have the same weight of each of dropped trees.",
+            "New trees have the same weight of sum of dropped trees."
+          ],
+          "type": "string"
         },
         "dataFrequency": {
           "description": "The data frequency of a time series.",
@@ -6457,6 +6500,11 @@
           "format": "double",
           "type": "number"
         },
+        "minTreeChildWeight": {
+          "description": "Minimum sum of instance weight needed in a child for boosted tree models.",
+          "format": "int64",
+          "type": "string"
+        },
         "modelUri": {
           "description": "Google Cloud Storage URI from which the model was imported. Only applicable for imported models.",
           "type": "string"
@@ -6472,6 +6520,11 @@
         },
         "numFactors": {
           "description": "Num factors specified for matrix factorization models.",
+          "format": "int64",
+          "type": "string"
+        },
+        "numParallelTree": {
+          "description": "Number of parallel trees constructed during each iteration for boosted tree models.",
           "format": "int64",
           "type": "string"
         },
@@ -6515,6 +6568,24 @@
         },
         "timeSeriesTimestampColumn": {
           "description": "Column to be designated as time series timestamp for ARIMA model.",
+          "type": "string"
+        },
+        "treeMethod": {
+          "description": "Tree construction algorithm for boosted tree models.",
+          "enum": [
+            "TREE_METHOD_UNSPECIFIED",
+            "AUTO",
+            "EXACT",
+            "APPROX",
+            "HIST"
+          ],
+          "enumDescriptions": [
+            "Unspecified tree method.",
+            "Use heuristic to choose the fastest method.",
+            "Exact greedy algorithm.",
+            "Approximate greedy algorithm using quantile sketch and gradient histogram.",
+            "Fast histogram optimized approximate greedy algorithm."
+          ],
           "type": "string"
         },
         "userColumn": {
