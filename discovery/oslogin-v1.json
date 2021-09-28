@@ -5,8 +5,14 @@
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         },
+        "https://www.googleapis.com/auth/cloud-platform.read-only": {
+          "description": "View your data across Google Cloud services and see the email address of your Google Account"
+        },
         "https://www.googleapis.com/auth/compute": {
           "description": "View and manage your Google Compute Engine resources"
+        },
+        "https://www.googleapis.com/auth/compute.readonly": {
+          "description": "View your Google Compute Engine resources"
         }
       }
     }
@@ -143,7 +149,9 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute"
+            "https://www.googleapis.com/auth/cloud-platform.read-only",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
         "importSshPublicKey": {
@@ -306,7 +314,7 @@
       }
     }
   },
-  "revision": "20210813",
+  "revision": "20210920",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
