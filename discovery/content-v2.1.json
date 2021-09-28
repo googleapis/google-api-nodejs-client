@@ -5783,7 +5783,7 @@
       }
     }
   },
-  "revision": "20210917",
+  "revision": "20210924",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5930,7 +5930,7 @@
           "type": "string"
         },
         "phoneNumber": {
-          "description": "The phone number of the business.",
+          "description": "! The phone number of the business. This can only be updated if a verified ! phone number is not already set. To replace a verified phone number use ! the `Accounts.requestphoneverification` and ! `Accounts.verifyphonenumber`.",
           "type": "string"
         }
       },
@@ -8864,7 +8864,7 @@
           "type": "string"
         },
         "pickupMethod": {
-          "description": "Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed // specification.",
+          "description": "Supported pickup method for this offer. Unless the value is \"not supported\", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed specification.",
           "type": "string"
         },
         "pickupSla": {
@@ -13198,6 +13198,20 @@
             "Applicable to only a single product or list of products."
           ],
           "type": "string"
+        },
+        "productType": {
+          "description": "Product filter by product type for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "productTypeExclusion": {
+          "description": "Product filter by product type exclusion for the promotion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "promotionDestinationIds": {
           "description": "Destination ID for the promotion.",
