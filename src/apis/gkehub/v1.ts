@@ -220,6 +220,12 @@ export namespace gkehub_v1 {
      */
     git?: Schema$ConfigManagementGitConfig;
     /**
+     * Specifies CPU and memory limits for containers, keyed by container name
+     */
+    resourceRequirements?: {
+      [key: string]: Schema$ConfigManagementContainerResourceRequirements;
+    } | null;
+    /**
      * Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.
      */
     sourceFormat?: string | null;
@@ -228,6 +234,10 @@ export namespace gkehub_v1 {
    * The state of ConfigSync's deployment on a cluster
    */
   export interface Schema$ConfigManagementConfigSyncDeploymentState {
+    /**
+     * Deployment state of admission-webhook
+     */
+    admissionWebhook?: string | null;
     /**
      * Deployment state of the git-sync pod
      */
@@ -275,6 +285,10 @@ export namespace gkehub_v1 {
    */
   export interface Schema$ConfigManagementConfigSyncVersion {
     /**
+     * Version of the deployed admission_webhook pod
+     */
+    admissionWebhook?: string | null;
+    /**
      * Version of the deployed git-sync pod
      */
     gitSync?: string | null;
@@ -298,6 +312,23 @@ export namespace gkehub_v1 {
      * Version of the deployed syncer pod
      */
     syncer?: string | null;
+  }
+  /**
+   * ResourceRequirements allows to override the CPU and memory resource requirements of a container.
+   */
+  export interface Schema$ConfigManagementContainerResourceRequirements {
+    /**
+     * Name of the container
+     */
+    containerName?: string | null;
+    /**
+     * Allows to override the CPU limit of a container
+     */
+    cpuLimit?: Schema$ConfigManagementQuantity;
+    /**
+     * Allows to override the memory limit of a container
+     */
+    memoryLimit?: Schema$ConfigManagementQuantity;
   }
   /**
    * Model for a config file in the git repo with an associated Sync error
@@ -346,6 +377,10 @@ export namespace gkehub_v1 {
      */
     httpsProxy?: string | null;
     /**
+     * Enable or disable the SSL certificate verification Default: false.
+     */
+    noSslVerify?: boolean | null;
+    /**
      * The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.
      */
     policyDir?: string | null;
@@ -357,6 +392,10 @@ export namespace gkehub_v1 {
      * The branch of the repository to sync from. Default: master.
      */
     syncBranch?: string | null;
+    /**
+     * The depth of git commits synced by the git-sync container.
+     */
+    syncDepth?: string | null;
     /**
      * The URL of the Git repository to use as the source of truth.
      */
@@ -569,6 +608,15 @@ export namespace gkehub_v1 {
      * The gatekeeper image tag that is composed of ACM version, git tag, build number.
      */
     version?: string | null;
+  }
+  /**
+   * The view model of a single quantity, e.g. "800 MiB". Corresponds to https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/generated.proto
+   */
+  export interface Schema$ConfigManagementQuantity {
+    /**
+     * Stringified version of the quantity, e.g., "800 MiB".
+     */
+    string?: string | null;
   }
   /**
    * An ACM created error representing a problem syncing configurations
