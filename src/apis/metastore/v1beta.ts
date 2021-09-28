@@ -722,7 +722,7 @@ export namespace metastore_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The one hour maintenance window of the metastore service. This specifies when the service can be restarted for maintenance purposes in UTC time.
+     * The one hour maintenance window of the metastore service. This specifies when the service can be restarted for maintenance purposes in UTC time. Maintenance window is not needed for services with the SPANNER database type.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
     /**
