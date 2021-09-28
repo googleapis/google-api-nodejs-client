@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/healthcare-v3.1.0...healthcare-v3.1.1) (2021-09-28)
+
+
+### Bug Fixes
+
+* **healthcare:** update the API ([b946c5c](https://www.github.com/googleapis/google-api-nodejs-client/commit/b946c5ca8474707bc0c9d53c9079b623058f9f26))
+
 ## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/healthcare-v3.0.0...healthcare-v3.1.0) (2021-09-16)
 
 
