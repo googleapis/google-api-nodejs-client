@@ -1089,7 +1089,7 @@
       }
     }
   },
-  "revision": "20210918",
+  "revision": "20210927",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1312,7 +1312,7 @@
             "format": "int32",
             "type": "integer"
           },
-          "description": "A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/`",
+          "description": "A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/` Deprecated, use `issue_matches_stats` field instead.",
           "type": "object"
         },
         "smartHighlighterMatches": {
@@ -1640,13 +1640,26 @@
           "format": "float",
           "type": "number"
         },
+        "dialogflowSegmentMetadata": {
+          "$ref": "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata",
+          "description": "CCAI metadata relating to the current transcript segment."
+        },
         "languageCode": {
           "description": "The language code of this segment as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: \"en-US\".",
+          "type": "string"
+        },
+        "messageTime": {
+          "description": "The time that the message occurred, if provided.",
+          "format": "google-datetime",
           "type": "string"
         },
         "segmentParticipant": {
           "$ref": "GoogleCloudContactcenterinsightsV1ConversationParticipant",
           "description": "The participant of this segment."
+        },
+        "sentiment": {
+          "$ref": "GoogleCloudContactcenterinsightsV1SentimentData",
+          "description": "The sentiment for this transcript segment."
         },
         "text": {
           "description": "The text of this segment.",
@@ -1658,6 +1671,17 @@
             "$ref": "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfo"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata": {
+      "description": "Metadata from Dialogflow relating to the current transcript segment.",
+      "id": "GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata",
+      "properties": {
+        "smartReplyAllowlistCovered": {
+          "description": "Whether the transcript segment was covered under the configured smart reply allowlist in Agent Assist.",
+          "type": "boolean"
         }
       },
       "type": "object"

@@ -567,7 +567,7 @@ export namespace contactcenterinsights_v1 {
      */
     customHighlighterMatches?: {[key: string]: number} | null;
     /**
-     * A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/`
+     * A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/` Deprecated, use `issue_matches_stats` field instead.
      */
     issueMatches?: {[key: string]: number} | null;
     /**
@@ -811,13 +811,25 @@ export namespace contactcenterinsights_v1 {
      */
     confidence?: number | null;
     /**
+     * CCAI metadata relating to the current transcript segment.
+     */
+    dialogflowSegmentMetadata?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata;
+    /**
      * The language code of this segment as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US".
      */
     languageCode?: string | null;
     /**
+     * The time that the message occurred, if provided.
+     */
+    messageTime?: string | null;
+    /**
      * The participant of this segment.
      */
     segmentParticipant?: Schema$GoogleCloudContactcenterinsightsV1ConversationParticipant;
+    /**
+     * The sentiment for this transcript segment.
+     */
+    sentiment?: Schema$GoogleCloudContactcenterinsightsV1SentimentData;
     /**
      * The text of this segment.
      */
@@ -826,6 +838,15 @@ export namespace contactcenterinsights_v1 {
      * A list of the word-specific information for each word in the segment.
      */
     words?: Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentWordInfo[];
+  }
+  /**
+   * Metadata from Dialogflow relating to the current transcript segment.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1ConversationTranscriptTranscriptSegmentDialogflowSegmentMetadata {
+    /**
+     * Whether the transcript segment was covered under the configured smart reply allowlist in Agent Assist.
+     */
+    smartReplyAllowlistCovered?: boolean | null;
   }
   /**
    * Word-level info for words in a transcript.
