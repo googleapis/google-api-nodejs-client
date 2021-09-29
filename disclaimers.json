@@ -88,6 +88,10 @@
     "package": "@google-cloud/essential-contacts"
   },
   {
+    "api": "eventarc",
+    "package": "@google-cloud/eventarc"
+  },
+  {
     "api": "file",
     "package": "@google-cloud/filestore"
   },
@@ -390,10 +394,6 @@
   {
     "api": "clouderrorreporting",
     "package": "@google-cloud/error-reporting"
-  },
-  {
-    "api": "eventarc",
-    "package": "@google-cloud/eventarc"
   },
   {
     "api": "gkehub",

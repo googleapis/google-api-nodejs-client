@@ -263,6 +263,7 @@ export {mybusinesslodging_v1} from './apis/mybusinesslodging/v1';
 export {mybusinessnotifications_v1} from './apis/mybusinessnotifications/v1';
 export {mybusinessplaceactions_v1} from './apis/mybusinessplaceactions/v1';
 export {mybusinessverifications_v1} from './apis/mybusinessverifications/v1';
+export {networkconnectivity_v1} from './apis/networkconnectivity/v1';
 export {networkconnectivity_v1alpha1} from './apis/networkconnectivity/v1alpha1';
 export {networkmanagement_v1} from './apis/networkmanagement/v1';
 export {networkmanagement_v1beta1} from './apis/networkmanagement/v1beta1';
