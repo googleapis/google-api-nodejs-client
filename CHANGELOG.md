@@ -4,6 +4,22 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [88.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v88.0.0...googleapis-v88.1.0) (2021-09-29)
+
+
+### Features
+
+* **bigtableadmin:** update the API ([59bf237](https://www.github.com/googleapis/google-api-nodejs-client/commit/59bf237fb30e61f57fdad438c792d2c4a3184053))
+* **contactcenterinsights:** update the API ([a4cb49a](https://www.github.com/googleapis/google-api-nodejs-client/commit/a4cb49a6c1fdce6736741fd80d80cdf1c4ce51b0))
+* regenerate index files ([8c53448](https://www.github.com/googleapis/google-api-nodejs-client/commit/8c53448e7d7fd8a7db9c078ebf0150f6ecb1ce99))
+
+
+### Bug Fixes
+
+* **cloudasset:** update the API ([d752ed2](https://www.github.com/googleapis/google-api-nodejs-client/commit/d752ed2ff1120e0da348124af594921015517f21))
+* **documentai:** update the API ([5944ea1](https://www.github.com/googleapis/google-api-nodejs-client/commit/5944ea10726a39251741ad6ddfe41d8be80a9bda))
+* **networkconnectivity:** update the API ([ea58ffe](https://www.github.com/googleapis/google-api-nodejs-client/commit/ea58ffeda6c134419d56e02643dba0c6b1a7331a))
+
 ## [88.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v87.0.0...googleapis-v88.0.0) (2021-09-28)
 
 
