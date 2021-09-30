@@ -1112,6 +1112,19 @@ export namespace cloudidentity_v1beta1 {
     roles?: Schema$TransitiveMembershipRole[];
   }
   /**
+   * The definition of MemberRestriction
+   */
+  export interface Schema$MemberRestriction {
+    /**
+     * The evaluated state of this restriction on a group.
+     */
+    evaluation?: Schema$RestrictionEvaluation;
+    /**
+     * Member Restriction as defined by CEL expression. Supported restrictions are: `member.customer_id` and `member.type`. Valid values for `member.type` are `1`, `2` and `3`. They correspond to USER, SERVICE_ACCOUNT, and GROUP respectively. The value for `member.customer_id` only supports `groupCustomerId()` currently which means the customer id of the group will be used for restriction. Supported operators are `&&`, `||` and `==`, corresponding to AND, OR, and EQUAL. Examples: Allow only service accounts of given customer to be members. `member.type == 2 && member.customer_id == groupCustomerId()` Allow only users or groups to be members. `member.type == 1 || member.type == 3`
+     */
+    query?: string | null;
+  }
+  /**
    * A membership within the Cloud Identity Groups API. A `Membership` defines a relationship between a `Group` and an entity belonging to that `Group`, referred to as a "member".
    */
   export interface Schema$Membership {
@@ -1169,6 +1182,19 @@ export namespace cloudidentity_v1beta1 {
      * The name of the `MembershipRole`. Must be one of `OWNER`, `MANAGER`, `MEMBER`.
      */
     name?: string | null;
+    /**
+     * Evaluations of restrictions applied to parent group on this membership.
+     */
+    restrictionEvaluations?: Schema$RestrictionEvaluations;
+  }
+  /**
+   * The evaluated state of this restriction.
+   */
+  export interface Schema$MembershipRoleRestrictionEvaluation {
+    /**
+     * Output only. The current state of the restriction
+     */
+    state?: string | null;
   }
   /**
    * The request message for MembershipsService.ModifyMembershipRoles.
@@ -1239,6 +1265,24 @@ export namespace cloudidentity_v1beta1 {
     systemId?: string | null;
   }
   /**
+   * The evaluated state of this restriction.
+   */
+  export interface Schema$RestrictionEvaluation {
+    /**
+     * Output only. The current state of the restriction
+     */
+    state?: string | null;
+  }
+  /**
+   * Evaluations of restrictions applied to parent group on this membership.
+   */
+  export interface Schema$RestrictionEvaluations {
+    /**
+     * Evaluation of the member restriction applied to this membership. Empty if the user lacks permission to view the restriction evaluation.
+     */
+    memberRestrictionEvaluation?: Schema$MembershipRoleRestrictionEvaluation;
+  }
+  /**
    * The response message for GroupsService.SearchGroups.
    */
   export interface Schema$SearchGroupsResponse {
@@ -1276,6 +1320,19 @@ export namespace cloudidentity_v1beta1 {
      * Token to retrieve the next page of results, or empty if there are no more results.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * The definiion of security settings.
+   */
+  export interface Schema$SecuritySettings {
+    /**
+     * The Member Restriction value
+     */
+    memberRestriction?: Schema$MemberRestriction;
+    /**
+     * Output only. The resource name of the security settings. Shall be of the form `groups/{group_id\}/securitySettings`.
+     */
+    name?: string | null;
   }
   /**
    * A request to send email for inviting target user corresponding to the UserInvitation.
@@ -5069,6 +5126,142 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
+     * Get Security Settings
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-identity.groups.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.getSecuritySettings({
+     *     // Required. The security settings to retrieve. Format: `groups/{group_id\}/securitySettings`
+     *     name: 'groups/my-group/securitySettings',
+     *     // Field-level read mask of which fields to return. "*" returns all fields. If not specified, all fields will be returned. May only contain the following field: `member_restriction`.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "memberRestriction": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSecuritySettings(
+      params: Params$Resource$Groups$Getsecuritysettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSecuritySettings(
+      params?: Params$Resource$Groups$Getsecuritysettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SecuritySettings>;
+    getSecuritySettings(
+      params: Params$Resource$Groups$Getsecuritysettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSecuritySettings(
+      params: Params$Resource$Groups$Getsecuritysettings,
+      options: MethodOptions | BodyResponseCallback<Schema$SecuritySettings>,
+      callback: BodyResponseCallback<Schema$SecuritySettings>
+    ): void;
+    getSecuritySettings(
+      params: Params$Resource$Groups$Getsecuritysettings,
+      callback: BodyResponseCallback<Schema$SecuritySettings>
+    ): void;
+    getSecuritySettings(
+      callback: BodyResponseCallback<Schema$SecuritySettings>
+    ): void;
+    getSecuritySettings(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Getsecuritysettings
+        | BodyResponseCallback<Schema$SecuritySettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SecuritySettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SecuritySettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SecuritySettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Getsecuritysettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Getsecuritysettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SecuritySettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SecuritySettings>(parameters);
+      }
+    }
+
+    /**
      * Lists the `Group` resources under a customer or namespace.
      * @example
      * ```js
@@ -5647,6 +5840,153 @@ export namespace cloudidentity_v1beta1 {
         return createAPIRequest<Schema$SearchGroupsResponse>(parameters);
       }
     }
+
+    /**
+     * Update Security Settings
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.groups',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.groups.updateSecuritySettings({
+     *     // Output only. The resource name of the security settings. Shall be of the form `groups/{group_id\}/securitySettings`.
+     *     name: 'groups/my-group/securitySettings',
+     *     // Required. The fully-qualified names of fields to update. May only contain the following field: `member_restriction.query`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "memberRestriction": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateSecuritySettings(
+      params: Params$Resource$Groups$Updatesecuritysettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateSecuritySettings(
+      params?: Params$Resource$Groups$Updatesecuritysettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateSecuritySettings(
+      params: Params$Resource$Groups$Updatesecuritysettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateSecuritySettings(
+      params: Params$Resource$Groups$Updatesecuritysettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateSecuritySettings(
+      params: Params$Resource$Groups$Updatesecuritysettings,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateSecuritySettings(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateSecuritySettings(
+      paramsOrCallback?:
+        | Params$Resource$Groups$Updatesecuritysettings
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Groups$Updatesecuritysettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Groups$Updatesecuritysettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Groups$Create extends StandardParameters {
@@ -5671,6 +6011,17 @@ export namespace cloudidentity_v1beta1 {
      * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Groups$Getsecuritysettings
+    extends StandardParameters {
+    /**
+     * Required. The security settings to retrieve. Format: `groups/{group_id\}/securitySettings`
+     */
+    name?: string;
+    /**
+     * Field-level read mask of which fields to return. "*" returns all fields. If not specified, all fields will be returned. May only contain the following field: `member_restriction`.
+     */
+    readMask?: string;
   }
   export interface Params$Resource$Groups$List extends StandardParameters {
     /**
@@ -5732,6 +6083,22 @@ export namespace cloudidentity_v1beta1 {
      * The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      */
     view?: string;
+  }
+  export interface Params$Resource$Groups$Updatesecuritysettings
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the security settings. Shall be of the form `groups/{group_id\}/securitySettings`.
+     */
+    name?: string;
+    /**
+     * Required. The fully-qualified names of fields to update. May only contain the following field: `member_restriction.query`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SecuritySettings;
   }
 
   export class Resource$Groups$Memberships {
