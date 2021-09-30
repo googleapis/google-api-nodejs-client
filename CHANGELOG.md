@@ -4,6 +4,20 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [88.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v88.1.0...googleapis-v88.2.0) (2021-09-30)
+
+
+### Features
+
+* **admin:** update the API ([5d7d891](https://www.github.com/googleapis/google-api-nodejs-client/commit/5d7d891e5a6f1e564a161c5732600f18e8251288))
+* **cloudidentity:** update the API ([a27de05](https://www.github.com/googleapis/google-api-nodejs-client/commit/a27de055e6e31187e61a671a728f8d3cc5dd5dcc))
+* regenerate index files ([9c6bd89](https://www.github.com/googleapis/google-api-nodejs-client/commit/9c6bd89bb91eb43418d572bedcf3b36615761ac7))
+
+
+### Bug Fixes
+
+* **adexchangebuyer:** update the API ([d40e760](https://www.github.com/googleapis/google-api-nodejs-client/commit/d40e7600f02e13d4b899306942325d436ce7f02a))
+
 ## [88.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v88.0.0...googleapis-v88.1.0) (2021-09-29)
 
 
