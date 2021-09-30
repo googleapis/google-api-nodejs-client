@@ -2,7 +2,7 @@
 
 # adexchangebuyer
 
-> Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
+> 
 
 ## Installation
 
