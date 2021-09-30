@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v2.0.1...cloudidentity-v2.1.0) (2021-09-30)
+
+
+### Features
+
+* **cloudidentity:** update the API ([a27de05](https://www.github.com/googleapis/google-api-nodejs-client/commit/a27de055e6e31187e61a671a728f8d3cc5dd5dcc))
+
 ### [2.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v2.0.0...cloudidentity-v2.0.1) (2021-09-28)
 
 
