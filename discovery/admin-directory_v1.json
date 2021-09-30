@@ -4397,7 +4397,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20210928",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -4932,6 +4932,73 @@
         "bootMode": {
           "description": "The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).",
           "type": "string"
+        },
+        "cpuInfo": {
+          "description": "Information regarding CPU specs in the device.",
+          "items": {
+            "description": "CPU specs for a CPU.",
+            "properties": {
+              "architecture": {
+                "description": "The CPU architecture.",
+                "type": "string"
+              },
+              "logicalCpus": {
+                "description": "Information for the Logical CPUs",
+                "items": {
+                  "description": "Status of a single logical CPU.",
+                  "properties": {
+                    "cStates": {
+                      "description": "C-States indicate the power consumption state of the CPU. For more information look at documentation published by the CPU maker.",
+                      "items": {
+                        "description": "Status of a single C-state. C-states are various modes the CPU can transition to in order to use more or less power.",
+                        "properties": {
+                          "displayName": {
+                            "description": "Name of the state.",
+                            "type": "string"
+                          },
+                          "sessionDuration": {
+                            "description": "Time spent in the state since the last reboot.",
+                            "format": "google-duration",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "currentScalingFrequencyKhz": {
+                      "description": "Current frequency the CPU is running at.",
+                      "format": "int32",
+                      "type": "integer"
+                    },
+                    "idleDuration": {
+                      "description": "Idle time since last boot.",
+                      "format": "google-duration",
+                      "type": "string"
+                    },
+                    "maxScalingFrequencyKhz": {
+                      "description": "Maximum frequency the CPU is allowed to run at, by policy.",
+                      "format": "int32",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                },
+                "type": "array"
+              },
+              "maxClockSpeedKhz": {
+                "description": "The max CPU clock speed in kHz.",
+                "format": "int32",
+                "type": "integer"
+              },
+              "model": {
+                "description": "The CPU model name.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
         },
         "cpuStatusReports": {
           "description": "Reports of CPU utilization and temperature (Read-only)",
@@ -6673,7 +6740,7 @@
               "directory.schemas.insert"
             ]
           },
-          "description": "The schema's name.",
+          "description": "The schema's name. Each `schema_name` must be unique within a customer. Reusing a name results in a `409: Entity already exists` error.",
           "type": "string"
         }
       },
@@ -6887,7 +6954,7 @@
           "additionalProperties": {
             "$ref": "UserCustomProperties"
           },
-          "description": "Custom fields of the user.",
+          "description": "Custom fields of the user. The key is a `schema_name` and its values are `'field_name': 'field_value'`.",
           "type": "object"
         },
         "customerId": {

@@ -553,6 +553,20 @@ export namespace admin_directory_v1 {
      */
     bootMode?: string | null;
     /**
+     * Information regarding CPU specs in the device.
+     */
+    cpuInfo?: Array<{
+      architecture?: string;
+      logicalCpus?: Array<{
+        cStates?: Array<{displayName?: string; sessionDuration?: string}>;
+        currentScalingFrequencyKhz?: number;
+        idleDuration?: string;
+        maxScalingFrequencyKhz?: number;
+      }>;
+      maxClockSpeedKhz?: number;
+      model?: string;
+    }> | null;
+    /**
      * Reports of CPU utilization and temperature (Read-only)
      */
     cpuStatusReports?: Array<{
@@ -1698,7 +1712,7 @@ export namespace admin_directory_v1 {
      */
     schemaId?: string | null;
     /**
-     * The schema's name.
+     * The schema's name. Each `schema_name` must be unique within a customer. Reusing a name results in a `409: Entity already exists` error.
      */
     schemaName?: string | null;
   }
@@ -1851,7 +1865,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string | null;
     /**
-     * Custom fields of the user.
+     * Custom fields of the user. The key is a `schema_name` and its values are `'field_name': 'field_value'`.
      */
     customSchemas?: {[key: string]: Schema$UserCustomProperties} | null;
     deletionTime?: string | null;
@@ -3279,6 +3293,7 @@ export namespace admin_directory_v1 {
      *   //   "annotatedUser": "my_annotatedUser",
      *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *   //   "bootMode": "my_bootMode",
+     *   //   "cpuInfo": [],
      *   //   "cpuStatusReports": [],
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
@@ -3729,6 +3744,7 @@ export namespace admin_directory_v1 {
      *       //   "annotatedUser": "my_annotatedUser",
      *       //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *       //   "bootMode": "my_bootMode",
+     *       //   "cpuInfo": [],
      *       //   "cpuStatusReports": [],
      *       //   "deviceFiles": [],
      *       //   "deviceId": "my_deviceId",
@@ -3773,6 +3789,7 @@ export namespace admin_directory_v1 {
      *   //   "annotatedUser": "my_annotatedUser",
      *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *   //   "bootMode": "my_bootMode",
+     *   //   "cpuInfo": [],
      *   //   "cpuStatusReports": [],
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
@@ -3942,6 +3959,7 @@ export namespace admin_directory_v1 {
      *       //   "annotatedUser": "my_annotatedUser",
      *       //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *       //   "bootMode": "my_bootMode",
+     *       //   "cpuInfo": [],
      *       //   "cpuStatusReports": [],
      *       //   "deviceFiles": [],
      *       //   "deviceId": "my_deviceId",
@@ -3986,6 +4004,7 @@ export namespace admin_directory_v1 {
      *   //   "annotatedUser": "my_annotatedUser",
      *   //   "autoUpdateExpiration": "my_autoUpdateExpiration",
      *   //   "bootMode": "my_bootMode",
+     *   //   "cpuInfo": [],
      *   //   "cpuStatusReports": [],
      *   //   "deviceFiles": [],
      *   //   "deviceId": "my_deviceId",
