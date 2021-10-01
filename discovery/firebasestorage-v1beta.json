@@ -238,7 +238,7 @@
       }
     }
   },
-  "revision": "20210823",
+  "revision": "20210917",
   "rootUrl": "https://firebasestorage.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -301,7 +301,8 @@
             "DELETING_TEMP_BUCKET",
             "SUCCEEDED",
             "FAILED",
-            "ROLLING_BACK"
+            "ROLLING_BACK",
+            "ROLLED_BACK"
           ],
           "enumDescriptions": [
             "Unspecified state. Should not be used.",
@@ -313,8 +314,9 @@
             "The second STS transfer to move all objects from the temp bucket to the final bucket is underway.",
             "The temp bucket is being emptied and deleted.",
             "All stages of the migration have completed and the operation has been marked done and updated with a response.",
-            "The migration failed at some stage and it is not possible to continue retrying that stage. Manual recovery may be needed.",
-            "The migration has encountered a permanent failure and is now being rolled back so that the source bucket is restored to its original state."
+            "The migration failed at some stage and it is not possible to continue retrying that stage. Manual recovery may be needed. Rollback is either impossible at this stage, or has been attempted and failed.",
+            "The migration has encountered a permanent failure and is now being rolled back so that the source bucket is restored to its original state.",
+            "The migration has been successfully rolled back."
           ],
           "type": "string"
         }
@@ -348,7 +350,8 @@
             "DELETING_TEMP_BUCKET",
             "SUCCEEDED",
             "FAILED",
-            "ROLLING_BACK"
+            "ROLLING_BACK",
+            "ROLLED_BACK"
           ],
           "enumDescriptions": [
             "Unspecified state. Should not be used.",
@@ -360,8 +363,9 @@
             "The second STS transfer to move all objects from the temp bucket to the final bucket is underway.",
             "The temp bucket is being emptied and deleted.",
             "All stages of the migration have completed and the operation has been marked done and updated with a response.",
-            "The migration failed at some stage and it is not possible to continue retrying that stage. Manual recovery may be needed.",
-            "The migration has encountered a permanent failure and is now being rolled back so that the source bucket is restored to its original state."
+            "The migration failed at some stage and it is not possible to continue retrying that stage. Manual recovery may be needed. Rollback is either impossible at this stage, or has been attempted and failed.",
+            "The migration has encountered a permanent failure and is now being rolled back so that the source bucket is restored to its original state.",
+            "The migration has been successfully rolled back."
           ],
           "type": "string"
         }
