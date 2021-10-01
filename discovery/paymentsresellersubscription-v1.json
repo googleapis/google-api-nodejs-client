@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20210922",
+  "revision": "20210930",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
@@ -604,8 +604,7 @@
         },
         "freeTrialDuration": {
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Duration",
-          "description": "Output only. Specifies the duration of the free trial of the subscription.",
-          "readOnly": true
+          "description": "Optional. Specifies the duration of the free trial of the subscription when promotion_type is PROMOTION_TYPE_FREE_TRIAL"
         },
         "name": {
           "description": "Output only. Response only. Resource name of the subscription promotion. It will have the format of \"partners/{partner_id}/promotion/{promotion_id}\"",
