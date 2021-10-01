@@ -7412,7 +7412,7 @@
       }
     }
   },
-  "revision": "20210916",
+  "revision": "20210924",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -7541,6 +7541,14 @@
         "advancedApiOpsConfig": {
           "$ref": "GoogleCloudApigeeV1AdvancedApiOpsConfig",
           "description": "Configuration for the Advanced API Ops add-on."
+        },
+        "connectorsPlatformConfig": {
+          "$ref": "GoogleCloudApigeeV1ConnectorsPlatformConfig",
+          "description": "Configuration for the Connectors Platform add-on."
+        },
+        "integrationConfig": {
+          "$ref": "GoogleCloudApigeeV1IntegrationConfig",
+          "description": "Configuration for the Integration add-on."
         },
         "monetizationConfig": {
           "$ref": "GoogleCloudApigeeV1MonetizationConfig",
@@ -8388,6 +8396,23 @@
           "description": "Minor version of the API proxy configuration schema.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ConnectorsPlatformConfig": {
+      "description": "Configuration for the Connectors Platform add-on.",
+      "id": "GoogleCloudApigeeV1ConnectorsPlatformConfig",
+      "properties": {
+        "enabled": {
+          "description": "Flag that specifies whether the Connectors Platform add-on is enabled.",
+          "type": "boolean"
+        },
+        "expiresAt": {
+          "description": "Output only. Time at which the Connectors Platform add-on expires in in milliseconds since epoch. If unspecified, the add-on will never expire.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -10157,6 +10182,17 @@
           "description": "Percentage of ingress replicas reporting this route.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1IntegrationConfig": {
+      "description": "Configuration for the Integration add-on.",
+      "id": "GoogleCloudApigeeV1IntegrationConfig",
+      "properties": {
+        "enabled": {
+          "description": "Flag that specifies whether the Integration add-on is enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
