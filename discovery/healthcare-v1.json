@@ -3392,6 +3392,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "export": {
+                      "description": "Exports the messages to a destination. To filter messages to be exported, define a filter using the start and end time, relative to the message generation time (MSH.7). This API returns an Operation that can be used to track the status of the job by calling GetOperation. Immediate fatal errors appear in the error field. Otherwise, when the operation finishes, a detailed response of type ExportMessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}:export",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.hl7V2Stores.export",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the source HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:export",
+                      "request": {
+                        "$ref": "ExportMessagesRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets the specified HL7v2 store.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}",
@@ -3443,6 +3471,34 @@
                       "path": "v1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "import": {
+                      "description": "Import messages to the HL7v2 store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some HL7v2 store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty HL7v2 store that is not being used by other clients. An existing message will be overwritten if a duplicate message is imported. A duplicate message is a message with the same raw bytes as a message that already exists in this HL7v2 store. When a message is overwritten, its labels will also be overwritten. The import operation is idempotent unless the input data contains multiple valid messages with the same raw bytes but different labels. In that case, after the import completes, the store contains exactly one message with those raw bytes but there is no ordering guarantee on which version of the labels it has. The operation result counters do not count duplicated raw bytes as an error and count one success for each message in the input, which might result in a success count larger than the number of messages in the HL7v2 store. If some messages fail to import, for example due to parsing errors, successfully imported messages are not rolled back. This method returns an Operation that can be used to track the status of the import by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing error logs in Cloud Logging](https://cloud.google.com/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a response of type ImportMessagesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/hl7V2Stores/{hl7V2StoresId}:import",
+                      "httpMethod": "POST",
+                      "id": "healthcare.projects.locations.datasets.hl7V2Stores.import",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "The name of the target HL7v2 store, in the format `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/hl7v2Stores/{hl7v2_store_id}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+/hl7V2Stores/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:import",
+                      "request": {
+                        "$ref": "ImportMessagesRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -3956,7 +4012,7 @@
       }
     }
   },
-  "revision": "20210914",
+  "revision": "20210917",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4822,6 +4878,33 @@
       "properties": {},
       "type": "object"
     },
+    "ExportMessagesRequest": {
+      "description": "Request to schedule an export.",
+      "id": "ExportMessagesRequest",
+      "properties": {
+        "endTime": {
+          "description": "The end of the range in `send_time` (MSH.7, https://www.hl7.org/documentcenter/public_temp_2E58C1F9-1C23-BA17-0C6126475344DA9D/wg/conf/HL7MSH.htm) to process. If not specified, the time when the export is scheduled is used. This value has to come after the `start_time` defined below. Only messages whose `send_time` lies in the range `start_time` (inclusive) to `end_time` (exclusive) are exported.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "gcsDestination": {
+          "$ref": "GcsDestination",
+          "description": "Export to a Cloud Storage destination."
+        },
+        "startTime": {
+          "description": "The start of the range in `send_time` (MSH.7, https://www.hl7.org/documentcenter/public_temp_2E58C1F9-1C23-BA17-0C6126475344DA9D/wg/conf/HL7MSH.htm) to process. If not specified, the UNIX epoch (1970-01-01T00:00:00Z) is used. This value has to come before the `end_time` defined below. Only messages whose `send_time` lies in the range `start_time` (inclusive) to `end_time` (exclusive) are exported.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportMessagesResponse": {
+      "description": "Final response for the export operation. This structure is included in the response to describe the detailed outcome.",
+      "id": "ExportMessagesResponse",
+      "properties": {},
+      "type": "object"
+    },
     "ExportResourcesRequest": {
       "description": "Request to export resources.",
       "id": "ExportResourcesRequest",
@@ -5023,6 +5106,60 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GcsDestination": {
+      "description": "The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location.",
+      "id": "GcsDestination",
+      "properties": {
+        "contentStructure": {
+          "description": "The format of the exported HL7v2 message files.",
+          "enum": [
+            "CONTENT_STRUCTURE_UNSPECIFIED",
+            "MESSAGE_JSON"
+          ],
+          "enumDescriptions": [
+            "If the content structure is not specified, the default value `MESSAGE_JSON` will be used.",
+            "Messages are printed using the JSON format returned from the `GetMessage` API. Messages are delimited with newlines."
+          ],
+          "type": "string"
+        },
+        "messageView": {
+          "description": "Specifies the parts of the Message resource to include in the export. If not specified, FULL is used.",
+          "enum": [
+            "MESSAGE_VIEW_UNSPECIFIED",
+            "RAW_ONLY",
+            "PARSED_ONLY",
+            "FULL",
+            "SCHEMATIZED_ONLY",
+            "BASIC"
+          ],
+          "enumDescriptions": [
+            "Not specified, equivalent to FULL.",
+            "Server responses include all the message fields except parsed_data field, and schematized_data fields.",
+            "Server responses include all the message fields except data field, and schematized_data fields.",
+            "Server responses include all the message fields.",
+            "Server responses include all the message fields except data and parsed_data fields.",
+            "Server responses include only the name field."
+          ],
+          "type": "string"
+        },
+        "uriPrefix": {
+          "description": "URI of an existing Cloud Storage directory where the server writes result files, in the format `gs://{bucket-id}/{path/to/destination/dir}`. If there is no trailing slash, the service appends one when composing the object path.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GcsSource": {
+      "description": "Specifies the configuration for importing data from Cloud Storage.",
+      "id": "GcsSource",
+      "properties": {
+        "uri": {
+          "description": "Points to a Cloud Storage URI containing file(s) to import. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The URI can include wildcards in `object_id` and thus identify multiple files. Supported wildcards: * `*` to match 0 or more non-separator characters * `**` to match 0 or more characters (including separators). Must be used at the end of a path and with no other wildcards in the path. Can also be used with a file extension (such as .ndjson), which imports all files with the extension in the specified directory and its sub-directories. For example, `gs://my-bucket/my-directory/**.ndjson` imports all files with `.ndjson` extensions in `my-directory/` and its sub-directories. * `?` to match 1 character Files matching the wildcard are expected to contain content only, no metadata.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5349,6 +5486,23 @@
     "ImportDicomDataResponse": {
       "description": "Returns additional information in regards to a completed DICOM store import.",
       "id": "ImportDicomDataResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "ImportMessagesRequest": {
+      "description": "Request to import messages.",
+      "id": "ImportMessagesRequest",
+      "properties": {
+        "gcsSource": {
+          "$ref": "GcsSource",
+          "description": "Cloud Storage source data location and import configuration. The Cloud Healthcare Service Agent requires the `roles/storage.objectViewer` Cloud IAM roles on the Cloud Storage location."
+        }
+      },
+      "type": "object"
+    },
+    "ImportMessagesResponse": {
+      "description": "Final response of importing messages. This structure is included in the response to describe the detailed outcome. It is only included when the operation finishes successfully.",
+      "id": "ImportMessagesResponse",
       "properties": {},
       "type": "object"
     },
