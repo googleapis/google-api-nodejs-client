@@ -1916,7 +1916,7 @@
       }
     }
   },
-  "revision": "20210713",
+  "revision": "20210920",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AuditLoggingSettings": {
@@ -3850,7 +3850,7 @@
           "type": "boolean"
         },
         "isSortable": {
-          "description": "Indicates that the property can be used for sorting. Cannot be true for properties that are repeatable. Cannot be true for properties whose type is object or user identifier. IsReturnable must be true to set this option. Only supported for Boolean, Date, Double, Integer, and Timestamp properties.",
+          "description": "Indicates that the property can be used for sorting. Cannot be true for properties that are repeatable. Cannot be true for properties whose type is object. IsReturnable must be true to set this option. Only supported for Boolean, Date, Double, Integer, and Timestamp properties.",
           "type": "boolean"
         },
         "isSuggestable": {
