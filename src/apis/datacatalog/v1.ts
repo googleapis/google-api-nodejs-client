@@ -3366,7 +3366,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Lists entries.
+     * Lists entries. Note: Currently, this method can list only custom entries. To get a list of both custom and automatically created entries, use SearchCatalog.
      * @example
      * ```js
      * // Before running the sample:

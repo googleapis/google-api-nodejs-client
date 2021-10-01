@@ -532,7 +532,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists entries.",
+                      "description": "Lists entries. Note: Currently, this method can list only custom entries. To get a list of both custom and automatically created entries, use SearchCatalog.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
                       "httpMethod": "GET",
                       "id": "datacatalog.projects.locations.entryGroups.entries.list",
@@ -1841,7 +1841,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20210920",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
