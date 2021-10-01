@@ -267,7 +267,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     endTime?: string | null;
     /**
-     * Output only. Specifies the duration of the free trial of the subscription.
+     * Optional. Specifies the duration of the free trial of the subscription when promotion_type is PROMOTION_TYPE_FREE_TRIAL
      */
     freeTrialDuration?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration;
     /**
