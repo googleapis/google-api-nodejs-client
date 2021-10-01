@@ -1081,7 +1081,7 @@
       }
     }
   },
-  "revision": "20210918",
+  "revision": "20210925",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1516,6 +1516,31 @@
       },
       "type": "object"
     },
+    "MavenRepositoryConfig": {
+      "description": "MavenRepositoryConfig is maven related repository details. Provides additional configuration details for repositories of the maven format type.",
+      "id": "MavenRepositoryConfig",
+      "properties": {
+        "allowSnapshotOverwrites": {
+          "description": "The repository with this flag will allow publishing the same snapshot versions.",
+          "type": "boolean"
+        },
+        "versionPolicy": {
+          "description": "Version policy defines the versions that the registry will accept.",
+          "enum": [
+            "VERSION_POLICY_UNSPECIFIED",
+            "RELEASE",
+            "SNAPSHOT"
+          ],
+          "enumDescriptions": [
+            "VERSION_POLICY_UNSPECIFIED - the version policy is not defined. When the version policy is not defined, no validation is performed for the versions.",
+            "RELEASE - repository will accept only Release versions.",
+            "SNAPSHOT - repository will accept only Snapshot versions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -1647,6 +1672,10 @@
           },
           "description": "Labels with user-defined metadata. This field may contain up to 64 entries. Label keys and values may be no longer than 63 characters. Label keys must begin with a lowercase letter and may only contain lowercase letters, numeric characters, underscores, and dashes.",
           "type": "object"
+        },
+        "mavenConfig": {
+          "$ref": "MavenRepositoryConfig",
+          "description": "Maven repository config contains repository level configuration for the repositories of maven type."
         },
         "name": {
           "description": "The name of the repository, for example: \"projects/p1/locations/us-central1/repositories/repo1\".",
