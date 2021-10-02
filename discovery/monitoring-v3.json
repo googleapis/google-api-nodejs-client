@@ -1679,6 +1679,36 @@
                 "https://www.googleapis.com/auth/monitoring.write"
               ]
             },
+            "createService": {
+              "description": "Creates or adds data to one or more service time series. A service time series is a time series for a metric from a Google Cloud service. The response is empty if all time series in the request were written. If any time series could not be written, a corresponding failure message is included in the error response. This endpoint rejects writes to user-defined metrics. This method is only for use by Google Cloud services. Use projects.timeSeries.create instead.",
+              "flatPath": "v3/projects/{projectsId}/timeSeries:createService",
+              "httpMethod": "POST",
+              "id": "monitoring.projects.timeSeries.createService",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}/timeSeries:createService",
+              "request": {
+                "$ref": "CreateTimeSeriesRequest"
+              },
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/monitoring",
+                "https://www.googleapis.com/auth/monitoring.write"
+              ]
+            },
             "list": {
               "description": "Lists time series that match a filter. This method does not require a Workspace.",
               "flatPath": "v3/projects/{projectsId}/timeSeries",
@@ -2541,7 +2571,7 @@
       }
     }
   },
-  "revision": "20210830",
+  "revision": "20210926",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2726,7 +2756,7 @@
       "id": "AlertStrategy",
       "properties": {
         "autoClose": {
-          "description": "If an alert policy that was active has no data for this log, any open incidents will close",
+          "description": "If an alert policy that was active has no data for this long, any open incidents will close",
           "format": "google-duration",
           "type": "string"
         },
