@@ -214,7 +214,7 @@ export namespace sqladmin_v1beta4 {
      */
     replicationLogArchivingEnabled?: boolean | null;
     /**
-     * Start time for the daily backup configuration in UTC timezone in the 24 hour format - *HH:MM*.
+     * Start time for the daily backup configuration in UTC timezone in the 24 hour format - **HH:MM**.
      */
     startTime?: string | null;
     /**
@@ -289,7 +289,7 @@ export namespace sqladmin_v1beta4 {
      */
     instance?: string | null;
     /**
-     * This is always *sql#backupRun*.
+     * This is always **sql#backupRun**.
      */
     kind?: string | null;
     /**
@@ -326,7 +326,7 @@ export namespace sqladmin_v1beta4 {
      */
     items?: Schema$BackupRun[];
     /**
-     * This is always *sql#backupRunsList*.
+     * This is always **sql#backupRunsList**.
      */
     kind?: string | null;
     /**
@@ -347,7 +347,7 @@ export namespace sqladmin_v1beta4 {
      */
     binLogPosition?: string | null;
     /**
-     * This is always *sql#binLogCoordinates*.
+     * This is always **sql#binLogCoordinates**.
      */
     kind?: string | null;
   }
@@ -364,7 +364,7 @@ export namespace sqladmin_v1beta4 {
      */
     destinationInstanceName?: string | null;
     /**
-     * This is always *sql#cloneContext*.
+     * This is always **sql#cloneContext**.
      */
     kind?: string | null;
     /**
@@ -448,7 +448,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DatabaseFlags {
     /**
-     * The name of the flag. These flags are passed at instance startup, so include both server options and system variables. Flags are specified with underscores, not hyphens. For more information, see Configuring Database Flags in the Cloud SQL documentation.
+     * The name of the flag. These flags are passed at instance startup, so include both server options and system variables. Flags are specified with underscores, not hyphens. For more information, see [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags) in the Cloud SQL documentation.
      */
     name?: string | null;
     /**
@@ -461,7 +461,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DatabaseInstance {
     /**
-     *  *SECOND_GEN*: Cloud SQL database instance. *EXTERNAL*: A database server that is not managed by Google. This property is read-only; use the *tier* property in the *settings* object to determine the database type.
+     * The backend type. **SECOND_GEN**: Cloud SQL database instance. **EXTERNAL**: A database server that is not managed by Google. This property is read-only; use the **tier** property in the **settings** object to determine the database type.
      */
     backendType?: string | null;
     /**
@@ -473,11 +473,11 @@ export namespace sqladmin_v1beta4 {
      */
     createTime?: string | null;
     /**
-     * The current disk usage of the instance in bytes. This property has been deprecated. Use the "cloudsql.googleapis.com/database/disk/bytes_used" metric in Cloud Monitoring API instead. Please see this announcement for details.
+     * The current disk usage of the instance in bytes. This property has been deprecated. Use the "cloudsql.googleapis.com/database/disk/bytes_used" metric in Cloud Monitoring API instead. Please see [this announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ) for details.
      */
     currentDiskSize?: string | null;
     /**
-     * The database engine type and version. The *databaseVersion* field cannot be changed after instance creation. MySQL instances: *MYSQL_8_0*, *MYSQL_5_7* (default), or *MYSQL_5_6*. PostgreSQL instances: *POSTGRES_9_6*, *POSTGRES_10*, *POSTGRES_11*, *POSTGRES_12*, *POSTGRES_13* (default). SQL Server instances: *SQLSERVER_2019_STANDARD*, *SQLSERVER_2019_ENTERPRISE*, *SQLSERVER_2019_EXPRESS*, or *SQLSERVER_2019_WEB*, *SQLSERVER_2017_STANDARD* (default), *SQLSERVER_2017_ENTERPRISE*, *SQLSERVER_2017_EXPRESS*, or *SQLSERVER_2017_WEB*.
+     * The database engine type and version. The **databaseVersion** field cannot be changed after instance creation. * **MySQL instances**: MYSQL_8_0, MYSQL_5_7 (default), or MYSQL_5_6. * **PostgreSQL instances**: POSTGRES_9_6, POSTGRES_10, POSTGRES_11, POSTGRES_12, POSTGRES_13 (default). * **SQL Server instances**: SQLSERVER_2019_STANDARD, SQLSERVER_2019_ENTERPRISE, SQLSERVER_2019_EXPRESS, or SQLSERVER_2019_WEB, SQLSERVER_2017_STANDARD (default), SQLSERVER_2017_ENTERPRISE, SQLSERVER_2017_EXPRESS, or SQLSERVER_2017_WEB.
      */
     databaseVersion?: string | null;
     /**
@@ -489,7 +489,7 @@ export namespace sqladmin_v1beta4 {
      */
     diskEncryptionStatus?: Schema$DiskEncryptionStatus;
     /**
-     * This field is deprecated and will be removed from a future version of the API. Use the *settings.settingsVersion* field instead.
+     * This field is deprecated and will be removed from a future version of the API. Use the **settings.settingsVersion** field instead.
      */
     etag?: string | null;
     /**
@@ -501,7 +501,7 @@ export namespace sqladmin_v1beta4 {
      */
     gceZone?: string | null;
     /**
-     * The instance type. This can be one of the following. *CLOUD_SQL_INSTANCE*: A Cloud SQL instance that is not replicating from a primary instance. *ON_PREMISES_INSTANCE*: An instance running on the customer's premises. *READ_REPLICA_INSTANCE*: A Cloud SQL instance configured as a read-replica.
+     * The instance type. This can be one of the following: * **CLOUD_SQL_INSTANCE**: A Cloud SQL instance that is not replicating from a primary instance. * **ON_PREMISES_INSTANCE**: An instance running on the customer's premises. * **READ_REPLICA_INSTANCE**: A Cloud SQL instance configured as a read-replica.
      */
     instanceType?: string | null;
     /**
@@ -513,7 +513,7 @@ export namespace sqladmin_v1beta4 {
      */
     ipv6Address?: string | null;
     /**
-     * This is always *sql#instance*.
+     * This is always **sql#instance**.
      */
     kind?: string | null;
     /**
@@ -541,7 +541,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string | null;
     /**
-     * The geographical region. Can be *us-central* (*FIRST_GEN* instances only) *us-central1* (*SECOND_GEN* instances only) *asia-east1* or *europe-west1*. Defaults to *us-central* or *us-central1* depending on the instance type. The region cannot be changed after instance creation.
+     * The geographical region. Can be: * **us-central** (**FIRST_GEN** instances only) * **us-central1** (**SECOND_GEN** instances only) * **asia-east1** or **europe-west1**. Defaults to **us-central** or **us-central1** depending on the instance type. The region cannot be changed after instance creation.
      */
     region?: string | null;
     /**
@@ -585,7 +585,7 @@ export namespace sqladmin_v1beta4 {
      */
     settings?: Schema$Settings;
     /**
-     * The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance is running, or has been stopped by owner. *SUSPENDED*: The instance is not available, for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.
+     * The current serving state of the Cloud SQL instance. This can be one of the following: * **SQL_INSTANCE_STATE_UNSPECIFIED**: The state of the instance is unknown. * **RUNNABLE**: The instance is running, or has been stopped by owner. * **SUSPENDED**: The instance is not available, for example due to problems with billing. * **PENDING_DELETE**: The instance is being deleted. * **PENDING_CREATE**: The instance is being created. * **MAINTENANCE**: The instance is down for maintenance. * **FAILED**: The instance creation failed.
      */
     state?: string | null;
     /**
@@ -602,7 +602,7 @@ export namespace sqladmin_v1beta4 {
      */
     items?: Schema$Database[];
     /**
-     * This is always *sql#databasesList*.
+     * This is always **sql#databasesList**.
      */
     kind?: string | null;
   }
@@ -624,7 +624,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DemoteMasterContext {
     /**
-     * This is always *sql#demoteMasterContext*.
+     * This is always **sql#demoteMasterContext**.
      */
     kind?: string | null;
     /**
@@ -739,7 +739,7 @@ export namespace sqladmin_v1beta4 {
      */
     fileType?: string | null;
     /**
-     * This is always *sql#exportContext*.
+     * This is always **sql#exportContext**.
      */
     kind?: string | null;
     /**
@@ -764,7 +764,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$FailoverContext {
     /**
-     * This is always *sql#failoverContext*.
+     * This is always **sql#failoverContext**.
      */
     kind?: string | null;
     /**
@@ -846,6 +846,10 @@ export namespace sqladmin_v1beta4 {
      * Optional. Optional snapshot read timestamp to trade freshness for performance.
      */
     readTime?: string | null;
+    /**
+     * Optional. If set, it will contain the cert valid duration.
+     */
+    validDuration?: string | null;
   }
   /**
    * Ephemeral certificate creation request.
@@ -998,7 +1002,7 @@ export namespace sqladmin_v1beta4 {
      */
     items?: Schema$DatabaseInstance[];
     /**
-     * This is always *sql#instancesList*.
+     * This is always **sql#instancesList**.
      */
     kind?: string | null;
     /**
@@ -1020,7 +1024,7 @@ export namespace sqladmin_v1beta4 {
      */
     certs?: Schema$SslCert[];
     /**
-     * This is always *sql#instancesListServerCas*.
+     * This is always **sql#instancesListServerCas**.
      */
     kind?: string | null;
   }
@@ -1218,7 +1222,7 @@ export namespace sqladmin_v1beta4 {
      */
     hostPort?: string | null;
     /**
-     * This is always *sql#onPremisesConfiguration*.
+     * This is always **sql#onPremisesConfiguration**.
      */
     kind?: string | null;
     /**
@@ -1339,7 +1343,7 @@ export namespace sqladmin_v1beta4 {
      */
     items?: Schema$Operation[];
     /**
-     * This is always *sql#operationsList*.
+     * This is always **sql#operationsList**.
      */
     kind?: string | null;
     /**
@@ -1352,11 +1356,11 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ReplicaConfiguration {
     /**
-     * Specifies if the replica is the failover target. If the field is set to *true* the replica will be designated as a failover replica. In case the primary instance fails, the replica instance will be promoted as the new primary instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the primary instance.
+     * Specifies if the replica is the failover target. If the field is set to **true** the replica will be designated as a failover replica. In case the primary instance fails, the replica instance will be promoted as the new primary instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the primary instance.
      */
     failoverTarget?: boolean | null;
     /**
-     * This is always *sql#replicaConfiguration*.
+     * This is always **sql#replicaConfiguration**.
      */
     kind?: string | null;
     /**
@@ -1387,7 +1391,7 @@ export namespace sqladmin_v1beta4 {
      */
     instanceId?: string | null;
     /**
-     * This is always *sql#restoreBackupContext*.
+     * This is always **sql#restoreBackupContext**.
      */
     kind?: string | null;
     /**
@@ -1400,7 +1404,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$RotateServerCaContext {
     /**
-     * This is always *sql#rotateServerCaContext*.
+     * This is always **sql#rotateServerCaContext**.
      */
     kind?: string | null;
     /**
@@ -1535,7 +1539,7 @@ export namespace sqladmin_v1beta4 {
      */
     detail?: string | null;
     /**
-     * Can be *sql#externalSyncSettingError* or *sql#externalSyncSettingWarning*.
+     * Can be **sql#externalSyncSettingError** or **sql#externalSyncSettingWarning**.
      */
     kind?: string | null;
     /**
@@ -1593,7 +1597,7 @@ export namespace sqladmin_v1beta4 {
      */
     errors?: Schema$SqlExternalSyncSettingError[];
     /**
-     * This is always *sql#migrationSettingErrorList*.
+     * This is always **sql#migrationSettingErrorList**.
      */
     kind?: string | null;
     /**
@@ -1756,7 +1760,7 @@ export namespace sqladmin_v1beta4 {
      */
     clientCert?: Schema$SslCertDetail;
     /**
-     * This is always *sql#sslCertsInsert*.
+     * This is always **sql#sslCertsInsert**.
      */
     kind?: string | null;
     /**
@@ -1777,7 +1781,7 @@ export namespace sqladmin_v1beta4 {
      */
     items?: Schema$SslCert[];
     /**
-     * This is always *sql#sslCertsList*.
+     * This is always **sql#sslCertsList**.
      */
     kind?: string | null;
   }
@@ -1837,11 +1841,11 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$TruncateLogContext {
     /**
-     * This is always *sql#truncateLogContext*.
+     * This is always **sql#truncateLogContext**.
      */
     kind?: string | null;
     /**
-     * The type of log to truncate. Valid values are *MYSQL_GENERAL_TABLE* and *MYSQL_SLOW_TABLE*.
+     * The type of log to truncate. Valid values are **MYSQL_GENERAL_TABLE** and **MYSQL_SLOW_TABLE**.
      */
     logType?: string | null;
   }
@@ -1937,7 +1941,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Do the magic
      *   const res = await sql.backupRuns.delete({
-     *     // The ID of the backup run to delete. To find a backup run ID, use the list method.
+     *     // The ID of the backup run to delete. To find a backup run ID, use the [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns/list) method.
      *     id: 'placeholder-value',
      *     // Cloud SQL instance ID. This does not include the project ID.
      *     instance: 'placeholder-value',
@@ -2528,7 +2532,7 @@ export namespace sqladmin_v1beta4 {
   export interface Params$Resource$Backupruns$Delete
     extends StandardParameters {
     /**
-     * The ID of the backup run to delete. To find a backup run ID, use the list method.
+     * The ID of the backup run to delete. To find a backup run ID, use the [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns/list) method.
      */
     id?: string;
     /**
@@ -2636,7 +2640,8 @@ export namespace sqladmin_v1beta4 {
      *       // {
      *       //   "access_token": "my_access_token",
      *       //   "public_key": "my_public_key",
-     *       //   "readTime": "my_readTime"
+     *       //   "readTime": "my_readTime",
+     *       //   "validDuration": "my_validDuration"
      *       // }
      *     },
      *   });
@@ -4862,7 +4867,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Initiates a manual failover of a high availability (HA) primary instance to a standby instance, which becomes the primary instance. Users are then rerouted to the new primary. For more information, see the Overview of high availability page in the Cloud SQL documentation. If using Legacy HA (MySQL only), this causes the instance to failover to its failover replica instance.
+     * Initiates a manual failover of a high availability (HA) primary instance to a standby instance, which becomes the primary instance. Users are then rerouted to the new primary. For more information, see the [Overview of high availability](https://cloud.google.com/sql/docs/mysql/high-availability) page in the Cloud SQL documentation. If using Legacy HA (MySQL only), this causes the instance to failover to its failover replica instance.
      * @example
      * ```js
      * // Before running the sample:

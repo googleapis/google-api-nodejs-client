@@ -122,7 +122,7 @@
           ],
           "parameters": {
             "id": {
-              "description": "The ID of the backup run to delete. To find a backup run ID, use the list method.",
+              "description": "The ID of the backup run to delete. To find a backup run ID, use the [list](https://cloud.google.com/sql/docs/mysql/admin-api/rest/v1beta4/backupRuns/list) method.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -777,7 +777,7 @@
           ]
         },
         "failover": {
-          "description": "Initiates a manual failover of a high availability (HA) primary instance to a standby instance, which becomes the primary instance. Users are then rerouted to the new primary. For more information, see the Overview of high availability page in the Cloud SQL documentation. If using Legacy HA (MySQL only), this causes the instance to failover to its failover replica instance.",
+          "description": "Initiates a manual failover of a high availability (HA) primary instance to a standby instance, which becomes the primary instance. Users are then rerouted to the new primary. For more information, see the [Overview of high availability](https://cloud.google.com/sql/docs/mysql/high-availability) page in the Cloud SQL documentation. If using Legacy HA (MySQL only), this causes the instance to failover to its failover replica instance.",
           "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/failover",
           "httpMethod": "POST",
           "id": "sql.instances.failover",
@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "revision": "20210913",
+  "revision": "20210929",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -1964,7 +1964,7 @@
           "type": "boolean"
         },
         "startTime": {
-          "description": "Start time for the daily backup configuration in UTC timezone in the 24 hour format - *HH:MM*.",
+          "description": "Start time for the daily backup configuration in UTC timezone in the 24 hour format - **HH:MM**.",
           "type": "string"
         },
         "transactionLogRetentionDays": {
@@ -2069,7 +2069,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always *sql#backupRun*.",
+          "description": "This is always **sql#backupRun**.",
           "type": "string"
         },
         "location": {
@@ -2147,7 +2147,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "This is always *sql#backupRunsList*.",
+          "description": "This is always **sql#backupRunsList**.",
           "type": "string"
         },
         "nextPageToken": {
@@ -2171,7 +2171,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always *sql#binLogCoordinates*.",
+          "description": "This is always **sql#binLogCoordinates**.",
           "type": "string"
         }
       },
@@ -2190,7 +2190,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always *sql#cloneContext*.",
+          "description": "This is always **sql#cloneContext**.",
           "type": "string"
         },
         "pitrTimestampMs": {
@@ -2341,7 +2341,7 @@
       "id": "DatabaseFlags",
       "properties": {
         "name": {
-          "description": "The name of the flag. These flags are passed at instance startup, so include both server options and system variables. Flags are specified with underscores, not hyphens. For more information, see Configuring Database Flags in the Cloud SQL documentation.",
+          "description": "The name of the flag. These flags are passed at instance startup, so include both server options and system variables. Flags are specified with underscores, not hyphens. For more information, see [Configuring Database Flags](https://cloud.google.com/sql/docs/mysql/flags) in the Cloud SQL documentation.",
           "type": "string"
         },
         "value": {
@@ -2356,7 +2356,7 @@
       "id": "DatabaseInstance",
       "properties": {
         "backendType": {
-          "description": " *SECOND_GEN*: Cloud SQL database instance. *EXTERNAL*: A database server that is not managed by Google. This property is read-only; use the *tier* property in the *settings* object to determine the database type.",
+          "description": "The backend type. **SECOND_GEN**: Cloud SQL database instance. **EXTERNAL**: A database server that is not managed by Google. This property is read-only; use the **tier** property in the **settings** object to determine the database type.",
           "enum": [
             "SQL_BACKEND_TYPE_UNSPECIFIED",
             "FIRST_GEN",
@@ -2382,12 +2382,12 @@
           "type": "string"
         },
         "currentDiskSize": {
-          "description": "The current disk usage of the instance in bytes. This property has been deprecated. Use the \"cloudsql.googleapis.com/database/disk/bytes_used\" metric in Cloud Monitoring API instead. Please see this announcement for details.",
+          "description": "The current disk usage of the instance in bytes. This property has been deprecated. Use the \"cloudsql.googleapis.com/database/disk/bytes_used\" metric in Cloud Monitoring API instead. Please see [this announcement](https://groups.google.com/d/msg/google-cloud-sql-announce/I_7-F9EBhT0/BtvFtdFeAgAJ) for details.",
           "format": "int64",
           "type": "string"
         },
         "databaseVersion": {
-          "description": "The database engine type and version. The *databaseVersion* field cannot be changed after instance creation. MySQL instances: *MYSQL_8_0*, *MYSQL_5_7* (default), or *MYSQL_5_6*. PostgreSQL instances: *POSTGRES_9_6*, *POSTGRES_10*, *POSTGRES_11*, *POSTGRES_12*, *POSTGRES_13* (default). SQL Server instances: *SQLSERVER_2019_STANDARD*, *SQLSERVER_2019_ENTERPRISE*, *SQLSERVER_2019_EXPRESS*, or *SQLSERVER_2019_WEB*, *SQLSERVER_2017_STANDARD* (default), *SQLSERVER_2017_ENTERPRISE*, *SQLSERVER_2017_EXPRESS*, or *SQLSERVER_2017_WEB*.",
+          "description": "The database engine type and version. The **databaseVersion** field cannot be changed after instance creation. * **MySQL instances**: MYSQL_8_0, MYSQL_5_7 (default), or MYSQL_5_6. * **PostgreSQL instances**: POSTGRES_9_6, POSTGRES_10, POSTGRES_11, POSTGRES_12, POSTGRES_13 (default). * **SQL Server instances**: SQLSERVER_2019_STANDARD, SQLSERVER_2019_ENTERPRISE, SQLSERVER_2019_EXPRESS, or SQLSERVER_2019_WEB, SQLSERVER_2017_STANDARD (default), SQLSERVER_2017_ENTERPRISE, SQLSERVER_2017_EXPRESS, or SQLSERVER_2017_WEB.",
           "enum": [
             "SQL_DATABASE_VERSION_UNSPECIFIED",
             "MYSQL_5_1",
@@ -2441,7 +2441,7 @@
           "description": "Disk encryption status specific to an instance."
         },
         "etag": {
-          "description": "This field is deprecated and will be removed from a future version of the API. Use the *settings.settingsVersion* field instead.",
+          "description": "This field is deprecated and will be removed from a future version of the API. Use the **settings.settingsVersion** field instead.",
           "type": "string"
         },
         "failoverReplica": {
@@ -2463,7 +2463,7 @@
           "type": "string"
         },
         "instanceType": {
-          "description": "The instance type. This can be one of the following. *CLOUD_SQL_INSTANCE*: A Cloud SQL instance that is not replicating from a primary instance. *ON_PREMISES_INSTANCE*: An instance running on the customer's premises. *READ_REPLICA_INSTANCE*: A Cloud SQL instance configured as a read-replica.",
+          "description": "The instance type. This can be one of the following: * **CLOUD_SQL_INSTANCE**: A Cloud SQL instance that is not replicating from a primary instance. * **ON_PREMISES_INSTANCE**: An instance running on the customer's premises. * **READ_REPLICA_INSTANCE**: A Cloud SQL instance configured as a read-replica.",
           "enum": [
             "SQL_INSTANCE_TYPE_UNSPECIFIED",
             "CLOUD_SQL_INSTANCE",
@@ -2490,7 +2490,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always *sql#instance*.",
+          "description": "This is always **sql#instance**.",
           "type": "string"
         },
         "masterInstanceName": {
@@ -2519,7 +2519,7 @@
           "type": "string"
         },
         "region": {
-          "description": "The geographical region. Can be *us-central* (*FIRST_GEN* instances only) *us-central1* (*SECOND_GEN* instances only) *asia-east1* or *europe-west1*. Defaults to *us-central* or *us-central1* depending on the instance type. The region cannot be changed after instance creation.",
+          "description": "The geographical region. Can be: * **us-central** (**FIRST_GEN** instances only) * **us-central1** (**SECOND_GEN** instances only) * **asia-east1** or **europe-west1**. Defaults to **us-central** or **us-central1** depending on the instance type. The region cannot be changed after instance creation.",
           "type": "string"
         },
         "replicaConfiguration": {
@@ -2566,7 +2566,7 @@
           "description": "The user settings."
         },
         "state": {
-          "description": "The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance is running, or has been stopped by owner. *SUSPENDED*: The instance is not available, for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.",
+          "description": "The current serving state of the Cloud SQL instance. This can be one of the following: * **SQL_INSTANCE_STATE_UNSPECIFIED**: The state of the instance is unknown. * **RUNNABLE**: The instance is running, or has been stopped by owner. * **SUSPENDED**: The instance is not available, for example due to problems with billing. * **PENDING_DELETE**: The instance is being deleted. * **PENDING_CREATE**: The instance is being created. * **MAINTENANCE**: The instance is down for maintenance. * **FAILED**: The instance creation failed.",
           "enum": [
             "SQL_INSTANCE_STATE_UNSPECIFIED",
             "RUNNABLE",
@@ -2625,7 +2625,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "This is always *sql#databasesList*.",
+          "description": "This is always **sql#databasesList**.",
           "type": "string"
         }
       },
@@ -2651,7 +2651,7 @@
       "id": "DemoteMasterContext",
       "properties": {
         "kind": {
-          "description": "This is always *sql#demoteMasterContext*.",
+          "description": "This is always **sql#demoteMasterContext**.",
           "type": "string"
         },
         "masterInstanceName": {
@@ -2807,7 +2807,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always *sql#exportContext*.",
+          "description": "This is always **sql#exportContext**.",
           "type": "string"
         },
         "offload": {
@@ -2854,7 +2854,7 @@
       "id": "FailoverContext",
       "properties": {
         "kind": {
-          "description": "This is always *sql#failoverContext*.",
+          "description": "This is always **sql#failoverContext**.",
           "type": "string"
         },
         "settingsVersion": {
@@ -3020,6 +3020,11 @@
           "description": "Optional. Optional snapshot read timestamp to trade freshness for performance.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "validDuration": {
+          "description": "Optional. If set, it will contain the cert valid duration.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3053,7 +3058,7 @@
                   "type": "string"
                 },
                 "pvkPath": {
-                  "description": "Path to the Certificate Private Key (.pvk) in Cloud Storage, in the form *gs://bucketName/fileName*. The instance must have write permissions to the bucket and read access to the file.",
+                  "description": "Path to the Certificate Private Key (.pvk) in Cloud Storage, in the form **gs://bucketName/fileName**. The instance must have write permissions to the bucket and read access to the file.",
                   "type": "string"
                 }
               },
@@ -3245,7 +3250,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "This is always *sql#instancesList*.",
+          "description": "This is always **sql#instancesList**.",
           "type": "string"
         },
         "nextPageToken": {
@@ -3277,7 +3282,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "This is always *sql#instancesListServerCas*.",
+          "description": "This is always **sql#instancesListServerCas**.",
           "type": "string"
         }
       },
@@ -3530,7 +3535,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always *sql#onPremisesConfiguration*.",
+          "description": "This is always **sql#onPremisesConfiguration**.",
           "type": "string"
         },
         "password": {
@@ -3756,7 +3761,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "This is always *sql#operationsList*.",
+          "description": "This is always **sql#operationsList**.",
           "type": "string"
         },
         "nextPageToken": {
@@ -3771,11 +3776,11 @@
       "id": "ReplicaConfiguration",
       "properties": {
         "failoverTarget": {
-          "description": "Specifies if the replica is the failover target. If the field is set to *true* the replica will be designated as a failover replica. In case the primary instance fails, the replica instance will be promoted as the new primary instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the primary instance.",
+          "description": "Specifies if the replica is the failover target. If the field is set to **true** the replica will be designated as a failover replica. In case the primary instance fails, the replica instance will be promoted as the new primary instance. Only one replica can be specified as failover target, and the replica has to be in different zone with the primary instance.",
           "type": "boolean"
         },
         "kind": {
-          "description": "This is always *sql#replicaConfiguration*.",
+          "description": "This is always **sql#replicaConfiguration**.",
           "type": "string"
         },
         "mysqlReplicaConfiguration": {
@@ -3826,7 +3831,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always *sql#restoreBackupContext*.",
+          "description": "This is always **sql#restoreBackupContext**.",
           "type": "string"
         },
         "project": {
@@ -3841,7 +3846,7 @@
       "id": "RotateServerCaContext",
       "properties": {
         "kind": {
-          "description": "This is always *sql#rotateServerCaContext*.",
+          "description": "This is always **sql#rotateServerCaContext**.",
           "type": "string"
         },
         "nextVersion": {
@@ -4051,7 +4056,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "Can be *sql#externalSyncSettingError* or *sql#externalSyncSettingWarning*.",
+          "description": "Can be **sql#externalSyncSettingError** or **sql#externalSyncSettingWarning**.",
           "type": "string"
         },
         "type": {
@@ -4080,7 +4085,9 @@
             "UNSUPPORTED_TABLE_DEFINITION",
             "UNSUPPORTED_DEFINER",
             "SQLSERVER_SERVERNAME_MISMATCH",
-            "PRIMARY_ALREADY_SETUP"
+            "PRIMARY_ALREADY_SETUP",
+            "UNSUPPORTED_BINLOG_FORMAT",
+            "BINLOG_RETENTION_SETTING"
           ],
           "enumDescriptions": [
             "",
@@ -4106,7 +4113,9 @@
             "The table definition is not support due to missing primary key or replica identity, applicable for postgres.",
             "The customer has a definer that will break EM setup.",
             "SQL Server @@SERVERNAME does not match actual host name",
-            "The primary instance has been setup and will fail the setup."
+            "The primary instance has been setup and will fail the setup.",
+            "The primary instance has unsupported binary log format.",
+            "The primary instance's binary log retention setting."
           ],
           "type": "string"
         }
@@ -4196,7 +4205,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "This is always *sql#migrationSettingErrorList*.",
+          "description": "This is always **sql#migrationSettingErrorList**.",
           "type": "string"
         },
         "warnings": {
@@ -4403,7 +4412,7 @@
           "description": "The new client certificate and private key."
         },
         "kind": {
-          "description": "This is always *sql#sslCertsInsert*.",
+          "description": "This is always **sql#sslCertsInsert**.",
           "type": "string"
         },
         "operation": {
@@ -4429,7 +4438,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "This is always *sql#sslCertsList*.",
+          "description": "This is always **sql#sslCertsList**.",
           "type": "string"
         }
       },
@@ -4505,11 +4514,11 @@
       "id": "TruncateLogContext",
       "properties": {
         "kind": {
-          "description": "This is always *sql#truncateLogContext*.",
+          "description": "This is always **sql#truncateLogContext**.",
           "type": "string"
         },
         "logType": {
-          "description": "The type of log to truncate. Valid values are *MYSQL_GENERAL_TABLE* and *MYSQL_SLOW_TABLE*.",
+          "description": "The type of log to truncate. Valid values are **MYSQL_GENERAL_TABLE** and **MYSQL_SLOW_TABLE**.",
           "type": "string"
         }
       },
