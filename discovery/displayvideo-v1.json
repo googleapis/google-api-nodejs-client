@@ -21,7 +21,7 @@
   "baseUrl": "https://displayvideo.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Display Video",
-  "description": "Display & Video 360 API allows users to manage and create campaigns and reports.",
+  "description": "Display & Video 360 API allows users to automate complex Display & Video 360 workflows, such as creating insertion orders and setting targeting options for individual line items.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/display-video/",
   "fullyEncodeReservedExpansion": true,
@@ -7317,7 +7317,7 @@
       }
     }
   },
-  "revision": "20210920",
+  "revision": "20210930",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -9770,7 +9770,8 @@
             "SDF_VERSION_5",
             "SDF_VERSION_5_1",
             "SDF_VERSION_5_2",
-            "SDF_VERSION_5_3"
+            "SDF_VERSION_5_3",
+            "SDF_VERSION_5_4"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -9781,7 +9782,8 @@
             "SDF version 5.",
             "SDF version 5.1",
             "SDF version 5.2",
-            "SDF version 5.3"
+            "SDF version 5.3",
+            "SDF version 5.4"
           ],
           "type": "string"
         }
@@ -15690,7 +15692,8 @@
             "SDF_VERSION_5",
             "SDF_VERSION_5_1",
             "SDF_VERSION_5_2",
-            "SDF_VERSION_5_3"
+            "SDF_VERSION_5_3",
+            "SDF_VERSION_5_4"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -15701,7 +15704,8 @@
             "SDF version 5.",
             "SDF version 5.1",
             "SDF version 5.2",
-            "SDF version 5.3"
+            "SDF version 5.3",
+            "SDF version 5.4"
           ],
           "type": "string"
         }
@@ -15744,7 +15748,8 @@
             "SDF_VERSION_5",
             "SDF_VERSION_5_1",
             "SDF_VERSION_5_2",
-            "SDF_VERSION_5_3"
+            "SDF_VERSION_5_3",
+            "SDF_VERSION_5_4"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -15755,7 +15760,8 @@
             "SDF version 5.",
             "SDF version 5.1",
             "SDF version 5.2",
-            "SDF version 5.3"
+            "SDF version 5.3",
+            "SDF version 5.4"
           ],
           "type": "string"
         }
