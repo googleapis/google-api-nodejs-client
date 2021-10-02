@@ -44,6 +44,10 @@
     "package": "@google-cloud/channel"
   },
   {
+    "api": "composer",
+    "package": "@google-cloud/orchestration-airflow"
+  },
+  {
     "api": "datacatalog",
     "package": "@google-cloud/datacatalog"
   },

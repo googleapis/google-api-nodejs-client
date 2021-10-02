@@ -79,54 +79,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "adexchangebuyer:v1.2",
-      "name": "adexchangebuyer",
-      "version": "v1.2",
-      "title": "Ad Exchange Buyer API",
-      "description": "Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/adexchangebuyer/v1.2/rest",
-      "discoveryLink": "./apis/adexchangebuyer/v1.2/rest",
-      "icons": {
-        "x16": "https://www.google.com/images/icons/product/doubleclick-16.gif",
-        "x32": "https://www.google.com/images/icons/product/doubleclick-32.gif"
-      },
-      "documentationLink": "https://developers.google.com/ad-exchange/buyer-rest",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "adexchangebuyer:v1.3",
-      "name": "adexchangebuyer",
-      "version": "v1.3",
-      "title": "Ad Exchange Buyer API",
-      "description": "Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/adexchangebuyer/v1.3/rest",
-      "discoveryLink": "./apis/adexchangebuyer/v1.3/rest",
-      "icons": {
-        "x16": "https://www.google.com/images/icons/product/doubleclick-16.gif",
-        "x32": "https://www.google.com/images/icons/product/doubleclick-32.gif"
-      },
-      "documentationLink": "https://developers.google.com/ad-exchange/buyer-rest",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "adexchangebuyer:v1.4",
-      "name": "adexchangebuyer",
-      "version": "v1.4",
-      "title": "Ad Exchange Buyer API",
-      "description": "Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/adexchangebuyer/v1.4/rest",
-      "discoveryLink": "./apis/adexchangebuyer/v1.4/rest",
-      "icons": {
-        "x16": "https://www.google.com/images/icons/product/doubleclick-16.gif",
-        "x32": "https://www.google.com/images/icons/product/doubleclick-32.gif"
-      },
-      "documentationLink": "https://developers.google.com/ad-exchange/buyer-rest",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "adexchangebuyer2:v2beta1",
       "name": "adexchangebuyer2",
       "version": "v2beta1",
