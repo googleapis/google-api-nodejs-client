@@ -626,7 +626,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a view on a log bucket.",
+                      "description": "Deletes a view on a log bucket. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can delete the view. If this occurs, please try again in a few minutes.",
                       "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "DELETE",
                       "id": "logging.billingAccounts.locations.buckets.views.delete",
@@ -691,7 +691,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter.",
+                      "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can update the view. If this occurs, please try again in a few minutes.",
                       "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "PATCH",
                       "id": "logging.billingAccounts.locations.buckets.views.patch",
@@ -1845,7 +1845,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a view on a log bucket.",
+                      "description": "Deletes a view on a log bucket. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can delete the view. If this occurs, please try again in a few minutes.",
                       "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "DELETE",
                       "id": "logging.folders.locations.buckets.views.delete",
@@ -1938,7 +1938,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter.",
+                      "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can update the view. If this occurs, please try again in a few minutes.",
                       "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "PATCH",
                       "id": "logging.folders.locations.buckets.views.patch",
@@ -2679,7 +2679,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a view on a log bucket.",
+                  "description": "Deletes a view on a log bucket. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can delete the view. If this occurs, please try again in a few minutes.",
                   "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                   "httpMethod": "DELETE",
                   "id": "logging.locations.buckets.views.delete",
@@ -2772,7 +2772,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter.",
+                  "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can update the view. If this occurs, please try again in a few minutes.",
                   "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.locations.buckets.views.patch",
@@ -3562,7 +3562,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a view on a log bucket.",
+                      "description": "Deletes a view on a log bucket. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can delete the view. If this occurs, please try again in a few minutes.",
                       "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "DELETE",
                       "id": "logging.organizations.locations.buckets.views.delete",
@@ -3655,7 +3655,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter.",
+                      "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can update the view. If this occurs, please try again in a few minutes.",
                       "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "PATCH",
                       "id": "logging.organizations.locations.buckets.views.patch",
@@ -4559,7 +4559,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a view on a log bucket.",
+                      "description": "Deletes a view on a log bucket. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can delete the view. If this occurs, please try again in a few minutes.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "DELETE",
                       "id": "logging.projects.locations.buckets.views.delete",
@@ -4652,7 +4652,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter.",
+                      "description": "Updates a view on a log bucket. This method replaces the following fields in the existing view with values from the new view: filter. If an UNAVAILABLE error is returned, this indicates that system is not in a state where it can update the view. If this occurs, please try again in a few minutes.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views/{viewsId}",
                       "httpMethod": "PATCH",
                       "id": "logging.projects.locations.buckets.views.patch",
@@ -5482,7 +5482,7 @@
       }
     }
   },
-  "revision": "20210817",
+  "revision": "20210922",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -6508,10 +6508,6 @@
           "description": "The resource name of the view.For example:projects/my-project/locations/global/buckets/my-bucket/views/my-view",
           "type": "string"
         },
-        "schema": {
-          "$ref": "TableSchema",
-          "description": "Describes the schema of the logs stored in the bucket that are accessible via this view.This field is only populated for views in analytics-enabled buckets."
-        },
         "updateTime": {
           "description": "Output only. The last update timestamp of the view.",
           "format": "google-datetime",
@@ -7036,50 +7032,6 @@
           "description": "A lower bound on the count of entries omitted due to reason.",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "TableFieldSchema": {
-      "description": "A field in TableSchema. The fields describe the static fields in the LogEntry. Any dynamic fields generated by the customer in fields like labels and jsonPayload are not listed in the schema as they use a native JSON type field.",
-      "id": "TableFieldSchema",
-      "properties": {
-        "description": {
-          "description": "Optional. The field description.",
-          "type": "string"
-        },
-        "fields": {
-          "description": "Optional. Describes the nested schema fields if the type property is set to RECORD.",
-          "items": {
-            "$ref": "TableFieldSchema"
-          },
-          "type": "array"
-        },
-        "mode": {
-          "description": "Optional. The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.",
-          "type": "string"
-        },
-        "name": {
-          "description": "Required. The field name corresponding to fields in the LogEntry.",
-          "type": "string"
-        },
-        "type": {
-          "description": "Required. The field data type. Possible values include: STRING INTEGER (or INT64) FLOAT (or FLOAT64) BOOLEAN (or BOOL) TIMESTAMP RECORD (or STRUCT)Use of RECORD/STRUT indicates that the field contains a nested schema.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TableSchema": {
-      "description": "Schema of a table containing logs.",
-      "id": "TableSchema",
-      "properties": {
-        "fields": {
-          "description": "Describes the fields in a table.",
-          "items": {
-            "$ref": "TableFieldSchema"
-          },
-          "type": "array"
         }
       },
       "type": "object"
