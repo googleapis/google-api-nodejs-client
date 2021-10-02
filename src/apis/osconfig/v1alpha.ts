@@ -420,7 +420,7 @@ export namespace osconfig_v1alpha {
     version?: string | null;
   }
   /**
-   * Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class="external" \}
+   * Contains information about a Windows application that is retrieved from the Windows Registry. For more information about these fields, see Windows Installer Properties for the Uninstall Registry.
    */
   export interface Schema$InventoryWindowsApplication {
     /**

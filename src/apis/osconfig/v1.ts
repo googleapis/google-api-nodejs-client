@@ -143,6 +143,10 @@ export namespace osconfig_v1 {
     type?: string | null;
   }
   /**
+   * The request message for Operations.CancelOperation.
+   */
+  export interface Schema$CancelOperationRequest {}
+  /**
    * Message for canceling a patch job.
    */
   export interface Schema$CancelPatchJobRequest {}
@@ -467,7 +471,7 @@ export namespace osconfig_v1 {
     version?: string | null;
   }
   /**
-   * Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class="external" \}
+   * Contains information about a Windows application that is retrieved from the Windows Registry. For more information about these fields, see Windows Installer Properties for the Uninstall Registry.
    */
   export interface Schema$InventoryWindowsApplication {
     /**
@@ -599,6 +603,19 @@ export namespace osconfig_v1 {
      * The pagination token to retrieve the next page of inventory objects.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * A response message for listing OS Policy assignment reports including the page of results and page token.
+   */
+  export interface Schema$ListOSPolicyAssignmentReportsResponse {
+    /**
+     * The pagination token to retrieve the next page of OS policy assignment report objects.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of OS policy assignment reports.
+     */
+    osPolicyAssignmentReports?: Schema$OSPolicyAssignmentReport[];
   }
   /**
    * A response message for listing all revisions for a OS policy assignment.
@@ -874,6 +891,103 @@ export namespace osconfig_v1 {
      * Rollout update time
      */
     rolloutUpdateTime?: string | null;
+  }
+  /**
+   * A report of the OS policy assignment status for a given instance.
+   */
+  export interface Schema$OSPolicyAssignmentReport {
+    /**
+     * The Compute Engine VM instance name.
+     */
+    instance?: string | null;
+    /**
+     * Unique identifier of the last attempted run to apply the OS policies associated with this assignment on the VM. This ID is logged by the OS Config agent while applying the OS policies associated with this assignment on the VM. NOTE: If the service is unable to successfully connect to the agent for this run, then this id will not be available in the agent logs.
+     */
+    lastRunId?: string | null;
+    /**
+     * The `OSPolicyAssignmentReport` API resource name. Format: `projects/{project_number\}/locations/{location\}/instances/{instance_id\}/osPolicyAssignments/{os_policy_assignment_id\}/report`
+     */
+    name?: string | null;
+    /**
+     * Reference to the `OSPolicyAssignment` API resource that the `OSPolicy` belongs to. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id@revision_id\}`
+     */
+    osPolicyAssignment?: string | null;
+    /**
+     * Compliance data for each `OSPolicy` that is applied to the VM.
+     */
+    osPolicyCompliances?: Schema$OSPolicyAssignmentReportOSPolicyCompliance[];
+    /**
+     * Timestamp for when the report was last generated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Compliance data for an OS policy
+   */
+  export interface Schema$OSPolicyAssignmentReportOSPolicyCompliance {
+    /**
+     * The compliance state of the OS policy.
+     */
+    complianceState?: string | null;
+    /**
+     * The reason for the OS policy to be in an unknown compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. If populated, the field can contain one of the following values: * `vm-not-running`: The VM was not running. * `os-policies-not-supported-by-agent`: The version of the OS Config agent running on the VM does not support running OS policies. * `no-agent-detected`: The OS Config agent is not detected for the VM. * `resource-execution-errors`: The OS Config agent encountered errors while executing one or more resources in the policy. See `os_policy_resource_compliances` for details. * `task-timeout`: The task sent to the agent to apply the policy timed out. * `unexpected-agent-state`: The OS Config agent did not report the final status of the task that attempted to apply the policy. Instead, the agent unexpectedly started working on a different task. This mostly happens when the agent or VM unexpectedly restarts while applying OS policies. * `internal-service-errors`: Internal service errors were encountered while attempting to apply the policy.
+     */
+    complianceStateReason?: string | null;
+    /**
+     * The OS policy id
+     */
+    osPolicyId?: string | null;
+    /**
+     * Compliance data for each resource within the policy that is applied to the VM.
+     */
+    osPolicyResourceCompliances?: Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance[];
+  }
+  /**
+   * Compliance data for an OS policy resource.
+   */
+  export interface Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceCompliance {
+    /**
+     * The compliance state of the resource.
+     */
+    complianceState?: string | null;
+    /**
+     * A reason for the resource to be in the given compliance state. This field is always populated when `compliance_state` is `UNKNOWN`. The following values are supported when `compliance_state == UNKNOWN` * `execution-errors`: Errors were encountered by the agent while executing the resource and the compliance state couldn't be determined. * `execution-skipped-by-agent`: Resource execution was skipped by the agent because errors were encountered while executing prior resources in the OS policy. * `os-policy-execution-attempt-failed`: The execution of the OS policy containing this resource failed and the compliance state couldn't be determined.
+     */
+    complianceStateReason?: string | null;
+    /**
+     * Ordered list of configuration completed by the agent for the OS policy resource.
+     */
+    configSteps?: Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep[];
+    /**
+     * ExecResource specific output.
+     */
+    execResourceOutput?: Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput;
+    /**
+     * The ID of the OS policy resource.
+     */
+    osPolicyResourceId?: string | null;
+  }
+  /**
+   * ExecResource specific output.
+   */
+  export interface Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceExecResourceOutput {
+    /**
+     * Output from enforcement phase output file (if run). Output size is limited to 100K bytes.
+     */
+    enforcementOutput?: string | null;
+  }
+  /**
+   * Step performed by the OS Config agent for configuring an `OSPolicy` resource to its desired state.
+   */
+  export interface Schema$OSPolicyAssignmentReportOSPolicyComplianceOSPolicyResourceComplianceOSPolicyResourceConfigStep {
+    /**
+     * An error message recorded during the execution of this step. Only populated if errors were encountered during this step execution.
+     */
+    errorMessage?: string | null;
+    /**
+     * Configuration step type.
+     */
+    type?: string | null;
   }
   /**
    * Message to configure the rollout at the zonal level for the OS policy assignment.
@@ -1850,12 +1964,17 @@ export namespace osconfig_v1 {
   export class Resource$Projects$Locations$Instances {
     context: APIRequestContext;
     inventories: Resource$Projects$Locations$Instances$Inventories;
+    osPolicyAssignments: Resource$Projects$Locations$Instances$Ospolicyassignments;
     vulnerabilityReports: Resource$Projects$Locations$Instances$Vulnerabilityreports;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.inventories = new Resource$Projects$Locations$Instances$Inventories(
         this.context
       );
+      this.osPolicyAssignments =
+        new Resource$Projects$Locations$Instances$Ospolicyassignments(
+          this.context
+        );
       this.vulnerabilityReports =
         new Resource$Projects$Locations$Instances$Vulnerabilityreports(
           this.context
@@ -2181,6 +2300,343 @@ export namespace osconfig_v1 {
     view?: string;
   }
 
+  export class Resource$Projects$Locations$Instances$Ospolicyassignments {
+    context: APIRequestContext;
+    reports: Resource$Projects$Locations$Instances$Ospolicyassignments$Reports;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.reports =
+        new Resource$Projects$Locations$Instances$Ospolicyassignments$Reports(
+          this.context
+        );
+    }
+
+    /**
+     * Get the OS policy asssignment report for the specified Compute Engine VM instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.instances.osPolicyAssignments.getReport({
+     *       // Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
+     *       name: 'projects/my-project/locations/my-location/instances/my-instance/osPolicyAssignments/my-osPolicyAssignment/report',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "instance": "my_instance",
+     *   //   "lastRunId": "my_lastRunId",
+     *   //   "name": "my_name",
+     *   //   "osPolicyAssignment": "my_osPolicyAssignment",
+     *   //   "osPolicyCompliances": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getReport(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getReport(
+      params?: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OSPolicyAssignmentReport>;
+    getReport(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getReport(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>,
+      callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+    ): void;
+    getReport(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+      callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+    ): void;
+    getReport(
+      callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+    ): void;
+    getReport(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport
+        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OSPolicyAssignmentReport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$OSPolicyAssignmentReport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OSPolicyAssignmentReport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OSPolicyAssignmentReport>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport
+    extends StandardParameters {
+    /**
+     * Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Locations$Instances$Ospolicyassignments$Reports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List OS policy asssignment reports for all Compute Engine VM instances in the specified zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.instances.osPolicyAssignments.reports.list(
+     *       {
+     *         // If provided, this field specifies the criteria that must be met by the `OSPolicyAssignmentReport` API resource that is included in the response.
+     *         filter: 'placeholder-value',
+     *         // The maximum number of results to return.
+     *         pageSize: 'placeholder-value',
+     *         // A pagination token returned from a previous call to the `ListOSPolicyAssignmentReports` method that indicates where this listing should continue from.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/reports` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either `instance-name`, `instance-id`, or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all instances in the project/location. For `{assignment\}`, either `assignment-id` or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all OSPolicyAssignments in the project/location. Either {instance\} or {assignment\} must be `-`. For example: `projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/-/reports` returns all reports for the instance `projects/{project\}/locations/{location\}/instances/-/osPolicyAssignments/{assignment-id\}/reports` returns all the reports for the given assignment across all instances. `projects/{project\}/locations/{location\}/instances/-/osPolicyAssignments/-/reports` returns all the reports for all assignments across all instances.
+     *         parent:
+     *           'projects/my-project/locations/my-location/instances/my-instance/osPolicyAssignments/my-osPolicyAssignment',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "osPolicyAssignmentReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOSPolicyAssignmentReportsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List,
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOSPolicyAssignmentReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOSPolicyAssignmentReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/reports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOSPolicyAssignmentReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOSPolicyAssignmentReportsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List
+    extends StandardParameters {
+    /**
+     * If provided, this field specifies the criteria that must be met by the `OSPolicyAssignmentReport` API resource that is included in the response.
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * A pagination token returned from a previous call to the `ListOSPolicyAssignmentReports` method that indicates where this listing should continue from.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: `projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/reports` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance\}`, either `instance-name`, `instance-id`, or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all instances in the project/location. For `{assignment\}`, either `assignment-id` or `-` can be provided. If '-' is provided, the response will include OSPolicyAssignmentReports for all OSPolicyAssignments in the project/location. Either {instance\} or {assignment\} must be `-`. For example: `projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/-/reports` returns all reports for the instance `projects/{project\}/locations/{location\}/instances/-/osPolicyAssignments/{assignment-id\}/reports` returns all the reports for the given assignment across all instances. `projects/{project\}/locations/{location\}/instances/-/osPolicyAssignments/-/reports` returns all the reports for all assignments across all instances.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Instances$Vulnerabilityreports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2497,8 +2953,13 @@ export namespace osconfig_v1 {
 
   export class Resource$Projects$Locations$Ospolicyassignments {
     context: APIRequestContext;
+    operations: Resource$Projects$Locations$Ospolicyassignments$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.operations =
+        new Resource$Projects$Locations$Ospolicyassignments$Operations(
+          this.context
+        );
     }
 
     /**
@@ -3448,6 +3909,297 @@ export namespace osconfig_v1 {
      * Request body metadata
      */
     requestBody?: Schema$OSPolicyAssignment;
+  }
+
+  export class Resource$Projects$Locations$Ospolicyassignments$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.osPolicyAssignments.operations.cancel({
+     *       // The name of the operation resource to be cancelled.
+     *       name: 'projects/my-project/locations/my-location/osPolicyAssignments/my-osPolicyAssignment/operations/my-operation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await osconfig.projects.locations.osPolicyAssignments.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/osPolicyAssignments/my-osPolicyAssignment/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    get(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Ospolicyassignments$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Patchdeployments {

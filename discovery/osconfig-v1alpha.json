@@ -686,7 +686,7 @@
       }
     }
   },
-  "revision": "20210914",
+  "revision": "20210925",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -1179,7 +1179,7 @@
       "type": "object"
     },
     "InventoryWindowsApplication": {
-      "description": "Contains information about a Windows application as retrieved from the Windows Registry. For more information about these fields, see [Windows Installer Properties for the Uninstall Registry](https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key){: class=\"external\" }",
+      "description": "Contains information about a Windows application that is retrieved from the Windows Registry. For more information about these fields, see Windows Installer Properties for the Uninstall Registry.",
       "id": "InventoryWindowsApplication",
       "properties": {
         "displayName": {
