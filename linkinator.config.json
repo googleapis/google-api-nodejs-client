@@ -1,11 +1,6 @@
 {
   "recurse": true,
-  "skip": [
-    "https://codecov.io/gh/googleapis/",
-    "www.googleapis.com",
-    "david-dm.org/+",
-    "img.shields.io"
-  ],
+  "paths": ["README.md",
   "silent": true,
   "concurrency": 10
 }
