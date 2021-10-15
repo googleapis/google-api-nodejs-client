@@ -1,6 +1,6 @@
 {
   "recurse": true,
-  "paths": ["README.md",
+  "paths": ["README.md"],
   "silent": true,
   "concurrency": 10
 }
