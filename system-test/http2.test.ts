@@ -32,5 +32,5 @@ describe('http2', () => {
       project: projectId,
     });
     assert.ok(res.data);
-  });
+  }).timeout('30s');
 });
