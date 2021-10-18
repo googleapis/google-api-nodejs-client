@@ -180,6 +180,19 @@ export namespace analyticsadmin_v1alpha {
     propertySummaries?: Schema$GoogleAnalyticsAdminV1alphaPropertySummary[];
   }
   /**
+   * Request message for AcknowledgeUserDataCollection RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionRequest {
+    /**
+     * Required. An acknowledgement that the caller of this method understands the terms of user data collection. This field must contain the exact value: "I acknowledge that I have the necessary privacy disclosures and rights from my end users for the collection and processing of their data, including the association of such data with the visitation information Google Analytics collects from my site and/or app property."
+     */
+    acknowledgement?: string | null;
+  }
+  /**
+   * Response message for AcknowledgeUserDataCollection RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse {}
+  /**
    * A resource message representing a Google Analytics Android app stream.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream {
@@ -234,11 +247,11 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAuditUserLink {
     /**
-     * Roles directly assigned to this user for this entity. Format: predefinedRoles/read Excludes roles that are inherited from an account (if this is for a property), group, or organization admin role.
+     * Roles directly assigned to this user for this entity. Format: predefinedRoles/viewer Excludes roles that are inherited from an account (if this is for a property), group, or organization admin role.
      */
     directRoles?: string[] | null;
     /**
-     * Union of all permissions a user has at this account or property (includes direct permissions, group-inherited permissions, etc.). Format: predefinedRoles/read
+     * Union of all permissions a user has at this account or property (includes direct permissions, group-inherited permissions, etc.). Format: predefinedRoles/viewer
      */
     effectiveRoles?: string[] | null;
     /**
@@ -1217,7 +1230,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaUserLink {
     /**
-     * Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/read predefinedRoles/collaborate predefinedRoles/edit predefinedRoles/admin Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.
+     * Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/viewer predefinedRoles/analyst predefinedRoles/editor predefinedRoles/admin predefinedRoles/no-cost-data predefinedRoles/no-revenue-data Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.
      */
     directRoles?: string[] | null;
     /**
@@ -4136,6 +4149,150 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or via this API) before MeasurementProtocolSecret resources may be created.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.acknowledgeUserDataCollection({
+     *     // Required. The property for which to acknowledge user data collection.
+     *     property: 'properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acknowledgement": "my_acknowledgement"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    acknowledgeUserDataCollection(
+      params: Params$Resource$Properties$Acknowledgeuserdatacollection,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    acknowledgeUserDataCollection(
+      params?: Params$Resource$Properties$Acknowledgeuserdatacollection,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>;
+    acknowledgeUserDataCollection(
+      params: Params$Resource$Properties$Acknowledgeuserdatacollection,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    acknowledgeUserDataCollection(
+      params: Params$Resource$Properties$Acknowledgeuserdatacollection,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
+    ): void;
+    acknowledgeUserDataCollection(
+      params: Params$Resource$Properties$Acknowledgeuserdatacollection,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
+    ): void;
+    acknowledgeUserDataCollection(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
+    ): void;
+    acknowledgeUserDataCollection(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Acknowledgeuserdatacollection
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Acknowledgeuserdatacollection;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Acknowledgeuserdatacollection;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+property}:acknowledgeUserDataCollection'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['property'],
+        pathParams: ['property'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Creates an "GA4" property with the specified location and attributes.
      * @example
      * ```js
@@ -5495,6 +5652,18 @@ export namespace analyticsadmin_v1alpha {
     }
   }
 
+  export interface Params$Resource$Properties$Acknowledgeuserdatacollection
+    extends StandardParameters {
+    /**
+     * Required. The property for which to acknowledge user data collection.
+     */
+    property?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionRequest;
+  }
   export interface Params$Resource$Properties$Create
     extends StandardParameters {
     /**
