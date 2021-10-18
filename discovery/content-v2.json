@@ -3298,7 +3298,7 @@
       }
     }
   },
-  "revision": "20210911",
+  "revision": "20211007",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4205,6 +4205,32 @@
             "$ref": "AccountTax"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Address": {
+      "id": "Address",
+      "properties": {
+        "administrativeArea": {
+          "description": "Required. Top-level administrative subdivision of the country. For example, a state like California (\"CA\") or a province like Quebec (\"QC\").",
+          "type": "string"
+        },
+        "city": {
+          "description": "Required. City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).",
+          "type": "string"
+        },
+        "country": {
+          "description": "Required. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml)(e.g. \"US\").",
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "Required. Postal code or ZIP (e.g. \"94043\"). Required.",
+          "type": "string"
+        },
+        "streetAddress": {
+          "description": "Street-level part of the address.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9721,6 +9747,13 @@
             "$ref": "Service"
           },
           "type": "array"
+        },
+        "warehouses": {
+          "description": "Optional. A list of warehouses which can be referred to in `services`.",
+          "items": {
+            "$ref": "Warehouse"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10275,6 +10308,34 @@
       },
       "type": "object"
     },
+    "Warehouse": {
+      "description": "A fulfillment warehouse, which stores and handles inventory.",
+      "id": "Warehouse",
+      "properties": {
+        "businessDayConfig": {
+          "$ref": "BusinessDayConfig",
+          "description": "Business days of the warehouse. If not set, will be Monday to Friday by default."
+        },
+        "cutoffTime": {
+          "$ref": "WarehouseCutoffTime",
+          "description": "Required. The latest time of day that an order can be accepted and begin processing. Later orders will be processed in the next day. The time is based on the warehouse postal code."
+        },
+        "handlingDays": {
+          "description": "Required. The number of days it takes for this warehouse to pack up and ship an item. This is on the warehouse level, but can be overridden on the offer level based on the attributes of an item.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name of the warehouse. Must be unique within account.",
+          "type": "string"
+        },
+        "shippingAddress": {
+          "$ref": "Address",
+          "description": "Required. Shipping address of the warehouse."
+        }
+      },
+      "type": "object"
+    },
     "WarehouseBasedDeliveryTime": {
       "id": "WarehouseBasedDeliveryTime",
       "properties": {
@@ -10287,24 +10348,44 @@
           "type": "string"
         },
         "originAdministrativeArea": {
-          "description": "Required. Shipping origin's state.",
+          "description": "Shipping origin's state.",
           "type": "string"
         },
         "originCity": {
-          "description": "Required. Shipping origin's city.",
+          "description": "Shipping origin's city.",
           "type": "string"
         },
         "originCountry": {
-          "description": "Required. Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).",
+          "description": "Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).",
           "type": "string"
         },
         "originPostalCode": {
-          "description": "Required. Shipping origin.",
+          "description": "Shipping origin.",
           "type": "string"
         },
         "originStreetAddress": {
           "description": "Shipping origin's street address",
           "type": "string"
+        },
+        "warehouseName": {
+          "description": "The name of the warehouse. Warehouse name need to be matched with name. If warehouseName is set, the below fields will be ignored. The warehouse info will be read from warehouse.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WarehouseCutoffTime": {
+      "id": "WarehouseCutoffTime",
+      "properties": {
+        "hour": {
+          "description": "Required. Hour (24-hour clock) of the cutoff time until which an order has to be placed to be processed in the same day by the warehouse. Hour is based on the timezone of warehouse.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minute": {
+          "description": "Required. Minute of the cutoff time until which an order has to be placed to be processed in the same day by the warehouse. Minute is based on the timezone of warehouse.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

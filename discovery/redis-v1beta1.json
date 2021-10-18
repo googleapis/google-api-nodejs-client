@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20210909",
+  "revision": "20210930",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -853,6 +853,14 @@
           "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.",
           "type": "string"
         },
+        "nodes": {
+          "description": "Output only. Info per node.",
+          "items": {
+            "$ref": "NodeInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "persistenceIamIdentity": {
           "description": "Output only. Cloud IAM identity used by import / export operations to transfer data to/from Cloud Storage. Format is \"serviceAccount:\". The value may change over time for a given instance so should be checked before each import/export operation.",
           "readOnly": true,
@@ -864,6 +872,31 @@
           "readOnly": true,
           "type": "integer"
         },
+        "readEndpoint": {
+          "description": "Output only. Hostname or IP address of the exposed readonly Redis endpoint. Standard tier only. Targets all healthy replica nodes in instance. Replication is asynchronous and replica nodes will exhibit some lag behind the primary. Write requests must target 'host'.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "readEndpointPort": {
+          "description": "Output only. The port number of the exposed readonly redis endpoint. Standard tier only. Write requests should target 'port'.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "readReplicasMode": {
+          "description": "Optional. Read replica mode.",
+          "enum": [
+            "READ_REPLICAS_MODE_UNSPECIFIED",
+            "READ_REPLICAS_DISABLED",
+            "READ_REPLICAS_ENABLED"
+          ],
+          "enumDescriptions": [
+            "If not set, redis backend would pick the mode based on other fields in the request.",
+            "If disabled, read endpoint will not be provided and the instance cannot scale up or down the number of replicas.",
+            "If enabled, read endpoint will be provided and the instance can scale up and down the number of replicas."
+          ],
+          "type": "string"
+        },
         "redisConfigs": {
           "additionalProperties": {
             "type": "string"
@@ -874,6 +907,11 @@
         "redisVersion": {
           "description": "Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_X` for Redis 6.x compatibility",
           "type": "string"
+        },
+        "replicaCount": {
+          "description": "Optional. The number of replica nodes. Valid range for standard tier is [1-5] and defaults to 1. Valid value for basic tier is 0 and defaults to 0.",
+          "format": "int32",
+          "type": "integer"
         },
         "reservedIpRange": {
           "description": "Optional. For DIRECT_PEERING mode, the CIDR range of internal addresses that are reserved for this instance. Range must be unique and non-overlapping with existing subnets in an authorized network. For PRIVATE_SERVICE_ACCESS mode, the name of one allocated IP address ranges associated with this private service access connection. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29.",
@@ -1109,6 +1147,23 @@
         "startTime": {
           "description": "Output only. The start time of any upcoming scheduled maintenance for this instance.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodeInfo": {
+      "description": "Node specific properties.",
+      "id": "NodeInfo",
+      "properties": {
+        "id": {
+          "description": "Output only. Output Only. Node identifying string. e.g. 'node-0', 'node-1'",
+          "readOnly": true,
+          "type": "string"
+        },
+        "zone": {
+          "description": "Output only. Output Only. Location of the node.",
           "readOnly": true,
           "type": "string"
         }

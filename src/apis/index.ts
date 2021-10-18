@@ -91,6 +91,10 @@ import {
   assuredworkloads,
 } from './assuredworkloads';
 import {
+  VERSIONS as authorizedbuyersmarketplaceVersions,
+  authorizedbuyersmarketplace,
+} from './authorizedbuyersmarketplace';
+import {
   VERSIONS as baremetalsolutionVersions,
   baremetalsolution,
 } from './baremetalsolution';
@@ -174,6 +178,7 @@ import {VERSIONS as cloudtasksVersions, cloudtasks} from './cloudtasks';
 import {VERSIONS as cloudtraceVersions, cloudtrace} from './cloudtrace';
 import {VERSIONS as composerVersions, composer} from './composer';
 import {VERSIONS as computeVersions, compute} from './compute';
+import {VERSIONS as connectorsVersions, connectors} from './connectors';
 import {
   VERSIONS as contactcenterinsightsVersions,
   contactcenterinsights,
@@ -524,10 +529,15 @@ import {
   verifiedaccess,
 } from './verifiedaccess';
 import {
+  VERSIONS as versionhistoryVersions,
+  versionhistory,
+} from './versionhistory';
+import {
   VERSIONS as videointelligenceVersions,
   videointelligence,
 } from './videointelligence';
 import {VERSIONS as visionVersions, vision} from './vision';
+import {VERSIONS as vmmigrationVersions, vmmigration} from './vmmigration';
 import {VERSIONS as webfontsVersions, webfonts} from './webfonts';
 import {VERSIONS as webmastersVersions, webmasters} from './webmasters';
 import {VERSIONS as webriskVersions, webrisk} from './webrisk';
@@ -583,6 +593,7 @@ export const APIS: APIList = {
   area120tables: area120tablesVersions,
   artifactregistry: artifactregistryVersions,
   assuredworkloads: assuredworkloadsVersions,
+  authorizedbuyersmarketplace: authorizedbuyersmarketplaceVersions,
   baremetalsolution: baremetalsolutionVersions,
   bigquery: bigqueryVersions,
   bigqueryconnection: bigqueryconnectionVersions,
@@ -619,6 +630,7 @@ export const APIS: APIList = {
   cloudtrace: cloudtraceVersions,
   composer: composerVersions,
   compute: computeVersions,
+  connectors: connectorsVersions,
   contactcenterinsights: contactcenterinsightsVersions,
   container: containerVersions,
   containeranalysis: containeranalysisVersions,
@@ -773,8 +785,10 @@ export const APIS: APIList = {
   vault: vaultVersions,
   vectortile: vectortileVersions,
   verifiedaccess: verifiedaccessVersions,
+  versionhistory: versionhistoryVersions,
   videointelligence: videointelligenceVersions,
   vision: visionVersions,
+  vmmigration: vmmigrationVersions,
   webfonts: webfontsVersions,
   webmasters: webmastersVersions,
   webrisk: webriskVersions,
@@ -814,6 +828,7 @@ export class GeneratedAPIs {
   area120tables = area120tables;
   artifactregistry = artifactregistry;
   assuredworkloads = assuredworkloads;
+  authorizedbuyersmarketplace = authorizedbuyersmarketplace;
   baremetalsolution = baremetalsolution;
   bigquery = bigquery;
   bigqueryconnection = bigqueryconnection;
@@ -850,6 +865,7 @@ export class GeneratedAPIs {
   cloudtrace = cloudtrace;
   composer = composer;
   compute = compute;
+  connectors = connectors;
   contactcenterinsights = contactcenterinsights;
   container = container;
   containeranalysis = containeranalysis;
@@ -1004,8 +1020,10 @@ export class GeneratedAPIs {
   vault = vault;
   vectortile = vectortile;
   verifiedaccess = verifiedaccess;
+  versionhistory = versionhistory;
   videointelligence = videointelligence;
   vision = vision;
+  vmmigration = vmmigration;
   webfonts = webfonts;
   webmasters = webmasters;
   webrisk = webrisk;

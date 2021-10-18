@@ -1919,6 +1919,10 @@ export namespace dialogflow_v3beta1 {
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
+     * If a DTMF was provided as input, this field will contain a copy of the DTMFInput.
+     */
+    dtmf?: Schema$GoogleCloudDialogflowCxV3beta1DtmfInput;
+    /**
      * The Intent that matched the conversational query. Some, not all fields are filled in this message, including but not limited to: `name` and `display_name`. This field is deprecated, please use QueryResult.match instead.
      */
     intent?: Schema$GoogleCloudDialogflowCxV3beta1Intent;

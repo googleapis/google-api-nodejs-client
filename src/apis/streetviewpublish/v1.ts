@@ -1651,7 +1651,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photos.list({
-     *     // Optional. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The only filter supported at the moment is `placeId`.
+     *     // Optional. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The filters supported at the moment are: `placeId`.
      *     filter: 'placeholder-value',
      *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      *     languageCode: 'placeholder-value',
@@ -1793,7 +1793,7 @@ export namespace streetviewpublish_v1 {
   }
   export interface Params$Resource$Photos$List extends StandardParameters {
     /**
-     * Optional. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The only filter supported at the moment is `placeId`.
+     * Optional. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The filters supported at the moment are: `placeId`.
      */
     filter?: string;
     /**

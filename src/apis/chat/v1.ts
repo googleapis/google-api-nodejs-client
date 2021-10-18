@@ -3943,7 +3943,7 @@ export namespace chat_v1 {
      *   // Do the magic
      *   const res = await chat.spaces.messages.update({
      *     name: 'spaces/my-space/messages/my-message',
-     *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards
+     *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * gsuite_message_integration_render_data * attachment
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4116,7 +4116,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards
+     * Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * gsuite_message_integration_render_data * attachment
      */
     updateMask?: string;
 

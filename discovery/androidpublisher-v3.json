@@ -1690,6 +1690,94 @@
         }
       }
     },
+    "grants": {
+      "methods": {
+        "create": {
+          "description": "Grant access for a user to the given package.",
+          "flatPath": "androidpublisher/v3/developers/{developersId}/users/{usersId}/grants",
+          "httpMethod": "POST",
+          "id": "androidpublisher.grants.create",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The user which needs permission. Format: developers/{developer}/users/{user}",
+              "location": "path",
+              "pattern": "^developers/[^/]+/users/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+parent}/grants",
+          "request": {
+            "$ref": "Grant"
+          },
+          "response": {
+            "$ref": "Grant"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "delete": {
+          "description": "Removes all access for the user to the given package or developer account.",
+          "flatPath": "androidpublisher/v3/developers/{developersId}/users/{usersId}/grants/{grantsId}",
+          "httpMethod": "DELETE",
+          "id": "androidpublisher.grants.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the grant to delete. Format: developers/{developer}/users/{email}/grants/{package_name}",
+              "location": "path",
+              "pattern": "^developers/[^/]+/users/[^/]+/grants/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+name}",
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "patch": {
+          "description": "Updates access for the user to the given package.",
+          "flatPath": "androidpublisher/v3/developers/{developersId}/users/{usersId}/grants/{grantsId}",
+          "httpMethod": "PATCH",
+          "id": "androidpublisher.grants.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Resource name for this grant, following the pattern \"developers/{developer}/users/{email}/grants/{package_name}\".",
+              "location": "path",
+              "pattern": "^developers/[^/]+/users/[^/]+/grants/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The list of fields to be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+name}",
+          "request": {
+            "$ref": "Grant"
+          },
+          "response": {
+            "$ref": "Grant"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      }
+    },
     "inappproducts": {
       "methods": {
         "delete": {
@@ -1993,6 +2081,37 @@
             "https://www.googleapis.com/auth/androidpublisher"
           ],
           "supportsMediaUpload": true
+        }
+      }
+    },
+    "monetization": {
+      "methods": {
+        "convertRegionPrices": {
+          "description": "Calculates the region prices, using today's exchange rate and country-specific pricing patterns, based on the price in the request for a set of regions.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/pricing:convertRegionPrices",
+          "httpMethod": "POST",
+          "id": "androidpublisher.monetization.convertRegionPrices",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Required. The app package name.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/pricing:convertRegionPrices",
+          "request": {
+            "$ref": "ConvertRegionPricesRequest"
+          },
+          "response": {
+            "$ref": "ConvertRegionPricesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
         }
       }
     },
@@ -2679,9 +2798,133 @@
           }
         }
       }
+    },
+    "users": {
+      "methods": {
+        "create": {
+          "description": "Grant access for a user to the given developer account.",
+          "flatPath": "androidpublisher/v3/developers/{developersId}/users",
+          "httpMethod": "POST",
+          "id": "androidpublisher.users.create",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The developer account to add the user to. Format: developers/{developer}",
+              "location": "path",
+              "pattern": "^developers/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+parent}/users",
+          "request": {
+            "$ref": "User"
+          },
+          "response": {
+            "$ref": "User"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "delete": {
+          "description": "Removes all access for the user to the given developer account.",
+          "flatPath": "androidpublisher/v3/developers/{developersId}/users/{usersId}",
+          "httpMethod": "DELETE",
+          "id": "androidpublisher.users.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the user to delete. Format: developers/{developer}/users/{email}",
+              "location": "path",
+              "pattern": "^developers/[^/]+/users/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+name}",
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "list": {
+          "description": "Lists all users with access to a developer account.",
+          "flatPath": "androidpublisher/v3/developers/{developersId}/users",
+          "httpMethod": "GET",
+          "id": "androidpublisher.users.list",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "pageSize": {
+              "description": "The maximum number of results to return. This must be set to -1 to disable pagination.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A token received from a previous call to this method, in order to retrieve further results.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The developer account to fetch users from. Format: developers/{developer}",
+              "location": "path",
+              "pattern": "^developers/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+parent}/users",
+          "response": {
+            "$ref": "ListUsersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "patch": {
+          "description": "Updates access for the user to the developer account.",
+          "flatPath": "androidpublisher/v3/developers/{developersId}/users/{usersId}",
+          "httpMethod": "PATCH",
+          "id": "androidpublisher.users.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Resource name for this user, following the pattern \"developers/{developer}/users/{email}\".",
+              "location": "path",
+              "pattern": "^developers/[^/]+/users/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The list of fields to be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/{+name}",
+          "request": {
+            "$ref": "User"
+          },
+          "response": {
+            "$ref": "User"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        }
+      }
     }
   },
-  "revision": "20210901",
+  "revision": "20211014",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -2844,6 +3087,69 @@
         "userComment": {
           "$ref": "UserComment",
           "description": "A comment from a user."
+        }
+      },
+      "type": "object"
+    },
+    "ConvertRegionPricesRequest": {
+      "description": "Request message for ConvertRegionPrices.",
+      "id": "ConvertRegionPricesRequest",
+      "properties": {
+        "price": {
+          "$ref": "Money",
+          "description": "The intital price to convert other regions from. Tax exclusive."
+        }
+      },
+      "type": "object"
+    },
+    "ConvertRegionPricesResponse": {
+      "description": "Response message for ConvertRegionPrices.",
+      "id": "ConvertRegionPricesResponse",
+      "properties": {
+        "convertedOtherRegionsPrice": {
+          "$ref": "ConvertedOtherRegionsPrice",
+          "description": "Converted other regions prices in USD and EUR, to use for countries where Play doesn't support a country's local currency."
+        },
+        "convertedRegionPrices": {
+          "additionalProperties": {
+            "$ref": "ConvertedRegionPrice"
+          },
+          "description": "Map from region code to converted region price.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ConvertedOtherRegionsPrice": {
+      "description": "Converted other regions prices.",
+      "id": "ConvertedOtherRegionsPrice",
+      "properties": {
+        "eurPrice": {
+          "$ref": "Money",
+          "description": "Price in EUR to use for the \"Other regions\" location exclusive of taxes."
+        },
+        "usdPrice": {
+          "$ref": "Money",
+          "description": "Price in USD to use for the \"Other regions\" location exclusive of taxes."
+        }
+      },
+      "type": "object"
+    },
+    "ConvertedRegionPrice": {
+      "description": "A converted region price.",
+      "id": "ConvertedRegionPrice",
+      "properties": {
+        "price": {
+          "$ref": "Money",
+          "description": "The converted price tax inclusive."
+        },
+        "regionCode": {
+          "description": "The region code of the region.",
+          "type": "string"
+        },
+        "taxAmount": {
+          "$ref": "Money",
+          "description": "The tax amount of the converted price."
         }
       },
       "type": "object"
@@ -3106,6 +3412,54 @@
       },
       "type": "object"
     },
+    "Grant": {
+      "description": "An access grant resource.",
+      "id": "Grant",
+      "properties": {
+        "appLevelPermissions": {
+          "description": "The permissions granted to the user for this app.",
+          "items": {
+            "enum": [
+              "APP_LEVEL_PERMISSION_UNSPECIFIED",
+              "CAN_ACCESS_APP",
+              "CAN_VIEW_FINANCIAL_DATA",
+              "CAN_MANAGE_PERMISSIONS",
+              "CAN_REPLY_TO_REVIEWS",
+              "CAN_MANAGE_PUBLIC_APKS",
+              "CAN_MANAGE_TRACK_APKS",
+              "CAN_MANAGE_TRACK_USERS",
+              "CAN_MANAGE_PUBLIC_LISTING",
+              "CAN_MANAGE_DRAFT_APPS",
+              "CAN_MANAGE_ORDERS"
+            ],
+            "enumDescriptions": [
+              "Unknown or unspecified permission.",
+              "View app information (read-only).",
+              "View financial data.",
+              "Admin (all permissions).",
+              "Reply to reviews.",
+              "Release to production, exclude devices, and use app signing by Google Play.",
+              "Release to testing tracks.",
+              "Manage testing tracks and edit tester lists.",
+              "Manage store presence.",
+              "Edit and delete draft apps.",
+              "Manage orders and subscriptions."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Resource name for this grant, following the pattern \"developers/{developer}/users/{email}/grants/{package_name}\".",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Immutable. The package name of the app.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Image": {
       "description": "An uploaded image. The resource for ImagesService.",
       "id": "Image",
@@ -3337,6 +3691,24 @@
       },
       "type": "object"
     },
+    "ListUsersResponse": {
+      "description": "A response containing one or more users with access to an account.",
+      "id": "ListUsersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to pass to subsequent calls in order to retrieve subsequent results. This will not be set if there are no more results to return.",
+          "type": "string"
+        },
+        "users": {
+          "description": "The resulting users.",
+          "items": {
+            "$ref": "User"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Listing": {
       "description": "A localized store listing. The resource for ListingsService.",
       "id": "Listing",
@@ -3392,6 +3764,27 @@
         },
         "text": {
           "description": "The text in the given language.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Money": {
+      "description": "Represents an amount of money with its currency type.",
+      "id": "Money",
+      "properties": {
+        "currencyCode": {
+          "description": "The three-letter currency code defined in ISO 4217.",
+          "type": "string"
+        },
+        "nanos": {
+          "description": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "units": {
+          "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -3960,6 +4353,99 @@
             "$ref": "Track"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "User": {
+      "description": "A user resource.",
+      "id": "User",
+      "properties": {
+        "accessState": {
+          "description": "Output only. The state of the user's access to the Play Console.",
+          "enum": [
+            "ACCESS_STATE_UNSPECIFIED",
+            "INVITED",
+            "INVITATION_EXPIRED",
+            "ACCESS_GRANTED",
+            "ACCESS_EXPIRED"
+          ],
+          "enumDescriptions": [
+            "Unknown or unspecified access state.",
+            "User is invited but has not yet accepted the invitation.",
+            "Invitation has expired.",
+            "User has accepted an invitation and has access to the Play Console.",
+            "Account access has expired."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "developerAccountPermissions": {
+          "description": "Permissions for the user which apply across the developer account.",
+          "items": {
+            "enum": [
+              "DEVELOPER_LEVEL_PERMISSION_UNSPECIFIED",
+              "CAN_SEE_ALL_APPS",
+              "CAN_VIEW_FINANCIAL_DATA_GLOBAL",
+              "CAN_MANAGE_PERMISSIONS_GLOBAL",
+              "CAN_EDIT_GAMES_GLOBAL",
+              "CAN_PUBLISH_GAMES_GLOBAL",
+              "CAN_REPLY_TO_REVIEWS_GLOBAL",
+              "CAN_MANAGE_PUBLIC_APKS_GLOBAL",
+              "CAN_MANAGE_TRACK_APKS_GLOBAL",
+              "CAN_MANAGE_TRACK_USERS_GLOBAL",
+              "CAN_MANAGE_PUBLIC_LISTING_GLOBAL",
+              "CAN_MANAGE_DRAFT_APPS_GLOBAL",
+              "CAN_CREATE_MANAGED_PLAY_APPS_GLOBAL",
+              "CAN_CHANGE_MANAGED_PLAY_SETTING_GLOBAL",
+              "CAN_MANAGE_ORDERS_GLOBAL"
+            ],
+            "enumDescriptions": [
+              "Unknown or unspecified permission.",
+              "View app information and download bulk reports (read-only).",
+              "View financial data, orders, and cancellation survey responses.",
+              "Admin (all permissions).",
+              "Edit Play Games Services projects.",
+              "Publish Play Games Services projects.",
+              "Reply to reviews.",
+              "Release to production, exclude devices, and use app signing by Google Play.",
+              "Release to testing tracks.",
+              "Manage testing tracks and edit tester lists.",
+              "Manage store presence.",
+              "Create, edit, and delete draft apps.",
+              "Create and publish private apps to your organization.",
+              "Choose whether apps are public, or only available to your organization.",
+              "Manage orders and subscriptions."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "email": {
+          "description": "Immutable. The user's email address.",
+          "type": "string"
+        },
+        "expirationTime": {
+          "description": "The time at which the user's access expires, if set.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "grants": {
+          "description": "Output only. Per-app permissions for the user.",
+          "items": {
+            "$ref": "Grant"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Resource name for this user, following the pattern \"developers/{developer}/users/{email}\".",
+          "type": "string"
+        },
+        "partial": {
+          "description": "Output only. Whether there are more permissions for the user that are not represented here.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"

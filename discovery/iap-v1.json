@@ -110,7 +110,7 @@
         "brands": {
           "methods": {
             "create": {
-              "description": "Constructs a new OAuth brand for the project if one does not exist. The created brand is \"internal only\", meaning that OAuth clients created under it only accept requests from users who belong to the same G Suite organization as the project. The brand is created in an un-reviewed status. NOTE: The \"internal only\" status can be manually changed in the Google Cloud console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller.",
+              "description": "Constructs a new OAuth brand for the project if one does not exist. The created brand is \"internal only\", meaning that OAuth clients created under it only accept requests from users who belong to the same Google Workspace organization as the project. The brand is created in an un-reviewed status. NOTE: The \"internal only\" status can be manually changed in the Google Cloud Console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller.",
               "flatPath": "v1/projects/{projectsId}/brands",
               "httpMethod": "POST",
               "id": "iap.projects.brands.create",
@@ -487,7 +487,7 @@
       }
     }
   },
-  "revision": "20210820",
+  "revision": "20210930",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -524,6 +524,10 @@
         "policyDelegationSettings": {
           "$ref": "PolicyDelegationSettings",
           "description": "Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY."
+        },
+        "reauthSettings": {
+          "$ref": "ReauthSettings",
+          "description": "Settings to configure reauthentication policies in IAP."
         }
       },
       "type": "object"
@@ -774,7 +778,7 @@
       "id": "Policy",
       "properties": {
         "bindings": {
-          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.",
+          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member. The `bindings` in a `Policy` can refer to up to 1,500 members; up to 250 of these members can be Google groups. Each occurrence of a member counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other member, then you can add another 1,450 members to the `bindings` in the `Policy`.",
           "items": {
             "$ref": "Binding"
           },
@@ -830,6 +834,48 @@
         },
         "type": {
           "description": "Resource type. Types are defined in IAM's .service files. Valid values for type might be 'gce', 'gcs', 'project', 'account' etc.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReauthSettings": {
+      "description": "Configuration for IAP reauthentication policies.",
+      "id": "ReauthSettings",
+      "properties": {
+        "maxAge": {
+          "description": "Reauth session lifetime, how long before a user has to reauthenticate again.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "method": {
+          "description": "Reauth method required by the policy.",
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "LOGIN",
+            "PASSWORD",
+            "SECURE_KEY"
+          ],
+          "enumDescriptions": [
+            "Reauthentication disabled.",
+            "Mimicks the behavior as if the user had logged out and tried to log in again. Users with 2SV (step verification) enabled will see their 2SV challenges if they did not opt to have their second factor responses saved. Apps Core (GSuites) admins can configure settings to disable 2SV cookies and require 2-step verification for all Apps Core users in their domains.",
+            "User must type their password.",
+            "User must use their secure key 2nd factor device."
+          ],
+          "type": "string"
+        },
+        "policyType": {
+          "description": "How IAP determines the effective policy in cases of hierarchial policies. Policies are merged from higher in the hierarchy to lower in the hierarchy.",
+          "enum": [
+            "POLICY_TYPE_UNSPECIFIED",
+            "MINIMUM",
+            "DEFAULT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused/invalid.",
+            "This policy acts as a minimum to other policies, lower in the hierarchy. Effective policy may only be the same or stricter.",
+            "This policy acts as a default if no other reauth policy is set."
+          ],
           "type": "string"
         }
       },

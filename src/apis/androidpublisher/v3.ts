@@ -114,12 +114,15 @@ export namespace androidpublisher_v3 {
   export class Androidpublisher {
     context: APIRequestContext;
     edits: Resource$Edits;
+    grants: Resource$Grants;
     inappproducts: Resource$Inappproducts;
     internalappsharingartifacts: Resource$Internalappsharingartifacts;
+    monetization: Resource$Monetization;
     orders: Resource$Orders;
     purchases: Resource$Purchases;
     reviews: Resource$Reviews;
     systemapks: Resource$Systemapks;
+    users: Resource$Users;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -128,13 +131,16 @@ export namespace androidpublisher_v3 {
       };
 
       this.edits = new Resource$Edits(this.context);
+      this.grants = new Resource$Grants(this.context);
       this.inappproducts = new Resource$Inappproducts(this.context);
       this.internalappsharingartifacts =
         new Resource$Internalappsharingartifacts(this.context);
+      this.monetization = new Resource$Monetization(this.context);
       this.orders = new Resource$Orders(this.context);
       this.purchases = new Resource$Purchases(this.context);
       this.reviews = new Resource$Reviews(this.context);
       this.systemapks = new Resource$Systemapks(this.context);
+      this.users = new Resource$Users(this.context);
     }
   }
 
@@ -271,6 +277,58 @@ export namespace androidpublisher_v3 {
      * A comment from a user.
      */
     userComment?: Schema$UserComment;
+  }
+  /**
+   * Converted other regions prices.
+   */
+  export interface Schema$ConvertedOtherRegionsPrice {
+    /**
+     * Price in EUR to use for the "Other regions" location exclusive of taxes.
+     */
+    eurPrice?: Schema$Money;
+    /**
+     * Price in USD to use for the "Other regions" location exclusive of taxes.
+     */
+    usdPrice?: Schema$Money;
+  }
+  /**
+   * A converted region price.
+   */
+  export interface Schema$ConvertedRegionPrice {
+    /**
+     * The converted price tax inclusive.
+     */
+    price?: Schema$Money;
+    /**
+     * The region code of the region.
+     */
+    regionCode?: string | null;
+    /**
+     * The tax amount of the converted price.
+     */
+    taxAmount?: Schema$Money;
+  }
+  /**
+   * Request message for ConvertRegionPrices.
+   */
+  export interface Schema$ConvertRegionPricesRequest {
+    /**
+     * The intital price to convert other regions from. Tax exclusive.
+     */
+    price?: Schema$Money;
+  }
+  /**
+   * Response message for ConvertRegionPrices.
+   */
+  export interface Schema$ConvertRegionPricesResponse {
+    /**
+     * Converted other regions prices in USD and EUR, to use for countries where Play doesn't support a country's local currency.
+     */
+    convertedOtherRegionsPrice?: Schema$ConvertedOtherRegionsPrice;
+    /**
+     * Map from region code to converted region price.
+     */
+    convertedRegionPrices?: {[key: string]: Schema$ConvertedRegionPrice} | null;
   }
   /**
    * Country targeting specification.
@@ -468,6 +526,23 @@ export namespace androidpublisher_v3 {
      * The version name of this APK.
      */
     versionName?: string | null;
+  }
+  /**
+   * An access grant resource.
+   */
+  export interface Schema$Grant {
+    /**
+     * The permissions granted to the user for this app.
+     */
+    appLevelPermissions?: string[] | null;
+    /**
+     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     */
+    name?: string | null;
+    /**
+     * Immutable. The package name of the app.
+     */
+    packageName?: string | null;
   }
   /**
    * An uploaded image. The resource for ImagesService.
@@ -681,6 +756,19 @@ export namespace androidpublisher_v3 {
     listings?: Schema$Listing[];
   }
   /**
+   * A response containing one or more users with access to an account.
+   */
+  export interface Schema$ListUsersResponse {
+    /**
+     * A token to pass to subsequent calls in order to retrieve subsequent results. This will not be set if there are no more results to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The resulting users.
+     */
+    users?: Schema$User[];
+  }
+  /**
    * Release notes specification, i.e. language and text.
    */
   export interface Schema$LocalizedText {
@@ -692,6 +780,23 @@ export namespace androidpublisher_v3 {
      * The text in the given language.
      */
     text?: string | null;
+  }
+  /**
+   * Represents an amount of money with its currency type.
+   */
+  export interface Schema$Money {
+    /**
+     * The three-letter currency code defined in ISO 4217.
+     */
+    currencyCode?: string | null;
+    /**
+     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
+     */
+    nanos?: number | null;
+    /**
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
+     */
+    units?: string | null;
   }
   /**
    * Information about the current page. List operations that supports paging return only one "page" of results. This protocol buffer message describes the page that has been returned.
@@ -1144,6 +1249,39 @@ export namespace androidpublisher_v3 {
      * All tracks.
      */
     tracks?: Schema$Track[];
+  }
+  /**
+   * A user resource.
+   */
+  export interface Schema$User {
+    /**
+     * Output only. The state of the user's access to the Play Console.
+     */
+    accessState?: string | null;
+    /**
+     * Permissions for the user which apply across the developer account.
+     */
+    developerAccountPermissions?: string[] | null;
+    /**
+     * Immutable. The user's email address.
+     */
+    email?: string | null;
+    /**
+     * The time at which the user's access expires, if set.
+     */
+    expirationTime?: string | null;
+    /**
+     * Output only. Per-app permissions for the user.
+     */
+    grants?: Schema$Grant[];
+    /**
+     * Required. Resource name for this user, following the pattern "developers/{developer\}/users/{email\}".
+     */
+    name?: string | null;
+    /**
+     * Output only. Whether there are more permissions for the user that are not represented here.
+     */
+    partial?: boolean | null;
   }
   /**
    * User entry from conversation between user and developer.
@@ -7002,6 +7140,452 @@ export namespace androidpublisher_v3 {
     requestBody?: Schema$Track;
   }
 
+  export class Resource$Grants {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Grant access for a user to the given package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.grants.create({
+     *     // Required. The user which needs permission. Format: developers/{developer\}/users/{user\}
+     *     parent: 'developers/my-developer/users/my-user',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLevelPermissions": [],
+     *       //   "name": "my_name",
+     *       //   "packageName": "my_packageName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLevelPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "packageName": "my_packageName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Grants$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Grants$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Grant>;
+    create(
+      params: Params$Resource$Grants$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Grants$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Grant>,
+      callback: BodyResponseCallback<Schema$Grant>
+    ): void;
+    create(
+      params: Params$Resource$Grants$Create,
+      callback: BodyResponseCallback<Schema$Grant>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Grant>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Grants$Create
+        | BodyResponseCallback<Schema$Grant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Grant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Grant>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Grant> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Grants$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Grants$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+parent}/grants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Grant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Grant>(parameters);
+      }
+    }
+
+    /**
+     * Removes all access for the user to the given package or developer account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.grants.delete({
+     *     // Required. The name of the grant to delete. Format: developers/{developer\}/users/{email\}/grants/{package_name\}
+     *     name: 'developers/my-developer/users/my-user/grants/my-grant',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Grants$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Grants$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Grants$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Grants$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Grants$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Grants$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Grants$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Grants$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Updates access for the user to the given package.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.grants.patch({
+     *     // Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     *     name: 'developers/my-developer/users/my-user/grants/my-grant',
+     *     // Optional. The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appLevelPermissions": [],
+     *       //   "name": "my_name",
+     *       //   "packageName": "my_packageName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appLevelPermissions": [],
+     *   //   "name": "my_name",
+     *   //   "packageName": "my_packageName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Grants$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Grants$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Grant>;
+    patch(
+      params: Params$Resource$Grants$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Grants$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Grant>,
+      callback: BodyResponseCallback<Schema$Grant>
+    ): void;
+    patch(
+      params: Params$Resource$Grants$Patch,
+      callback: BodyResponseCallback<Schema$Grant>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Grant>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Grants$Patch
+        | BodyResponseCallback<Schema$Grant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Grant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Grant>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Grant> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Grants$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Grants$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Grant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Grant>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Grants$Create extends StandardParameters {
+    /**
+     * Required. The user which needs permission. Format: developers/{developer\}/users/{user\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Grant;
+  }
+  export interface Params$Resource$Grants$Delete extends StandardParameters {
+    /**
+     * Required. The name of the grant to delete. Format: developers/{developer\}/users/{email\}/grants/{package_name\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Grants$Patch extends StandardParameters {
+    /**
+     * Required. Resource name for this grant, following the pattern "developers/{developer\}/users/{email\}/grants/{package_name\}".
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Grant;
+  }
+
   export class Resource$Inappproducts {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -8372,6 +8956,172 @@ export namespace androidpublisher_v3 {
        */
       body?: any;
     };
+  }
+
+  export class Resource$Monetization {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Calculates the region prices, using today's exchange rate and country-specific pricing patterns, based on the price in the request for a set of regions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.convertRegionPrices({
+     *     // Required. The app package name.
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "price": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "convertedOtherRegionsPrice": {},
+     *   //   "convertedRegionPrices": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    convertRegionPrices(
+      params: Params$Resource$Monetization$Convertregionprices,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    convertRegionPrices(
+      params?: Params$Resource$Monetization$Convertregionprices,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConvertRegionPricesResponse>;
+    convertRegionPrices(
+      params: Params$Resource$Monetization$Convertregionprices,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    convertRegionPrices(
+      params: Params$Resource$Monetization$Convertregionprices,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ConvertRegionPricesResponse>,
+      callback: BodyResponseCallback<Schema$ConvertRegionPricesResponse>
+    ): void;
+    convertRegionPrices(
+      params: Params$Resource$Monetization$Convertregionprices,
+      callback: BodyResponseCallback<Schema$ConvertRegionPricesResponse>
+    ): void;
+    convertRegionPrices(
+      callback: BodyResponseCallback<Schema$ConvertRegionPricesResponse>
+    ): void;
+    convertRegionPrices(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Convertregionprices
+        | BodyResponseCallback<Schema$ConvertRegionPricesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConvertRegionPricesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConvertRegionPricesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ConvertRegionPricesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Convertregionprices;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Convertregionprices;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/pricing:convertRegionPrices'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConvertRegionPricesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ConvertRegionPricesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Monetization$Convertregionprices
+    extends StandardParameters {
+    /**
+     * Required. The app package name.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ConvertRegionPricesRequest;
   }
 
   export class Resource$Orders {
@@ -11087,5 +11837,618 @@ export namespace androidpublisher_v3 {
      * The version code of the App Bundle.
      */
     versionCode?: string;
+  }
+
+  export class Resource$Users {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Grant access for a user to the given developer account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.users.create({
+     *     // Required. The developer account to add the user to. Format: developers/{developer\}
+     *     parent: 'developers/my-developer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessState": "my_accessState",
+     *       //   "developerAccountPermissions": [],
+     *       //   "email": "my_email",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "partial": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessState": "my_accessState",
+     *   //   "developerAccountPermissions": [],
+     *   //   "email": "my_email",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "partial": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Users$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Users$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    create(
+      params: Params$Resource$Users$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Users$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    create(
+      params: Params$Resource$Users$Create,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$User>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Users$Create
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+parent}/users').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+
+    /**
+     * Removes all access for the user to the given developer account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.users.delete({
+     *     // Required. The name of the user to delete. Format: developers/{developer\}/users/{email\}
+     *     name: 'developers/my-developer/users/my-user',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Users$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Users$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Users$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Users$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Users$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Lists all users with access to a developer account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.users.list({
+     *     // The maximum number of results to return. This must be set to -1 to disable pagination.
+     *     pageSize: 'placeholder-value',
+     *     // A token received from a previous call to this method, in order to retrieve further results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The developer account to fetch users from. Format: developers/{developer\}
+     *     parent: 'developers/my-developer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Users$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Users$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUsersResponse>;
+    list(
+      params: Params$Resource$Users$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Users$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListUsersResponse>,
+      callback: BodyResponseCallback<Schema$ListUsersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Users$List,
+      callback: BodyResponseCallback<Schema$ListUsersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListUsersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Users$List
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUsersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUsersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+parent}/users').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUsersResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates access for the user to the developer account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.users.patch({
+     *     // Required. Resource name for this user, following the pattern "developers/{developer\}/users/{email\}".
+     *     name: 'developers/my-developer/users/my-user',
+     *     // Optional. The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessState": "my_accessState",
+     *       //   "developerAccountPermissions": [],
+     *       //   "email": "my_email",
+     *       //   "expirationTime": "my_expirationTime",
+     *       //   "grants": [],
+     *       //   "name": "my_name",
+     *       //   "partial": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessState": "my_accessState",
+     *   //   "developerAccountPermissions": [],
+     *   //   "email": "my_email",
+     *   //   "expirationTime": "my_expirationTime",
+     *   //   "grants": [],
+     *   //   "name": "my_name",
+     *   //   "partial": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Users$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Users$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$User>;
+    patch(
+      params: Params$Resource$Users$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$User>,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    patch(
+      params: Params$Resource$Users$Patch,
+      callback: BodyResponseCallback<Schema$User>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$User>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Users$Patch
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$User>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$User> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Users$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/androidpublisher/v3/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$User>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$User>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Create extends StandardParameters {
+    /**
+     * Required. The developer account to add the user to. Format: developers/{developer\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$User;
+  }
+  export interface Params$Resource$Users$Delete extends StandardParameters {
+    /**
+     * Required. The name of the user to delete. Format: developers/{developer\}/users/{email\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Users$List extends StandardParameters {
+    /**
+     * The maximum number of results to return. This must be set to -1 to disable pagination.
+     */
+    pageSize?: number;
+    /**
+     * A token received from a previous call to this method, in order to retrieve further results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The developer account to fetch users from. Format: developers/{developer\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Users$Patch extends StandardParameters {
+    /**
+     * Required. Resource name for this user, following the pattern "developers/{developer\}/users/{email\}".
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$User;
   }
 }

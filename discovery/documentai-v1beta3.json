@@ -796,7 +796,7 @@
       }
     }
   },
-  "revision": "20210926",
+  "revision": "20211012",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -5399,7 +5399,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ProcessorType": {
-      "description": "A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 8.",
+      "description": "A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 9.",
       "id": "GoogleCloudDocumentaiV1beta3ProcessorType",
       "properties": {
         "allowCreation": {
@@ -5417,12 +5417,36 @@
           "description": "The processor category, used by UI to group processor types.",
           "type": "string"
         },
+        "launchStage": {
+          "description": "Launch stage of the processor type",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "UNIMPLEMENTED",
+            "PRELAUNCH",
+            "EARLY_ACCESS",
+            "ALPHA",
+            "BETA",
+            "GA",
+            "DEPRECATED"
+          ],
+          "enumDescriptions": [
+            "Do not use this default value.",
+            "The feature is not yet implemented. Users can not use it.",
+            "Prelaunch features are hidden from users and are only visible internally.",
+            "Early Access features are limited to a closed group of testers. To use these features, you must sign up in advance and sign a Trusted Tester agreement (which includes confidentiality provisions). These features may be unstable, changed in backward-incompatible ways, and are not guaranteed to be released.",
+            "Alpha is a limited availability test for releases before they are cleared for widespread use. By Alpha, all significant design issues are resolved and we are in the process of verifying functionality. Alpha customers need to apply for access, agree to applicable terms, and have their projects allowlisted. Alpha releases don’t have to be feature complete, no SLAs are provided, and there are no technical support obligations, but they will be far enough along that customers can actually use them in test environments or for limited-use tests -- just like they would in normal production cases.",
+            "Beta is the point at which we are ready to open a release for any customer to use. There are no SLA or technical support obligations in a Beta release. Products will be complete from a feature perspective, but may have some open outstanding issues. Beta releases are suitable for limited production use cases.",
+            "GA features are open to all developers and are considered stable and fully qualified for production use.",
+            "Deprecated features are scheduled to be shut down and removed. For more information, see the “Deprecation Policy” section of our [Terms of Service](https://cloud.google.com/terms/) and the [Google Cloud Platform Subject to the Deprecation Policy](https://cloud.google.com/terms/deprecation) documentation."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "The resource name of the processor type. Format: projects/{project}/processorTypes/{processor_type}",
           "type": "string"
         },
         "type": {
-          "description": "The type of the processor, e.g, \"invoice_parsing\".",
+          "description": "The type of the processor, e.g., \"invoice_parsing\".",
           "type": "string"
         }
       },
@@ -5675,7 +5699,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Name of the type. It must be unique within the set of same level types.",
+          "description": "Name of the type. It must satisfy the following constraints: 1. Must be unique within the set of same level types (with case-insensitive match). 2. Maximum 50 characters. 3. Must start with a letter. 4. Allowed characters: ASCII letters [a-zA-Z], ASCII digits [0-9], or one of the following punctuation characters: * underscore '_' (recommended) * hyphen '-' (allowed, not recommended) * colon ':' (allowed, not recommended) NOTE: Whitespace characters are not allowed. 5. Cannot end with a punctuation character. 6. Cannot contain the following restricted strings: \"google\", \"DocumentAI\" (case-insensitive match). 7. A slash character '/' is reserved as a separator in flattened representations of nested entity types (e.g., \"line_item/amount\") in which case each part (e.g., \"line_item\", \"amount\") must comply with the rules defined above. We recommend using the snake case (\"snake_case\") in entity type names.",
           "type": "string"
         }
       },

@@ -543,6 +543,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "authorizedbuyersmarketplace:v1",
+      "name": "authorizedbuyersmarketplace",
+      "version": "v1",
+      "title": "Authorized Buyers Marketplace API",
+      "description": "The Authorized Buyers Marketplace API allows buyers programmatically discover inventory; propose, retrieve and negotiate deals with publishers.",
+      "discoveryRestUrl": "https://authorizedbuyersmarketplace.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/authorized-buyers/apis/marketplace/reference/rest/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "baremetalsolution:v1",
       "name": "baremetalsolution",
       "version": "v1",
@@ -1308,6 +1323,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "cloudsupport:v2beta",
+      "name": "cloudsupport",
+      "version": "v2beta",
+      "title": "Google Cloud Support API",
+      "description": "Manages Google Cloud Platform Support account and tickets associated with them.",
+      "discoveryRestUrl": "https://cloudsupport.googleapis.com/$discovery/rest?version=v2beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/support/docs/apis",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "cloudtasks:v2beta2",
       "name": "cloudtasks",
       "version": "v2beta2",
@@ -1472,6 +1502,21 @@
         "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
       },
       "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "connectors:v1",
+      "name": "connectors",
+      "version": "v1",
+      "title": "Connectors API",
+      "description": "",
+      "discoveryRestUrl": "https://connectors.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/apigee/docs/api-platform/connectors/about-connectors",
       "preferred": true
     },
     {
@@ -2118,21 +2163,6 @@
       },
       "documentationLink": "https://developers.google.com/domains/rdap/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "doubleclickbidmanager:v1",
-      "name": "doubleclickbidmanager",
-      "version": "v1",
-      "title": "DoubleClick Bid Manager API",
-      "description": "DoubleClick Bid Manager API allows users to manage and create campaigns and reports.",
-      "discoveryRestUrl": "https://doubleclickbidmanager.googleapis.com/$discovery/rest?version=v1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/bid-manager/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -5019,6 +5049,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "versionhistory:v1",
+      "name": "versionhistory",
+      "version": "v1",
+      "title": "Version History API",
+      "description": "Version History API - Prod",
+      "discoveryRestUrl": "https://versionhistory.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.chrome.com/versionhistory",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "videointelligence:v1p1beta1",
       "name": "videointelligence",
       "version": "v1p1beta1",
@@ -5135,6 +5180,36 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/vision/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "vmmigration:v1alpha1",
+      "name": "vmmigration",
+      "version": "v1alpha1",
+      "title": "VM Migration API",
+      "description": "Use the Migrate for Compute Engine API to programmatically migrate workloads.",
+      "discoveryRestUrl": "https://vmmigration.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/migrate/compute-engine",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "vmmigration:v1",
+      "name": "vmmigration",
+      "version": "v1",
+      "title": "VM Migration API",
+      "description": "Use the Migrate for Compute Engine API to programmatically migrate workloads.",
+      "discoveryRestUrl": "https://vmmigration.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/migrate/compute-engine",
       "preferred": true
     },
     {

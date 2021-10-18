@@ -271,7 +271,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$DeleteFolderMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the operation returned by DeleteOrganization.
+   * LINT.IfChange A status object which is used as the `metadata` field for the operation returned by DeleteOrganization.
    */
   export interface Schema$DeleteOrganizationMetadata {}
   /**
@@ -617,7 +617,7 @@ export namespace cloudresourcemanager_v3 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member. The `bindings` in a `Policy` can refer to up to 1,500 members; up to 250 of these members can be Google groups. Each occurrence of a member counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other member, then you can add another 1,450 members to the `bindings` in the `Policy`.
      */
     bindings?: Schema$Binding[];
     /**
@@ -878,7 +878,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$UndeleteFolderRequest {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by UndeleteOrganization.
+   * LINT.IfChange A status object which is used as the `metadata` field for the Operation returned by UndeleteOrganization.
    */
   export interface Schema$UndeleteOrganizationMetadata {}
   /**
@@ -4793,7 +4793,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Move a project to another place in your resource hierarchy, under a new resource parent. Returns an operation which can be used to track the process of the project move workflow. Upon success, the `Operation.response` field will be populated with the moved project. The caller must have `resourcemanager.projects.update` permission on the project and have `resourcemanager.projects.move` permission on the project's current and proposed new parent. If project has no current parent, or it currently does not have an associated organization resource, you will also need the `resourcemanager.projects.setIamPolicy` permission in the project.
+     * Move a project to another place in your resource hierarchy, under a new resource parent. Returns an operation which can be used to track the process of the project move workflow. Upon success, the `Operation.response` field will be populated with the moved project. The caller must have `resourcemanager.projects.move` permission on the project, on the project's current and proposed new parent. If project has no current parent, or it currently does not have an associated organization resource, you will also need the `resourcemanager.projects.setIamPolicy` permission in the project.
      * @example
      * ```js
      * // Before running the sample:

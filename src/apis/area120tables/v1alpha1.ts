@@ -181,6 +181,10 @@ export namespace area120tables_v1alpha1 {
      */
     dataType?: string | null;
     /**
+     * Optional. Additional details about a date column.
+     */
+    dateDetails?: Schema$DateDetails;
+    /**
      * Internal id for a column.
      */
     id?: string | null;
@@ -225,6 +229,15 @@ export namespace area120tables_v1alpha1 {
      * Optional. Column key to use for values in the row. Defaults to user entered name.
      */
     view?: string | null;
+  }
+  /**
+   * Details about a date column.
+   */
+  export interface Schema$DateDetails {
+    /**
+     * Whether the date column includes time.
+     */
+    hasTime?: boolean | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
@@ -339,7 +352,7 @@ export namespace area120tables_v1alpha1 {
     name?: string | null;
   }
   /**
-   * A single table. NextId: 7
+   * A single table. NextId: 8
    */
   export interface Schema$Table {
     /**
@@ -362,6 +375,10 @@ export namespace area120tables_v1alpha1 {
      * Saved views for this table.
      */
     savedViews?: Schema$SavedView[];
+    /**
+     * The time zone of the table. IANA Time Zone Database time zone, e.g. "America/New_York".
+     */
+    timeZone?: string | null;
     /**
      * Time when the table was last updated excluding updates to individual rows
      */
@@ -464,6 +481,7 @@ export namespace area120tables_v1alpha1 {
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
      *   //   "savedViews": [],
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }

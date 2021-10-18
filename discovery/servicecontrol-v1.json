@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20210930",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -1412,7 +1412,7 @@
             "For AllocateQuota request, allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the amount is higher than the available quota, allocation error will be returned and no quota will be allocated. If multiple quotas are part of the request, and one fails, none of the quotas are allocated or released.",
             "The operation allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the amount is higher than the available quota, request does not fail but all available quota will be allocated. For rate quota, BEST_EFFORT will continue to deduct from other groups even if one does not have enough quota. For allocation, it will find the minimum available amount across all groups and deduct that amount from all the affected groups.",
             "For AllocateQuota request, only checks if there is enough quota available and does not change the available quota. No lock is placed on the available quota either.",
-            "Unimplemented. When used in AllocateQuotaRequest, this returns the effective quota limit(s) in the response, and no quota check will be performed. Not supported for other requests, and even for AllocateQuotaRequest, this is currently supported only for allowlisted services.",
+            "Deprecated. Please use QueryLimits API to query quota limits.",
             "The operation allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the requested amount is higher than the available quota, request does not fail and remaining quota would become negative (going over the limit). Not supported for Rate Quota."
           ],
           "type": "string"
@@ -1634,7 +1634,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be \"{service}/{kind}\".",
+          "description": "The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be \"{service}/{kind}\", such as \"pubsub.googleapis.com/Topic\".",
           "type": "string"
         },
         "uid": {

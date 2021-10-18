@@ -160,6 +160,10 @@ export namespace iap_v1 {
      * Settings to configure Policy delegation for apps hosted in tenant projects. INTERNAL_ONLY.
      */
     policyDelegationSettings?: Schema$PolicyDelegationSettings;
+    /**
+     * Settings to configure reauthentication policies in IAP.
+     */
+    reauthSettings?: Schema$ReauthSettings;
   }
   /**
    * Wrapper over application specific settings for IAP.
@@ -360,7 +364,7 @@ export namespace iap_v1 {
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member. The `bindings` in a `Policy` can refer to up to 1,500 members; up to 250 of these members can be Google groups. Each occurrence of a member counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other member, then you can add another 1,450 members to the `bindings` in the `Policy`.
      */
     bindings?: Schema$Binding[];
     /**
@@ -409,6 +413,23 @@ export namespace iap_v1 {
      * Resource type. Types are defined in IAM's .service files. Valid values for type might be 'gce', 'gcs', 'project', 'account' etc.
      */
     type?: string | null;
+  }
+  /**
+   * Configuration for IAP reauthentication policies.
+   */
+  export interface Schema$ReauthSettings {
+    /**
+     * Reauth session lifetime, how long before a user has to reauthenticate again.
+     */
+    maxAge?: string | null;
+    /**
+     * Reauth method required by the policy.
+     */
+    method?: string | null;
+    /**
+     * How IAP determines the effective policy in cases of hierarchial policies. Policies are merged from higher in the hierarchy to lower in the hierarchy.
+     */
+    policyType?: string | null;
   }
   /**
    * The request sent to ResetIdentityAwareProxyClientSecret.
@@ -479,7 +500,7 @@ export namespace iap_v1 {
     }
 
     /**
-     * Constructs a new OAuth brand for the project if one does not exist. The created brand is "internal only", meaning that OAuth clients created under it only accept requests from users who belong to the same G Suite organization as the project. The brand is created in an un-reviewed status. NOTE: The "internal only" status can be manually changed in the Google Cloud console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller.
+     * Constructs a new OAuth brand for the project if one does not exist. The created brand is "internal only", meaning that OAuth clients created under it only accept requests from users who belong to the same Google Workspace organization as the project. The brand is created in an un-reviewed status. NOTE: The "internal only" status can be manually changed in the Google Cloud Console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller.
      * @example
      * ```js
      * // Before running the sample:

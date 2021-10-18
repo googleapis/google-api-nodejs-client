@@ -642,6 +642,34 @@
     },
     "properties": {
       "methods": {
+        "acknowledgeUserDataCollection": {
+          "description": "Acknowledges the terms of user data collection for the specified property. This acknowledgement must be completed (either in the Google Analytics UI or via this API) before MeasurementProtocolSecret resources may be created.",
+          "flatPath": "v1alpha/properties/{propertiesId}:acknowledgeUserDataCollection",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.acknowledgeUserDataCollection",
+          "parameterOrder": [
+            "property"
+          ],
+          "parameters": {
+            "property": {
+              "description": "Required. The property for which to acknowledge user data collection.",
+              "location": "path",
+              "pattern": "^properties/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+property}:acknowledgeUserDataCollection",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
         "create": {
           "description": "Creates an \"GA4\" property with the specified location and attributes.",
           "flatPath": "v1alpha/properties",
@@ -3152,7 +3180,7 @@
       }
     }
   },
-  "revision": "20210922",
+  "revision": "20211013",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3216,6 +3244,23 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionRequest": {
+      "description": "Request message for AcknowledgeUserDataCollection RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionRequest",
+      "properties": {
+        "acknowledgement": {
+          "description": "Required. An acknowledgement that the caller of this method understands the terms of user data collection. This field must contain the exact value: \"I acknowledge that I have the necessary privacy disclosures and rights from my end users for the collection and processing of their data, including the association of such data with the visitation information Google Analytics collects from my site and/or app property.\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse": {
+      "description": "Response message for AcknowledgeUserDataCollection RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaAcknowledgeUserDataCollectionResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaAndroidAppDataStream": {
@@ -3289,14 +3334,14 @@
       "id": "GoogleAnalyticsAdminV1alphaAuditUserLink",
       "properties": {
         "directRoles": {
-          "description": "Roles directly assigned to this user for this entity. Format: predefinedRoles/read Excludes roles that are inherited from an account (if this is for a property), group, or organization admin role.",
+          "description": "Roles directly assigned to this user for this entity. Format: predefinedRoles/viewer Excludes roles that are inherited from an account (if this is for a property), group, or organization admin role.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "effectiveRoles": {
-          "description": "Union of all permissions a user has at this account or property (includes direct permissions, group-inherited permissions, etc.). Format: predefinedRoles/read",
+          "description": "Union of all permissions a user has at this account or property (includes direct permissions, group-inherited permissions, etc.). Format: predefinedRoles/viewer",
           "items": {
             "type": "string"
           },
@@ -4763,7 +4808,7 @@
       "id": "GoogleAnalyticsAdminV1alphaUserLink",
       "properties": {
         "directRoles": {
-          "description": "Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/read predefinedRoles/collaborate predefinedRoles/edit predefinedRoles/admin Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.",
+          "description": "Roles directly assigned to this user for this account or property. Valid values: predefinedRoles/viewer predefinedRoles/analyst predefinedRoles/editor predefinedRoles/admin predefinedRoles/no-cost-data predefinedRoles/no-revenue-data Excludes roles that are inherited from a higher-level entity, group, or organization admin role. A UserLink that is updated to have an empty list of direct_roles will be deleted.",
           "items": {
             "type": "string"
           },

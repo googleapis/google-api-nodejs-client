@@ -120,6 +120,7 @@ export namespace cloudsearch_v1 {
     query: Resource$Query;
     settings: Resource$Settings;
     stats: Resource$Stats;
+    v1: Resource$V1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -134,6 +135,7 @@ export namespace cloudsearch_v1 {
       this.query = new Resource$Query(this.context);
       this.settings = new Resource$Settings(this.context);
       this.stats = new Resource$Stats(this.context);
+      this.v1 = new Resource$V1(this.context);
     }
   }
 
@@ -648,7 +650,13 @@ export namespace cloudsearch_v1 {
      */
     stats?: Schema$DataSourceIndexStats[];
   }
+  /**
+   * Response format for getting query stats at a search application level between given dates.
+   */
   export interface Schema$GetSearchApplicationQueryStatsResponse {
+    /**
+     * Search application level query stats per date
+     */
     stats?: Schema$SearchApplicationQueryStats[];
   }
   export interface Schema$GetSearchApplicationSessionStatsResponse {
@@ -727,6 +735,10 @@ export namespace cloudsearch_v1 {
      */
     mode?: string | null;
   }
+  /**
+   * Request message for `InitializeCustomer` method.
+   */
+  export interface Schema$InitializeCustomerRequest {}
   /**
    * Used to provide a search operator for integer properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
    */
@@ -1742,6 +1754,9 @@ export namespace cloudsearch_v1 {
      */
     sourceConfig?: Schema$SourceConfig[];
   }
+  /**
+   * Search application level query stats per date
+   */
   export interface Schema$SearchApplicationQueryStats {
     /**
      * Date for which query stats were calculated. Stats calculated on the next day close to midnight are returned.
@@ -9679,5 +9694,160 @@ export namespace cloudsearch_v1 {
      * Year of date. Must be from 1 to 9999.
      */
     'toDate.year'?: number;
+  }
+
+  export class Resource$V1 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Initializes the customer. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.initializeCustomer({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    initializeCustomer(
+      params: Params$Resource$V1$Initializecustomer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    initializeCustomer(
+      params?: Params$Resource$V1$Initializecustomer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    initializeCustomer(
+      params: Params$Resource$V1$Initializecustomer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    initializeCustomer(
+      params: Params$Resource$V1$Initializecustomer,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initializeCustomer(
+      params: Params$Resource$V1$Initializecustomer,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    initializeCustomer(callback: BodyResponseCallback<Schema$Operation>): void;
+    initializeCustomer(
+      paramsOrCallback?:
+        | Params$Resource$V1$Initializecustomer
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Initializecustomer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Initializecustomer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1:initializeCustomer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$V1$Initializecustomer
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InitializeCustomerRequest;
   }
 }

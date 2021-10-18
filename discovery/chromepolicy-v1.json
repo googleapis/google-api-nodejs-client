@@ -146,7 +146,7 @@
             "orgunits": {
               "methods": {
                 "batchInherit": {
-                  "description": "Modify multiple policy values that are applied to a specific org unit so that they now inherit the value from a parent (if applicable). All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`. On failure the request will return the error details as part of the google.rpc.Status.",
+                  "description": "Modify multiple policy values that are applied to a specific org unit so that they now inherit the value from a parent (if applicable). All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.",
                   "flatPath": "v1/customers/{customersId}/policies/orgunits:batchInherit",
                   "httpMethod": "POST",
                   "id": "chromepolicy.customers.policies.orgunits.batchInherit",
@@ -174,7 +174,7 @@
                   ]
                 },
                 "batchModify": {
-                  "description": "Modify multiple policy values that are applied to a specific org unit. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`. On failure the request will return the error details as part of the google.rpc.Status.",
+                  "description": "Modify multiple policy values that are applied to a specific org unit. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.",
                   "flatPath": "v1/customers/{customersId}/policies/orgunits:batchModify",
                   "httpMethod": "POST",
                   "id": "chromepolicy.customers.policies.orgunits.batchModify",
@@ -324,7 +324,7 @@
       }
     }
   },
-  "revision": "20210830",
+  "revision": "20211014",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyV1AdditionalTargetKeyName": {
@@ -424,7 +424,7 @@
       "type": "object"
     },
     "GoogleChromePolicyV1PolicySchema": {
-      "description": "Resource representing a policy schema. Next ID: 10",
+      "description": "Resource representing a policy schema. Next ID: 11",
       "id": "GoogleChromePolicyV1PolicySchema",
       "properties": {
         "accessRestrictions": {
@@ -473,7 +473,7 @@
           "type": "string"
         },
         "schemaName": {
-          "description": "Output only. The full qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies or BatchModifyOrgUnitPolicies.",
+          "description": "Output only. The full qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies BatchModifyOrgUnitPolicies BatchModifyGroupPolicies or BatchDeleteGroupPolicies.",
           "readOnly": true,
           "type": "string"
         },
@@ -481,6 +481,24 @@
           "description": "Output only. URI to related support article for this schema.",
           "readOnly": true,
           "type": "string"
+        },
+        "validTargetResources": {
+          "description": "Output only. Information about applicable target resources for the policy.",
+          "items": {
+            "enum": [
+              "TARGET_RESOURCE_UNSPECIFIED",
+              "ORG_UNIT",
+              "GROUP"
+            ],
+            "enumDescriptions": [
+              "Unspecified target resource.",
+              "Organizational Unit target resource.",
+              "Group target resource."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -602,7 +620,7 @@
           "type": "object"
         },
         "targetResource": {
-          "description": "The target resource on which this policy is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")",
+          "description": "The target resource on which this policy is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\") * Group (\"groups/{group_id}\")",
           "type": "string"
         }
       },

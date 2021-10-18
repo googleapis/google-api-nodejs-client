@@ -863,7 +863,7 @@ export namespace managedidentities_v1 {
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member. The `bindings` in a `Policy` can refer to up to 1,500 members; up to 250 of these members can be Google groups. Each occurrence of a member counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other member, then you can add another 1,450 members to the `bindings` in the `Policy`.
      */
     bindings?: Schema$Binding[];
     /**
@@ -4741,7 +4741,7 @@ export namespace managedidentities_v1 {
      *     {
      *       // Required. Resource project name and location using the form: `projects/{project_id\}/locations/global`
      *       parent: 'projects/my-project/locations/global',
-     *       // Required. Peering Id, unique name to identify peering.
+     *       // Required. Peering Id, unique name to identify peering. It should follow the regex format "^(?:[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?)$"
      *       peeringId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -5861,7 +5861,7 @@ export namespace managedidentities_v1 {
      */
     parent?: string;
     /**
-     * Required. Peering Id, unique name to identify peering.
+     * Required. Peering Id, unique name to identify peering. It should follow the regex format "^(?:[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?)$"
      */
     peeringId?: string;
 

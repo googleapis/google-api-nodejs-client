@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210910",
+  "revision": "20210920",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2925,6 +2925,10 @@
           "description": "The IP prefix in CIDR notation to use for the hosted master network. This prefix will be used for assigning private IP addresses to the master or set of masters, as well as the ILB VIP. This field is deprecated, use private_cluster_config.master_ipv4_cidr_block instead.",
           "type": "string"
         },
+        "meshCertificates": {
+          "$ref": "MeshCertificates",
+          "description": "Configuration for issuance of mTLS keys and certificates to Kubernetes pods."
+        },
         "monitoringConfig": {
           "$ref": "MonitoringConfig",
           "description": "Monitoring configuration for the cluster."
@@ -3231,6 +3235,10 @@
         "desiredMasterVersion": {
           "description": "The Kubernetes version to change the master to. The only valid value is the latest supported version. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - \"latest\": picks the highest valid Kubernetes version - \"1.X\": picks the highest valid patch+gke.N patch in the 1.X version - \"1.X.Y\": picks the highest valid gke.N patch in the 1.X.Y version - \"1.X.Y-gke.N\": picks an explicit Kubernetes version - \"-\": picks the default Kubernetes version",
           "type": "string"
+        },
+        "desiredMeshCertificates": {
+          "$ref": "MeshCertificates",
+          "description": "Configuration for issuance of mTLS keys and certificates to Kubernetes pods."
         },
         "desiredMonitoringConfig": {
           "$ref": "MonitoringConfig",
@@ -4166,6 +4174,17 @@
       },
       "type": "object"
     },
+    "MeshCertificates": {
+      "description": "Configuration for issuance of mTLS keys and certificates to Kubernetes pods.",
+      "id": "MeshCertificates",
+      "properties": {
+        "enableCertificates": {
+          "description": "enable_certificates controls issuance of workload mTLS certificates. If set, the GKE Workload Identity Certificates controller and node agent will be deployed in the cluster, which can then be configured by creating a WorkloadCertificateConfig Custom Resource. Requires Workload Identity (workload_pool must be non-empty).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Metric": {
       "description": "Progress metric is (string, int|float|string) pair.",
       "id": "Metric",
@@ -4440,6 +4459,10 @@
         "shieldedInstanceConfig": {
           "$ref": "ShieldedInstanceConfig",
           "description": "Shielded Instance options."
+        },
+        "spot": {
+          "description": "Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.",
+          "type": "boolean"
         },
         "tags": {
           "description": "The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster or node pool creation. Each tag within the list must comply with RFC1035.",
