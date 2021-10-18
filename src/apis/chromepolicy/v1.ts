@@ -202,7 +202,7 @@ export namespace chromepolicy_v1 {
     updateMask?: string | null;
   }
   /**
-   * Resource representing a policy schema. Next ID: 10
+   * Resource representing a policy schema. Next ID: 11
    */
   export interface Schema$GoogleChromePolicyV1PolicySchema {
     /**
@@ -234,13 +234,17 @@ export namespace chromepolicy_v1 {
      */
     policyDescription?: string | null;
     /**
-     * Output only. The full qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies or BatchModifyOrgUnitPolicies.
+     * Output only. The full qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies BatchModifyOrgUnitPolicies BatchModifyGroupPolicies or BatchDeleteGroupPolicies.
      */
     schemaName?: string | null;
     /**
      * Output only. URI to related support article for this schema.
      */
     supportUri?: string | null;
+    /**
+     * Output only. Information about applicable target resources for the policy.
+     */
+    validTargetResources?: string[] | null;
   }
   /**
    * The field and the value it must have for another field to be allowed to be set.
@@ -327,7 +331,7 @@ export namespace chromepolicy_v1 {
      */
     additionalTargetKeys?: {[key: string]: string} | null;
     /**
-     * The target resource on which this policy is applied. The following resources are supported: * Organizational Unit ("orgunits/{orgunit_id\}")
+     * The target resource on which this policy is applied. The following resources are supported: * Organizational Unit ("orgunits/{orgunit_id\}") * Group ("groups/{group_id\}")
      */
     targetResource?: string | null;
   }
@@ -695,7 +699,7 @@ export namespace chromepolicy_v1 {
     }
 
     /**
-     * Modify multiple policy values that are applied to a specific org unit so that they now inherit the value from a parent (if applicable). All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`. On failure the request will return the error details as part of the google.rpc.Status.
+     * Modify multiple policy values that are applied to a specific org unit so that they now inherit the value from a parent (if applicable). All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
      * @example
      * ```js
      * // Before running the sample:
@@ -834,7 +838,7 @@ export namespace chromepolicy_v1 {
     }
 
     /**
-     * Modify multiple policy values that are applied to a specific org unit. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`. On failure the request will return the error details as part of the google.rpc.Status.
+     * Modify multiple policy values that are applied to a specific org unit. All targets must have the same target format. That is to say that they must point to the same target resource and must have the same keys specified in `additionalTargetKeyNames`, though the values for those keys may be different. On failure the request will return the error details as part of the google.rpc.Status.
      * @example
      * ```js
      * // Before running the sample:
@@ -1049,7 +1053,8 @@ export namespace chromepolicy_v1 {
      *   //   "notices": [],
      *   //   "policyDescription": "my_policyDescription",
      *   //   "schemaName": "my_schemaName",
-     *   //   "supportUri": "my_supportUri"
+     *   //   "supportUri": "my_supportUri",
+     *   //   "validTargetResources": []
      *   // }
      * }
      *
