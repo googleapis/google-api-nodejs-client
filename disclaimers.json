@@ -344,6 +344,10 @@
     "package": "@google-cloud/workflows"
   },
   {
+    "api": "accesscontextmanager",
+    "package": "@google-cloud/access-context-manager"
+  },
+  {
     "api": "notebooks",
     "package": "@google-cloud/notebooks"
   },
@@ -376,6 +380,10 @@
     "package": "@google-cloud/contact-center-insights"
   },
   {
+    "api": "datafusion",
+    "package": "@google-cloud/data-fusion"
+  },
+  {
     "api": "datalabeling",
     "package": "@google-cloud/datalabeling"
   },
@@ -390,6 +398,14 @@
   {
     "api": "metastore",
     "package": "@google-cloud/dataproc-metastore"
+  },
+  {
+    "api": "datastream",
+    "package": "@google-cloud/datastream"
+  },
+  {
+    "api": "clouddeploy",
+    "package": "@google-cloud/deploy"
   },
   {
     "api": "domains",
@@ -426,6 +442,10 @@
   {
     "api": "networkconnectivity",
     "package": "@google-cloud/network-connectivity"
+  },
+  {
+    "api": "networksecurity",
+    "package": "@google-cloud/network-security"
   },
   {
     "api": "phishingprotection",
