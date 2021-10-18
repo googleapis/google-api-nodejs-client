@@ -733,6 +733,40 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "patch": {
+              "description": "Update an OS Config patch deployment.",
+              "flatPath": "v1/projects/{projectsId}/patchDeployments/{patchDeploymentsId}",
+              "httpMethod": "PATCH",
+              "id": "osconfig.projects.patchDeployments.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id}/patchDeployments/{patch_deployment_id}`. This field is ignored when you create a new patch deployment.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/patchDeployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. Field mask that controls which fields of the patch deployment should be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "PatchDeployment"
+              },
+              "response": {
+                "$ref": "PatchDeployment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         },
@@ -912,7 +946,7 @@
       }
     }
   },
-  "revision": "20210925",
+  "revision": "20211002",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
