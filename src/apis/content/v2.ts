@@ -805,6 +805,28 @@ export namespace content_v2 {
      */
     status?: string | null;
   }
+  export interface Schema$Address {
+    /**
+     * Required. Top-level administrative subdivision of the country. For example, a state like California ("CA") or a province like Quebec ("QC").
+     */
+    administrativeArea?: string | null;
+    /**
+     * Required. City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     */
+    city?: string | null;
+    /**
+     * Required. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml)(e.g. "US").
+     */
+    country?: string | null;
+    /**
+     * Required. Postal code or ZIP (e.g. "94043"). Required.
+     */
+    postalCode?: string | null;
+    /**
+     * Street-level part of the address.
+     */
+    streetAddress?: string | null;
+  }
   export interface Schema$Amount {
     /**
      * [required] Value before taxes.
@@ -5052,6 +5074,10 @@ export namespace content_v2 {
      * The target account's list of services. Optional.
      */
     services?: Schema$Service[];
+    /**
+     * Optional. A list of warehouses which can be referred to in `services`.
+     */
+    warehouses?: Schema$Warehouse[];
   }
   export interface Schema$ShippingsettingsCustomBatchRequest {
     /**
@@ -5449,6 +5475,31 @@ export namespace content_v2 {
      */
     subtableName?: string | null;
   }
+  /**
+   * A fulfillment warehouse, which stores and handles inventory.
+   */
+  export interface Schema$Warehouse {
+    /**
+     * Business days of the warehouse. If not set, will be Monday to Friday by default.
+     */
+    businessDayConfig?: Schema$BusinessDayConfig;
+    /**
+     * Required. The latest time of day that an order can be accepted and begin processing. Later orders will be processed in the next day. The time is based on the warehouse postal code.
+     */
+    cutoffTime?: Schema$WarehouseCutoffTime;
+    /**
+     * Required. The number of days it takes for this warehouse to pack up and ship an item. This is on the warehouse level, but can be overridden on the offer level based on the attributes of an item.
+     */
+    handlingDays?: string | null;
+    /**
+     * Required. The name of the warehouse. Must be unique within account.
+     */
+    name?: string | null;
+    /**
+     * Required. Shipping address of the warehouse.
+     */
+    shippingAddress?: Schema$Address;
+  }
   export interface Schema$WarehouseBasedDeliveryTime {
     /**
      * Required. Carrier, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved via the `listSupportedCarriers` method.
@@ -5459,25 +5510,39 @@ export namespace content_v2 {
      */
     carrierService?: string | null;
     /**
-     * Required. Shipping origin's state.
+     * Shipping origin's state.
      */
     originAdministrativeArea?: string | null;
     /**
-     * Required. Shipping origin's city.
+     * Shipping origin's city.
      */
     originCity?: string | null;
     /**
-     * Required. Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).
+     * Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).
      */
     originCountry?: string | null;
     /**
-     * Required. Shipping origin.
+     * Shipping origin.
      */
     originPostalCode?: string | null;
     /**
      * Shipping origin's street address
      */
     originStreetAddress?: string | null;
+    /**
+     * The name of the warehouse. Warehouse name need to be matched with name. If warehouseName is set, the below fields will be ignored. The warehouse info will be read from warehouse.
+     */
+    warehouseName?: string | null;
+  }
+  export interface Schema$WarehouseCutoffTime {
+    /**
+     * Required. Hour (24-hour clock) of the cutoff time until which an order has to be placed to be processed in the same day by the warehouse. Hour is based on the timezone of warehouse.
+     */
+    hour?: number | null;
+    /**
+     * Required. Minute of the cutoff time until which an order has to be placed to be processed in the same day by the warehouse. Minute is based on the timezone of warehouse.
+     */
+    minute?: number | null;
   }
   export interface Schema$Weight {
     /**
@@ -19078,7 +19143,8 @@ export namespace content_v2 {
      *   // {
      *   //   "accountId": "my_accountId",
      *   //   "postalCodeGroups": [],
-     *   //   "services": []
+     *   //   "services": [],
+     *   //   "warehouses": []
      *   // }
      * }
      *
@@ -19775,7 +19841,8 @@ export namespace content_v2 {
      *       // {
      *       //   "accountId": "my_accountId",
      *       //   "postalCodeGroups": [],
-     *       //   "services": []
+     *       //   "services": [],
+     *       //   "warehouses": []
      *       // }
      *     },
      *   });
@@ -19785,7 +19852,8 @@ export namespace content_v2 {
      *   // {
      *   //   "accountId": "my_accountId",
      *   //   "postalCodeGroups": [],
-     *   //   "services": []
+     *   //   "services": [],
+     *   //   "warehouses": []
      *   // }
      * }
      *
