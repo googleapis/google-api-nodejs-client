@@ -1914,9 +1914,33 @@
           }
         }
       }
+    },
+    "v1": {
+      "methods": {
+        "initializeCustomer": {
+          "description": "Initializes the customer. **Note:** This API requires an admin account to execute.",
+          "flatPath": "v1:initializeCustomer",
+          "httpMethod": "POST",
+          "id": "cloudsearch.initializeCustomer",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1:initializeCustomer",
+          "request": {
+            "$ref": "InitializeCustomerRequest"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud_search",
+            "https://www.googleapis.com/auth/cloud_search.settings",
+            "https://www.googleapis.com/auth/cloud_search.settings.indexing"
+          ]
+        }
+      }
     }
   },
-  "revision": "20210920",
+  "revision": "20211005",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AuditLoggingSettings": {
@@ -2762,9 +2786,11 @@
       "type": "object"
     },
     "GetSearchApplicationQueryStatsResponse": {
+      "description": "Response format for getting query stats at a search application level between given dates.",
       "id": "GetSearchApplicationQueryStatsResponse",
       "properties": {
         "stats": {
+          "description": "Search application level query stats per date",
           "items": {
             "$ref": "SearchApplicationQueryStats"
           },
@@ -2880,6 +2906,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "InitializeCustomerRequest": {
+      "description": "Request message for `InitializeCustomer` method.",
+      "id": "InitializeCustomerRequest",
+      "properties": {},
       "type": "object"
     },
     "IntegerOperatorOptions": {
@@ -4473,6 +4505,7 @@
       "type": "object"
     },
     "SearchApplicationQueryStats": {
+      "description": "Search application level query stats per date",
       "id": "SearchApplicationQueryStats",
       "properties": {
         "date": {
