@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v2.0.0...androidpublisher-v2.1.0) (2021-10-18)
+
+
+### Features
+
+* **androidpublisher:** update the API ([2ef419e](https://www.github.com/googleapis/google-api-nodejs-client/commit/2ef419e4a378cc9c914099007ba4a032a09642d4))
+
 ## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v1.1.1...androidpublisher-v2.0.0) (2021-09-14)
 
 
