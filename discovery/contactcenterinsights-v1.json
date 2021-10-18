@@ -1089,7 +1089,7 @@
       }
     }
   },
-  "revision": "20210927",
+  "revision": "20211002",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1468,14 +1468,14 @@
           "readOnly": true
         },
         "medium": {
-          "description": "Immutable. The conversation medium.",
+          "description": "Immutable. The conversation medium, if unspecified will default to PHONE_CALL.",
           "enum": [
             "MEDIUM_UNSPECIFIED",
             "PHONE_CALL",
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value.",
+            "Default value, if unspecified will default to PHONE_CALL.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -2278,7 +2278,7 @@
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value.",
+            "Default value, if unspecified will default to PHONE_CALL.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],
@@ -3098,7 +3098,7 @@
             "CHAT"
           ],
           "enumDescriptions": [
-            "Default value.",
+            "Default value, if unspecified will default to PHONE_CALL.",
             "The format for conversations that took place over the phone.",
             "The format for conversations that took place over chat."
           ],

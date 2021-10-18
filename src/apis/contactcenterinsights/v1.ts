@@ -693,7 +693,7 @@ export namespace contactcenterinsights_v1 {
      */
     latestAnalysis?: Schema$GoogleCloudContactcenterinsightsV1Analysis;
     /**
-     * Immutable. The conversation medium.
+     * Immutable. The conversation medium, if unspecified will default to PHONE_CALL.
      */
     medium?: string | null;
     /**
