@@ -511,6 +511,10 @@ export namespace container_v1beta1 {
      */
     masterIpv4CidrBlock?: string | null;
     /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
+     */
+    meshCertificates?: Schema$MeshCertificates;
+    /**
      * Monitoring configuration for the cluster.
      */
     monitoringConfig?: Schema$MonitoringConfig;
@@ -745,6 +749,10 @@ export namespace container_v1beta1 {
      * The Kubernetes version to change the master to. The only valid value is the latest supported version. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the default Kubernetes version
      */
     desiredMasterVersion?: string | null;
+    /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
+     */
+    desiredMeshCertificates?: Schema$MeshCertificates;
     /**
      * The desired monitoring configuration.
      */
@@ -1459,6 +1467,15 @@ export namespace container_v1beta1 {
     maxPodsPerNode?: string | null;
   }
   /**
+   * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
+   */
+  export interface Schema$MeshCertificates {
+    /**
+     * enable_certificates controls issuance of workload mTLS certificates. If set, the GKE Workload Identity Certificates controller and node agent will be deployed in the cluster, which can then be configured by creating a WorkloadCertificateConfig Custom Resource. Requires Workload Identity (workload_pool must be non-empty).
+     */
+    enableCertificates?: boolean | null;
+  }
+  /**
    * Progress metric is (string, int|float|string) pair.
    */
   export interface Schema$Metric {
@@ -1657,6 +1674,10 @@ export namespace container_v1beta1 {
      * Shielded Instance options.
      */
     shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.
+     */
+    spot?: boolean | null;
     /**
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster or node pool creation. Each tag within the list must comply with RFC1035.
      */
@@ -3983,6 +4004,7 @@ export namespace container_v1beta1 {
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
      *   //   "masterIpv4CidrBlock": "my_masterIpv4CidrBlock",
+     *   //   "meshCertificates": {},
      *   //   "monitoringConfig": {},
      *   //   "monitoringService": "my_monitoringService",
      *   //   "name": "my_name",
@@ -9524,6 +9546,7 @@ export namespace container_v1beta1 {
      *   //   "masterAuth": {},
      *   //   "masterAuthorizedNetworksConfig": {},
      *   //   "masterIpv4CidrBlock": "my_masterIpv4CidrBlock",
+     *   //   "meshCertificates": {},
      *   //   "monitoringConfig": {},
      *   //   "monitoringService": "my_monitoringService",
      *   //   "name": "my_name",
