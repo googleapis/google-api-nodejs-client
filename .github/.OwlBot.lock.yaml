@@ -1,3 +1,3 @@
 docker:
   image: gcr.io/cloud-devrel-public-resources/owlbot-nodejs:latest
-  digest: sha256:111973c0da7608bf1e60d070e5449d48826c385a6b92a56cb9203f1725d33c3d
+  digest: sha256:bbb8dd6576ac58830a07fc17e9511ae898be44f2219d3344449b125df9854441
