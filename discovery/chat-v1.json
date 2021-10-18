@@ -554,7 +554,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards",
+                  "description": "Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * gsuite_message_integration_render_data * attachment",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210911",
+  "revision": "20211008",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
