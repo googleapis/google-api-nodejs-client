@@ -184,7 +184,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.",
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method. Page tokens for continued pages are valid for up to five hours, counting from the call to 'ListCreatives' for the first page.",
                   "location": "query",
                   "type": "string"
                 },
@@ -307,6 +307,40 @@
               "path": "v1/{+parent}/endpoints",
               "response": {
                 "$ref": "ListEndpointsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "patch": {
+              "description": "Updates a bidder's endpoint.",
+              "flatPath": "v1/bidders/{biddersId}/endpoints/{endpointsId}",
+              "httpMethod": "PATCH",
+              "id": "realtimebidding.bidders.endpoints.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Name of the endpoint resource that must follow the pattern `bidders/{bidderAccountId}/endpoints/{endpointId}`, where {bidderAccountId} is the account ID of the bidder who operates this endpoint, and {endpointId} is a unique ID assigned by the server.",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/endpoints/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Field mask to use for partial in-place updates.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "Endpoint"
+              },
+              "response": {
+                "$ref": "Endpoint"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/realtime-bidding"
@@ -864,7 +898,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.",
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method. Page tokens for continued pages are valid for up to five hours, counting from the call to 'ListCreatives' for the first page.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1140,7 +1174,7 @@
       }
     }
   },
-  "revision": "20210529",
+  "revision": "20211014",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {

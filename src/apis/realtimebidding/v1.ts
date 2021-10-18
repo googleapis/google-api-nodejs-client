@@ -1482,7 +1482,7 @@ export namespace realtimebidding_v1 {
      *     filter: 'placeholder-value',
      *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method. Page tokens for continued pages are valid for up to five hours, counting from the call to 'ListCreatives' for the first page.
      *     pageToken: 'placeholder-value',
      *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId\}` or `bidders/{bidderAccountId\}`. For `buyers/{buyerAccountId\}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId\}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      *     parent: 'bidders/my-bidder',
@@ -1749,7 +1749,7 @@ export namespace realtimebidding_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method. Page tokens for continued pages are valid for up to five hours, counting from the call to 'ListCreatives' for the first page.
      */
     pageToken?: string;
     /**
@@ -2050,6 +2050,151 @@ export namespace realtimebidding_v1 {
         return createAPIRequest<Schema$ListEndpointsResponse>(parameters);
       }
     }
+
+    /**
+     * Updates a bidder's endpoint.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.endpoints.patch({
+     *     // Output only. Name of the endpoint resource that must follow the pattern `bidders/{bidderAccountId\}/endpoints/{endpointId\}`, where {bidderAccountId\} is the account ID of the bidder who operates this endpoint, and {endpointId\} is a unique ID assigned by the server.
+     *     name: 'bidders/my-bidder/endpoints/my-endpoint',
+     *     // Field mask to use for partial in-place updates.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bidProtocol": "my_bidProtocol",
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "name": "my_name",
+     *       //   "tradingLocation": "my_tradingLocation",
+     *       //   "url": "my_url"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidProtocol": "my_bidProtocol",
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "name": "my_name",
+     *   //   "tradingLocation": "my_tradingLocation",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Bidders$Endpoints$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Bidders$Endpoints$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Endpoint>;
+    patch(
+      params: Params$Resource$Bidders$Endpoints$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Bidders$Endpoints$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Endpoint>,
+      callback: BodyResponseCallback<Schema$Endpoint>
+    ): void;
+    patch(
+      params: Params$Resource$Bidders$Endpoints$Patch,
+      callback: BodyResponseCallback<Schema$Endpoint>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Endpoint>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Endpoints$Patch
+        | BodyResponseCallback<Schema$Endpoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Endpoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Endpoint>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Endpoint> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Endpoints$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Endpoints$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Endpoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Endpoint>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Bidders$Endpoints$Get
@@ -2073,6 +2218,22 @@ export namespace realtimebidding_v1 {
      * Required. Name of the bidder whose endpoints will be listed. Format: `bidders/{bidderAccountId\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Bidders$Endpoints$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Name of the endpoint resource that must follow the pattern `bidders/{bidderAccountId\}/endpoints/{endpointId\}`, where {bidderAccountId\} is the account ID of the bidder who operates this endpoint, and {endpointId\} is a unique ID assigned by the server.
+     */
+    name?: string;
+    /**
+     * Field mask to use for partial in-place updates.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Endpoint;
   }
 
   export class Resource$Bidders$Pretargetingconfigs {
@@ -5150,7 +5311,7 @@ export namespace realtimebidding_v1 {
      *     filter: 'placeholder-value',
      *     // Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
      *     pageSize: 'placeholder-value',
-     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
+     *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method. Page tokens for continued pages are valid for up to five hours, counting from the call to 'ListCreatives' for the first page.
      *     pageToken: 'placeholder-value',
      *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId\}` or `bidders/{bidderAccountId\}`. For `buyers/{buyerAccountId\}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId\}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      *     parent: 'buyers/my-buyer',
@@ -5473,7 +5634,7 @@ export namespace realtimebidding_v1 {
      */
     pageSize?: number;
     /**
-     * A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
+     * A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method. Page tokens for continued pages are valid for up to five hours, counting from the call to 'ListCreatives' for the first page.
      */
     pageToken?: string;
     /**
