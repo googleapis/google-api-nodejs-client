@@ -1590,7 +1590,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20210929",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -3078,12 +3078,12 @@
       "id": "RsaKeyType",
       "properties": {
         "maxModulusSize": {
-          "description": "Optional. The maximum allowed RSA modulus size, in bits. If this is not set, or if set to zero, the service will not enforce an explicit upper bound on RSA modulus sizes.",
+          "description": "Optional. The maximum allowed RSA modulus size (inclusive), in bits. If this is not set, or if set to zero, the service will not enforce an explicit upper bound on RSA modulus sizes.",
           "format": "int64",
           "type": "string"
         },
         "minModulusSize": {
-          "description": "Optional. The minimum allowed RSA modulus size, in bits. If this is not set, or if set to zero, the service-level min RSA modulus size will continue to apply.",
+          "description": "Optional. The minimum allowed RSA modulus size (inclusive), in bits. If this is not set, or if set to zero, the service-level min RSA modulus size will continue to apply.",
           "format": "int64",
           "type": "string"
         }
