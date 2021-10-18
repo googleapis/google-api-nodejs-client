@@ -1004,11 +1004,11 @@
       }
     }
   },
-  "revision": "20210916",
+  "revision": "20210930",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
-      "description": "Security policies set to the most secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.",
+      "description": "Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.",
       "id": "AdvancedSecurityOverrides",
       "properties": {
         "commonCriteriaMode": {
@@ -3305,7 +3305,7 @@
         },
         "advancedSecurityOverrides": {
           "$ref": "AdvancedSecurityOverrides",
-          "description": "Security policies set to the most secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values."
+          "description": "Security policies set to secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values."
         },
         "alwaysOnVpnPackage": {
           "$ref": "AlwaysOnVpnPackage",
