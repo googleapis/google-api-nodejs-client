@@ -1103,7 +1103,7 @@ export namespace cloudidentity_v1beta1 {
      */
     preferredMemberKey?: Schema$EntityKey[];
     /**
-     * The relation between the group and the transitive member.
+     * The relation between the group and the transitive membership.
      */
     relationType?: string | null;
     /**
@@ -1313,7 +1313,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$SearchTransitiveMembershipsResponse {
     /**
-     * List of transitive members satisfying the query.
+     * List of transitive memberships satisfying the query.
      */
     memberships?: Schema$MemberRelation[];
     /**

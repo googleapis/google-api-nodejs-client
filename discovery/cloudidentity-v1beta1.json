@@ -1404,7 +1404,7 @@
       }
     }
   },
-  "revision": "20210928",
+  "revision": "20211011",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -3026,7 +3026,7 @@
           "type": "array"
         },
         "relationType": {
-          "description": "The relation between the group and the transitive member.",
+          "description": "The relation between the group and the transitive membership.",
           "enum": [
             "RELATION_TYPE_UNSPECIFIED",
             "DIRECT",
@@ -3178,9 +3178,9 @@
           ],
           "enumDescriptions": [
             "Default. Should not be used.",
-            "The member adheres to the parent group’s restriction.",
+            "The member adheres to the parent group's restriction.",
             "The group-group membership might be currently violating some parent group's restriction but in future, it will never allow any new member in the child group which can violate parent group's restriction.",
-            "The member violates the parent group’s restriction.",
+            "The member violates the parent group's restriction.",
             "The state of the membership is under evaluation."
           ],
           "readOnly": true,
@@ -3299,9 +3299,9 @@
           "enumDescriptions": [
             "Default. Should not be used.",
             "The restriction state is currently being evaluated.",
-            "All transitive members are adhering to restriction.",
-            "Some transitive members violate the restriction. No new violating members can be added.",
-            "Some transitive members violate the restriction. New violating direct members will be denied while indirect members may be added."
+            "All transitive memberships are adhering to restriction.",
+            "Some transitive memberships violate the restriction. No new violating memberships can be added.",
+            "Some transitive memberships violate the restriction. New violating direct memberships will be denied while indirect memberships may be added."
           ],
           "readOnly": true,
           "type": "string"
@@ -3361,7 +3361,7 @@
       "id": "SearchTransitiveMembershipsResponse",
       "properties": {
         "memberships": {
-          "description": "List of transitive members satisfying the query.",
+          "description": "List of transitive memberships satisfying the query.",
           "items": {
             "$ref": "MemberRelation"
           },
