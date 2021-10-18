@@ -860,7 +860,7 @@
       }
     }
   },
-  "revision": "20210924",
+  "revision": "20211013",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -993,6 +993,10 @@
         },
         "privateIpv6GoogleAccess": {
           "description": "Optional. The private IPv6 google access type for the VMs in this subnet. For information about the access types that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.",
+          "type": "string"
+        },
+        "purpose": {
+          "description": "Optional. Defines the purpose field of the subnet, e.g. 'PRIVATE_SERVICE_CONNECT'. For information about the purposes that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.",
           "type": "string"
         },
         "region": {

@@ -237,6 +237,10 @@ export namespace servicenetworking_v1 {
      */
     privateIpv6GoogleAccess?: string | null;
     /**
+     * Optional. Defines the purpose field of the subnet, e.g. 'PRIVATE_SERVICE_CONNECT'. For information about the purposes that can be set using this field, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.
+     */
+    purpose?: string | null;
+    /**
      * Required. The name of a [region](/compute/docs/regions-zones) for the subnet, such `europe-west1`.
      */
     region?: string | null;
@@ -2526,6 +2530,7 @@ export namespace servicenetworking_v1 {
      *       //   "ipPrefixLength": 0,
      *       //   "outsideAllocationPublicIpRange": "my_outsideAllocationPublicIpRange",
      *       //   "privateIpv6GoogleAccess": "my_privateIpv6GoogleAccess",
+     *       //   "purpose": "my_purpose",
      *       //   "region": "my_region",
      *       //   "requestedAddress": "my_requestedAddress",
      *       //   "requestedRanges": [],
