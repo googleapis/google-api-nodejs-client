@@ -152,6 +152,27 @@ export namespace gkehub_v1alpha {
     logType?: string | null;
   }
   /**
+   * Authority encodes how Google will recognize identities from this Membership. See the workload identity documentation for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
+   */
+  export interface Schema$Authority {
+    /**
+     * Output only. An identity provider that reflects the `issuer` in the workload identity pool.
+     */
+    identityProvider?: string | null;
+    /**
+     * Optional. A JSON Web Token (JWT) issuer URI. `issuer` must start with `https://` and be a valid URL with length <2000 characters. If set, then Google will allow valid OIDC tokens from this issuer to authenticate within the workload_identity_pool. OIDC discovery will be performed on this URI to validate tokens from the issuer. Clearing `issuer` disables Workload Identity. `issuer` cannot be directly modified; it must be cleared (and Workload Identity disabled) before using a new issuer (and re-enabling Workload Identity).
+     */
+    issuer?: string | null;
+    /**
+     * Optional. OIDC verification keys for this Membership in JWKS format (RFC 7517). When this field is set, OIDC discovery will NOT be performed on `issuer`, and instead OIDC tokens will be validated using this field.
+     */
+    oidcJwks?: string | null;
+    /**
+     * Output only. The name of the workload identity pool in which `issuer` will be recognized. There is a single Workload Identity Pool per Hub that is shared between all Memberships that belong to that Hub. For a Hub hosted in {PROJECT_ID\}, the workload pool format is `{PROJECT_ID\}.hub.id.goog`, although this is subject to change in newer versions of this API.
+     */
+    workloadIdentityPool?: string | null;
+  }
+  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -243,15 +264,13 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementConfigSync {
     /**
+     * Enables the installation of ConfigSync. If set to true, ConfigSync resources will be created and the other ConfigSync fields will be applied if exist. If set to false, all other ConfigSync fields will be ignored, ConfigSync resources will be deleted. If omitted, ConfigSync resources will be managed depends on the presence of git field.
+     */
+    enabled?: boolean | null;
+    /**
      * Git repo configuration for the cluster.
      */
     git?: Schema$ConfigManagementGitConfig;
-    /**
-     * Specifies CPU and memory limits for containers, keyed by container name
-     */
-    resourceRequirements?: {
-      [key: string]: Schema$ConfigManagementContainerResourceRequirements;
-    } | null;
     /**
      * Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.
      */
@@ -341,23 +360,6 @@ export namespace gkehub_v1alpha {
     syncer?: string | null;
   }
   /**
-   * ResourceRequirements allows to override the CPU and memory resource requirements of a container.
-   */
-  export interface Schema$ConfigManagementContainerResourceRequirements {
-    /**
-     * Name of the container
-     */
-    containerName?: string | null;
-    /**
-     * Allows to override the CPU limit of a container
-     */
-    cpuLimit?: Schema$ConfigManagementQuantity;
-    /**
-     * Allows to override the memory limit of a container
-     */
-    memoryLimit?: Schema$ConfigManagementQuantity;
-  }
-  /**
    * Model for a config file in the git repo with an associated Sync error
    */
   export interface Schema$ConfigManagementErrorResource {
@@ -408,10 +410,6 @@ export namespace gkehub_v1alpha {
      */
     httpsProxy?: string | null;
     /**
-     * Enable or disable the SSL certificate verification Default: false.
-     */
-    noSslVerify?: boolean | null;
-    /**
      * The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.
      */
     policyDir?: string | null;
@@ -423,10 +421,6 @@ export namespace gkehub_v1alpha {
      * The branch of the repository to sync from. Default: master.
      */
     syncBranch?: string | null;
-    /**
-     * The depth of git commits synced by the git-sync container.
-     */
-    syncDepth?: string | null;
     /**
      * The URL of the Git repository to use as the source of truth.
      */
@@ -653,15 +647,6 @@ export namespace gkehub_v1alpha {
     version?: string | null;
   }
   /**
-   * The view model of a single quantity, e.g. "800 MiB". Corresponds to https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/generated.proto
-   */
-  export interface Schema$ConfigManagementQuantity {
-    /**
-     * Stringified version of the quantity, e.g., "800 MiB".
-     */
-    string?: string | null;
-  }
-  /**
    * An ACM created error representing a problem syncing configurations
    */
   export interface Schema$ConfigManagementSyncError {
@@ -808,6 +793,19 @@ export namespace gkehub_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * GkeCluster contains information specific to GKE clusters.
+   */
+  export interface Schema$GkeCluster {
+    /**
+     * Output only. If cluster_missing is set then it denotes that the GKE cluster no longer exists in the GKE Control Plane.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the GCP resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.
+     */
+    resourceLink?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpcStatus {
@@ -921,6 +919,52 @@ export namespace gkehub_v1alpha {
     userPrefix?: string | null;
   }
   /**
+   * KubernetesMetadata provides informational metadata for Memberships representing Kubernetes clusters.
+   */
+  export interface Schema$KubernetesMetadata {
+    /**
+     * Output only. Kubernetes API server version string as reported by `/version`.
+     */
+    kubernetesApiServerVersion?: string | null;
+    /**
+     * Output only. The total memory capacity as reported by the sum of all Kubernetes nodes resources, defined in MB.
+     */
+    memoryMb?: number | null;
+    /**
+     * Output only. Node count as reported by Kubernetes nodes resources.
+     */
+    nodeCount?: number | null;
+    /**
+     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the node_count will be zero and the node_provider_id will be empty.
+     */
+    nodeProviderId?: string | null;
+    /**
+     * Output only. The time at which these details were last updated. This update_time is different from the Membership-level update_time since EndpointDetails are updated internally for API consumers.
+     */
+    updateTime?: string | null;
+    /**
+     * Output only. vCPU count as reported by Kubernetes nodes resources.
+     */
+    vcpuCount?: number | null;
+  }
+  /**
+   * Response message for the `GkeHub.ListAdminClusterMemberships` method.
+   */
+  export interface Schema$ListAdminClusterMembershipsResponse {
+    /**
+     * The list of matching Memberships of admin clusters.
+     */
+    adminClusterMemberships?: Schema$Membership[];
+    /**
+     * A token to request the next page of resources from the `ListAdminClusterMemberships` method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of locations that could not be reached while fetching this list.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response message for the `GkeHub.ListFeatures` method.
    */
   export interface Schema$ListFeaturesResponse {
@@ -985,6 +1029,80 @@ export namespace gkehub_v1alpha {
     name?: string | null;
   }
   /**
+   * Membership contains information about a member cluster.
+   */
+  export interface Schema$Membership {
+    /**
+     * Optional. How to identify workloads from this Membership. See the documentation on Workload Identity for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
+     */
+    authority?: Schema$Authority;
+    /**
+     * Output only. When the Membership was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. When the Membership was deleted.
+     */
+    deleteTime?: string | null;
+    /**
+     * Output only. Description of this membership, limited to 63 characters. Must match the regex: `a-zA-Z0-9*` This field is present for legacy purposes.
+     */
+    description?: string | null;
+    /**
+     * Optional. Endpoint information to reach this member.
+     */
+    endpoint?: Schema$MembershipEndpoint;
+    /**
+     * Optional. An externally-generated and managed ID for this Membership. This ID may be modified after creation, but this is not recommended. The ID must match the regex: `a-zA-Z0-9*` If this Membership represents a Kubernetes cluster, this value should be set to the UID of the `kube-system` namespace object.
+     */
+    externalId?: string | null;
+    /**
+     * Optional. GCP labels for this membership.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. For clusters using Connect, the timestamp of the most recent connection established with Google Cloud. This time is updated every several minutes, not continuously. For clusters that do not use GKE Connect, or that have never connected successfully, this field will be unset.
+     */
+    lastConnectionTime?: string | null;
+    /**
+     * Output only. The full, unique name of this Membership resource in the format `projects/x/locations/x/memberships/{membership_id\}`, set during creation. `membership_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
+     */
+    name?: string | null;
+    /**
+     * Output only. State of the Membership resource.
+     */
+    state?: Schema$MembershipState;
+    /**
+     * Output only. Google-generated UUID for this resource. This is unique across all Membership resources. If a Membership resource is deleted and another resource with the same name is created, it gets a different unique_id.
+     */
+    uniqueId?: string | null;
+    /**
+     * Output only. When the Membership was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * MembershipEndpoint contains information needed to contact a Kubernetes API, endpoint and any additional Kubernetes metadata.
+   */
+  export interface Schema$MembershipEndpoint {
+    /**
+     * Optional. Specific information for a GKE-on-GCP cluster.
+     */
+    gkeCluster?: Schema$GkeCluster;
+    /**
+     * Output only. Useful Kubernetes-specific metadata.
+     */
+    kubernetesMetadata?: Schema$KubernetesMetadata;
+    /**
+     * Optional. Specific information for a GKE Multi-Cloud cluster.
+     */
+    multiCloudCluster?: Schema$MultiCloudCluster;
+    /**
+     * Optional. Specific information for a GKE On-Prem cluster.
+     */
+    onPremCluster?: Schema$OnPremCluster;
+  }
+  /**
    * MembershipFeatureSpec contains configuration information for a single Membership.
    */
   export interface Schema$MembershipFeatureSpec {
@@ -1023,6 +1141,15 @@ export namespace gkehub_v1alpha {
     state?: Schema$FeatureState;
   }
   /**
+   * MembershipState describes the state of a Membership resource.
+   */
+  export interface Schema$MembershipState {
+    /**
+     * Output only. The current state of the Membership resource.
+     */
+    code?: string | null;
+  }
+  /**
    * **Metering**: Per-Membership Feature State.
    */
   export interface Schema$MeteringMembershipState {
@@ -1036,6 +1163,19 @@ export namespace gkehub_v1alpha {
     preciseLastMeasuredClusterVcpuCapacity?: number | null;
   }
   /**
+   * MultiCloudCluster contains information specific to GKE Multi-Cloud clusters.
+   */
+  export interface Schema$MultiCloudCluster {
+    /**
+     * Output only. If cluster_missing is set then it denotes that API(gkemulticloud.googleapis.com) resource for this GKE Multi-Cloud cluster no longer exists.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the GCP resource for the GKE Multi-Cloud cluster. For example: //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/awsClusters/my-cluster //gkemulticloud.googleapis.com/projects/my-project/locations/us-west1-a/azureClusters/my-cluster
+     */
+    resourceLink?: string | null;
+  }
+  /**
    * **Multi-cluster Ingress**: The configuration for the MultiClusterIngress feature.
    */
   export interface Schema$MultiClusterIngressFeatureSpec {
@@ -1047,6 +1187,23 @@ export namespace gkehub_v1alpha {
      * Fully-qualified Membership name which hosts the MultiClusterIngress CRD. Example: `projects/foo-proj/locations/global/memberships/bar`
      */
     configMembership?: string | null;
+  }
+  /**
+   * OnPremCluster contains information specific to GKE On-Prem clusters.
+   */
+  export interface Schema$OnPremCluster {
+    /**
+     * Immutable. Whether the cluster is an admin cluster.
+     */
+    adminCluster?: boolean | null;
+    /**
+     * Output only. If cluster_missing is set then it denotes that API(gkeonprem.googleapis.com) resource for this GKE On-Prem cluster no longer exists.
+     */
+    clusterMissing?: boolean | null;
+    /**
+     * Immutable. Self-link of the GCP resource for the GKE On-Prem cluster. For example: //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/vmwareClusters/my-cluster //gkeonprem.googleapis.com/projects/my-project/locations/us-west1-a/bareMetalClusters/my-cluster
+     */
+    resourceLink?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2960,6 +3117,154 @@ export namespace gkehub_v1alpha {
     }
 
     /**
+     * Lists Memberships of admin clusters in a given project and location. **This method is only used internally**.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.memberships.listAdmin({
+     *     // Optional. Lists Memberships of admin clusters that match the filter expression.
+     *     filter: 'placeholder-value',
+     *     // Optional. One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token returned by previous call to `ListAdminClusterMemberships` which specifies the position in the list from where to continue listing the resources.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent (project and location) where the Memberships of admin cluster will be listed. Specified in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminClusterMemberships": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listAdmin(
+      params: Params$Resource$Projects$Locations$Memberships$Listadmin,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listAdmin(
+      params?: Params$Resource$Projects$Locations$Memberships$Listadmin,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdminClusterMembershipsResponse>;
+    listAdmin(
+      params: Params$Resource$Projects$Locations$Memberships$Listadmin,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listAdmin(
+      params: Params$Resource$Projects$Locations$Memberships$Listadmin,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAdminClusterMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$ListAdminClusterMembershipsResponse>
+    ): void;
+    listAdmin(
+      params: Params$Resource$Projects$Locations$Memberships$Listadmin,
+      callback: BodyResponseCallback<Schema$ListAdminClusterMembershipsResponse>
+    ): void;
+    listAdmin(
+      callback: BodyResponseCallback<Schema$ListAdminClusterMembershipsResponse>
+    ): void;
+    listAdmin(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Memberships$Listadmin
+        | BodyResponseCallback<Schema$ListAdminClusterMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdminClusterMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdminClusterMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdminClusterMembershipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Memberships$Listadmin;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Memberships$Listadmin;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/memberships:listAdmin').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdminClusterMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdminClusterMembershipsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * ```js
@@ -3259,6 +3564,29 @@ export namespace gkehub_v1alpha {
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Memberships$Listadmin
+    extends StandardParameters {
+    /**
+     * Optional. Lists Memberships of admin clusters that match the filter expression.
+     */
+    filter?: string;
+    /**
+     * Optional. One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
+     */
+    orderBy?: string;
+    /**
+     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Token returned by previous call to `ListAdminClusterMemberships` which specifies the position in the list from where to continue listing the resources.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent (project and location) where the Memberships of admin cluster will be listed. Specified in the format `projects/x/locations/x`.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Memberships$Setiampolicy
     extends StandardParameters {
