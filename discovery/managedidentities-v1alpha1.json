@@ -512,6 +512,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "restore": {
+                      "description": "RestoreDomain restores domain backup mentioned in the RestoreDomainRequest",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}:restore",
+                      "httpMethod": "POST",
+                      "id": "managedidentities.projects.locations.global.domains.restore",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. resource name for the domain to which the backup belongs",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}:restore",
+                      "request": {
+                        "$ref": "RestoreDomainRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "setIamPolicy": {
                       "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                       "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}:setIamPolicy",
@@ -634,6 +662,89 @@
                   "resources": {
                     "backups": {
                       "methods": {
+                        "create": {
+                          "description": "Creates a Backup for a domain.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}/backups",
+                          "httpMethod": "POST",
+                          "id": "managedidentities.projects.locations.global.domains.backups.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "backupId": {
+                              "description": "Required. Backup Id, unique name to identify the backups with the following restrictions: * Must be lowercase letters, numbers, and hyphens * Must start with a letter. * Must contain between 1-63 characters. * Must end with a number or a letter. * Must be unique within the domain.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+parent}/backups",
+                          "request": {
+                            "$ref": "Backup"
+                          },
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes identified Backup.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}/backups/{backupsId}",
+                          "httpMethod": "DELETE",
+                          "id": "managedidentities.projects.locations.global.domains.backups.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The backup resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}/backups/{backup_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/domains/[^/]+/backups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+name}",
+                          "response": {
+                            "$ref": "Operation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Gets details of a single Backup.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}/backups/{backupsId}",
+                          "httpMethod": "GET",
+                          "id": "managedidentities.projects.locations.global.domains.backups.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The backup resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}/backups/{backup_id}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/domains/[^/]+/backups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+name}",
+                          "response": {
+                            "$ref": "Backup"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "getIamPolicy": {
                           "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                           "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}/backups/{backupsId}:getIamPolicy",
@@ -660,6 +771,86 @@
                           "path": "v1alpha1/{+resource}:getIamPolicy",
                           "response": {
                             "$ref": "Policy"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Lists Backup in a given project.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}/backups",
+                          "httpMethod": "GET",
+                          "id": "managedidentities.projects.locations.global.domains.backups.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "filter": {
+                              "description": "Optional. Filter specifying constraints of a list operation. For example, `backup.location =\"us-west1-a\"`.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "orderBy": {
+                              "description": "Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous List request, if any.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/domains/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+parent}/backups",
+                          "response": {
+                            "$ref": "ListBackupsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates the labels for specified Backup.",
+                          "flatPath": "v1alpha1/projects/{projectsId}/locations/global/domains/{domainsId}/backups/{backupsId}",
+                          "httpMethod": "PATCH",
+                          "id": "managedidentities.projects.locations.global.domains.backups.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Output only. The unique name of the Backup in the form of projects/{project_id}/locations/global/domains/{domain_name}/backups/{name}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/global/domains/[^/]+/backups/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Backup: * `labels`",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha1/{+name}",
+                          "request": {
+                            "$ref": "Backup"
+                          },
+                          "response": {
+                            "$ref": "Operation"
                           },
                           "scopes": [
                             "https://www.googleapis.com/auth/cloud-platform"
@@ -993,7 +1184,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Peering resource name using the form: `projects/{project_id}/locations/global/domains/{peering_id}`",
+                          "description": "Required. Peering resource name using the form: `projects/{project_id}/locations/global/peerings/{peering_id}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/global/peerings/[^/]+$",
                           "required": true,
@@ -1184,7 +1375,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20211004",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1193,6 +1384,76 @@
         "trust": {
           "$ref": "Trust",
           "description": "The domain trust resource."
+        }
+      },
+      "type": "object"
+    },
+    "Backup": {
+      "description": "Represents a Managed Microsoft Identities backup.",
+      "id": "Backup",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time the backups was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user provided metadata.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The unique name of the Backup in the form of projects/{project_id}/locations/global/domains/{domain_name}/backups/{name}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the backup.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Backup is being created.",
+            "Backup has been created and validated.",
+            "Backup has been created but failed validation.",
+            "Backup is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusMessage": {
+          "description": "Output only. Additional information about the current status of this backup, if available.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Indicates whether it’s an on-demand backup or scheduled.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ON_DEMAND",
+            "SCHEDULED"
+          ],
+          "enumDescriptions": [
+            "Backup was manually created.",
+            "Backup was manually created.",
+            "Backup was automatically created."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Last update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1858,6 +2119,31 @@
       },
       "type": "object"
     },
+    "ListBackupsResponse": {
+      "description": "ListBackupsResponse is the response message for ListBackups method.",
+      "id": "ListBackupsResponse",
+      "properties": {
+        "backups": {
+          "description": "A list of Cloud AD backups in the domain.",
+          "items": {
+            "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListDomainsResponse": {
       "id": "ListDomainsResponse",
       "properties": {
@@ -2214,7 +2500,7 @@
       "id": "Policy",
       "properties": {
         "bindings": {
-          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.",
+          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member. The `bindings` in a `Policy` can refer to up to 1,500 members; up to 250 of these members can be Google groups. Each occurrence of a member counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other member, then you can add another 1,450 members to the `bindings` in the `Policy`.",
           "items": {
             "$ref": "Binding"
           },
@@ -2253,6 +2539,17 @@
       "properties": {
         "password": {
           "description": "A random password. See admin for more information.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreDomainRequest": {
+      "description": "RestoreDomainRequest is the request received by RestoreDomain rpc",
+      "id": "RestoreDomainRequest",
+      "properties": {
+        "backupId": {
+          "description": "Required. ID of the backup to be restored",
           "type": "string"
         }
       },
