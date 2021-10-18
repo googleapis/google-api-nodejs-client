@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20210930",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -680,7 +680,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be \"{service}/{kind}\".",
+          "description": "The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be \"{service}/{kind}\", such as \"pubsub.googleapis.com/Topic\".",
           "type": "string"
         },
         "uid": {
