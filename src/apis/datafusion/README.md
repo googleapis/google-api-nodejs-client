@@ -4,6 +4,15 @@
 
 > Cloud Data Fusion is a fully-managed, cloud native, enterprise data integration service for quickly building and managing data pipelines. It provides a graphical interface to increase time efficiency and reduce complexity, and allows business users, developers, and data scientists to easily and reliably build scalable data integration solutions to cleanse, prepare, blend, transfer and transform data without having to wrestle with infrastructure.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/data-fusion](https://www.npmjs.com/package/@google-cloud/data-fusion) instead.
+The [@google-cloud/data-fusion](https://www.npmjs.com/package/@google-cloud/data-fusion) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh
