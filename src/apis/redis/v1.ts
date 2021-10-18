@@ -292,6 +292,10 @@ export namespace redis_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Info per node.
+     */
+    nodes?: Schema$NodeInfo[];
+    /**
      * Output only. Cloud IAM identity used by import / export operations to transfer data to/from Cloud Storage. Format is "serviceAccount:". The value may change over time for a given instance so should be checked before each import/export operation.
      */
     persistenceIamIdentity?: string | null;
@@ -300,6 +304,18 @@ export namespace redis_v1 {
      */
     port?: number | null;
     /**
+     * Output only. Hostname or IP address of the exposed readonly Redis endpoint. Standard tier only. Targets all healthy replica nodes in instance. Replication is asynchronous and replica nodes will exhibit some lag behind the primary. Write requests must target 'host'.
+     */
+    readEndpoint?: string | null;
+    /**
+     * Output only. The port number of the exposed readonly redis endpoint. Standard tier only. Write requests should target 'port'.
+     */
+    readEndpointPort?: number | null;
+    /**
+     * Optional. Read replica mode.
+     */
+    readReplicasMode?: string | null;
+    /**
      * Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are: Redis version 3.2 and newer: * maxmemory-policy * notify-keyspace-events Redis version 4.0 and newer: * activedefrag * lfu-decay-time * lfu-log-factor * maxmemory-gb Redis version 5.0 and newer: * stream-node-max-bytes * stream-node-max-entries
      */
     redisConfigs?: {[key: string]: string} | null;
@@ -307,6 +323,10 @@ export namespace redis_v1 {
      * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_X` for Redis 6.x compatibility
      */
     redisVersion?: string | null;
+    /**
+     * Optional. The number of replica nodes. Valid range for standard tier is [1-5] and defaults to 1. Valid value for basic tier is 0 and defaults to 0.
+     */
+    replicaCount?: number | null;
     /**
      * Optional. For DIRECT_PEERING mode, the CIDR range of internal addresses that are reserved for this instance. Range must be unique and non-overlapping with existing subnets in an authorized network. For PRIVATE_SERVICE_ACCESS mode, the name of one allocated IP address ranges associated with this private service access connection. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29.
      */
@@ -450,6 +470,19 @@ export namespace redis_v1 {
      * Output only. The start time of any upcoming scheduled maintenance for this instance.
      */
     startTime?: string | null;
+  }
+  /**
+   * Node specific properties.
+   */
+  export interface Schema$NodeInfo {
+    /**
+     * Output only. Output Only. Node identifying string. e.g. 'node-0', 'node-1'
+     */
+    id?: string | null;
+    /**
+     * Output only. Output Only. Location of the node.
+     */
+    zone?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -964,10 +997,15 @@ export namespace redis_v1 {
      *       //   "maintenanceSchedule": {},
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
+     *       //   "nodes": [],
      *       //   "persistenceIamIdentity": "my_persistenceIamIdentity",
      *       //   "port": 0,
+     *       //   "readEndpoint": "my_readEndpoint",
+     *       //   "readEndpointPort": 0,
+     *       //   "readReplicasMode": "my_readReplicasMode",
      *       //   "redisConfigs": {},
      *       //   "redisVersion": "my_redisVersion",
+     *       //   "replicaCount": 0,
      *       //   "reservedIpRange": "my_reservedIpRange",
      *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
@@ -1537,10 +1575,15 @@ export namespace redis_v1 {
      *   //   "maintenanceSchedule": {},
      *   //   "memorySizeGb": 0,
      *   //   "name": "my_name",
+     *   //   "nodes": [],
      *   //   "persistenceIamIdentity": "my_persistenceIamIdentity",
      *   //   "port": 0,
+     *   //   "readEndpoint": "my_readEndpoint",
+     *   //   "readEndpointPort": 0,
+     *   //   "readReplicasMode": "my_readReplicasMode",
      *   //   "redisConfigs": {},
      *   //   "redisVersion": "my_redisVersion",
+     *   //   "replicaCount": 0,
      *   //   "reservedIpRange": "my_reservedIpRange",
      *   //   "serverCaCerts": [],
      *   //   "state": "my_state",
@@ -2101,10 +2144,15 @@ export namespace redis_v1 {
      *       //   "maintenanceSchedule": {},
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
+     *       //   "nodes": [],
      *       //   "persistenceIamIdentity": "my_persistenceIamIdentity",
      *       //   "port": 0,
+     *       //   "readEndpoint": "my_readEndpoint",
+     *       //   "readEndpointPort": 0,
+     *       //   "readReplicasMode": "my_readReplicasMode",
      *       //   "redisConfigs": {},
      *       //   "redisVersion": "my_redisVersion",
+     *       //   "replicaCount": 0,
      *       //   "reservedIpRange": "my_reservedIpRange",
      *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
