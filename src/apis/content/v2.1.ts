@@ -306,9 +306,13 @@ export namespace content_v2_1 {
      */
     koreanBusinessRegistrationNumber?: string | null;
     /**
-     * ! The phone number of the business. This can only be updated if a verified ! phone number is not already set. To replace a verified phone number use ! the `Accounts.requestphoneverification` and ! `Accounts.verifyphonenumber`.
+     * The phone number of the business. This can only be updated if a verified phone number is not already set. To replace a verified phone number use the `Accounts.requestphoneverification` and `Accounts.verifyphonenumber`.
      */
     phoneNumber?: string | null;
+    /**
+     * Verification status of the phone number of the business. This status is read only and can be updated only by successful phone verification. Acceptable values are: - "`verified`" - "`unverified`" "`unspecified`" -
+     */
+    phoneVerificationStatus?: string | null;
   }
   /**
    * Credentials allowing Google to call a partner's API on behalf of a merchant.
@@ -949,6 +953,28 @@ export namespace content_v2_1 {
    * Request message for the ActivateProgram method.
    */
   export interface Schema$ActivateBuyOnGoogleProgramRequest {}
+  export interface Schema$Address {
+    /**
+     * Required. Top-level administrative subdivision of the country. For example, a state like California ("CA") or a province like Quebec ("QC").
+     */
+    administrativeArea?: string | null;
+    /**
+     * Required. City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     */
+    city?: string | null;
+    /**
+     * Required. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. "US").
+     */
+    country?: string | null;
+    /**
+     * Required. Postal code or ZIP (e.g. "94043").
+     */
+    postalCode?: string | null;
+    /**
+     * Street-level part of the address.
+     */
+    streetAddress?: string | null;
+  }
   export interface Schema$Amount {
     /**
      * [required] The pre-tax or post-tax price depending on the location of the order.
@@ -4299,6 +4325,10 @@ export namespace content_v2_1 {
      */
     mpn?: string | null;
     /**
+     * Plain text description of this product.
+     */
+    productDescription?: string | null;
+    /**
      * Required. The Content API REST ID of the product, in the form channel:contentLanguage:targetCountry:offerId.
      */
     productId?: string | null;
@@ -4306,6 +4336,14 @@ export namespace content_v2_1 {
      * Required. The quantity of the line item in the order.
      */
     quantity?: string | null;
+    /**
+     * Merchant SKU for this item.
+     */
+    sku?: string | null;
+    /**
+     * Universal product code for this item.
+     */
+    upc?: string | null;
   }
   /**
    * Represents how many items are in the shipment for the given shipment_id and line_item_id.
@@ -5615,7 +5653,7 @@ export namespace content_v2_1 {
     value?: number | null;
   }
   /**
-   * Represents a promotion. (1) https://support.google.com/merchants/answer/2906014 (2) https://support.google.com/merchants/answer/10146130 (3) https://support.google.com/merchants/answer/9173673
+   *  The Promotions feature is currently in alpha and is not yet publicly available via Content API for Shopping. This documentation is provided for reference only may be subject to change. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)
    */
   export interface Schema$Promotion {
     /**
@@ -5655,7 +5693,7 @@ export namespace content_v2_1 {
      */
     getThisQuantityDiscounted?: number | null;
     /**
-     * Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter.
+     * Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The channel field will have a value of "online", "local", or "onlinelocal".
      */
     id?: string | null;
     /**
@@ -7100,6 +7138,10 @@ export namespace content_v2_1 {
      * The target account's list of services. Optional.
      */
     services?: Schema$Service[];
+    /**
+     * Optional. A list of warehouses which can be referred to in `services`.
+     */
+    warehouses?: Schema$Warehouse[];
   }
   export interface Schema$ShippingsettingsCustomBatchRequest {
     /**
@@ -7592,6 +7634,31 @@ export namespace content_v2_1 {
      */
     verifiedPhoneNumber?: string | null;
   }
+  /**
+   * A fulfillment warehouse, which stores and handles inventory.
+   */
+  export interface Schema$Warehouse {
+    /**
+     * Business days of the warehouse. If not set, will be Monday to Friday by default.
+     */
+    businessDayConfig?: Schema$BusinessDayConfig;
+    /**
+     * Required. The latest time of day that an order can be accepted and begin processing. Later orders will be processed in the next day. The time is based on the warehouse postal code.
+     */
+    cutoffTime?: Schema$WarehouseCutoffTime;
+    /**
+     * Required. The number of days it takes for this warehouse to pack up and ship an item. This is on the warehouse level, but can be overridden on the offer level based on the attributes of an item.
+     */
+    handlingDays?: string | null;
+    /**
+     * Required. The name of the warehouse. Must be unique within account.
+     */
+    name?: string | null;
+    /**
+     * Required. Shipping address of the warehouse.
+     */
+    shippingAddress?: Schema$Address;
+  }
   export interface Schema$WarehouseBasedDeliveryTime {
     /**
      * Required. Carrier, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved via the `listSupportedCarriers` method.
@@ -7602,25 +7669,39 @@ export namespace content_v2_1 {
      */
     carrierService?: string | null;
     /**
-     * Required. Shipping origin's state.
+     * Shipping origin's state.
      */
     originAdministrativeArea?: string | null;
     /**
-     * Required. Shipping origin's city.
+     * Shipping origin's city.
      */
     originCity?: string | null;
     /**
-     * Required. Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).
+     * Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).
      */
     originCountry?: string | null;
     /**
-     * Required. Shipping origin.
+     * Shipping origin.
      */
     originPostalCode?: string | null;
     /**
      * Shipping origin's street address.
      */
     originStreetAddress?: string | null;
+    /**
+     * The name of the warehouse. Warehouse name need to be matched with name. If warehouseName is set, the below fields will be ignored. The warehouse info will be read from warehouse.
+     */
+    warehouseName?: string | null;
+  }
+  export interface Schema$WarehouseCutoffTime {
+    /**
+     * Required. Hour (24-hour clock) of the cutoff time until which an order has to be placed to be processed in the same day by the warehouse. Hour is based on the timezone of warehouse.
+     */
+    hour?: number | null;
+    /**
+     * Required. Minute of the cutoff time until which an order has to be placed to be processed in the same day by the warehouse. Minute is based on the timezone of warehouse.
+     */
+    minute?: number | null;
   }
   export interface Schema$Weight {
     /**
@@ -32857,7 +32938,8 @@ export namespace content_v2_1 {
      *   // {
      *   //   "accountId": "my_accountId",
      *   //   "postalCodeGroups": [],
-     *   //   "services": []
+     *   //   "services": [],
+     *   //   "warehouses": []
      *   // }
      * }
      *
@@ -33553,7 +33635,8 @@ export namespace content_v2_1 {
      *       // {
      *       //   "accountId": "my_accountId",
      *       //   "postalCodeGroups": [],
-     *       //   "services": []
+     *       //   "services": [],
+     *       //   "warehouses": []
      *       // }
      *     },
      *   });
@@ -33563,7 +33646,8 @@ export namespace content_v2_1 {
      *   // {
      *   //   "accountId": "my_accountId",
      *   //   "postalCodeGroups": [],
-     *   //   "services": []
+     *   //   "services": [],
+     *   //   "warehouses": []
      *   // }
      * }
      *
