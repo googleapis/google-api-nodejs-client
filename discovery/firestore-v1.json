@@ -1247,7 +1247,7 @@
       }
     }
   },
-  "revision": "20210916",
+  "revision": "20210927",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -1773,7 +1773,7 @@
       "type": "object"
     },
     "GoogleFirestoreAdminV1Database": {
-      "description": "A Cloud Firestore Database in Native Mode. Currently one database is allowed per cloud project. It is named '(default)'",
+      "description": "A Cloud Firestore Database. Currently only one database is allowed per cloud project; this database must have a `database_id` of '(default)'.",
       "id": "GoogleFirestoreAdminV1Database",
       "properties": {
         "concurrencyMode": {
@@ -1786,9 +1786,9 @@
           ],
           "enumDescriptions": [
             "Not used.",
-            "Use optimistic concurrency control by default. This is the setting for Cloud Firestore customers.",
-            "Use pessimistic concurrency control by default. This is the setting for Cloud Firestore customers.",
-            "Use optimistic concurrency control with entity groups by default. This is the setting for Cloud Datastore customers."
+            "Use optimistic concurrency control by default. This setting is available for Cloud Firestore customers.",
+            "Use pessimistic concurrency control by default. This setting is available for Cloud Firestore customers. This is the default setting for Cloud Firestore.",
+            "Use optimistic concurrency control with entity groups by default. This is the only available setting for Cloud Datastore customers. This is the default setting for Cloud Datastore."
           ],
           "type": "string"
         },

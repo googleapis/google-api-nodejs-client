@@ -483,7 +483,7 @@ export namespace firestore_v1 {
     unaryFilter?: Schema$UnaryFilter;
   }
   /**
-   * A Cloud Firestore Database in Native Mode. Currently one database is allowed per cloud project. It is named '(default)'
+   * A Cloud Firestore Database. Currently only one database is allowed per cloud project; this database must have a `database_id` of '(default)'.
    */
   export interface Schema$GoogleFirestoreAdminV1Database {
     /**
