@@ -529,7 +529,7 @@ export namespace domains_v1alpha2 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -537,7 +537,7 @@ export namespace domains_v1alpha2 {
      */
     auditConfigs?: Schema$AuditConfig[];
     /**
-     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member. The `bindings` in a `Policy` can refer to up to 1,500 members; up to 250 of these members can be Google groups. Each occurrence of a member counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other member, then you can add another 1,450 members to the `bindings` in the `Policy`.
      */
     bindings?: Schema$Binding[];
     /**
@@ -649,7 +649,7 @@ export namespace domains_v1alpha2 {
     yearlyPrice?: Schema$Money;
   }
   /**
-   * The `Registration` resource facilitates managing and configuring domain name registrations. To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`.
+   * The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar. First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`.
    */
   export interface Schema$Registration {
     /**
@@ -715,6 +715,15 @@ export namespace domains_v1alpha2 {
     registerParameters?: Schema$RegisterParameters;
   }
   /**
+   * Response for the `RetrieveTransferParameters` method.
+   */
+  export interface Schema$RetrieveTransferParametersResponse {
+    /**
+     * Parameters to use when calling the `TransferDomain` method.
+     */
+    transferParameters?: Schema$TransferParameters;
+  }
+  /**
    * Response for the `SearchDomains` method.
    */
   export interface Schema$SearchDomainsResponse {
@@ -770,6 +779,60 @@ export namespace domains_v1alpha2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Request for the `TransferDomain` method.
+   */
+  export interface Schema$TransferDomainRequest {
+    /**
+     * The domain's transfer authorization code. You can obtain this from the domain's current registrar.
+     */
+    authorizationCode?: Schema$AuthorizationCode;
+    /**
+     * The list of contact notices that you acknowledge. The notices needed here depend on the values specified in `registration.contact_settings`.
+     */
+    contactNotices?: string[] | null;
+    /**
+     * Required. The complete `Registration` resource to be created. You can leave `registration.dns_settings` unset to import the domain's current DNS configuration from its current registrar. Use this option only if you are sure that the domain's current DNS service will not cease upon transfer, as is often the case for DNS services provided for free by the registrar.
+     */
+    registration?: Schema$Registration;
+    /**
+     * Validate the request without actually transferring the domain.
+     */
+    validateOnly?: boolean | null;
+    /**
+     * Required. Acknowledgement of the price to transfer or renew the domain for one year. Call `RetrieveTransferParameters` to obtain the price, which you must acknowledge.
+     */
+    yearlyPrice?: Schema$Money;
+  }
+  /**
+   * Parameters required to transfer a domain from another registrar.
+   */
+  export interface Schema$TransferParameters {
+    /**
+     * The registrar that currently manages the domain.
+     */
+    currentRegistrar?: string | null;
+    /**
+     * The domain name. Unicode domain names are expressed in Punycode format.
+     */
+    domainName?: string | null;
+    /**
+     * The name servers that currently store the configuration of the domain.
+     */
+    nameServers?: string[] | null;
+    /**
+     * Contact privacy options that the domain supports.
+     */
+    supportedPrivacy?: string[] | null;
+    /**
+     * Indicates whether the domain is protected by a transfer lock. For a transfer to succeed, this must show `UNLOCKED`. To unlock a domain, go to its current registrar.
+     */
+    transferLockState?: string | null;
+    /**
+     * Price to transfer or renew the domain for one year.
+     */
+    yearlyPrice?: Schema$Money;
   }
 
   export class Resource$Projects {
@@ -1847,7 +1910,7 @@ export namespace domains_v1alpha2 {
     }
 
     /**
-     * Deletes a `Registration` resource. This method only works on resources in one of the following states: * `state` is `EXPORTED` with `expire_time` in the past * `state` is `REGISTRATION_FAILED`
+     * Deletes a `Registration` resource. For `Registration` resources using usage billing, this method works if: * `state` is `EXPORTED` with `expire_time` in the past * `state` is `REGISTRATION_FAILED` * `state` is `TRANSFER_FAILED` This method works on any `Registration` resource using subscription billing, provided that the resource was created at least 1 day in the past. When an active domain is successfully deleted, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain will not renew automatically unless the new owner sets up billing in Google Domains.
      * @example
      * ```js
      * // Before running the sample:
@@ -1977,7 +2040,7 @@ export namespace domains_v1alpha2 {
     }
 
     /**
-     * Exports a `Registration` that you no longer want to use with Cloud Domains. You can continue to use the domain in [Google Domains](https://domains.google/) until it expires. If the export is successful: * The resource's `state` becomes `EXPORTED`, meaning that it is no longer managed by Cloud Domains * Because individual users can own domains in Google Domains, the calling user becomes the domain's sole owner. Permissions for the domain are subsequently managed in Google Domains. * Without further action, the domain does not renew automatically. The new owner can set up billing in Google Domains to renew the domain if needed.
+     * Exports a `Registration` resource, such that it is no longer managed by Cloud Domains. When an active domain is successfully exported, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain will not renew automatically unless the new owner sets up billing in Google Domains.
      * @example
      * ```js
      * // Before running the sample:
@@ -3248,6 +3311,148 @@ export namespace domains_v1alpha2 {
     }
 
     /**
+     * Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not yet supported. Use the returned values to call `TransferDomain`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domains.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domains = google.domains('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await domains.projects.locations.registrations.retrieveTransferParameters({
+     *       // Required. The domain name. Unicode domain names must be expressed in Punycode format.
+     *       domainName: 'placeholder-value',
+     *       // Required. The location. Must be in the format `projects/x/locations/x`.
+     *       location: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "transferParameters": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    retrieveTransferParameters(
+      params: Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    retrieveTransferParameters(
+      params?: Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RetrieveTransferParametersResponse>;
+    retrieveTransferParameters(
+      params: Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    retrieveTransferParameters(
+      params: Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RetrieveTransferParametersResponse>,
+      callback: BodyResponseCallback<Schema$RetrieveTransferParametersResponse>
+    ): void;
+    retrieveTransferParameters(
+      params: Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters,
+      callback: BodyResponseCallback<Schema$RetrieveTransferParametersResponse>
+    ): void;
+    retrieveTransferParameters(
+      callback: BodyResponseCallback<Schema$RetrieveTransferParametersResponse>
+    ): void;
+    retrieveTransferParameters(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters
+        | BodyResponseCallback<Schema$RetrieveTransferParametersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RetrieveTransferParametersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RetrieveTransferParametersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RetrieveTransferParametersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://domains.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1alpha2/{+location}/registrations:retrieveTransferParameters'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RetrieveTransferParametersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RetrieveTransferParametersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Searches for available domain names similar to the provided query. Availability results from this method are approximate; call `RetrieveRegisterParameters` on a domain before registering to confirm availability.
      * @example
      * ```js
@@ -3675,6 +3880,151 @@ export namespace domains_v1alpha2 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Transfers a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not yet supported. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/domains.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const domains = google.domains('v1alpha2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await domains.projects.locations.registrations.transfer({
+     *     // Required. The parent resource of the `Registration`. Must be in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorizationCode": {},
+     *       //   "contactNotices": [],
+     *       //   "registration": {},
+     *       //   "validateOnly": false,
+     *       //   "yearlyPrice": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    transfer(
+      params: Params$Resource$Projects$Locations$Registrations$Transfer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    transfer(
+      params?: Params$Resource$Projects$Locations$Registrations$Transfer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    transfer(
+      params: Params$Resource$Projects$Locations$Registrations$Transfer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    transfer(
+      params: Params$Resource$Projects$Locations$Registrations$Transfer,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    transfer(
+      params: Params$Resource$Projects$Locations$Registrations$Transfer,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    transfer(callback: BodyResponseCallback<Schema$Operation>): void;
+    transfer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Registrations$Transfer
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Registrations$Transfer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Transfer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://domains.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha2/{+parent}/registrations:transfer'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Registrations$Configurecontactsettings
@@ -3827,6 +4177,17 @@ export namespace domains_v1alpha2 {
      */
     location?: string;
   }
+  export interface Params$Resource$Projects$Locations$Registrations$Retrievetransferparameters
+    extends StandardParameters {
+    /**
+     * Required. The domain name. Unicode domain names must be expressed in Punycode format.
+     */
+    domainName?: string;
+    /**
+     * Required. The location. Must be in the format `projects/x/locations/x`.
+     */
+    location?: string;
+  }
   export interface Params$Resource$Projects$Locations$Registrations$Searchdomains
     extends StandardParameters {
     /**
@@ -3861,5 +4222,17 @@ export namespace domains_v1alpha2 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Registrations$Transfer
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the `Registration`. Must be in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TransferDomainRequest;
   }
 }

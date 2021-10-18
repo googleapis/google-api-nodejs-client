@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
         }
       }
     }
@@ -334,7 +334,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a `Registration` resource. This method only works on resources in one of the following states: * `state` is `EXPORTED` with `expire_time` in the past * `state` is `REGISTRATION_FAILED`",
+                  "description": "Deletes a `Registration` resource. For `Registration` resources using usage billing, this method works if: * `state` is `EXPORTED` with `expire_time` in the past * `state` is `REGISTRATION_FAILED` * `state` is `TRANSFER_FAILED` This method works on any `Registration` resource using subscription billing, provided that the resource was created at least 1 day in the past. When an active domain is successfully deleted, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain will not renew automatically unless the new owner sets up billing in Google Domains.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}",
                   "httpMethod": "DELETE",
                   "id": "domains.projects.locations.registrations.delete",
@@ -359,7 +359,7 @@
                   ]
                 },
                 "export": {
-                  "description": "Exports a `Registration` that you no longer want to use with Cloud Domains. You can continue to use the domain in [Google Domains](https://domains.google/) until it expires. If the export is successful: * The resource's `state` becomes `EXPORTED`, meaning that it is no longer managed by Cloud Domains * Because individual users can own domains in Google Domains, the calling user becomes the domain's sole owner. Permissions for the domain are subsequently managed in Google Domains. * Without further action, the domain does not renew automatically. The new owner can set up billing in Google Domains to renew the domain if needed.",
+                  "description": "Exports a `Registration` resource, such that it is no longer managed by Cloud Domains. When an active domain is successfully exported, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain will not renew automatically unless the new owner sets up billing in Google Domains.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:export",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.export",
@@ -628,6 +628,36 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "retrieveTransferParameters": {
+                  "description": "Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not yet supported. Use the returned values to call `TransferDomain`.",
+                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:retrieveTransferParameters",
+                  "httpMethod": "GET",
+                  "id": "domains.projects.locations.registrations.retrieveTransferParameters",
+                  "parameterOrder": [
+                    "location"
+                  ],
+                  "parameters": {
+                    "domainName": {
+                      "description": "Required. The domain name. Unicode domain names must be expressed in Punycode format.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "location": {
+                      "description": "Required. The location. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha2/{+location}/registrations:retrieveTransferParameters",
+                  "response": {
+                    "$ref": "RetrieveTransferParametersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "searchDomains": {
                   "description": "Searches for available domain names similar to the provided query. Availability results from this method are approximate; call `RetrieveRegisterParameters` on a domain before registering to confirm availability.",
                   "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:searchDomains",
@@ -713,6 +743,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "transfer": {
+                  "description": "Transfers a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not yet supported. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.",
+                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:transfer",
+                  "httpMethod": "POST",
+                  "id": "domains.projects.locations.registrations.transfer",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the `Registration`. Must be in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha2/{+parent}/registrations:transfer",
+                  "request": {
+                    "$ref": "TransferDomainRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -721,7 +779,7 @@
       }
     }
   },
-  "revision": "20210412",
+  "revision": "20211004",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -985,6 +1043,8 @@
           "description": "The algorithm used to generate the referenced DNSKEY.",
           "enum": [
             "ALGORITHM_UNSPECIFIED",
+            "RSAMD5",
+            "DH",
             "DSA",
             "ECC",
             "RSASHA1",
@@ -996,10 +1056,15 @@
             "ECDSAP256SHA256",
             "ECDSAP384SHA384",
             "ED25519",
-            "ED448"
+            "ED448",
+            "INDIRECT",
+            "PRIVATEDNS",
+            "PRIVATEOID"
           ],
           "enumDescriptions": [
             "The algorithm is unspecified.",
+            "RSA/MD5. Cannot be used for new deployments.",
+            "Diffie-Hellman. Cannot be used for new deployments.",
             "DSA/SHA1. Not recommended for new deployments.",
             "ECC. Not recommended for new deployments.",
             "RSA/SHA-1. Not recommended for new deployments.",
@@ -1011,7 +1076,10 @@
             "ECDSA Curve P-256 with SHA-256.",
             "ECDSA Curve P-384 with SHA-384.",
             "Ed25519.",
-            "Ed448."
+            "Ed448.",
+            "Reserved for Indirect Keys. Cannot be used for new deployments.",
+            "Private algorithm. Cannot be used for new deployments.",
+            "Private algorithm OID. Cannot be used for new deployments."
           ],
           "type": "string"
         },
@@ -1237,7 +1305,7 @@
           ],
           "enumDescriptions": [
             "The renewal method is undefined.",
-            "The domain is automatically renewed each year . To disable automatic renewals, export the domain by calling `ExportRegistration` .",
+            "The domain is automatically renewed each year . To disable automatic renewals, delete the resource by calling `DeleteRegistration` or export it by calling `ExportRegistration`.",
             "The domain must be explicitly renewed each year before its `expire_time`. This option is only available when the `Registration` is in state `EXPORTED`. To manage the domain's current billing and renewal settings, go to [Google Domains](https://domains.google/)."
           ],
           "readOnly": true,
@@ -1350,7 +1418,7 @@
       "type": "object"
     },
     "Policy": {
-      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
+      "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).",
       "id": "Policy",
       "properties": {
         "auditConfigs": {
@@ -1361,7 +1429,7 @@
           "type": "array"
         },
         "bindings": {
-          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.",
+          "description": "Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member. The `bindings` in a `Policy` can refer to up to 1,500 members; up to 250 of these members can be Google groups. Each occurrence of a member counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other member, then you can add another 1,450 members to the `bindings` in the `Policy`.",
           "items": {
             "$ref": "Binding"
           },
@@ -1555,7 +1623,7 @@
       "type": "object"
     },
     "Registration": {
-      "description": "The `Registration` resource facilitates managing and configuring domain name registrations. To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. ",
+      "description": "The `Registration` resource facilitates managing and configuring domain name registrations. There are several ways to create a new `Registration` resource: To create a new `Registration` resource, find a suitable domain name by calling the `SearchDomains` method with a query to see available domain name options. After choosing a name, call `RetrieveRegisterParameters` to ensure availability and obtain information like pricing, which is needed to build a call to `RegisterDomain`. Another way to create a new `Registration` is to transfer an existing domain from another registrar. First, go to the current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to `TransferDomain`.",
       "id": "Registration",
       "properties": {
         "contactSettings": {
@@ -1627,6 +1695,8 @@
             "STATE_UNSPECIFIED",
             "REGISTRATION_PENDING",
             "REGISTRATION_FAILED",
+            "TRANSFER_PENDING",
+            "TRANSFER_FAILED",
             "ACTIVE",
             "SUSPENDED",
             "EXPORTED"
@@ -1635,9 +1705,11 @@
             "The state is undefined.",
             "The domain is being registered.",
             "The domain registration failed. You can delete resources in this state to allow registration to be retried.",
+            "Domain transfer from another registrar to Cloud Domains is in progress. The domain's current registrar may require action to complete the transfer. Check emails from the domain's current registrar to the domain's current registrant for instructions.",
+            "The attempt to transfer the domain from another registrar to Cloud Domains failed. You can delete resources in this state to allow transfer to be retried.",
             "The domain is registered and operational. The domain renews automatically as long as it remains in this state.",
             "The domain is suspended and inoperative. For more details, see the `issues` field.",
-            "The domain has been exported from Cloud Domains to [Google Domains](https://domains.google/). You can no longer update it with this API, and information shown about it may be stale. Without further action, domains in this state expire at their `expire_time`. You can delete the resource after the `expire_time` has passed."
+            "The domain is no longer managed with Cloud Domains. It may have been transferred to another registrar or exported for management in [Google Domains](https://domains.google/). You can no longer update it with this API, and information shown about it may be stale. Domains in this state will not be automatically renewed by Cloud Domains."
           ],
           "readOnly": true,
           "type": "string"
@@ -1678,6 +1750,17 @@
         "registerParameters": {
           "$ref": "RegisterParameters",
           "description": "Parameters to use when calling the `RegisterDomain` method."
+        }
+      },
+      "type": "object"
+    },
+    "RetrieveTransferParametersResponse": {
+      "description": "Response for the `RetrieveTransferParameters` method.",
+      "id": "RetrieveTransferParametersResponse",
+      "properties": {
+        "transferParameters": {
+          "$ref": "TransferParameters",
+          "description": "Parameters to use when calling the `TransferDomain` method."
         }
       },
       "type": "object"
@@ -1763,6 +1846,103 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TransferDomainRequest": {
+      "description": "Request for the `TransferDomain` method.",
+      "id": "TransferDomainRequest",
+      "properties": {
+        "authorizationCode": {
+          "$ref": "AuthorizationCode",
+          "description": "The domain's transfer authorization code. You can obtain this from the domain's current registrar."
+        },
+        "contactNotices": {
+          "description": "The list of contact notices that you acknowledge. The notices needed here depend on the values specified in `registration.contact_settings`.",
+          "items": {
+            "enum": [
+              "CONTACT_NOTICE_UNSPECIFIED",
+              "PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT"
+            ],
+            "enumDescriptions": [
+              "The notice is undefined.",
+              "Required when setting the `privacy` field of `ContactSettings` to `PUBLIC_CONTACT_DATA`, which exposes contact data publicly."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "registration": {
+          "$ref": "Registration",
+          "description": "Required. The complete `Registration` resource to be created. You can leave `registration.dns_settings` unset to import the domain's current DNS configuration from its current registrar. Use this option only if you are sure that the domain's current DNS service will not cease upon transfer, as is often the case for DNS services provided for free by the registrar."
+        },
+        "validateOnly": {
+          "description": "Validate the request without actually transferring the domain.",
+          "type": "boolean"
+        },
+        "yearlyPrice": {
+          "$ref": "Money",
+          "description": "Required. Acknowledgement of the price to transfer or renew the domain for one year. Call `RetrieveTransferParameters` to obtain the price, which you must acknowledge."
+        }
+      },
+      "type": "object"
+    },
+    "TransferParameters": {
+      "description": "Parameters required to transfer a domain from another registrar.",
+      "id": "TransferParameters",
+      "properties": {
+        "currentRegistrar": {
+          "description": "The registrar that currently manages the domain.",
+          "type": "string"
+        },
+        "domainName": {
+          "description": "The domain name. Unicode domain names are expressed in Punycode format.",
+          "type": "string"
+        },
+        "nameServers": {
+          "description": "The name servers that currently store the configuration of the domain.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "supportedPrivacy": {
+          "description": "Contact privacy options that the domain supports.",
+          "items": {
+            "enum": [
+              "CONTACT_PRIVACY_UNSPECIFIED",
+              "PUBLIC_CONTACT_DATA",
+              "PRIVATE_CONTACT_DATA",
+              "REDACTED_CONTACT_DATA"
+            ],
+            "enumDescriptions": [
+              "The contact privacy settings are undefined.",
+              "All the data from `ContactSettings` is publicly available. When setting this option, you must also provide a `PUBLIC_CONTACT_DATA_ACKNOWLEDGEMENT` in the `contact_notices` field of the request.",
+              "None of the data from `ContactSettings` is publicly available. Instead, proxy contact data is published for your domain. Email sent to the proxy email address is forwarded to the registrant's email address. Cloud Domains provides this privacy proxy service at no additional cost.",
+              "Some data from `ContactSettings` is publicly available. The actual information redacted depends on the domain. For details, see [the registration privacy article](https://support.google.com/domains/answer/3251242)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "transferLockState": {
+          "description": "Indicates whether the domain is protected by a transfer lock. For a transfer to succeed, this must show `UNLOCKED`. To unlock a domain, go to its current registrar.",
+          "enum": [
+            "TRANSFER_LOCK_STATE_UNSPECIFIED",
+            "UNLOCKED",
+            "LOCKED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The domain is unlocked and can be transferred to another registrar.",
+            "The domain is locked and cannot be transferred to another registrar."
+          ],
+          "type": "string"
+        },
+        "yearlyPrice": {
+          "$ref": "Money",
+          "description": "Price to transfer or renew the domain for one year."
         }
       },
       "type": "object"
