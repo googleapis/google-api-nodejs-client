@@ -183,6 +183,14 @@ export namespace speech_v1 {
    */
   export interface Schema$LongRunningRecognizeResponse {
     /**
+     * Original output config if present in the request.
+     */
+    outputConfig?: Schema$TranscriptOutputConfig;
+    /**
+     * If the transcript output fails this field contains the relevant error.
+     */
+    outputError?: Schema$Status;
+    /**
      * Sequential list of transcription results corresponding to sequential portions of audio.
      */
     results?: Schema$SpeechRecognitionResult[];
