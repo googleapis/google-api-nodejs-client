@@ -3719,7 +3719,7 @@
       }
     }
   },
-  "revision": "20210918",
+  "revision": "20211007",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -6170,6 +6170,10 @@
           },
           "description": "The free-form diagnostic info. For example, this field could contain webhook call latency. The string keys of the Struct's fields map can change without notice.",
           "type": "object"
+        },
+        "dtmf": {
+          "$ref": "GoogleCloudDialogflowCxV3DtmfInput",
+          "description": "If a DTMF was provided as input, this field will contain a copy of the DTMFInput."
         },
         "intent": {
           "$ref": "GoogleCloudDialogflowCxV3Intent",
