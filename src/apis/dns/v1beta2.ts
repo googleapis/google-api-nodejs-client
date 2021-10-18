@@ -895,10 +895,6 @@ export namespace dns_v1beta2 {
   }
   export interface Schema$RRSetRoutingPolicyGeoPolicy {
     /**
-     * If the health check for the primary target for a geo location returns an unhealthy status, the failover target is returned instead. This failover configuration is not mandatory. If a failover is not provided, the primary target won't be healthchecked, and it returns the primarily configured rrdata irrespective of whether it is healthy or not.
-     */
-    failovers?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
-    /**
      * The primary geo routing configuration. If there are multiple items with the same location, an error is returned instead.
      */
     items?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
