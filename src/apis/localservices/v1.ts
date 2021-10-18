@@ -210,6 +210,31 @@ export namespace localservices_v1 {
     aggregatorProviderId?: string | null;
   }
   /**
+   * Container for booking lead specific information.
+   */
+  export interface Schema$GoogleAdsHomeservicesLocalservicesV1BookingLead {
+    /**
+     * Timestamp of when service is provided by advertiser.
+     */
+    bookingAppointmentTimestamp?: string | null;
+    /**
+     * Consumer email associated with the booking lead.
+     */
+    consumerEmail?: string | null;
+    /**
+     * Consumer phone number associated with the booking lead.
+     */
+    consumerPhoneNumber?: string | null;
+    /**
+     * Name of the customer who created the lead.
+     */
+    customerName?: string | null;
+    /**
+     * The job type of the specified lead.
+     */
+    jobType?: string | null;
+  }
+  /**
    * A Detailed Lead Report of a lead identified by their lead id and contains consumer, account, monetization, and lead data.
    */
   export interface Schema$GoogleAdsHomeservicesLocalservicesV1DetailedLeadReport {
@@ -221,6 +246,10 @@ export namespace localservices_v1 {
      * Aggregator specific information related to the lead.
      */
     aggregatorInfo?: Schema$GoogleAdsHomeservicesLocalservicesV1AggregatorInfo;
+    /**
+     * More information associated to only booking leads.
+     */
+    bookingLead?: Schema$GoogleAdsHomeservicesLocalservicesV1BookingLead;
     /**
      * Business name associated to the account.
      */
