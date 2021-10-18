@@ -3023,6 +3023,8 @@ export namespace cloudbuild_v1 {
      *
      *   // Do the magic
      *   const res = await cloudbuild.projects.githubEnterpriseConfigs.create({
+     *     // Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig’s resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
+     *     gheConfigId: 'placeholder-value',
      *     // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      *     parent: 'projects/my-project',
      *     // ID of the project.
@@ -3715,6 +3717,10 @@ export namespace cloudbuild_v1 {
 
   export interface Params$Resource$Projects$Githubenterpriseconfigs$Create
     extends StandardParameters {
+    /**
+     * Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig’s resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
+     */
+    gheConfigId?: string;
     /**
      * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      */
@@ -4856,6 +4862,8 @@ export namespace cloudbuild_v1 {
      *   // Do the magic
      *   const res =
      *     await cloudbuild.projects.locations.githubEnterpriseConfigs.create({
+     *       // Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig’s resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
+     *       gheConfigId: 'placeholder-value',
      *       // Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      *       parent: 'projects/my-project/locations/my-location',
      *       // ID of the project.
@@ -5556,6 +5564,10 @@ export namespace cloudbuild_v1 {
 
   export interface Params$Resource$Projects$Locations$Githubenterpriseconfigs$Create
     extends StandardParameters {
+    /**
+     * Optional. The ID to use for the GithubEnterpriseConfig, which will become the final component of the GithubEnterpriseConfig’s resource name. ghe_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character
+     */
+    gheConfigId?: string;
     /**
      * Name of the parent project. For example: projects/{$project_number\} or projects/{$project_id\}
      */
