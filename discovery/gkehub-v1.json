@@ -905,7 +905,7 @@
       }
     }
   },
-  "revision": "20210920",
+  "revision": "20210927",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1040,13 +1040,6 @@
         "git": {
           "$ref": "ConfigManagementGitConfig",
           "description": "Git repo configuration for the cluster."
-        },
-        "resourceRequirements": {
-          "additionalProperties": {
-            "$ref": "ConfigManagementContainerResourceRequirements"
-          },
-          "description": "Specifies CPU and memory limits for containers, keyed by container name",
-          "type": "object"
         },
         "sourceFormat": {
           "description": "Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.",
@@ -1228,25 +1221,6 @@
       },
       "type": "object"
     },
-    "ConfigManagementContainerResourceRequirements": {
-      "description": "ResourceRequirements allows to override the CPU and memory resource requirements of a container.",
-      "id": "ConfigManagementContainerResourceRequirements",
-      "properties": {
-        "containerName": {
-          "description": "Name of the container",
-          "type": "string"
-        },
-        "cpuLimit": {
-          "$ref": "ConfigManagementQuantity",
-          "description": "Allows to override the CPU limit of a container"
-        },
-        "memoryLimit": {
-          "$ref": "ConfigManagementQuantity",
-          "description": "Allows to override the memory limit of a container"
-        }
-      },
-      "type": "object"
-    },
     "ConfigManagementErrorResource": {
       "description": "Model for a config file in the git repo with an associated Sync error",
       "id": "ConfigManagementErrorResource",
@@ -1321,10 +1295,6 @@
           "description": "URL for the HTTPS proxy to be used when communicating with the Git repo.",
           "type": "string"
         },
-        "noSslVerify": {
-          "description": "Enable or disable the SSL certificate verification Default: false.",
-          "type": "boolean"
-        },
         "policyDir": {
           "description": "The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.",
           "type": "string"
@@ -1335,11 +1305,6 @@
         },
         "syncBranch": {
           "description": "The branch of the repository to sync from. Default: master.",
-          "type": "string"
-        },
-        "syncDepth": {
-          "description": "The depth of git commits synced by the git-sync container.",
-          "format": "int64",
           "type": "string"
         },
         "syncRepo": {
@@ -1620,17 +1585,6 @@
       "properties": {
         "version": {
           "description": "The gatekeeper image tag that is composed of ACM version, git tag, build number.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ConfigManagementQuantity": {
-      "description": "The view model of a single quantity, e.g. \"800 MiB\". Corresponds to https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/generated.proto",
-      "id": "ConfigManagementQuantity",
-      "properties": {
-        "string": {
-          "description": "Stringified version of the quantity, e.g., \"800 MiB\".",
           "type": "string"
         }
       },
