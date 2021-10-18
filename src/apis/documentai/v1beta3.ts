@@ -3277,7 +3277,7 @@ export namespace documentai_v1beta3 {
     type?: string | null;
   }
   /**
-   * A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 8.
+   * A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 9.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorType {
     /**
@@ -3293,11 +3293,15 @@ export namespace documentai_v1beta3 {
      */
     category?: string | null;
     /**
+     * Launch stage of the processor type
+     */
+    launchStage?: string | null;
+    /**
      * The resource name of the processor type. Format: projects/{project\}/processorTypes/{processor_type\}
      */
     name?: string | null;
     /**
-     * The type of the processor, e.g, "invoice_parsing".
+     * The type of the processor, e.g., "invoice_parsing".
      */
     type?: string | null;
   }
@@ -3491,7 +3495,7 @@ export namespace documentai_v1beta3 {
      */
     source?: string | null;
     /**
-     * Name of the type. It must be unique within the set of same level types.
+     * Name of the type. It must satisfy the following constraints: 1. Must be unique within the set of same level types (with case-insensitive match). 2. Maximum 50 characters. 3. Must start with a letter. 4. Allowed characters: ASCII letters [a-zA-Z], ASCII digits [0-9], or one of the following punctuation characters: * underscore '_' (recommended) * hyphen '-' (allowed, not recommended) * colon ':' (allowed, not recommended) NOTE: Whitespace characters are not allowed. 5. Cannot end with a punctuation character. 6. Cannot contain the following restricted strings: "google", "DocumentAI" (case-insensitive match). 7. A slash character '/' is reserved as a separator in flattened representations of nested entity types (e.g., "line_item/amount") in which case each part (e.g., "line_item", "amount") must comply with the rules defined above. We recommend using the snake case ("snake_case") in entity type names.
      */
     type?: string | null;
   }
