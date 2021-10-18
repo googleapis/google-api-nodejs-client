@@ -1105,7 +1105,7 @@ export namespace servicecontrol_v1 {
      */
     service?: string | null;
     /**
-     * The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be "{service\}/{kind\}".
+     * The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be "{service\}/{kind\}", such as "pubsub.googleapis.com/Topic".
      */
     type?: string | null;
     /**
