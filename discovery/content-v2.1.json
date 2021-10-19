@@ -5783,7 +5783,7 @@
       }
     }
   },
-  "revision": "20211007",
+  "revision": "20211013",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -13141,7 +13141,7 @@
           "type": "integer"
         },
         "id": {
-          "description": "Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The channel field will have a value of \"online\", \"local\", or \"onlinelocal\".",
+          "description": "Required. Output only. The REST promotion id to uniquely identify the promotion. Content API methods that operate on promotions take this as their promotionId parameter. The REST ID for a promotion is of the form channel:contentLanguage:targetCountry:promotionId The channel field will have a value of \"online\", \"in_store\", or \"online_in_store\".",
           "readOnly": true,
           "type": "string"
         },
@@ -13279,12 +13279,12 @@
           "items": {
             "enum": [
               "REDEMPTION_CHANNEL_UNSPECIFIED",
-              "LOCAL",
+              "IN_STORE",
               "ONLINE"
             ],
             "enumDescriptions": [
               "Indicates that the channel is unspecified.",
-              "Indicates that the channel is local.",
+              "Indicates that the channel is in store.",
               "Indicates that the channel is online."
             ],
             "type": "string"
