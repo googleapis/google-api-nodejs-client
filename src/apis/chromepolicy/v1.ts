@@ -331,7 +331,7 @@ export namespace chromepolicy_v1 {
      */
     additionalTargetKeys?: {[key: string]: string} | null;
     /**
-     * The target resource on which this policy is applied. The following resources are supported: * Organizational Unit ("orgunits/{orgunit_id\}") * Group ("groups/{group_id\}")
+     * The target resource on which this policy is applied. The following resources are supported: * Organizational Unit ("orgunits/{orgunit_id\}")
      */
     targetResource?: string | null;
   }
