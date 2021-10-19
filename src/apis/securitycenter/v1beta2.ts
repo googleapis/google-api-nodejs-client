@@ -518,6 +518,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
     /**
+     * The human readable name of the resource.
+     */
+    displayName?: string | null;
+    /**
      * Output only. Contains a Folder message for each folder in the assets ancestry. The first folder is the deepest nested folder, and the last folder is the folder directly under the Organization.
      */
     folders?: Schema$Folder[];
