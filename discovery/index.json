@@ -1592,6 +1592,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/container-analysis/api/reference/rest/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "containeranalysis:v1",
+      "name": "containeranalysis",
+      "version": "v1",
+      "title": "Container Analysis API",
+      "description": "An implementation of the Grafeas API, which stores, and enables querying and retrieval of critical metadata about all of your software artifacts.",
+      "discoveryRestUrl": "https://containeranalysis.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/container-analysis/api/reference/rest/",
       "preferred": true
     },
     {
@@ -2382,7 +2397,7 @@
       "name": "firebaseappcheck",
       "version": "v1beta",
       "title": "Firebase App Check API",
-      "description": "App Check works alongside other Firebase services to help protect your backend resources from abuse, such as billing fraud or phishing. With App Check, devices running your app will use an app or device attestation provider that attests to one or both of the following: * Requests originate from your authentic app * Requests originate from an authentic, untampered device This attestation is attached to every request your app makes to your Firebase backend resources. The Firebase App Check REST API allows you to manage your App Check configurations programmatically. It also allows you to exchange attestation material for App Check tokens directly without using a Firebase SDK. Finally, it allows you to obtain the public key set necessary to validate an App Check token yourself. [Learn more about App Check](https://firebase.google.com/docs/app-check).",
+      "description": "Firebase App Check works alongside other Firebase services to help protect your backend resources from abuse, such as billing fraud or phishing.",
       "discoveryRestUrl": "https://firebaseappcheck.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3759,21 +3774,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "playablelocations:v3",
-      "name": "playablelocations",
-      "version": "v3",
-      "title": "Playable Locations API",
-      "description": "",
-      "discoveryRestUrl": "https://playablelocations.googleapis.com/$discovery/rest?version=v3",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/maps/contact-sales/",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "playcustomapp:v1",
       "name": "playcustomapp",
       "version": "v1",
@@ -5015,21 +5015,6 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/vault",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "vectortile:v1",
-      "name": "vectortile",
-      "version": "v1",
-      "title": "Semantic Tile API",
-      "description": "Serves vector tiles containing geospatial data.",
-      "discoveryRestUrl": "https://vectortile.googleapis.com/$discovery/rest?version=v1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/maps/contact-sales/",
       "preferred": true
     },
     {
