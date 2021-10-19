@@ -651,11 +651,11 @@ export namespace cloudsearch_v1 {
     stats?: Schema$DataSourceIndexStats[];
   }
   /**
-   * Response format for getting query stats at a search application level between given dates.
+   * Response format for getting query stats for a search application between given dates.
    */
   export interface Schema$GetSearchApplicationQueryStatsResponse {
     /**
-     * Search application level query stats per date
+     * Query stats per date for a search application.
      */
     stats?: Schema$SearchApplicationQueryStats[];
   }
