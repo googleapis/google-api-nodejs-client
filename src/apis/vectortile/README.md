@@ -2,7 +2,7 @@
 
 # vectortile
 
-> Serves vector tiles containing geospatial data.
+> 
 
 ## Installation
 
