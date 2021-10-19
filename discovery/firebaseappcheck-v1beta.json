@@ -15,7 +15,7 @@
   "baseUrl": "https://firebaseappcheck.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Firebaseappcheck",
-  "description": "App Check works alongside other Firebase services to help protect your backend resources from abuse, such as billing fraud or phishing. With App Check, devices running your app will use an app or device attestation provider that attests to one or both of the following: * Requests originate from your authentic app * Requests originate from an authentic, untampered device This attestation is attached to every request your app makes to your Firebase backend resources. The Firebase App Check REST API allows you to manage your App Check configurations programmatically. It also allows you to exchange attestation material for App Check tokens directly without using a Firebase SDK. Finally, it allows you to obtain the public key set necessary to validate an App Check token yourself. [Learn more about App Check](https://firebase.google.com/docs/app-check).",
+  "description": "Firebase App Check works alongside other Firebase services to help protect your backend resources from abuse, such as billing fraud or phishing.",
   "discoveryVersion": "v1",
   "documentationLink": "https://firebase.google.com/docs/app-check",
   "fullyEncodeReservedExpansion": true,
@@ -143,7 +143,7 @@
         "apps": {
           "methods": {
             "exchangeAppAttestAssertion": {
-              "description": "Accepts a AppAttest Artifact and Assertion, and uses the developer's preconfigured auth token to verify the token with Apple. Returns an AttestationToken with the App ID as specified by the `app` field included as attested claims.",
+              "description": "Accepts an App Attest assertion and an artifact previously obtained from ExchangeAppAttestAttestation and verifies those with Apple. If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeAppAttestAssertion",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeAppAttestAssertion",
@@ -152,7 +152,7 @@
               ],
               "parameters": {
                 "app": {
-                  "description": "Required. The full resource name to the iOS App. Format: \"projects/{project_id}/apps/{app_id}\"",
+                  "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/apps/[^/]+$",
                   "required": true,
@@ -172,7 +172,7 @@
               ]
             },
             "exchangeAppAttestAttestation": {
-              "description": "Accepts a AppAttest CBOR Attestation, and uses the developer's preconfigured team and bundle IDs to verify the token with Apple. Returns an Attestation Artifact that can later be exchanged for an AttestationToken in ExchangeAppAttestAssertion.",
+              "description": "Accepts an App Attest CBOR attestation and verifies it with Apple using the developer's preconfigured team and bundle IDs. If valid, returns an attestation artifact that can later be exchanged for an AttestationTokenResponse using ExchangeAppAttestAssertion. For convenience and performance, this method's response object will also contain an App Check token encapsulated in an AttestationTokenResponse (if the verification is successful).",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeAppAttestAttestation",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeAppAttestAttestation",
@@ -181,7 +181,7 @@
               ],
               "parameters": {
                 "app": {
-                  "description": "Required. The full resource name to the iOS App. Format: \"projects/{project_id}/apps/{app_id}\"",
+                  "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/apps/[^/]+$",
                   "required": true,
@@ -346,7 +346,7 @@
               ]
             },
             "generateAppAttestChallenge": {
-              "description": "Initiates the App Attest flow by generating a challenge which will be used as a type of nonce for this attestation.",
+              "description": "Generates a challenge that protects the integrity of an immediately following call to ExchangeAppAttestAttestation or ExchangeAppAttestAssertion. A challenge should not be reused for multiple calls.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:generateAppAttestChallenge",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.generateAppAttestChallenge",
@@ -355,7 +355,7 @@
               ],
               "parameters": {
                 "app": {
-                  "description": "Required. The full resource name to the iOS App. Format: \"projects/{project_id}/apps/{app_id}\"",
+                  "description": "Required. The relative resource name of the iOS app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/apps/[^/]+$",
                   "required": true,
@@ -603,7 +603,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The relative resource name of the debug token, in the format: ``` projects/{project_number}/apps/{app_id}/debugTokens/{debug_token_id} ```",
+                      "description": "Required. The relative resource name of the debug token, in the format: ``` projects/{project_number}/apps/{app_id}/debugTokens/{debug_token_id} ```",
                       "location": "path",
                       "pattern": "^projects/[^/]+/apps/[^/]+/debugTokens/[^/]+$",
                       "required": true,
@@ -1057,20 +1057,20 @@
       }
     }
   },
-  "revision": "20210924",
+  "revision": "20211015",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse": {
-      "description": "Response object for GenerateAppAttestChallenge",
+      "description": "Response message for the GenerateAppAttestChallenge method.",
       "id": "GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse",
       "properties": {
         "challenge": {
-          "description": "A one time use challenge for the client to pass to Apple's App Attest API.",
+          "description": "A one-time use challenge for the client to pass to the App Attest API.",
           "format": "byte",
           "type": "string"
         },
         "ttl": {
-          "description": "The duration from the time this challenge is minted until it is expired. This field is intended to ease client-side token management, since the device may have clock skew, but is still able to accurately measure a duration. This expiration is intended to minimize the replay window within which a single challenge may be reused. See AIP 142 for naming of this field.",
+          "description": "The duration from the time this challenge is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.",
           "format": "google-duration",
           "type": "string"
         }
@@ -1078,7 +1078,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {
-      "description": "An app's App Attest configuration object. This configuration controls certain properties of the App Check token returned by ExchangeAppAttestAttestation and ExchangeAppAttestAttestation, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).",
+      "description": "An app's App Attest configuration object. This configuration controls certain properties of the App Check token returned by ExchangeAppAttestAttestation and ExchangeAppAttestAssertion, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).",
       "id": "GoogleFirebaseAppcheckV1betaAppAttestConfig",
       "properties": {
         "name": {
@@ -1207,11 +1207,11 @@
           "type": "string"
         },
         "name": {
-          "description": "The relative resource name of the debug token, in the format: ``` projects/{project_number}/apps/{app_id}/debugTokens/{debug_token_id} ```",
+          "description": "Required. The relative resource name of the debug token, in the format: ``` projects/{project_number}/apps/{app_id}/debugTokens/{debug_token_id} ```",
           "type": "string"
         },
         "token": {
-          "description": "Input only. Immutable. The secret token itself. Must be provided during creation, and must be a UUID4, case insensitive. This field is immutable once set, and cannot be provided during an UpdateDebugToken request. You can, however, delete this debug token using DeleteDebugToken to revoke it. For security reasons, this field will never be populated in any response.",
+          "description": "Required. Input only. Immutable. The secret token itself. Must be provided during creation, and must be a UUID4, case insensitive. This field is immutable once set, and cannot be provided during an UpdateDebugToken request. You can, however, delete this debug token using DeleteDebugToken to revoke it. For security reasons, this field will never be populated in any response.",
           "type": "string"
         }
       },
@@ -1247,21 +1247,21 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaExchangeAppAttestAssertionRequest": {
-      "description": "Request message for ExchangeAppAttestAssertion",
+      "description": "Request message for the ExchangeAppAttestAssertion method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAssertionRequest",
       "properties": {
         "artifact": {
-          "description": "The artifact previously returned by ExchangeAppAttestAttestation.",
+          "description": "Required. The artifact returned by a previous call to ExchangeAppAttestAttestation.",
           "format": "byte",
           "type": "string"
         },
         "assertion": {
-          "description": "The CBOR encoded assertion provided by the Apple App Attest SDK.",
+          "description": "Required. The CBOR-encoded assertion returned by the client-side App Attest API.",
           "format": "byte",
           "type": "string"
         },
         "challenge": {
-          "description": "A one time challenge returned by GenerateAppAttestChallenge.",
+          "description": "Required. A one-time challenge returned by an immediately prior call to GenerateAppAttestChallenge.",
           "format": "byte",
           "type": "string"
         }
@@ -1269,16 +1269,16 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationRequest": {
-      "description": "Request message for ExchangeAppAttestAttestation",
+      "description": "Request message for the ExchangeAppAttestAttestation method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationRequest",
       "properties": {
         "attestationStatement": {
-          "description": "Required. The App Attest statement as returned by Apple's client-side App Attest API. This is the CBOR object returned by Apple, which will be Base64 encoded in the JSON API.",
+          "description": "Required. The App Attest statement returned by the client-side App Attest API. This is a base64url encoded CBOR object in the JSON response.",
           "format": "byte",
           "type": "string"
         },
         "challenge": {
-          "description": "Required. The challenge previously generated by the FAC backend.",
+          "description": "Required. A one-time challenge returned by an immediately prior call to GenerateAppAttestChallenge.",
           "format": "byte",
           "type": "string"
         },
@@ -1291,17 +1291,17 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse": {
-      "description": "Response message for ExchangeAppAttestAttestation and ExchangeAppAttestDebugAttestation",
+      "description": "Response message for the ExchangeAppAttestAttestation method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse",
       "properties": {
         "artifact": {
-          "description": "An artifact that should be passed back during the Assertion flow.",
+          "description": "An artifact that can be used in future calls to ExchangeAppAttestAssertion.",
           "format": "byte",
           "type": "string"
         },
         "attestationToken": {
           "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse",
-          "description": "An attestation token which can be used to access Firebase APIs."
+          "description": "Encapsulates an App Check token."
         }
       },
       "type": "object"
@@ -1333,7 +1333,7 @@
       "id": "GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest",
       "properties": {
         "deviceToken": {
-          "description": "Required. The `device_token` as returned by Apple's client-side [DeviceCheck API](https://developer.apple.com/documentation/devicecheck/dcdevice). This is the Base64 encoded `Data` (Swift) or `NSData` (ObjC) object.",
+          "description": "Required. The `device_token` as returned by Apple's client-side [DeviceCheck API](https://developer.apple.com/documentation/devicecheck/dcdevice). This is the base64 encoded `Data` (Swift) or `NSData` (ObjC) object.",
           "type": "string"
         }
       },
@@ -1362,7 +1362,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest": {
-      "description": "Request message for GenerateAppAttestChallenge",
+      "description": "Request message for the GenerateAppAttestChallenge method.",
       "id": "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest",
       "properties": {},
       "type": "object"
@@ -1435,7 +1435,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaPublicJwkSet": {
-      "description": "The currently active set of public keys that can be used to verify App Check tokens. This object is a JWK set as specified by [section 5 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-5). For security, the response **must not** be cached for longer than one day.",
+      "description": "The currently active set of public keys that can be used to verify App Check tokens. This object is a JWK set as specified by [section 5 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-5). For security, the response **must not** be cached for longer than six hours.",
       "id": "GoogleFirebaseAppcheckV1betaPublicJwkSet",
       "properties": {
         "keys": {
