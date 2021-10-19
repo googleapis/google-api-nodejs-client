@@ -324,7 +324,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20211015",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyV1AdditionalTargetKeyName": {
@@ -620,7 +620,7 @@
           "type": "object"
         },
         "targetResource": {
-          "description": "The target resource on which this policy is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\") * Group (\"groups/{group_id}\")",
+          "description": "The target resource on which this policy is applied. The following resources are supported: * Organizational Unit (\"orgunits/{orgunit_id}\")",
           "type": "string"
         }
       },
