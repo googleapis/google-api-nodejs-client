@@ -155,7 +155,7 @@
       }
     }
   },
-  "revision": "20210227",
+  "revision": "20211021",
   "rootUrl": "https://analyticsreporting.googleapis.com/",
   "schemas": {
     "Activity": {
@@ -1037,6 +1037,10 @@
         "dataLastRefreshed": {
           "description": "The last time the data in the report was refreshed. All the hits received before this timestamp are included in the calculation of the report.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "emptyReason": {
+          "description": "If empty reason is specified, the report is empty for this reason.",
           "type": "string"
         },
         "isDataGolden": {
