@@ -14,14 +14,18 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {domains_v1} from './v1';
 import {domains_v1alpha2} from './v1alpha2';
 import {domains_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: domains_v1.Domains,
   v1alpha2: domains_v1alpha2.Domains,
   v1beta1: domains_v1beta1.Domains,
 };
 
+export function domains(version: 'v1'): domains_v1.Domains;
+export function domains(options: domains_v1.Options): domains_v1.Domains;
 export function domains(version: 'v1alpha2'): domains_v1alpha2.Domains;
 export function domains(
   options: domains_v1alpha2.Options
@@ -30,9 +34,13 @@ export function domains(version: 'v1beta1'): domains_v1beta1.Domains;
 export function domains(
   options: domains_v1beta1.Options
 ): domains_v1beta1.Domains;
-export function domains<T = domains_v1alpha2.Domains | domains_v1beta1.Domains>(
+export function domains<
+  T = domains_v1.Domains | domains_v1alpha2.Domains | domains_v1beta1.Domains
+>(
   this: GoogleConfigurable,
   versionOrOptions:
+    | 'v1'
+    | domains_v1.Options
     | 'v1alpha2'
     | domains_v1alpha2.Options
     | 'v1beta1'
@@ -43,6 +51,7 @@ export function domains<T = domains_v1alpha2.Domains | domains_v1beta1.Domains>(
 
 const auth = new AuthPlus();
 export {auth};
+export {domains_v1};
 export {domains_v1alpha2};
 export {domains_v1beta1};
 export {

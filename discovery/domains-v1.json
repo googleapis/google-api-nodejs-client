@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "domains:v1alpha2",
+  "id": "domains:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://domains.mtls.googleapis.com/",
   "name": "domains",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "domains.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha2/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1alpha2/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "domains.projects.locations.list",
               "parameterOrder": [
@@ -167,7 +167,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha2/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -181,7 +181,7 @@
               "methods": {
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.operations.get",
                   "parameterOrder": [
@@ -196,7 +196,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -206,7 +206,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.operations.list",
                   "parameterOrder": [
@@ -237,7 +237,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -251,7 +251,7 @@
               "methods": {
                 "configureContactSettings": {
                   "description": "Updates a `Registration`'s contact settings. Some changes require confirmation by the domain's registrant contact .",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:configureContactSettings",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:configureContactSettings",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.configureContactSettings",
                   "parameterOrder": [
@@ -266,7 +266,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+registration}:configureContactSettings",
+                  "path": "v1/{+registration}:configureContactSettings",
                   "request": {
                     "$ref": "ConfigureContactSettingsRequest"
                   },
@@ -279,7 +279,7 @@
                 },
                 "configureDnsSettings": {
                   "description": "Updates a `Registration`'s DNS settings.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:configureDnsSettings",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:configureDnsSettings",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.configureDnsSettings",
                   "parameterOrder": [
@@ -294,7 +294,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+registration}:configureDnsSettings",
+                  "path": "v1/{+registration}:configureDnsSettings",
                   "request": {
                     "$ref": "ConfigureDnsSettingsRequest"
                   },
@@ -307,7 +307,7 @@
                 },
                 "configureManagementSettings": {
                   "description": "Updates a `Registration`'s management settings.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:configureManagementSettings",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:configureManagementSettings",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.configureManagementSettings",
                   "parameterOrder": [
@@ -322,7 +322,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+registration}:configureManagementSettings",
+                  "path": "v1/{+registration}:configureManagementSettings",
                   "request": {
                     "$ref": "ConfigureManagementSettingsRequest"
                   },
@@ -335,7 +335,7 @@
                 },
                 "delete": {
                   "description": "Deletes a `Registration` resource. For `Registration` resources using usage billing, this method works if: * `state` is `EXPORTED` with `expire_time` in the past * `state` is `REGISTRATION_FAILED` * `state` is `TRANSFER_FAILED` This method works on any `Registration` resource using subscription billing, provided that the resource was created at least 1 day in the past. When an active domain is successfully deleted, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain will not renew automatically unless the new owner sets up billing in Google Domains.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}",
                   "httpMethod": "DELETE",
                   "id": "domains.projects.locations.registrations.delete",
                   "parameterOrder": [
@@ -350,7 +350,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -360,7 +360,7 @@
                 },
                 "export": {
                   "description": "Exports a `Registration` resource, such that it is no longer managed by Cloud Domains. When an active domain is successfully exported, you can continue to use the domain in [Google Domains](https://domains.google/) until it expires. The calling user becomes the domain's sole owner in Google Domains, and permissions for the domain are subsequently managed there. The domain will not renew automatically unless the new owner sets up billing in Google Domains.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:export",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:export",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.export",
                   "parameterOrder": [
@@ -375,7 +375,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+name}:export",
+                  "path": "v1/{+name}:export",
                   "request": {
                     "$ref": "ExportRegistrationRequest"
                   },
@@ -388,7 +388,7 @@
                 },
                 "get": {
                   "description": "Gets the details of a `Registration` resource.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.get",
                   "parameterOrder": [
@@ -403,7 +403,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Registration"
                   },
@@ -413,7 +413,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.getIamPolicy",
                   "parameterOrder": [
@@ -434,7 +434,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
                   },
@@ -444,7 +444,7 @@
                 },
                 "list": {
                   "description": "Lists the `Registration` resources in a project.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.list",
                   "parameterOrder": [
@@ -475,7 +475,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+parent}/registrations",
+                  "path": "v1/{+parent}/registrations",
                   "response": {
                     "$ref": "ListRegistrationsResponse"
                   },
@@ -485,7 +485,7 @@
                 },
                 "patch": {
                   "description": "Updates select fields of a `Registration` resource, notably `labels`. To update other fields, use the appropriate custom update method: * To update management settings, see `ConfigureManagementSettings` * To update DNS configuration, see `ConfigureDnsSettings` * To update contact information, see `ConfigureContactSettings`",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}",
                   "httpMethod": "PATCH",
                   "id": "domains.projects.locations.registrations.patch",
                   "parameterOrder": [
@@ -506,7 +506,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Registration"
                   },
@@ -519,7 +519,7 @@
                 },
                 "register": {
                   "description": "Registers a new domain name and creates a corresponding `Registration` resource. Call `RetrieveRegisterParameters` first to check availability of the domain name and determine parameters like price that are needed to build a call to this method. A successful call creates a `Registration` resource in state `REGISTRATION_PENDING`, which resolves to `ACTIVE` within 1-2 minutes, indicating that the domain was successfully registered. If the resource ends up in state `REGISTRATION_FAILED`, it indicates that the domain was not registered successfully, and you can safely delete the resource and retry registration.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:register",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations:register",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.register",
                   "parameterOrder": [
@@ -534,7 +534,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+parent}/registrations:register",
+                  "path": "v1/{+parent}/registrations:register",
                   "request": {
                     "$ref": "RegisterDomainRequest"
                   },
@@ -547,7 +547,7 @@
                 },
                 "resetAuthorizationCode": {
                   "description": "Resets the authorization code of the `Registration` to a new random string. You can call this method only after 60 days have elapsed since the initial domain registration.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:resetAuthorizationCode",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:resetAuthorizationCode",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.resetAuthorizationCode",
                   "parameterOrder": [
@@ -562,7 +562,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+registration}:resetAuthorizationCode",
+                  "path": "v1/{+registration}:resetAuthorizationCode",
                   "request": {
                     "$ref": "ResetAuthorizationCodeRequest"
                   },
@@ -575,7 +575,7 @@
                 },
                 "retrieveAuthorizationCode": {
                   "description": "Gets the authorization code of the `Registration` for the purpose of transferring the domain to another registrar. You can call this method only after 60 days have elapsed since the initial domain registration.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:retrieveAuthorizationCode",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:retrieveAuthorizationCode",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.retrieveAuthorizationCode",
                   "parameterOrder": [
@@ -590,7 +590,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+registration}:retrieveAuthorizationCode",
+                  "path": "v1/{+registration}:retrieveAuthorizationCode",
                   "response": {
                     "$ref": "AuthorizationCode"
                   },
@@ -600,7 +600,7 @@
                 },
                 "retrieveRegisterParameters": {
                   "description": "Gets parameters needed to register a new domain name, including price and up-to-date availability. Use the returned values to call `RegisterDomain`.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:retrieveRegisterParameters",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations:retrieveRegisterParameters",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.retrieveRegisterParameters",
                   "parameterOrder": [
@@ -620,7 +620,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+location}/registrations:retrieveRegisterParameters",
+                  "path": "v1/{+location}/registrations:retrieveRegisterParameters",
                   "response": {
                     "$ref": "RetrieveRegisterParametersResponse"
                   },
@@ -630,7 +630,7 @@
                 },
                 "retrieveTransferParameters": {
                   "description": "Gets parameters needed to transfer a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not yet supported. Use the returned values to call `TransferDomain`.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:retrieveTransferParameters",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations:retrieveTransferParameters",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.retrieveTransferParameters",
                   "parameterOrder": [
@@ -650,7 +650,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+location}/registrations:retrieveTransferParameters",
+                  "path": "v1/{+location}/registrations:retrieveTransferParameters",
                   "response": {
                     "$ref": "RetrieveTransferParametersResponse"
                   },
@@ -660,7 +660,7 @@
                 },
                 "searchDomains": {
                   "description": "Searches for available domain names similar to the provided query. Availability results from this method are approximate; call `RetrieveRegisterParameters` on a domain before registering to confirm availability.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:searchDomains",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations:searchDomains",
                   "httpMethod": "GET",
                   "id": "domains.projects.locations.registrations.searchDomains",
                   "parameterOrder": [
@@ -680,7 +680,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+location}/registrations:searchDomains",
+                  "path": "v1/{+location}/registrations:searchDomains",
                   "response": {
                     "$ref": "SearchDomainsResponse"
                   },
@@ -690,7 +690,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.setIamPolicy",
                   "parameterOrder": [
@@ -705,7 +705,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "SetIamPolicyRequest"
                   },
@@ -718,7 +718,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations/{registrationsId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.testIamPermissions",
                   "parameterOrder": [
@@ -733,7 +733,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "TestIamPermissionsRequest"
                   },
@@ -746,7 +746,7 @@
                 },
                 "transfer": {
                   "description": "Transfers a domain name from another registrar to Cloud Domains. For domains managed by Google Domains, transferring to Cloud Domains is not yet supported. Before calling this method, go to the domain's current registrar to unlock the domain for transfer and retrieve the domain's transfer authorization code. Then call `RetrieveTransferParameters` to confirm that the domain is unlocked and to get values needed to build a call to this method. A successful call creates a `Registration` resource in state `TRANSFER_PENDING`. It can take several days to complete the transfer process. The registrant can often speed up this process by approving the transfer through the current registrar, either by clicking a link in an email from the registrar or by visiting the registrar's website. A few minutes after transfer approval, the resource transitions to state `ACTIVE`, indicating that the transfer was successful. If the transfer is rejected or the request expires without being approved, the resource can end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete the resource and retry the transfer.",
-                  "flatPath": "v1alpha2/projects/{projectsId}/locations/{locationsId}/registrations:transfer",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/registrations:transfer",
                   "httpMethod": "POST",
                   "id": "domains.projects.locations.registrations.transfer",
                   "parameterOrder": [
@@ -761,7 +761,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha2/{+parent}/registrations:transfer",
+                  "path": "v1/{+parent}/registrations:transfer",
                   "request": {
                     "$ref": "TransferDomainRequest"
                   },
@@ -1950,6 +1950,6 @@
   },
   "servicePath": "",
   "title": "Cloud Domains API",
-  "version": "v1alpha2",
+  "version": "v1",
   "version_module": true
 }
