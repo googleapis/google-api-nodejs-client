@@ -3451,6 +3451,8 @@ export namespace admin_directory_v1 {
      *   const res = await directory.chromeosdevices.list({
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
+     *     // Return devices from all child orgunits, as well as the specified org unit. If this is set to true 'orgUnitPath' must be provided.
+     *     includeChildOrgunits: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
      *     // Device property to use for sorting results.
@@ -4168,6 +4170,10 @@ export namespace admin_directory_v1 {
      * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
+    /**
+     * Return devices from all child orgunits, as well as the specified org unit. If this is set to true 'orgUnitPath' must be provided.
+     */
+    includeChildOrgunits?: boolean;
     /**
      * Maximum number of results to return.
      */

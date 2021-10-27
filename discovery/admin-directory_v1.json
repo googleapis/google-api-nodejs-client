@@ -395,6 +395,11 @@
               "required": true,
               "type": "string"
             },
+            "includeChildOrgunits": {
+              "description": "Return devices from all child orgunits, as well as the specified org unit. If this is set to true 'orgUnitPath' must be provided.",
+              "location": "query",
+              "type": "boolean"
+            },
             "maxResults": {
               "default": "100",
               "description": "Maximum number of results to return.",
@@ -4397,7 +4402,7 @@
       }
     }
   },
-  "revision": "20211008",
+  "revision": "20211014",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
