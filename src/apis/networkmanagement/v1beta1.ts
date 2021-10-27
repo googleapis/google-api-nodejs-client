@@ -186,6 +186,15 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Wrapper for cloud function attributes.
+   */
+  export interface Schema$CloudFunctionEndpoint {
+    /**
+     * A [Cloud function](https://cloud.google.com/functions) name.
+     */
+    uri?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a Cloud SQL instance.
    */
   export interface Schema$CloudSQLInstanceInfo {
@@ -301,6 +310,10 @@ export namespace networkmanagement_v1beta1 {
    * Source or destination of the Connectivity Test.
    */
   export interface Schema$Endpoint {
+    /**
+     * A [Cloud function](https://cloud.google.com/functions).
+     */
+    cloudFunction?: Schema$CloudFunctionEndpoint;
     /**
      * A [Cloud SQL](https://cloud.google.com/sql) instance URI.
      */
