@@ -2862,32 +2862,6 @@
                 "https://www.googleapis.com/auth/analytics.readonly"
               ]
             },
-            "getEnhancedMeasurementSettings": {
-              "description": "Returns the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
-              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/enhancedMeasurementSettings",
-              "httpMethod": "GET",
-              "id": "analyticsadmin.properties.webDataStreams.getEnhancedMeasurementSettings",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the settings to lookup. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: \"properties/1000/webDataStreams/2000/enhancedMeasurementSettings\"",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+/enhancedMeasurementSettings$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+name}",
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.edit",
-                "https://www.googleapis.com/auth/analytics.readonly"
-              ]
-            },
             "getGlobalSiteTag": {
               "description": "Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.",
               "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/globalSiteTag",
@@ -2980,40 +2954,6 @@
               },
               "response": {
                 "$ref": "GoogleAnalyticsAdminV1alphaWebDataStream"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.edit"
-              ]
-            },
-            "updateEnhancedMeasurementSettings": {
-              "description": "Updates the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.",
-              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/enhancedMeasurementSettings",
-              "httpMethod": "PATCH",
-              "id": "analyticsadmin.properties.webDataStreams.updateEnhancedMeasurementSettings",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: \"properties/1000/webDataStreams/2000/enhancedMeasurementSettings\"",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+/enhancedMeasurementSettings$",
-                  "required": true,
-                  "type": "string"
-                },
-                "updateMask": {
-                  "description": "Required. The list of fields to be updated. Field names must be in snake case (e.g., \"field_to_update\"). Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
-                  "format": "google-fieldmask",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+name}",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit"
@@ -3180,7 +3120,7 @@
       }
     }
   },
-  "revision": "20211013",
+  "revision": "20211025",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3895,7 +3835,7 @@
           "type": "boolean"
         },
         "costDataSharingEnabled": {
-          "description": "Immutable. Enables the import of cost data from Display & Video 360 into the GA4 property. This can only be enabled if campaign_data_import_enabled is enabled. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.",
+          "description": "Immutable. Enables the import of cost data from Display & Video 360 into the GA4 property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.",
           "type": "boolean"
         },
         "name": {
@@ -3907,7 +3847,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal": {
-      "description": "A proposal for a link between an GA4 property and a Display & Video 360 advertiser. A proposal is converted to a DisplayVideo360AdvertiserLink once approved. Google Analytics admins approve inbound proposals while Display & Video 360 admins approve outbound proposals.",
+      "description": "A proposal for a link between a GA4 property and a Display & Video 360 advertiser. A proposal is converted to a DisplayVideo360AdvertiserLink once approved. Google Analytics admins approve inbound proposals while Display & Video 360 admins approve outbound proposals.",
       "id": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal",
       "properties": {
         "adsPersonalizationEnabled": {
@@ -3928,7 +3868,7 @@
           "type": "boolean"
         },
         "costDataSharingEnabled": {
-          "description": "Immutable. Enables the import of cost data from Display & Video 360. This can only be enabled if campaign_data_import_enabled is enabled. If this field is not set on create, it will be defaulted to true.",
+          "description": "Immutable. Enables the import of cost data from Display & Video 360. This can only be enabled if campaign_data_sharing_enabled is enabled. If this field is not set on create, it will be defaulted to true.",
           "type": "boolean"
         },
         "linkProposalStatusDetails": {
@@ -3948,66 +3888,8 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings": {
-      "description": "Singleton resource under a WebDataStream, configuring measurement of additional site interactions and content.",
-      "id": "GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings",
-      "properties": {
-        "fileDownloadsEnabled": {
-          "description": "If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.",
-          "type": "boolean"
-        },
-        "name": {
-          "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: \"properties/1000/webDataStreams/2000/enhancedMeasurementSettings\"",
-          "readOnly": true,
-          "type": "string"
-        },
-        "outboundClicksEnabled": {
-          "description": "If enabled, capture an outbound click event each time a visitor clicks a link that leads them away from your domain.",
-          "type": "boolean"
-        },
-        "pageChangesEnabled": {
-          "description": "If enabled, capture a page view event each time the website changes the browser history state.",
-          "type": "boolean"
-        },
-        "pageLoadsEnabled": {
-          "description": "Output only. If enabled, capture a page view event each time a page loads.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "pageViewsEnabled": {
-          "description": "Output only. If enabled, capture a page view event each time a page loads or the website changes the browser history state.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "scrollsEnabled": {
-          "description": "If enabled, capture scroll events each time a visitor gets to the bottom of a page.",
-          "type": "boolean"
-        },
-        "searchQueryParameter": {
-          "description": "Required. URL query parameters to interpret as site search parameters. Max length is 1024 characters. Must not be empty.",
-          "type": "string"
-        },
-        "siteSearchEnabled": {
-          "description": "If enabled, capture a view search results event each time a visitor performs a search on your site (based on a query parameter).",
-          "type": "boolean"
-        },
-        "streamEnabled": {
-          "description": "Indicates whether Enhanced Measurement Settings will be used to automatically measure interactions and content on this web stream. Changing this value does not affect the settings themselves, but determines whether they are respected.",
-          "type": "boolean"
-        },
-        "uriQueryParameter": {
-          "description": "Additional URL query parameters. Max length is 1024 characters.",
-          "type": "string"
-        },
-        "videoEngagementEnabled": {
-          "description": "If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
     "GoogleAnalyticsAdminV1alphaFirebaseLink": {
-      "description": "A link between an GA4 property and a Firebase project.",
+      "description": "A link between a GA4 property and a Firebase project.",
       "id": "GoogleAnalyticsAdminV1alphaFirebaseLink",
       "properties": {
         "createTime": {
@@ -4045,7 +3927,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaGoogleAdsLink": {
-      "description": "A link between an GA4 property and a Google Ads account.",
+      "description": "A link between a GA4 property and a Google Ads account.",
       "id": "GoogleAnalyticsAdminV1alphaGoogleAdsLink",
       "properties": {
         "adsPersonalizationEnabled": {
@@ -4639,7 +4521,7 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaPropertySummary": {
-      "description": "A virtual resource representing metadata for an GA4 property.",
+      "description": "A virtual resource representing metadata for a GA4 property.",
       "id": "GoogleAnalyticsAdminV1alphaPropertySummary",
       "properties": {
         "displayName": {

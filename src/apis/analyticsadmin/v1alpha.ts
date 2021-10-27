@@ -642,7 +642,7 @@ export namespace analyticsadmin_v1alpha {
      */
     campaignDataSharingEnabled?: boolean | null;
     /**
-     * Immutable. Enables the import of cost data from Display & Video 360 into the GA4 property. This can only be enabled if campaign_data_import_enabled is enabled. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Display & Video 360 into the GA4 property. This can only be enabled if campaign_data_sharing_enabled is enabled. After link creation, this can only be updated from the Display & Video 360 product. If this field is not set on create, it will be defaulted to true.
      */
     costDataSharingEnabled?: boolean | null;
     /**
@@ -651,7 +651,7 @@ export namespace analyticsadmin_v1alpha {
     name?: string | null;
   }
   /**
-   * A proposal for a link between an GA4 property and a Display & Video 360 advertiser. A proposal is converted to a DisplayVideo360AdvertiserLink once approved. Google Analytics admins approve inbound proposals while Display & Video 360 admins approve outbound proposals.
+   * A proposal for a link between a GA4 property and a Display & Video 360 advertiser. A proposal is converted to a DisplayVideo360AdvertiserLink once approved. Google Analytics admins approve inbound proposals while Display & Video 360 admins approve outbound proposals.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLinkProposal {
     /**
@@ -671,7 +671,7 @@ export namespace analyticsadmin_v1alpha {
      */
     campaignDataSharingEnabled?: boolean | null;
     /**
-     * Immutable. Enables the import of cost data from Display & Video 360. This can only be enabled if campaign_data_import_enabled is enabled. If this field is not set on create, it will be defaulted to true.
+     * Immutable. Enables the import of cost data from Display & Video 360. This can only be enabled if campaign_data_sharing_enabled is enabled. If this field is not set on create, it will be defaulted to true.
      */
     costDataSharingEnabled?: boolean | null;
     /**
@@ -688,60 +688,7 @@ export namespace analyticsadmin_v1alpha {
     validationEmail?: string | null;
   }
   /**
-   * Singleton resource under a WebDataStream, configuring measurement of additional site interactions and content.
-   */
-  export interface Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings {
-    /**
-     * If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.
-     */
-    fileDownloadsEnabled?: boolean | null;
-    /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
-     */
-    name?: string | null;
-    /**
-     * If enabled, capture an outbound click event each time a visitor clicks a link that leads them away from your domain.
-     */
-    outboundClicksEnabled?: boolean | null;
-    /**
-     * If enabled, capture a page view event each time the website changes the browser history state.
-     */
-    pageChangesEnabled?: boolean | null;
-    /**
-     * Output only. If enabled, capture a page view event each time a page loads.
-     */
-    pageLoadsEnabled?: boolean | null;
-    /**
-     * Output only. If enabled, capture a page view event each time a page loads or the website changes the browser history state.
-     */
-    pageViewsEnabled?: boolean | null;
-    /**
-     * If enabled, capture scroll events each time a visitor gets to the bottom of a page.
-     */
-    scrollsEnabled?: boolean | null;
-    /**
-     * Required. URL query parameters to interpret as site search parameters. Max length is 1024 characters. Must not be empty.
-     */
-    searchQueryParameter?: string | null;
-    /**
-     * If enabled, capture a view search results event each time a visitor performs a search on your site (based on a query parameter).
-     */
-    siteSearchEnabled?: boolean | null;
-    /**
-     * Indicates whether Enhanced Measurement Settings will be used to automatically measure interactions and content on this web stream. Changing this value does not affect the settings themselves, but determines whether they are respected.
-     */
-    streamEnabled?: boolean | null;
-    /**
-     * Additional URL query parameters. Max length is 1024 characters.
-     */
-    uriQueryParameter?: string | null;
-    /**
-     * If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.
-     */
-    videoEngagementEnabled?: boolean | null;
-  }
-  /**
-   * A link between an GA4 property and a Firebase project.
+   * A link between a GA4 property and a Firebase project.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaFirebaseLink {
     /**
@@ -771,7 +718,7 @@ export namespace analyticsadmin_v1alpha {
     snippet?: string | null;
   }
   /**
-   * A link between an GA4 property and a Google Ads account.
+   * A link between a GA4 property and a Google Ads account.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink {
     /**
@@ -1132,7 +1079,7 @@ export namespace analyticsadmin_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * A virtual resource representing metadata for an GA4 property.
+   * A virtual resource representing metadata for a GA4 property.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaPropertySummary {
     /**
@@ -15790,160 +15737,6 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.webDataStreams.getEnhancedMeasurementSettings(
-     *       {
-     *         // Required. The name of the settings to lookup. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
-     *         name: 'properties/my-propertie/webDataStreams/my-webDataStream/enhancedMeasurementSettings',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fileDownloadsEnabled": false,
-     *   //   "name": "my_name",
-     *   //   "outboundClicksEnabled": false,
-     *   //   "pageChangesEnabled": false,
-     *   //   "pageLoadsEnabled": false,
-     *   //   "pageViewsEnabled": false,
-     *   //   "scrollsEnabled": false,
-     *   //   "searchQueryParameter": "my_searchQueryParameter",
-     *   //   "siteSearchEnabled": false,
-     *   //   "streamEnabled": false,
-     *   //   "uriQueryParameter": "my_uriQueryParameter",
-     *   //   "videoEngagementEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getEnhancedMeasurementSettings(
-      params: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getEnhancedMeasurementSettings(
-      params?: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>;
-    getEnhancedMeasurementSettings(
-      params: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getEnhancedMeasurementSettings(
-      params: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-    ): void;
-    getEnhancedMeasurementSettings(
-      params: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-    ): void;
-    getEnhancedMeasurementSettings(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-    ): void;
-    getEnhancedMeasurementSettings(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.
      * @example
      * ```js
@@ -16388,178 +16181,6 @@ export namespace analyticsadmin_v1alpha {
         );
       }
     }
-
-    /**
-     * Updates the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.webDataStreams.updateEnhancedMeasurementSettings(
-     *       {
-     *         // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
-     *         name: 'properties/my-propertie/webDataStreams/my-webDataStream/enhancedMeasurementSettings',
-     *         // Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "fileDownloadsEnabled": false,
-     *           //   "name": "my_name",
-     *           //   "outboundClicksEnabled": false,
-     *           //   "pageChangesEnabled": false,
-     *           //   "pageLoadsEnabled": false,
-     *           //   "pageViewsEnabled": false,
-     *           //   "scrollsEnabled": false,
-     *           //   "searchQueryParameter": "my_searchQueryParameter",
-     *           //   "siteSearchEnabled": false,
-     *           //   "streamEnabled": false,
-     *           //   "uriQueryParameter": "my_uriQueryParameter",
-     *           //   "videoEngagementEnabled": false
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "fileDownloadsEnabled": false,
-     *   //   "name": "my_name",
-     *   //   "outboundClicksEnabled": false,
-     *   //   "pageChangesEnabled": false,
-     *   //   "pageLoadsEnabled": false,
-     *   //   "pageViewsEnabled": false,
-     *   //   "scrollsEnabled": false,
-     *   //   "searchQueryParameter": "my_searchQueryParameter",
-     *   //   "siteSearchEnabled": false,
-     *   //   "streamEnabled": false,
-     *   //   "uriQueryParameter": "my_uriQueryParameter",
-     *   //   "videoEngagementEnabled": false
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    updateEnhancedMeasurementSettings(
-      params: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    updateEnhancedMeasurementSettings(
-      params?: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>;
-    updateEnhancedMeasurementSettings(
-      params: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    updateEnhancedMeasurementSettings(
-      params: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-    ): void;
-    updateEnhancedMeasurementSettings(
-      params: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-    ): void;
-    updateEnhancedMeasurementSettings(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-    ): void;
-    updateEnhancedMeasurementSettings(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
-          parameters
-        );
-      }
-    }
   }
 
   export interface Params$Resource$Properties$Webdatastreams$Create
@@ -16585,13 +16206,6 @@ export namespace analyticsadmin_v1alpha {
     extends StandardParameters {
     /**
      * Required. The name of the web data stream to lookup. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/123/webDataStreams/456"
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings
-    extends StandardParameters {
-    /**
-     * Required. The name of the settings to lookup. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      */
     name?: string;
   }
@@ -16632,22 +16246,6 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaWebDataStream;
-  }
-  export interface Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings
-    extends StandardParameters {
-    /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
-     */
-    name?: string;
-    /**
-     * Required. The list of fields to be updated. Field names must be in snake case (e.g., "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings;
   }
 
   export class Resource$Properties$Webdatastreams$Measurementprotocolsecrets {
