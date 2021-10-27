@@ -224,6 +224,10 @@ export namespace monitoring_v1 {
      */
     gridLayout?: Schema$GridLayout;
     /**
+     * Labels applied to the dashboard
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * The content is arranged as a grid of tiles, with each content widget occupying one or more grid blocks.
      */
     mosaicLayout?: Schema$MosaicLayout;
@@ -1712,6 +1716,7 @@ export namespace monitoring_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "gridLayout": {},
+     *       //   "labels": {},
      *       //   "mosaicLayout": {},
      *       //   "name": "my_name",
      *       //   "rowLayout": {}
@@ -1726,6 +1731,7 @@ export namespace monitoring_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
+     *   //   "labels": {},
      *   //   "mosaicLayout": {},
      *   //   "name": "my_name",
      *   //   "rowLayout": {}
@@ -1993,6 +1999,7 @@ export namespace monitoring_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
+     *   //   "labels": {},
      *   //   "mosaicLayout": {},
      *   //   "name": "my_name",
      *   //   "rowLayout": {}
@@ -2274,6 +2281,7 @@ export namespace monitoring_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "etag": "my_etag",
      *       //   "gridLayout": {},
+     *       //   "labels": {},
      *       //   "mosaicLayout": {},
      *       //   "name": "my_name",
      *       //   "rowLayout": {}
@@ -2288,6 +2296,7 @@ export namespace monitoring_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "etag": "my_etag",
      *   //   "gridLayout": {},
+     *   //   "labels": {},
      *   //   "mosaicLayout": {},
      *   //   "name": "my_name",
      *   //   "rowLayout": {}
