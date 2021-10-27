@@ -324,7 +324,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20211025",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyV1AdditionalTargetKeyName": {
@@ -473,7 +473,7 @@
           "type": "string"
         },
         "schemaName": {
-          "description": "Output only. The full qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies BatchModifyOrgUnitPolicies BatchModifyGroupPolicies or BatchDeleteGroupPolicies.",
+          "description": "Output only. The fully qualified name of the policy schema. This value is used to fill the field `policy_schema` in PolicyValue when calling BatchInheritOrgUnitPolicies or BatchModifyOrgUnitPolicies",
           "readOnly": true,
           "type": "string"
         },
