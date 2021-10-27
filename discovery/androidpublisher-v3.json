@@ -2924,7 +2924,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20211026",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -3545,6 +3545,10 @@
           "description": "List of localized title and description data. Map key is the language of the localized data, as defined by BCP-47, e.g. \"en-US\".",
           "type": "object"
         },
+        "managedProductTaxesAndComplianceSettings": {
+          "$ref": "ManagedProductTaxAndComplianceSettings",
+          "description": "Details about taxes and legal compliance. Only applicable to managed products."
+        },
         "packageName": {
           "description": "Package name of the parent app.",
           "type": "string"
@@ -3591,6 +3595,10 @@
         "subscriptionPeriod": {
           "description": "Subscription period, specified in ISO 8601 format. Acceptable values are P1W (one week), P1M (one month), P3M (three months), P6M (six months), and P1Y (one year).",
           "type": "string"
+        },
+        "subscriptionTaxesAndComplianceSettings": {
+          "$ref": "SubscriptionTaxAndComplianceSettings",
+          "description": "Details about taxes and legal compliance. Only applicable to subscription products."
         },
         "trialPeriod": {
           "description": "Trial period, specified in ISO 8601 format. Acceptable values are anything between P7D (seven days) and P999D (999 days).",
@@ -3769,6 +3777,34 @@
       },
       "type": "object"
     },
+    "ManagedProductTaxAndComplianceSettings": {
+      "description": "Details about taxation and legal compliance for managed products.",
+      "id": "ManagedProductTaxAndComplianceSettings",
+      "properties": {
+        "eeaWithdrawalRightType": {
+          "description": "Digital content or service classification for products distributed to users in the European Economic Area (EEA). The withdrawal regime under EEA consumer laws depends on this classification. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information.",
+          "enum": [
+            "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
+            "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
+            "WITHDRAWAL_RIGHT_SERVICE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "taxRateInfoByRegionCode": {
+          "additionalProperties": {
+            "$ref": "RegionalTaxRateInfo"
+          },
+          "description": "A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's \"CLDR\".",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Money": {
       "description": "Represents an amount of money with its currency type.",
       "id": "Money",
@@ -3902,6 +3938,33 @@
       "properties": {
         "developerPayload": {
           "description": "Payload to attach to the purchase.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionalTaxRateInfo": {
+      "description": "Specified details about taxation in a given geographical region.",
+      "id": "RegionalTaxRateInfo",
+      "properties": {
+        "eligibleForStreamingServiceTaxRate": {
+          "description": "You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in United States.",
+          "type": "boolean"
+        },
+        "taxTier": {
+          "description": "Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498).",
+          "enum": [
+            "TAX_TIER_UNSPECIFIED",
+            "TAX_TIER_BOOKS_1",
+            "TAX_TIER_NEWS_1",
+            "TAX_TIER_NEWS_2"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
           "type": "string"
         }
       },
@@ -4200,6 +4263,34 @@
           "description": "The new expiry time for the subscription in milliseconds since the Epoch.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SubscriptionTaxAndComplianceSettings": {
+      "description": "Details about taxation, Google Play policy and legal compliance for subscription products.",
+      "id": "SubscriptionTaxAndComplianceSettings",
+      "properties": {
+        "eeaWithdrawalRightType": {
+          "description": "Digital content or service classification for products distributed to users in the European Economic Area (EEA). The withdrawal regime under EEA consumer laws depends on this classification. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information.",
+          "enum": [
+            "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
+            "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
+            "WITHDRAWAL_RIGHT_SERVICE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "taxRateInfoByRegionCode": {
+          "additionalProperties": {
+            "$ref": "RegionalTaxRateInfo"
+          },
+          "description": "A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's \"CLDR\".",
+          "type": "object"
         }
       },
       "type": "object"
