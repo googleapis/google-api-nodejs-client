@@ -162,7 +162,7 @@ export class Generator {
     return changes;
   }
 
-  async generateIndex(metadata: Schema[]) {
+  async generateIndex(metadata: Schema[], directory?: string) {
     const apis: {[index: string]: {[index: string]: string}} = {};
     const apisPath = path.join(srcPath, 'apis');
     const indexPath = path.join(apisPath, 'index.ts');
@@ -173,6 +173,9 @@ export class Generator {
     for (const file of files) {
       const filePath = path.join(apisPath, file);
       if (!(await stat(filePath)).isDirectory()) {
+        continue;
+      }
+      if (directory && file !== directory) {
         continue;
       }
       apis[file] = {};
@@ -216,6 +219,9 @@ export class Generator {
         }
       }
     }
+    if (directory) {
+      return;
+    }
     await this.render('index.njk', {apis}, indexPath);
     await this.render('root-index.njk', {apis}, rootIndexPath);
   }
@@ -249,15 +255,17 @@ export class Generator {
    */
   async generateAPI(apiDiscoveryUrl: string) {
     const isUrl = apiDiscoveryUrl.startsWith('https://');
+    let filePath: string;
     if (!isUrl) {
       this.log(`Reading from file ${path.relative('.', apiDiscoveryUrl)}`);
       const file = await readFile(apiDiscoveryUrl, 'utf-8');
-      await this.generate(apiDiscoveryUrl, JSON.parse(file));
+      filePath = await this.generate(apiDiscoveryUrl, JSON.parse(file));
     } else {
       this.log(`Reading from url ${apiDiscoveryUrl}`);
       const res = await request<Schema>({url: apiDiscoveryUrl});
-      await this.generate(apiDiscoveryUrl, res.data);
+      filePath = await this.generate(apiDiscoveryUrl, res.data);
     }
+    return filePath;
   }
 
   private async generate(apiDiscoveryUrl: string, schema: Schema) {
@@ -355,14 +363,18 @@ async function main() {
   const argv = minimist(process.argv.slice(2));
   const discoveryUrl = argv['discovery-url'];
   const useCache = argv['use-cache'];
+  const includePrivate = argv['include-private'];
 
   console.log(`useCache: ${useCache}`);
+  console.log(`includePrivate: ${includePrivate}`);
 
-  const gen = new Generator({debug: true, includePrivate: false});
+  const gen = new Generator({debug: true, includePrivate});
   if (!discoveryUrl && argv._.length > 0) {
     argv._.forEach(async url => {
       console.log(`Generating API for ${url}`);
-      await gen.generateAPI('' + url);
+      const filePath = await gen.generateAPI('' + url);
+      const filePathParts = filePath.split('/');
+      await gen.generateIndex([], filePathParts[filePathParts.length - 2]);
       console.log('Generated API for ' + url);
     });
   } else {
