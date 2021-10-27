@@ -672,7 +672,7 @@
       }
     }
   },
-  "revision": "20210822",
+  "revision": "20211017",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1574,7 +1574,7 @@
       "type": "object"
     },
     "RestoreInstanceRequest": {
-      "description": "RestoreInstanceRequest restores an existing instances's file share from a backup.",
+      "description": "RestoreInstanceRequest restores an existing instance's file share from a backup.",
       "id": "RestoreInstanceRequest",
       "properties": {
         "fileShare": {
