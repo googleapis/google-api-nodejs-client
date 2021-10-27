@@ -998,7 +998,7 @@ export namespace retail_v2alpha {
      */
     title?: string | null;
     /**
-     * Input only. The TTL (time to live) of the product. If it is set, expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.
+     * Input only. The TTL (time to live) of the product. If it is set, it must be a non-negative value, and expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.
      */
     ttl?: string | null;
     /**
@@ -1254,6 +1254,10 @@ export namespace retail_v2alpha {
      * The relevance threshold of the search results. Defaults to RelevanceThreshold.HIGH, which means only the most relevant results are shown, and the least number of results are returned. See more details at this [user guide](https://cloud.google.com/retail/docs/result-size#relevance_thresholding).
      */
     relevanceThreshold?: string | null;
+    /**
+     * The search mode of the search request. If not specified, a single search request triggers both product search and faceted search.
+     */
+    searchMode?: string | null;
     /**
      * User information.
      */
@@ -5422,6 +5426,7 @@ export namespace retail_v2alpha {
      *       //   "query": "my_query",
      *       //   "queryExpansionSpec": {},
      *       //   "relevanceThreshold": "my_relevanceThreshold",
+     *       //   "searchMode": "my_searchMode",
      *       //   "userInfo": {},
      *       //   "variantRollupKeys": [],
      *       //   "visitorId": "my_visitorId"

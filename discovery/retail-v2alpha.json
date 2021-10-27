@@ -1012,7 +1012,7 @@
       }
     }
   },
-  "revision": "20211011",
+  "revision": "20211021",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -2343,7 +2343,7 @@
           "type": "string"
         },
         "ttl": {
-          "description": "Input only. The TTL (time to live) of the product. If it is set, expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.",
+          "description": "Input only. The TTL (time to live) of the product. If it is set, it must be a non-negative value, and expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.",
           "format": "google-duration",
           "type": "string"
         },
@@ -2698,6 +2698,20 @@
             "Medium relevance threshold.",
             "Low relevance threshold.",
             "Lowest relevance threshold."
+          ],
+          "type": "string"
+        },
+        "searchMode": {
+          "description": "The search mode of the search request. If not specified, a single search request triggers both product search and faceted search.",
+          "enum": [
+            "SEARCH_MODE_UNSPECIFIED",
+            "PRODUCT_SEARCH_ONLY",
+            "FACETED_SEARCH_ONLY"
+          ],
+          "enumDescriptions": [
+            "Default value. In this case both product search and faceted search will be performed. Both [SearchResponse.SearchResult] and [SearchResponse.Facet] will be returned.",
+            "Only product search will be performed. The faceted search will be disabled. Only [SearchResponse.SearchResult] will be returned. [SearchResponse.Facet] will not be returned, even if SearchRequest.facet_specs or SearchRequest.dynamic_facet_spec is set.",
+            "Only faceted search will be performed. The product search will be disabled. When in this mode, one or both of SearchRequest.facet_spec and SearchRequest.dynamic_facet_spec should be set. Otherwise, an INVALID_ARGUMENT error is returned. Only [SearchResponse.Facet] will be returned. [SearchResponse.SearchResult] will not be returned."
           ],
           "type": "string"
         },
