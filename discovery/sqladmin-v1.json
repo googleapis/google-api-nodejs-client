@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "revision": "20210929",
+  "revision": "20211017",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2242,6 +2242,7 @@
             "SQLSERVER_2017_WEB",
             "POSTGRES_10",
             "POSTGRES_12",
+            "MYSQL_8_0",
             "POSTGRES_13",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
@@ -2262,6 +2263,7 @@
             "The database version is SQL Server 2017 Web.",
             "The database version is PostgreSQL 10.",
             "The database version is PostgreSQL 12.",
+            "The database version is MySQL 8.",
             "The database version is PostgreSQL 13.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
@@ -2385,7 +2387,7 @@
           "type": "string"
         },
         "databaseVersion": {
-          "description": "The database engine type and version. The **databaseVersion** field cannot be changed after instance creation. * **MySQL instances**: MYSQL_8_0, MYSQL_5_7 (default), or MYSQL_5_6. * **PostgreSQL instances**: POSTGRES_9_6, POSTGRES_10, POSTGRES_11, POSTGRES_12, POSTGRES_13 (default). * **SQL Server instances**: SQLSERVER_2019_STANDARD, SQLSERVER_2019_ENTERPRISE, SQLSERVER_2019_EXPRESS, or SQLSERVER_2019_WEB, SQLSERVER_2017_STANDARD (default), SQLSERVER_2017_ENTERPRISE, SQLSERVER_2017_EXPRESS, or SQLSERVER_2017_WEB.",
+          "description": "The database engine type and version. The **databaseVersion** field cannot be changed after instance creation. * **MySQL instances**: MYSQL_8_0, MYSQL_5_7 (default), or MYSQL_5_6. * **PostgreSQL instances**: POSTGRES_9_6, POSTGRES_10, POSTGRES_11, POSTGRES_12, POSTGRES_13 (default), POSTGRES_14. * **SQL Server instances**: SQLSERVER_2019_STANDARD, SQLSERVER_2019_ENTERPRISE, SQLSERVER_2019_EXPRESS, or SQLSERVER_2019_WEB, SQLSERVER_2017_STANDARD (default), SQLSERVER_2017_ENTERPRISE, SQLSERVER_2017_EXPRESS, or SQLSERVER_2017_WEB.",
           "enum": [
             "SQL_DATABASE_VERSION_UNSPECIFIED",
             "MYSQL_5_1",
@@ -2400,6 +2402,7 @@
             "SQLSERVER_2017_WEB",
             "POSTGRES_10",
             "POSTGRES_12",
+            "MYSQL_8_0",
             "POSTGRES_13",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
@@ -2420,6 +2423,7 @@
             "The database version is SQL Server 2017 Web.",
             "The database version is PostgreSQL 10.",
             "The database version is PostgreSQL 12.",
+            "The database version is MySQL 8.",
             "The database version is PostgreSQL 13.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
@@ -2897,6 +2901,7 @@
               "SQLSERVER_2017_WEB",
               "POSTGRES_10",
               "POSTGRES_12",
+              "MYSQL_8_0",
               "POSTGRES_13",
               "SQLSERVER_2019_STANDARD",
               "SQLSERVER_2019_ENTERPRISE",
@@ -2917,6 +2922,7 @@
               "The database version is SQL Server 2017 Web.",
               "The database version is PostgreSQL 10.",
               "The database version is PostgreSQL 12.",
+              "The database version is MySQL 8.",
               "The database version is PostgreSQL 13.",
               "The database version is SQL Server 2019 Standard.",
               "The database version is SQL Server 2019 Enterprise.",
