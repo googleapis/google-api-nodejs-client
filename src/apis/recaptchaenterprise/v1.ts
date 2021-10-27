@@ -130,7 +130,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AndroidKeySettings {
     /**
-     * If set to true, it means allowed_package_names will not be enforced.
+     * If set to true, allowed_package_names are not enforced.
      */
     allowAllPackageNames?: boolean | null;
     /**
@@ -224,7 +224,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1IOSKeySettings {
     /**
-     * If set to true, it means allowed_bundle_ids will not be enforced.
+     * If set to true, allowed_bundle_ids are not enforced.
      */
     allowAllBundleIds?: boolean | null;
     /**
@@ -388,7 +388,7 @@ export namespace recaptchaenterprise_v1 {
      */
     allowAllDomains?: boolean | null;
     /**
-     * Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites. This can only be set for the SCORE integration type.
+     * If set to true, the key can be used on AMP (Accelerated Mobile Pages) websites. This is supported only for the SCORE integration type.
      */
     allowAmpTraffic?: boolean | null;
     /**
