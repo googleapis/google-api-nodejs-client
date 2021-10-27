@@ -136,7 +136,7 @@ export namespace alertcenter_v1beta1 {
      */
     abuseReason?: string | null;
     /**
-     * The name of the product being abused. This is restricted to only the following values: "Gmail" "Payments" "Voice" "Workspace" "Other"
+     * The name of the product being abused. This is restricted to only the following values: "Gmail" "Google Workspace" "Payments" "Voice" "YouTube" "Other"
      */
     productName?: string | null;
   }
