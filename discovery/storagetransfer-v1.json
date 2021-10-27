@@ -132,6 +132,172 @@
         }
       }
     },
+    "projects": {
+      "resources": {
+        "agentPools": {
+          "methods": {
+            "create": {
+              "description": "Creates an agent pool resource.",
+              "flatPath": "v1/projects/{projectsId}/agentPools",
+              "httpMethod": "POST",
+              "id": "storagetransfer.projects.agentPools.create",
+              "parameterOrder": [
+                "projectId"
+              ],
+              "parameters": {
+                "agentPoolId": {
+                  "description": "Required. The id of the agent pool to create. The agent_pool_id must be non-empty, less than or equal to 128 characters, and satisfy the following regex: \"^[a-z]([a-z0-9-._~]*[a-z0-9])?$\". Also, agent pool names cannot start with the string \"goog\".",
+                  "location": "query",
+                  "type": "string"
+                },
+                "projectId": {
+                  "description": "Required. The ID of the Google Cloud Platform Console project that owns the agent pool.",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/projects/{+projectId}/agentPools",
+              "request": {
+                "$ref": "AgentPool"
+              },
+              "response": {
+                "$ref": "AgentPool"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an agent pool.",
+              "flatPath": "v1/projects/{projectsId}/agentPools/{agentPoolsId}",
+              "httpMethod": "DELETE",
+              "id": "storagetransfer.projects.agentPools.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The agent pool name to delete.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/agentPools/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets an agent pool.",
+              "flatPath": "v1/projects/{projectsId}/agentPools/{agentPoolsId}",
+              "httpMethod": "GET",
+              "id": "storagetransfer.projects.agentPools.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The agent pool to get.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/agentPools/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "AgentPool"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists agent pools.",
+              "flatPath": "v1/projects/{projectsId}/agentPools",
+              "httpMethod": "GET",
+              "id": "storagetransfer.projects.agentPools.list",
+              "parameterOrder": [
+                "projectId"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "A list of optional query parameters specified as JSON text in the form of: `{\"agentPoolNames\":[\"agentpool1\",\"agentpool2\",...]}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. `agentPoolNames` is an optional field. The list returns all agent pools for the project when the filter is not provided or empty.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The list page size. The max allowed value is 256.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The list page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "projectId": {
+                  "description": "Required. The ID of the Google Cloud Platform Console project that owns the job.",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/projects/{+projectId}/agentPools",
+              "response": {
+                "$ref": "ListAgentPoolsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates an existing agent pool resource.",
+              "flatPath": "v1/projects/{projectsId}/agentPools/{agentPoolsId}",
+              "httpMethod": "PATCH",
+              "id": "storagetransfer.projects.agentPools.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id}/agentPools/{agent_pool_id}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/agentPools/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The field mask of the fields in `agentPool` that are to be updated in this request. Fields in `agentPool` that can be updated are: display_name, bandwidth_limit,",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "AgentPool"
+              },
+              "response": {
+                "$ref": "AgentPool"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
     "transferJobs": {
       "methods": {
         "create": {
@@ -434,9 +600,45 @@
       }
     }
   },
-  "revision": "20210918",
+  "revision": "20211021",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
+    "AgentPool": {
+      "description": "Represents an On-Premises Agent pool.",
+      "id": "AgentPool",
+      "properties": {
+        "bandwidthLimit": {
+          "$ref": "BandwidthLimit",
+          "description": "Specifies the bandwidth limit details. If this field is unspecified, the default value is set as 'No Limit'."
+        },
+        "displayName": {
+          "description": "Specifies the client-specified AgentPool description.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id}/agentPools/{agent_pool_id}",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Specifies the state of the AgentPool.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "CREATED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "This is an initialization state. During this stage, the resources such as Pub/Sub topics are allocated for the AgentPool.",
+            "Determines that the AgentPool is created for use. At this state, Agents can join the AgentPool and participate in the transfer jobs in that pool.",
+            "Determines that the AgentPool deletion has been initiated, and all the resources are scheduled to be cleaned up and freed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AwsAccessKey": {
       "description": "AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)). For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials).",
       "id": "AwsAccessKey",
@@ -504,6 +706,18 @@
       "properties": {
         "sasToken": {
           "description": "Required. Azure shared access signature (SAS). *Note:*Copying data from Azure Data Lake Storage (ADLS) Gen 2 is in [Preview](/products/#product-launch-stages). During Preview, if you are copying data from ADLS Gen 2, you must use an account SAS. For more information about SAS, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BandwidthLimit": {
+      "description": "Specifies the BandwidthLimit to describe the non-negative bandwidth rate in mbps for the agent pool.",
+      "id": "BandwidthLimit",
+      "properties": {
+        "limitMbps": {
+          "description": "Specifies bandwidth rate in mbps distributed across all the agents in the pool.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -658,6 +872,24 @@
       "properties": {
         "listUrl": {
           "description": "Required. The URL that points to the file that stores the object list entries. This file must allow public access. Currently, only URLs with HTTP and HTTPS schemes are supported.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAgentPoolsResponse": {
+      "description": "Response from ListAgentPools.",
+      "id": "ListAgentPoolsResponse",
+      "properties": {
+        "agentPools": {
+          "description": "A list of agent pools.",
+          "items": {
+            "$ref": "AgentPool"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The list next page token.",
           "type": "string"
         }
       },
@@ -1002,6 +1234,16 @@
         },
         "directoriesSuccessfullyListedFromSource": {
           "description": "For transfers involving PosixFilesystem only. Number of successful listings for each directory found at the source.",
+          "format": "int64",
+          "type": "string"
+        },
+        "intermediateObjectsCleanedUp": {
+          "description": "Number of successfully cleaned up intermediate objects.",
+          "format": "int64",
+          "type": "string"
+        },
+        "intermediateObjectsFailedCleanedUp": {
+          "description": "Number of intermediate objects failed cleaned up.",
           "format": "int64",
           "type": "string"
         },
