@@ -4717,6 +4717,24 @@
     },
     "customBiddingAlgorithms": {
       "methods": {
+        "create": {
+          "description": "Creates a new custom bidding algorithm. Returns the newly created custom bidding algorithm if successful.",
+          "flatPath": "v1/customBiddingAlgorithms",
+          "httpMethod": "POST",
+          "id": "displayvideo.customBiddingAlgorithms.create",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/customBiddingAlgorithms",
+          "request": {
+            "$ref": "CustomBiddingAlgorithm"
+          },
+          "response": {
+            "$ref": "CustomBiddingAlgorithm"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
         "get": {
           "description": "Gets a custom bidding algorithm.",
           "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}",
@@ -4803,6 +4821,227 @@
           "scopes": [
             "https://www.googleapis.com/auth/display-video"
           ]
+        },
+        "patch": {
+          "description": "Updates an existing custom bidding algorithm. Returns the updated custom bidding algorithm if successful.",
+          "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}",
+          "httpMethod": "PATCH",
+          "id": "displayvideo.customBiddingAlgorithms.patch",
+          "parameterOrder": [
+            "customBiddingAlgorithmId"
+          ],
+          "parameters": {
+            "customBiddingAlgorithmId": {
+              "description": "Output only. The unique ID of the custom bidding algorithm. Assigned by the system.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The mask to control which fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}",
+          "request": {
+            "$ref": "CustomBiddingAlgorithm"
+          },
+          "response": {
+            "$ref": "CustomBiddingAlgorithm"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "uploadScript": {
+          "description": "Creates a custom bidding script reference object for a script file. The resulting reference object provides a resource path to which the script file should be uploaded. This reference object should be included in when creating a new custom bidding script object.",
+          "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}:uploadScript",
+          "httpMethod": "GET",
+          "id": "displayvideo.customBiddingAlgorithms.uploadScript",
+          "parameterOrder": [
+            "customBiddingAlgorithmId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "The ID of the advertiser that owns the parent custom bidding algorithm.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "customBiddingAlgorithmId": {
+              "description": "Required. The ID of the custom bidding algorithm owns the script.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "partnerId": {
+              "description": "The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}:uploadScript",
+          "response": {
+            "$ref": "CustomBiddingScriptRef"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        }
+      },
+      "resources": {
+        "scripts": {
+          "methods": {
+            "create": {
+              "description": "Creates a new custom bidding script. Returns the newly created script if successful.",
+              "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}/scripts",
+              "httpMethod": "POST",
+              "id": "displayvideo.customBiddingAlgorithms.scripts.create",
+              "parameterOrder": [
+                "customBiddingAlgorithmId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the parent custom bidding algorithm.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "customBiddingAlgorithmId": {
+                  "description": "Required. The ID of the custom bidding algorithm that owns the script.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts",
+              "request": {
+                "$ref": "CustomBiddingScript"
+              },
+              "response": {
+                "$ref": "CustomBiddingScript"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "get": {
+              "description": "Gets a custom bidding script.",
+              "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}/scripts/{scriptsId}",
+              "httpMethod": "GET",
+              "id": "displayvideo.customBiddingAlgorithms.scripts.get",
+              "parameterOrder": [
+                "customBiddingAlgorithmId",
+                "customBiddingScriptId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the parent custom bidding algorithm.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "customBiddingAlgorithmId": {
+                  "description": "Required. The ID of the custom bidding algorithm owns the script.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "customBiddingScriptId": {
+                  "description": "Required. The ID of the custom bidding script to fetch.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts/{+customBiddingScriptId}",
+              "response": {
+                "$ref": "CustomBiddingScript"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "list": {
+              "description": "Lists custom bidding scripts that belong to the given algorithm. The order is defined by the order_by parameter.",
+              "flatPath": "v1/customBiddingAlgorithms/{customBiddingAlgorithmsId}/scripts",
+              "httpMethod": "GET",
+              "id": "displayvideo.customBiddingAlgorithms.scripts.list",
+              "parameterOrder": [
+                "customBiddingAlgorithmId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "The ID of the advertiser that owns the parent custom bidding algorithm.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                },
+                "customBiddingAlgorithmId": {
+                  "description": "Required. The ID of the custom bidding algorithm owns the script.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field by which to sort the list. Acceptable values are: * `createTime desc` (default) The default sorting order is descending. To specify ascending order for a field, the suffix \"desc\" should be removed. Example: `createTime`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCustomBiddingScripts` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "partnerId": {
+                  "description": "The ID of the partner that owns the parent custom bidding algorithm. Only this partner will have write access to this custom bidding script.",
+                  "format": "int64",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/customBiddingAlgorithms/{+customBiddingAlgorithmId}/scripts",
+              "response": {
+                "$ref": "ListCustomBiddingScriptsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            }
+          }
         }
       }
     },
@@ -5644,6 +5883,47 @@
             "https://www.googleapis.com/auth/doubleclickbidmanager"
           ],
           "supportsMediaDownload": true
+        },
+        "upload": {
+          "description": "Uploads media. Upload is supported on the URI `/upload/media/{resource_name=**}?upload_type=media.` **Note**: Upload requests will not be successful without including `upload_type=media` query string.",
+          "flatPath": "media/{mediaId}",
+          "httpMethod": "POST",
+          "id": "displayvideo.media.upload",
+          "mediaUpload": {
+            "accept": [
+              "*/*"
+            ],
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/media/{+resourceName}"
+              }
+            }
+          },
+          "parameterOrder": [
+            "resourceName"
+          ],
+          "parameters": {
+            "resourceName": {
+              "description": "Name of the media that is being downloaded. See ReadRequest.resource_name.",
+              "location": "path",
+              "pattern": "^.*$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "media/{+resourceName}",
+          "request": {
+            "$ref": "GoogleBytestreamMedia"
+          },
+          "response": {
+            "$ref": "GoogleBytestreamMedia"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video",
+            "https://www.googleapis.com/auth/doubleclickbidmanager"
+          ],
+          "supportsMediaUpload": true
         }
       }
     },
@@ -7317,7 +7597,7 @@
       }
     }
   },
-  "revision": "20210930",
+  "revision": "20211021",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -10290,6 +10570,81 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CustomBiddingScript": {
+      "description": "A single custom bidding script.",
+      "id": "CustomBiddingScript",
+      "properties": {
+        "active": {
+          "description": "Output only. Whether the script is currently being used for scoring by the parent algorithm.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "createTime": {
+          "description": "Output only. The time when the script was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customBiddingAlgorithmId": {
+          "description": "Output only. The unique ID of the custom bidding algorithm the script belongs to.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customBiddingScriptId": {
+          "description": "Output only. The unique ID of the custom bidding script.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "errors": {
+          "description": "Output only. Error details of a rejected custom bidding script. This field will only be populated when Script.state is REJECTED.",
+          "items": {
+            "$ref": "ScriptError"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The resource name of the custom bidding script.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "script": {
+          "$ref": "CustomBiddingScriptRef",
+          "description": "The reference to the uploaded script file."
+        },
+        "state": {
+          "description": "Output only. The state of the custom bidding script.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACCEPTED",
+            "REJECTED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "The script state is not specified or is unknown in this version.",
+            "The script has been accepted for scoring impressions.",
+            "The script has been rejected by backend pipelines. It may have errors.",
+            "The script is being processed for backend pipelines."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomBiddingScriptRef": {
+      "description": "The reference to the uploaded custom bidding script file.",
+      "id": "CustomBiddingScriptRef",
+      "properties": {
+        "resourceName": {
+          "description": "A resource name to be used in media.download to Download the script files. Or media.upload to Upload the script files. Resource names have the format `customBiddingAlgorithms/{custom_bidding_algorithm_id}/scriptRef/{ref_id}`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13860,6 +14215,23 @@
       },
       "type": "object"
     },
+    "ListCustomBiddingScriptsResponse": {
+      "id": "ListCustomBiddingScriptsResponse",
+      "properties": {
+        "customBiddingScripts": {
+          "description": "The list of custom bidding scripts. This list will be absent if empty.",
+          "items": {
+            "$ref": "CustomBiddingScript"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListCustomBiddingScriptsRequest` method to retrieve the next page of results. If this field is null, it means this is the last page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListCustomListsResponse": {
       "id": "ListCustomListsResponse",
       "properties": {
@@ -15669,6 +16041,43 @@
             "$ref": "PublisherReviewStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ScriptError": {
+      "description": "An error message for a custom bidding script.",
+      "id": "ScriptError",
+      "properties": {
+        "column": {
+          "description": "The column number in the script where the error was thrown.",
+          "format": "int64",
+          "type": "string"
+        },
+        "errorCode": {
+          "description": "The type of error.",
+          "enum": [
+            "ERROR_CODE_UNSPECIFIED",
+            "SYNTAX_ERROR",
+            "DEPRECATED_SYNTAX",
+            "INTERNAL_ERROR"
+          ],
+          "enumDescriptions": [
+            "The script error is not specified or is unknown in this version.",
+            "The script has a syntax error.",
+            "The script uses deprecated syntax.",
+            "Internal errors were thrown while processing the script."
+          ],
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "The detailed error message.",
+          "type": "string"
+        },
+        "line": {
+          "description": "The line number in the script where the error was thrown.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
