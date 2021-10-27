@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/LUWWGMZic4QCmQNHhMf-rbfvPfw\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/9Tux40t32MlzpRC8yyVazdtUhJM\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -982,7 +982,7 @@
           ]
         },
         "export": {
-          "description": "Exports a Google Doc to the requested MIME type and returns the exported content. Please note that the exported content is limited to 10MB.",
+          "description": "Exports a Google Workspace document to the requested MIME type and returns exported byte content. Note that the exported content is limited to 10MB.",
           "httpMethod": "GET",
           "id": "drive.files.export",
           "parameterOrder": [
@@ -2191,7 +2191,7 @@
       }
     }
   },
-  "revision": "20210919",
+  "revision": "20211017",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
