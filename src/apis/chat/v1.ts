@@ -1213,6 +1213,9 @@ export namespace chat_v1 {
      * Output only. The time at which the message was last updated in Google Chat server. If the message was never updated, this field will be same as create_time.
      */
     lastUpdateTime?: string | null;
+    /**
+     * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`
+     */
     name?: string | null;
     /**
      * Text for generating preview chips. This text will not be displayed to the user, but any links to images, web pages, videos, etc. included here will generate preview chips.
@@ -1317,7 +1320,7 @@ export namespace chat_v1 {
      */
     displayName?: string | null;
     /**
-     * Resource name of the space, in the form "spaces/x". Example: spaces/AAAAMpdlehYs
+     * Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
      */
     name?: string | null;
     /**
@@ -1478,6 +1481,8 @@ export namespace chat_v1 {
      *   const res = await chat.dms.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'dms/my-dm',
+     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
@@ -1644,6 +1649,8 @@ export namespace chat_v1 {
      *   const res = await chat.dms.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'dms/my-dm',
+     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
@@ -1788,6 +1795,10 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
+     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     */
+    requestId?: string;
+    /**
      * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
@@ -1802,6 +1813,10 @@ export namespace chat_v1 {
      * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
     parent?: string;
+    /**
+     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     */
+    requestId?: string;
     /**
      * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
@@ -1848,6 +1863,8 @@ export namespace chat_v1 {
      *   const res = await chat.dms.conversations.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'dms/my-dm/conversations/my-conversation',
+     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
@@ -1993,6 +2010,10 @@ export namespace chat_v1 {
      * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
     parent?: string;
+    /**
+     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     */
+    requestId?: string;
     /**
      * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
@@ -2183,6 +2204,8 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'rooms/my-room',
+     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
@@ -2349,6 +2372,8 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'rooms/my-room',
+     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
@@ -2493,6 +2518,10 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
+     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     */
+    requestId?: string;
+    /**
      * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
@@ -2507,6 +2536,10 @@ export namespace chat_v1 {
      * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
     parent?: string;
+    /**
+     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     */
+    requestId?: string;
     /**
      * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
@@ -2553,6 +2586,8 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.conversations.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'rooms/my-room/conversations/my-conversation',
+     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
@@ -2699,6 +2734,10 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
+     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     */
+    requestId?: string;
+    /**
      * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
@@ -2746,7 +2785,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.get({
-     *     // Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
      *     name: 'spaces/my-space',
      *   });
      *   console.log(res.data);
@@ -3008,6 +3047,8 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'spaces/my-space',
+     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
@@ -3148,7 +3189,7 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Spaces$Get extends StandardParameters {
     /**
-     * Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
      */
     name?: string;
   }
@@ -3167,6 +3208,10 @@ export namespace chat_v1 {
      * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
     parent?: string;
+    /**
+     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     */
+    requestId?: string;
     /**
      * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
@@ -3513,6 +3558,8 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.messages.create({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      *     parent: 'spaces/my-space',
+     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
      *
@@ -3942,6 +3989,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.update({
+     *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`
      *     name: 'spaces/my-space/messages/my-message',
      *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * gsuite_message_integration_render_data * attachment
      *     updateMask: 'placeholder-value',
@@ -4086,6 +4134,10 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
+     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     */
+    requestId?: string;
+    /**
      * Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      */
     threadKey?: string;
@@ -4112,7 +4164,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Update
     extends StandardParameters {
     /**
-     *
+     * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`
      */
     name?: string;
     /**
