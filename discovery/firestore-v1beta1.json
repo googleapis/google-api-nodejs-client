@@ -352,7 +352,7 @@
                       "type": "boolean"
                     },
                     "currentDocument.updateTime": {
-                      "description": "When set, the target document must exist and have been last updated at that time.",
+                      "description": "When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -592,7 +592,7 @@
                       "type": "boolean"
                     },
                     "currentDocument.updateTime": {
-                      "description": "When set, the target document must exist and have been last updated at that time.",
+                      "description": "When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -849,7 +849,7 @@
       }
     }
   },
-  "revision": "20210816",
+  "revision": "20211013",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -1933,7 +1933,7 @@
           "type": "boolean"
         },
         "updateTime": {
-          "description": "When set, the target document must exist and have been last updated at that time.",
+          "description": "When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.",
           "format": "google-datetime",
           "type": "string"
         }
