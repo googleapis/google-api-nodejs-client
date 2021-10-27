@@ -1,0 +1,703 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://baremetalsolution.googleapis.com/",
+  "batchPath": "batch",
+  "description": "Provides ways to manage Bare Metal Solution hardware installed in a regional extension located near a Google Cloud data center.",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://cloud.google.com/bare-metal",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "baremetalsolution:v2",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://baremetalsolution.mtls.googleapis.com/",
+  "name": "baremetalsolution",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v2/projects/{projectsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "baremetalsolution.projects.locations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Resource name for the location.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "response": {
+                "$ref": "Location"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service.",
+              "flatPath": "v2/projects/{projectsId}/locations",
+              "httpMethod": "GET",
+              "id": "baremetalsolution.projects.locations.list",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}/locations",
+              "response": {
+                "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "instances": {
+              "methods": {
+                "get": {
+                  "description": "Get details about a single server.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.instances.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "Instance"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List servers in a given project and location.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances",
+                  "httpMethod": "GET",
+                  "id": "baremetalsolution.projects.locations.instances.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filtering results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Hint for how to order the results.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Requested page size. Server may return fewer items than requested. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A token identifying a page of results from the server.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListInstancesRequest.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/instances",
+                  "response": {
+                    "$ref": "ListInstancesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "volumes": {
+              "resources": {
+                "luns": {
+                  "methods": {
+                    "get": {
+                      "description": "Get details of a single storage lun.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/luns/{lunsId}",
+                      "httpMethod": "GET",
+                      "id": "baremetalsolution.projects.locations.volumes.luns.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+/luns/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "Lun"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List storage volume luns for given storage volume.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}/luns",
+                      "httpMethod": "GET",
+                      "id": "baremetalsolution.projects.locations.volumes.luns.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Filtering results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Hint for how to order the results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Requested page size. The server might return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A token identifying a page of results from the server.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Parent value for ListLunsRequest.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/luns",
+                      "response": {
+                        "$ref": "ListLunsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20211015",
+  "rootUrl": "https://baremetalsolution.googleapis.com/",
+  "schemas": {
+    "Instance": {
+      "description": "A server.",
+      "id": "Instance",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Create a time stamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hyperthreadingEnabled": {
+          "description": "True if you enable hyperthreading for the server, otherwise false. The default value is false.",
+          "type": "boolean"
+        },
+        "interactiveSerialConsoleEnabled": {
+          "description": "True if the interactive serial console feature is enabled for the instance, false otherwise. The default value is false.",
+          "type": "boolean"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels as key value pairs.",
+          "type": "object"
+        },
+        "luns": {
+          "description": "List of LUNs associated with this server.",
+          "items": {
+            "$ref": "Lun"
+          },
+          "type": "array"
+        },
+        "machineType": {
+          "description": "The server type. [Available server types](https://cloud.google.com/bare-metal/docs/bms-planning#server_configurations)",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of this `Instance`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project}/locations/{location}/instances/{instance}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "networks": {
+          "description": "List of networks associated with this server.",
+          "items": {
+            "$ref": "Network"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "The state of the server.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "RUNNING",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "The server is in an unknown state.",
+            "The server is being provisioned.",
+            "The server is running.",
+            "The server has been deleted."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update a time stamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListInstancesResponse": {
+      "description": "Response message for the list of servers.",
+      "id": "ListInstancesResponse",
+      "properties": {
+        "instances": {
+          "description": "The list of servers.",
+          "items": {
+            "$ref": "Instance"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results from the server.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListLocationsResponse": {
+      "description": "The response message for Locations.ListLocations.",
+      "id": "ListLocationsResponse",
+      "properties": {
+        "locations": {
+          "description": "A list of locations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "Location"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListLunsResponse": {
+      "description": "Response message containing the list of storage volume luns.",
+      "id": "ListLunsResponse",
+      "properties": {
+        "luns": {
+          "description": "The list of luns.",
+          "items": {
+            "$ref": "Lun"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token identifying a page of results from the server.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Location": {
+      "description": "A resource that represents Google Cloud Platform location.",
+      "id": "Location",
+      "properties": {
+        "displayName": {
+          "description": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\".",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}",
+          "type": "object"
+        },
+        "locationId": {
+          "description": "The canonical id for this location. For example: `\"us-east1\"`.",
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata. For example the available capacity at the given location.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Lun": {
+      "description": "A storage volume logical unit number (LUN).",
+      "id": "Lun",
+      "properties": {
+        "bootLun": {
+          "description": "Display if this LUN is a boot LUN.",
+          "type": "boolean"
+        },
+        "multiprotocolType": {
+          "description": "The LUN multiprotocol type ensures the characteristics of the LUN are optimized for each operating system.",
+          "enum": [
+            "MULTIPROTOCOL_TYPE_UNSPECIFIED",
+            "LINUX"
+          ],
+          "enumDescriptions": [
+            "Server has no OS specified.",
+            "Server with Linux OS."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The name of the LUN.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "shareable": {
+          "description": "Display if this LUN can be shared between multiple physical servers.",
+          "type": "boolean"
+        },
+        "sizeGb": {
+          "description": "The size of this LUN, in gigabytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of this storage volume.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "UPDATING",
+            "READY",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The LUN is in an unknown state.",
+            "The LUN is being created.",
+            "The LUN is being updated.",
+            "The LUN is ready for use.",
+            "The LUN has been requested to be deleted."
+          ],
+          "type": "string"
+        },
+        "storageType": {
+          "description": "The storage type for this LUN.",
+          "enum": [
+            "STORAGE_TYPE_UNSPECIFIED",
+            "SSD",
+            "HDD"
+          ],
+          "enumDescriptions": [
+            "The storage type for this LUN is unknown.",
+            "This storage type for this LUN is SSD.",
+            "This storage type for this LUN is HDD."
+          ],
+          "type": "string"
+        },
+        "storageVolume": {
+          "description": "Display the storage volume for this LUN.",
+          "type": "string"
+        },
+        "wwid": {
+          "description": "The WWID for this LUN.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Network": {
+      "description": "A Network.",
+      "id": "Network",
+      "properties": {
+        "cidr": {
+          "description": "The cidr of the Network.",
+          "type": "string"
+        },
+        "ipAddress": {
+          "description": "IP address configured.",
+          "type": "string"
+        },
+        "macAddress": {
+          "description": "List of physical interfaces.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The resource name of this `Network`. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. Format: `projects/{project}/locations/{location}/networks/{network}` This field will contain the same value as field \"network\", which will soon be deprecated. Please use this field to reference the name of the network resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "network": {
+          "description": "Name of the network.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The Network state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "PROVISIONED"
+          ],
+          "enumDescriptions": [
+            "The Network is in an unknown state.",
+            "The Network is being provisioning.",
+            "The Network has been provisioned."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of this network.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "CLIENT",
+            "PRIVATE"
+          ],
+          "enumDescriptions": [
+            "Unspecified value.",
+            "Client network, a network peered to a Google Cloud VPC.",
+            "Private network, a network local to the Bare Metal Solution environment."
+          ],
+          "type": "string"
+        },
+        "vlanId": {
+          "description": "The vlan id of the Network.",
+          "type": "string"
+        },
+        "vrf": {
+          "$ref": "VRF",
+          "description": "The vrf for the Network."
+        }
+      },
+      "type": "object"
+    },
+    "VRF": {
+      "description": "A network VRF.",
+      "id": "VRF",
+      "properties": {
+        "autonomousSystemNumber": {
+          "description": "The autonomous system number of the VRF.",
+          "type": "string"
+        },
+        "juniperAlias": {
+          "description": "The Juniper alias of the VRF.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the VRF.",
+          "type": "string"
+        },
+        "routeTarget": {
+          "description": "The route target of the VRF.",
+          "format": "int64",
+          "type": "string"
+        },
+        "state": {
+          "description": "The possible state of VRF.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "PROVISIONED"
+          ],
+          "enumDescriptions": [
+            "The unspecified state.",
+            "The vrf is being provisioning.",
+            "The vrf is being provisioning."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Bare Metal Solution API",
+  "version": "v2",
+  "version_module": true
+}
