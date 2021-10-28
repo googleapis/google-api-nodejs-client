@@ -134,6 +134,10 @@ export namespace playcustomapp_v1 {
      */
     languageCode?: string | null;
     /**
+     * Organizations to which the custom app should be made available. If the request contains any organizations, then the app will be restricted to only these organizations. To support the organization linked to the developer account, the organization ID should be provided explicitly together with other organizations. If no organizations are provided, then the app is only available to the organization linked to the developer account.
+     */
+    organizations?: Schema$Organization[];
+    /**
      * Output only. Package name of the created Android app. Only present in the API response.
      */
     packageName?: string | null;
@@ -141,6 +145,19 @@ export namespace playcustomapp_v1 {
      * Title for the Android app.
      */
     title?: string | null;
+  }
+  /**
+   * Represents an organization that can access a custom app.
+   */
+  export interface Schema$Organization {
+    /**
+     * Required. ID of the organization.
+     */
+    organizationId?: string | null;
+    /**
+     * Optional. A human-readable name of the organization, to help recognize the organization.
+     */
+    organizationName?: string | null;
   }
 
   export class Resource$Accounts {
@@ -193,6 +210,7 @@ export namespace playcustomapp_v1 {
      *       // request body parameters
      *       // {
      *       //   "languageCode": "my_languageCode",
+     *       //   "organizations": [],
      *       //   "packageName": "my_packageName",
      *       //   "title": "my_title"
      *       // }
@@ -207,6 +225,7 @@ export namespace playcustomapp_v1 {
      *   // Example response
      *   // {
      *   //   "languageCode": "my_languageCode",
+     *   //   "organizations": [],
      *   //   "packageName": "my_packageName",
      *   //   "title": "my_title"
      *   // }
