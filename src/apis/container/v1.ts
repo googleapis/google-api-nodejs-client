@@ -510,6 +510,10 @@ export namespace container_v1 {
      */
     nodeIpv4CidrSize?: number | null;
     /**
+     * Default NodePool settings for the entire cluster. These settings are overridden if specified on the specific NodePool object.
+     */
+    nodePoolDefaults?: Schema$NodePoolDefaults;
+    /**
      * The node pools associated with this cluster. This field should not be set if "node_config" or "initial_node_count" are specified.
      */
     nodePools?: Schema$NodePool[];
@@ -612,10 +616,6 @@ export namespace container_v1 {
      */
     desiredAuthenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
     /**
-     * The desired Autopilot configuration for the cluster.
-     */
-    desiredAutopilot?: Schema$Autopilot;
-    /**
      * The desired configuration options for the Binary Authorization feature.
      */
     desiredBinaryAuthorization?: Schema$BinaryAuthorization;
@@ -635,6 +635,14 @@ export namespace container_v1 {
      * The desired status of whether to disable default sNAT for this cluster.
      */
     desiredDefaultSnatStatus?: Schema$DefaultSnatStatus;
+    /**
+     * DNSConfig contains clusterDNS config for this cluster.
+     */
+    desiredDnsConfig?: Schema$DNSConfig;
+    /**
+     * The desired GCFS config for the cluster
+     */
+    desiredGcfsConfig?: Schema$GcfsConfig;
     /**
      * The desired image type for the node pool. NOTE: Set the "desired_node_pool" field as well.
      */
@@ -863,6 +871,23 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
+   * DNSConfig contains the desired set of options for configuring clusterDNS.
+   */
+  export interface Schema$DNSConfig {
+    /**
+     * cluster_dns indicates which in-cluster DNS provider should be used.
+     */
+    clusterDns?: string | null;
+    /**
+     * cluster_dns_domain is the suffix used for all cluster service records.
+     */
+    clusterDnsDomain?: string | null;
+    /**
+     * cluster_dns_scope indicates the scope of access to cluster DNS records.
+     */
+    clusterDnsScope?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -872,6 +897,15 @@ export namespace container_v1 {
   export interface Schema$GcePersistentDiskCsiDriverConfig {
     /**
      * Whether the Compute Engine PD CSI driver is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * GcfsConfig contains configurations of Google Container File System (image streaming).
+   */
+  export interface Schema$GcfsConfig {
+    /**
+     * Whether to use GCFS.
      */
     enabled?: boolean | null;
   }
@@ -1315,6 +1349,10 @@ export namespace container_v1 {
      */
     defaultSnatStatus?: Schema$DefaultSnatStatus;
     /**
+     * DNSConfig contains clusterDNS config for this cluster.
+     */
+    dnsConfig?: Schema$DNSConfig;
+    /**
      * Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
      */
     enableIntraNodeVisibility?: boolean | null;
@@ -1377,6 +1415,10 @@ export namespace container_v1 {
      * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
+    /**
+     * Google Container File System (image streaming) configs.
+     */
+    gcfsConfig?: Schema$GcfsConfig;
     /**
      * Enable or disable gvnic in the node pool.
      */
@@ -1453,6 +1495,15 @@ export namespace container_v1 {
      * The workload metadata configuration for this node.
      */
     workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
+  }
+  /**
+   * Subset of NodeConfig message that has defaults.
+   */
+  export interface Schema$NodeConfigDefaults {
+    /**
+     * GCFS (Google Container File System, a.k.a Riptide) options.
+     */
+    gcfsConfig?: Schema$GcfsConfig;
   }
   /**
    * Node kubelet configs.
@@ -1594,6 +1645,15 @@ export namespace container_v1 {
      * Minimum number of nodes for one location in the NodePool. Must be \>= 1 and <= max_node_count.
      */
     minNodeCount?: number | null;
+  }
+  /**
+   * Subset of Nodepool message that has defaults.
+   */
+  export interface Schema$NodePoolDefaults {
+    /**
+     * Subset of NodeConfig message that has defaults.
+     */
+    nodeConfigDefaults?: Schema$NodeConfigDefaults;
   }
   /**
    * Kubernetes taint is comprised of three fields: key, value, and effect. Effect can only be one of three types: NoSchedule, PreferNoSchedule or NoExecute. See [here](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration) for more information, including usage and the valid values.
@@ -2387,6 +2447,10 @@ export namespace container_v1 {
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
+    /**
+     * GCFS config.
+     */
+    gcfsConfig?: Schema$GcfsConfig;
     /**
      * Enable or disable gvnic on the node pool.
      */
@@ -3491,6 +3555,7 @@ export namespace container_v1 {
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolDefaults": {},
      *   //   "nodePools": [],
      *   //   "notificationConfig": {},
      *   //   "privateClusterConfig": {},
@@ -7235,6 +7300,7 @@ export namespace container_v1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
@@ -9013,6 +9079,7 @@ export namespace container_v1 {
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolDefaults": {},
      *   //   "nodePools": [],
      *   //   "notificationConfig": {},
      *   //   "privateClusterConfig": {},
@@ -12646,6 +12713,7 @@ export namespace container_v1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},

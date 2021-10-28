@@ -678,10 +678,6 @@ export namespace container_v1beta1 {
      */
     desiredAuthenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
     /**
-     * The desired Autopilot configuration for the cluster.
-     */
-    desiredAutopilot?: Schema$Autopilot;
-    /**
      * The desired configuration options for the Binary Authorization feature.
      */
     desiredBinaryAuthorization?: Schema$BinaryAuthorization;
@@ -709,6 +705,10 @@ export namespace container_v1beta1 {
      * DNSConfig contains clusterDNS config for this cluster.
      */
     desiredDnsConfig?: Schema$DNSConfig;
+    /**
+     * The desired GCFS config for the cluster
+     */
+    desiredGcfsConfig?: Schema$GcfsConfig;
     /**
      * The desired Identity Service component configuration.
      */
@@ -1013,6 +1013,15 @@ export namespace container_v1beta1 {
   export interface Schema$GcePersistentDiskCsiDriverConfig {
     /**
      * Whether the Compute Engine PD CSI driver is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * GcfsConfig contains configurations of Google Container File System.
+   */
+  export interface Schema$GcfsConfig {
+    /**
+     * Whether to use GCFS.
      */
     enabled?: boolean | null;
   }
@@ -1611,6 +1620,10 @@ export namespace container_v1beta1 {
      */
     ephemeralStorageConfig?: Schema$EphemeralStorageConfig;
     /**
+     * GCFS (Google Container File System) configs.
+     */
+    gcfsConfig?: Schema$GcfsConfig;
+    /**
      * Enable or disable gvnic on the node pool.
      */
     gvnic?: Schema$VirtualNIC;
@@ -1694,7 +1707,12 @@ export namespace container_v1beta1 {
   /**
    * Subset of NodeConfig message that has defaults.
    */
-  export interface Schema$NodeConfigDefaults {}
+  export interface Schema$NodeConfigDefaults {
+    /**
+     * GCFS (Google Container File System, a.k.a Riptide) options.
+     */
+    gcfsConfig?: Schema$GcfsConfig;
+  }
   /**
    * Node kubelet configs.
    */
@@ -2702,6 +2720,10 @@ export namespace container_v1beta1 {
      * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
+    /**
+     * GCFS config.
+     */
+    gcfsConfig?: Schema$GcfsConfig;
     /**
      * Enable or disable gvnic on the node pool.
      */
@@ -7765,6 +7787,7 @@ export namespace container_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
@@ -13193,6 +13216,7 @@ export namespace container_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
