@@ -1152,7 +1152,7 @@ export namespace retail_v2beta {
      */
     title?: string | null;
     /**
-     * Input only. The TTL (time to live) of the product. If it is set, expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.
+     * Input only. The TTL (time to live) of the product. If it is set, it must be a non-negative value, and expire_time is set as current timestamp plus ttl. The derived expire_time is returned in the output and ttl is left blank when retrieving the Product. If it is set, the product is not available for SearchService.Search after current timestamp plus ttl. However, the product can still be retrieved by ProductService.GetProduct and ProductService.ListProducts.
      */
     ttl?: string | null;
     /**
@@ -1404,6 +1404,10 @@ export namespace retail_v2beta {
      * The query expansion specification that specifies the conditions under which query expansion will occur. See more details at this [user guide](https://cloud.google.com/retail/docs/result-size#query_expansion).
      */
     queryExpansionSpec?: Schema$GoogleCloudRetailV2betaSearchRequestQueryExpansionSpec;
+    /**
+     * The search mode of the search request. If not specified, a single search request triggers both product search and faceted search.
+     */
+    searchMode?: string | null;
     /**
      * User information.
      */
@@ -5374,6 +5378,7 @@ export namespace retail_v2beta {
      *       //   "pageToken": "my_pageToken",
      *       //   "query": "my_query",
      *       //   "queryExpansionSpec": {},
+     *       //   "searchMode": "my_searchMode",
      *       //   "userInfo": {},
      *       //   "variantRollupKeys": [],
      *       //   "visitorId": "my_visitorId"
