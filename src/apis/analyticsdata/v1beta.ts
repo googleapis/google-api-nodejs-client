@@ -126,6 +126,19 @@ export namespace analyticsdata_v1beta {
   }
 
   /**
+   * A metric actively restricted in creating the report.
+   */
+  export interface Schema$ActiveMetricRestriction {
+    /**
+     * The name of the restricted metric.
+     */
+    metricName?: string | null;
+    /**
+     * The reason for this metric's restriction.
+     */
+    restrictedMetricTypes?: string[] | null;
+  }
+  /**
    * The batch request containing multiple pivot report requests.
    */
   export interface Schema$BatchRunPivotReportsRequest {
@@ -559,6 +572,10 @@ export namespace analyticsdata_v1beta {
      */
     apiName?: string | null;
     /**
+     * If reasons are specified, your access is blocked to this metric for this property. API requests from you to this property for this metric will succeed; however, the report will contain only zeros for this metric. API requests with metric filters on blocked metrics will fail. If reasons are empty, you have access to this metric. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388).
+     */
+    blockedReasons?: string[] | null;
+    /**
      * The display name of the category that this metrics belongs to. Similar dimensions and metrics are categorized together.
      */
     category?: string | null;
@@ -792,6 +809,14 @@ export namespace analyticsdata_v1beta {
      * If true, indicates some buckets of dimension combinations are rolled into "(other)" row. This can happen for high cardinality reports.
      */
     dataLossFromOtherRow?: boolean | null;
+    /**
+     * If empty reason is specified, the report is empty for this reason.
+     */
+    emptyReason?: string | null;
+    /**
+     * Describes the schema restrictions actively enforced in creating this report. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388).
+     */
+    schemaRestrictionResponse?: Schema$SchemaRestrictionResponse;
     /**
      * The property's current timezone. Intended to be used to interpret time-based dimensions like `hour` and `minute`. Formatted as strings from the IANA Time Zone database (https://www.iana.org/time-zones); for example "America/New_York" or "Asia/Tokyo".
      */
@@ -1083,6 +1108,15 @@ export namespace analyticsdata_v1beta {
      * If requested, the totaled values of metrics.
      */
     totals?: Schema$Row[];
+  }
+  /**
+   * The schema restrictions actively enforced in creating this report. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388).
+   */
+  export interface Schema$SchemaRestrictionResponse {
+    /**
+     * All restrictions actively enforced in creating the report. For example, `purchaseRevenue` always has the restriction type `REVENUE_DATA`. However, this active response restriction is only populated if the user's custom role disallows access to `REVENUE_DATA`.
+     */
+    activeMetricRestrictions?: Schema$ActiveMetricRestriction[];
   }
   /**
    * The filter for string
