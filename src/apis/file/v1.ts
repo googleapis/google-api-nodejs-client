@@ -720,7 +720,7 @@ export namespace file_v1 {
     verb?: string | null;
   }
   /**
-   * RestoreInstanceRequest restores an existing instances's file share from a backup.
+   * RestoreInstanceRequest restores an existing instance's file share from a backup.
    */
   export interface Schema$RestoreInstanceRequest {
     /**
