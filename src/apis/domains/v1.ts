@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace domains_v1beta1 {
+export namespace domains_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace domains_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const domains = google.domains('v1beta1');
+   * const domains = google.domains('v1');
    * ```
    */
   export class Domains {
@@ -871,7 +871,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -968,7 +968,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1001,7 +1001,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1106,7 +1106,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1176,7 +1176,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1273,7 +1273,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1306,7 +1306,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1411,7 +1411,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1481,7 +1481,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1595,7 +1595,7 @@ export namespace domains_v1beta1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1beta1/{+registration}:configureContactSettings'
+              rootUrl + '/v1/{+registration}:configureContactSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -1629,7 +1629,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1741,9 +1741,10 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+registration}:configureDnsSettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+registration}:configureDnsSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -1776,7 +1777,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1888,7 +1889,7 @@ export namespace domains_v1beta1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1beta1/{+registration}:configureManagementSettings'
+              rootUrl + '/v1/{+registration}:configureManagementSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -1922,7 +1923,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2019,7 +2020,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2052,7 +2053,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2155,10 +2156,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:export').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -2191,7 +2189,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2295,7 +2293,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2328,7 +2326,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2428,7 +2426,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2464,7 +2462,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2571,7 +2569,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/registrations').replace(
+            url: (rootUrl + '/v1/{+parent}/registrations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2607,7 +2605,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2725,7 +2723,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -2758,7 +2756,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2868,9 +2866,10 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/registrations:register'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/registrations:register').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -2903,7 +2902,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3011,7 +3010,7 @@ export namespace domains_v1beta1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1beta1/{+registration}:resetAuthorizationCode'
+              rootUrl + '/v1/{+registration}:resetAuthorizationCode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -3045,7 +3044,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3147,7 +3146,7 @@ export namespace domains_v1beta1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1beta1/{+registration}:retrieveAuthorizationCode'
+              rootUrl + '/v1/{+registration}:retrieveAuthorizationCode'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -3181,7 +3180,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3287,7 +3286,7 @@ export namespace domains_v1beta1 {
           {
             url: (
               rootUrl +
-              '/v1beta1/{+location}/registrations:retrieveRegisterParameters'
+              '/v1/{+location}/registrations:retrieveRegisterParameters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -3323,7 +3322,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3429,7 +3428,7 @@ export namespace domains_v1beta1 {
           {
             url: (
               rootUrl +
-              '/v1beta1/{+location}/registrations:retrieveTransferParameters'
+              '/v1/{+location}/registrations:retrieveTransferParameters'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -3465,7 +3464,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3569,7 +3568,7 @@ export namespace domains_v1beta1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1beta1/{+location}/registrations:searchDomains'
+              rootUrl + '/v1/{+location}/registrations:searchDomains'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
@@ -3603,7 +3602,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3710,7 +3709,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3746,7 +3745,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3858,7 +3857,7 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3894,7 +3893,7 @@ export namespace domains_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const domains = google.domains('v1beta1');
+     * const domains = google.domains('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4004,9 +4003,10 @@ export namespace domains_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+parent}/registrations:transfer'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+parent}/registrations:transfer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
