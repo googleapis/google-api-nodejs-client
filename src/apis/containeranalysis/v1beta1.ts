@@ -236,19 +236,19 @@ export namespace containeranalysis_v1beta1 {
     occurrences?: Schema$Occurrence[];
   }
   /**
-   * Associates `members` with a `role`.
+   * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the principals requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
+     * Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
   }
@@ -823,13 +823,9 @@ export namespace containeranalysis_v1beta1 {
      */
     id?: string | null;
     /**
-     * This field provides a place for the SPDX file creator to record any relevant background references or analysis that went in to arriving at the Concluded License for a file
-     */
-    licenseComments?: string | null;
-    /**
      * This field contains the license the SPDX file creator has concluded as governing the file or alternative values if the governing license cannot be determined
      */
-    licenseConcluded?: string | null;
+    licenseConcluded?: Schema$License;
     /**
      * This field provides a place for the SPDX file creator to record license notices or other such related notices found in the file
      */
@@ -1144,6 +1140,19 @@ export namespace containeranalysis_v1beta1 {
     directive?: string | null;
   }
   /**
+   * License information: https://spdx.github.io/spdx-spec/3-package-information/#315-declared-license
+   */
+  export interface Schema$License {
+    /**
+     * Comments
+     */
+    comments?: string | null;
+    /**
+     * Expression: https://spdx.github.io/spdx-spec/appendix-IV-SPDX-license-expressions/
+     */
+    expression?: string | null;
+  }
+  /**
    * This corresponds to an in-toto link.
    */
   export interface Schema$Link {
@@ -1298,7 +1307,7 @@ export namespace containeranalysis_v1beta1 {
      */
     relatedUrl?: Schema$RelatedUrl[];
     /**
-     * A note describing SPDX Document which represents SBOM.
+     * A note describing a software bill of materials.
      */
     sbom?: Schema$DocumentNote;
     /**
@@ -1306,15 +1315,15 @@ export namespace containeranalysis_v1beta1 {
      */
     shortDescription?: string | null;
     /**
-     * A note describing SPDX File.
+     * A note describing an SPDX File.
      */
     spdxFile?: Schema$FileNote;
     /**
-     * A note describing SPDX Package.
+     * A note describing an SPDX Package.
      */
-    spdxPackage?: Schema$PackageNote;
+    spdxPackage?: Schema$PackageInfoNote;
     /**
-     * A note describing SPDX Relationship.
+     * A note describing an SPDX File.
      */
     spdxRelationship?: Schema$RelationshipNote;
     /**
@@ -1383,7 +1392,7 @@ export namespace containeranalysis_v1beta1 {
      */
     resource?: Schema$Resource;
     /**
-     * Describes a specific SPDX Document.
+     * Describes a specific software bill of materials document.
      */
     sbom?: Schema$DocumentOccurrence;
     /**
@@ -1393,7 +1402,7 @@ export namespace containeranalysis_v1beta1 {
     /**
      * Describes a specific SPDX Package.
      */
-    spdxPackage?: Schema$PackageOccurrence;
+    spdxPackage?: Schema$PackageInfoOccurrence;
     /**
      * Describes a specific SPDX Relationship.
      */
@@ -1421,34 +1430,9 @@ export namespace containeranalysis_v1beta1 {
     name?: string | null;
   }
   /**
-   * This message wraps a location affected by a vulnerability and its associated fix (if one is available).
+   * PackageInfoNote represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/
    */
-  export interface Schema$PackageIssue {
-    /**
-     * Required. The location of the vulnerability.
-     */
-    affectedLocation?: Schema$VulnerabilityLocation;
-    /**
-     * Output only. The distro or language system assigned severity for this vulnerability when that is available and note provider assigned severity when it is not available.
-     */
-    effectiveSeverity?: string | null;
-    /**
-     * The location of the available fix for vulnerability.
-     */
-    fixedLocation?: Schema$VulnerabilityLocation;
-    /**
-     * The type of package (e.g. OS, MAVEN, GO).
-     */
-    packageType?: string | null;
-    /**
-     * Deprecated, use Details.effective_severity instead The severity (e.g., distro assigned severity) for this vulnerability.
-     */
-    severityName?: string | null;
-  }
-  /**
-   * PackageNote represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/
-   */
-  export interface Schema$PackageNote {
+  export interface Schema$PackageInfoNote {
     /**
      * Indicates whether the file content of this package has been available for or subjected to analysis when creating the SPDX document
      */
@@ -1488,11 +1472,15 @@ export namespace containeranalysis_v1beta1 {
     /**
      * List the licenses that have been declared by the authors of the package
      */
-    licenseDeclared?: string | null;
+    licenseDeclared?: Schema$License;
     /**
      * If the package identified in the SPDX file originated from a different person or organization than identified as Package Supplier, this field identifies from where or whom the package originally came
      */
     originator?: string | null;
+    /**
+     * The type of package: OS, MAVEN, GO, GO_STDLIB, etc.
+     */
+    packageType?: string | null;
     /**
      * A short description of the package
      */
@@ -1515,9 +1503,9 @@ export namespace containeranalysis_v1beta1 {
     version?: string | null;
   }
   /**
-   * PackageOccurrence represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/
+   * PackageInfoOccurrence represents an SPDX Package Information section: https://spdx.github.io/spdx-spec/3-package-information/
    */
-  export interface Schema$PackageOccurrence {
+  export interface Schema$PackageInfoOccurrence {
     /**
      * A place for the SPDX file creator to record any general comments about the package being described
      */
@@ -1527,21 +1515,62 @@ export namespace containeranalysis_v1beta1 {
      */
     filename?: string | null;
     /**
+     * Output only. Provide a place for the SPDX file creator to record a web site that serves as the package's home page
+     */
+    homePage?: string | null;
+    /**
      * Uniquely identify any element in an SPDX document which may be referenced by other elements
      */
     id?: string | null;
     /**
-     * This field provides a place for the SPDX file creator to record any relevant background information or analysis that went in to arriving at the Concluded License for a package
-     */
-    licenseComments?: string | null;
-    /**
      * package or alternative values, if the governing license cannot be determined
      */
-    licenseConcluded?: string | null;
+    licenseConcluded?: Schema$License;
+    /**
+     * Output only. The type of package: OS, MAVEN, GO, GO_STDLIB, etc.
+     */
+    packageType?: string | null;
     /**
      * Provide a place for the SPDX file creator to record any relevant background information or additional comments about the origin of the package
      */
     sourceInfo?: string | null;
+    /**
+     * Output only. A short description of the package
+     */
+    summaryDescription?: string | null;
+    /**
+     * Output only. Identify the full name of the package as given by the Package Originator
+     */
+    title?: string | null;
+    /**
+     * Output only. Identify the version of the package
+     */
+    version?: string | null;
+  }
+  /**
+   * This message wraps a location affected by a vulnerability and its associated fix (if one is available).
+   */
+  export interface Schema$PackageIssue {
+    /**
+     * Required. The location of the vulnerability.
+     */
+    affectedLocation?: Schema$VulnerabilityLocation;
+    /**
+     * Output only. The distro or language system assigned severity for this vulnerability when that is available and note provider assigned severity when it is not available.
+     */
+    effectiveSeverity?: string | null;
+    /**
+     * The location of the available fix for vulnerability.
+     */
+    fixedLocation?: Schema$VulnerabilityLocation;
+    /**
+     * The type of package (e.g. OS, MAVEN, GO).
+     */
+    packageType?: string | null;
+    /**
+     * Deprecated, use Details.effective_severity instead The severity (e.g., distro assigned severity) for this vulnerability.
+     */
+    severityName?: string | null;
   }
   /**
    * An attestation wrapper with a PGP-compatible signature. This message only supports `ATTACHED` signatures, where the payload that is signed is included alongside the signature itself in the same file.
@@ -1561,11 +1590,11 @@ export namespace containeranalysis_v1beta1 {
     signature?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of `members` to a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one member.
+     * Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`.
      */
     bindings?: Schema$Binding[];
     /**
@@ -1606,7 +1635,12 @@ export namespace containeranalysis_v1beta1 {
   /**
    * RelationshipNote represents an SPDX Relationship section: https://spdx.github.io/spdx-spec/7-relationships-between-SPDX-elements/
    */
-  export interface Schema$RelationshipNote {}
+  export interface Schema$RelationshipNote {
+    /**
+     * The type of relationship between the source and target SPDX elements
+     */
+    type?: string | null;
+  }
   /**
    * RelationshipOccurrence represents an SPDX Relationship section: https://spdx.github.io/spdx-spec/7-relationships-between-SPDX-elements/
    */
@@ -1624,7 +1658,7 @@ export namespace containeranalysis_v1beta1 {
      */
     target?: string | null;
     /**
-     * The type of relationship between the source and target SPDX elements
+     * Output only. The type of relationship between the source and target SPDX elements
      */
     type?: string | null;
   }
