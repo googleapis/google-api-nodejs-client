@@ -114,6 +114,7 @@ export namespace storagetransfer_v1 {
   export class Storagetransfer {
     context: APIRequestContext;
     googleServiceAccounts: Resource$Googleserviceaccounts;
+    projects: Resource$Projects;
     transferJobs: Resource$Transferjobs;
     transferOperations: Resource$Transferoperations;
 
@@ -126,11 +127,33 @@ export namespace storagetransfer_v1 {
       this.googleServiceAccounts = new Resource$Googleserviceaccounts(
         this.context
       );
+      this.projects = new Resource$Projects(this.context);
       this.transferJobs = new Resource$Transferjobs(this.context);
       this.transferOperations = new Resource$Transferoperations(this.context);
     }
   }
 
+  /**
+   * Represents an On-Premises Agent pool.
+   */
+  export interface Schema$AgentPool {
+    /**
+     * Specifies the bandwidth limit details. If this field is unspecified, the default value is set as 'No Limit'.
+     */
+    bandwidthLimit?: Schema$BandwidthLimit;
+    /**
+     * Specifies the client-specified AgentPool description.
+     */
+    displayName?: string | null;
+    /**
+     * Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id\}/agentPools/{agent_pool_id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. Specifies the state of the AgentPool.
+     */
+    state?: string | null;
+  }
   /**
    * AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)). For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials).
    */
@@ -194,6 +217,15 @@ export namespace storagetransfer_v1 {
      * Required. Azure shared access signature (SAS). *Note:*Copying data from Azure Data Lake Storage (ADLS) Gen 2 is in [Preview](/products/#product-launch-stages). During Preview, if you are copying data from ADLS Gen 2, you must use an account SAS. For more information about SAS, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview).
      */
     sasToken?: string | null;
+  }
+  /**
+   * Specifies the BandwidthLimit to describe the non-negative bandwidth rate in mbps for the agent pool.
+   */
+  export interface Schema$BandwidthLimit {
+    /**
+     * Specifies bandwidth rate in mbps distributed across all the agents in the pool.
+     */
+    limitMbps?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -284,6 +316,19 @@ export namespace storagetransfer_v1 {
      * Required. The URL that points to the file that stores the object list entries. This file must allow public access. Currently, only URLs with HTTP and HTTPS schemes are supported.
      */
     listUrl?: string | null;
+  }
+  /**
+   * Response from ListAgentPools.
+   */
+  export interface Schema$ListAgentPoolsResponse {
+    /**
+     * A list of agent pools.
+     */
+    agentPools?: Schema$AgentPool[];
+    /**
+     * The list next page token.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -528,6 +573,14 @@ export namespace storagetransfer_v1 {
      * For transfers involving PosixFilesystem only. Number of successful listings for each directory found at the source.
      */
     directoriesSuccessfullyListedFromSource?: string | null;
+    /**
+     * Number of successfully cleaned up intermediate objects.
+     */
+    intermediateObjectsCleanedUp?: string | null;
+    /**
+     * Number of intermediate objects failed cleaned up.
+     */
+    intermediateObjectsFailedCleanedUp?: string | null;
     /**
      * Objects that are copied to the data sink.
      */
@@ -880,6 +933,774 @@ export namespace storagetransfer_v1 {
      * Required. The ID of the Google Cloud Platform Console project that the Google service account is associated with.
      */
     projectId?: string;
+  }
+
+  export class Resource$Projects {
+    context: APIRequestContext;
+    agentPools: Resource$Projects$Agentpools;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.agentPools = new Resource$Projects$Agentpools(this.context);
+    }
+  }
+
+  export class Resource$Projects$Agentpools {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an agent pool resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const storagetransfer = google.storagetransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storagetransfer.projects.agentPools.create({
+     *     // Required. The id of the agent pool to create. The agent_pool_id must be non-empty, less than or equal to 128 characters, and satisfy the following regex: "^[a-z]([a-z0-9-._~]*[a-z0-9])?$". Also, agent pool names cannot start with the string "goog".
+     *     agentPoolId: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform Console project that owns the agent pool.
+     *     projectId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bandwidthLimit": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bandwidthLimit": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Agentpools$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Agentpools$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AgentPool>;
+    create(
+      params: Params$Resource$Projects$Agentpools$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Agentpools$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AgentPool>,
+      callback: BodyResponseCallback<Schema$AgentPool>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Agentpools$Create,
+      callback: BodyResponseCallback<Schema$AgentPool>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AgentPool>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agentpools$Create
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AgentPool> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agentpools$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agentpools$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{+projectId}/agentPools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AgentPool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AgentPool>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an agent pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const storagetransfer = google.storagetransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storagetransfer.projects.agentPools.delete({
+     *     // Required. The agent pool name to delete.
+     *     name: 'projects/my-project/agentPools/my-agentPool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Agentpools$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Agentpools$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Agentpools$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Agentpools$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Agentpools$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agentpools$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agentpools$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agentpools$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an agent pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const storagetransfer = google.storagetransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storagetransfer.projects.agentPools.get({
+     *     // Required. The agent pool to get.
+     *     name: 'projects/my-project/agentPools/my-agentPool',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bandwidthLimit": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Agentpools$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Agentpools$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AgentPool>;
+    get(
+      params: Params$Resource$Projects$Agentpools$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Agentpools$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$AgentPool>,
+      callback: BodyResponseCallback<Schema$AgentPool>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Agentpools$Get,
+      callback: BodyResponseCallback<Schema$AgentPool>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AgentPool>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agentpools$Get
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AgentPool> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agentpools$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agentpools$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AgentPool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AgentPool>(parameters);
+      }
+    }
+
+    /**
+     * Lists agent pools.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const storagetransfer = google.storagetransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storagetransfer.projects.agentPools.list({
+     *     // A list of optional query parameters specified as JSON text in the form of: `{"agentPoolNames":["agentpool1","agentpool2",...]\}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. `agentPoolNames` is an optional field. The list returns all agent pools for the project when the filter is not provided or empty.
+     *     filter: 'placeholder-value',
+     *     // The list page size. The max allowed value is 256.
+     *     pageSize: 'placeholder-value',
+     *     // The list page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ID of the Google Cloud Platform Console project that owns the job.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentPools": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Agentpools$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Agentpools$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAgentPoolsResponse>;
+    list(
+      params: Params$Resource$Projects$Agentpools$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Agentpools$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAgentPoolsResponse>,
+      callback: BodyResponseCallback<Schema$ListAgentPoolsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Agentpools$List,
+      callback: BodyResponseCallback<Schema$ListAgentPoolsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAgentPoolsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agentpools$List
+        | BodyResponseCallback<Schema$ListAgentPoolsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAgentPoolsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAgentPoolsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAgentPoolsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agentpools$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agentpools$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/projects/{+projectId}/agentPools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId'],
+        pathParams: ['projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAgentPoolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAgentPoolsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing agent pool resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const storagetransfer = google.storagetransfer('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await storagetransfer.projects.agentPools.patch({
+     *     // Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id\}/agentPools/{agent_pool_id\}
+     *     name: 'projects/my-project/agentPools/my-agentPool',
+     *     // The field mask of the fields in `agentPool` that are to be updated in this request. Fields in `agentPool` that can be updated are: display_name, bandwidth_limit,
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bandwidthLimit": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bandwidthLimit": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Agentpools$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Agentpools$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AgentPool>;
+    patch(
+      params: Params$Resource$Projects$Agentpools$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Agentpools$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$AgentPool>,
+      callback: BodyResponseCallback<Schema$AgentPool>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Agentpools$Patch,
+      callback: BodyResponseCallback<Schema$AgentPool>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AgentPool>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Agentpools$Patch
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AgentPool>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$AgentPool> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Agentpools$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Agentpools$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://storagetransfer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AgentPool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AgentPool>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Agentpools$Create
+    extends StandardParameters {
+    /**
+     * Required. The id of the agent pool to create. The agent_pool_id must be non-empty, less than or equal to 128 characters, and satisfy the following regex: "^[a-z]([a-z0-9-._~]*[a-z0-9])?$". Also, agent pool names cannot start with the string "goog".
+     */
+    agentPoolId?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform Console project that owns the agent pool.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AgentPool;
+  }
+  export interface Params$Resource$Projects$Agentpools$Delete
+    extends StandardParameters {
+    /**
+     * Required. The agent pool name to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Agentpools$Get
+    extends StandardParameters {
+    /**
+     * Required. The agent pool to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Agentpools$List
+    extends StandardParameters {
+    /**
+     * A list of optional query parameters specified as JSON text in the form of: `{"agentPoolNames":["agentpool1","agentpool2",...]\}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. `agentPoolNames` is an optional field. The list returns all agent pools for the project when the filter is not provided or empty.
+     */
+    filter?: string;
+    /**
+     * The list page size. The max allowed value is 256.
+     */
+    pageSize?: number;
+    /**
+     * The list page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform Console project that owns the job.
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Projects$Agentpools$Patch
+    extends StandardParameters {
+    /**
+     * Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id\}/agentPools/{agent_pool_id\}
+     */
+    name?: string;
+    /**
+     * The field mask of the fields in `agentPool` that are to be updated in this request. Fields in `agentPool` that can be updated are: display_name, bandwidth_limit,
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AgentPool;
   }
 
   export class Resource$Transferjobs {
