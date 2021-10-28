@@ -181,7 +181,7 @@ export namespace logging_v2 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Describes the customer-managed encryption key (CMEK) settings associated with a project, folder, organization, billing account, or flexible resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+   * Describes the customer-managed encryption key (CMEK) settings associated with a project, folder, organization, billing account, or flexible resource.Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
    */
   export interface Schema$CmekSettings {
     /**
@@ -718,7 +718,7 @@ export namespace logging_v2 {
     line?: string | null;
   }
   /**
-   * Specifies a set of log entries that are not to be stored in Cloud Logging. If your GCP resource receives a large volume of log entries, you can use exclusions to reduce your chargeable logs. Exclusions are processed after log sinks, so you can export log entries before they are excluded. Note that organization-level and folder-level exclusions don't apply to child resources, and that you can't exclude audit log entries.
+   * Specifies a set of log entries that are filtered out by a sink. If your Google Cloud resource receives a large volume of log entries, you can use exclusions to reduce your chargeable logs. Note that exclusions on organization-level and folder-level sinks don't apply to child resources. Note also that you cannot modify the _Required sink or exclude logs from it.
    */
   export interface Schema$LogExclusion {
     /**
@@ -865,7 +865,7 @@ export namespace logging_v2 {
      */
     updateTime?: string | null;
     /**
-     * Output only. An IAM identity—a service account or group—under which Cloud Logging writes the exported log entries to the sink's destination. This field is set by sinks.create and sinks.update based on the value of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting Access for a Resource (https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). Consult the destination service's documentation to determine the appropriate IAM roles to assign to the identity.
+     * Output only. An IAM identity—a service account or group—under which Cloud Logging writes the exported log entries to the sink's destination. This field is set by sinks.create and sinks.update based on the value of unique_writer_identity in those methods.Until you grant this identity write-access to the destination, log entry exports from this sink will fail. For more information, see Granting Access for a Resource (https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#granting_access_to_a_service_account_for_a_resource). Consult the destination service's documentation to determine the appropriate IAM roles to assign to the identity.Sinks that have a destination that is a log bucket in the same project as the sink do not have a writer_identity and no additional permissions are required.
      */
     writerIdentity?: string | null;
   }
@@ -1636,7 +1636,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * Creates a new exclusion in the _Default sink in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -1786,7 +1786,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Deletes an exclusion.
+     * Deletes an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -1913,7 +1913,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets the description of an exclusion.
+     * Gets the description of an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -2049,7 +2049,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists all the exclusions in a parent resource.
+     * Lists all the exclusions on the _Default sink in a parent resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -2193,7 +2193,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Changes one or more properties of an existing exclusion.
+     * Changes one or more properties of an existing exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -6522,7 +6522,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * Creates a new exclusion in the _Default sink in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -6672,7 +6672,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Deletes an exclusion.
+     * Deletes an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -6799,7 +6799,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets the description of an exclusion.
+     * Gets the description of an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -6934,7 +6934,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists all the exclusions in a parent resource.
+     * Lists all the exclusions on the _Default sink in a parent resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -7077,7 +7077,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Changes one or more properties of an existing exclusion.
+     * Changes one or more properties of an existing exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -7302,7 +7302,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * Creates a new exclusion in the _Default sink in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -7452,7 +7452,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Deletes an exclusion.
+     * Deletes an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -7579,7 +7579,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets the description of an exclusion.
+     * Gets the description of an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -7715,7 +7715,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists all the exclusions in a parent resource.
+     * Lists all the exclusions on the _Default sink in a parent resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -7859,7 +7859,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Changes one or more properties of an existing exclusion.
+     * Changes one or more properties of an existing exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -14798,7 +14798,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -14829,7 +14829,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.getCmekSettings({
-     *     // Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      *     name: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -14934,7 +14934,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -14963,7 +14963,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.updateCmekSettings({
-     *     // Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      *     name: 'organizations/my-organization',
      *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.For example: "updateMask=kmsKeyName"
      *     updateMask: 'placeholder-value',
@@ -15085,14 +15085,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Getcmeksettings
     extends StandardParameters {
     /**
-     * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Updatecmeksettings
     extends StandardParameters {
     /**
-     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      */
     name?: string;
     /**
@@ -15113,7 +15113,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * Creates a new exclusion in the _Default sink in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -15263,7 +15263,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Deletes an exclusion.
+     * Deletes an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -15390,7 +15390,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets the description of an exclusion.
+     * Gets the description of an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -15526,7 +15526,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists all the exclusions in a parent resource.
+     * Lists all the exclusions on the _Default sink in a parent resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -15670,7 +15670,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Changes one or more properties of an existing exclusion.
+     * Changes one or more properties of an existing exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -19690,7 +19690,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Creates a new exclusion in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
+     * Creates a new exclusion in the _Default sink in a specified parent resource. Only log entries belonging to that resource can be excluded. You can have up to 10 exclusions in a resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -19840,7 +19840,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Deletes an exclusion.
+     * Deletes an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -19967,7 +19967,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets the description of an exclusion.
+     * Gets the description of an exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -20103,7 +20103,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists all the exclusions in a parent resource.
+     * Lists all the exclusions on the _Default sink in a parent resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -20247,7 +20247,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Changes one or more properties of an existing exclusion.
+     * Changes one or more properties of an existing exclusion in the _Default sink.
      * @example
      * ```js
      * // Before running the sample:
@@ -25834,7 +25834,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * Gets the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -25865,7 +25865,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.getCmekSettings({
-     *     // Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      *     name: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -25970,7 +25970,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
+     * Updates the Logs Router CMEK settings for the given resource.Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.UpdateCmekSettings will fail if 1) kms_key_name is invalid, or 2) the associated service account does not have the required roles/cloudkms.cryptoKeyEncrypterDecrypter role assigned for the key, or 3) access to the key is disabled.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -25999,7 +25999,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.updateCmekSettings({
-     *     // Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      *     name: '[^/]+/[^/]+',
      *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.For example: "updateMask=kmsKeyName"
      *     updateMask: 'placeholder-value',
@@ -26121,14 +26121,14 @@ export namespace logging_v2 {
   export interface Params$Resource$V2$Getcmeksettings
     extends StandardParameters {
     /**
-     * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * Required. The resource for which to retrieve CMEK settings. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      */
     name?: string;
   }
   export interface Params$Resource$V2$Updatecmeksettings
     extends StandardParameters {
     /**
-     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" For example:"organizations/12345/cmekSettings"Note: CMEK for the Logs Router can currently only be configured for Google Cloud organizations. Once configured, it applies to all projects and folders in the Google Cloud organization.
      */
     name?: string;
     /**
