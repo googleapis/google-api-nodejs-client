@@ -420,7 +420,7 @@ export namespace osconfig_v1alpha {
     version?: string | null;
   }
   /**
-   * Contains information about a Windows application that is retrieved from the Windows Registry. For more information about these fields, see Windows Installer Properties for the Uninstall Registry.
+   * Contains information about a Windows application that is retrieved from the Windows Registry. For more information about these fields, see: https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key
    */
   export interface Schema$InventoryWindowsApplication {
     /**
@@ -2150,6 +2150,13 @@ export namespace osconfig_v1alpha {
           this.context
         );
     }
+  }
+
+  export class Resource$Projects$Locations$Instances$Ospolicyassignments$Reports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
 
     /**
      * Get the OS policy asssignment report for the specified Compute Engine VM instance.
@@ -2178,10 +2185,12 @@ export namespace osconfig_v1alpha {
      *
      *   // Do the magic
      *   const res =
-     *     await osconfig.projects.locations.instances.osPolicyAssignments.getReport({
-     *       // Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
-     *       name: 'projects/my-project/locations/my-location/instances/my-instance/osPolicyAssignments/my-osPolicyAssignment/report',
-     *     });
+     *     await osconfig.projects.locations.instances.osPolicyAssignments.reports.get(
+     *       {
+     *         // Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
+     *         name: 'projects/my-project/locations/my-location/instances/my-instance/osPolicyAssignments/my-osPolicyAssignment/report',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2207,36 +2216,34 @@ export namespace osconfig_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    getReport(
-      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    getReport(
-      params?: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+    get(
+      params?: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$OSPolicyAssignmentReport>;
-    getReport(
-      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    getReport(
-      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$OSPolicyAssignmentReport>,
       callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
     ): void;
-    getReport(
-      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport,
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get,
       callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
     ): void;
-    getReport(
-      callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>
-    ): void;
-    getReport(
+    get(callback: BodyResponseCallback<Schema$OSPolicyAssignmentReport>): void;
+    get(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport
+        | Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get
         | BodyResponseCallback<Schema$OSPolicyAssignmentReport>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2252,13 +2259,13 @@ export namespace osconfig_v1alpha {
       | GaxiosPromise<Schema$OSPolicyAssignmentReport>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport;
+        {}) as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport;
+          {} as Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get;
         options = {};
       }
 
@@ -2289,21 +2296,6 @@ export namespace osconfig_v1alpha {
       } else {
         return createAPIRequest<Schema$OSPolicyAssignmentReport>(parameters);
       }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Getreport
-    extends StandardParameters {
-    /**
-     * Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
-     */
-    name?: string;
-  }
-
-  export class Resource$Projects$Locations$Instances$Ospolicyassignments$Reports {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
     }
 
     /**
@@ -2457,6 +2449,13 @@ export namespace osconfig_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$Get
+    extends StandardParameters {
+    /**
+     * Required. API resource name for OS policy assignment report. Format: `/projects/{project\}/locations/{location\}/instances/{instance\}/osPolicyAssignments/{assignment\}/report` For `{project\}`, either `project-number` or `project-id` can be provided. For `{instance_id\}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id\}`, the OSPolicyAssignment id must be provided.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Ospolicyassignments$Reports$List
     extends StandardParameters {
     /**

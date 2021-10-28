@@ -212,36 +212,34 @@
                   }
                 },
                 "osPolicyAssignments": {
-                  "methods": {
-                    "getReport": {
-                      "description": "Get the OS policy asssignment report for the specified Compute Engine VM instance.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/report",
-                      "httpMethod": "GET",
-                      "id": "osconfig.projects.locations.instances.osPolicyAssignments.getReport",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. API resource name for OS policy assignment report. Format: `/projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/report` For `{project}`, either `project-number` or `project-id` can be provided. For `{instance_id}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id}`, the OSPolicyAssignment id must be provided.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/osPolicyAssignments/[^/]+/report$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "OSPolicyAssignmentReport"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  },
                   "resources": {
                     "reports": {
                       "methods": {
+                        "get": {
+                          "description": "Get the OS policy asssignment report for the specified Compute Engine VM instance.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/report",
+                          "httpMethod": "GET",
+                          "id": "osconfig.projects.locations.instances.osPolicyAssignments.reports.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. API resource name for OS policy assignment report. Format: `/projects/{project}/locations/{location}/instances/{instance}/osPolicyAssignments/{assignment}/report` For `{project}`, either `project-number` or `project-id` can be provided. For `{instance_id}`, either Compute Engine `instance-id` or `instance-name` can be provided. For `{assignment_id}`, the OSPolicyAssignment id must be provided.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/osPolicyAssignments/[^/]+/report$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "OSPolicyAssignmentReport"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "list": {
                           "description": "List OS policy asssignment reports for all Compute Engine VM instances in the specified zone.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/osPolicyAssignments/{osPolicyAssignmentsId}/reports",
@@ -946,7 +944,7 @@
       }
     }
   },
-  "revision": "20211002",
+  "revision": "20211018",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -1487,7 +1485,7 @@
       "type": "object"
     },
     "InventoryWindowsApplication": {
-      "description": "Contains information about a Windows application that is retrieved from the Windows Registry. For more information about these fields, see Windows Installer Properties for the Uninstall Registry.",
+      "description": "Contains information about a Windows application that is retrieved from the Windows Registry. For more information about these fields, see: https://docs.microsoft.com/en-us/windows/win32/msi/uninstall-registry-key",
       "id": "InventoryWindowsApplication",
       "properties": {
         "displayName": {
@@ -3171,12 +3169,14 @@
           "enum": [
             "FREQUENCY_UNSPECIFIED",
             "WEEKLY",
-            "MONTHLY"
+            "MONTHLY",
+            "DAILY"
           ],
           "enumDescriptions": [
             "Invalid. A frequency must be specified.",
             "Indicates that the frequency should be expressed in terms of weeks.",
-            "Indicates that the frequency should be expressed in terms of months."
+            "Indicates that the frequency should be expressed in terms of months.",
+            "Indicates that the frequency should be expressed in terms of days."
           ],
           "type": "string"
         },
