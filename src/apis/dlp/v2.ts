@@ -2292,7 +2292,7 @@ export namespace dlp_v2 {
     windowBefore?: number | null;
   }
   /**
-   * Publish findings of a DlpJob to Cloud Data Catalog. Labels summarizing the results of the DlpJob will be applied to the entry for the resource scanned in Cloud Data Catalog. Any labels previously written by another DlpJob will be deleted. InfoType naming patterns are strictly enforced when using this feature. Note that the findings will be persisted in Cloud Data Catalog storage and are governed by Data Catalog service-specific policy, see https://cloud.google.com/terms/service-terms Only a single instance of this action can be specified and only allowed if all resources being scanned are BigQuery tables. Compatible with: Inspect
+   * Publish findings of a DlpJob to Data Catalog. Labels summarizing the results of the DlpJob will be applied to the entry for the resource scanned in Data Catalog. Any labels previously written by another DlpJob will be deleted. InfoType naming patterns are strictly enforced when using this feature. Note that the findings will be persisted in Data Catalog storage and are governed by Data Catalog service-specific policy, see https://cloud.google.com/terms/service-terms Only a single instance of this action can be specified and only allowed if all resources being scanned are BigQuery tables. Compatible with: Inspect
    */
   export interface Schema$GooglePrivacyDlpV2PublishFindingsToCloudDataCatalog {}
   /**
