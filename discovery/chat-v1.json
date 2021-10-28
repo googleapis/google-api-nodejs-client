@@ -114,6 +114,11 @@
               "required": true,
               "type": "string"
             },
+            "requestId": {
+              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "location": "query",
+              "type": "string"
+            },
             "threadKey": {
               "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
@@ -142,6 +147,11 @@
               "location": "path",
               "pattern": "^dms/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "location": "query",
               "type": "string"
             },
             "threadKey": {
@@ -176,6 +186,11 @@
                   "location": "path",
                   "pattern": "^dms/[^/]+/conversations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "requestId": {
+                  "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+                  "location": "query",
                   "type": "string"
                 },
                 "threadKey": {
@@ -241,6 +256,11 @@
               "required": true,
               "type": "string"
             },
+            "requestId": {
+              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "location": "query",
+              "type": "string"
+            },
             "threadKey": {
               "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
               "location": "query",
@@ -269,6 +289,11 @@
               "location": "path",
               "pattern": "^rooms/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "location": "query",
               "type": "string"
             },
             "threadKey": {
@@ -305,6 +330,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "requestId": {
+                  "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "threadKey": {
                   "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
@@ -335,7 +365,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Resource name of the space, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+              "description": "Required. Resource name of the space, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAAA",
               "location": "path",
               "pattern": "^spaces/[^/]+$",
               "required": true,
@@ -385,6 +415,11 @@
               "location": "path",
               "pattern": "^spaces/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "location": "query",
               "type": "string"
             },
             "threadKey": {
@@ -480,6 +515,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "requestId": {
+                  "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "threadKey": {
                   "description": "Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
                   "location": "query",
@@ -548,6 +588,7 @@
               ],
               "parameters": {
                 "name": {
+                  "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
@@ -601,7 +642,7 @@
       }
     }
   },
-  "revision": "20211008",
+  "revision": "20211020",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -2366,6 +2407,7 @@
           "type": "string"
         },
         "name": {
+          "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`",
           "type": "string"
         },
         "previewText": {
@@ -2498,7 +2540,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the space, in the form \"spaces/*\". Example: spaces/AAAAMpdlehYs",
+          "description": "Resource name of the space, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAAA",
           "type": "string"
         },
         "singleUserBotDm": {
@@ -2519,7 +2561,7 @@
           "enumDescriptions": [
             "",
             "Conversations between two or more humans.",
-            "1:1 Direct Message between a human and a Chat bot, where all messages are flat."
+            "1:1 Direct Message between a human and a Chat bot, where all messages are flat. Note that this does not include direct messages between two humans."
           ],
           "type": "string"
         }
