@@ -16,19 +16,29 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {tpu_v1} from './v1';
 import {tpu_v1alpha1} from './v1alpha1';
+import {tpu_v2alpha1} from './v2alpha1';
 
 export const VERSIONS = {
   v1: tpu_v1.Tpu,
   v1alpha1: tpu_v1alpha1.Tpu,
+  v2alpha1: tpu_v2alpha1.Tpu,
 };
 
 export function tpu(version: 'v1'): tpu_v1.Tpu;
 export function tpu(options: tpu_v1.Options): tpu_v1.Tpu;
 export function tpu(version: 'v1alpha1'): tpu_v1alpha1.Tpu;
 export function tpu(options: tpu_v1alpha1.Options): tpu_v1alpha1.Tpu;
-export function tpu<T = tpu_v1.Tpu | tpu_v1alpha1.Tpu>(
+export function tpu(version: 'v2alpha1'): tpu_v2alpha1.Tpu;
+export function tpu(options: tpu_v2alpha1.Options): tpu_v2alpha1.Tpu;
+export function tpu<T = tpu_v1.Tpu | tpu_v1alpha1.Tpu | tpu_v2alpha1.Tpu>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | tpu_v1.Options | 'v1alpha1' | tpu_v1alpha1.Options
+  versionOrOptions:
+    | 'v1'
+    | tpu_v1.Options
+    | 'v1alpha1'
+    | tpu_v1alpha1.Options
+    | 'v2alpha1'
+    | tpu_v2alpha1.Options
 ) {
   return getAPI<T>('tpu', versionOrOptions, VERSIONS, this);
 }
@@ -37,6 +47,7 @@ const auth = new AuthPlus();
 export {auth};
 export {tpu_v1};
 export {tpu_v1alpha1};
+export {tpu_v2alpha1};
 export {
   AuthPlus,
   GlobalOptions,
