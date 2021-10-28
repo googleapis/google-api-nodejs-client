@@ -313,9 +313,37 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20211026",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
+    "ActiveMetricRestriction": {
+      "description": "A metric actively restricted in creating the report.",
+      "id": "ActiveMetricRestriction",
+      "properties": {
+        "metricName": {
+          "description": "The name of the restricted metric.",
+          "type": "string"
+        },
+        "restrictedMetricTypes": {
+          "description": "The reason for this metric's restriction.",
+          "items": {
+            "enum": [
+              "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
+              "COST_DATA",
+              "REVENUE_DATA"
+            ],
+            "enumDescriptions": [
+              "Unspecified type.",
+              "Cost metrics such as `adCost`.",
+              "Revenue metrics such as `purchaseRevenue`."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BatchRunPivotReportsRequest": {
       "description": "The batch request containing multiple pivot report requests.",
       "id": "BatchRunPivotReportsRequest",
@@ -938,6 +966,23 @@
           "description": "A metric name. Useable in [Metric](#Metric)'s `name`. For example, `eventCount`.",
           "type": "string"
         },
+        "blockedReasons": {
+          "description": "If reasons are specified, your access is blocked to this metric for this property. API requests from you to this property for this metric will succeed; however, the report will contain only zeros for this metric. API requests with metric filters on blocked metrics will fail. If reasons are empty, you have access to this metric. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388).",
+          "items": {
+            "enum": [
+              "BLOCKED_REASON_UNSPECIFIED",
+              "NO_REVENUE_METRICS",
+              "NO_COST_METRICS"
+            ],
+            "enumDescriptions": [
+              "Will never be specified in API response.",
+              "If present, your access is blocked to revenue related metrics for this property, and this metric is revenue related.",
+              "If present, your access is blocked to cost related metrics for this property, and this metric is cost related."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "category": {
           "description": "The display name of the category that this metrics belongs to. Similar dimensions and metrics are categorized together.",
           "type": "string"
@@ -1289,6 +1334,14 @@
         "dataLossFromOtherRow": {
           "description": "If true, indicates some buckets of dimension combinations are rolled into \"(other)\" row. This can happen for high cardinality reports.",
           "type": "boolean"
+        },
+        "emptyReason": {
+          "description": "If empty reason is specified, the report is empty for this reason.",
+          "type": "string"
+        },
+        "schemaRestrictionResponse": {
+          "$ref": "SchemaRestrictionResponse",
+          "description": "Describes the schema restrictions actively enforced in creating this report. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388)."
         },
         "timeZone": {
           "description": "The property's current timezone. Intended to be used to interpret time-based dimensions like `hour` and `minute`. Formatted as strings from the IANA Time Zone database (https://www.iana.org/time-zones); for example \"America/New_York\" or \"Asia/Tokyo\".",
@@ -1724,6 +1777,20 @@
           "description": "If requested, the totaled values of metrics.",
           "items": {
             "$ref": "Row"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SchemaRestrictionResponse": {
+      "description": "The schema restrictions actively enforced in creating this report. To learn more, see [Access and data-restriction management](https://support.google.com/analytics/answer/10851388).",
+      "id": "SchemaRestrictionResponse",
+      "properties": {
+        "activeMetricRestrictions": {
+          "description": "All restrictions actively enforced in creating the report. For example, `purchaseRevenue` always has the restriction type `REVENUE_DATA`. However, this active response restriction is only populated if the user's custom role disallows access to `REVENUE_DATA`.",
+          "items": {
+            "$ref": "ActiveMetricRestriction"
           },
           "type": "array"
         }
