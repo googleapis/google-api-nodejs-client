@@ -137,6 +137,10 @@ export namespace storage_v1 {
      */
     acl?: Schema$BucketAccessControl[];
     /**
+     * The bucket's Autoclass configuration.
+     */
+    autoclass?: {enabled?: boolean; toggleTime?: string} | null;
+    /**
      * The bucket's billing configuration.
      */
     billing?: {requesterPays?: boolean} | null;
@@ -2173,6 +2177,7 @@ export namespace storage_v1 {
      *   // Example response
      *   // {
      *   //   "acl": [],
+     *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
      *   //   "customPlacementConfig": {},
@@ -2485,6 +2490,7 @@ export namespace storage_v1 {
      *       // request body parameters
      *       // {
      *       //   "acl": [],
+     *       //   "autoclass": {},
      *       //   "billing": {},
      *       //   "cors": [],
      *       //   "customPlacementConfig": {},
@@ -2521,6 +2527,7 @@ export namespace storage_v1 {
      *   // Example response
      *   // {
      *   //   "acl": [],
+     *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
      *   //   "customPlacementConfig": {},
@@ -2829,6 +2836,7 @@ export namespace storage_v1 {
      *   // Example response
      *   // {
      *   //   "acl": [],
+     *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
      *   //   "customPlacementConfig": {},
@@ -3002,6 +3010,7 @@ export namespace storage_v1 {
      *       // request body parameters
      *       // {
      *       //   "acl": [],
+     *       //   "autoclass": {},
      *       //   "billing": {},
      *       //   "cors": [],
      *       //   "customPlacementConfig": {},
@@ -3038,6 +3047,7 @@ export namespace storage_v1 {
      *   // Example response
      *   // {
      *   //   "acl": [],
+     *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
      *   //   "customPlacementConfig": {},
@@ -3511,6 +3521,7 @@ export namespace storage_v1 {
      *       // request body parameters
      *       // {
      *       //   "acl": [],
+     *       //   "autoclass": {},
      *       //   "billing": {},
      *       //   "cors": [],
      *       //   "customPlacementConfig": {},
@@ -3547,6 +3558,7 @@ export namespace storage_v1 {
      *   // Example response
      *   // {
      *   //   "acl": [],
+     *   //   "autoclass": {},
      *   //   "billing": {},
      *   //   "cors": [],
      *   //   "customPlacementConfig": {},
