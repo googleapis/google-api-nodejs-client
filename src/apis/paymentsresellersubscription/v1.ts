@@ -186,6 +186,10 @@ export namespace paymentsresellersubscription_v1 {
      * End of the free trial period, in ISO 8061 format. UTC timezone. Example, "freeTrialEndTime":"2019-08-31T17:28:54.564Z" This time will be set the same as initial subscription creation time if no free trial period is offered to the partner.
      */
     freeTrialEndTime?: string | null;
+    /**
+     * Output only. The time at which the subscription is expected to be renewed by Google - a new charge will be incurred and the service entitlement will be renewed. A non-immediate cancellation will take place at this time too, before which, the service entitlement for the end user will remain valid. UTC timezone in ISO 8061 format. For example: "2019-08-31T17:28:54.564Z"
+     */
+    renewalTime?: string | null;
   }
   /**
    * Describes the details of an extension request.
@@ -1278,7 +1282,8 @@ export namespace paymentsresellersubscription_v1 {
      *   // Example response
      *   // {
      *   //   "cycleEndTime": "my_cycleEndTime",
-     *   //   "freeTrialEndTime": "my_freeTrialEndTime"
+     *   //   "freeTrialEndTime": "my_freeTrialEndTime",
+     *   //   "renewalTime": "my_renewalTime"
      *   // }
      * }
      *
