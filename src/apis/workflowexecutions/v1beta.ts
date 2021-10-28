@@ -134,7 +134,7 @@ export namespace workflowexecutions_v1beta {
    */
   export interface Schema$Error {
     /**
-     * Human readable stack trace string.
+     * Human-readable stack trace string.
      */
     context?: string | null;
     /**
@@ -209,7 +209,7 @@ export namespace workflowexecutions_v1beta {
      */
     column?: string | null;
     /**
-     * The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node.
+     * The number of bytes of source code making up this stack trace element.
      */
     length?: string | null;
     /**
@@ -222,7 +222,7 @@ export namespace workflowexecutions_v1beta {
    */
   export interface Schema$StackTrace {
     /**
-     * An array of Stack elements.
+     * An array of stack elements.
      */
     elements?: Schema$StackTraceElement[];
   }
@@ -231,7 +231,7 @@ export namespace workflowexecutions_v1beta {
    */
   export interface Schema$StackTraceElement {
     /**
-     * The source position information of the stacktrace element.
+     * The source position information of the stack trace element.
      */
     position?: Schema$Position;
     /**
