@@ -546,6 +546,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "revert": {
+                  "description": "Revert an existing instance's file system to a specified snapshot.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:revert",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.instances.revert",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. projects/{project_id}/locations/{location_id}/instances/{instance_id}. The resource name of the instance, in the format",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:revert",
+                  "request": {
+                    "$ref": "RevertInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
@@ -846,7 +874,7 @@
       }
     }
   },
-  "revision": "20210822",
+  "revision": "20211017",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1358,7 +1386,8 @@
             "DELETING",
             "ERROR",
             "RESTORING",
-            "SUSPENDED"
+            "SUSPENDED",
+            "REVERTING"
           ],
           "enumDescriptions": [
             "State not set.",
@@ -1368,7 +1397,8 @@
             "The instance is shutting down.",
             "The instance is experiencing an issue and might be unusable. You can get further details from the `statusMessage` field of the `Instance` resource.",
             "The instance is restoring a snapshot or backup to an existing file share and may be unusable during this time.",
-            "The instance is suspended. You can get further details from the `suspension_reasons` field of the `Instance` resource."
+            "The instance is suspended. You can get further details from the `suspension_reasons` field of the `Instance` resource.",
+            "The instance is reverting to a snapshot."
           ],
           "readOnly": true,
           "type": "string"
@@ -1806,7 +1836,7 @@
       "type": "object"
     },
     "RestoreInstanceRequest": {
-      "description": "RestoreInstanceRequest restores an existing instances's file share from a snapshot or backup.",
+      "description": "RestoreInstanceRequest restores an existing instance's file share from a snapshot or backup.",
       "id": "RestoreInstanceRequest",
       "properties": {
         "fileShare": {
@@ -1819,6 +1849,17 @@
         },
         "sourceSnapshot": {
           "description": "The resource name of the snapshot, in the format `projects/{project_id}/locations/{location_id}/snapshots/{snapshot_id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RevertInstanceRequest": {
+      "description": "RevertInstanceRequest reverts the given instance's file share to the specified snapshot.",
+      "id": "RevertInstanceRequest",
+      "properties": {
+        "targetSnapshotId": {
+          "description": "Required. The snapshot resource ID, in the format 'my-snapshot', where the specified ID is the {snapshot_id} of the fully qualified name like projects/{project_id}/locations/{location_id}/instances/{instance_id}/snapshots/{snapshot_id}",
           "type": "string"
         }
       },
