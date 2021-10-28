@@ -310,7 +310,7 @@ export namespace content_v2_1 {
      */
     phoneNumber?: string | null;
     /**
-     * Verification status of the phone number of the business. This status is read only and can be updated only by successful phone verification. Acceptable values are: - "`verified`" - "`unverified`" "`unspecified`" -
+     * Verification status of the phone number of the business. This status is read only and can be updated only by successful phone verification. Acceptable values are: - "`verified`" - "`unverified`"
      */
     phoneVerificationStatus?: string | null;
   }
@@ -4313,6 +4313,10 @@ export namespace content_v2_1 {
    */
   export interface Schema$OrderTrackingSignalLineItemDetails {
     /**
+     * Brand of the product.
+     */
+    brand?: string | null;
+    /**
      * The Global Trade Item Number.
      */
     gtin?: string | null;
@@ -4325,7 +4329,7 @@ export namespace content_v2_1 {
      */
     mpn?: string | null;
     /**
-     * Plain text description of this product.
+     * Plain text description of this product (deprecated: Please use product_title instead).
      */
     productDescription?: string | null;
     /**
@@ -4333,15 +4337,19 @@ export namespace content_v2_1 {
      */
     productId?: string | null;
     /**
+     * Plain text title of this product.
+     */
+    productTitle?: string | null;
+    /**
      * Required. The quantity of the line item in the order.
      */
     quantity?: string | null;
     /**
-     * Merchant SKU for this item.
+     * Merchant SKU for this item (deprecated).
      */
     sku?: string | null;
     /**
-     * Universal product code for this item.
+     * Universal product code for this item (deprecated: Please use GTIN instead).
      */
     upc?: string | null;
   }
@@ -27328,6 +27336,169 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$Promotion>(parameters);
       }
     }
+
+    /**
+     * Retrieves a promotion from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.promotions.get({
+     *     // Required. REST ID of the promotion to retrieve.
+     *     id: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "brand": [],
+     *   //   "brandExclusion": [],
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "couponValueType": "my_couponValueType",
+     *   //   "freeGiftDescription": "my_freeGiftDescription",
+     *   //   "freeGiftItemId": "my_freeGiftItemId",
+     *   //   "freeGiftValue": {},
+     *   //   "genericRedemptionCode": "my_genericRedemptionCode",
+     *   //   "getThisQuantityDiscounted": 0,
+     *   //   "id": "my_id",
+     *   //   "itemGroupId": [],
+     *   //   "itemGroupIdExclusion": [],
+     *   //   "itemId": [],
+     *   //   "itemIdExclusion": [],
+     *   //   "limitQuantity": 0,
+     *   //   "limitValue": {},
+     *   //   "longTitle": "my_longTitle",
+     *   //   "minimumPurchaseAmount": {},
+     *   //   "minimumPurchaseQuantity": 0,
+     *   //   "moneyBudget": {},
+     *   //   "moneyOffAmount": {},
+     *   //   "offerType": "my_offerType",
+     *   //   "orderLimit": 0,
+     *   //   "percentOff": 0,
+     *   //   "productApplicability": "my_productApplicability",
+     *   //   "productType": [],
+     *   //   "productTypeExclusion": [],
+     *   //   "promotionDestinationIds": [],
+     *   //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *   //   "promotionId": "my_promotionId",
+     *   //   "redemptionChannel": [],
+     *   //   "shippingServiceNames": [],
+     *   //   "targetCountry": "my_targetCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Promotions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Promotions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Promotion>;
+    get(
+      params: Params$Resource$Promotions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Promotions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Promotion>,
+      callback: BodyResponseCallback<Schema$Promotion>
+    ): void;
+    get(
+      params: Params$Resource$Promotions$Get,
+      callback: BodyResponseCallback<Schema$Promotion>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Promotion>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Promotions$Get
+        | BodyResponseCallback<Schema$Promotion>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Promotion>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Promotion>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Promotion> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Promotions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Promotions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/promotions/{id}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'id'],
+        pathParams: ['id', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Promotion>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Promotion>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Promotions$Create
@@ -27341,6 +27512,16 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$Promotion;
+  }
+  export interface Params$Resource$Promotions$Get extends StandardParameters {
+    /**
+     * Required. REST ID of the promotion to retrieve.
+     */
+    id?: string;
+    /**
+     * Required. The ID of the account that contains the collection.
+     */
+    merchantId?: string;
   }
 
   export class Resource$Pubsubnotificationsettings {
