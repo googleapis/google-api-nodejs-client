@@ -375,7 +375,7 @@
       }
     }
   },
-  "revision": "20210903",
+  "revision": "20211022",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings": {
@@ -383,7 +383,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings",
       "properties": {
         "allowAllPackageNames": {
-          "description": "If set to true, it means allowed_package_names will not be enforced.",
+          "description": "If set to true, allowed_package_names are not enforced.",
           "type": "boolean"
         },
         "allowedPackageNames": {
@@ -538,7 +538,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1IOSKeySettings",
       "properties": {
         "allowAllBundleIds": {
-          "description": "If set to true, it means allowed_bundle_ids will not be enforced.",
+          "description": "If set to true, allowed_bundle_ids are not enforced.",
           "type": "boolean"
         },
         "allowedBundleIds": {
@@ -730,8 +730,8 @@
           ],
           "enumDescriptions": [
             "Perform the normal risk analysis and return either nocaptcha or a challenge depending on risk and trust factors.",
-            "Challenge requests for this key will always return a nocaptcha, which does not require a solution.",
-            "Challenge requests for this key will always return an unsolvable challenge."
+            "Challenge requests for this key always return a nocaptcha, which does not require a solution.",
+            "Challenge requests for this key always return an unsolvable challenge."
           ],
           "type": "string"
         },
@@ -797,7 +797,7 @@
           "type": "boolean"
         },
         "allowAmpTraffic": {
-          "description": "Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites. This can only be set for the SCORE integration type.",
+          "description": "If set to true, the key can be used on AMP (Accelerated Mobile Pages) websites. This is supported only for the SCORE integration type.",
           "type": "boolean"
         },
         "allowedDomains": {
