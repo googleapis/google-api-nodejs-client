@@ -448,7 +448,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.customers.get({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -739,7 +739,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.customers.patch({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -893,7 +893,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.customers.update({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1023,7 +1023,7 @@ export namespace reseller_v1 {
 
   export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
   }
@@ -1040,7 +1040,7 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Customers$Patch extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
 
@@ -1051,7 +1051,7 @@ export namespace reseller_v1 {
   }
   export interface Params$Resource$Customers$Update extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
 
@@ -1526,7 +1526,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.subscriptions.activate({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // This is a required property. The `subscriptionId` is the subscription identifier and is unique for each customer. Since a `subscriptionId` changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the `subscriptionId` can be found using the retrieve all reseller subscriptions method.
      *     subscriptionId: 'placeholder-value',
@@ -1674,7 +1674,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.subscriptions.changePlan({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // This is a required property. The `subscriptionId` is the subscription identifier and is unique for each customer. Since a `subscriptionId` changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the `subscriptionId` can be found using the retrieve all reseller subscriptions method.
      *     subscriptionId: 'placeholder-value',
@@ -1834,7 +1834,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.subscriptions.changeRenewalSettings({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // This is a required property. The `subscriptionId` is the subscription identifier and is unique for each customer. Since a `subscriptionId` changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the `subscriptionId` can be found using the retrieve all reseller subscriptions method.
      *     subscriptionId: 'placeholder-value',
@@ -1993,7 +1993,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.subscriptions.changeSeats({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // This is a required property. The `subscriptionId` is the subscription identifier and is unique for each customer. Since a `subscriptionId` changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the `subscriptionId` can be found using the retrieve all reseller subscriptions method.
      *     subscriptionId: 'placeholder-value',
@@ -2152,7 +2152,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.subscriptions.delete({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // The `deletionType` query string enables the cancellation, downgrade, or suspension of a subscription.
      *     deletionType: 'placeholder-value',
@@ -2281,7 +2281,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.subscriptions.get({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // This is a required property. The `subscriptionId` is the subscription identifier and is unique for each customer. Since a `subscriptionId` changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the `subscriptionId` can be found using the retrieve all reseller subscriptions method.
      *     subscriptionId: 'placeholder-value',
@@ -2431,7 +2431,7 @@ export namespace reseller_v1 {
      *   const res = await reseller.subscriptions.insert({
      *     // The `customerAuthToken` query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      *     customerAuthToken: 'placeholder-value',
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2606,7 +2606,7 @@ export namespace reseller_v1 {
      *   const res = await reseller.subscriptions.list({
      *     // The `customerAuthToken` query string is required when creating a resold account that transfers a direct customer's subscription or transfers another reseller customer's subscription to your reseller management. This is a hexadecimal authentication token needed to complete the subscription transfer. For more information, see the administrator help center.
      *     customerAuthToken: 'placeholder-value',
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes `exam.com`, `example20.com` and `example.com`: - `exa` -- Returns all customer names that start with 'exa' which could include `exam.com`, `example20.com`, and `example.com`. A name prefix is similar to using a regular expression's asterisk, exa*. - `example` -- Returns `example20.com` and `example.com`.
      *     customerNamePrefix: 'placeholder-value',
@@ -2743,7 +2743,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.subscriptions.startPaidService({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // This is a required property. The `subscriptionId` is the subscription identifier and is unique for each customer. Since a `subscriptionId` changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the `subscriptionId` can be found using the retrieve all reseller subscriptions method.
      *     subscriptionId: 'placeholder-value',
@@ -2891,7 +2891,7 @@ export namespace reseller_v1 {
      *
      *   // Do the magic
      *   const res = await reseller.subscriptions.suspend({
-     *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     *     // This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      *     customerId: 'placeholder-value',
      *     // This is a required property. The `subscriptionId` is the subscription identifier and is unique for each customer. Since a `subscriptionId` changes when a subscription is updated, we recommend to not use this ID as a key for persistent data. And the `subscriptionId` can be found using the retrieve all reseller subscriptions method.
      *     subscriptionId: 'placeholder-value',
@@ -3016,7 +3016,7 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Activate
     extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
@@ -3027,7 +3027,7 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Changeplan
     extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
@@ -3043,7 +3043,7 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Changerenewalsettings
     extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
@@ -3059,7 +3059,7 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Changeseats
     extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
@@ -3075,7 +3075,7 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Delete
     extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
@@ -3090,7 +3090,7 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Get
     extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
@@ -3105,7 +3105,7 @@ export namespace reseller_v1 {
      */
     customerAuthToken?: string;
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
 
@@ -3121,7 +3121,7 @@ export namespace reseller_v1 {
      */
     customerAuthToken?: string;
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
@@ -3140,7 +3140,7 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Startpaidservice
     extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
@@ -3151,7 +3151,7 @@ export namespace reseller_v1 {
   export interface Params$Resource$Subscriptions$Suspend
     extends StandardParameters {
     /**
-     * Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a `customerId` as a key for persistent data. If the domain name for a `customerId` is changed, the Google system automatically updates.
+     * This can be either the customer's primary domain name or the customer's unique identifier. If the domain name for a customer changes, the old domain name cannot be used to access the customer, but the customer's unique identifier (as returned by the API) can always be used. We recommend storing the unique identifier in your systems where applicable.
      */
     customerId?: string;
     /**
