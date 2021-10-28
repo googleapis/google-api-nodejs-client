@@ -599,7 +599,7 @@
       }
     }
   },
-  "revision": "20210821",
+  "revision": "20211018",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptRepository": {
@@ -1722,12 +1722,14 @@
           "enum": [
             "FREQUENCY_UNSPECIFIED",
             "WEEKLY",
-            "MONTHLY"
+            "MONTHLY",
+            "DAILY"
           ],
           "enumDescriptions": [
             "Invalid. A frequency must be specified.",
             "Indicates that the frequency should be expressed in terms of weeks.",
-            "Indicates that the frequency should be expressed in terms of months."
+            "Indicates that the frequency should be expressed in terms of months.",
+            "Indicates that the recurrence frequency should be expressed in terms of days."
           ],
           "type": "string"
         },
