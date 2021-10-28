@@ -373,7 +373,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20211026",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "ApiDataRow": {
@@ -433,9 +433,13 @@
             "EQUALS",
             "NOT_EQUALS",
             "CONTAINS",
-            "NOT_CONTAINS"
+            "NOT_CONTAINS",
+            "INCLUDING_REGEX",
+            "EXCLUDING_REGEX"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -669,13 +673,17 @@
             "WEB",
             "IMAGE",
             "VIDEO",
-            "NEWS"
+            "NEWS",
+            "DISCOVER",
+            "GOOGLE_NEWS"
           ],
           "enumDescriptions": [
             "",
             "",
             "",
-            "News tab in search."
+            "News tab in search.",
+            "Discover.",
+            "Google News (news.google.com or mobile app)."
           ],
           "type": "string"
         },
@@ -687,6 +695,26 @@
           "description": "[Optional; Default is 0] Zero-based index of the first row in the response. Must be a non-negative number.",
           "format": "int32",
           "type": "integer"
+        },
+        "type": {
+          "description": "Optional. [Optional; Default is \\\"web\\\"] Type of report: search type, or either Discover or Gnews.",
+          "enum": [
+            "WEB",
+            "IMAGE",
+            "VIDEO",
+            "NEWS",
+            "DISCOVER",
+            "GOOGLE_NEWS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "News tab in search.",
+            "Discover.",
+            "Google News (news.google.com or mobile app)."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

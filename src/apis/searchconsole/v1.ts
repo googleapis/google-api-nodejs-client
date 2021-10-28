@@ -268,6 +268,10 @@ export namespace searchconsole_v1 {
      * [Optional; Default is 0] Zero-based index of the first row in the response. Must be a non-negative number.
      */
     startRow?: number | null;
+    /**
+     * Optional. [Optional; Default is \"web\"] Type of report: search type, or either Discover or Gnews.
+     */
+    type?: string | null;
   }
   /**
    * A list of rows, one per result, grouped by key. Metrics in each row are aggregated for all data grouped by that key either by page or property, as specified by the aggregation type parameter.
@@ -436,7 +440,8 @@ export namespace searchconsole_v1 {
      *       //   "rowLimit": 0,
      *       //   "searchType": "my_searchType",
      *       //   "startDate": "my_startDate",
-     *       //   "startRow": 0
+     *       //   "startRow": 0,
+     *       //   "type": "my_type"
      *       // }
      *     },
      *   });
