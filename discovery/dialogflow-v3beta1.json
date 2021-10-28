@@ -457,6 +457,78 @@
                 }
               },
               "resources": {
+                "changelogs": {
+                  "methods": {
+                    "get": {
+                      "description": "Retrieves the specified Changelog.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/changelogs/{changelogsId}",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.changelogs.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the changelog to get. Format: `projects//locations//agents//changelogs/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/changelogs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1Changelog"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "list": {
+                      "description": "Returns the list of Changelogs.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/changelogs",
+                      "httpMethod": "GET",
+                      "id": "dialogflow.projects.locations.agents.changelogs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "The filter string. Supports filter by user_email, resource, type and create_time. Some examples: 1. By user email: user_email = \"someone@google.com\" 2. By resource name: resource = \"projects/123/locations/global/agents/456/flows/789\" 3. By resource display name: display_name = \"my agent\" 4. By action: action = \"Create\" 5. By type: type = \"flows\" 6. By create time. Currently predicates on `create_time` and `create_time_epoch_seconds` are supported: create_time_epoch_seconds > 1551790877 AND create_time <= 2017-01-15T01:30:15.01Z 7. Combination of above filters: resource = \"projects/123/locations/global/agents/456/flows/789\" AND user_email = \"someone@google.com\" AND create_time <= 2017-01-15T01:30:15.01Z",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "The next_page_token value returned from a previous list request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The agent containing the changelogs. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/changelogs",
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ListChangelogsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    }
+                  }
+                },
                 "entityTypes": {
                   "methods": {
                     "create": {
@@ -2161,6 +2233,35 @@
                     },
                     "versions": {
                       "methods": {
+                        "compareVersions": {
+                          "description": "Compares the specified base version with target version.",
+                          "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}/versions/{versionsId}:compareVersions",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.flows.versions.compareVersions",
+                          "parameterOrder": [
+                            "baseVersion"
+                          ],
+                          "parameters": {
+                            "baseVersion": {
+                              "description": "Required. Name of the base flow version to compare with the target version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents//flows//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/flows/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3beta1/{+baseVersion}:compareVersions",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1CompareVersionsRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3beta1CompareVersionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
                         "create": {
                           "description": "Creates a Version in the specified Flow. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: CreateVersionOperationMetadata - `response`: Version",
                           "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}/versions",
@@ -3719,7 +3820,7 @@
       }
     }
   },
-  "revision": "20211007",
+  "revision": "20211015",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -5596,6 +5697,77 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1Changelog": {
+      "description": "Changelogs represents a change made to a given agent.",
+      "id": "GoogleCloudDialogflowCxV3beta1Changelog",
+      "properties": {
+        "action": {
+          "description": "The action of the change.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "The timestamp of the change.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The affected resource display name of the change.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The unique identifier of the changelog. Format: `projects//locations//agents//changelogs/`.",
+          "type": "string"
+        },
+        "resource": {
+          "description": "The affected resource name of the change.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The affected resource type.",
+          "type": "string"
+        },
+        "userEmail": {
+          "description": "Email address of the authenticated user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1CompareVersionsRequest": {
+      "description": "The request message for Versions.CompareVersions.",
+      "id": "GoogleCloudDialogflowCxV3beta1CompareVersionsRequest",
+      "properties": {
+        "languageCode": {
+          "description": "The language to compare the flow versions for. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.",
+          "type": "string"
+        },
+        "targetVersion": {
+          "description": "Required. Name of the target flow version to compare with the base version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents//flows//versions/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1CompareVersionsResponse": {
+      "description": "The response message for Versions.CompareVersions.",
+      "id": "GoogleCloudDialogflowCxV3beta1CompareVersionsResponse",
+      "properties": {
+        "baseVersionContentJson": {
+          "description": "JSON representation of the base version content.",
+          "type": "string"
+        },
+        "compareTime": {
+          "description": "The timestamp when the two version compares.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "targetVersionContentJson": {
+          "description": "JSON representation of the target version content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ContinuousTestResult": {
       "description": "Represents a result from running a test case in an agent environment.",
       "id": "GoogleCloudDialogflowCxV3beta1ContinuousTestResult",
@@ -7129,6 +7301,24 @@
           "description": "The list of agents. There will be a maximum number of items returned based on the page_size field in the request.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1Agent"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ListChangelogsResponse": {
+      "description": "The response message for Changelogs.ListChangelogs.",
+      "id": "GoogleCloudDialogflowCxV3beta1ListChangelogsResponse",
+      "properties": {
+        "changelogs": {
+          "description": "The list of changelogs. There will be a maximum number of items returned based on the page_size field in the request. The changelogs will be ordered by timestamp.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1Changelog"
           },
           "type": "array"
         },
