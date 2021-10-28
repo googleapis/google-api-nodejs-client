@@ -111,6 +111,54 @@
     "customers": {
       "resources": {
         "apps": {
+          "methods": {
+            "countChromeAppRequests": {
+              "description": "Generate summary of app installation requests.",
+              "flatPath": "v1/customers/{customersId}/apps:countChromeAppRequests",
+              "httpMethod": "GET",
+              "id": "chromemanagement.customers.apps.countChromeAppRequests",
+              "parameterOrder": [
+                "customer"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field used to order results. Supported fields: * request_count * latest_request_time",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orgUnitId": {
+                  "description": "The ID of the organizational unit.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Maximum number of results to return. Maximum and default are 50, anything above will be coerced to 50.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Token to specify the page of the request to be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+customer}/apps:countChromeAppRequests",
+              "response": {
+                "$ref": "GoogleChromeManagementV1CountChromeAppRequestsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.appdetails.readonly"
+              ]
+            }
+          },
           "resources": {
             "android": {
               "methods": {
@@ -382,7 +430,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20211026",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -668,6 +716,50 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1ChromeAppRequest": {
+      "description": "Details of an app installation request.",
+      "id": "GoogleChromeManagementV1ChromeAppRequest",
+      "properties": {
+        "appDetails": {
+          "description": "Output only. Format: app_details=customers/{customer_id}/apps/chrome/{app_id}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "appId": {
+          "description": "Output only. Unique store identifier for the app. Example: \"gmbmikajjgmnabiglmofipeabaddhgne\" for the Save to Google Drive Chrome extension.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "detailUri": {
+          "description": "Output only. The uri for the detail page of the item.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. App's display name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "iconUri": {
+          "description": "Output only. A link to an image that can be used as an icon for the product.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "latestRequestTime": {
+          "description": "Output only. The timestamp of the most recently made request for this app.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestCount": {
+          "description": "Output only. Total count of requests for this app.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1ChromeAppSiteAccess": {
       "description": "Represent one host permission.",
       "id": "GoogleChromeManagementV1ChromeAppSiteAccess",
@@ -676,6 +768,29 @@
           "description": "Output only. This can contain very specific hosts, or patterns like \"*.com\" for instance.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CountChromeAppRequestsResponse": {
+      "description": "Response containing summary of requested app installations.",
+      "id": "GoogleChromeManagementV1CountChromeAppRequestsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to specify the next page in the list.",
+          "type": "string"
+        },
+        "requestedApps": {
+          "description": "Count of requested apps matching request.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1ChromeAppRequest"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "Total number of matching app requests.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
