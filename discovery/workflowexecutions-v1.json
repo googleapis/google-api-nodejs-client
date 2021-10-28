@@ -269,7 +269,7 @@
       }
     }
   },
-  "revision": "20210817",
+  "revision": "20211019",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -283,7 +283,7 @@
       "id": "Error",
       "properties": {
         "context": {
-          "description": "Human readable stack trace string.",
+          "description": "Human-readable stack trace string.",
           "type": "string"
         },
         "payload": {
@@ -401,7 +401,7 @@
           "type": "string"
         },
         "length": {
-          "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node.",
+          "description": "The number of bytes of source code making up this stack trace element.",
           "format": "int64",
           "type": "string"
         },
@@ -418,7 +418,7 @@
       "id": "StackTrace",
       "properties": {
         "elements": {
-          "description": "An array of Stack elements.",
+          "description": "An array of stack elements.",
           "items": {
             "$ref": "StackTraceElement"
           },
@@ -433,7 +433,7 @@
       "properties": {
         "position": {
           "$ref": "Position",
-          "description": "The source position information of the stacktrace element."
+          "description": "The source position information of the stack trace element."
         },
         "routine": {
           "description": "The routine where the error occurred.",
