@@ -153,7 +153,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20211015",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -208,6 +208,31 @@
           "description": "Optional. Input only. Volume gain (in dB) of the normal native volume supported by the specific voice, in the range [-96.0, 16.0]. If unset, or set to a value of 0.0 (dB), will play at normal native signal amplitude. A value of -6.0 (dB) will play at approximately half the amplitude of the normal native signal amplitude. A value of +6.0 (dB) will play at approximately twice the amplitude of the normal native signal amplitude. Strongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CustomVoiceParams": {
+      "description": "Description of the custom voice to be synthesized.",
+      "id": "CustomVoiceParams",
+      "properties": {
+        "model": {
+          "description": "Required. The name of the AutoML model that synthesizes the custom voice.",
+          "type": "string"
+        },
+        "reportedUsage": {
+          "description": "Optional. The usage of the synthesized audio to be reported.",
+          "enum": [
+            "REPORTED_USAGE_UNSPECIFIED",
+            "REALTIME",
+            "OFFLINE"
+          ],
+          "enumDescriptions": [
+            "Request with reported usage unspecified will be rejected.",
+            "For scenarios where the synthesized audio is not downloadable and can only be used once. For example, real-time request in IVR system.",
+            "For scenarios where the synthesized audio is downloadable and can be reused. For example, the synthesized audio is downloaded, stored in customer service system and played repeatedly."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -357,6 +382,10 @@
       "description": "Description of which voice to use for a synthesis request.",
       "id": "VoiceSelectionParams",
       "properties": {
+        "customVoice": {
+          "$ref": "CustomVoiceParams",
+          "description": "The configuration for a custom voice. If [CustomVoiceParams.model] is set, the service will choose the custom voice matching the specified configuration."
+        },
         "languageCode": {
           "description": "Required. The language (and potentially also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. \"en-US\". This should not include a script tag (e.g. use \"cmn-cn\" rather than \"cmn-Hant-cn\"), because the script will be inferred from the input provided in the SynthesisInput. The TTS service will use this parameter to help choose an appropriate voice. Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn't a Canadian voice available), or even a different language, e.g. using \"nb\" (Norwegian Bokmal) instead of \"no\" (Norwegian)\".",
           "type": "string"
