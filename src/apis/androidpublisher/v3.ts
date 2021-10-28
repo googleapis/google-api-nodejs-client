@@ -613,6 +613,10 @@ export namespace androidpublisher_v3 {
      */
     listings?: {[key: string]: Schema$InAppProductListing} | null;
     /**
+     * Details about taxes and legal compliance. Only applicable to managed products.
+     */
+    managedProductTaxesAndComplianceSettings?: Schema$ManagedProductTaxAndComplianceSettings;
+    /**
      * Package name of the parent app.
      */
     packageName?: string | null;
@@ -636,6 +640,10 @@ export namespace androidpublisher_v3 {
      * Subscription period, specified in ISO 8601 format. Acceptable values are P1W (one week), P1M (one month), P3M (three months), P6M (six months), and P1Y (one year).
      */
     subscriptionPeriod?: string | null;
+    /**
+     * Details about taxes and legal compliance. Only applicable to subscription products.
+     */
+    subscriptionTaxesAndComplianceSettings?: Schema$SubscriptionTaxAndComplianceSettings;
     /**
      * Trial period, specified in ISO 8601 format. Acceptable values are anything between P7D (seven days) and P999D (999 days).
      */
@@ -782,6 +790,21 @@ export namespace androidpublisher_v3 {
     text?: string | null;
   }
   /**
+   * Details about taxation and legal compliance for managed products.
+   */
+  export interface Schema$ManagedProductTaxAndComplianceSettings {
+    /**
+     * Digital content or service classification for products distributed to users in the European Economic Area (EEA). The withdrawal regime under EEA consumer laws depends on this classification. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information.
+     */
+    eeaWithdrawalRightType?: string | null;
+    /**
+     * A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR".
+     */
+    taxRateInfoByRegionCode?: {
+      [key: string]: Schema$RegionalTaxRateInfo;
+    } | null;
+  }
+  /**
    * Represents an amount of money with its currency type.
    */
   export interface Schema$Money {
@@ -897,6 +920,19 @@ export namespace androidpublisher_v3 {
      * Payload to attach to the purchase.
      */
     developerPayload?: string | null;
+  }
+  /**
+   * Specified details about taxation in a given geographical region.
+   */
+  export interface Schema$RegionalTaxRateInfo {
+    /**
+     * You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in United States.
+     */
+    eligibleForStreamingServiceTaxRate?: boolean | null;
+    /**
+     * Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498).
+     */
+    taxTier?: string | null;
   }
   /**
    * An Android app review.
@@ -1149,6 +1185,21 @@ export namespace androidpublisher_v3 {
      * The new expiry time for the subscription in milliseconds since the Epoch.
      */
     newExpiryTimeMillis?: string | null;
+  }
+  /**
+   * Details about taxation, Google Play policy and legal compliance for subscription products.
+   */
+  export interface Schema$SubscriptionTaxAndComplianceSettings {
+    /**
+     * Digital content or service classification for products distributed to users in the European Economic Area (EEA). The withdrawal regime under EEA consumer laws depends on this classification. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information.
+     */
+    eeaWithdrawalRightType?: string | null;
+    /**
+     * A mapping from region code to tax rate details. The keys are region codes as defined by Unicode's "CLDR".
+     */
+    taxRateInfoByRegionCode?: {
+      [key: string]: Schema$RegionalTaxRateInfo;
+    } | null;
   }
   /**
    * Response to list previously created system APK variants.
@@ -7757,12 +7808,14 @@ export namespace androidpublisher_v3 {
      *   //   "defaultPrice": {},
      *   //   "gracePeriod": "my_gracePeriod",
      *   //   "listings": {},
+     *   //   "managedProductTaxesAndComplianceSettings": {},
      *   //   "packageName": "my_packageName",
      *   //   "prices": {},
      *   //   "purchaseType": "my_purchaseType",
      *   //   "sku": "my_sku",
      *   //   "status": "my_status",
      *   //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *   //   "subscriptionTaxesAndComplianceSettings": {},
      *   //   "trialPeriod": "my_trialPeriod"
      *   // }
      * }
@@ -7899,12 +7952,14 @@ export namespace androidpublisher_v3 {
      *       //   "defaultPrice": {},
      *       //   "gracePeriod": "my_gracePeriod",
      *       //   "listings": {},
+     *       //   "managedProductTaxesAndComplianceSettings": {},
      *       //   "packageName": "my_packageName",
      *       //   "prices": {},
      *       //   "purchaseType": "my_purchaseType",
      *       //   "sku": "my_sku",
      *       //   "status": "my_status",
      *       //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *       //   "subscriptionTaxesAndComplianceSettings": {},
      *       //   "trialPeriod": "my_trialPeriod"
      *       // }
      *     },
@@ -7917,12 +7972,14 @@ export namespace androidpublisher_v3 {
      *   //   "defaultPrice": {},
      *   //   "gracePeriod": "my_gracePeriod",
      *   //   "listings": {},
+     *   //   "managedProductTaxesAndComplianceSettings": {},
      *   //   "packageName": "my_packageName",
      *   //   "prices": {},
      *   //   "purchaseType": "my_purchaseType",
      *   //   "sku": "my_sku",
      *   //   "status": "my_status",
      *   //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *   //   "subscriptionTaxesAndComplianceSettings": {},
      *   //   "trialPeriod": "my_trialPeriod"
      *   // }
      * }
@@ -8207,12 +8264,14 @@ export namespace androidpublisher_v3 {
      *       //   "defaultPrice": {},
      *       //   "gracePeriod": "my_gracePeriod",
      *       //   "listings": {},
+     *       //   "managedProductTaxesAndComplianceSettings": {},
      *       //   "packageName": "my_packageName",
      *       //   "prices": {},
      *       //   "purchaseType": "my_purchaseType",
      *       //   "sku": "my_sku",
      *       //   "status": "my_status",
      *       //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *       //   "subscriptionTaxesAndComplianceSettings": {},
      *       //   "trialPeriod": "my_trialPeriod"
      *       // }
      *     },
@@ -8225,12 +8284,14 @@ export namespace androidpublisher_v3 {
      *   //   "defaultPrice": {},
      *   //   "gracePeriod": "my_gracePeriod",
      *   //   "listings": {},
+     *   //   "managedProductTaxesAndComplianceSettings": {},
      *   //   "packageName": "my_packageName",
      *   //   "prices": {},
      *   //   "purchaseType": "my_purchaseType",
      *   //   "sku": "my_sku",
      *   //   "status": "my_status",
      *   //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *   //   "subscriptionTaxesAndComplianceSettings": {},
      *   //   "trialPeriod": "my_trialPeriod"
      *   // }
      * }
@@ -8371,12 +8432,14 @@ export namespace androidpublisher_v3 {
      *       //   "defaultPrice": {},
      *       //   "gracePeriod": "my_gracePeriod",
      *       //   "listings": {},
+     *       //   "managedProductTaxesAndComplianceSettings": {},
      *       //   "packageName": "my_packageName",
      *       //   "prices": {},
      *       //   "purchaseType": "my_purchaseType",
      *       //   "sku": "my_sku",
      *       //   "status": "my_status",
      *       //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *       //   "subscriptionTaxesAndComplianceSettings": {},
      *       //   "trialPeriod": "my_trialPeriod"
      *       // }
      *     },
@@ -8389,12 +8452,14 @@ export namespace androidpublisher_v3 {
      *   //   "defaultPrice": {},
      *   //   "gracePeriod": "my_gracePeriod",
      *   //   "listings": {},
+     *   //   "managedProductTaxesAndComplianceSettings": {},
      *   //   "packageName": "my_packageName",
      *   //   "prices": {},
      *   //   "purchaseType": "my_purchaseType",
      *   //   "sku": "my_sku",
      *   //   "status": "my_status",
      *   //   "subscriptionPeriod": "my_subscriptionPeriod",
+     *   //   "subscriptionTaxesAndComplianceSettings": {},
      *   //   "trialPeriod": "my_trialPeriod"
      *   // }
      * }
