@@ -116,7 +116,7 @@
         "profiles": {
           "methods": {
             "create": {
-              "description": "CreateProfile creates a new profile resource in the online mode. The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available. The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named \"google.rpc.retryinfo-bin\".",
+              "description": "CreateProfile creates a new profile resource in the online mode. The server ensures that the new profiles are created at a constant rate per deployment, so the creation request may hang for some time until the next profile session is available. The request may fail with ABORTED error if the creation is not available within ~1m, the response will indicate the duration of the backoff the client should take before attempting creating a profile again. The backoff duration is returned in google.rpc.RetryInfo extension on the response status. To a gRPC client, the extension will be return as a binary-serialized proto in the trailing metadata item named \"google.rpc.retryinfo-bin\". ",
               "flatPath": "v2/projects/{projectsId}/profiles",
               "httpMethod": "POST",
               "id": "cloudprofiler.projects.profiles.create",
@@ -216,11 +216,11 @@
       }
     }
   },
-  "revision": "20210903",
+  "revision": "20211016",
   "rootUrl": "https://cloudprofiler.googleapis.com/",
   "schemas": {
     "CreateProfileRequest": {
-      "description": "CreateProfileRequest describes a profile resource online creation request. The deployment field must be populated. The profile_type specifies the list of profile types supported by the agent. The creation call will hang until a profile of one of these types needs to be collected.",
+      "description": "CreateProfileRequest describes a profile resource online creation request. The deployment field must be populated. The profile_type specifies the list of profile types supported by the agent. The creation call will hang until a profile of one of these types needs to be collected. ",
       "id": "CreateProfileRequest",
       "properties": {
         "deployment": {

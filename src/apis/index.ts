@@ -198,8 +198,13 @@ import {
   VERSIONS as datamigrationVersions,
   datamigration,
 } from './datamigration';
+import {
+  VERSIONS as datapipelinesVersions,
+  datapipelines,
+} from './datapipelines';
 import {VERSIONS as dataprocVersions, dataproc} from './dataproc';
 import {VERSIONS as datastoreVersions, datastore} from './datastore';
+import {VERSIONS as datastreamVersions, datastream} from './datastream';
 import {
   VERSIONS as deploymentmanagerVersions,
   deploymentmanager,
@@ -641,8 +646,10 @@ export const APIS: APIList = {
   datafusion: datafusionVersions,
   datalabeling: datalabelingVersions,
   datamigration: datamigrationVersions,
+  datapipelines: datapipelinesVersions,
   dataproc: dataprocVersions,
   datastore: datastoreVersions,
+  datastream: datastreamVersions,
   deploymentmanager: deploymentmanagerVersions,
   dfareporting: dfareportingVersions,
   dialogflow: dialogflowVersions,
@@ -876,8 +883,10 @@ export class GeneratedAPIs {
   datafusion = datafusion;
   datalabeling = datalabeling;
   datamigration = datamigration;
+  datapipelines = datapipelines;
   dataproc = dataproc;
   datastore = datastore;
+  datastream = datastream;
   deploymentmanager = deploymentmanager;
   dfareporting = dfareporting;
   dialogflow = dialogflow;

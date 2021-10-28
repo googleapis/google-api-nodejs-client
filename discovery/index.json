@@ -1327,7 +1327,7 @@
       "name": "cloudsupport",
       "version": "v2beta",
       "title": "Google Cloud Support API",
-      "description": "Manages Google Cloud Platform Support account and tickets associated with them.",
+      "description": "Manages Google Cloud technical support cases for Customer Care support offerings.",
       "discoveryRestUrl": "https://cloudsupport.googleapis.com/$discovery/rest?version=v2beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1776,6 +1776,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "datapipelines:v1",
+      "name": "datapipelines",
+      "version": "v1",
+      "title": "Data pipelines API",
+      "description": "",
+      "discoveryRestUrl": "https://datapipelines.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/apis-explorer/#search/dataflow",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "dataproc:v1",
       "name": "dataproc",
       "version": "v1",
@@ -1832,6 +1847,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/datastore/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "datastream:v1alpha1",
+      "name": "datastream",
+      "version": "v1alpha1",
+      "title": "Datastream API",
+      "description": "",
+      "discoveryRestUrl": "https://datastream.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/datastream/",
       "preferred": true
     },
     {
@@ -2157,6 +2187,21 @@
       "title": "Cloud Domains API",
       "description": "Enables management and configuration of domain names.",
       "discoveryRestUrl": "https://domains.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/domains/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "domains:v1",
+      "name": "domains",
+      "version": "v1",
+      "title": "Cloud Domains API",
+      "description": "Enables management and configuration of domain names.",
+      "discoveryRestUrl": "https://domains.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4905,6 +4950,21 @@
       "title": "Cloud TPU API",
       "description": "TPU API provides customers with access to Google TPU technology.",
       "discoveryRestUrl": "https://tpu.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/tpu/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "tpu:v2alpha1",
+      "name": "tpu",
+      "version": "v2alpha1",
+      "title": "Cloud TPU API",
+      "description": "TPU API provides customers with access to Google TPU technology.",
+      "discoveryRestUrl": "https://tpu.googleapis.com/$discovery/rest?version=v2alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
