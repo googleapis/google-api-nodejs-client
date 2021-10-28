@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20210830",
+  "revision": "20211019",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountSuspensionDetails": {
@@ -440,7 +440,8 @@
             "TRAFFIC_PUMPING",
             "FRAUD",
             "NUMBER_HARVESTING",
-            "PAYMENTS_FRAUD"
+            "PAYMENTS_FRAUD",
+            "UNWANTED_CONTENT"
           ],
           "enumDescriptions": [
             "Abuse reason is unspecified.",
@@ -450,12 +451,13 @@
             "This account is being suspended for artificially boosting traffic to a website.",
             "This account is being suspended for fraud.",
             "This account is being suspended for number harvesting.",
-            "This account is being suspended for payments fraud."
+            "This account is being suspended for payments fraud.",
+            "This account is being suspended for unwanted content."
           ],
           "type": "string"
         },
         "productName": {
-          "description": "The name of the product being abused. This is restricted to only the following values: \"Gmail\" \"Payments\" \"Voice\" \"Workspace\" \"Other\"",
+          "description": "The name of the product being abused. This is restricted to only the following values: \"Gmail\" \"Google Workspace\" \"Payments\" \"Voice\" \"YouTube\" \"Other\"",
           "type": "string"
         }
       },
