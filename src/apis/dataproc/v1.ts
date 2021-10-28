@@ -157,6 +157,10 @@ export namespace dataproc_v1 {
      */
     id?: string | null;
     /**
+     * Optional. The labels to associate with this autoscaling policy. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with an autoscaling policy.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
      */
     name?: string | null;
@@ -177,6 +181,10 @@ export namespace dataproc_v1 {
      * Optional. Duration between scaling events. A scaling period starts after the update operation from the previous event has completed.Bounds: 2m, 1d. Default: 2m.
      */
     cooldownPeriod?: string | null;
+    /**
+     * Optional. Spark Standalone autoscaling configuration
+     */
+    sparkStandaloneConfig?: Schema$SparkStandaloneAutoscalingConfig;
     /**
      * Optional. YARN autoscaling configuration.
      */
@@ -245,19 +253,19 @@ export namespace dataproc_v1 {
     warnings?: string[] | null;
   }
   /**
-   * Associates members with a role.
+   * Associates members, or principals, with a role.
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
+     * Specifies the principals requesting access for a Cloud Platform resource. members can have the following values: allUsers: A special identifier that represents anyone who is on the internet; with or without a Google account. allAuthenticatedUsers: A special identifier that represents anyone who is authenticated with a Google account or a service account. user:{emailid\}: An email address that represents a specific Google account. For example, alice@example.com . serviceAccount:{emailid\}: An email address that represents a service account. For example, my-other-app@appspot.gserviceaccount.com. group:{emailid\}: An email address that represents a Google group. For example, admins@example.com. deleted:user:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a user that has been recently deleted. For example, alice@example.com?uid=123456789012345678901. If the user is recovered, this value reverts to user:{emailid\} and the recovered user retains the role in the binding. deleted:serviceAccount:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901. If the service account is undeleted, this value reverts to serviceAccount:{emailid\} and the undeleted service account retains the role in the binding. deleted:group:{emailid\}?uid={uniqueid\}: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, admins@example.com?uid=123456789012345678901. If the group is recovered, this value reverts to group:{emailid\} and the recovered group retains the role in the binding. domain:{domain\}: The G Suite domain (primary) that represents all the users of that domain. For example, google.com or example.com.
      */
     members?: string[] | null;
     /**
-     * Role that is assigned to members. For example, roles/viewer, roles/editor, or roles/owner.
+     * Role that is assigned to the list of members, or principals. For example, roles/viewer, roles/editor, or roles/owner.
      */
     role?: string | null;
   }
@@ -1376,11 +1384,11 @@ export namespace dataproc_v1 {
     scriptVariables?: {[key: string]: string} | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members, or principals, to a single role. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
-     * Associates a list of members to a role. Optionally, may specify a condition that determines how and when the bindings are applied. Each of the bindings must contain at least one member.The bindings in a Policy can refer to up to 1,500 members; up to 250 of these members can be Google groups. Each occurrence of a member counts towards these limits. For example, if the bindings grant 50 different roles to user:alice@example.com, and not to any other member, then you can add another 1,450 members to the bindings in the Policy.
+     * Associates a list of members, or principals, with a role. Optionally, may specify a condition that determines how and when the bindings are applied. Each of the bindings must contain at least one principal.The bindings in a Policy can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the bindings grant 50 different roles to user:alice@example.com, and not to any other principal, then you can add another 1,450 principals to the bindings in the Policy.
      */
     bindings?: Schema$Binding[];
     /**
@@ -1697,6 +1705,31 @@ export namespace dataproc_v1 {
      * Optional. Mapping of query variable names to values (equivalent to the Spark SQL command: SET name="value";).
      */
     scriptVariables?: {[key: string]: string} | null;
+  }
+  /**
+   * Basic autoscaling configurations for Spark Standalone.
+   */
+  export interface Schema$SparkStandaloneAutoscalingConfig {
+    /**
+     * Required. Timeout for Spark graceful decommissioning of spark workers. Specifies the duration to wait for spark worker to complete spark decomissioning tasks before forcefully removing workers. Only applicable to downscaling operations.Bounds: 0s, 1d.
+     */
+    gracefulDecommissionTimeout?: string | null;
+    /**
+     * Required. Fraction of required executors to remove from Spark Serverless clusters. A scale-down factor of 1.0 will result in scaling down so that there are no more executors for the Spark Job.(more aggressive scaling). A scale-down factor closer to 0 will result in a smaller magnitude of scaling donw (less aggressive scaling).Bounds: 0.0, 1.0.
+     */
+    scaleDownFactor?: number | null;
+    /**
+     * Optional. Minimum scale-down threshold as a fraction of total cluster size before scaling occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must recommend at least a 2 worker scale-down for the cluster to scale. A threshold of 0 means the autoscaler will scale down on any recommended change.Bounds: 0.0, 1.0. Default: 0.0.
+     */
+    scaleDownMinWorkerFraction?: number | null;
+    /**
+     * Required. Fraction of required workers to add to Spark Standalone clusters. A scale-up factor of 1.0 will result in scaling up so that there are no more required workers for the Spark Job (more aggressive scaling). A scale-up factor closer to 0 will result in a smaller magnitude of scaling up (less aggressive scaling).Bounds: 0.0, 1.0.
+     */
+    scaleUpFactor?: number | null;
+    /**
+     * Optional. Minimum scale-up threshold as a fraction of total cluster size before scaling occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must recommend at least a 2-worker scale-up for the cluster to scale. A threshold of 0 means the autoscaler will scale up on any recommended change.Bounds: 0.0, 1.0. Default: 0.0.
+     */
+    scaleUpMinWorkerFraction?: number | null;
   }
   /**
    * A request to start a cluster.
@@ -2040,6 +2073,7 @@ export namespace dataproc_v1 {
      *       // {
      *       //   "basicAlgorithm": {},
      *       //   "id": "my_id",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "secondaryWorkerConfig": {},
      *       //   "workerConfig": {}
@@ -2052,6 +2086,7 @@ export namespace dataproc_v1 {
      *   // {
      *   //   "basicAlgorithm": {},
      *   //   "id": "my_id",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "secondaryWorkerConfig": {},
      *   //   "workerConfig": {}
@@ -2314,6 +2349,7 @@ export namespace dataproc_v1 {
      *   // {
      *   //   "basicAlgorithm": {},
      *   //   "id": "my_id",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "secondaryWorkerConfig": {},
      *   //   "workerConfig": {}
@@ -3023,6 +3059,7 @@ export namespace dataproc_v1 {
      *       // {
      *       //   "basicAlgorithm": {},
      *       //   "id": "my_id",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "secondaryWorkerConfig": {},
      *       //   "workerConfig": {}
@@ -3035,6 +3072,7 @@ export namespace dataproc_v1 {
      *   // {
      *   //   "basicAlgorithm": {},
      *   //   "id": "my_id",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "secondaryWorkerConfig": {},
      *   //   "workerConfig": {}
@@ -4862,6 +4900,7 @@ export namespace dataproc_v1 {
      *       // {
      *       //   "basicAlgorithm": {},
      *       //   "id": "my_id",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "secondaryWorkerConfig": {},
      *       //   "workerConfig": {}
@@ -4874,6 +4913,7 @@ export namespace dataproc_v1 {
      *   // {
      *   //   "basicAlgorithm": {},
      *   //   "id": "my_id",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "secondaryWorkerConfig": {},
      *   //   "workerConfig": {}
@@ -5136,6 +5176,7 @@ export namespace dataproc_v1 {
      *   // {
      *   //   "basicAlgorithm": {},
      *   //   "id": "my_id",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "secondaryWorkerConfig": {},
      *   //   "workerConfig": {}
@@ -5842,6 +5883,7 @@ export namespace dataproc_v1 {
      *       // {
      *       //   "basicAlgorithm": {},
      *       //   "id": "my_id",
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "secondaryWorkerConfig": {},
      *       //   "workerConfig": {}
@@ -5854,6 +5896,7 @@ export namespace dataproc_v1 {
      *   // {
      *   //   "basicAlgorithm": {},
      *   //   "id": "my_id",
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "secondaryWorkerConfig": {},
      *   //   "workerConfig": {}
