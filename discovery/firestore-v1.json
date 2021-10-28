@@ -677,7 +677,7 @@
                       "type": "boolean"
                     },
                     "currentDocument.updateTime": {
-                      "description": "When set, the target document must exist and have been last updated at that time.",
+                      "description": "When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -917,7 +917,7 @@
                       "type": "boolean"
                     },
                     "currentDocument.updateTime": {
-                      "description": "When set, the target document must exist and have been last updated at that time.",
+                      "description": "When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.",
                       "format": "google-datetime",
                       "location": "query",
                       "type": "string"
@@ -1247,7 +1247,7 @@
       }
     }
   },
-  "revision": "20210927",
+  "revision": "20211013",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -1790,6 +1790,12 @@
             "Use pessimistic concurrency control by default. This setting is available for Cloud Firestore customers. This is the default setting for Cloud Firestore.",
             "Use optimistic concurrency control with entity groups by default. This is the only available setting for Cloud Datastore customers. This is the default setting for Cloud Datastore."
           ],
+          "type": "string"
+        },
+        "earliestVersionTime": {
+          "description": "Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery. Note that you should not need to query this field: if you know the `version_retention_period` then you can query within that time.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "etag": {
@@ -2646,7 +2652,7 @@
           "type": "boolean"
         },
         "updateTime": {
-          "description": "When set, the target document must exist and have been last updated at that time.",
+          "description": "When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.",
           "format": "google-datetime",
           "type": "string"
         }
