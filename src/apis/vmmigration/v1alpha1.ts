@@ -205,6 +205,10 @@ export namespace vmmigration_v1alpha1 {
      */
     appliedLicense?: Schema$AppliedLicense;
     /**
+     * Output only. The VM Boot Option, as set in the source vm.
+     */
+    bootOption?: string | null;
+    /**
      * Compute instance scheduling information (if empty default is used).
      */
     computeScheduling?: Schema$ComputeScheduling;
@@ -229,6 +233,10 @@ export namespace vmmigration_v1alpha1 {
      */
     machineTypeSeries?: string | null;
     /**
+     * The metadata key/value pairs to assign to the VM.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
      * List of NICs connected to this VM.
      */
     networkInterfaces?: Schema$NetworkInterface[];
@@ -236,6 +244,10 @@ export namespace vmmigration_v1alpha1 {
      * A map of network tags to associate with the VM.
      */
     networkTags?: string[] | null;
+    /**
+     * Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.
+     */
+    secureBoot?: boolean | null;
     /**
      * The service account to associate the VM with.
      */
@@ -262,6 +274,10 @@ export namespace vmmigration_v1alpha1 {
      */
     appliedLicense?: Schema$AppliedLicense;
     /**
+     * The VM Boot Option, as set in the source vm.
+     */
+    bootOption?: string | null;
+    /**
      * Compute instance scheduling information (if empty default is used).
      */
     computeScheduling?: Schema$ComputeScheduling;
@@ -286,6 +302,10 @@ export namespace vmmigration_v1alpha1 {
      */
     machineTypeSeries?: string | null;
     /**
+     * The metadata key/value pairs to assign to the VM.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
      * List of NICs connected to this VM.
      */
     networkInterfaces?: Schema$NetworkInterface[];
@@ -297,6 +317,10 @@ export namespace vmmigration_v1alpha1 {
      * The GCP target project ID or project name.
      */
     project?: string | null;
+    /**
+     * Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.
+     */
+    secureBoot?: boolean | null;
     /**
      * The service account to associate the VM with.
      */
@@ -1031,6 +1055,10 @@ export namespace vmmigration_v1alpha1 {
      */
     appliedLicense?: Schema$AppliedLicense;
     /**
+     * Output only. The VM Boot Option, as set in the source vm.
+     */
+    bootOption?: string | null;
+    /**
      * Compute instance scheduling information (if empty default is used).
      */
     computeScheduling?: Schema$ComputeScheduling;
@@ -1063,6 +1091,10 @@ export namespace vmmigration_v1alpha1 {
      */
     machineTypeSeries?: string | null;
     /**
+     * The metadata key/value pairs to assign to the VM.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
      * The name of the VM to create.
      */
     name?: string | null;
@@ -1082,6 +1114,10 @@ export namespace vmmigration_v1alpha1 {
      * The project in which to create the VM.
      */
     project?: string | null;
+    /**
+     * Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.
+     */
+    secureBoot?: boolean | null;
     /**
      * The service account to associate the VM with.
      */

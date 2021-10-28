@@ -1828,7 +1828,7 @@
       }
     }
   },
-  "revision": "20211001",
+  "revision": "20211014",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -1964,6 +1964,21 @@
           "description": "Output only. The OS license returned from the adaptation module report.",
           "readOnly": true
         },
+        "bootOption": {
+          "description": "Output only. The VM Boot Option, as set in the source vm.",
+          "enum": [
+            "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
+            "COMPUTE_ENGINE_BOOT_OPTION_EFI",
+            "COMPUTE_ENGINE_BOOT_OPTION_BIOS"
+          ],
+          "enumDescriptions": [
+            "The boot option is unknown.",
+            "The boot option is EFI.",
+            "The boot option is BIOS."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "computeScheduling": {
           "$ref": "ComputeScheduling",
           "description": "Compute instance scheduling information (if empty default is used)."
@@ -2013,6 +2028,13 @@
           "description": "The machine type series to create the VM with.",
           "type": "string"
         },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The metadata key/value pairs to assign to the VM.",
+          "type": "object"
+        },
         "networkInterfaces": {
           "description": "List of NICs connected to this VM.",
           "items": {
@@ -2026,6 +2048,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "secureBoot": {
+          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.",
+          "type": "boolean"
         },
         "serviceAccount": {
           "description": "The service account to associate the VM with.",
@@ -2054,6 +2080,20 @@
           "$ref": "AppliedLicense",
           "description": "The OS license returned from the adaptation module report."
         },
+        "bootOption": {
+          "description": "The VM Boot Option, as set in the source vm.",
+          "enum": [
+            "COMPUTE_ENGINE_BOOT_OPTION_UNSPECIFIED",
+            "COMPUTE_ENGINE_BOOT_OPTION_EFI",
+            "COMPUTE_ENGINE_BOOT_OPTION_BIOS"
+          ],
+          "enumDescriptions": [
+            "The boot option is unknown.",
+            "The boot option is EFI.",
+            "The boot option is BIOS."
+          ],
+          "type": "string"
+        },
         "computeScheduling": {
           "$ref": "ComputeScheduling",
           "description": "Compute instance scheduling information (if empty default is used)."
@@ -2103,6 +2143,13 @@
           "description": "The machine type series to create the VM with.",
           "type": "string"
         },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The metadata key/value pairs to assign to the VM.",
+          "type": "object"
+        },
         "networkInterfaces": {
           "description": "List of NICs connected to this VM.",
           "items": {
@@ -2120,6 +2167,10 @@
         "project": {
           "description": "The GCP target project ID or project name.",
           "type": "string"
+        },
+        "secureBoot": {
+          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.",
+          "type": "boolean"
         },
         "serviceAccount": {
           "description": "The service account to associate the VM with.",
@@ -3244,6 +3295,21 @@
           "description": "Output only. The OS license returned from the adaptation module report.",
           "readOnly": true
         },
+        "bootOption": {
+          "description": "Output only. The VM Boot Option, as set in the source vm.",
+          "enum": [
+            "BOOT_OPTION_UNSPECIFIED",
+            "EFI",
+            "BIOS"
+          ],
+          "enumDescriptions": [
+            "The boot option is unknown.",
+            "The boot option is EFI.",
+            "The boot option is BIOS."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "computeScheduling": {
           "$ref": "ComputeScheduling",
           "description": "Compute instance scheduling information (if empty default is used)."
@@ -3301,6 +3367,13 @@
           "description": "The machine type series to create the VM with.",
           "type": "string"
         },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The metadata key/value pairs to assign to the VM.",
+          "type": "object"
+        },
         "name": {
           "description": "The name of the VM to create.",
           "type": "string"
@@ -3326,6 +3399,10 @@
         "project": {
           "description": "The project in which to create the VM.",
           "type": "string"
+        },
+        "secureBoot": {
+          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.",
+          "type": "boolean"
         },
         "serviceAccount": {
           "description": "The service account to associate the VM with.",
