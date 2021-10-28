@@ -300,6 +300,39 @@ export namespace chromemanagement_v1 {
     type?: string | null;
   }
   /**
+   * Details of an app installation request.
+   */
+  export interface Schema$GoogleChromeManagementV1ChromeAppRequest {
+    /**
+     * Output only. Format: app_details=customers/{customer_id\}/apps/chrome/{app_id\}
+     */
+    appDetails?: string | null;
+    /**
+     * Output only. Unique store identifier for the app. Example: "gmbmikajjgmnabiglmofipeabaddhgne" for the Save to Google Drive Chrome extension.
+     */
+    appId?: string | null;
+    /**
+     * Output only. The uri for the detail page of the item.
+     */
+    detailUri?: string | null;
+    /**
+     * Output only. App's display name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. A link to an image that can be used as an icon for the product.
+     */
+    iconUri?: string | null;
+    /**
+     * Output only. The timestamp of the most recently made request for this app.
+     */
+    latestRequestTime?: string | null;
+    /**
+     * Output only. Total count of requests for this app.
+     */
+    requestCount?: string | null;
+  }
+  /**
    * Represent one host permission.
    */
   export interface Schema$GoogleChromeManagementV1ChromeAppSiteAccess {
@@ -307,6 +340,23 @@ export namespace chromemanagement_v1 {
      * Output only. This can contain very specific hosts, or patterns like "*.com" for instance.
      */
     hostMatch?: string | null;
+  }
+  /**
+   * Response containing summary of requested app installations.
+   */
+  export interface Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse {
+    /**
+     * Token to specify the next page in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Count of requested apps matching request.
+     */
+    requestedApps?: Schema$GoogleChromeManagementV1ChromeAppRequest[];
+    /**
+     * Total number of matching app requests.
+     */
+    totalSize?: number | null;
   }
   /**
    * Response containing requested browser versions details and counts.
@@ -461,6 +511,180 @@ export namespace chromemanagement_v1 {
       this.chrome = new Resource$Customers$Apps$Chrome(this.context);
       this.web = new Resource$Customers$Apps$Web(this.context);
     }
+
+    /**
+     * Generate summary of app installation requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.apps.countChromeAppRequests({
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Field used to order results. Supported fields: * request_count * latest_request_time
+     *     orderBy: 'placeholder-value',
+     *     // The ID of the organizational unit.
+     *     orgUnitId: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 50, anything above will be coerced to 50.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the request to be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "requestedApps": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    countChromeAppRequests(
+      params: Params$Resource$Customers$Apps$Countchromeapprequests,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    countChromeAppRequests(
+      params?: Params$Resource$Customers$Apps$Countchromeapprequests,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>;
+    countChromeAppRequests(
+      params: Params$Resource$Customers$Apps$Countchromeapprequests,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    countChromeAppRequests(
+      params: Params$Resource$Customers$Apps$Countchromeapprequests,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
+    ): void;
+    countChromeAppRequests(
+      params: Params$Resource$Customers$Apps$Countchromeapprequests,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
+    ): void;
+    countChromeAppRequests(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
+    ): void;
+    countChromeAppRequests(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Apps$Countchromeapprequests
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Apps$Countchromeapprequests;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Apps$Countchromeapprequests;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/apps:countChromeAppRequests'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1CountChromeAppRequestsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Apps$Countchromeapprequests
+    extends StandardParameters {
+    /**
+     * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     */
+    customer?: string;
+    /**
+     * Field used to order results. Supported fields: * request_count * latest_request_time
+     */
+    orderBy?: string;
+    /**
+     * The ID of the organizational unit.
+     */
+    orgUnitId?: string;
+    /**
+     * Maximum number of results to return. Maximum and default are 50, anything above will be coerced to 50.
+     */
+    pageSize?: number;
+    /**
+     * Token to specify the page of the request to be returned.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Customers$Apps$Android {
