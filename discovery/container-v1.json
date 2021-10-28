@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20210920",
+  "revision": "20211008",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2898,6 +2898,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "nodePoolDefaults": {
+          "$ref": "NodePoolDefaults",
+          "description": "Default NodePool settings for the entire cluster. These settings are overridden if specified on the specific NodePool object."
+        },
         "nodePools": {
           "description": "The node pools associated with this cluster. This field should not be set if \"node_config\" or \"initial_node_count\" are specified.",
           "items": {
@@ -3044,10 +3048,6 @@
           "$ref": "AuthenticatorGroupsConfig",
           "description": "The desired authenticator groups config for the cluster."
         },
-        "desiredAutopilot": {
-          "$ref": "Autopilot",
-          "description": "The desired Autopilot configuration for the cluster."
-        },
         "desiredBinaryAuthorization": {
           "$ref": "BinaryAuthorization",
           "description": "The desired configuration options for the Binary Authorization feature."
@@ -3077,6 +3077,14 @@
         "desiredDefaultSnatStatus": {
           "$ref": "DefaultSnatStatus",
           "description": "The desired status of whether to disable default sNAT for this cluster."
+        },
+        "desiredDnsConfig": {
+          "$ref": "DNSConfig",
+          "description": "DNSConfig contains clusterDNS config for this cluster."
+        },
+        "desiredGcfsConfig": {
+          "$ref": "GcfsConfig",
+          "description": "The desired GCFS config for the cluster"
         },
         "desiredImageType": {
           "description": "The desired image type for the node pool. NOTE: Set the \"desired_node_pool\" field as well.",
@@ -3290,6 +3298,43 @@
       },
       "type": "object"
     },
+    "DNSConfig": {
+      "description": "DNSConfig contains the desired set of options for configuring clusterDNS.",
+      "id": "DNSConfig",
+      "properties": {
+        "clusterDns": {
+          "description": "cluster_dns indicates which in-cluster DNS provider should be used.",
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "PLATFORM_DEFAULT",
+            "CLOUD_DNS"
+          ],
+          "enumDescriptions": [
+            "Default value",
+            "Use GKE default DNS provider(kube-dns) for DNS resolution.",
+            "Use CloudDNS for DNS resolution."
+          ],
+          "type": "string"
+        },
+        "clusterDnsDomain": {
+          "description": "cluster_dns_domain is the suffix used for all cluster service records.",
+          "type": "string"
+        },
+        "clusterDnsScope": {
+          "description": "cluster_dns_scope indicates the scope of access to cluster DNS records.",
+          "enum": [
+            "DNS_SCOPE_UNSPECIFIED",
+            "VPC_SCOPE"
+          ],
+          "enumDescriptions": [
+            "Default value, will be inferred as cluster scope.",
+            "DNS records are accessible from within the VPC."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DailyMaintenanceWindow": {
       "description": "Time window specified for daily maintenance operations.",
       "id": "DailyMaintenanceWindow",
@@ -3364,6 +3409,17 @@
       "properties": {
         "enabled": {
           "description": "Whether the Compute Engine PD CSI driver is enabled for this cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GcfsConfig": {
+      "description": "GcfsConfig contains configurations of Google Container File System (image streaming).",
+      "id": "GcfsConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether to use GCFS.",
           "type": "boolean"
         }
       },
@@ -3947,6 +4003,10 @@
           "$ref": "DefaultSnatStatus",
           "description": "Whether the cluster disables default in-node sNAT rules. In-node sNAT rules will be disabled when default_snat_status is disabled. When disabled is set to false, default IP masquerade rules will be applied to the nodes to prevent sNAT on cluster internal traffic."
         },
+        "dnsConfig": {
+          "$ref": "DNSConfig",
+          "description": "DNSConfig contains clusterDNS config for this cluster."
+        },
         "enableIntraNodeVisibility": {
           "description": "Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.",
           "type": "boolean"
@@ -4040,6 +4100,10 @@
           "description": "Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'",
           "type": "string"
         },
+        "gcfsConfig": {
+          "$ref": "GcfsConfig",
+          "description": "Google Container File System (image streaming) configs."
+        },
         "gvnic": {
           "$ref": "VirtualNIC",
           "description": "Enable or disable gvnic in the node pool."
@@ -4131,6 +4195,17 @@
         "workloadMetadataConfig": {
           "$ref": "WorkloadMetadataConfig",
           "description": "The workload metadata configuration for this node."
+        }
+      },
+      "type": "object"
+    },
+    "NodeConfigDefaults": {
+      "description": "Subset of NodeConfig message that has defaults.",
+      "id": "NodeConfigDefaults",
+      "properties": {
+        "gcfsConfig": {
+          "$ref": "GcfsConfig",
+          "description": "GCFS (Google Container File System, a.k.a Riptide) options."
         }
       },
       "type": "object"
@@ -4313,6 +4388,17 @@
           "description": "Minimum number of nodes for one location in the NodePool. Must be >= 1 and <= max_node_count.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "NodePoolDefaults": {
+      "description": "Subset of Nodepool message that has defaults.",
+      "id": "NodePoolDefaults",
+      "properties": {
+        "nodeConfigDefaults": {
+          "$ref": "NodeConfigDefaults",
+          "description": "Subset of NodeConfig message that has defaults."
         }
       },
       "type": "object"
@@ -5421,6 +5507,10 @@
         "clusterId": {
           "description": "Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.",
           "type": "string"
+        },
+        "gcfsConfig": {
+          "$ref": "GcfsConfig",
+          "description": "GCFS config."
         },
         "gvnic": {
           "$ref": "VirtualNIC",

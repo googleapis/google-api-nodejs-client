@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210920",
+  "revision": "20211008",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3151,10 +3151,6 @@
           "$ref": "AuthenticatorGroupsConfig",
           "description": "AuthenticatorGroupsConfig specifies the config for the cluster security groups settings."
         },
-        "desiredAutopilot": {
-          "$ref": "Autopilot",
-          "description": "The desired Autopilot configuration for the cluster."
-        },
         "desiredBinaryAuthorization": {
           "$ref": "BinaryAuthorization",
           "description": "The desired configuration options for the Binary Authorization feature."
@@ -3192,6 +3188,10 @@
         "desiredDnsConfig": {
           "$ref": "DNSConfig",
           "description": "DNSConfig contains clusterDNS config for this cluster."
+        },
+        "desiredGcfsConfig": {
+          "$ref": "GcfsConfig",
+          "description": "The desired GCFS config for the cluster"
         },
         "desiredIdentityServiceConfig": {
           "$ref": "IdentityServiceConfig",
@@ -3576,6 +3576,17 @@
       "properties": {
         "enabled": {
           "description": "Whether the Compute Engine PD CSI driver is enabled for this cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GcfsConfig": {
+      "description": "GcfsConfig contains configurations of Google Container File System.",
+      "id": "GcfsConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether to use GCFS.",
           "type": "boolean"
         }
       },
@@ -4386,6 +4397,10 @@
           "$ref": "EphemeralStorageConfig",
           "description": "Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk."
         },
+        "gcfsConfig": {
+          "$ref": "GcfsConfig",
+          "description": "GCFS (Google Container File System) configs."
+        },
         "gvnic": {
           "$ref": "VirtualNIC",
           "description": "Enable or disable gvnic on the node pool."
@@ -4488,7 +4503,12 @@
     "NodeConfigDefaults": {
       "description": "Subset of NodeConfig message that has defaults.",
       "id": "NodeConfigDefaults",
-      "properties": {},
+      "properties": {
+        "gcfsConfig": {
+          "$ref": "GcfsConfig",
+          "description": "GCFS (Google Container File System, a.k.a Riptide) options."
+        }
+      },
       "type": "object"
     },
     "NodeKubeletConfig": {
@@ -5875,6 +5895,10 @@
         "clusterId": {
           "description": "Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.",
           "type": "string"
+        },
+        "gcfsConfig": {
+          "$ref": "GcfsConfig",
+          "description": "GCFS config."
         },
         "gvnic": {
           "$ref": "VirtualNIC",
