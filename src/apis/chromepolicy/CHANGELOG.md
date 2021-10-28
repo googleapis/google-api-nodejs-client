@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.5.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v0.5.0...chromepolicy-v0.5.1) (2021-10-28)
+
+
+### Bug Fixes
+
+* **chromepolicy:** update the API ([b111853](https://www.github.com/googleapis/google-api-nodejs-client/commit/b11185341b211111a86783c81bccaed6f8f3f8ab))
+* **chromepolicy:** update the API ([2fc5102](https://www.github.com/googleapis/google-api-nodejs-client/commit/2fc5102b0f39a10225c029fe39f894b45671dd1c))
+
 ## [0.5.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/chromepolicy-v0.4.0...chromepolicy-v0.5.0) (2021-10-18)
 
 
