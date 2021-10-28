@@ -691,6 +691,10 @@ export namespace analyticsreporting_v4 {
      */
     dataLastRefreshed?: string | null;
     /**
+     * If empty reason is specified, the report is empty for this reason.
+     */
+    emptyReason?: string | null;
+    /**
      * Indicates if response to this request is golden or not. Data is golden when the exact same request will not produce any new results if asked at a later point in time.
      */
     isDataGolden?: boolean | null;
