@@ -860,7 +860,7 @@ export namespace firestore_v1beta1 {
      */
     exists?: boolean | null;
     /**
-     * When set, the target document must exist and have been last updated at that time.
+     * When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.
      */
     updateTime?: string | null;
   }
@@ -2350,7 +2350,7 @@ export namespace firestore_v1beta1 {
      *   const res = await firestore.projects.databases.documents.delete({
      *     // When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      *     'currentDocument.exists': 'placeholder-value',
-     *     // When set, the target document must exist and have been last updated at that time.
+     *     // When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.
      *     'currentDocument.updateTime': 'placeholder-value',
      *     // Required. The resource name of the Document to delete. In the format: `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`.
      *     name: 'projects/my-project/databases/my-database/documents/my-document/.*',
@@ -3224,7 +3224,7 @@ export namespace firestore_v1beta1 {
      *   const res = await firestore.projects.databases.documents.patch({
      *     // When set to `true`, the target document must exist. When set to `false`, the target document must not exist.
      *     'currentDocument.exists': 'placeholder-value',
-     *     // When set, the target document must exist and have been last updated at that time.
+     *     // When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.
      *     'currentDocument.updateTime': 'placeholder-value',
      *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
      *     'mask.fieldPaths': 'placeholder-value',
@@ -3854,7 +3854,7 @@ export namespace firestore_v1beta1 {
      */
     'currentDocument.exists'?: boolean;
     /**
-     * When set, the target document must exist and have been last updated at that time.
+     * When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.
      */
     'currentDocument.updateTime'?: string;
     /**
@@ -3963,7 +3963,7 @@ export namespace firestore_v1beta1 {
      */
     'currentDocument.exists'?: boolean;
     /**
-     * When set, the target document must exist and have been last updated at that time.
+     * When set, the target document must exist and have been last updated at that time. Timestamp must be microsecond aligned.
      */
     'currentDocument.updateTime'?: string;
     /**
