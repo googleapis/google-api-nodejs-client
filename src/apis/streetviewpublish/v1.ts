@@ -311,7 +311,7 @@ export namespace streetviewpublish_v1 {
    */
   export interface Schema$PhotoId {
     /**
-     * Required. A unique identifier for a photo.
+     * A unique identifier for a photo.
      */
     id?: string | null;
   }
@@ -1011,7 +1011,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photo.update({
-     *     // Required. A unique identifier for a photo.
+     *     // A unique identifier for a photo.
      *     id: 'placeholder-value',
      *     // Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` *Note:* When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.
      *     updateMask: 'placeholder-value',
@@ -1180,7 +1180,7 @@ export namespace streetviewpublish_v1 {
   }
   export interface Params$Resource$Photo$Update extends StandardParameters {
     /**
-     * Required. A unique identifier for a photo.
+     * A unique identifier for a photo.
      */
     id?: string;
     /**
