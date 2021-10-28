@@ -163,7 +163,7 @@
                 "The Enterprise Groups activity reports return information about various Enterprise group activity events.",
                 "The Jamboard activity reports return information about various Jamboard activity events.",
                 "The Login application's activity reports return account information about different types of Login activity events.",
-                "The Meet Audit activity report return information about different types of Meet Audit activity events.",
+                "The Meet Audit activity report returns information about different types of Meet Audit activity events.",
                 "The Mobile Audit activity report return information about different types of Mobile Audit activity events.",
                 "The Rules activity report return information about different types of Rules activity events.",
                 "The SAML activity report return information about different types of SAML activity events.",
@@ -302,7 +302,7 @@
                 "The Enterprise Groups activity reports return information about various Enterprise group activity events.",
                 "The Jamboard activity reports return information about various Jamboard activity events.",
                 "The Login application's activity reports return account information about different types of Login activity events.",
-                "The Meet Audit activity report return information about different types of Meet Audit activity events.",
+                "The Meet Audit activity report returns information about different types of Meet Audit activity events.",
                 "The Mobile Audit activity report return information about different types of Mobile Audit activity events.",
                 "The Rules activity report return information about different types of Rules activity events.",
                 "The SAML activity report return information about different types of SAML activity events.",
@@ -631,7 +631,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20211026",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -681,7 +681,7 @@
               "type": "string"
             },
             "profileId": {
-              "description": "The unique Google Workspace profile ID of the actor. May be absent if the actor is not a Google Workspace user.",
+              "description": "The unique Google Workspace profile ID of the actor. This value might be absent if the actor is not a Google Workspace user, or may be the number 105250506097979753968 which acts as a placeholder ID.",
               "type": "string"
             }
           },
