@@ -364,7 +364,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/instances/{instance}.",
+                      "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/connectionProfiles/{connectionProfile}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/connectionProfiles/[^/]+$",
                       "required": true,
@@ -666,7 +666,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/instances/{instance}.",
+                      "description": "The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/migrationJobs/[^/]+$",
                       "required": true,
@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20211006",
+  "revision": "20211025",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1293,7 +1293,7 @@
           "description": "A MySQL database connection profile."
         },
         "name": {
-          "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/instances/{instance}.",
+          "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/connectionProfiles/{connectionProfile}.",
           "type": "string"
         },
         "provider": {
@@ -1644,7 +1644,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/instances/{instance}.",
+          "description": "The name (URI) of this migration job resource, in the form of: projects/{project}/locations/{location}/migrationJobs/{migrationJob}.",
           "type": "string"
         },
         "phase": {
@@ -1705,7 +1705,7 @@
             "The migration job is down for maintenance.",
             "The migration job is in draft mode and no resources are created.",
             "The migration job is being created.",
-            "The migration job is created, not started and is fully editable.",
+            "The migration job is created and not started.",
             "The migration job is running.",
             "The migration job failed.",
             "The migration job has been completed.",
