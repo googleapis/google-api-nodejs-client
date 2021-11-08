@@ -212,7 +212,7 @@
       }
     }
   },
-  "revision": "20211008",
+  "revision": "20211021",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ListOperationsResponse": {
@@ -383,6 +383,14 @@
         },
         "enableSeparateRecognitionPerChannel": {
           "description": "This needs to be set to `true` explicitly and `audio_channel_count` > 1 to get each channel recognized separately. The recognition result will contain a `channel_tag` field to state which channel that result belongs to. If this is not true, we will only recognize the first channel. The request is billed cumulatively for all channels recognized: `audio_channel_count` multiplied by the length of the audio.",
+          "type": "boolean"
+        },
+        "enableSpokenEmojis": {
+          "description": "The spoken emoji behavior for the call If not set, uses default behavior based on model of choice If 'true', adds spoken emoji formatting for the request. This will replace spoken emojis with the corresponding Unicode symbols in the final transcript. If 'false', spoken emojis are not replaced.",
+          "type": "boolean"
+        },
+        "enableSpokenPunctuation": {
+          "description": "The spoken punctuation behavior for the call If not set, uses default behavior based on model of choice e.g. command_and_search will enable spoken punctuation by default If 'true', replaces spoken punctuation with the corresponding symbols in the request. For example, \"how are you question mark\" becomes \"how are you?\". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation for support. If 'false', spoken punctuation is not replaced.",
           "type": "boolean"
         },
         "enableWordConfidence": {
