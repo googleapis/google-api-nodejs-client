@@ -725,7 +725,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig {
     /**
-     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.
+     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to true, run once a day.
      */
     enableContinuousRun?: boolean | null;
     /**
@@ -2318,7 +2318,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings {
     /**
-     * [DLP](https://cloud.google.com/dlp/docs) deidentify template name. Use this template to define de-identification configuration for the content. If empty, Dialogflow replaces sensitive info with `[redacted]` text. The template name will have one of the following formats: `projects//locations//deidentifyTemplates/` OR `organizations//locations//deidentifyTemplates/` Note: `deidentify_template` must be located in the same region as the `SecuritySettings`.
+     * [DLP](https://cloud.google.com/dlp/docs) deidentify template name. Use this template to define de-identification configuration for the content. The `DLP De-identify Templates Reader` role is needed on the Dialogflow service identity service account (has the form `service-PROJECT_NUMBER@gcp-sa-dialogflow.iam.gserviceaccount.com`) for your agent's project. If empty, Dialogflow replaces sensitive info with `[redacted]` text. The template name will have one of the following formats: `projects//locations//deidentifyTemplates/` OR `organizations//locations//deidentifyTemplates/` Note: `deidentify_template` must be located in the same region as the `SecuritySettings`.
      */
     deidentifyTemplate?: string | null;
     /**
@@ -2330,7 +2330,7 @@ export namespace dialogflow_v3beta1 {
      */
     insightsExportSettings?: Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsInsightsExportSettings;
     /**
-     * [DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//locations//inspectTemplates/` OR `organizations//locations//inspectTemplates/` Note: `inspect_template` must be located in the same region as the `SecuritySettings`.
+     * [DLP](https://cloud.google.com/dlp/docs) inspect template name. Use this template to define inspect base settings. The `DLP Inspect Templates Reader` role is needed on the Dialogflow service identity service account (has the form `service-PROJECT_NUMBER@gcp-sa-dialogflow.iam.gserviceaccount.com`) for your agent's project. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects//locations//inspectTemplates/` OR `organizations//locations//inspectTemplates/` Note: `inspect_template` must be located in the same region as the `SecuritySettings`.
      */
     inspectTemplate?: string | null;
     /**
@@ -2350,7 +2350,7 @@ export namespace dialogflow_v3beta1 {
      */
     redactionStrategy?: string | null;
     /**
-     * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must Set a value lower than Dialogflow's default 30d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL. Note: Interaction logging is a limited access feature. Talk to your Google representative to check availability for you.
+     * Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must set a value lower than Dialogflow's default 365d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL. Note: Interaction logging is a limited access feature. Talk to your Google representative to check availability for you.
      */
     retentionWindowDays?: number | null;
   }
@@ -17841,7 +17841,7 @@ export namespace dialogflow_v3beta1 {
      *   // Do the magic
      *   const res =
      *     await dialogflow.projects.locations.agents.flows.versions.compareVersions({
-     *       // Required. Name of the base flow version to compare with the target version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents//flows//versions/`.
+     *       // Required. Name of the base flow version to compare with the target version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents/ /flows//versions/`.
      *       baseVersion:
      *         'projects/my-project/locations/my-location/agents/my-agent/flows/my-flow/versions/my-version',
      *
@@ -18861,7 +18861,7 @@ export namespace dialogflow_v3beta1 {
   export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Compareversions
     extends StandardParameters {
     /**
-     * Required. Name of the base flow version to compare with the target version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents//flows//versions/`.
+     * Required. Name of the base flow version to compare with the target version. Use version ID `0` to indicate the draft version of the specified flow. Format: `projects//locations//agents/ /flows//versions/`.
      */
     baseVersion?: string;
 

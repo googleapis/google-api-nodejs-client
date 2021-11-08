@@ -371,7 +371,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig {
     /**
-     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.
+     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to true, run once a day.
      */
     enableContinuousRun?: boolean | null;
     /**
