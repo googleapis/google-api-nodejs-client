@@ -192,6 +192,15 @@ export namespace container_v1beta1 {
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
   }
   /**
+   * Specifies options for controlling advanced machine features.
+   */
+  export interface Schema$AdvancedMachineFeatures {
+    /**
+     * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
+     */
+    threadsPerCore?: string | null;
+  }
+  /**
    * Configuration for returning group information from authenticators.
    */
   export interface Schema$AuthenticatorGroupsConfig {
@@ -1603,6 +1612,10 @@ export namespace container_v1beta1 {
      * A list of hardware accelerators to be attached to each node. See https://cloud.google.com/compute/docs/gpus for more information about support for GPUs.
      */
     accelerators?: Schema$AcceleratorConfig[];
+    /**
+     * Advanced features for the Compute Engine VM.
+     */
+    advancedMachineFeatures?: Schema$AdvancedMachineFeatures;
     /**
      *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
      */
