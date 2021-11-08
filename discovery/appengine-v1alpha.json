@@ -707,9 +707,187 @@
           }
         }
       }
+    },
+    "projects": {
+      "resources": {
+        "locations": {
+          "methods": {
+            "get": {
+              "description": "Gets information about a location.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}",
+              "httpMethod": "GET",
+              "id": "appengine.projects.locations.get",
+              "parameterOrder": [
+                "projectsId",
+                "locationsId"
+              ],
+              "parameters": {
+                "locationsId": {
+                  "description": "Part of `name`. See documentation of `projectsId`.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "projectsId": {
+                  "description": "Part of `name`. Resource name for the location.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/projects/{projectsId}/locations/{locationsId}",
+              "response": {
+                "$ref": "Location"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/appengine.admin",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "list": {
+              "description": "Lists information about the supported locations for this service.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations",
+              "httpMethod": "GET",
+              "id": "appengine.projects.locations.list",
+              "parameterOrder": [
+                "projectsId"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "projectsId": {
+                  "description": "Part of `name`. The resource that owns the locations collection, if applicable.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/projects/{projectsId}/locations",
+              "response": {
+                "$ref": "ListLocationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/appengine.admin",
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            }
+          },
+          "resources": {
+            "operations": {
+              "methods": {
+                "get": {
+                  "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "httpMethod": "GET",
+                  "id": "appengine.projects.locations.operations.get",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId",
+                    "operationsId"
+                  ],
+                  "parameters": {
+                    "locationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "operationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `name`. The name of the operation resource.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/appengine.admin",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/*/operations. To override the binding, API services can add a binding such as \"/v1/{name=users/*}/operations\" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations",
+                  "httpMethod": "GET",
+                  "id": "appengine.projects.locations.operations.list",
+                  "parameterOrder": [
+                    "projectsId",
+                    "locationsId"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The standard list filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "locationsId": {
+                      "description": "Part of `name`. See documentation of `projectsId`.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The standard list page size.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The standard list page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "projectsId": {
+                      "description": "Part of `name`. The name of the operation's parent resource.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/operations",
+                  "response": {
+                    "$ref": "ListOperationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/appengine.admin",
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20211002",
+  "revision": "20211029",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
