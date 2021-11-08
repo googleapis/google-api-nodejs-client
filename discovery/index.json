@@ -1780,13 +1780,13 @@
       "name": "datapipelines",
       "version": "v1",
       "title": "Data pipelines API",
-      "description": "",
+      "description": "Data Pipelines provides an interface for creating, updating, and managing recurring Data Analytics jobs.",
       "discoveryRestUrl": "https://datapipelines.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/apis-explorer/#search/dataflow",
+      "documentationLink": "https://cloud.google.com/dataflow/docs/guides/data-pipelines",
       "preferred": true
     },
     {
@@ -2982,7 +2982,7 @@
       "name": "ideahub",
       "version": "v1alpha",
       "title": "Idea Hub API",
-      "description": "",
+      "description": "This is an invitation-only API.",
       "discoveryRestUrl": "https://ideahub.googleapis.com/$discovery/rest?version=v1alpha",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2997,7 +2997,7 @@
       "name": "ideahub",
       "version": "v1beta",
       "title": "Idea Hub API",
-      "description": "",
+      "description": "This is an invitation-only API.",
       "discoveryRestUrl": "https://ideahub.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3372,7 +3372,7 @@
       "name": "monitoring",
       "version": "v1",
       "title": "Cloud Monitoring API",
-      "description": "Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the [Cloud Monitoring documentation](https://cloud.google.com/monitoring/docs).",
+      "description": "Manages your Cloud Monitoring data and configurations.",
       "discoveryRestUrl": "https://monitoring.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3387,7 +3387,7 @@
       "name": "monitoring",
       "version": "v3",
       "title": "Cloud Monitoring API",
-      "description": "Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the [Cloud Monitoring documentation](https://cloud.google.com/monitoring/docs).",
+      "description": "Manages your Cloud Monitoring data and configurations.",
       "discoveryRestUrl": "https://monitoring.googleapis.com/$discovery/rest?version=v3",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",

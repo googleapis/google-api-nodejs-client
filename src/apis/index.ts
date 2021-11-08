@@ -174,6 +174,7 @@ import {
 } from './cloudscheduler';
 import {VERSIONS as cloudsearchVersions, cloudsearch} from './cloudsearch';
 import {VERSIONS as cloudshellVersions, cloudshell} from './cloudshell';
+import {VERSIONS as cloudsupportVersions, cloudsupport} from './cloudsupport';
 import {VERSIONS as cloudtasksVersions, cloudtasks} from './cloudtasks';
 import {VERSIONS as cloudtraceVersions, cloudtrace} from './cloudtrace';
 import {VERSIONS as composerVersions, composer} from './composer';
@@ -631,6 +632,7 @@ export const APIS: APIList = {
   cloudscheduler: cloudschedulerVersions,
   cloudsearch: cloudsearchVersions,
   cloudshell: cloudshellVersions,
+  cloudsupport: cloudsupportVersions,
   cloudtasks: cloudtasksVersions,
   cloudtrace: cloudtraceVersions,
   composer: composerVersions,
@@ -868,6 +870,7 @@ export class GeneratedAPIs {
   cloudscheduler = cloudscheduler;
   cloudsearch = cloudsearch;
   cloudshell = cloudshell;
+  cloudsupport = cloudsupport;
   cloudtasks = cloudtasks;
   cloudtrace = cloudtrace;
   composer = composer;

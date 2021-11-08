@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20211011",
+  "revision": "20211101",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
@@ -420,9 +420,11 @@
             "ALL",
             "MAC_ARM64",
             "LACROS",
-            "LACROS_ARM32"
+            "LACROS_ARM32",
+            "CHROMEOS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

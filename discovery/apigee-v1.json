@@ -4751,7 +4751,7 @@
             "optimizedStats": {
               "methods": {
                 "get": {
-                  "description": "This api is similar to GetStats except that the response is less verbose. In the current scheme, a query parameter _optimized instructs Edge Analytics to change the response but since this behavior is not possible with protocol buffer and since this parameter is predominantly used by Edge UI, we are introducing a separate api.",
+                  "description": "Similar to GetStats except that the response is less verbose.",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/optimizedStats/{optimizedStatsId}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.environments.optimizedStats.get",
@@ -4760,84 +4760,84 @@
                   ],
                   "parameters": {
                     "accuracy": {
-                      "description": "Legacy field: not used anymore.",
+                      "description": "No longer used by Apigee. Supported for backwards compatibility.",
                       "location": "query",
                       "type": "string"
                     },
                     "aggTable": {
-                      "description": "If customers want to query custom aggregate tables, then this parameter can be used to specify the table name. If this parameter is skipped, then Edge Query will try to retrieve the data from fact tables which will be expensive.",
+                      "description": "Table name used to query custom aggregate tables. If this parameter is skipped, then Apigee will try to retrieve the data from fact tables which will be expensive.",
                       "location": "query",
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Enables drill-down on specific dimension values.",
+                      "description": "Filter that enables you to drill-down on specific dimension values.",
                       "location": "query",
                       "type": "string"
                     },
                     "limit": {
-                      "description": "This parameter is used to limit the number of result items. Default and the max value is 14400.",
+                      "description": "Maximum number of result items to return. The default and maximum value that can be returned is 14400.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/environments/{environment_id/optimizedStats/{dimensions}` Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/environments/{env}/optimizedStats/apiproxy,request_verb`",
+                      "description": "Required. Resource name for which the interactive query will be executed. Use the following format in your request: `organizations/{org}/environments/{env}/optimizedStats/{dimensions}` Dimensions let you view metrics in meaningful groupings, such as `apiproxy`, `target_host`. The value of `dimensions` should be a comma-separated list as shown below: `organizations/{org}/environments/{env}/optimizedStats/apiproxy,request_verb`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/optimizedStats/.*$",
                       "required": true,
                       "type": "string"
                     },
                     "offset": {
-                      "description": "Use offset with limit to enable pagination of results. For example, to display results 11-20, set limit to '10' and offset to '10'.",
+                      "description": "Offset value. Use `offset` with `limit` to enable pagination of results. For example, to display results 11-20, set limit to `10` and offset to `10`.",
                       "location": "query",
                       "type": "string"
                     },
                     "realtime": {
-                      "description": "Legacy field: not used anymore.",
+                      "description": "No longer used by Apigee. Supported for backwards compatibility.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "select": {
-                      "description": "Required. The select parameter contains a comma separated list of metrics. E.g. sum(message_count),sum(error_count)",
+                      "description": "Required. Comma-separated list of metrics. For example: `sum(message_count),sum(error_count)`",
                       "location": "query",
                       "type": "string"
                     },
                     "sonar": {
-                      "description": "This parameter routes the query to api monitoring service for last hour.",
+                      "description": "Routes the query to API Monitoring for the last hour.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "sort": {
-                      "description": "This parameter specifies if the sort order should be ascending or descending Supported values are DESC and ASC.",
+                      "description": "Flag that specifies whether the sort order should be ascending or descending. Valid values include `DESC` and `ASC`.",
                       "location": "query",
                       "type": "string"
                     },
                     "sortby": {
-                      "description": "Comma separated list of columns to sort the final result.",
+                      "description": "Comma-separated list of columns to sort the final result.",
                       "location": "query",
                       "type": "string"
                     },
                     "timeRange": {
-                      "description": "Required. Time interval for the interactive query. Time range is specified as start~end E.g. 04/15/2017 00:00~05/15/2017 23:59",
+                      "description": "Required. Time interval for the interactive query. Time range is specified in GMT as `start~end`. For example: `04/15/2017 00:00~05/15/2017 23:59`",
                       "location": "query",
                       "type": "string"
                     },
                     "timeUnit": {
-                      "description": "A value of second, minute, hour, day, week, month. Time Unit specifies the granularity of metrics returned.",
+                      "description": "Granularity of metrics returned. Valid values include: `second`, `minute`, `hour`, `day`, `week`, or `month`.",
                       "location": "query",
                       "type": "string"
                     },
                     "topk": {
-                      "description": "Take 'top k' results from results, for example, to return the top 5 results 'topk=5'.",
+                      "description": "Top number of results to return. For example, to return the top 5 results, set `topk=5`.",
                       "location": "query",
                       "type": "string"
                     },
                     "tsAscending": {
-                      "description": "Lists timestamps in ascending order if set to true. Recommend setting this value to true if you are using sortby with sort=DESC.",
+                      "description": "Flag that specifies whether to list timestamps in ascending (`true`) or descending (`false`) order. Apigee recommends setting this value to `true` if you are using `sortby` with `sort=DESC`.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "tzo": {
-                      "description": "This parameters contains the timezone offset value.",
+                      "description": "Timezone offset value.",
                       "location": "query",
                       "type": "string"
                     }
@@ -5448,7 +5448,7 @@
             "stats": {
               "methods": {
                 "get": {
-                  "description": "Retrieve metrics grouped by dimensions. The types of metrics you can retrieve include traffic, message counts, API call latency, response size, and cache hits and counts. Dimensions let you view metrics in meaningful groups. The stats api does accept dimensions as path params. The dimensions are optional in which case the metrics are computed on the entire data for the given timerange.",
+                  "description": "Retrieve metrics grouped by dimensions. The types of metrics you can retrieve include traffic, message counts, API call latency, response size, and cache hits and counts. Dimensions let you view metrics in meaningful groups. You can optionally pass dimensions as path parameters to the `stats` API. If dimensions are not specified, the metrics are computed on the entire set of data for the given time range.",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/stats/{statsId}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.environments.stats.get",
@@ -5457,84 +5457,84 @@
                   ],
                   "parameters": {
                     "accuracy": {
-                      "description": "Legacy field: not used anymore. This field is present to support UI calls which still use this parameter.",
+                      "description": "No longer used by Apigee. Supported for backwards compatibility.",
                       "location": "query",
                       "type": "string"
                     },
                     "aggTable": {
-                      "description": "If customers want to query custom aggregate tables, then this parameter can be used to specify the table name. If this parameter is skipped, then Edge Query will try to retrieve the data from fact tables which will be expensive.",
+                      "description": "Table name used to query custom aggregate tables. If this parameter is skipped, then Apigee will try to retrieve the data from fact tables which will be expensive.",
                       "location": "query",
                       "type": "string"
                     },
                     "filter": {
-                      "description": "Enables drill-down on specific dimension values",
+                      "description": "Filter that enables you to drill down on specific dimension values.",
                       "location": "query",
                       "type": "string"
                     },
                     "limit": {
-                      "description": "This parameter is used to limit the number of result items. Default and the max value is 14400.",
+                      "description": "Maximum number of result items to return. The default and maximum value that can be returned is 14400.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/environments/{environment_id/stats/{dimensions}` Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/environments/{env}/stats/apiproxy,request_verb`",
+                      "description": "Required. Resource name for which the interactive query will be executed. Use the following format in your request: `organizations/{org}/environments/{env}/stats/{dimensions}` Dimensions let you view metrics in meaningful groupings, such as `apiproxy` or `target_host`. The value of dimensions should be a comma-separated list, as shown below: `organizations/{org}/environments/{env}/stats/apiproxy,request_verb`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/stats/.*$",
                       "required": true,
                       "type": "string"
                     },
                     "offset": {
-                      "description": "Use offset with limit to enable pagination of results. For example, to display results 11-20, set limit to '10' and offset to '10'.",
+                      "description": "Offset value. Use `offset` with `limit` to enable pagination of results. For example, to display results 11-20, set limit to `10` and offset to `10`.",
                       "location": "query",
                       "type": "string"
                     },
                     "realtime": {
-                      "description": "Legacy field: not used anymore.",
+                      "description": "No longer used by Apigee. Supported for backwards compatibility.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "select": {
-                      "description": "The select parameter contains a comma separated list of metrics. E.g. sum(message_count),sum(error_count)",
+                      "description": "Comma-separated list of metrics. For example: `sum(message_count),sum(error_count)`",
                       "location": "query",
                       "type": "string"
                     },
                     "sonar": {
-                      "description": "This parameter routes the query to api monitoring service for last hour.",
+                      "description": "Routes the query to API Monitoring for the last hour.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "sort": {
-                      "description": "This parameter specifies if the sort order should be ascending or descending Supported values are DESC and ASC.",
+                      "description": "Flag that specifies whether the sort order should be ascending or descending. Valid values include: `DESC` and `ASC`.",
                       "location": "query",
                       "type": "string"
                     },
                     "sortby": {
-                      "description": "Comma separated list of columns to sort the final result.",
+                      "description": "Comma-separated list of columns to sort the final result.",
                       "location": "query",
                       "type": "string"
                     },
                     "timeRange": {
-                      "description": "Time interval for the interactive query. Time range is specified as start~end E.g. 04/15/2017 00:00~05/15/2017 23:59",
+                      "description": "Time interval for the interactive query. Time range is specified in GMT as `start~end`. For example: `04/15/2017 00:00~05/15/2017 23:59`",
                       "location": "query",
                       "type": "string"
                     },
                     "timeUnit": {
-                      "description": "A value of second, minute, hour, day, week, month. Time Unit specifies the granularity of metrics returned.",
+                      "description": "Granularity of metrics returned. Valid values include: `second`, `minute`, `hour`, `day`, `week`, or` month`.",
                       "location": "query",
                       "type": "string"
                     },
                     "topk": {
-                      "description": "Take 'top k' results from results, for example, to return the top 5 results 'topk=5'.",
+                      "description": "Top number of results to return. For example, to return the top 5 results, set `topk=5`.",
                       "location": "query",
                       "type": "string"
                     },
                     "tsAscending": {
-                      "description": "Lists timestamps in ascending order if set to true. Recommend setting this value to true if you are using sortby with sort=DESC.",
+                      "description": "Flag that specifies whether to list timestamps in ascending (`true`) or descending (`false`) order. Apigee recommends that you set this value to `true` if you are using `sortby` with `sort=DESC`.",
                       "location": "query",
                       "type": "boolean"
                     },
                     "tzo": {
-                      "description": "This parameters contains the timezone offset value.",
+                      "description": "Timezone offset value.",
                       "location": "query",
                       "type": "string"
                     }
@@ -5992,7 +5992,7 @@
         "hostStats": {
           "methods": {
             "get": {
-              "description": "Retrieve metrics grouped by dimensions in host level. The types of metrics you can retrieve include traffic, message counts, API call latency, response size, and cache hits and counts. Dimensions let you view metrics in meaningful groups. The stats api does accept dimensions as path params. The dimensions are optional in which case the metrics are computed on the entire data for the given timerange.",
+              "description": "Retrieve metrics grouped by dimensions in host level. The types of metrics you can retrieve include traffic, message counts, API call latency, response size, and cache hits and counts. Dimensions let you view metrics in meaningful groups. You can optionally pass dimensions as path parameters to the `stats` API. If dimensions are not specified, the metrics are computed on the entire set of data for the given time range.",
               "flatPath": "v1/organizations/{organizationsId}/hostStats/{hostStatsId}",
               "httpMethod": "GET",
               "id": "apigee.organizations.hostStats.get",
@@ -6001,79 +6001,79 @@
               ],
               "parameters": {
                 "accuracy": {
-                  "description": "Legacy field: not used anymore.",
+                  "description": "No longer used by Apigee. Supported for backwards compatibility.",
                   "location": "query",
                   "type": "string"
                 },
                 "envgroupHostname": {
-                  "description": "Required. The hostname for which the interactive query will be executed.",
+                  "description": "Required. Hostname for which the interactive query will be executed.",
                   "location": "query",
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Enables drill-down on specific dimension values.",
+                  "description": "Flag that enables drill-down on specific dimension values.",
                   "location": "query",
                   "type": "string"
                 },
                 "limit": {
-                  "description": "This parameter is used to limit the number of result items. Default and the max value is 14400.",
+                  "description": "Maximum number of result items to return. The default and maximum value that can be returned is 14400.",
                   "location": "query",
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/hostStats/{dimensions}`. Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/hostStats/apiproxy,request_verb`",
+                  "description": "Required. Resource name for which the interactive query will be executed. Use the following format in your request: `organizations/{org}/hostStats/{dimensions}` Dimensions let you view metrics in meaningful groupings, such as `apiproxy`, `target_host`. The value of dimensions should be a comma-separated list as shown below `organizations/{org}/hostStats/apiproxy,request_verb`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/hostStats/.*$",
                   "required": true,
                   "type": "string"
                 },
                 "offset": {
-                  "description": "Use offset with limit to enable pagination of results. For example, to display results 11-20, set limit to '10' and offset to '10'.",
+                  "description": "Offset value. Use `offset` with `limit` to enable pagination of results. For example, to display results 11-20, set limit to `10` and offset to `10`.",
                   "location": "query",
                   "type": "string"
                 },
                 "realtime": {
-                  "description": "Legacy field: not used anymore.",
+                  "description": "No longer used by Apigee. Supported for backwards compatibility.",
                   "location": "query",
                   "type": "boolean"
                 },
                 "select": {
-                  "description": "The select parameter contains a comma separated list of metrics. E.g. sum(message_count),sum(error_count)",
+                  "description": "Comma-separated list of metrics. For example: `sum(message_count),sum(error_count)`",
                   "location": "query",
                   "type": "string"
                 },
                 "sort": {
-                  "description": "This parameter specifies if the sort order should be ascending or descending Supported values are DESC and ASC.",
+                  "description": "Flag that specifies if the sort order should be ascending or descending. Valid values are `DESC` and `ASC`.",
                   "location": "query",
                   "type": "string"
                 },
                 "sortby": {
-                  "description": "Comma separated list of columns to sort the final result.",
+                  "description": "Comma-separated list of columns to sort the final result.",
                   "location": "query",
                   "type": "string"
                 },
                 "timeRange": {
-                  "description": "Time interval for the interactive query. Time range is specified as start~end E.g. 04/15/2017 00:00~05/15/2017 23:59",
+                  "description": "Time interval for the interactive query. Time range is specified in GMT as `start~end`. For example: `04/15/2017 00:00~05/15/2017 23:59`",
                   "location": "query",
                   "type": "string"
                 },
                 "timeUnit": {
-                  "description": "A value of second, minute, hour, day, week, month. Time Unit specifies the granularity of metrics returned.",
+                  "description": "Granularity of metrics returned. Valid values include: `second`, `minute`, `hour`, `day`, `week`, or `month`.",
                   "location": "query",
                   "type": "string"
                 },
                 "topk": {
-                  "description": "Take 'top k' results from results, for example, to return the top 5 results 'topk=5'.",
+                  "description": "Top number of results to return. For example, to return the top 5 results, set `topk=5`.",
                   "location": "query",
                   "type": "string"
                 },
                 "tsAscending": {
-                  "description": "Lists timestamps in ascending order if set to true. Recommend setting this value to true if you are using sortby with sort=DESC.",
+                  "description": "Flag that specifies whether to list timestamps in ascending (`true`) or descending (`false`) order. Apigee recommends that you set this value to `true` if you are using `sortby` with `sort=DESC`.",
                   "location": "query",
                   "type": "boolean"
                 },
                 "tzo": {
-                  "description": "This parameters contains the timezone offset value.",
+                  "description": "Timezone offset value.",
                   "location": "query",
                   "type": "string"
                 }
@@ -6721,7 +6721,7 @@
         "optimizedHostStats": {
           "methods": {
             "get": {
-              "description": "This api is similar to GetHostStats except that the response is less verbose.",
+              "description": "Similar to GetHostStats except that the response is less verbose.",
               "flatPath": "v1/organizations/{organizationsId}/optimizedHostStats/{optimizedHostStatsId}",
               "httpMethod": "GET",
               "id": "apigee.organizations.optimizedHostStats.get",
@@ -6730,79 +6730,79 @@
               ],
               "parameters": {
                 "accuracy": {
-                  "description": "Legacy field: not used anymore.",
+                  "description": "No longer used by Apigee. Supported for backwards compatibility.",
                   "location": "query",
                   "type": "string"
                 },
                 "envgroupHostname": {
-                  "description": "Required. The hostname for which the interactive query will be executed.",
+                  "description": "Required. Hostname for which the interactive query will be executed.",
                   "location": "query",
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Enables drill-down on specific dimension values.",
+                  "description": "Filter that enables you to drill-down on specific dimension values.",
                   "location": "query",
                   "type": "string"
                 },
                 "limit": {
-                  "description": "This parameter is used to limit the number of result items. Default and the max value is 14400.",
+                  "description": "Maximum number of result items to return. The default and maximum value that can be returned is 14400.",
                   "location": "query",
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/optimizedHostStats/{dimensions}`. Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/optimizedHostStats/apiproxy,request_verb`",
+                  "description": "Required. Resource name for which the interactive query will be executed. Use the following format in your request: `organizations/{organization_id}/optimizedHostStats/{dimensions}` Dimensions let you view metrics in meaningful groupings, such as `apiproxy`, `target_host`. The value of dimensions should be a comma-separated list as shown below: `organizations/{org}/optimizedHostStats/apiproxy,request_verb`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/optimizedHostStats/.*$",
                   "required": true,
                   "type": "string"
                 },
                 "offset": {
-                  "description": "Use offset with limit to enable pagination of results. For example, to display results 11-20, set limit to '10' and offset to '10'.",
+                  "description": "Offset value. Use `offset` with `limit` to enable pagination of results. For example, to display results 11-20, set limit to `10` and offset to `10`.",
                   "location": "query",
                   "type": "string"
                 },
                 "realtime": {
-                  "description": "Legacy field: not used anymore.",
+                  "description": "No longer used by Apigee. Supported for backwards compatibility.",
                   "location": "query",
                   "type": "boolean"
                 },
                 "select": {
-                  "description": "Required. The select parameter contains a comma separated list of metrics. E.g. sum(message_count),sum(error_count)",
+                  "description": "Required. Comma-separated list of metrics. For example: `sum(message_count),sum(error_count)`",
                   "location": "query",
                   "type": "string"
                 },
                 "sort": {
-                  "description": "This parameter specifies if the sort order should be ascending or descending Supported values are DESC and ASC.",
+                  "description": "Flag that specifies whether the sort order should be ascending or descending. Valid values include `DESC` and `ASC`.",
                   "location": "query",
                   "type": "string"
                 },
                 "sortby": {
-                  "description": "Comma separated list of columns to sort the final result.",
+                  "description": "Comma-separated list of columns used to sort the final result.",
                   "location": "query",
                   "type": "string"
                 },
                 "timeRange": {
-                  "description": "Required. Time interval for the interactive query. Time range is specified as start~end. E.g 04/15/2017 00:00~05/15/2017 23:59.",
+                  "description": "Required. Time interval for the interactive query. Time range is specified in GMT as `start~end`. For example: `04/15/2017 00:00~05/15/2017 23:59`.",
                   "location": "query",
                   "type": "string"
                 },
                 "timeUnit": {
-                  "description": "A value of second, minute, hour, day, week, month. Time Unit specifies the granularity of metrics returned.",
+                  "description": "Granularity of metrics returned. Valid values include: `second`, `minute`, `hour`, `day`, `week`, or `month`.",
                   "location": "query",
                   "type": "string"
                 },
                 "topk": {
-                  "description": "Take 'top k' results from results, for example, to return the top 5 results 'topk=5'.",
+                  "description": "Top number of results to return. For example, to return the top 5 results, set `topk=5`.",
                   "location": "query",
                   "type": "string"
                 },
                 "tsAscending": {
-                  "description": "Lists timestamps in ascending order if set to true. Recommend setting this value to true if you are using sortby with sort=DESC.",
+                  "description": "Flag that specifies whether to list timestamps in ascending (`true`) or descending (`false`) order. Apigee recommends that you set this value to `true` if you are using `sortby` with `sort=DESC`.",
                   "location": "query",
                   "type": "boolean"
                 },
                 "tzo": {
-                  "description": "This parameters contains the timezone offset value.",
+                  "description": "Timezone offset value.",
                   "location": "query",
                   "type": "string"
                 }
@@ -7412,7 +7412,7 @@
       }
     }
   },
-  "revision": "20211019",
+  "revision": "20211101",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -7850,6 +7850,13 @@
           },
           "description": "Metadata describing the API proxy revision as a key-value map.",
           "type": "object"
+        },
+        "integrationEndpoints": {
+          "description": "List of IntegrationEndpoints in the '/integration-endpoints' directory of the API proxy. This is a 'manifest' setting designed to provide visibility into the contents of the API proxy.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "lastModifiedAt": {
           "description": "Time that the API proxy revision was last modified in milliseconds since epoch.",
@@ -9407,18 +9414,18 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1DimensionMetric": {
-      "description": "This message type encapsulates a metric grouped by dimension.",
+      "description": "Encapsulates a metric grouped by dimension.",
       "id": "GoogleCloudApigeeV1DimensionMetric",
       "properties": {
         "metrics": {
-          "description": "This field contains a list of metrics.",
+          "description": "List of metrics.",
           "items": {
             "$ref": "GoogleCloudApigeeV1Metric"
           },
           "type": "array"
         },
         "name": {
-          "description": "This field contains the name of the dimension.",
+          "description": "Name of the dimension.",
           "type": "string"
         }
       },
@@ -10673,7 +10680,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1Metadata": {
-      "description": "This message type encapsulates additional information about query execution.",
+      "description": "Encapsulates additional information about query execution.",
       "id": "GoogleCloudApigeeV1Metadata",
       "properties": {
         "errors": {
@@ -10684,7 +10691,7 @@
           "type": "array"
         },
         "notices": {
-          "description": "List of additional information such as data source, if result was truncated etc. E.g \"notices\": [ \"Source:Postgres\", \"PG Host:uappg0rw.e2e.apigeeks.net\", \"query served by:4b64601e-40de-4eb1-bfb9-eeee7ac929ed\", \"Table used: edge.api.uapgroup2.agg_api\" ]",
+          "description": "List of additional information such as data source, if result was truncated. For example: ``` \"notices\": [ \"Source:Postgres\", \"PG Host:uappg0rw.e2e.apigeeks.net\", \"query served by:4b64601e-40de-4eb1-bfb9-eeee7ac929ed\", \"Table used: edge.api.uapgroup2.agg_api\" ]```",
           "items": {
             "type": "string"
           },
@@ -10694,15 +10701,15 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1Metric": {
-      "description": "This message type encapsulates the metric data point. Example: { \"name\": \"sum(message_count)\", \"values\" : [ { \"timestamp\": 1549004400000, \"value\": \"39.0\" }, { \"timestamp\" : 1548997200000, \"value\" : \"0.0\" } ] } or { \"name\": \"sum(message_count)\", \"values\" : [\"39.0\"] }",
+      "description": "Encapsulates the metric data point. For example: ```{ \"name\": \"sum(message_count)\", \"values\" : [ { \"timestamp\": 1549004400000, \"value\": \"39.0\" }, { \"timestamp\" : 1548997200000, \"value\" : \"0.0\" } ] }``` or ```{ \"name\": \"sum(message_count)\", \"values\" : [\"39.0\"] }```",
       "id": "GoogleCloudApigeeV1Metric",
       "properties": {
         "name": {
-          "description": "This field contains the metric name.",
+          "description": "Metric name.",
           "type": "string"
         },
         "values": {
-          "description": "List of metric values. Possible value format: \"values\":[\"39.0\"] or \"values\":[ { \"value\": \"39.0\", \"timestamp\": 1232434354} ]",
+          "description": "List of metric values. Possible value formats include: `\"values\":[\"39.0\"]` or `\"values\":[ { \"value\": \"39.0\", \"timestamp\": 1232434354} ]`",
           "items": {
             "type": "any"
           },
@@ -10912,13 +10919,13 @@
       "properties": {
         "Response": {
           "$ref": "GoogleCloudApigeeV1OptimizedStatsResponse",
-          "description": "This field wraps the stats response for Js Optimized Scenario with a Response key. E.g. { \"Response\": { \"TimeUnit\": [], \"metaData\": { \"errors\": [], \"notices\": [ \"Source:Postgres\", \"Table used: edge.api.aaxgroup001.agg_api\", \"PG Host:ruappg08-ro.production.apigeeks.net\", \"query served by:80c4ebca-6a10-4a2e-8faf-c60c1ee306ca\" ] }, \"resultTruncated\": false, \"stats\": { \"data\": [ { \"identifier\": { \"names\": [ \"apiproxy\" ], \"values\": [ \"sirjee\" ] }, \"metric\": [ { \"env\": \"prod\", \"name\": \"sum(message_count)\", \"values\": [ 36.0 ] }, { \"env\": \"prod\", \"name\": \"sum(is_error)\", \"values\": [ 36.0 ] } ] } ] } } }"
+          "description": "Wraps the `stats` response for JavaScript Optimized Scenario with a response key. For example: ```{ \"Response\": { \"TimeUnit\": [], \"metaData\": { \"errors\": [], \"notices\": [ \"Source:Postgres\", \"Table used: edge.api.aaxgroup001.agg_api\", \"PG Host:ruappg08-ro.production.apigeeks.net\", \"query served by:80c4ebca-6a10-4a2e-8faf-c60c1ee306ca\" ] }, \"resultTruncated\": false, \"stats\": { \"data\": [ { \"identifier\": { \"names\": [ \"apiproxy\" ], \"values\": [ \"sirjee\" ] }, \"metric\": [ { \"env\": \"prod\", \"name\": \"sum(message_count)\", \"values\": [ 36.0 ] }, { \"env\": \"prod\", \"name\": \"sum(is_error)\", \"values\": [ 36.0 ] } ] } ] } } }```"
         }
       },
       "type": "object"
     },
     "GoogleCloudApigeeV1OptimizedStatsNode": {
-      "description": "This message type encapsulates a data node as represented below: { \"identifier\": { \"names\": [ \"apiproxy\" ], \"values\": [ \"sirjee\" ] }, \"metric\": [ { \"env\": \"prod\", \"name\": \"sum(message_count)\", \"values\": [ 36.0 ] } ] } OR { \"env\": \"prod\", \"name\": \"sum(message_count)\", \"values\": [ 36.0 ] } Depending on whether a dimension is present in the query or not the data node type can be a simple metric value or dimension identifier with list of metrics.",
+      "description": "Encapsulates a data node as represented below: ``` { \"identifier\": { \"names\": [ \"apiproxy\" ], \"values\": [ \"sirjee\" ] }, \"metric\": [ { \"env\": \"prod\", \"name\": \"sum(message_count)\", \"values\": [ 36.0 ] } ] }``` or ``` { \"env\": \"prod\", \"name\": \"sum(message_count)\", \"values\": [ 36.0 ] }``` Depending on whether a dimension is present in the query or not the data node type can be a simple metric value or dimension identifier with list of metrics.",
       "id": "GoogleCloudApigeeV1OptimizedStatsNode",
       "properties": {
         "data": {
@@ -10931,11 +10938,11 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1OptimizedStatsResponse": {
-      "description": "This message type encapsulates a response format for Js Optimized Scenario.",
+      "description": "Encapsulates a response format for JavaScript Optimized Scenario.",
       "id": "GoogleCloudApigeeV1OptimizedStatsResponse",
       "properties": {
         "TimeUnit": {
-          "description": "This field contains a list of time unit values. Time unit refers to an epoch timestamp value.",
+          "description": "List of time unit values. Time unit refers to an epoch timestamp value.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -10944,15 +10951,15 @@
         },
         "metaData": {
           "$ref": "GoogleCloudApigeeV1Metadata",
-          "description": "This field contains metadata information about the query executed"
+          "description": "Metadata information about the query executed."
         },
         "resultTruncated": {
-          "description": "This ia a boolean field to indicate if the results were truncated based on the limit parameter.",
+          "description": "Boolean flag that indicates whether the results were truncated based on the limit parameter.",
           "type": "boolean"
         },
         "stats": {
           "$ref": "GoogleCloudApigeeV1OptimizedStatsNode",
-          "description": "This field contains a stats results."
+          "description": "`stats` results."
         }
       },
       "type": "object"
@@ -12189,18 +12196,18 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1Stats": {
-      "description": "This message type encapsulates a stats response.",
+      "description": "Encapsulates a `stats` response.",
       "id": "GoogleCloudApigeeV1Stats",
       "properties": {
         "environments": {
-          "description": "This field contains a list of query results on environment level.",
+          "description": "List of query results on the environment level.",
           "items": {
             "$ref": "GoogleCloudApigeeV1StatsEnvironmentStats"
           },
           "type": "array"
         },
         "hosts": {
-          "description": "This field contains a list of query results grouped by host.",
+          "description": "List of query results grouped by host.",
           "items": {
             "$ref": "GoogleCloudApigeeV1StatsHostStats"
           },
@@ -12208,55 +12215,56 @@
         },
         "metaData": {
           "$ref": "GoogleCloudApigeeV1Metadata",
-          "description": "This field contains the metadata information."
+          "description": "Metadata information."
         }
       },
       "type": "object"
     },
     "GoogleCloudApigeeV1StatsEnvironmentStats": {
-      "description": "This message type encapsulates the environment wrapper: \"environments\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.52056245E8\" ] } ], \"name\": \"prod\" } ]",
+      "description": "Encapsulates the environment wrapper: ``` \"environments\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.52056245E8\" ] } ], \"name\": \"prod\" } ]```",
       "id": "GoogleCloudApigeeV1StatsEnvironmentStats",
       "properties": {
         "dimensions": {
-          "description": "This field contains the list of metrics grouped under dimensions.",
+          "description": "List of metrics grouped under dimensions.",
           "items": {
             "$ref": "GoogleCloudApigeeV1DimensionMetric"
           },
           "type": "array"
         },
         "metrics": {
-          "description": "In the final response, only one of the following fields will be present based on the dimensions provided. If no dimensions are provided, then only a top level metrics is provided. If dimensions are included, then there will be a top level dimensions field under environments which will contain metrics values and the dimension name. Example: \"environments\": [ { \"dimensions\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.14049521E8\" ] } ], \"name\": \"nit_proxy\" } ], \"name\": \"prod\" } ] OR \"environments\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.19026331E8\" ] } ], \"name\": \"prod\" } ] This field contains the list of metric values.",
+          "description": "In the final response, only one of the following fields will be present based on the dimensions provided. If no dimensions are provided, then only top-level metrics is provided. If dimensions are included, then there will be a top-level dimensions field under environments which will contain metrics values and the dimension name. Example: ``` \"environments\": [ { \"dimensions\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.14049521E8\" ] } ], \"name\": \"nit_proxy\" } ], \"name\": \"prod\" } ]``` or ```\"environments\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.19026331E8\" ] } ], \"name\": \"prod\" } ]``` List of metric values.",
           "items": {
             "$ref": "GoogleCloudApigeeV1Metric"
           },
           "type": "array"
         },
         "name": {
+          "description": "Name of the environment.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudApigeeV1StatsHostStats": {
-      "description": "This message type encapsulates the hostname wrapper: \"hosts\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.52056245E8\" ] } ], \"name\": \"example.com\" } ]",
+      "description": "Encapsulates the hostname wrapper: ``` \"hosts\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.52056245E8\" ] } ], \"name\": \"example.com\" } ]```",
       "id": "GoogleCloudApigeeV1StatsHostStats",
       "properties": {
         "dimensions": {
-          "description": "This field contains the list of metrics grouped under dimensions.",
+          "description": "List of metrics grouped under dimensions.",
           "items": {
             "$ref": "GoogleCloudApigeeV1DimensionMetric"
           },
           "type": "array"
         },
         "metrics": {
-          "description": "In the final response, only one of the following fields will be present based on the dimensions provided. If no dimensions are provided, then only a top level metrics is provided. If dimensions are included, then there will be a top level dimensions field under hostnames which will contain metrics values and the dimension name. Example: \"hosts\": [ { \"dimensions\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.14049521E8\" ] } ], \"name\": \"nit_proxy\" } ], \"name\": \"example.com\" } ] OR \"hosts\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.19026331E8\" ] } ], \"name\": \"example.com\" } ] This field contains the list of metric values.",
+          "description": "In the final response, only one of the following fields will be present based on the dimensions provided. If no dimensions are provided, then only the top-level metrics are provided. If dimensions are included, then there will be a top-level dimensions field under hostnames which will contain metrics values and the dimension name. Example: ``` \"hosts\": [ { \"dimensions\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.14049521E8\" ] } ], \"name\": \"nit_proxy\" } ], \"name\": \"example.com\" } ]``` OR ```\"hosts\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.19026331E8\" ] } ], \"name\": \"example.com\" } ]``` List of metric values.",
           "items": {
             "$ref": "GoogleCloudApigeeV1Metric"
           },
           "type": "array"
         },
         "name": {
-          "description": "This field contains the hostname used in query.",
+          "description": "Hostname used in query.",
           "type": "string"
         }
       },
