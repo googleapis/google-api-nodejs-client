@@ -1590,7 +1590,7 @@
       }
     }
   },
-  "revision": "20211020",
+  "revision": "20211101",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -1735,12 +1735,6 @@
       "description": "A CaPool represents a group of CertificateAuthorities that form a trust anchor. A CaPool can be used to manage issuance policies for one or more CertificateAuthority resources and to rotate CA certificates in and out of the trust anchor.",
       "id": "CaPool",
       "properties": {
-        "createTime": {
-          "description": "Output only. The time at which this CaPool was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
         "issuancePolicy": {
           "$ref": "IssuancePolicy",
           "description": "Optional. The IssuancePolicy to control how Certificates will be issued from this CaPool."
@@ -1773,12 +1767,6 @@
             "Enterprise tier.",
             "DevOps tier."
           ],
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "Output only. The time at which this CaPool was last updated.",
-          "format": "google-datetime",
-          "readOnly": true,
           "type": "string"
         }
       },
