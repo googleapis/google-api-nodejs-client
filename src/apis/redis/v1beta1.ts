@@ -232,11 +232,11 @@ export namespace redis_v1beta1 {
     gcsSource?: Schema$GcsSource;
   }
   /**
-   * A Google Cloud Redis instance. next id = 37
+   * A Google Cloud Redis instance. next id = 38
    */
   export interface Schema$Instance {
     /**
-     * Optional. Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it across two zones. If provided, it must be a different zone from the one provided in location_id.
+     * Optional. If specified, at least one node will be provisioned in this zone in addition to the zone specified in location_id. Only applicable to standard tier. If provided, it must be a different zone from the one provided in [location_id]. Additional nodes beyond the first 2 will be placed in zones selected by the service.
      */
     alternativeLocationId?: string | null;
     /**
@@ -256,7 +256,7 @@ export namespace redis_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The current zone where the Redis endpoint is placed. For Basic Tier instances, this will always be the same as the location_id provided by the user at creation time. For Standard Tier instances, this can be either location_id or alternative_location_id and can change after a failover event.
+     * Output only. The current zone where the Redis primary node is located. In basic tier, this will always be the same as [location_id]. In standard tier, this can be the zone of any node in the instance.
      */
     currentLocationId?: string | null;
     /**
@@ -272,7 +272,7 @@ export namespace redis_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The zone where the instance will be provisioned. If not provided, the service will choose a zone from the specified region for the instance. For standard tier, instances will be created across two zones for protection against zonal failures. If [alternative_location_id] is also provided, it must be different from [location_id].
+     * Optional. The zone where the instance will be provisioned. If not provided, the service will choose a zone from the specified region for the instance. For standard tier, additional nodes will be added across multiple zones for protection against zonal failures. If specified, at least one node will be provisioned in this zone.
      */
     locationId?: string | null;
     /**
@@ -295,6 +295,10 @@ export namespace redis_v1beta1 {
      * Output only. Info per node.
      */
     nodes?: Schema$NodeInfo[];
+    /**
+     * Optional. Persistence configuration parameters
+     */
+    persistenceConfig?: Schema$PersistenceConfig;
     /**
      * Output only. Cloud IAM identity used by import / export operations to transfer data to/from Cloud Storage. Format is "serviceAccount:". The value may change over time for a given instance so should be checked before each import/export operation.
      */
@@ -324,11 +328,11 @@ export namespace redis_v1beta1 {
      */
     redisVersion?: string | null;
     /**
-     * Optional. The number of replica nodes. Valid range for standard tier is [1-5] and defaults to 1. Valid value for basic tier is 0 and defaults to 0.
+     * Optional. The number of replica nodes. Valid range for standard tier is [1-5] and defaults to 2. Valid value for basic tier is 0 and defaults to 0.
      */
     replicaCount?: number | null;
     /**
-     * Optional. For DIRECT_PEERING mode, the CIDR range of internal addresses that are reserved for this instance. Range must be unique and non-overlapping with existing subnets in an authorized network. For PRIVATE_SERVICE_ACCESS mode, the name of one allocated IP address ranges associated with this private service access connection. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29.
+     * Optional. For DIRECT_PEERING mode, the CIDR range of internal addresses that are reserved for this instance. Range must be unique and non-overlapping with existing subnets in an authorized network. For PRIVATE_SERVICE_ACCESS mode, the name of one allocated IP address ranges associated with this private service access connection. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. For READ_REPLICAS_ENABLED the default block size is /28.
      */
     reservedIpRange?: string | null;
     /**
@@ -463,7 +467,7 @@ export namespace redis_v1beta1 {
      */
     endTime?: string | null;
     /**
-     * Output only. The time deadline any schedule start time cannot go beyond, including reschedule.
+     * Output only. The deadline that the maintenance schedule start time can not go beyond, including reschedule.
      */
     scheduleDeadlineTime?: string | null;
     /**
@@ -476,11 +480,11 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$NodeInfo {
     /**
-     * Output only. Output Only. Node identifying string. e.g. 'node-0', 'node-1'
+     * Output only. Node identifying string. e.g. 'node-0', 'node-1'
      */
     id?: string | null;
     /**
-     * Output only. Output Only. Location of the node.
+     * Output only. Location of the node.
      */
     zone?: string | null;
   }
@@ -517,6 +521,27 @@ export namespace redis_v1beta1 {
      * Google Cloud Storage destination for output content.
      */
     gcsDestination?: Schema$GcsDestination;
+  }
+  /**
+   * Configuration of the persistence functionality.
+   */
+  export interface Schema$PersistenceConfig {
+    /**
+     * Optional. Controls whether Persistence features are enabled. If not provided, the existing value will be used.
+     */
+    persistenceMode?: string | null;
+    /**
+     * Output only. The next time that a snapshot attempt is scheduled to occur.
+     */
+    rdbNextSnapshotTime?: string | null;
+    /**
+     * Optional. Period between RDB snapshots. Snapshots will be attempted every period starting from the provided snapshot start time. For example, a start time of 01/01/2033 06:45 and SIX_HOURS snapshot period will do nothing until 01/01/2033, and then trigger snapshots every day at 06:45, 12:45, 18:45, and 00:45 the next day, and so on. If not provided, TWENTY_FOUR_HOURS will be used as default.
+     */
+    rdbSnapshotPeriod?: string | null;
+    /**
+     * Optional. Date and time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.
+     */
+    rdbSnapshotStartTime?: string | null;
   }
   /**
    * Request for RescheduleMaintenance.
@@ -948,7 +973,7 @@ export namespace redis_v1beta1 {
     }
 
     /**
-     * Creates a Redis instance based on the specified tier and memory size. By default, the instance is accessible from the project's [default network](https://cloud.google.com/vpc/docs/vpc). The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis instance will be fully functional. Completed longrunning.Operation will contain the new instance object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * Creates a Redis instance based on the specified tier and memory size. By default, the instance is accessible from the project's [default network](https://cloud.google.com/vpc/docs/vpc). The creation is executed asynchronously and callers may check the returned operation to track its progress. Once the operation is completed the Redis instance will be fully functional. The completed longrunning.Operation will contain the new instance object in the response field. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
      * @example
      * ```js
      * // Before running the sample:
@@ -998,6 +1023,7 @@ export namespace redis_v1beta1 {
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "nodes": [],
+     *       //   "persistenceConfig": {},
      *       //   "persistenceIamIdentity": "my_persistenceIamIdentity",
      *       //   "port": 0,
      *       //   "readEndpoint": "my_readEndpoint",
@@ -1579,6 +1605,7 @@ export namespace redis_v1beta1 {
      *   //   "memorySizeGb": 0,
      *   //   "name": "my_name",
      *   //   "nodes": [],
+     *   //   "persistenceConfig": {},
      *   //   "persistenceIamIdentity": "my_persistenceIamIdentity",
      *   //   "port": 0,
      *   //   "readEndpoint": "my_readEndpoint",
@@ -2129,7 +2156,7 @@ export namespace redis_v1beta1 {
      *   const res = await redis.projects.locations.instances.patch({
      *     // Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Redis instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which specific zone (or collection of zones for cross-zone instances) an instance should be provisioned in. Refer to location_id and alternative_location_id fields for more details.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
-     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance: * `displayName` * `labels` * `memorySizeGb` * `redisConfig`
+     *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance: * `displayName` * `labels` * `memorySizeGb` * `redisConfig` * `replica_count`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2151,6 +2178,7 @@ export namespace redis_v1beta1 {
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "nodes": [],
+     *       //   "persistenceConfig": {},
      *       //   "persistenceIamIdentity": "my_persistenceIamIdentity",
      *       //   "port": 0,
      *       //   "readEndpoint": "my_readEndpoint",
@@ -2650,7 +2678,7 @@ export namespace redis_v1beta1 {
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance: * `displayName` * `labels` * `memorySizeGb` * `redisConfig`
+     * Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Instance: * `displayName` * `labels` * `memorySizeGb` * `redisConfig` * `replica_count`
      */
     updateMask?: string;
 
