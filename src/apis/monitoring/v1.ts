@@ -103,7 +103,7 @@ export namespace monitoring_v1 {
   /**
    * Cloud Monitoring API
    *
-   * Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Cloud Monitoring documentation (https://cloud.google.com/monitoring/docs).
+   * Manages your Cloud Monitoring data and configurations.
    *
    * @example
    * ```js
@@ -350,6 +350,23 @@ export namespace monitoring_v1 {
     widgets?: Schema$Widget[];
   }
   /**
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page.This message can be used both in streaming and non-streaming API methods in the request as well as the response.It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body.Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   */
+  export interface Schema$HttpBody {
+    /**
+     * The HTTP Content-Type header value specifying the content type of the body.
+     */
+    contentType?: string | null;
+    /**
+     * The HTTP request/response body as raw binary.
+     */
+    data?: string | null;
+    /**
+     * Application specific response metadata. Must be set in the first response for streaming APIs.
+     */
+    extensions?: Array<{[key: string]: any}> | null;
+  }
+  /**
    * The ListDashboards request.
    */
   export interface Schema$ListDashboardsResponse {
@@ -489,6 +506,61 @@ export namespace monitoring_v1 {
      * ranking_method is applied to each time series independently to produce the value which will be used to compare the time series to other time series.
      */
     rankingMethod?: string | null;
+  }
+  /**
+   * QueryInstantRequest holds all parameters of the Prometheus upstream instant query API plus GCM specific parameters.
+   */
+  export interface Schema$QueryInstantRequest {
+    /**
+     * A PromQL query string. Query lanauge documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.
+     */
+    query?: string | null;
+    /**
+     * The single point in time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     */
+    time?: string | null;
+    /**
+     * An upper bound timeout for the query. Either a Prometheus duration string (https://prometheus.io/docs/prometheus/latest/querying/basics/#time-durations) or floating point seconds. This non-standard encoding must be used for compatibility with the open source API. Clients may still implement timeouts at the connection level while ignoring this field.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * QueryRangeRequest holds all parameters of the Prometheus upstream range query API plus GCM specific parameters.
+   */
+  export interface Schema$QueryRangeRequest {
+    /**
+     * The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     */
+    end?: string | null;
+    /**
+     * A PromQL query string. Query lanauge documentation: https://prometheus.io/docs/prometheus/latest/querying/basics/.
+     */
+    query?: string | null;
+    /**
+     * The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     */
+    start?: string | null;
+    /**
+     * The resolution of query result. Either a Prometheus duration string (https://prometheus.io/docs/prometheus/latest/querying/basics/#time-durations) or floating point seconds. This non-standard encoding must be used for compatibility with the open source API. Clients may still implement timeouts at the connection level while ignoring this field.
+     */
+    step?: string | null;
+    /**
+     * An upper bound timeout for the query. Either a Prometheus duration string (https://prometheus.io/docs/prometheus/latest/querying/basics/#time-durations) or floating point seconds. This non-standard encoding must be used for compatibility with the open source API. Clients may still implement timeouts at the connection level while ignoring this field.
+     */
+    timeout?: string | null;
+  }
+  /**
+   * QuerySeries holds all parameters of the Prometheus upstream API for querying series.
+   */
+  export interface Schema$QuerySeriesRequest {
+    /**
+     * The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     */
+    end?: string | null;
+    /**
+     * The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     */
+    start?: string | null;
   }
   /**
    * Describes a query to build the numerator or denominator of a TimeSeriesFilterRatio.
@@ -1660,9 +1732,11 @@ export namespace monitoring_v1 {
   export class Resource$Projects {
     context: APIRequestContext;
     dashboards: Resource$Projects$Dashboards;
+    location: Resource$Projects$Location;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.dashboards = new Resource$Projects$Dashboards(this.context);
+      this.location = new Resource$Projects$Location(this.context);
     }
   }
 
@@ -2452,5 +2526,894 @@ export namespace monitoring_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Dashboard;
+  }
+
+  export class Resource$Projects$Location {
+    context: APIRequestContext;
+    prometheus: Resource$Projects$Location$Prometheus;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.prometheus = new Resource$Projects$Location$Prometheus(this.context);
+    }
+  }
+
+  export class Resource$Projects$Location$Prometheus {
+    context: APIRequestContext;
+    api: Resource$Projects$Location$Prometheus$Api;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.api = new Resource$Projects$Location$Prometheus$Api(this.context);
+    }
+  }
+
+  export class Resource$Projects$Location$Prometheus$Api {
+    context: APIRequestContext;
+    v1: Resource$Projects$Location$Prometheus$Api$V1;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.v1 = new Resource$Projects$Location$Prometheus$Api$V1(this.context);
+    }
+  }
+
+  export class Resource$Projects$Location$Prometheus$Api$V1 {
+    context: APIRequestContext;
+    label: Resource$Projects$Location$Prometheus$Api$V1$Label;
+    metadata: Resource$Projects$Location$Prometheus$Api$V1$Metadata;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.label = new Resource$Projects$Location$Prometheus$Api$V1$Label(
+        this.context
+      );
+      this.metadata = new Resource$Projects$Location$Prometheus$Api$V1$Metadata(
+        this.context
+      );
+    }
+
+    /**
+     * Evaluate a PromQL query at a single point in time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.location.prometheus.api.v1.query({
+     *     // Location of the resource information. Has to be "global" now.
+     *     location: 'placeholder-value',
+     *     // The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "query": "my_query",
+     *       //   "time": "my_time",
+     *       //   "timeout": "my_timeout"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    query(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Query,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query(
+      params?: Params$Resource$Projects$Location$Prometheus$Api$V1$Query,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    query(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Query,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    query(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Query,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    query(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Query,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    query(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    query(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Location$Prometheus$Api$V1$Query
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Location$Prometheus$Api$V1$Query;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Location$Prometheus$Api$V1$Query;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+name}/location/{location}/prometheus/api/v1/query'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name', 'location'],
+        pathParams: ['location', 'name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Evaluate a PromQL query with start, end time range.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.location.prometheus.api.v1.query_range({
+     *     // Location of the resource information. Has to be "global" now.
+     *     location: 'placeholder-value',
+     *     // The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "end": "my_end",
+     *       //   "query": "my_query",
+     *       //   "start": "my_start",
+     *       //   "step": "my_step",
+     *       //   "timeout": "my_timeout"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    query_range(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    query_range(
+      params?: Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    query_range(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    query_range(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    query_range(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    query_range(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    query_range(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+name}/location/{location}/prometheus/api/v1/query_range'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name', 'location'],
+        pathParams: ['location', 'name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Lists metadata for metrics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.location.prometheus.api.v1.series({
+     *     // Location of the resource information. Has to be "global" for now.
+     *     location: 'placeholder-value',
+     *     // Required. The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "end": "my_end",
+     *       //   "start": "my_start"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    series(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Series,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    series(
+      params?: Params$Resource$Projects$Location$Prometheus$Api$V1$Series,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    series(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Series,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    series(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Series,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    series(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Series,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    series(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    series(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Location$Prometheus$Api$V1$Series
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Location$Prometheus$Api$V1$Series;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Location$Prometheus$Api$V1$Series;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+name}/location/{location}/prometheus/api/v1/series'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name', 'location'],
+        pathParams: ['location', 'name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Location$Prometheus$Api$V1$Query
+    extends StandardParameters {
+    /**
+     * Location of the resource information. Has to be "global" now.
+     */
+    location?: string;
+    /**
+     * The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryInstantRequest;
+  }
+  export interface Params$Resource$Projects$Location$Prometheus$Api$V1$Query_range
+    extends StandardParameters {
+    /**
+     * Location of the resource information. Has to be "global" now.
+     */
+    location?: string;
+    /**
+     * The project on which to execute the request. Data associcated with the project's workspace stored under the The format is: projects/PROJECT_ID_OR_NUMBER. Open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryRangeRequest;
+  }
+  export interface Params$Resource$Projects$Location$Prometheus$Api$V1$Series
+    extends StandardParameters {
+    /**
+     * Location of the resource information. Has to be "global" for now.
+     */
+    location?: string;
+    /**
+     * Required. The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QuerySeriesRequest;
+  }
+
+  export class Resource$Projects$Location$Prometheus$Api$V1$Label {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists possible values for a given label name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.projects.location.prometheus.api.v1.label.values(
+     *     {
+     *       // The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     *       end: 'placeholder-value',
+     *       // The label name for which values are queried.
+     *       label: 'placeholder-value',
+     *       // Location of the resource information. Has to be "global" now.
+     *       location: 'placeholder-value',
+     *       // A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.
+     *       match: 'placeholder-value',
+     *       // The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.
+     *       name: 'projects/my-project',
+     *       // The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     *       start: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    values(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    values(
+      params?: Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    values(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    values(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    values(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    values(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    values(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+name}/location/{location}/prometheus/api/v1/label/{label}/values'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name', 'location', 'label'],
+        pathParams: ['label', 'location', 'name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Location$Prometheus$Api$V1$Label$Values
+    extends StandardParameters {
+    /**
+     * The end time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     */
+    end?: string;
+    /**
+     * The label name for which values are queried.
+     */
+    label?: string;
+    /**
+     * Location of the resource information. Has to be "global" now.
+     */
+    location?: string;
+    /**
+     * A list of matchers encoded in the Prometheus label matcher format to constrain the values to series that satisfy them.
+     */
+    match?: string;
+    /**
+     * The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.
+     */
+    name?: string;
+    /**
+     * The start time to evaluate the query for. Either floating point UNIX seconds or RFC3339 formatted timestamp.
+     */
+    start?: string;
+  }
+
+  export class Resource$Projects$Location$Prometheus$Api$V1$Metadata {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists metadata for metrics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await monitoring.projects.location.prometheus.api.v1.metadata.list({
+     *       // Maximum number of metrics to return.
+     *       limit: 'placeholder-value',
+     *       // Location of the resource information. Has to be "global" for now.
+     *       location: 'placeholder-value',
+     *       // The metric name for which to query metadata. If unset, all metric metadata is returned.
+     *       metric: 'placeholder-value',
+     *       // Required. The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.
+     *       name: 'projects/my-project',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    list(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+name}/location/{location}/prometheus/api/v1/metadata'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name', 'location'],
+        pathParams: ['location', 'name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Location$Prometheus$Api$V1$Metadata$List
+    extends StandardParameters {
+    /**
+     * Maximum number of metrics to return.
+     */
+    limit?: string;
+    /**
+     * Location of the resource information. Has to be "global" for now.
+     */
+    location?: string;
+    /**
+     * The metric name for which to query metadata. If unset, all metric metadata is returned.
+     */
+    metric?: string;
+    /**
+     * Required. The workspace on which to execute the request. It is not part of the open source API but used as a request path prefix to distinguish different virtual Prometheus instances of Google Prometheus Engine. The format is: projects/PROJECT_ID_OR_NUMBER.
+     */
+    name?: string;
   }
 }
