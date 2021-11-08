@@ -7315,7 +7315,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20211029",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -9278,7 +9278,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1EnvironmentTestCasesConfig",
       "properties": {
         "enableContinuousRun": {
-          "description": "Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.",
+          "description": "Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to true, run once a day.",
           "type": "boolean"
         },
         "enablePredeploymentRun": {
@@ -12366,9 +12366,9 @@
           ],
           "enumDescriptions": [
             "Not specified. This value should never be used.",
-            "Standard tier.",
-            "Enterprise tier (Essentials).",
-            "Enterprise tier (Plus)."
+            "Trial Edition, previously known as Standard Edition.",
+            "Essentials Edition, previously known as Enterprise Essential Edition.",
+            "Essentials Edition (same as TIER_ENTERPRISE), previously known as Enterprise Plus Edition."
           ],
           "type": "string"
         },
