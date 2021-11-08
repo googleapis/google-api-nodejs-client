@@ -1164,7 +1164,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Membership {
     /**
-     * The creation time of the membership a.k.a the time at which the member joined the space, if applicable.
+     * The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.
      */
     createTime?: string | null;
     /**
@@ -1316,7 +1316,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Space {
     /**
-     * Output only. The display name (only if the space is of type `ROOM`). Please note that this field might not be populated in direct messages between humans.
+     * The display name (only if the space is of type `ROOM`). Please note that this field might not be populated in direct messages between humans.
      */
     displayName?: string | null;
     /**
@@ -3256,7 +3256,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.members.get({
-     *     // Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAMpdlehY/members/105115627578887013105
+     *     // Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAAAAAAAAA/members/111111111111111111111
      *     name: 'spaces/my-space/members/my-member',
      *   });
      *   console.log(res.data);
@@ -3389,7 +3389,7 @@ export namespace chat_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
      *     parent: 'spaces/my-space',
      *   });
      *   console.log(res.data);
@@ -3501,7 +3501,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Members$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAMpdlehY/members/105115627578887013105
+     * Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAAAAAAAAA/members/111111111111111111111
      */
     name?: string;
   }
@@ -3516,7 +3516,7 @@ export namespace chat_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
      */
     parent?: string;
   }
