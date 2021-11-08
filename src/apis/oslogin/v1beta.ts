@@ -276,10 +276,12 @@ export namespace oslogin_v1beta {
   export class Resource$Users {
     context: APIRequestContext;
     projects: Resource$Users$Projects;
+    sshPublicKey: Resource$Users$Sshpublickey;
     sshPublicKeys: Resource$Users$Sshpublickeys;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.projects = new Resource$Users$Projects(this.context);
+      this.sshPublicKey = new Resource$Users$Sshpublickey(this.context);
       this.sshPublicKeys = new Resource$Users$Sshpublickeys(this.context);
     }
 
@@ -762,6 +764,172 @@ export namespace oslogin_v1beta {
      * Required. A reference to the POSIX account to update. POSIX accounts are identified by the project ID they are associated with. A reference to the POSIX account is in format `users/{user\}/projects/{project\}`.
      */
     name?: string;
+  }
+
+  export class Resource$Users$Sshpublickey {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create an SSH public key
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/oslogin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const oslogin = google.oslogin('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await oslogin.users.sshPublicKey.create({
+     *     // Required. The unique ID for the user in format `users/{user\}`.
+     *     parent: 'users/my-user',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *       //   "fingerprint": "my_fingerprint",
+     *       //   "key": "my_key",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "expirationTimeUsec": "my_expirationTimeUsec",
+     *   //   "fingerprint": "my_fingerprint",
+     *   //   "key": "my_key",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Users$Sshpublickey$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Users$Sshpublickey$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SshPublicKey>;
+    create(
+      params: Params$Resource$Users$Sshpublickey$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Users$Sshpublickey$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$SshPublicKey>,
+      callback: BodyResponseCallback<Schema$SshPublicKey>
+    ): void;
+    create(
+      params: Params$Resource$Users$Sshpublickey$Create,
+      callback: BodyResponseCallback<Schema$SshPublicKey>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$SshPublicKey>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Users$Sshpublickey$Create
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SshPublicKey>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Users$Sshpublickey$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Users$Sshpublickey$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://oslogin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/sshPublicKey').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SshPublicKey>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SshPublicKey>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Users$Sshpublickey$Create
+    extends StandardParameters {
+    /**
+     * Required. The unique ID for the user in format `users/{user\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SshPublicKey;
   }
 
   export class Resource$Users$Sshpublickeys {
