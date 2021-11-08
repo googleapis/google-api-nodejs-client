@@ -5781,9 +5781,17 @@ export namespace content_v2_1 {
      */
     promotionDisplayDates?: string | null;
     /**
+     * TimePeriod representation of the promotion display dates.
+     */
+    promotionDisplayTimePeriod?: Schema$TimePeriod;
+    /**
      * Required. String representation of the promotion effective dates.
      */
     promotionEffectiveDates?: string | null;
+    /**
+     * Required. TimePeriod representation of the promotion effective dates.
+     */
+    promotionEffectiveTimePeriod?: Schema$TimePeriod;
     /**
      * Required. The user provided promotion id to uniquely identify the promotion.
      */
@@ -7515,6 +7523,19 @@ export namespace content_v2_1 {
      * Required. The phone number of the person picking up the items.
      */
     phoneNumber?: string | null;
+  }
+  /**
+   * A message that represents a time period.
+   */
+  export interface Schema$TimePeriod {
+    /**
+     * The ending timestamp.
+     */
+    endTime?: string | null;
+    /**
+     * The starting timestamp.
+     */
+    startTime?: string | null;
   }
   /**
    * Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).
@@ -27196,7 +27217,9 @@ export namespace content_v2_1 {
      *       //   "productTypeExclusion": [],
      *       //   "promotionDestinationIds": [],
      *       //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *       //   "promotionDisplayTimePeriod": {},
      *       //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *       //   "promotionEffectiveTimePeriod": {},
      *       //   "promotionId": "my_promotionId",
      *       //   "redemptionChannel": [],
      *       //   "shippingServiceNames": [],
@@ -27237,7 +27260,9 @@ export namespace content_v2_1 {
      *   //   "productTypeExclusion": [],
      *   //   "promotionDestinationIds": [],
      *   //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *   //   "promotionDisplayTimePeriod": {},
      *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *   //   "promotionEffectiveTimePeriod": {},
      *   //   "promotionId": "my_promotionId",
      *   //   "redemptionChannel": [],
      *   //   "shippingServiceNames": [],
@@ -27402,7 +27427,9 @@ export namespace content_v2_1 {
      *   //   "productTypeExclusion": [],
      *   //   "promotionDestinationIds": [],
      *   //   "promotionDisplayDates": "my_promotionDisplayDates",
+     *   //   "promotionDisplayTimePeriod": {},
      *   //   "promotionEffectiveDates": "my_promotionEffectiveDates",
+     *   //   "promotionEffectiveTimePeriod": {},
      *   //   "promotionId": "my_promotionId",
      *   //   "redemptionChannel": [],
      *   //   "shippingServiceNames": [],

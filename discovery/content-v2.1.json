@@ -5815,7 +5815,7 @@
       }
     }
   },
-  "revision": "20211021",
+  "revision": "20211027",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -13306,9 +13306,17 @@
           "description": "String representation of the promotion display dates.",
           "type": "string"
         },
+        "promotionDisplayTimePeriod": {
+          "$ref": "TimePeriod",
+          "description": "TimePeriod representation of the promotion display dates."
+        },
         "promotionEffectiveDates": {
           "description": "Required. String representation of the promotion effective dates.",
           "type": "string"
+        },
+        "promotionEffectiveTimePeriod": {
+          "$ref": "TimePeriod",
+          "description": "Required. TimePeriod representation of the promotion effective dates."
         },
         "promotionId": {
           "description": "Required. The user provided promotion id to uniquely identify the promotion.",
@@ -15733,6 +15741,23 @@
         },
         "phoneNumber": {
           "description": "Required. The phone number of the person picking up the items.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimePeriod": {
+      "description": "A message that represents a time period.",
+      "id": "TimePeriod",
+      "properties": {
+        "endTime": {
+          "description": "The ending timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The starting timestamp.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
