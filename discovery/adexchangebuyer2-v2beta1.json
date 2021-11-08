@@ -2568,7 +2568,7 @@
       }
     }
   },
-  "revision": "20210922",
+  "revision": "20211104",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -5815,7 +5815,8 @@
           "type": "string"
         },
         "subAccountId": {
-          "description": "Optional sub-account ID for the seller.",
+          "description": "Output only. Ad manager network code for the seller.",
+          "readOnly": true,
           "type": "string"
         }
       },
