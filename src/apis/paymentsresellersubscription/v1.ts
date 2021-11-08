@@ -275,9 +275,17 @@ export namespace paymentsresellersubscription_v1 {
      */
     freeTrialDuration?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration;
     /**
+     * Optional. Specifies the introductory pricing details when the promotion_type is PROMOTION_TYPE_INTRODUCTORY_PRICING.
+     */
+    introductoryPricingDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails;
+    /**
      * Output only. Response only. Resource name of the subscription promotion. It will have the format of "partners/{partner_id\}/promotion/{promotion_id\}"
      */
     name?: string | null;
+    /**
+     * Output only. Output Only. Specifies the type of the promotion.
+     */
+    promotionType?: string | null;
     /**
      * Output only. 2-letter ISO region code where the promotion is available in. Ex. "US" Please refers to: https://en.wikipedia.org/wiki/ISO_3166-1
      */
@@ -290,6 +298,24 @@ export namespace paymentsresellersubscription_v1 {
      * Output only. Localized human readable name of the promotion.
      */
     titles?: Schema$GoogleTypeLocalizedText[];
+  }
+  /**
+   * The details of a introductory pricing promotion.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails {
+    /**
+     * Specifies the introductory pricing periods.
+     */
+    introductoryPricingSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec[];
+  }
+  /**
+   * The duration of an introductory pricing promotion.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec {
+    /**
+     * Output only. Output Only. The duration of an introductory offer in billing cycles.
+     */
+    recurrenceCount?: number | null;
   }
   /**
    * A Subscription resource managed by 3P Partners.
