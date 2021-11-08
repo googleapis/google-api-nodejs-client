@@ -197,7 +197,7 @@ export namespace cloudfunctions_v1 {
     result?: string | null;
   }
   /**
-   * Describes a Cloud Function that contains user computation executed in response to an event. It encapsulate function and triggers configurations. Next tag: 35
+   * Describes a Cloud Function that contains user computation executed in response to an event. It encapsulate function and triggers configurations. Next tag: 36
    */
   export interface Schema$CloudFunction {
     /**
