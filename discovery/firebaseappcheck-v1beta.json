@@ -287,6 +287,35 @@
                 "https://www.googleapis.com/auth/firebase"
               ]
             },
+            "exchangeRecaptchaEnterpriseToken": {
+              "description": "Validates a [reCAPTCHA Enterprise response token](https://cloud.google.com/recaptcha-enterprise/docs/create-assessment#retrieve_token). If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
+              "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeRecaptchaEnterpriseToken",
+              "httpMethod": "POST",
+              "id": "firebaseappcheck.projects.apps.exchangeRecaptchaEnterpriseToken",
+              "parameterOrder": [
+                "app"
+              ],
+              "parameters": {
+                "app": {
+                  "description": "Required. The relative resource name of the web app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/apps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+app}:exchangeRecaptchaEnterpriseToken",
+              "request": {
+                "$ref": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest"
+              },
+              "response": {
+                "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
             "exchangeRecaptchaToken": {
               "description": "Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeRecaptchaToken",
@@ -824,6 +853,103 @@
                 }
               }
             },
+            "recaptchaEnterpriseConfig": {
+              "methods": {
+                "batchGet": {
+                  "description": "Gets the RecaptchaEnterpriseConfigs for the specified list of apps atomically.",
+                  "flatPath": "v1beta/projects/{projectsId}/apps/-/recaptchaEnterpriseConfig:batchGet",
+                  "httpMethod": "GET",
+                  "id": "firebaseappcheck.projects.apps.recaptchaEnterpriseConfig.batchGet",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "names": {
+                      "description": "Required. The relative resource names of the RecaptchaEnterpriseConfigs to retrieve, in the format: ``` projects/{project_number}/apps/{app_id}/recaptchaEnterpriseConfig ``` A maximum of 100 objects can be retrieved in a batch.",
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent project name shared by all RecaptchaEnterpriseConfigs being retrieved, in the format ``` projects/{project_number} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+parent}/apps/-/recaptchaEnterpriseConfig:batchGet",
+                  "response": {
+                    "$ref": "GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the RecaptchaEnterpriseConfig for the specified app.",
+                  "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}/recaptchaEnterpriseConfig",
+                  "httpMethod": "GET",
+                  "id": "firebaseappcheck.projects.apps.recaptchaEnterpriseConfig.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the RecaptchaEnterpriseConfig, in the format: ``` projects/{project_number}/apps/{app_id}/recaptchaEnterpriseConfig ```",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+/recaptchaEnterpriseConfig$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "response": {
+                    "$ref": "GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the RecaptchaEnterpriseConfig for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA Enterprise tokens for App Check tokens.",
+                  "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}/recaptchaEnterpriseConfig",
+                  "httpMethod": "PATCH",
+                  "id": "firebaseappcheck.projects.apps.recaptchaEnterpriseConfig.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the reCAPTCHA Enterprise configuration object, in the format: ``` projects/{project_number}/apps/{app_id}/recaptchaEnterpriseConfig ```",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/apps/[^/]+/recaptchaEnterpriseConfig$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. A comma-separated list of names of fields in the RecaptchaEnterpriseConfig to update. Example: `site_key`.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta/{+name}",
+                  "request": {
+                    "$ref": "GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig"
+                  },
+                  "response": {
+                    "$ref": "GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/firebase"
+                  ]
+                }
+              }
+            },
             "safetyNetConfig": {
               "methods": {
                 "batchGet": {
@@ -1057,7 +1183,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20211029",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse": {
@@ -1145,6 +1271,20 @@
           "description": "RecaptchaConfigs retrieved.",
           "items": {
             "$ref": "GoogleFirebaseAppcheckV1betaRecaptchaConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponse": {
+      "description": "Response message for the BatchGetRecaptchaEnterpriseConfigs method.",
+      "id": "GoogleFirebaseAppcheckV1betaBatchGetRecaptchaEnterpriseConfigsResponse",
+      "properties": {
+        "configs": {
+          "description": "RecaptchaEnterpriseConfigs retrieved.",
+          "items": {
+            "$ref": "GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig"
           },
           "type": "array"
         }
@@ -1339,6 +1479,17 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest": {
+      "description": "Request message for the ExchangeRecaptchaEnterpriseToken method.",
+      "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest",
+      "properties": {
+        "recaptchaEnterpriseToken": {
+          "description": "Required. The reCAPTCHA token as returned by the [reCAPTCHA Enterprise JavaScript API](https://cloud.google.com/recaptcha-enterprise/docs/instrument-web-pages).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest": {
       "description": "Request message for the ExchangeRecaptchaToken method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest",
@@ -1467,6 +1618,26 @@
         },
         "tokenTtl": {
           "description": "Specifies the duration for which App Check tokens exchanged from reCAPTCHA tokens will be valid. If unset, a default value of 1 day is assumed. Must be between 30 minutes and 7 days, inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig": {
+      "description": "An app's reCAPTCHA Enterprise configuration object. This configuration is used by ExchangeRecaptchaEnterpriseToken to validate reCAPTCHA tokens issued to apps by reCAPTCHA Enterprise. It also controls certain properties of the returned App Check token, such as its ttl.",
+      "id": "GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig",
+      "properties": {
+        "name": {
+          "description": "Required. The relative resource name of the reCAPTCHA Enterprise configuration object, in the format: ``` projects/{project_number}/apps/{app_id}/recaptchaEnterpriseConfig ```",
+          "type": "string"
+        },
+        "siteKey": {
+          "description": "The score-based site key [created in reCAPTCHA Enterprise](https://cloud.google.com/recaptcha-enterprise/docs/create-key#creating_a_site_key) used to [invoke reCAPTCHA and generate the reCAPTCHA tokens](https://cloud.google.com/recaptcha-enterprise/docs/instrument-web-pages) for your application. Important: This is *not* the `site_secret` (as it is in reCAPTCHA v3), but rather your score-based reCAPTCHA Enterprise site key.",
+          "type": "string"
+        },
+        "tokenTtl": {
+          "description": "Specifies the duration for which App Check tokens exchanged from reCAPTCHA Enterprise tokens will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive.",
           "format": "google-duration",
           "type": "string"
         }
