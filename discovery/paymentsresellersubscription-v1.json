@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20211027",
+  "revision": "20211105",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
@@ -612,8 +612,27 @@
           "$ref": "GoogleCloudPaymentsResellerSubscriptionV1Duration",
           "description": "Optional. Specifies the duration of the free trial of the subscription when promotion_type is PROMOTION_TYPE_FREE_TRIAL"
         },
+        "introductoryPricingDetails": {
+          "$ref": "GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails",
+          "description": "Optional. Specifies the introductory pricing details when the promotion_type is PROMOTION_TYPE_INTRODUCTORY_PRICING."
+        },
         "name": {
           "description": "Output only. Response only. Resource name of the subscription promotion. It will have the format of \"partners/{partner_id}/promotion/{promotion_id}\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "promotionType": {
+          "description": "Output only. Output Only. Specifies the type of the promotion.",
+          "enum": [
+            "PROMOTION_TYPE_UNSPECIFIED",
+            "PROMOTION_TYPE_FREE_TRIAL",
+            "PROMOTION_TYPE_INTRODUCTORY_PRICING"
+          ],
+          "enumDescriptions": [
+            "The promotion type is unspecified.",
+            "The promotion is a free trial.",
+            "The promotion is a reduced introductory pricing."
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -637,6 +656,33 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails": {
+      "description": "The details of a introductory pricing promotion.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails",
+      "properties": {
+        "introductoryPricingSpecs": {
+          "description": "Specifies the introductory pricing periods.",
+          "items": {
+            "$ref": "GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec": {
+      "description": "The duration of an introductory pricing promotion.",
+      "id": "GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec",
+      "properties": {
+        "recurrenceCount": {
+          "description": "Output only. Output Only. The duration of an introductory offer in billing cycles.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
