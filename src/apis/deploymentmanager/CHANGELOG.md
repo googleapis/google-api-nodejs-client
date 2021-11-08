@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.0.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v2.0.1...deploymentmanager-v2.0.2) (2021-10-28)
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([89c8737](https://www.github.com/googleapis/google-api-nodejs-client/commit/89c8737d6005f9b75e37039298eb055a5a73c8a6))
+
 ### [2.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v2.0.0...deploymentmanager-v2.0.1) (2021-10-18)
 
 

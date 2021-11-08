@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v3.0.0...cloudkms-v3.1.0) (2021-10-28)
+
+
+### Features
+
+* **cloudkms:** update the API ([526f0f5](https://www.github.com/googleapis/google-api-nodejs-client/commit/526f0f5c46cdf1ec133975a9e9ad3909ba959cb9))
+
 ## [3.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v2.2.0...cloudkms-v3.0.0) (2021-09-14)
 
 
