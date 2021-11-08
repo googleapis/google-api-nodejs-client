@@ -225,7 +225,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` *Note:* When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.",
+              "description": "Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` > Note: When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -305,7 +305,7 @@
           ]
         },
         "batchUpdate": {
-          "description": "Updates the metadata of Photos, such as pose, place association, connections, etc. Changing the pixels of photos is not supported. Note that if BatchUpdatePhotos fails, either critical fields are missing or there is an authentication error. Even if BatchUpdatePhotos succeeds, individual photos in the batch may have failures. These failures are specified in each PhotoResponse.status in BatchUpdatePhotosResponse.results. See UpdatePhoto for specific failures that can occur per photo. Only the fields specified in updateMask field are used. If `updateMask` is not present, the update applies to all fields. The number of UpdatePhotoRequest messages in a BatchUpdatePhotosRequest must not exceed 20. *Note:* To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.",
+          "description": "Updates the metadata of Photos, such as pose, place association, connections, etc. Changing the pixels of photos is not supported. Note that if BatchUpdatePhotos fails, either critical fields are missing or there is an authentication error. Even if BatchUpdatePhotos succeeds, individual photos in the batch may have failures. These failures are specified in each PhotoResponse.status in BatchUpdatePhotosResponse.results. See UpdatePhoto for specific failures that can occur per photo. Only the fields specified in updateMask field are used. If `updateMask` is not present, the update applies to all fields. The number of UpdatePhotoRequest messages in a BatchUpdatePhotosRequest must not exceed 20. > Note: To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.",
           "flatPath": "v1/photos:batchUpdate",
           "httpMethod": "POST",
           "id": "streetviewpublish.photos.batchUpdate",
@@ -323,7 +323,7 @@
           ]
         },
         "list": {
-          "description": "Lists all the Photos that belong to the user. *Note:* Recently created photos that are still being indexed are not returned in the response.",
+          "description": "Lists all the Photos that belong to the user. > Note: Recently created photos that are still being indexed are not returned in the response.",
           "flatPath": "v1/photos",
           "httpMethod": "GET",
           "id": "streetviewpublish.photos.list",
@@ -335,18 +335,18 @@
               "type": "string"
             },
             "languageCode": {
-              "description": "The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.",
+              "description": "Optional. The BCP-47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.",
               "location": "query",
               "type": "string"
             },
             "pageSize": {
-              "description": "The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.",
+              "description": "Optional. The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "The nextPageToken value returned from a previous ListPhotos request, if any.",
+              "description": "Optional. The nextPageToken value returned from a previous ListPhotos request, if any.",
               "location": "query",
               "type": "string"
             },
@@ -375,7 +375,7 @@
       }
     }
   },
-  "revision": "20211026",
+  "revision": "20211104",
   "rootUrl": "https://streetviewpublish.googleapis.com/",
   "schemas": {
     "BatchDeletePhotosRequest": {
@@ -491,7 +491,7 @@
           "type": "string"
         },
         "number": {
-          "description": "Floor number, used for ordering. 0 indicates the ground level, 1 indicates the first level above ground level, -1 indicates the first level under ground level. Non-integer values are OK.",
+          "description": "Optional. Floor number, used for ordering. 0 indicates the ground level, 1 indicates the first level above ground level, -1 indicates the first level under ground level. Non-integer values are OK.",
           "format": "double",
           "type": "number"
         }
@@ -556,12 +556,12 @@
       "id": "Photo",
       "properties": {
         "captureTime": {
-          "description": "Absolute time when the photo was captured. When the photo has no exif timestamp, this is used to set a timestamp in the photo metadata.",
+          "description": "Optional. Absolute time when the photo was captured. When the photo has no exif timestamp, this is used to set a timestamp in the photo metadata.",
           "format": "google-datetime",
           "type": "string"
         },
         "connections": {
-          "description": "Connections to other photos. A connection represents the link from this photo to another photo.",
+          "description": "Optional. Connections to other photos. A connection represents the link from this photo to another photo.",
           "items": {
             "$ref": "Connection"
           },
@@ -569,10 +569,11 @@
         },
         "downloadUrl": {
           "description": "Output only. The download URL for the photo bytes. This field is set only when GetPhotoRequest.view is set to PhotoView.INCLUDE_DOWNLOAD_URL.",
+          "readOnly": true,
           "type": "string"
         },
         "mapsPublishStatus": {
-          "description": "Output only. Status in Google Maps, whether this photo was published or rejected. Not currently populated.",
+          "description": "Output only. Status in Google Maps, whether this photo was published or rejected.",
           "enum": [
             "UNSPECIFIED_MAPS_PUBLISH_STATUS",
             "PUBLISHED",
@@ -583,14 +584,16 @@
             "The photo is published to the public through Google Maps.",
             "The photo has been rejected for an unknown reason."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "photoId": {
           "$ref": "PhotoId",
-          "description": "Required when updating a photo. Output only when creating a photo. Identifier for the photo, which is unique among all photos in Google."
+          "description": "Required. Output only. Required when updating a photo. Output only when creating a photo. Identifier for the photo, which is unique among all photos in Google.",
+          "readOnly": true
         },
         "places": {
-          "description": "Places where this photo belongs.",
+          "description": "Optional. Places where this photo belongs.",
           "items": {
             "$ref": "Place"
           },
@@ -598,14 +601,16 @@
         },
         "pose": {
           "$ref": "Pose",
-          "description": "Pose of the photo."
+          "description": "Optional. Pose of the photo."
         },
         "shareLink": {
           "description": "Output only. The share link for the photo.",
+          "readOnly": true,
           "type": "string"
         },
         "thumbnailUrl": {
           "description": "Output only. The thumbnail URL for showing a preview of the given photo.",
+          "readOnly": true,
           "type": "string"
         },
         "transferStatus": {
@@ -630,20 +635,23 @@
             "The sender cancelled this photo transfer.",
             "The recipient owns this photo due to a rights transfer."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "uploadReference": {
           "$ref": "UploadRef",
-          "description": "Required when creating a photo. Input only. The resource URL where the photo bytes are uploaded to."
+          "description": "Input only. Required when creating a photo. Input only. The resource URL where the photo bytes are uploaded to."
         },
         "uploadTime": {
-          "description": "Time when the image was uploaded.",
+          "description": "Output only. Time when the image was uploaded.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "viewCount": {
           "description": "Output only. View count of the photo.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -680,11 +688,13 @@
       "id": "Place",
       "properties": {
         "languageCode": {
-          "description": "Output-only. The language_code that the name is localized with. This should be the language_code specified in the request, but may be a fallback.",
+          "description": "Output only. The language_code that the name is localized with. This should be the language_code specified in the request, but may be a fallback.",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Output-only. The name of the place, localized to the language_code.",
+          "description": "Output only. The name of the place, localized to the language_code.",
+          "readOnly": true,
           "type": "string"
         },
         "placeId": {
@@ -709,7 +719,7 @@
           "type": "number"
         },
         "heading": {
-          "description": "Compass heading, measured at the center of the photo in degrees clockwise from North. Value must be >=0 and <360. NaN indicates an unmeasured quantity.",
+          "description": "The following pose parameters pertain to the center of the photo. They match https://developers.google.com/streetview/spherical-metadata. Compass heading, measured at the center of the photo in degrees clockwise from North. Value must be >=0 and <360. NaN indicates an unmeasured quantity.",
           "format": "double",
           "type": "number"
         },
@@ -770,7 +780,7 @@
           "description": "Required. Photo object containing the new metadata."
         },
         "updateMask": {
-          "description": "Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` *Note:* When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.",
+          "description": "Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` > Note: When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.",
           "format": "google-fieldmask",
           "type": "string"
         }
