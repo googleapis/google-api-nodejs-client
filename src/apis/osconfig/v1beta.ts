@@ -380,6 +380,31 @@ export namespace osconfig_v1beta {
     object?: string | null;
   }
   /**
+   * OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.
+   */
+  export interface Schema$GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata {
+    /**
+     * The OS policy assignment API method.
+     */
+    apiMethod?: string | null;
+    /**
+     * Reference to the `OSPolicyAssignment` API resource. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id@revision_id\}`
+     */
+    osPolicyAssignment?: string | null;
+    /**
+     * Rollout start time
+     */
+    rolloutStartTime?: string | null;
+    /**
+     * State of the rollout
+     */
+    rolloutState?: string | null;
+    /**
+     * Rollout update time
+     */
+    rolloutUpdateTime?: string | null;
+  }
+  /**
    * Represents a Goo package repository. These is added to a repo file that is stored at C:/ProgramData/GooGet/repos/google_osconfig.repo.
    */
   export interface Schema$GooRepository {
@@ -2669,6 +2694,162 @@ export namespace osconfig_v1beta {
         );
       }
     }
+
+    /**
+     * Update an OS Config patch deployment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.patch({
+     *     // Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id\}/patchDeployments/{patch_deployment_id\}`. This field is ignored when you create a new patch deployment.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *     // Optional. Field mask that controls which fields of the patch deployment should be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "duration": "my_duration",
+     *       //   "instanceFilter": {},
+     *       //   "lastExecuteTime": "my_lastExecuteTime",
+     *       //   "name": "my_name",
+     *       //   "oneTimeSchedule": {},
+     *       //   "patchConfig": {},
+     *       //   "recurringSchedule": {},
+     *       //   "rollout": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Patchdeployments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Patchdeployments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PatchDeployment>;
+    patch(
+      params: Params$Resource$Projects$Patchdeployments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Patchdeployments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$PatchDeployment>,
+      callback: BodyResponseCallback<Schema$PatchDeployment>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Patchdeployments$Patch,
+      callback: BodyResponseCallback<Schema$PatchDeployment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$PatchDeployment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Patchdeployments$Patch
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Patchdeployments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Patchdeployments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PatchDeployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PatchDeployment>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Patchdeployments$Create
@@ -2715,6 +2896,22 @@ export namespace osconfig_v1beta {
      * Required. The resource name of the parent in the form `projects/x`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Patchdeployments$Patch
+    extends StandardParameters {
+    /**
+     * Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id\}/patchDeployments/{patch_deployment_id\}`. This field is ignored when you create a new patch deployment.
+     */
+    name?: string;
+    /**
+     * Optional. Field mask that controls which fields of the patch deployment should be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PatchDeployment;
   }
 
   export class Resource$Projects$Patchjobs {

@@ -384,6 +384,40 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "patch": {
+              "description": "Update an OS Config patch deployment.",
+              "flatPath": "v1beta/projects/{projectsId}/patchDeployments/{patchDeploymentsId}",
+              "httpMethod": "PATCH",
+              "id": "osconfig.projects.patchDeployments.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id}/patchDeployments/{patch_deployment_id}`. This field is ignored when you create a new patch deployment.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/patchDeployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. Field mask that controls which fields of the patch deployment should be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "request": {
+                "$ref": "PatchDeployment"
+              },
+              "response": {
+                "$ref": "PatchDeployment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         },
@@ -599,7 +633,7 @@
       }
     }
   },
-  "revision": "20211018",
+  "revision": "20211029",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptRepository": {
@@ -981,6 +1015,61 @@
       "description": "Googet patching is performed by running `googet update`.",
       "id": "GooSettings",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata": {
+      "description": "OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.",
+      "id": "GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata",
+      "properties": {
+        "apiMethod": {
+          "description": "The OS policy assignment API method.",
+          "enum": [
+            "API_METHOD_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "Invalid value",
+            "Create OS policy assignment API method",
+            "Update OS policy assignment API method",
+            "Delete OS policy assignment API method"
+          ],
+          "type": "string"
+        },
+        "osPolicyAssignment": {
+          "description": "Reference to the `OSPolicyAssignment` API resource. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id@revision_id}`",
+          "type": "string"
+        },
+        "rolloutStartTime": {
+          "description": "Rollout start time",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "rolloutState": {
+          "description": "State of the rollout",
+          "enum": [
+            "ROLLOUT_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "Invalid value",
+            "The rollout is in progress.",
+            "The rollout is being cancelled.",
+            "The rollout is cancelled.",
+            "The rollout has completed successfully."
+          ],
+          "type": "string"
+        },
+        "rolloutUpdateTime": {
+          "description": "Rollout update time",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GuestPolicy": {
