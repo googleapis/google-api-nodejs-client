@@ -1962,7 +1962,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     accountId?: string | null;
     /**
-     * Optional sub-account ID for the seller.
+     * Output only. Ad manager network code for the seller.
      */
     subAccountId?: string | null;
   }
