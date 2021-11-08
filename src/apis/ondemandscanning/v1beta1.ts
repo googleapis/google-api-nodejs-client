@@ -237,11 +237,15 @@ export namespace ondemandscanning_v1beta1 {
    */
   export interface Schema$BuildOccurrence {
     /**
-     * In-toto Provenance representation as defined in spec.
+     * Deprecated. See InTotoStatement for the replacement. In-toto Provenance representation as defined in spec.
      */
     intotoProvenance?: Schema$InTotoProvenance;
     /**
-     * Required. The actual provenance for the build.
+     * In-toto Statement representation as defined in spec. The intoto_statement can contain any type of provenance. The serialized payload of the statement can be stored and signed in the Occurrence's envelope.
+     */
+    intotoStatement?: Schema$InTotoStatement;
+    /**
+     * The actual provenance for the build.
      */
     provenance?: Schema$BuildProvenance;
     /**
@@ -447,6 +451,9 @@ export namespace ondemandscanning_v1beta1 {
      */
     lastScanTime?: string | null;
   }
+  /**
+   * Deprecated. Prefer to use a regular Occurrence, and populate the Envelope at the top level of the Occurrence.
+   */
   export interface Schema$DSSEAttestationOccurrence {
     /**
      * If doing something security critical, make sure to verify the signatures in this metadata.
@@ -597,15 +604,16 @@ export namespace ondemandscanning_v1beta1 {
    */
   export interface Schema$InTotoStatement {
     /**
-     * "https://in-toto.io/Provenance/v0.1" for InTotoProvenance.
+     * "https://slsa.dev/provenance/v0.1" for SlsaProvenance.
      */
     predicateType?: string | null;
     provenance?: Schema$InTotoProvenance;
+    slsaProvenance?: Schema$SlsaProvenance;
     subject?: Schema$Subject[];
     /**
      * Always "https://in-toto.io/Statement/v0.1".
      */
-    type?: string | null;
+    _type?: string | null;
   }
   export interface Schema$Jwt {
     /**
@@ -668,6 +676,10 @@ export namespace ondemandscanning_v1beta1 {
      * The version installed at this location.
      */
     version?: Schema$Version;
+  }
+  export interface Schema$Material {
+    digest?: {[key: string]: string} | null;
+    uri?: string | null;
   }
   /**
    * Other properties of the build.
@@ -971,6 +983,91 @@ export namespace ondemandscanning_v1beta1 {
      */
     signature?: string | null;
   }
+  export interface Schema$SlsaBuilder {
+    id?: string | null;
+  }
+  /**
+   * Indicates that the builder claims certain fields in this message to be complete.
+   */
+  export interface Schema$SlsaCompleteness {
+    /**
+     * If true, the builder claims that recipe.arguments is complete, meaning that all external inputs are properly captured in the recipe.
+     */
+    arguments?: boolean | null;
+    /**
+     * If true, the builder claims that recipe.environment is claimed to be complete.
+     */
+    environment?: boolean | null;
+    /**
+     * If true, the builder claims that materials are complete, usually through some controls to prevent network access. Sometimes called "hermetic".
+     */
+    materials?: boolean | null;
+  }
+  /**
+   * Other properties of the build.
+   */
+  export interface Schema$SlsaMetadata {
+    /**
+     * The timestamp of when the build completed.
+     */
+    buildFinishedOn?: string | null;
+    /**
+     * Identifies the particular build invocation, which can be useful for finding associated logs or other ad-hoc analysis. The value SHOULD be globally unique, per in-toto Provenance spec.
+     */
+    buildInvocationId?: string | null;
+    /**
+     * The timestamp of when the build started.
+     */
+    buildStartedOn?: string | null;
+    /**
+     * Indicates that the builder claims certain fields in this message to be complete.
+     */
+    completeness?: Schema$SlsaCompleteness;
+    /**
+     * If true, the builder claims that running the recipe on materials will produce bit-for-bit identical output.
+     */
+    reproducible?: boolean | null;
+  }
+  export interface Schema$SlsaProvenance {
+    /**
+     * required
+     */
+    builder?: Schema$SlsaBuilder;
+    /**
+     * The collection of artifacts that influenced the build including sources, dependencies, build tools, base images, and so on. This is considered to be incomplete unless metadata.completeness.materials is true. Unset or null is equivalent to empty.
+     */
+    materials?: Schema$Material[];
+    metadata?: Schema$SlsaMetadata;
+    /**
+     * Identifies the configuration used for the build. When combined with materials, this SHOULD fully describe the build, such that re-running this recipe results in bit-for-bit identical output (if the build is reproducible). required
+     */
+    recipe?: Schema$SlsaRecipe;
+  }
+  /**
+   * Steps taken to build the artifact. For a TaskRun, typically each container corresponds to one step in the recipe.
+   */
+  export interface Schema$SlsaRecipe {
+    /**
+     * Collection of all external inputs that influenced the build on top of recipe.definedInMaterial and recipe.entryPoint. For example, if the recipe type were "make", then this might be the flags passed to make aside from the target, which is captured in recipe.entryPoint. Depending on the recipe Type, the structure may be different.
+     */
+    arguments?: {[key: string]: any} | null;
+    /**
+     * Index in materials containing the recipe steps that are not implied by recipe.type. For example, if the recipe type were "make", then this would point to the source containing the Makefile, not the make program itself. Set to -1 if the recipe doesn't come from a material, as zero is default unset value for int64.
+     */
+    definedInMaterial?: string | null;
+    /**
+     * String identifying the entry point into the build. This is often a path to a configuration file and/or a target label within that file. The syntax and meaning are defined by recipe.type. For example, if the recipe type were "make", then this would reference the directory in which to run make as well as which target to use.
+     */
+    entryPoint?: string | null;
+    /**
+     * Any other builder-controlled inputs necessary for correctly evaluating the recipe. Usually only needed for reproducing the build but not evaluated as part of policy. Depending on the recipe Type, the structure may be different.
+     */
+    environment?: {[key: string]: any} | null;
+    /**
+     * URI indicating what type of recipe was performed. It determines the meaning of recipe.entryPoint, recipe.arguments, recipe.environment, and materials.
+     */
+    type?: string | null;
+  }
   /**
    * Source describes the location of the source used for the build.
    */
@@ -1032,7 +1129,7 @@ export namespace ondemandscanning_v1beta1 {
   }
   export interface Schema$Subject {
     /**
-     * "": ""
+     * "": "" Algorithms can be e.g. sha256, sha512 See https://github.com/in-toto/attestation/blob/main/spec/field_types.md#DigestSet
      */
     digest?: {[key: string]: string} | null;
     name?: string | null;
