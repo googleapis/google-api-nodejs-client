@@ -1404,7 +1404,7 @@
       }
     }
   },
-  "revision": "20211011",
+  "revision": "20211102",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1512,6 +1512,82 @@
         "deviceUser": {
           "$ref": "DeviceUser",
           "description": "Resultant DeviceUser object for the action."
+        }
+      },
+      "type": "object"
+    },
+    "CertificateInfo": {
+      "description": "Stores information about a certificate.",
+      "id": "CertificateInfo",
+      "properties": {
+        "certificateTemplate": {
+          "$ref": "CertificateTemplate",
+          "description": "The X.509 extension for CertificateTemplate."
+        },
+        "fingerprint": {
+          "description": "The encoded certificate fingerprint.",
+          "type": "string"
+        },
+        "issuer": {
+          "description": "The name of the issuer of this certificate.",
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Serial number of the certificate, Example: \"123456789\".",
+          "type": "string"
+        },
+        "subject": {
+          "description": "The subject name of this certificate.",
+          "type": "string"
+        },
+        "thumbprint": {
+          "description": "The certificate thumbprint.",
+          "type": "string"
+        },
+        "validationState": {
+          "description": "Validation state of this certificate.",
+          "enum": [
+            "CERTIFICATE_VALIDATION_STATE_UNSPECIFIED",
+            "VALIDATION_SUCCESSFUL",
+            "VALIDATION_FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Certificate validation was successful.",
+            "Certificate validation failed."
+          ],
+          "type": "string"
+        },
+        "validityExpirationTime": {
+          "description": "Certificate not valid at or after this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "validityStartTime": {
+          "description": "Certificate not valid before this timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CertificateTemplate": {
+      "description": "CertificateTemplate (v3 Extension in X.509).",
+      "id": "CertificateTemplate",
+      "properties": {
+        "id": {
+          "description": "The template id of the template. Example: \"1.3.6.1.4.1.311.21.8.15608621.11768144.5720724.16068415.6889630.81.2472537.7784047\".",
+          "type": "string"
+        },
+        "majorVersion": {
+          "description": "The Major version of the template. Example: 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minorVersion": {
+          "description": "The minor version of the template. Example: 12.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1776,6 +1852,11 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "endpointVerificationSpecificAttributes": {
+          "$ref": "EndpointVerificationSpecificAttributes",
+          "description": "Output only. Attributes specific to Endpoint Verification devices.",
+          "readOnly": true
         },
         "imei": {
           "description": "Output only. IMEI number of device if GSM device; empty otherwise.",
@@ -2056,6 +2137,20 @@
       },
       "type": "object"
     },
+    "EndpointVerificationSpecificAttributes": {
+      "description": "Resource representing the Endpoint Verification-specific attributes of a Device.",
+      "id": "EndpointVerificationSpecificAttributes",
+      "properties": {
+        "certificateInfo": {
+          "description": "Details of certificates.",
+          "items": {
+            "$ref": "CertificateInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "EntityKey": {
       "description": "A unique identifier for an entity in the Cloud Identity Groups API. An entity can represent either a group with an optional `namespace` or a user without a `namespace`. The combination of `id` and `namespace` must be unique; however, the same `id` can be used with different `namespace`s.",
       "id": "EntityKey",
@@ -2078,6 +2173,21 @@
         "expireTime": {
           "description": "The time at which the `MembershipRole` will expire.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirstAdminInvitationInfo": {
+      "description": "Message containing first admin invitation info for customers",
+      "id": "FirstAdminInvitationInfo",
+      "properties": {
+        "isFirstAdmin": {
+          "description": "Optional. To enable First Admin Invitation for Domained Customer",
+          "type": "boolean"
+        },
+        "primaryDomain": {
+          "description": "Optional. Domain information of first admin invited",
           "type": "string"
         }
       },
@@ -3393,7 +3503,12 @@
     "SendUserInvitationRequest": {
       "description": "A request to send email for inviting target user corresponding to the UserInvitation.",
       "id": "SendUserInvitationRequest",
-      "properties": {},
+      "properties": {
+        "firstAdminInvitationInfo": {
+          "$ref": "FirstAdminInvitationInfo",
+          "description": "Optional. First admin invitation info for customers"
+        }
+      },
       "type": "object"
     },
     "Status": {
