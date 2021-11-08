@@ -207,7 +207,7 @@ export namespace streetviewpublish_v1 {
      */
     name?: string | null;
     /**
-     * Floor number, used for ordering. 0 indicates the ground level, 1 indicates the first level above ground level, -1 indicates the first level under ground level. Non-integer values are OK.
+     * Optional. Floor number, used for ordering. 0 indicates the ground level, 1 indicates the first level above ground level, -1 indicates the first level under ground level. Non-integer values are OK.
      */
     number?: number | null;
   }
@@ -254,11 +254,11 @@ export namespace streetviewpublish_v1 {
    */
   export interface Schema$Photo {
     /**
-     * Absolute time when the photo was captured. When the photo has no exif timestamp, this is used to set a timestamp in the photo metadata.
+     * Optional. Absolute time when the photo was captured. When the photo has no exif timestamp, this is used to set a timestamp in the photo metadata.
      */
     captureTime?: string | null;
     /**
-     * Connections to other photos. A connection represents the link from this photo to another photo.
+     * Optional. Connections to other photos. A connection represents the link from this photo to another photo.
      */
     connections?: Schema$Connection[];
     /**
@@ -266,19 +266,19 @@ export namespace streetviewpublish_v1 {
      */
     downloadUrl?: string | null;
     /**
-     * Output only. Status in Google Maps, whether this photo was published or rejected. Not currently populated.
+     * Output only. Status in Google Maps, whether this photo was published or rejected.
      */
     mapsPublishStatus?: string | null;
     /**
-     * Required when updating a photo. Output only when creating a photo. Identifier for the photo, which is unique among all photos in Google.
+     * Required. Output only. Required when updating a photo. Output only when creating a photo. Identifier for the photo, which is unique among all photos in Google.
      */
     photoId?: Schema$PhotoId;
     /**
-     * Places where this photo belongs.
+     * Optional. Places where this photo belongs.
      */
     places?: Schema$Place[];
     /**
-     * Pose of the photo.
+     * Optional. Pose of the photo.
      */
     pose?: Schema$Pose;
     /**
@@ -294,11 +294,11 @@ export namespace streetviewpublish_v1 {
      */
     transferStatus?: string | null;
     /**
-     * Required when creating a photo. Input only. The resource URL where the photo bytes are uploaded to.
+     * Input only. Required when creating a photo. Input only. The resource URL where the photo bytes are uploaded to.
      */
     uploadReference?: Schema$UploadRef;
     /**
-     * Time when the image was uploaded.
+     * Output only. Time when the image was uploaded.
      */
     uploadTime?: string | null;
     /**
@@ -333,11 +333,11 @@ export namespace streetviewpublish_v1 {
    */
   export interface Schema$Place {
     /**
-     * Output-only. The language_code that the name is localized with. This should be the language_code specified in the request, but may be a fallback.
+     * Output only. The language_code that the name is localized with. This should be the language_code specified in the request, but may be a fallback.
      */
     languageCode?: string | null;
     /**
-     * Output-only. The name of the place, localized to the language_code.
+     * Output only. The name of the place, localized to the language_code.
      */
     name?: string | null;
     /**
@@ -358,7 +358,7 @@ export namespace streetviewpublish_v1 {
      */
     altitude?: number | null;
     /**
-     * Compass heading, measured at the center of the photo in degrees clockwise from North. Value must be \>=0 and <360. NaN indicates an unmeasured quantity.
+     * The following pose parameters pertain to the center of the photo. They match https://developers.google.com/streetview/spherical-metadata. Compass heading, measured at the center of the photo in degrees clockwise from North. Value must be \>=0 and <360. NaN indicates an unmeasured quantity.
      */
     heading?: number | null;
     /**
@@ -404,7 +404,7 @@ export namespace streetviewpublish_v1 {
      */
     photo?: Schema$Photo;
     /**
-     * Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` *Note:* When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.
+     * Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` \> Note: When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.
      */
     updateMask?: string | null;
   }
@@ -1013,7 +1013,7 @@ export namespace streetviewpublish_v1 {
      *   const res = await streetviewpublish.photo.update({
      *     // A unique identifier for a photo.
      *     id: 'placeholder-value',
-     *     // Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` *Note:* When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.
+     *     // Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` \> Note: When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1184,7 +1184,7 @@ export namespace streetviewpublish_v1 {
      */
     id?: string;
     /**
-     * Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` *Note:* When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.
+     * Required. Mask that identifies fields on the photo metadata to update. If not present, the old Photo metadata is entirely replaced with the new Photo metadata in this request. The update fails if invalid fields are specified. Multiple fields can be specified in a comma-delimited list. The following fields are valid: * `pose.heading` * `pose.latLngPair` * `pose.pitch` * `pose.roll` * `pose.level` * `pose.altitude` * `connections` * `places` \> Note: When updateMask contains repeated fields, the entire set of repeated values get replaced with the new contents. For example, if updateMask contains `connections` and `UpdatePhotoRequest.photo.connections` is empty, all connections are removed.
      */
     updateMask?: string;
 
@@ -1483,7 +1483,7 @@ export namespace streetviewpublish_v1 {
     }
 
     /**
-     * Updates the metadata of Photos, such as pose, place association, connections, etc. Changing the pixels of photos is not supported. Note that if BatchUpdatePhotos fails, either critical fields are missing or there is an authentication error. Even if BatchUpdatePhotos succeeds, individual photos in the batch may have failures. These failures are specified in each PhotoResponse.status in BatchUpdatePhotosResponse.results. See UpdatePhoto for specific failures that can occur per photo. Only the fields specified in updateMask field are used. If `updateMask` is not present, the update applies to all fields. The number of UpdatePhotoRequest messages in a BatchUpdatePhotosRequest must not exceed 20. *Note:* To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.
+     * Updates the metadata of Photos, such as pose, place association, connections, etc. Changing the pixels of photos is not supported. Note that if BatchUpdatePhotos fails, either critical fields are missing or there is an authentication error. Even if BatchUpdatePhotos succeeds, individual photos in the batch may have failures. These failures are specified in each PhotoResponse.status in BatchUpdatePhotosResponse.results. See UpdatePhoto for specific failures that can occur per photo. Only the fields specified in updateMask field are used. If `updateMask` is not present, the update applies to all fields. The number of UpdatePhotoRequest messages in a BatchUpdatePhotosRequest must not exceed 20. \> Note: To update Pose.altitude, Pose.latLngPair has to be filled as well. Otherwise, the request will fail.
      * @example
      * ```js
      * // Before running the sample:
@@ -1625,7 +1625,7 @@ export namespace streetviewpublish_v1 {
     }
 
     /**
-     * Lists all the Photos that belong to the user. *Note:* Recently created photos that are still being indexed are not returned in the response.
+     * Lists all the Photos that belong to the user. \> Note: Recently created photos that are still being indexed are not returned in the response.
      * @example
      * ```js
      * // Before running the sample:
@@ -1653,11 +1653,11 @@ export namespace streetviewpublish_v1 {
      *   const res = await streetviewpublish.photos.list({
      *     // Optional. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The filters supported at the moment are: `placeId`.
      *     filter: 'placeholder-value',
-     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
+     *     // Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      *     languageCode: 'placeholder-value',
-     *     // The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.
+     *     // Optional. The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.
      *     pageSize: 'placeholder-value',
-     *     // The nextPageToken value returned from a previous ListPhotos request, if any.
+     *     // Optional. The nextPageToken value returned from a previous ListPhotos request, if any.
      *     pageToken: 'placeholder-value',
      *     // Required. Specifies if a download URL for the photos bytes should be returned in the Photos response.
      *     view: 'placeholder-value',
@@ -1797,15 +1797,15 @@ export namespace streetviewpublish_v1 {
      */
     filter?: string;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      */
     languageCode?: string;
     /**
-     * The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.
+     * Optional. The maximum number of photos to return. `pageSize` must be non-negative. If `pageSize` is zero or is not provided, the default page size of 100 is used. The number of photos returned in the response may be less than `pageSize` if the number of photos that belong to the user is less than `pageSize`.
      */
     pageSize?: number;
     /**
-     * The nextPageToken value returned from a previous ListPhotos request, if any.
+     * Optional. The nextPageToken value returned from a previous ListPhotos request, if any.
      */
     pageToken?: string;
     /**
