@@ -1328,7 +1328,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20211029",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Config": {
@@ -1673,14 +1673,16 @@
             "THREAT",
             "VULNERABILITY",
             "MISCONFIGURATION",
-            "OBSERVATION"
+            "OBSERVATION",
+            "SCC_ERROR"
           ],
           "enumDescriptions": [
             "Unspecified finding class.",
             "Describes unwanted or malicious activity.",
             "Describes a potential weakness in software that increases risk to Confidentiality & Integrity & Availability.",
             "Describes a potential weakness in cloud resource/asset configuration that increases risk.",
-            "Describes a security observation that is for informational purposes."
+            "Describes a security observation that is for informational purposes.",
+            "Describes an error that prevents some SCC functionality."
           ],
           "type": "string"
         },

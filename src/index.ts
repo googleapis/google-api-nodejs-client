@@ -118,6 +118,7 @@ export {cloudscheduler_v1beta1} from './apis/cloudscheduler/v1beta1';
 export {cloudsearch_v1} from './apis/cloudsearch/v1';
 export {cloudshell_v1} from './apis/cloudshell/v1';
 export {cloudshell_v1alpha1} from './apis/cloudshell/v1alpha1';
+export {cloudsupport_v2beta} from './apis/cloudsupport/v2beta';
 export {cloudtasks_v2} from './apis/cloudtasks/v2';
 export {cloudtasks_v2beta2} from './apis/cloudtasks/v2beta2';
 export {cloudtasks_v2beta3} from './apis/cloudtasks/v2beta3';
