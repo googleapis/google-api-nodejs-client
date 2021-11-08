@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/playcustomapp-v0.3.0...playcustomapp-v0.4.0) (2021-10-28)
+
+
+### Features
+
+* **playcustomapp:** update the API ([f2bb8d2](https://www.github.com/googleapis/google-api-nodejs-client/commit/f2bb8d2bb96383a268be87a933f6ac212f20f695))
+
 ## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/playcustomapp-v0.2.0...playcustomapp-v0.3.0) (2021-09-14)
 
 

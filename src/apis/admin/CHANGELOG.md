@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/admin-v4.1.1...admin-v4.2.0) (2021-10-28)
+
+
+### Features
+
+* **admin:** update the API ([289459d](https://www.github.com/googleapis/google-api-nodejs-client/commit/289459ddcce75e77827c9c5eddd93ab5c1adce34))
+
 ### [4.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/admin-v4.1.0...admin-v4.1.1) (2021-10-18)
 
 
