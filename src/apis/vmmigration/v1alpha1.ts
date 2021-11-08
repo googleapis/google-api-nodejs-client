@@ -762,11 +762,11 @@ export namespace vmmigration_v1alpha1 {
      */
     policy?: Schema$SchedulePolicy;
     /**
-     * Output only. The recent clone jobs performed on the migrating VM. This field holds the vm's last completed clone job and the vm's running clone job, if one exists.
+     * Output only. The recent clone jobs performed on the migrating VM. This field holds the vm's last completed clone job and the vm's running clone job, if one exists. Note: To have this field populated you need to explicitly request it via the "view" parameter of the Get/List request.
      */
     recentCloneJobs?: Schema$CloneJob[];
     /**
-     * Output only. The recent cutover jobs performed on the migrating VM. This field holds the vm's last completed cutover job and the vm's running cutover job, if one exists.
+     * Output only. The recent cutover jobs performed on the migrating VM. This field holds the vm's last completed cutover job and the vm's running cutover job, if one exists. Note: To have this field populated you need to explicitly request it via the "view" parameter of the Get/List request.
      */
     recentCutoverJobs?: Schema$CutoverJob[];
     /**
@@ -5454,6 +5454,8 @@ export namespace vmmigration_v1alpha1 {
      *   const res = await vmmigration.projects.locations.sources.migratingVms.get({
      *     // Required. The name of the MigratingVm.
      *     name: 'projects/my-project/locations/my-location/sources/my-source/migratingVms/my-migratingVm',
+     *     // Optional. The level of details of the migrating VM.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -5607,6 +5609,8 @@ export namespace vmmigration_v1alpha1 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent, which owns this collection of MigratingVms.
      *     parent: 'projects/my-project/locations/my-location/sources/my-source',
+     *     // Optional. The level of details of each migrating VM.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -6348,6 +6352,10 @@ export namespace vmmigration_v1alpha1 {
      * Required. The name of the MigratingVm.
      */
     name?: string;
+    /**
+     * Optional. The level of details of the migrating VM.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Sources$Migratingvms$List
     extends StandardParameters {
@@ -6371,6 +6379,10 @@ export namespace vmmigration_v1alpha1 {
      * Required. The parent, which owns this collection of MigratingVms.
      */
     parent?: string;
+    /**
+     * Optional. The level of details of each migrating VM.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Sources$Migratingvms$Patch
     extends StandardParameters {

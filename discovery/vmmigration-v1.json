@@ -1828,7 +1828,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20211021",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -1894,11 +1894,6 @@
         "computeEngineTargetDetails": {
           "$ref": "ComputeEngineTargetDetails",
           "description": "Output only. Details of the target VM in Compute Engine.",
-          "readOnly": true
-        },
-        "computeEngineVmDetails": {
-          "$ref": "TargetVMDetails",
-          "description": "Output only. Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         },
         "createTime": {
@@ -2236,11 +2231,6 @@
         "computeEngineTargetDetails": {
           "$ref": "ComputeEngineTargetDetails",
           "description": "Output only. Details of the target VM in Compute Engine.",
-          "readOnly": true
-        },
-        "computeEngineVmDetails": {
-          "$ref": "TargetVMDetails",
-          "description": "Output only. Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_details instead.",
           "readOnly": true
         },
         "createTime": {
@@ -3228,127 +3218,6 @@
           "description": "Output only. The last time the target project resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TargetVMDetails": {
-      "description": "TargetVMDetails is a collection of details for creating a VM in a target Compute Engine project.",
-      "id": "TargetVMDetails",
-      "properties": {
-        "appliedLicense": {
-          "$ref": "AppliedLicense",
-          "description": "Output only. The OS license returned from the adaptation module report.",
-          "readOnly": true
-        },
-        "bootOption": {
-          "description": "Output only. The VM Boot Option, as set in the source vm.",
-          "enum": [
-            "BOOT_OPTION_UNSPECIFIED",
-            "EFI",
-            "BIOS"
-          ],
-          "enumDescriptions": [
-            "The boot option is unknown.",
-            "The boot option is EFI.",
-            "The boot option is BIOS."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "computeScheduling": {
-          "$ref": "ComputeScheduling",
-          "description": "Compute instance scheduling information (if empty default is used)."
-        },
-        "diskType": {
-          "description": "The disk type to use in the VM.",
-          "enum": [
-            "DISK_TYPE_UNSPECIFIED",
-            "STANDARD",
-            "BALANCED",
-            "SSD"
-          ],
-          "enumDescriptions": [
-            "An unspecified disk type. Will be used as STANDARD.",
-            "A Standard disk type.",
-            "An alternative to SSD persistent disks that balance performance and cost.",
-            "SSD hard disk type."
-          ],
-          "type": "string"
-        },
-        "labels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "A map of labels to associate with the VM.",
-          "type": "object"
-        },
-        "licenseType": {
-          "description": "The license type to use in OS adaptation.",
-          "enum": [
-            "DEFAULT",
-            "PAYG",
-            "BYOL"
-          ],
-          "enumDescriptions": [
-            "The license type is the default for the OS.",
-            "The license type is Pay As You Go license type.",
-            "The license type is Bring Your Own License type."
-          ],
-          "type": "string"
-        },
-        "machineType": {
-          "description": "The machine type to create the VM with.",
-          "type": "string"
-        },
-        "machineTypeSeries": {
-          "description": "The machine type series to create the VM with.",
-          "type": "string"
-        },
-        "metadata": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "The metadata key/value pairs to assign to the VM.",
-          "type": "object"
-        },
-        "name": {
-          "description": "The name of the VM to create.",
-          "type": "string"
-        },
-        "networkInterfaces": {
-          "description": "List of NICs connected to this VM.",
-          "items": {
-            "$ref": "NetworkInterface"
-          },
-          "type": "array"
-        },
-        "networkTags": {
-          "description": "A map of network tags to associate with the VM.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "project": {
-          "description": "The project in which to create the VM.",
-          "type": "string"
-        },
-        "secureBoot": {
-          "description": "Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.",
-          "type": "boolean"
-        },
-        "serviceAccount": {
-          "description": "The service account to associate the VM with.",
-          "type": "string"
-        },
-        "targetProject": {
-          "description": "The full path of the resource of type TargetProject which represents the Compute Engine project in which to create this VM.",
-          "type": "string"
-        },
-        "zone": {
-          "description": "The zone in which to create the VM.",
           "type": "string"
         }
       },
