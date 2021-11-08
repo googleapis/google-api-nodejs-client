@@ -6732,6 +6732,173 @@ export namespace contactcenterinsights_v1 {
         );
       }
     }
+
+    /**
+     * Updates a phrase matcher.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/contactcenterinsights.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const contactcenterinsights = google.contactcenterinsights('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await contactcenterinsights.projects.locations.phraseMatchers.patch({
+     *       // The resource name of the phrase matcher. Format: projects/{project\}/locations/{location\}/phraseMatchers/{phrase_matcher\}
+     *       name: 'projects/my-project/locations/my-location/phraseMatchers/my-phraseMatcher',
+     *       // The list of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "activationUpdateTime": "my_activationUpdateTime",
+     *         //   "active": false,
+     *         //   "displayName": "my_displayName",
+     *         //   "name": "my_name",
+     *         //   "phraseMatchRuleGroups": [],
+     *         //   "revisionCreateTime": "my_revisionCreateTime",
+     *         //   "revisionId": "my_revisionId",
+     *         //   "roleMatch": "my_roleMatch",
+     *         //   "type": "my_type",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "versionTag": "my_versionTag"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationUpdateTime": "my_activationUpdateTime",
+     *   //   "active": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "phraseMatchRuleGroups": [],
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
+     *   //   "roleMatch": "my_roleMatch",
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "versionTag": "my_versionTag"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Phrasematchers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Phrasematchers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>;
+    patch(
+      params: Params$Resource$Projects$Locations$Phrasematchers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Phrasematchers$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Phrasematchers$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phrasematchers$Patch
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phrasematchers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phrasematchers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://contactcenterinsights.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Phrasematchers$Create
@@ -6778,5 +6945,21 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource of the phrase matcher.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Phrasematchers$Patch
+    extends StandardParameters {
+    /**
+     * The resource name of the phrase matcher. Format: projects/{project\}/locations/{location\}/phraseMatchers/{phrase_matcher\}
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudContactcenterinsightsV1PhraseMatcher;
   }
 }
