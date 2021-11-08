@@ -173,6 +173,19 @@ export namespace composer_v1beta1 {
     pypiDependencies?: {[key: string]: string} | null;
   }
   /**
+   * CidrBlock contains an optional name and one CIDR block.
+   */
+  export interface Schema$CidrBlock {
+    /**
+     * cidr_block must be specified in CIDR notation.
+     */
+    cidrBlock?: string | null;
+    /**
+     * display_name is a field for users to identify CIDR blocks.
+     */
+    displayName?: string | null;
+  }
+  /**
    * The configuration of Cloud SQL instance that is used by the Apache Airflow software. Supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
    */
   export interface Schema$DatabaseConfig {
@@ -276,6 +289,10 @@ export namespace composer_v1beta1 {
      * Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, Cloud Composer components may be subject to maintenance at any time.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
+    /**
+     * Optional. The configuration options for GKE clusters master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled.
+     */
+    masterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
      * The configuration used for the Kubernetes Engine cluster.
      */
@@ -399,7 +416,7 @@ export namespace composer_v1beta1 {
     operations?: Schema$Operation[];
   }
   /**
-   * The configuration settings for Cloud Composer maintenance window. The following example: { "startTime":"2019-08-01T01:00:00Z" "endTime":"2019-08-01T07:00:00Z" "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE" \} would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.
+   * The configuration settings for Cloud Composer maintenance window. The following example: ``` { "startTime":"2019-08-01T01:00:00Z" "endTime":"2019-08-01T07:00:00Z" "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE" \} ``` would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.
    */
   export interface Schema$MaintenanceWindow {
     /**
@@ -414,6 +431,19 @@ export namespace composer_v1beta1 {
      * Required. Start time of the first recurrence of the maintenance window.
      */
     startTime?: string | null;
+  }
+  /**
+   * Configuration options for the master authorized networks feature. Enabled master authorized networks will disallow all external traffic to access Kubernetes master through HTTPS except traffic from the given CIDR blocks, Google Compute Engine Public IPs and Google Prod IPs.
+   */
+  export interface Schema$MasterAuthorizedNetworksConfig {
+    /**
+     * cidr_blocks define up to 50 external networks that could access Kubernetes master through HTTPS.
+     */
+    cidrBlocks?: Schema$CidrBlock[];
+    /**
+     * Whether or not master authorized networks is enabled.
+     */
+    enabled?: boolean | null;
   }
   /**
    * The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.
