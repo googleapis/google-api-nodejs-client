@@ -318,6 +318,31 @@ export namespace osconfig_v1 {
     object?: string | null;
   }
   /**
+   * OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.
+   */
+  export interface Schema$GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata {
+    /**
+     * The OS policy assignment API method.
+     */
+    apiMethod?: string | null;
+    /**
+     * Reference to the `OSPolicyAssignment` API resource. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id@revision_id\}`
+     */
+    osPolicyAssignment?: string | null;
+    /**
+     * Rollout start time
+     */
+    rolloutStartTime?: string | null;
+    /**
+     * State of the rollout
+     */
+    rolloutState?: string | null;
+    /**
+     * Rollout update time
+     */
+    rolloutUpdateTime?: string | null;
+  }
+  /**
    * Googet patching is performed by running `googet update`.
    */
   export interface Schema$GooSettings {}

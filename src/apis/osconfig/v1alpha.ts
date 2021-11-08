@@ -213,6 +213,31 @@ export namespace osconfig_v1alpha {
     percent?: number | null;
   }
   /**
+   * OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.
+   */
+  export interface Schema$GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata {
+    /**
+     * The OS policy assignment API method.
+     */
+    apiMethod?: string | null;
+    /**
+     * Reference to the `OSPolicyAssignment` API resource. Format: `projects/{project_number\}/locations/{location\}/osPolicyAssignments/{os_policy_assignment_id@revision_id\}`
+     */
+    osPolicyAssignment?: string | null;
+    /**
+     * Rollout start time
+     */
+    rolloutStartTime?: string | null;
+    /**
+     * State of the rollout
+     */
+    rolloutState?: string | null;
+    /**
+     * Rollout update time
+     */
+    rolloutUpdateTime?: string | null;
+  }
+  /**
    * This API resource represents the OS policies compliance data for a Compute Engine virtual machine (VM) instance at a given point in time. A Compute Engine VM can have multiple OS policy assignments, and each assignment can have multiple OS policies. As a result, multiple OS policies could be applied to a single VM. You can use this API resource to determine both the compliance state of your VM as well as the compliance state of an individual OS policy. For more information, see [View compliance](https://cloud.google.com/compute/docs/os-configuration-management/view-compliance).
    */
   export interface Schema$InstanceOSPoliciesCompliance {

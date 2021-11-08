@@ -684,7 +684,7 @@
       }
     }
   },
-  "revision": "20211018",
+  "revision": "20211029",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -880,6 +880,61 @@
           "description": "Specifies the relative value defined as a percentage, which will be multiplied by a reference value.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata": {
+      "description": "OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.",
+      "id": "GoogleCloudOsconfigV1__OSPolicyAssignmentOperationMetadata",
+      "properties": {
+        "apiMethod": {
+          "description": "The OS policy assignment API method.",
+          "enum": [
+            "API_METHOD_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "Invalid value",
+            "Create OS policy assignment API method",
+            "Update OS policy assignment API method",
+            "Delete OS policy assignment API method"
+          ],
+          "type": "string"
+        },
+        "osPolicyAssignment": {
+          "description": "Reference to the `OSPolicyAssignment` API resource. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id@revision_id}`",
+          "type": "string"
+        },
+        "rolloutStartTime": {
+          "description": "Rollout start time",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "rolloutState": {
+          "description": "State of the rollout",
+          "enum": [
+            "ROLLOUT_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "Invalid value",
+            "The rollout is in progress.",
+            "The rollout is being cancelled.",
+            "The rollout is cancelled.",
+            "The rollout has completed successfully."
+          ],
+          "type": "string"
+        },
+        "rolloutUpdateTime": {
+          "description": "Rollout update time",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
