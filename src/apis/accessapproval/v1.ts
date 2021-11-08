@@ -134,7 +134,7 @@ export namespace accessapproval_v1 {
    */
   export interface Schema$AccessApprovalSettings {
     /**
-     * Output only. This field is read only (not settable via UpdateAccessAccessApprovalSettings method). If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project or Folder (this field will always be unset for the organization since organizations do not have ancestors).
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project or Folder (this field will always be unset for the organization since organizations do not have ancestors).
      */
     enrolledAncestor?: boolean | null;
     /**
@@ -262,7 +262,7 @@ export namespace accessapproval_v1 {
    */
   export interface Schema$EnrolledService {
     /**
-     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): * all * GA * App Engine * BigQuery * Cloud Bigtable * Cloud Key Management Service * Compute Engine * Cloud Dataflow * Cloud DLP * Cloud EKM * Cloud HSM * Cloud Identity and Access Management * Cloud Logging * Cloud Pub/Sub * Cloud Spanner * Cloud SQL * Cloud Storage * Google Kubernetes Engine * Persistent Disk * Speaker ID Note: These values are supported as input for legacy purposes, but will not be returned from the API. * all * ga-only * appengine.googleapis.com * bigquery.googleapis.com * bigtable.googleapis.com * container.googleapis.com * cloudkms.googleapis.com * cloudsql.googleapis.com * compute.googleapis.com * dataflow.googleapis.com * dlp.googleapis.com * iam.googleapis.com * logging.googleapis.com * pubsub.googleapis.com * spanner.googleapis.com * speakerid.googleapis.com * storage.googleapis.com Calls to UpdateAccessApprovalSettings using 'all' or any of the XXX.googleapis.com will be translated to the associated product name ('all', 'App Engine', etc.). Note: 'all' will enroll the resource in all products supported at both 'GA' and 'Preview' levels. More information about levels of support is available at https://cloud.google.com/access-approval/docs/supported-services
+     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): * all * GA * App Engine * BigQuery * Cloud Bigtable * Cloud Key Management Service * Compute Engine * Cloud Dataflow * Cloud DLP * Cloud EKM * Cloud HSM * Cloud Identity and Access Management * Cloud Logging * Cloud Pub/Sub * Cloud Spanner * Cloud SQL * Cloud Storage * Google Kubernetes Engine * Organization Policy Serivice * Persistent Disk * Speaker ID Note: These values are supported as input for legacy purposes, but will not be returned from the API. * all * ga-only * appengine.googleapis.com * bigquery.googleapis.com * bigtable.googleapis.com * container.googleapis.com * cloudkms.googleapis.com * cloudsql.googleapis.com * compute.googleapis.com * dataflow.googleapis.com * dlp.googleapis.com * iam.googleapis.com * logging.googleapis.com * orgpolicy.googleapis.com * pubsub.googleapis.com * spanner.googleapis.com * speakerid.googleapis.com * storage.googleapis.com Calls to UpdateAccessApprovalSettings using 'all' or any of the XXX.googleapis.com will be translated to the associated product name ('all', 'App Engine', etc.). Note: 'all' will enroll the resource in all products supported at both 'GA' and 'Preview' levels. More information about levels of support is available at https://cloud.google.com/access-approval/docs/supported-services
      */
     cloudProduct?: string | null;
     /**
@@ -457,7 +457,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.getAccessApprovalSettings({
-     *     // Name of the AccessApprovalSettings to retrieve.
+     *     // The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      *     name: 'folders/my-folder/accessApprovalSettings',
      *   });
      *   console.log(res.data);
@@ -728,7 +728,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Name of the AccessApprovalSettings to retrieve.
+     * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      */
     name?: string;
   }
@@ -1072,7 +1072,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.approvalRequests.get({
-     *     // Name of the approval request to retrieve.
+     *     // The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      *     name: 'folders/my-folder/approvalRequests/my-approvalRequest',
      *   });
      *   console.log(res.data);
@@ -1354,7 +1354,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Name of the approval request to retrieve.
+     * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
   }
@@ -1543,7 +1543,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.getAccessApprovalSettings({
-     *     // Name of the AccessApprovalSettings to retrieve.
+     *     // The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      *     name: 'organizations/my-organization/accessApprovalSettings',
      *   });
      *   console.log(res.data);
@@ -1815,7 +1815,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Name of the AccessApprovalSettings to retrieve.
+     * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      */
     name?: string;
   }
@@ -2159,7 +2159,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.approvalRequests.get({
-     *     // Name of the approval request to retrieve.
+     *     // The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      *     name: 'organizations/my-organization/approvalRequests/my-approvalRequest',
      *   });
      *   console.log(res.data);
@@ -2441,7 +2441,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Name of the approval request to retrieve.
+     * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
   }
@@ -2629,7 +2629,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.getAccessApprovalSettings({
-     *     // Name of the AccessApprovalSettings to retrieve.
+     *     // The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      *     name: 'projects/my-project/accessApprovalSettings',
      *   });
      *   console.log(res.data);
@@ -2900,7 +2900,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Getaccessapprovalsettings
     extends StandardParameters {
     /**
-     * Name of the AccessApprovalSettings to retrieve.
+     * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
      */
     name?: string;
   }
@@ -3244,7 +3244,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.approvalRequests.get({
-     *     // Name of the approval request to retrieve.
+     *     // The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      *     name: 'projects/my-project/approvalRequests/my-approvalRequest',
      *   });
      *   console.log(res.data);
@@ -3526,7 +3526,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Approvalrequests$Get
     extends StandardParameters {
     /**
-     * Name of the approval request to retrieve.
+     * The name of the approval request to retrieve. Format: "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}"
      */
     name?: string;
   }
