@@ -528,7 +528,7 @@
       }
     }
   },
-  "revision": "20210907",
+  "revision": "20211028",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -1007,7 +1007,7 @@
         },
         "parameters": {
           "$ref": "MemcacheParameters",
-          "description": "Optional: User defined parameters to apply to the memcached process on each node."
+          "description": "User defined parameters to apply to the memcached process on each node."
         },
         "state": {
           "description": "Output only. The state of this Memcached instance.",
@@ -1244,11 +1244,10 @@
       "type": "object"
     },
     "MemcacheParameters": {
-      "description": "The unique ID associated with this set of parameters. Users can use this id to determine if the parameters associated with the instance differ from the parameters associated with the nodes. A discrepancy between parameter ids can inform users that they may need to take action to apply parameters on nodes.",
       "id": "MemcacheParameters",
       "properties": {
         "id": {
-          "description": "Output only.",
+          "description": "Output only. The unique ID associated with this set of parameters. Users can use this id to determine if the parameters associated with the instance differ from the parameters associated with the nodes. A discrepancy between parameter ids can inform users that they may need to take action to apply parameters on nodes.",
           "readOnly": true,
           "type": "string"
         },
