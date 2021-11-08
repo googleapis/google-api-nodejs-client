@@ -133,7 +133,7 @@
                       "type": "string"
                     },
                     "deviceType": {
-                      "description": "The device type context for completion suggestions. It is useful to apply different suggestions on different device types, e.g. DESKTOP, MOBILE. If it is empty, the suggestions are across all device types. Supported formats: * UNKNOWN_DEVICE_TYPE * DESKTOP * MOBILE * A customized string starts with OTHER_, e.g. OTHER_IPHONE.",
+                      "description": "The device type context for completion suggestions. It is useful to apply different suggestions on different device types, e.g. `DESKTOP`, `MOBILE`. If it is empty, the suggestions are across all device types. Supported formats: * `UNKNOWN_DEVICE_TYPE` * `DESKTOP` * `MOBILE` * A customized string starts with `OTHER_`, e.g. `OTHER_IPHONE`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1007,7 +1007,7 @@
       }
     }
   },
-  "revision": "20211021",
+  "revision": "20211028",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1180,7 +1180,7 @@
           "type": "boolean"
         },
         "placeIds": {
-          "description": "Required. The IDs for this type, such as the store IDs for \"pickup-in-store\" or the region IDs for \"same-day-delivery\" to be added for this type. Duplicate IDs will be automatically ignored. At least 1 value is required, and a maximum of 2000 values are allowed. Each value must be a string with a length limit of 10 characters, matching the pattern [a-zA-Z0-9_-]+, such as \"store1\" or \"REGION-2\". Otherwise, an INVALID_ARGUMENT error is returned. If the total number of place IDs exceeds 2000 for this type after adding, then the update will be rejected.",
+          "description": "Required. The IDs for this type, such as the store IDs for \"pickup-in-store\" or the region IDs for \"same-day-delivery\" to be added for this type. Duplicate IDs will be automatically ignored. At least 1 value is required, and a maximum of 2000 values are allowed. Each value must be a string with a length limit of 10 characters, matching the pattern `[a-zA-Z0-9_-]+`, such as \"store1\" or \"REGION-2\". Otherwise, an INVALID_ARGUMENT error is returned. If the total number of place IDs exceeds 2000 for this type after adding, then the update will be rejected.",
           "items": {
             "type": "string"
           },
@@ -1411,7 +1411,7 @@
       "id": "GoogleCloudRetailV2FulfillmentInfo",
       "properties": {
         "placeIds": {
-          "description": "The IDs for this type, such as the store IDs for FulfillmentInfo.type.pickup-in-store or the region IDs for FulfillmentInfo.type.same-day-delivery. A maximum of 3000 values are allowed. Each value must be a string with a length limit of 30 characters, matching the pattern [a-zA-Z0-9_-]+, such as \"store1\" or \"REGION-2\". Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "The IDs for this type, such as the store IDs for FulfillmentInfo.type.pickup-in-store or the region IDs for FulfillmentInfo.type.same-day-delivery. A maximum of 3000 values are allowed. Each value must be a string with a length limit of 30 characters, matching the pattern `[a-zA-Z0-9_-]+`, such as \"store1\" or \"REGION-2\". Otherwise, an INVALID_ARGUMENT error is returned.",
           "items": {
             "type": "string"
           },
@@ -1589,7 +1589,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Unique identifier provided by client, within the ancestor dataset scope. Ensures idempotency and used for request deduplication. Server-generated if unspecified. Up to 128 characters long and must match the pattern: \"[a-zA-Z0-9_]+\". This is returned as Operation.name in ImportMetadata. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.",
+          "description": "Unique identifier provided by client, within the ancestor dataset scope. Ensures idempotency and used for request deduplication. Server-generated if unspecified. Up to 128 characters long and must match the pattern: `[a-zA-Z0-9_]+`. This is returned as Operation.name in ImportMetadata. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.",
           "type": "string"
         },
         "updateMask": {
@@ -1871,7 +1871,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudRetailV2CustomAttribute"
           },
-          "description": "Highly encouraged. Extra product attributes to be included. For example, for products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the attributes here. Features that can take on one of a limited number of possible values. Two types of features can be set are: Textual features. some examples would be the brand/maker of a product, or country of a customer. Numerical features. Some examples would be the height/weight of a product, or age of a customer. For example: `{ \"vendor\": {\"text\": [\"vendor123\", \"vendor456\"]}, \"lengths_cm\": {\"numbers\":[2.3, 15.4]}, \"heights_cm\": {\"numbers\":[8.1, 6.4]} }`. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * Max entries count: 200. * The key must be a UTF-8 encoded string with a length limit of 128 characters. * For indexable attribute, the key must match the pattern: a-zA-Z0-9*. For example, key0LikeThis or KEY_1_LIKE_THIS.",
+          "description": "Highly encouraged. Extra product attributes to be included. For example, for products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the attributes here. Features that can take on one of a limited number of possible values. Two types of features can be set are: Textual features. some examples would be the brand/maker of a product, or country of a customer. Numerical features. Some examples would be the height/weight of a product, or age of a customer. For example: `{ \"vendor\": {\"text\": [\"vendor123\", \"vendor456\"]}, \"lengths_cm\": {\"numbers\":[2.3, 15.4]}, \"heights_cm\": {\"numbers\":[8.1, 6.4]} }`. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * Max entries count: 200. * The key must be a UTF-8 encoded string with a length limit of 128 characters. * For indexable attribute, the key must match the pattern: `a-zA-Z0-9*`. For example, key0LikeThis or KEY_1_LIKE_THIS.",
           "type": "object"
         },
         "audience": {
@@ -2143,7 +2143,7 @@
       "id": "GoogleCloudRetailV2Promotion",
       "properties": {
         "promotionId": {
-          "description": "ID of the promotion. For example, \"free gift\". The value value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: a-zA-Z*. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [promotion](https://support.google.com/merchants/answer/7050148).",
+          "description": "ID of the promotion. For example, \"free gift\". The value value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: `a-zA-Z*`. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [promotion](https://support.google.com/merchants/answer/7050148).",
           "type": "string"
         }
       },
@@ -2291,7 +2291,7 @@
           "type": "boolean"
         },
         "placeIds": {
-          "description": "Required. The IDs for this type, such as the store IDs for \"pickup-in-store\" or the region IDs for \"same-day-delivery\", to be removed for this type. At least 1 value is required, and a maximum of 2000 values are allowed. Each value must be a string with a length limit of 10 characters, matching the pattern [a-zA-Z0-9_-]+, such as \"store1\" or \"REGION-2\". Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "Required. The IDs for this type, such as the store IDs for \"pickup-in-store\" or the region IDs for \"same-day-delivery\", to be removed for this type. At least 1 value is required, and a maximum of 2000 values are allowed. Each value must be a string with a length limit of 10 characters, matching the pattern `[a-zA-Z0-9_-]+`, such as \"store1\" or \"REGION-2\". Otherwise, an INVALID_ARGUMENT error is returned.",
           "items": {
             "type": "string"
           },
@@ -2938,6 +2938,18 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2alphaAddLocalInventoriesMetadata": {
+      "description": "Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the AddLocalInventories method.",
+      "id": "GoogleCloudRetailV2alphaAddLocalInventoriesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaAddLocalInventoriesResponse": {
+      "description": "Response of the AddLocalInventories API. Currently empty because there is no meaningful response populated from the AddLocalInventories method.",
+      "id": "GoogleCloudRetailV2alphaAddLocalInventoriesResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudRetailV2alphaExportErrorsConfig": {
       "description": "Configuration of destination for Export related errors.",
       "id": "GoogleCloudRetailV2alphaExportErrorsConfig",
@@ -3147,6 +3159,18 @@
     "GoogleCloudRetailV2alphaRemoveFulfillmentPlacesResponse": {
       "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2alphaRemoveFulfillmentPlacesResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaRemoveLocalInventoriesMetadata": {
+      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the RemoveLocalInventories method.",
+      "id": "GoogleCloudRetailV2alphaRemoveLocalInventoriesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaRemoveLocalInventoriesResponse": {
+      "description": "Response of the RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the RemoveLocalInventories method.",
+      "id": "GoogleCloudRetailV2alphaRemoveLocalInventoriesResponse",
       "properties": {},
       "type": "object"
     },
