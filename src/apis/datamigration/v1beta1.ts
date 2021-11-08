@@ -283,7 +283,7 @@ export namespace datamigration_v1beta1 {
      */
     mysql?: Schema$MySqlConnectionProfile;
     /**
-     * The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
+     * The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/connectionProfiles/{connectionProfile\}.
      */
     name?: string | null;
     /**
@@ -517,7 +517,7 @@ export namespace datamigration_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/instances/{instance\}.
+     * The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/migrationJobs/{migrationJob\}.
      */
     name?: string | null;
     /**
@@ -1938,7 +1938,7 @@ export namespace datamigration_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.connectionProfiles.patch({
-     *     // The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
+     *     // The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/connectionProfiles/{connectionProfile\}.
      *     name: 'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
      *     // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
@@ -2439,7 +2439,7 @@ export namespace datamigration_v1beta1 {
   export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch
     extends StandardParameters {
     /**
-     * The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
+     * The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/connectionProfiles/{connectionProfile\}.
      */
     name?: string;
     /**
@@ -3387,7 +3387,7 @@ export namespace datamigration_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.patch({
-     *     // The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/instances/{instance\}.
+     *     // The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/migrationJobs/{migrationJob\}.
      *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *     // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
@@ -4747,7 +4747,7 @@ export namespace datamigration_v1beta1 {
   export interface Params$Resource$Projects$Locations$Migrationjobs$Patch
     extends StandardParameters {
     /**
-     * The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/instances/{instance\}.
+     * The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/migrationJobs/{migrationJob\}.
      */
     name?: string;
     /**
