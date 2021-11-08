@@ -168,10 +168,6 @@ export namespace vmmigration_v1 {
      */
     computeEngineTargetDetails?: Schema$ComputeEngineTargetDetails;
     /**
-     * Output only. Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_details instead.
-     */
-    computeEngineVmDetails?: Schema$TargetVMDetails;
-    /**
      * Output only. The time the clone job was created (as an API call, not when it was actually created in the target).
      */
     createTime?: string | null;
@@ -359,10 +355,6 @@ export namespace vmmigration_v1 {
      * Output only. Details of the target VM in Compute Engine.
      */
     computeEngineTargetDetails?: Schema$ComputeEngineTargetDetails;
-    /**
-     * Output only. Details of the VM in Compute Engine. Deprecated: Use compute_engine_target_details instead.
-     */
-    computeEngineVmDetails?: Schema$TargetVMDetails;
     /**
      * Output only. The time the cutover job was created (as an API call, not when it was actually created in the target).
      */
@@ -1008,79 +1000,6 @@ export namespace vmmigration_v1 {
      * Output only. The last time the target project resource was updated.
      */
     updateTime?: string | null;
-  }
-  /**
-   * TargetVMDetails is a collection of details for creating a VM in a target Compute Engine project.
-   */
-  export interface Schema$TargetVMDetails {
-    /**
-     * Output only. The OS license returned from the adaptation module report.
-     */
-    appliedLicense?: Schema$AppliedLicense;
-    /**
-     * Output only. The VM Boot Option, as set in the source vm.
-     */
-    bootOption?: string | null;
-    /**
-     * Compute instance scheduling information (if empty default is used).
-     */
-    computeScheduling?: Schema$ComputeScheduling;
-    /**
-     * The disk type to use in the VM.
-     */
-    diskType?: string | null;
-    /**
-     * A map of labels to associate with the VM.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * The license type to use in OS adaptation.
-     */
-    licenseType?: string | null;
-    /**
-     * The machine type to create the VM with.
-     */
-    machineType?: string | null;
-    /**
-     * The machine type series to create the VM with.
-     */
-    machineTypeSeries?: string | null;
-    /**
-     * The metadata key/value pairs to assign to the VM.
-     */
-    metadata?: {[key: string]: string} | null;
-    /**
-     * The name of the VM to create.
-     */
-    name?: string | null;
-    /**
-     * List of NICs connected to this VM.
-     */
-    networkInterfaces?: Schema$NetworkInterface[];
-    /**
-     * A map of network tags to associate with the VM.
-     */
-    networkTags?: string[] | null;
-    /**
-     * The project in which to create the VM.
-     */
-    project?: string | null;
-    /**
-     * Defines whether the instance has Secure Boot enabled. This can be set to true only if the vm boot option is EFI.
-     */
-    secureBoot?: boolean | null;
-    /**
-     * The service account to associate the VM with.
-     */
-    serviceAccount?: string | null;
-    /**
-     * The full path of the resource of type TargetProject which represents the Compute Engine project in which to create this VM.
-     */
-    targetProject?: string | null;
-    /**
-     * The zone in which to create the VM.
-     */
-    zone?: string | null;
   }
   /**
    * Utilization report details the utilization (CPU, memory, etc.) of selected source VMs.
@@ -6504,7 +6423,6 @@ export namespace vmmigration_v1 {
      *         // request body parameters
      *         // {
      *         //   "computeEngineTargetDetails": {},
-     *         //   "computeEngineVmDetails": {},
      *         //   "createTime": "my_createTime",
      *         //   "error": {},
      *         //   "name": "my_name",
@@ -6653,7 +6571,6 @@ export namespace vmmigration_v1 {
      *   // Example response
      *   // {
      *   //   "computeEngineTargetDetails": {},
-     *   //   "computeEngineVmDetails": {},
      *   //   "createTime": "my_createTime",
      *   //   "error": {},
      *   //   "name": "my_name",
@@ -7150,7 +7067,6 @@ export namespace vmmigration_v1 {
      *           // request body parameters
      *           // {
      *           //   "computeEngineTargetDetails": {},
-     *           //   "computeEngineVmDetails": {},
      *           //   "createTime": "my_createTime",
      *           //   "error": {},
      *           //   "name": "my_name",
@@ -7302,7 +7218,6 @@ export namespace vmmigration_v1 {
      *   // Example response
      *   // {
      *   //   "computeEngineTargetDetails": {},
-     *   //   "computeEngineVmDetails": {},
      *   //   "createTime": "my_createTime",
      *   //   "error": {},
      *   //   "name": "my_name",

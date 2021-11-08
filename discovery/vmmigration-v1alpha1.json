@@ -1001,6 +1001,21 @@
                           "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/migratingVms/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The level of details of the migrating VM.",
+                          "enum": [
+                            "MIGRATING_VM_VIEW_UNSPECIFIED",
+                            "MIGRATING_VM_VIEW_BASIC",
+                            "MIGRATING_VM_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The default / unset value. Will fallback to FULL.",
+                            "Get the migrating VM basic details. The basic details do not include the recent clone jobs and recent cutover jobs lists.",
+                            "Include everything."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v1alpha1/{+name}",
@@ -1046,6 +1061,21 @@
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+$",
                           "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The level of details of each migrating VM.",
+                          "enum": [
+                            "MIGRATING_VM_VIEW_UNSPECIFIED",
+                            "MIGRATING_VM_VIEW_BASIC",
+                            "MIGRATING_VM_VIEW_FULL"
+                          ],
+                          "enumDescriptions": [
+                            "The default / unset value. Will fallback to FULL.",
+                            "Get the migrating VM basic details. The basic details do not include the recent clone jobs and recent cutover jobs lists.",
+                            "Include everything."
+                          ],
+                          "location": "query",
                           "type": "string"
                         }
                       },
@@ -1828,7 +1858,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20211021",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -2842,7 +2872,7 @@
           "description": "The replication schedule policy."
         },
         "recentCloneJobs": {
-          "description": "Output only. The recent clone jobs performed on the migrating VM. This field holds the vm's last completed clone job and the vm's running clone job, if one exists.",
+          "description": "Output only. The recent clone jobs performed on the migrating VM. This field holds the vm's last completed clone job and the vm's running clone job, if one exists. Note: To have this field populated you need to explicitly request it via the \"view\" parameter of the Get/List request.",
           "items": {
             "$ref": "CloneJob"
           },
@@ -2850,7 +2880,7 @@
           "type": "array"
         },
         "recentCutoverJobs": {
-          "description": "Output only. The recent cutover jobs performed on the migrating VM. This field holds the vm's last completed cutover job and the vm's running cutover job, if one exists.",
+          "description": "Output only. The recent cutover jobs performed on the migrating VM. This field holds the vm's last completed cutover job and the vm's running cutover job, if one exists. Note: To have this field populated you need to explicitly request it via the \"view\" parameter of the Get/List request.",
           "items": {
             "$ref": "CutoverJob"
           },
