@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20211027",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -650,7 +650,7 @@
       "type": "object"
     },
     "CloudFunction": {
-      "description": "Describes a Cloud Function that contains user computation executed in response to an event. It encapsulate function and triggers configurations. Next tag: 35",
+      "description": "Describes a Cloud Function that contains user computation executed in response to an event. It encapsulate function and triggers configurations. Next tag: 36",
       "id": "CloudFunction",
       "properties": {
         "availableMemoryMb": {
