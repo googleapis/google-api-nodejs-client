@@ -744,7 +744,7 @@
       }
     }
   },
-  "revision": "20210809",
+  "revision": "20211029",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchDocumentInputConfig": {
@@ -773,6 +773,13 @@
       "description": "The BatchTranslateDocument request.",
       "id": "BatchTranslateDocumentRequest",
       "properties": {
+        "formatConversions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional.",
+          "type": "object"
+        },
         "glossaries": {
           "additionalProperties": {
             "$ref": "TranslateTextGlossaryConfig"

@@ -148,6 +148,10 @@ export namespace translate_v3beta1 {
    */
   export interface Schema$BatchTranslateDocumentRequest {
     /**
+     * Optional.
+     */
+    formatConversions?: {[key: string]: string} | null;
+    /**
      * Optional. Glossaries to be applied. It's keyed by target language code.
      */
     glossaries?: {[key: string]: Schema$TranslateTextGlossaryConfig} | null;
@@ -1226,6 +1230,7 @@ export namespace translate_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "formatConversions": {},
      *       //   "glossaries": {},
      *       //   "inputConfigs": [],
      *       //   "models": {},
