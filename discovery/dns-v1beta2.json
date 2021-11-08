@@ -1730,7 +1730,7 @@
       }
     }
   },
-  "revision": "20211006",
+  "revision": "20211103",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -1986,6 +1986,9 @@
       "description": "A zone is a subtree of the DNS namespace under one administrative responsibility. A ManagedZone is a resource that represents a DNS zone hosted by the Cloud DNS service.",
       "id": "ManagedZone",
       "properties": {
+        "cloudLoggingConfig": {
+          "$ref": "ManagedZoneCloudLoggingConfig"
+        },
         "creationTime": {
           "description": "The time that this resource was created on the server. This is in RFC3339 text format. Output only.",
           "type": "string"
@@ -2063,6 +2066,21 @@
             "",
             ""
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ManagedZoneCloudLoggingConfig": {
+      "description": "Cloud Logging configurations for publicly visible zones.",
+      "id": "ManagedZoneCloudLoggingConfig",
+      "properties": {
+        "enableLogging": {
+          "description": "If set, enable query logging for this ManagedZone. False by default, making logging opt-in.",
+          "type": "boolean"
+        },
+        "kind": {
+          "default": "dns#managedZoneCloudLoggingConfig",
           "type": "string"
         }
       },

@@ -283,6 +283,7 @@ export namespace dns_v1 {
    * A zone is a subtree of the DNS namespace under one administrative responsibility. A ManagedZone is a resource that represents a DNS zone hosted by the Cloud DNS service.
    */
   export interface Schema$ManagedZone {
+    cloudLoggingConfig?: Schema$ManagedZoneCloudLoggingConfig;
     /**
      * The time that this resource was created on the server. This is in RFC3339 text format. Output only.
      */
@@ -344,6 +345,16 @@ export namespace dns_v1 {
      * The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
      */
     visibility?: string | null;
+  }
+  /**
+   * Cloud Logging configurations for publicly visible zones.
+   */
+  export interface Schema$ManagedZoneCloudLoggingConfig {
+    /**
+     * If set, enable query logging for this ManagedZone. False by default, making logging opt-in.
+     */
+    enableLogging?: boolean | null;
+    kind?: string | null;
   }
   export interface Schema$ManagedZoneDnsSecConfig {
     /**
@@ -1998,6 +2009,7 @@ export namespace dns_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloudLoggingConfig": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "description": "my_description",
      *       //   "dnsName": "my_dnsName",
@@ -2021,6 +2033,7 @@ export namespace dns_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "cloudLoggingConfig": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "description": "my_description",
      *   //   "dnsName": "my_dnsName",
@@ -2302,6 +2315,7 @@ export namespace dns_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "cloudLoggingConfig": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "description": "my_description",
      *   //   "dnsName": "my_dnsName",
@@ -2599,6 +2613,7 @@ export namespace dns_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloudLoggingConfig": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "description": "my_description",
      *       //   "dnsName": "my_dnsName",
@@ -2764,6 +2779,7 @@ export namespace dns_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloudLoggingConfig": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "description": "my_description",
      *       //   "dnsName": "my_dnsName",
