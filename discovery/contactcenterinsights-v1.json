@@ -1081,6 +1081,40 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "patch": {
+                  "description": "Updates a phrase matcher.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/phraseMatchers/{phraseMatchersId}",
+                  "httpMethod": "PATCH",
+                  "id": "contactcenterinsights.projects.locations.phraseMatchers.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The resource name of the phrase matcher. Format: projects/{project}/locations/{location}/phraseMatchers/{phrase_matcher}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/phraseMatchers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1PhraseMatcher"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1PhraseMatcher"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -1089,7 +1123,7 @@
       }
     }
   },
-  "revision": "20211002",
+  "revision": "20211029",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
