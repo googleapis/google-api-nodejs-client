@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/run-v5.1.2...run-v5.2.0) (2021-11-08)
+
+
+### Features
+
+* **run:** update the API ([5c103ff](https://www.github.com/googleapis/google-api-nodejs-client/commit/5c103ff53c363e0897bc405560fd483e21405112))
+
 ### [5.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/run-v5.1.1...run-v5.1.2) (2021-10-28)
 
 

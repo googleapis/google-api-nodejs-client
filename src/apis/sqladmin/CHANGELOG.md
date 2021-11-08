@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v3.1.1...sqladmin-v3.1.2) (2021-11-08)
+
+
+### Bug Fixes
+
+* **sqladmin:** update the API ([9c8ac4e](https://www.github.com/googleapis/google-api-nodejs-client/commit/9c8ac4ec875e4464646326ce160436e4d2ad4529))
+
 ### [3.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v3.1.0...sqladmin-v3.1.1) (2021-10-28)
 
 
