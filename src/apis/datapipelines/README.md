@@ -2,7 +2,7 @@
 
 # datapipelines
 
-> 
+> Data Pipelines provides an interface for creating, updating, and managing recurring Data Analytics jobs.
 
 ## Installation
 
