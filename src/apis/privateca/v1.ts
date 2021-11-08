@@ -233,10 +233,6 @@ export namespace privateca_v1 {
    */
   export interface Schema$CaPool {
     /**
-     * Output only. The time at which this CaPool was created.
-     */
-    createTime?: string | null;
-    /**
      * Optional. The IssuancePolicy to control how Certificates will be issued from this CaPool.
      */
     issuancePolicy?: Schema$IssuancePolicy;
@@ -256,10 +252,6 @@ export namespace privateca_v1 {
      * Required. Immutable. The Tier of this CaPool.
      */
     tier?: string | null;
-    /**
-     * Output only. The time at which this CaPool was last updated.
-     */
-    updateTime?: string | null;
   }
   export interface Schema$CertChain {
     /**
@@ -1724,13 +1716,11 @@ export namespace privateca_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "createTime": "my_createTime",
      *       //   "issuancePolicy": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "publishingOptions": {},
-     *       //   "tier": "my_tier",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "tier": "my_tier"
      *       // }
      *     },
      *   });
@@ -2147,13 +2137,11 @@ export namespace privateca_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "createTime": "my_createTime",
      *   //   "issuancePolicy": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "publishingOptions": {},
-     *   //   "tier": "my_tier",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "tier": "my_tier"
      *   // }
      * }
      *
@@ -2559,13 +2547,11 @@ export namespace privateca_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "createTime": "my_createTime",
      *       //   "issuancePolicy": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "publishingOptions": {},
-     *       //   "tier": "my_tier",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "tier": "my_tier"
      *       // }
      *     },
      *   });
