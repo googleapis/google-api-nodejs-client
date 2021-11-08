@@ -1589,7 +1589,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20211104",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -1653,7 +1653,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Optional. Parameters needed to purchase the Offer.",
+          "description": "Optional. Parameters needed to purchase the Offer. To view the available Parameters refer to the Offer.parameter_definitions from the desired offer.",
           "items": {
             "$ref": "GoogleCloudChannelV1Parameter"
           },
@@ -1675,7 +1675,7 @@
       "id": "GoogleCloudChannelV1ChangeParametersRequest",
       "properties": {
         "parameters": {
-          "description": "Required. Entitlement parameters to update. You can only change editable parameters.",
+          "description": "Required. Entitlement parameters to update. You can only change editable parameters. To view the available Parameters for a request, refer to the Offer.parameter_definitions from the desired offer.",
           "items": {
             "$ref": "GoogleCloudChannelV1Parameter"
           },
@@ -2163,7 +2163,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Extended entitlement parameters. When creating an entitlement, valid parameters' names and values are defined in the offer's parameter definitions.",
+          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. The response may include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. - max_units: The maximum assignable units for a flexible offer. - num_units: The total commitment for commitment-based offers.",
           "items": {
             "$ref": "GoogleCloudChannelV1Parameter"
           },
@@ -3491,7 +3491,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Extended entitlement parameters. When creating an entitlement, valid parameters' names and values are defined in the offer's parameter definitions.",
+          "description": "Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. The response may include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. - max_units: The maximum assignable units for a flexible offer. - num_units: The total commitment for commitment-based offers.",
           "items": {
             "$ref": "GoogleCloudChannelV1alpha1Parameter"
           },

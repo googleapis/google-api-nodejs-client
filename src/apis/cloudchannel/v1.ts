@@ -235,7 +235,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: string | null;
     /**
-     * Extended entitlement parameters. When creating an entitlement, valid parameters' names and values are defined in the offer's parameter definitions.
+     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. The response may include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. - max_units: The maximum assignable units for a flexible offer. - num_units: The total commitment for commitment-based offers.
      */
     parameters?: Schema$GoogleCloudChannelV1alpha1Parameter[];
     /**
@@ -448,7 +448,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: string | null;
     /**
-     * Optional. Parameters needed to purchase the Offer.
+     * Optional. Parameters needed to purchase the Offer. To view the available Parameters refer to the Offer.parameter_definitions from the desired offer.
      */
     parameters?: Schema$GoogleCloudChannelV1Parameter[];
     /**
@@ -465,7 +465,7 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1ChangeParametersRequest {
     /**
-     * Required. Entitlement parameters to update. You can only change editable parameters.
+     * Required. Entitlement parameters to update. You can only change editable parameters. To view the available Parameters for a request, refer to the Offer.parameter_definitions from the desired offer.
      */
     parameters?: Schema$GoogleCloudChannelV1Parameter[];
     /**
@@ -796,7 +796,7 @@ export namespace cloudchannel_v1 {
      */
     offer?: string | null;
     /**
-     * Extended entitlement parameters. When creating an entitlement, valid parameters' names and values are defined in the offer's parameter definitions.
+     * Extended entitlement parameters. When creating an entitlement, valid parameter names and values are defined in the Offer.parameter_definitions. The response may include the following output-only Parameters: - assigned_units: The number of licenses assigned to users. - max_units: The maximum assignable units for a flexible offer. - num_units: The total commitment for commitment-based offers.
      */
     parameters?: Schema$GoogleCloudChannelV1Parameter[];
     /**
