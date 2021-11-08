@@ -256,6 +256,10 @@ export namespace composer_v1 {
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
+     * Optional. The size of the Cloud Composer environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    environmentSize?: string | null;
+    /**
      * Output only. The Kubernetes Engine cluster used to run this environment.
      */
     gkeCluster?: string | null;
@@ -283,6 +287,10 @@ export namespace composer_v1 {
      * Optional. The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
      */
     webServerNetworkAccessControl?: Schema$WebServerNetworkAccessControl;
+    /**
+     * Optional. The workloads configuration settings for the GKE cluster associated with the Cloud Composer environment. The GKE cluster runs Airflow scheduler, web server and workers workloads. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    workloadsConfig?: Schema$WorkloadsConfig;
   }
   /**
    * ImageVersion information
@@ -494,6 +502,14 @@ export namespace composer_v1 {
    */
   export interface Schema$PrivateEnvironmentConfig {
     /**
+     * Optional. The CIDR block from which IP range for Cloud Composer Network in tenant project will be reserved. Needs to be disjoint from private_cluster_config.master_ipv4_cidr_block and cloud_sql_ipv4_cidr_block. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    cloudComposerNetworkIpv4CidrBlock?: string | null;
+    /**
+     * Output only. The IP range reserved for the tenant project's Cloud Composer network. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+     */
+    cloudComposerNetworkIpv4ReservedRange?: string | null;
+    /**
      * Optional. The CIDR block from which IP range in tenant project will be reserved for Cloud SQL. Needs to be disjoint from `web_server_ipv4_cidr_block`.
      */
     cloudSqlIpv4CidrBlock?: string | null;
@@ -513,6 +529,27 @@ export namespace composer_v1 {
      * Output only. The IP range reserved for the tenant project's App Engine VMs. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
      */
     webServerIpv4ReservedRange?: string | null;
+  }
+  /**
+   * Configuration for resources used by Airflow schedulers.
+   */
+  export interface Schema$SchedulerResource {
+    /**
+     * Optional. The number of schedulers.
+     */
+    count?: number | null;
+    /**
+     * Optional. CPU request and limit for a single Airflow scheduler replica.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for a single Airflow scheduler replica.
+     */
+    memoryGb?: number | null;
+    /**
+     * Optional. Storage (GB) request and limit for a single Airflow scheduler replica.
+     */
+    storageGb?: number | null;
   }
   /**
    * Specifies the selection and configuration of software inside the environment.
@@ -577,6 +614,65 @@ export namespace composer_v1 {
      * A collection of allowed IP ranges with descriptions.
      */
     allowedIpRanges?: Schema$AllowedIpRange[];
+  }
+  /**
+   * Configuration for resources used by Airflow web server.
+   */
+  export interface Schema$WebServerResource {
+    /**
+     * Optional. CPU request and limit for Airflow web server.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for Airflow web server.
+     */
+    memoryGb?: number | null;
+    /**
+     * Optional. Storage (GB) request and limit for Airflow web server.
+     */
+    storageGb?: number | null;
+  }
+  /**
+   * Configuration for resources used by Airflow workers.
+   */
+  export interface Schema$WorkerResource {
+    /**
+     * Optional. CPU request and limit for a single Airflow worker replica.
+     */
+    cpu?: number | null;
+    /**
+     * Optional. Maximum number of workers for autoscaling.
+     */
+    maxCount?: number | null;
+    /**
+     * Optional. Memory (GB) request and limit for a single Airflow worker replica.
+     */
+    memoryGb?: number | null;
+    /**
+     * Optional. Minimum number of workers for autoscaling.
+     */
+    minCount?: number | null;
+    /**
+     * Optional. Storage (GB) request and limit for a single Airflow worker replica.
+     */
+    storageGb?: number | null;
+  }
+  /**
+   * The Kubernetes workloads configuration for GKE cluster associated with the Cloud Composer environment. Supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.
+   */
+  export interface Schema$WorkloadsConfig {
+    /**
+     * Optional. Resources used by Airflow schedulers.
+     */
+    scheduler?: Schema$SchedulerResource;
+    /**
+     * Optional. Resources used by Airflow web server.
+     */
+    webServer?: Schema$WebServerResource;
+    /**
+     * Optional. Resources used by Airflow workers.
+     */
+    worker?: Schema$WorkerResource;
   }
 
   export class Resource$Projects {
