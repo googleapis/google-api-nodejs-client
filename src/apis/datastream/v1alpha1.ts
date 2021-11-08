@@ -941,6 +941,10 @@ export namespace datastream_v1alpha1 {
      */
     createTime?: string | null;
     /**
+     * Immutable. A reference to a KMS encryption key. If provided, it will be used to encrypt the data. If left blank, data will be encrypted using an internal Stream-specific encryption key provisioned through KMS.
+     */
+    customerManagedEncryptionKey?: string | null;
+    /**
      * Required. Destination connection profile configuration.
      */
     destinationConfig?: Schema$DestinationConfig;
@@ -4430,6 +4434,7 @@ export namespace datastream_v1alpha1 {
      *       //   "backfillAll": {},
      *       //   "backfillNone": {},
      *       //   "createTime": "my_createTime",
+     *       //   "customerManagedEncryptionKey": "my_customerManagedEncryptionKey",
      *       //   "destinationConfig": {},
      *       //   "displayName": "my_displayName",
      *       //   "errors": [],
@@ -4852,6 +4857,7 @@ export namespace datastream_v1alpha1 {
      *   //   "backfillAll": {},
      *   //   "backfillNone": {},
      *   //   "createTime": "my_createTime",
+     *   //   "customerManagedEncryptionKey": "my_customerManagedEncryptionKey",
      *   //   "destinationConfig": {},
      *   //   "displayName": "my_displayName",
      *   //   "errors": [],
@@ -5138,6 +5144,7 @@ export namespace datastream_v1alpha1 {
      *       //   "backfillAll": {},
      *       //   "backfillNone": {},
      *       //   "createTime": "my_createTime",
+     *       //   "customerManagedEncryptionKey": "my_customerManagedEncryptionKey",
      *       //   "destinationConfig": {},
      *       //   "displayName": "my_displayName",
      *       //   "errors": [],
