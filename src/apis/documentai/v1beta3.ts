@@ -154,6 +154,10 @@ export namespace documentai_v1beta3 {
      */
     createTime?: string | null;
     /**
+     * A related resource to this operation.
+     */
+    resource?: string | null;
+    /**
      * The state of the operation.
      */
     state?: string | null;
@@ -2270,6 +2274,10 @@ export namespace documentai_v1beta3 {
      */
     createTime?: string | null;
     /**
+     * A related resource to this operation.
+     */
+    resource?: string | null;
+    /**
      * The state of the operation.
      */
     state?: string | null;
@@ -3559,6 +3567,10 @@ export namespace documentai_v1beta3 {
      * The creation time of the operation.
      */
     createTime?: string | null;
+    /**
+     * A related resource to this operation.
+     */
+    resource?: string | null;
     /**
      * The state of the operation.
      */
