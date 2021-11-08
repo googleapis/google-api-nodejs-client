@@ -1079,7 +1079,7 @@
       }
     }
   },
-  "revision": "20211018",
+  "revision": "20211026",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -2185,6 +2185,10 @@
           "description": "Output only. The creation time of the stream.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "customerManagedEncryptionKey": {
+          "description": "Immutable. A reference to a KMS encryption key. If provided, it will be used to encrypt the data. If left blank, data will be encrypted using an internal Stream-specific encryption key provisioned through KMS.",
           "type": "string"
         },
         "destinationConfig": {
