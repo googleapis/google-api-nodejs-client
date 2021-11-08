@@ -207,6 +207,64 @@ export namespace cloudidentity_v1beta1 {
     deviceUser?: Schema$DeviceUser;
   }
   /**
+   * Stores information about a certificate.
+   */
+  export interface Schema$CertificateInfo {
+    /**
+     * The X.509 extension for CertificateTemplate.
+     */
+    certificateTemplate?: Schema$CertificateTemplate;
+    /**
+     * The encoded certificate fingerprint.
+     */
+    fingerprint?: string | null;
+    /**
+     * The name of the issuer of this certificate.
+     */
+    issuer?: string | null;
+    /**
+     * Serial number of the certificate, Example: "123456789".
+     */
+    serialNumber?: string | null;
+    /**
+     * The subject name of this certificate.
+     */
+    subject?: string | null;
+    /**
+     * The certificate thumbprint.
+     */
+    thumbprint?: string | null;
+    /**
+     * Validation state of this certificate.
+     */
+    validationState?: string | null;
+    /**
+     * Certificate not valid at or after this timestamp.
+     */
+    validityExpirationTime?: string | null;
+    /**
+     * Certificate not valid before this timestamp.
+     */
+    validityStartTime?: string | null;
+  }
+  /**
+   * CertificateTemplate (v3 Extension in X.509).
+   */
+  export interface Schema$CertificateTemplate {
+    /**
+     * The template id of the template. Example: "1.3.6.1.4.1.311.21.8.15608621.11768144.5720724.16068415.6889630.81.2472537.7784047".
+     */
+    id?: string | null;
+    /**
+     * The Major version of the template. Example: 100.
+     */
+    majorVersion?: number | null;
+    /**
+     * The minor version of the template. Example: 12.
+     */
+    minorVersion?: number | null;
+  }
+  /**
    * The response message for MembershipsService.CheckTransitiveMembership.
    */
   export interface Schema$CheckTransitiveMembershipResponse {
@@ -346,6 +404,10 @@ export namespace cloudidentity_v1beta1 {
      * Output only. Device encryption state.
      */
     encryptionState?: string | null;
+    /**
+     * Output only. Attributes specific to Endpoint Verification devices.
+     */
+    endpointVerificationSpecificAttributes?: Schema$EndpointVerificationSpecificAttributes;
     /**
      * Output only. IMEI number of device if GSM device; empty otherwise.
      */
@@ -493,6 +555,15 @@ export namespace cloudidentity_v1beta1 {
     statusTime?: string | null;
   }
   /**
+   * Resource representing the Endpoint Verification-specific attributes of a Device.
+   */
+  export interface Schema$EndpointVerificationSpecificAttributes {
+    /**
+     * Details of certificates.
+     */
+    certificateInfo?: Schema$CertificateInfo[];
+  }
+  /**
    * A unique identifier for an entity in the Cloud Identity Groups API. An entity can represent either a group with an optional `namespace` or a user without a `namespace`. The combination of `id` and `namespace` must be unique; however, the same `id` can be used with different `namespace`s.
    */
   export interface Schema$EntityKey {
@@ -513,6 +584,19 @@ export namespace cloudidentity_v1beta1 {
      * The time at which the `MembershipRole` will expire.
      */
     expireTime?: string | null;
+  }
+  /**
+   * Message containing first admin invitation info for customers
+   */
+  export interface Schema$FirstAdminInvitationInfo {
+    /**
+     * Optional. To enable First Admin Invitation for Domained Customer
+     */
+    isFirstAdmin?: boolean | null;
+    /**
+     * Optional. Domain information of first admin invited
+     */
+    primaryDomain?: string | null;
   }
   /**
    * The response message for MembershipsService.GetMembershipGraph.
@@ -1337,7 +1421,12 @@ export namespace cloudidentity_v1beta1 {
   /**
    * A request to send email for inviting target user corresponding to the UserInvitation.
    */
-  export interface Schema$SendUserInvitationRequest {}
+  export interface Schema$SendUserInvitationRequest {
+    /**
+     * Optional. First admin invitation info for customers
+     */
+    firstAdminInvitationInfo?: Schema$FirstAdminInvitationInfo;
+  }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -2034,7 +2123,9 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "firstAdminInvitationInfo": {}
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -2663,6 +2754,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "enabledDeveloperOptions": false,
      *   //   "enabledUsbDebugging": false,
      *   //   "encryptionState": "my_encryptionState",
+     *   //   "endpointVerificationSpecificAttributes": {},
      *   //   "imei": "my_imei",
      *   //   "kernelVersion": "my_kernelVersion",
      *   //   "lastSyncTime": "my_lastSyncTime",
