@@ -109,6 +109,68 @@
   "protocol": "rest",
   "resources": {
     "projects": {
+      "methods": {
+        "getProjectSettings": {
+          "description": "Retrieves the Settings for the Project",
+          "flatPath": "v1beta2/projects/{projectsId}/projectSettings",
+          "httpMethod": "GET",
+          "id": "artifactregistry.projects.getProjectSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the projectSettings resource.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/projectSettings$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "response": {
+            "$ref": "ProjectSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "updateProjectSettings": {
+          "description": "Retrieves the Settings for the Project",
+          "flatPath": "v1beta2/projects/{projectsId}/projectSettings",
+          "httpMethod": "PATCH",
+          "id": "artifactregistry.projects.updateProjectSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The name of the project's settings. Always of the form: projects/{project-id}/projectSettings In update request: never set In response: always set",
+              "location": "path",
+              "pattern": "^projects/[^/]+/projectSettings$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Field mask to support partial updates.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "request": {
+            "$ref": "ProjectSettings"
+          },
+          "response": {
+            "$ref": "ProjectSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      },
       "resources": {
         "locations": {
           "methods": {
@@ -1081,7 +1143,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20211029",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1623,6 +1685,33 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectSettings": {
+      "description": "The Artifact Registry settings that apply to a Project.",
+      "id": "ProjectSettings",
+      "properties": {
+        "legacyRedirectionState": {
+          "description": "The redirection state of the legacy repositories in this project.",
+          "enum": [
+            "REDIRECTION_STATE_UNSPECIFIED",
+            "REDIRECTION_FROM_GCR_IO_DISABLED",
+            "REDIRECTION_FROM_GCR_IO_ENABLED",
+            "REDIRECTION_FROM_GCR_IO_FINALIZED"
+          ],
+          "enumDescriptions": [
+            "No redirection status has been set.",
+            "Redirection is disabled.",
+            "Redirection is enabled.",
+            "Redirection is enabled, and has been finalized so cannot be reverted."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the project's settings. Always of the form: projects/{project-id}/projectSettings In update request: never set In response: always set",
+          "type": "string"
         }
       },
       "type": "object"
