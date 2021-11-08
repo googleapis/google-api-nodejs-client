@@ -450,7 +450,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name of the membership to be retrieved, in the form \"spaces/*/members/*\". Example: spaces/AAAAMpdlehY/members/105115627578887013105",
+                  "description": "Required. Resource name of the membership to be retrieved, in the form \"spaces/*/members/*\". Example: spaces/AAAAAAAAAAAA/members/111111111111111111111",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/members/[^/]+$",
                   "required": true,
@@ -483,7 +483,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The resource name of the space for which membership list is to be fetched, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+                  "description": "Required. The resource name of the space for which membership list is to be fetched, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAAA",
                   "location": "path",
                   "pattern": "^spaces/[^/]+$",
                   "required": true,
@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20211020",
+  "revision": "20211029",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -2327,7 +2327,7 @@
       "id": "Membership",
       "properties": {
         "createTime": {
-          "description": "The creation time of the membership a.k.a the time at which the member joined the space, if applicable.",
+          "description": "The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2536,7 +2536,7 @@
       "id": "Space",
       "properties": {
         "displayName": {
-          "description": "Output only. The display name (only if the space is of type `ROOM`). Please note that this field might not be populated in direct messages between humans.",
+          "description": "The display name (only if the space is of type `ROOM`). Please note that this field might not be populated in direct messages between humans.",
           "type": "string"
         },
         "name": {
