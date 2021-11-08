@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20210817",
+  "revision": "20211101",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -2072,7 +2072,7 @@
           "type": "string"
         },
         "nonQueryableAccounts": {
-          "description": "When **DataScope** is **HELD_DATA**, the number of accounts in the request that are not queried because they are not on hold. For other data scopes, this field is not set.",
+          "description": "When **DataScope** is **HELD_DATA** and when account emails are passed in explicitly, the list of accounts in the request that are not queried because they are not on hold in the matter. For other data scopes, this field is not set.",
           "items": {
             "type": "string"
           },
@@ -2318,7 +2318,7 @@
             "Search the data in the Team Drive specified in **team_drive_info**.",
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
             "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
-            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.devsite.corp.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
+            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
           ],
           "type": "string"
         },
@@ -2344,7 +2344,7 @@
             "Search the data in the Team Drive specified in **team_drive_info**.",
             "Search the data of all accounts in the organization. Supported only for Gmail. When specified, you don't need to specify **AccountInfo** or **OrgUnitInfo**.",
             "Search messages in the Chat spaces specified in [HangoutsChatInfo](https://developers.google.com/vault/reference/rest/v1/Query#hangoutschatinfo).",
-            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.devsite.corp.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
+            "Search the files in the shared drives specified in [SharedDriveInfo](https://developers.google.com/vault/reference/rest/v1/Query#shareddriveinfo)."
           ],
           "type": "string"
         },
