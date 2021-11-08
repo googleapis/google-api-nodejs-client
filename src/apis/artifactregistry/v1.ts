@@ -157,7 +157,7 @@ export namespace artifactregistry_v1 {
     packageType?: string | null;
   }
   /**
-   * DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): - imageSizeBytes - mediaType - buildTime
+   * DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): * imageSizeBytes * mediaType * buildTime
    */
   export interface Schema$DockerImage {
     /**

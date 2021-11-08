@@ -257,7 +257,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20211029",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -309,7 +309,7 @@
       "type": "object"
     },
     "DockerImage": {
-      "description": "DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): - imageSizeBytes - mediaType - buildTime",
+      "description": "DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): * imageSizeBytes * mediaType * buildTime",
       "id": "DockerImage",
       "properties": {
         "buildTime": {
