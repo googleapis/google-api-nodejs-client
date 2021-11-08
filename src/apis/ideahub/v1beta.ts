@@ -103,7 +103,7 @@ export namespace ideahub_v1beta {
   /**
    * Idea Hub API
    *
-   *
+   * This is an invitation-only API.
    *
    * @example
    * ```js

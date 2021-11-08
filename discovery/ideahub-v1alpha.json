@@ -3,7 +3,7 @@
   "baseUrl": "https://ideahub.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Ideahub",
-  "description": "",
+  "description": "This is an invitation-only API.",
   "discoveryVersion": "v1",
   "documentationLink": "https://console.cloud.google.com/apis/library/ideahub.googleapis.com",
   "fullyEncodeReservedExpansion": true,
@@ -331,7 +331,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20211103",
   "rootUrl": "https://ideahub.googleapis.com/",
   "schemas": {
     "GoogleSearchIdeahubV1alphaAvailableLocale": {
