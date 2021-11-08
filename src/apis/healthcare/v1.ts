@@ -854,6 +854,10 @@ export namespace healthcare_v1 {
      */
     streamConfigs?: Schema$StreamConfig[];
     /**
+     * Configuration for how to validate incoming FHIR resources against configured profiles.
+     */
+    validationConfig?: Schema$ValidationConfig;
+    /**
      * Immutable. The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. Version is required for every FHIR store.
      */
     version?: string | null;
@@ -1954,6 +1958,23 @@ export namespace healthcare_v1 {
      * Required. User's UUID provided by the client.
      */
     userId?: string | null;
+  }
+  /**
+   * Contains the configuration for FHIR profiles and validation.
+   */
+  export interface Schema$ValidationConfig {
+    /**
+     * Whether to disable FHIRPath validation for incoming resources. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     */
+    disableFhirpathValidation?: boolean | null;
+    /**
+     * Whether to disable reference type validation for incoming resources. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     */
+    disableReferenceTypeValidation?: boolean | null;
+    /**
+     * Whether to disable required fields validation for incoming resources. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.
+     */
+    disableRequiredFieldValidation?: boolean | null;
   }
   /**
    * Describes a selector for extracting and matching an MSH field to a value.
@@ -14131,6 +14152,7 @@ export namespace healthcare_v1 {
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
      *       //   "streamConfigs": [],
+     *       //   "validationConfig": {},
      *       //   "version": "my_version"
      *       // }
      *     },
@@ -14147,6 +14169,7 @@ export namespace healthcare_v1 {
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "streamConfigs": [],
+     *   //   "validationConfig": {},
      *   //   "version": "my_version"
      *   // }
      * }
@@ -14696,6 +14719,7 @@ export namespace healthcare_v1 {
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "streamConfigs": [],
+     *   //   "validationConfig": {},
      *   //   "version": "my_version"
      *   // }
      * }
@@ -15252,6 +15276,7 @@ export namespace healthcare_v1 {
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
      *       //   "streamConfigs": [],
+     *       //   "validationConfig": {},
      *       //   "version": "my_version"
      *       // }
      *     },
@@ -15268,6 +15293,7 @@ export namespace healthcare_v1 {
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "streamConfigs": [],
+     *   //   "validationConfig": {},
      *   //   "version": "my_version"
      *   // }
      * }

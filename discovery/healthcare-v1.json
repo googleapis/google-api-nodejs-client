@@ -4012,7 +4012,7 @@
       }
     }
   },
-  "revision": "20211016",
+  "revision": "20211025",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -5031,6 +5031,10 @@
             "$ref": "StreamConfig"
           },
           "type": "array"
+        },
+        "validationConfig": {
+          "$ref": "ValidationConfig",
+          "description": "Configuration for how to validate incoming FHIR resources against configured profiles."
         },
         "version": {
           "description": "Immutable. The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. Version is required for every FHIR store.",
@@ -6657,6 +6661,25 @@
         "userId": {
           "description": "Required. User's UUID provided by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValidationConfig": {
+      "description": "Contains the configuration for FHIR profiles and validation.",
+      "id": "ValidationConfig",
+      "properties": {
+        "disableFhirpathValidation": {
+          "description": "Whether to disable FHIRPath validation for incoming resources. Set this to true to disable checking incoming resources for conformance against FHIRPath requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "type": "boolean"
+        },
+        "disableReferenceTypeValidation": {
+          "description": "Whether to disable reference type validation for incoming resources. Set this to true to disable checking incoming resources for conformance against reference type requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "type": "boolean"
+        },
+        "disableRequiredFieldValidation": {
+          "description": "Whether to disable required fields validation for incoming resources. Set this to true to disable checking incoming resources for conformance against required fields requirement defined in the FHIR specification. This property only affects resource types that do not have profiles configured for them, any rules in enabled implementation guides will still be enforced.",
+          "type": "boolean"
         }
       },
       "type": "object"
