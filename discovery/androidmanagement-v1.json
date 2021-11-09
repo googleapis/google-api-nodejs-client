@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20211025",
+  "revision": "20211101",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -3682,6 +3682,20 @@
             "$ref": "PolicyEnforcementRule"
           },
           "type": "array"
+        },
+        "preferentialNetworkService": {
+          "description": "Controls whether preferential network service is enabled on the work profile. For example, an organization may have an agreement with a carrier that all of the work data from its employees' devices will be sent via a network service dedicated for enterprise use. An example of a supported preferential network service is the enterprise slice on 5G networks. This has no effect on fully managed devices.",
+          "enum": [
+            "PREFERENTIAL_NETWORK_SERVICE_UNSPECIFIED",
+            "PREFERENTIAL_NETWORK_SERVICE_DISABLED",
+            "PREFERENTIAL_NETWORK_SERVICE_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to PREFERENTIAL_NETWORK_SERVICES_DISABLED.",
+            "Preferential network service is disabled on the work profile.",
+            "Preferential network service is enabled on the work profile."
+          ],
+          "type": "string"
         },
         "privateKeySelectionEnabled": {
           "description": "Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable.",
