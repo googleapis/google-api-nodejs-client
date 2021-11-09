@@ -509,6 +509,10 @@ export namespace cloudbuild_v1 {
      */
     disabled?: boolean | null;
     /**
+     * Optional. EventType allows the user to explicitly set the type of event to which this BuildTrigger should respond. This field is optional but will be validated against the rest of the configuration if it is set.
+     */
+    eventType?: string | null;
+    /**
      * Path, from the source root, to the build configuration file (i.e. cloudbuild.yaml).
      */
     filename?: string | null;
@@ -5975,6 +5979,7 @@ export namespace cloudbuild_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "disabled": false,
+     *       //   "eventType": "my_eventType",
      *       //   "filename": "my_filename",
      *       //   "filter": "my_filter",
      *       //   "gitFileSource": {},
@@ -6004,6 +6009,7 @@ export namespace cloudbuild_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "disabled": false,
+     *   //   "eventType": "my_eventType",
      *   //   "filename": "my_filename",
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
@@ -6286,6 +6292,7 @@ export namespace cloudbuild_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "disabled": false,
+     *   //   "eventType": "my_eventType",
      *   //   "filename": "my_filename",
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
@@ -6581,6 +6588,7 @@ export namespace cloudbuild_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "disabled": false,
+     *       //   "eventType": "my_eventType",
      *       //   "filename": "my_filename",
      *       //   "filter": "my_filter",
      *       //   "gitFileSource": {},
@@ -6610,6 +6618,7 @@ export namespace cloudbuild_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "disabled": false,
+     *   //   "eventType": "my_eventType",
      *   //   "filename": "my_filename",
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
@@ -7324,7 +7333,7 @@ export namespace cloudbuild_v1 {
      *   const res = await cloudbuild.projects.locations.workerPools.delete({
      *     // If set to true, and the `WorkerPool` is not found, the request will succeed but no action will be taken on the server.
      *     allowMissing: 'placeholder-value',
-     *     // Optional. If this is provided, it must match the server's etag on the workerpool for the request to be processed.
+     *     // Optional. If provided, it must match the server's etag on the workerpool for the request to be processed.
      *     etag: 'placeholder-value',
      *     // Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
      *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
@@ -7884,7 +7893,7 @@ export namespace cloudbuild_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. If this is provided, it must match the server's etag on the workerpool for the request to be processed.
+     * Optional. If provided, it must match the server's etag on the workerpool for the request to be processed.
      */
     etag?: string;
     /**
@@ -7987,6 +7996,7 @@ export namespace cloudbuild_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "disabled": false,
+     *       //   "eventType": "my_eventType",
      *       //   "filename": "my_filename",
      *       //   "filter": "my_filter",
      *       //   "gitFileSource": {},
@@ -8016,6 +8026,7 @@ export namespace cloudbuild_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "disabled": false,
+     *   //   "eventType": "my_eventType",
      *   //   "filename": "my_filename",
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
@@ -8300,6 +8311,7 @@ export namespace cloudbuild_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "disabled": false,
+     *   //   "eventType": "my_eventType",
      *   //   "filename": "my_filename",
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
@@ -8594,6 +8606,7 @@ export namespace cloudbuild_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "disabled": false,
+     *       //   "eventType": "my_eventType",
      *       //   "filename": "my_filename",
      *       //   "filter": "my_filter",
      *       //   "gitFileSource": {},
@@ -8623,6 +8636,7 @@ export namespace cloudbuild_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "disabled": false,
+     *   //   "eventType": "my_eventType",
      *   //   "filename": "my_filename",
      *   //   "filter": "my_filter",
      *   //   "gitFileSource": {},
