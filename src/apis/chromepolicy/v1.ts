@@ -127,6 +127,20 @@ export namespace chromepolicy_v1 {
     }
   }
 
+  export interface Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle {
+    /**
+     * Description about current life cycle.
+     */
+    description?: string | null;
+    /**
+     * End supporting date for current policy.
+     */
+    endSupport?: Schema$GoogleTypeDate;
+    /**
+     * Indicate current life cycle stage of the policy API.
+     */
+    policyApiLifecycleStage?: string | null;
+  }
   /**
    * Additional key names that will be used to identify the target of the policy value.
    */
@@ -202,7 +216,7 @@ export namespace chromepolicy_v1 {
     updateMask?: string | null;
   }
   /**
-   * Resource representing a policy schema. Next ID: 11
+   * Resource representing a policy schema. Next ID: 12
    */
   export interface Schema$GoogleChromePolicyV1PolicySchema {
     /**
@@ -229,6 +243,10 @@ export namespace chromepolicy_v1 {
      * Output only. Special notice messages related to setting certain values in certain fields in the schema.
      */
     notices?: Schema$GoogleChromePolicyV1PolicySchemaNoticeDescription[];
+    /**
+     * Output only. Current life cycle information.
+     */
+    policyApiLifeycle?: Schema$ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle;
     /**
      * Output only. Description about the policy schema for user consumption.
      */
@@ -421,6 +439,23 @@ export namespace chromepolicy_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$GoogleTypeDate {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
   /**
    * Describes a message type.
    */
@@ -1051,6 +1086,7 @@ export namespace chromepolicy_v1 {
      *   //   "fieldDescriptions": [],
      *   //   "name": "my_name",
      *   //   "notices": [],
+     *   //   "policyApiLifeycle": {},
      *   //   "policyDescription": "my_policyDescription",
      *   //   "schemaName": "my_schemaName",
      *   //   "supportUri": "my_supportUri",
