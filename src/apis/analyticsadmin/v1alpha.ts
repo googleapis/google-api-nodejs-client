@@ -1202,7 +1202,7 @@ export namespace analyticsadmin_v1alpha {
      */
     defaultUri?: string | null;
     /**
-     * Required. Human-readable display name for the Data Stream. The max allowed display name length is 100 UTF-16 code units.
+     * Required. Human-readable display name for the Data Stream. The max allowed display name length is 255 UTF-16 code units.
      */
     displayName?: string | null;
     /**

@@ -3120,7 +3120,7 @@
       }
     }
   },
-  "revision": "20211026",
+  "revision": "20211105",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -4723,7 +4723,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Required. Human-readable display name for the Data Stream. The max allowed display name length is 100 UTF-16 code units.",
+          "description": "Required. Human-readable display name for the Data Stream. The max allowed display name length is 255 UTF-16 code units.",
           "type": "string"
         },
         "firebaseAppId": {
