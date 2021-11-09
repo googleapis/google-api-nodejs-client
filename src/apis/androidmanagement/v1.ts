@@ -1689,6 +1689,10 @@ export namespace androidmanagement_v1 {
      */
     policyEnforcementRules?: Schema$PolicyEnforcementRule[];
     /**
+     * Controls whether preferential network service is enabled on the work profile. For example, an organization may have an agreement with a carrier that all of the work data from its employees' devices will be sent via a network service dedicated for enterprise use. An example of a supported preferential network service is the enterprise slice on 5G networks. This has no effect on fully managed devices.
+     */
+    preferentialNetworkService?: string | null;
+    /**
      * Allows showing UI on a device for a user to choose a private key alias if there are no matching rules in ChoosePrivateKeyRules. For devices below Android P, setting this may leave enterprise keys vulnerable.
      */
     privateKeySelectionEnabled?: boolean | null;
@@ -5110,6 +5114,7 @@ export namespace androidmanagement_v1 {
      *   //   "personalUsagePolicies": {},
      *   //   "playStoreMode": "my_playStoreMode",
      *   //   "policyEnforcementRules": [],
+     *   //   "preferentialNetworkService": "my_preferentialNetworkService",
      *   //   "privateKeySelectionEnabled": false,
      *   //   "recommendedGlobalProxy": {},
      *   //   "removeUserDisabled": false,
@@ -5462,6 +5467,7 @@ export namespace androidmanagement_v1 {
      *       //   "personalUsagePolicies": {},
      *       //   "playStoreMode": "my_playStoreMode",
      *       //   "policyEnforcementRules": [],
+     *       //   "preferentialNetworkService": "my_preferentialNetworkService",
      *       //   "privateKeySelectionEnabled": false,
      *       //   "recommendedGlobalProxy": {},
      *       //   "removeUserDisabled": false,
@@ -5553,6 +5559,7 @@ export namespace androidmanagement_v1 {
      *   //   "personalUsagePolicies": {},
      *   //   "playStoreMode": "my_playStoreMode",
      *   //   "policyEnforcementRules": [],
+     *   //   "preferentialNetworkService": "my_preferentialNetworkService",
      *   //   "privateKeySelectionEnabled": false,
      *   //   "recommendedGlobalProxy": {},
      *   //   "removeUserDisabled": false,
