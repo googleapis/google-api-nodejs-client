@@ -210,6 +210,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "etag": {
+                      "description": "Optional. If this is provided, it must match the server's etag on the workerpool for the request to be processed.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "Required. The name of the `WorkerPool` to delete. Format: `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.",
                       "location": "path",
@@ -317,7 +322,7 @@
       }
     }
   },
-  "revision": "20210819",
+  "revision": "20211029",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -712,10 +717,10 @@
           ],
           "enumDescriptions": [
             "The service determines the logging mode. The default is `LEGACY`. Do not rely on the default logging behavior as it may change in the future.",
-            "Cloud Logging and Cloud Storage logging are enabled.",
-            "Only Cloud Storage logging is enabled.",
+            "Build logs are stored in Cloud Logging and Cloud Storage.",
+            "Build logs are stored in Cloud Storage.",
             "This option is the same as CLOUD_LOGGING_ONLY.",
-            "Only Cloud Logging is enabled. Note that logs for both the Cloud Console UI and Cloud SDK are based on Cloud Storage logs, so neither will provide logs if this option is chosen.",
+            "Build logs are stored in Cloud Logging. Selecting this option will not allow [logs streaming](https://cloud.google.com/sdk/gcloud/reference/builds/log).",
             "Turn off all logging. No build logs will be captured."
           ],
           "type": "string"
@@ -1844,6 +1849,13 @@
       "description": "Configuration for a `WorkerPool` to run the builds. Workers provide a build environment where Cloud Build runs your builds. Cloud Build owns and maintains a pool of workers for general use. By default, when you submit a build, Cloud Build uses one of the workers from this pool. Builds that run in the default worker pool have access to the public internet. If your build needs access to resources on a private network, create and use a `WorkerPool` to run your builds. Custom `WorkerPool`s give your builds access to any single VPC network that you administer, including any on-prem resources connected to that VPC network. For an overview of custom worker pools, see [Custom workers overview](https://cloud.google.com/cloud-build/docs/custom-workers/custom-workers-overview).",
       "id": "WorkerPool",
       "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User specified annotations. See https://google.aip.dev/128#annotations for more details such as format and size limitations.",
+          "type": "object"
+        },
         "createTime": {
           "description": "Output only. Time at which the request to create the `WorkerPool` was received.",
           "format": "google-datetime",
@@ -1853,6 +1865,15 @@
         "deleteTime": {
           "description": "Output only. Time at which the request to delete the `WorkerPool` was received.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "A user-specified, human-readable name for the `WorkerPool`. If provided, this value must be 1-63 characters.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Output only. Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.",
           "readOnly": true,
           "type": "string"
         },
@@ -1881,6 +1902,11 @@
             "`WorkerPool` is being deleted: cancelling builds and draining workers.",
             "`WorkerPool` is deleted."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. A unique identifier for the `WorkerPool`.",
           "readOnly": true,
           "type": "string"
         },

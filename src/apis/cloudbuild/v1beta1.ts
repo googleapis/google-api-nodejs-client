@@ -1173,6 +1173,10 @@ export namespace cloudbuild_v1beta1 {
    */
   export interface Schema$WorkerPool {
     /**
+     * User specified annotations. See https://google.aip.dev/128#annotations for more details such as format and size limitations.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
      * Output only. Time at which the request to create the `WorkerPool` was received.
      */
     createTime?: string | null;
@@ -1180,6 +1184,14 @@ export namespace cloudbuild_v1beta1 {
      * Output only. Time at which the request to delete the `WorkerPool` was received.
      */
     deleteTime?: string | null;
+    /**
+     * A user-specified, human-readable name for the `WorkerPool`. If provided, this value must be 1-63 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Checksum computed by the server. May be sent on update and delete requests to ensure that the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
     /**
      * Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
      */
@@ -1192,6 +1204,10 @@ export namespace cloudbuild_v1beta1 {
      * Output only. `WorkerPool` state.
      */
     state?: string | null;
+    /**
+     * Output only. A unique identifier for the `WorkerPool`.
+     */
+    uid?: string | null;
     /**
      * Output only. Time at which the request to update the `WorkerPool` was received.
      */
@@ -1558,11 +1574,15 @@ export namespace cloudbuild_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "annotations": {},
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
      *       //   "workerConfig": {}
      *       // }
@@ -1698,6 +1718,8 @@ export namespace cloudbuild_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudbuild.projects.locations.workerPools.delete({
+     *     // Optional. If this is provided, it must match the server's etag on the workerpool for the request to be processed.
+     *     etag: 'placeholder-value',
      *     // Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
      *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
      *   });
@@ -1835,11 +1857,15 @@ export namespace cloudbuild_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
      *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "workerConfig": {}
      *   // }
@@ -2103,11 +2129,15 @@ export namespace cloudbuild_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "annotations": {},
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
      *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
      *       //   "workerConfig": {}
      *       // }
@@ -2232,6 +2262,10 @@ export namespace cloudbuild_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Workerpools$Delete
     extends StandardParameters {
+    /**
+     * Optional. If this is provided, it must match the server's etag on the workerpool for the request to be processed.
+     */
+    etag?: string;
     /**
      * Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
      */
