@@ -462,7 +462,7 @@
       }
     }
   },
-  "revision": "20211102",
+  "revision": "20211013",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -530,21 +530,6 @@
           },
           "description": "Pypi dependencies specified in the environment configuration, at the time when the build was triggered.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "CidrBlock": {
-      "description": "CidrBlock contains an optional name and one CIDR block.",
-      "id": "CidrBlock",
-      "properties": {
-        "cidrBlock": {
-          "description": "cidr_block must be specified in CIDR notation.",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "display_name is a field for users to identify CIDR blocks.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -705,10 +690,6 @@
           "$ref": "MaintenanceWindow",
           "description": "Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, Cloud Composer components may be subject to maintenance at any time."
         },
-        "masterAuthorizedNetworksConfig": {
-          "$ref": "MasterAuthorizedNetworksConfig",
-          "description": "Optional. The configuration options for GKE clusters master authorized networks. By default master authorized networks feature is: - in case of private environment: enabled with no external networks allowlisted. - in case of public environment: disabled."
-        },
         "nodeConfig": {
           "$ref": "NodeConfig",
           "description": "The configuration used for the Kubernetes Engine cluster."
@@ -857,7 +838,7 @@
       "type": "object"
     },
     "MaintenanceWindow": {
-      "description": "The configuration settings for Cloud Composer maintenance window. The following example: ``` { \"startTime\":\"2019-08-01T01:00:00Z\" \"endTime\":\"2019-08-01T07:00:00Z\" \"recurrence\":\"FREQ=WEEKLY;BYDAY=TU,WE\" } ``` would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.",
+      "description": "The configuration settings for Cloud Composer maintenance window. The following example: { \"startTime\":\"2019-08-01T01:00:00Z\" \"endTime\":\"2019-08-01T07:00:00Z\" \"recurrence\":\"FREQ=WEEKLY;BYDAY=TU,WE\" } would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.",
       "id": "MaintenanceWindow",
       "properties": {
         "endTime": {
@@ -873,24 +854,6 @@
           "description": "Required. Start time of the first recurrence of the maintenance window.",
           "format": "google-datetime",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "MasterAuthorizedNetworksConfig": {
-      "description": "Configuration options for the master authorized networks feature. Enabled master authorized networks will disallow all external traffic to access Kubernetes master through HTTPS except traffic from the given CIDR blocks, Google Compute Engine Public IPs and Google Prod IPs.",
-      "id": "MasterAuthorizedNetworksConfig",
-      "properties": {
-        "cidrBlocks": {
-          "description": "cidr_blocks define up to 50 external networks that could access Kubernetes master through HTTPS.",
-          "items": {
-            "$ref": "CidrBlock"
-          },
-          "type": "array"
-        },
-        "enabled": {
-          "description": "Whether or not master authorized networks is enabled.",
-          "type": "boolean"
         }
       },
       "type": "object"
