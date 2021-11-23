@@ -612,7 +612,7 @@ const listResults: drive_v3.Schema$FileList = res.data;
 ```
 
 ### HTTP/2
-This library has support for [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2). This support is well-tested and suitable for use in production.  To enable it, use the `http2` option anywhere request parameters are accepted:
+This library has support for [HTTP/2](https://developers.google.com/web/fundamentals/performance/http2). To enable it, use the `http2` option anywhere request parameters are accepted:
 
 ```js
 const {google} = require('googleapis');
