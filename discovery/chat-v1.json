@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20211029",
+  "revision": "20211117",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1100,7 +1100,7 @@
           "type": "string"
         },
         "eventTime": {
-          "description": "The timestamp indicating when the event was dispatched.",
+          "description": "The timestamp indicating when the event occurred.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1182,6 +1182,25 @@
         "driveFileId": {
           "description": "The id for the drive file, for use with the Drive API.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DynamiteIntegrationLogEntry": {
+      "description": "JSON payload of error messages. If the Cloud Logging API is enabled, these error messages are logged to [Google Cloud Logging](https://cloud.google.com/logging/docs).",
+      "id": "DynamiteIntegrationLogEntry",
+      "properties": {
+        "deployment": {
+          "description": "The deployment that caused the error. For Chat bots built in Apps Script, this is the deployment ID defined by Apps Script.",
+          "type": "string"
+        },
+        "deploymentFunction": {
+          "description": "The unencrypted `callback_method` name that was running when the error was encountered.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "The error code and message."
         }
       },
       "type": "object"
@@ -2563,6 +2582,33 @@
             "Conversations between two or more humans.",
             "1:1 Direct Message between a human and a Chat bot, where all messages are flat. Note that this does not include direct messages between two humans."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
