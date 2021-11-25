@@ -421,6 +421,175 @@ export namespace assuredworkloads_v1 {
     resourceType?: string | null;
   }
   /**
+   * Operation metadata to give request details of CreateWorkload.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainCreateWorkloadOperationMetadata {
+    /**
+     * Optional. Compliance controls that should be applied to the resources managed by the workload.
+     */
+    complianceRegime?: string | null;
+    /**
+     * Optional. Time when the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The display name of the workload.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. The parent of the workload.
+     */
+    parent?: string | null;
+    /**
+     * Optional. Resource properties in the input that are used for creating/customizing workload resources.
+     */
+    resourceSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings[];
+  }
+  /**
+   * An Workload object for managing highly regulated workloads of cloud customers.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkload {
+    /**
+     * Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF`.
+     */
+    billingAccount?: string | null;
+    /**
+     * Required. Input only. Immutable. Settings specific to resources needed for CJIS.
+     */
+    cjisSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadCJISSettings;
+    /**
+     * Required. Immutable. Compliance Regime associated with this workload.
+     */
+    complianceRegime?: string | null;
+    /**
+     * Output only. Immutable. The Workload creation timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The user-assigned display name of the Workload. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, and spaces. Example: My Workload
+     */
+    displayName?: string | null;
+    /**
+     * Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.
+     */
+    etag?: string | null;
+    /**
+     * Required. Input only. Immutable. Settings specific to resources needed for FedRAMP High.
+     */
+    fedrampHighSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampHighSettings;
+    /**
+     * Required. Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate.
+     */
+    fedrampModerateSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampModerateSettings;
+    /**
+     * Required. Input only. Immutable. Settings specific to resources needed for IL4.
+     */
+    il4Settings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadIL4Settings;
+    /**
+     * Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes.
+     */
+    kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
+    /**
+     * Optional. Labels applied to the workload.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
+     */
+    name?: string | null;
+    /**
+     * Input only. The parent resource for the resources managed by this Assured Workload. May be either empty or a folder resource which is a child of the Workload parent. If not specified all resources are created under the parent organization. Format: folders/{folder_id\}
+     */
+    provisionedResourcesParent?: string | null;
+    /**
+     * Output only. The resources associated with this workload. These resources will be created when creating the workload. If any of the projects already exist, the workload creation will fail. Always read only.
+     */
+    resources?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceInfo[];
+    /**
+     * Input only. Resource properties that are used to customize workload resources. These properties (such as custom project id) will be used to create workload resources if possible. This field is optional.
+     */
+    resourceSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings[];
+  }
+  /**
+   * Settings specific to resources needed for CJIS.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadCJISSettings {
+    /**
+     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     */
+    kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
+  }
+  /**
+   * Settings specific to resources needed for FedRAMP High.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampHighSettings {
+    /**
+     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     */
+    kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
+  }
+  /**
+   * Settings specific to resources needed for FedRAMP Moderate.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampModerateSettings {
+    /**
+     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     */
+    kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
+  }
+  /**
+   * Settings specific to resources needed for IL4.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadIL4Settings {
+    /**
+     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     */
+    kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
+  }
+  /**
+   * Settings specific to the Key Management Service.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings {
+    /**
+     * Required. Input only. Immutable. The time at which the Key Management Service will automatically create a new version of the crypto key and mark it as the primary.
+     */
+    nextRotationTime?: string | null;
+    /**
+     * Required. Input only. Immutable. [next_rotation_time] will be advanced by this period when the Key Management Service automatically rotates a key. Must be at least 24 hours and at most 876,000 hours.
+     */
+    rotationPeriod?: string | null;
+  }
+  /**
+   * Represent the resources that are children of this Workload.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceInfo {
+    /**
+     * Resource identifier. For a project this represents project_number.
+     */
+    resourceId?: string | null;
+    /**
+     * Indicates the type of resource.
+     */
+    resourceType?: string | null;
+  }
+  /**
+   * Represent the custom settings for the resources to be created.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings {
+    /**
+     * User-assigned resource display name. If not empty it will be used to create a resource with the specified name.
+     */
+    displayName?: string | null;
+    /**
+     * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.
+     */
+    resourceId?: string | null;
+    /**
+     * Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)
+     */
+    resourceType?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$GoogleLongrunningListOperationsResponse {
