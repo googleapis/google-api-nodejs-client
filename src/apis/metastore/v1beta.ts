@@ -202,6 +202,19 @@ export namespace metastore_v1beta {
     role?: string | null;
   }
   /**
+   * Contains information of the customer's network configurations.
+   */
+  export interface Schema$Consumer {
+    /**
+     * Output only. The URI of the endpoint used to access the metastore service.
+     */
+    endpointUri?: string | null;
+    /**
+     * The subnetwork of the customer project from which an IP address is reserved and used as the Dataproc Metastore service's endpoint. It is accessible to hosts in the subnet and to all hosts in a subnet in the same region and same network. There must be at least one IP address available in the subnet's primary range. The subnet is specified in the following form:`projects/{project_number\}/regions/{region_id\}/subnetworks/{subnetwork_id\}
+     */
+    subnetwork?: string | null;
+  }
+  /**
    * A specification of the location of and metadata about a database dump from a relational database management system.
    */
   export interface Schema$DatabaseDump {
@@ -560,6 +573,15 @@ export namespace metastore_v1beta {
     restores?: Schema$Restore[];
   }
   /**
+   * Network configuration for the Dataproc Metastore service.
+   */
+  export interface Schema$NetworkConfig {
+    /**
+     * Immutable. The consumer-side network configuration for the Dataproc Metastore instance.
+     */
+    consumers?: Schema$Consumer[];
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -741,6 +763,10 @@ export namespace metastore_v1beta {
      * Immutable. The relative resource name of the VPC network on which the instance can be accessed. It is specified in the following form:projects/{project_number\}/global/networks/{network_id\}.
      */
     network?: string | null;
+    /**
+     * Immutable. The configuration specifying the network settings for the Dataproc Metastore service.
+     */
+    networkConfig?: Schema$NetworkConfig;
     /**
      * The TCP port at which the metastore service is reached. Default: 9083.
      */
@@ -1637,6 +1663,7 @@ export namespace metastore_v1beta {
      *       //   "metadataManagementActivity": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkConfig": {},
      *       //   "port": 0,
      *       //   "releaseChannel": "my_releaseChannel",
      *       //   "state": "my_state",
@@ -2071,6 +2098,7 @@ export namespace metastore_v1beta {
      *   //   "metadataManagementActivity": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "networkConfig": {},
      *   //   "port": 0,
      *   //   "releaseChannel": "my_releaseChannel",
      *   //   "state": "my_state",
@@ -2196,7 +2224,7 @@ export namespace metastore_v1beta {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.getIamPolicy({
-     *     // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/services/my-service',
@@ -2496,6 +2524,7 @@ export namespace metastore_v1beta {
      *       //   "metadataManagementActivity": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "networkConfig": {},
      *       //   "port": 0,
      *       //   "releaseChannel": "my_releaseChannel",
      *       //   "state": "my_state",
@@ -3089,7 +3118,7 @@ export namespace metastore_v1beta {
   export interface Params$Resource$Projects$Locations$Services$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -3627,7 +3656,7 @@ export namespace metastore_v1beta {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.backups.getIamPolicy({
-     *     // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource:
@@ -4210,7 +4239,7 @@ export namespace metastore_v1beta {
   export interface Params$Resource$Projects$Locations$Services$Backups$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
