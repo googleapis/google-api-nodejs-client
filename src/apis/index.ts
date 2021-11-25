@@ -146,6 +146,7 @@ import {
   VERSIONS as clouddebuggerVersions,
   clouddebugger,
 } from './clouddebugger';
+import {VERSIONS as clouddeployVersions, clouddeploy} from './clouddeploy';
 import {
   VERSIONS as clouderrorreportingVersions,
   clouderrorreporting,
@@ -622,6 +623,7 @@ export const APIS: APIList = {
   cloudbuild: cloudbuildVersions,
   cloudchannel: cloudchannelVersions,
   clouddebugger: clouddebuggerVersions,
+  clouddeploy: clouddeployVersions,
   clouderrorreporting: clouderrorreportingVersions,
   cloudfunctions: cloudfunctionsVersions,
   cloudidentity: cloudidentityVersions,
@@ -860,6 +862,7 @@ export class GeneratedAPIs {
   cloudbuild = cloudbuild;
   cloudchannel = cloudchannel;
   clouddebugger = clouddebugger;
+  clouddeploy = clouddeploy;
   clouderrorreporting = clouderrorreporting;
   cloudfunctions = cloudfunctions;
   cloudidentity = cloudidentity;
