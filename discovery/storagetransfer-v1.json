@@ -600,7 +600,7 @@
       }
     }
   },
-  "revision": "20211105",
+  "revision": "20211111",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -938,6 +938,42 @@
         "enableOnpremGcsTransferLogs": {
           "description": "Enables the Cloud Storage transfer logs for this transfer. This is only supported for transfer jobs with PosixFilesystem sources. The default is that logs are not generated for this transfer.",
           "type": "boolean"
+        },
+        "logActionStates": {
+          "description": "States in which `log_actions` are logged. If empty, no logs are generated. This is not yet supported for transfers with PosixFilesystem data sources.",
+          "items": {
+            "enum": [
+              "LOGGABLE_ACTION_STATE_UNSPECIFIED",
+              "SUCCEEDED",
+              "FAILED"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "`LoggableAction` is completed successfully. `SUCCEEDED` actions are logged as INFO.",
+              "`LoggableAction` is terminated in an error state. `FAILED` actions are logged as ERROR."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "logActions": {
+          "description": "Actions to be logged. If empty, no logs are generated. This is not yet supported for transfers with PosixFilesystem data sources.",
+          "items": {
+            "enum": [
+              "LOGGABLE_ACTION_UNSPECIFIED",
+              "FIND",
+              "DELETE",
+              "COPY"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Finding objects to transfer e.g. listing objects of the source bucket.",
+              "Deleting objects at source or destination.",
+              "Copying objects from source to destination."
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1363,6 +1399,17 @@
       },
       "type": "object"
     },
+    "TransferManifest": {
+      "description": "Specifies where the manifest is located.",
+      "id": "TransferManifest",
+      "properties": {
+        "location": {
+          "description": "Holds URI-encoded path to find the manifest. It can be located in data_source, data_sink, or separately in GCS. For data_source and data_sink, the manifest location is relative to the path specified by that data_source or data_sink. If manifest is in GCS, use format \"gs:///\". If manifest is in data_source, use format \"source://\". If manifest is in data_sink, use format \"sink://\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TransferOperation": {
       "description": "A description of the execution of a transfer.",
       "id": "TransferOperation",
@@ -1495,6 +1542,10 @@
         "sourceAgentPoolName": {
           "description": "Specifies the agent pool name associated with the posix data source. When unspecified, the default name is used.",
           "type": "string"
+        },
+        "transferManifest": {
+          "$ref": "TransferManifest",
+          "description": "A manifest file provides a list of objects to be transferred from the data source. This field points to the location of the manifest file. Otherwise, the entire source bucket is used. ObjectConditions still apply."
         },
         "transferOptions": {
           "$ref": "TransferOptions",

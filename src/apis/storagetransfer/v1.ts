@@ -364,6 +364,14 @@ export namespace storagetransfer_v1 {
      * Enables the Cloud Storage transfer logs for this transfer. This is only supported for transfer jobs with PosixFilesystem sources. The default is that logs are not generated for this transfer.
      */
     enableOnpremGcsTransferLogs?: boolean | null;
+    /**
+     * Actions to be logged. If empty, no logs are generated. This is not yet supported for transfers with PosixFilesystem data sources.
+     */
+    logActions?: string[] | null;
+    /**
+     * States in which `log_actions` are logged. If empty, no logs are generated. This is not yet supported for transfers with PosixFilesystem data sources.
+     */
+    logActionStates?: string[] | null;
   }
   /**
    * Specification to configure notifications published to Pub/Sub. Notifications are published to the customer-provided topic using the following `PubsubMessage.attributes`: * `"eventType"`: one of the EventType values * `"payloadFormat"`: one of the PayloadFormat values * `"projectId"`: the project_id of the `TransferOperation` * `"transferJobName"`: the transfer_job_name of the `TransferOperation` * `"transferOperationName"`: the name of the `TransferOperation` The `PubsubMessage.data` contains a TransferOperation resource formatted according to the specified `PayloadFormat`.
@@ -668,6 +676,15 @@ export namespace storagetransfer_v1 {
     transferSpec?: Schema$TransferSpec;
   }
   /**
+   * Specifies where the manifest is located.
+   */
+  export interface Schema$TransferManifest {
+    /**
+     * Holds URI-encoded path to find the manifest. It can be located in data_source, data_sink, or separately in GCS. For data_source and data_sink, the manifest location is relative to the path specified by that data_source or data_sink. If manifest is in GCS, use format "gs:///". If manifest is in data_source, use format "source://". If manifest is in data_sink, use format "sink://".
+     */
+    location?: string | null;
+  }
+  /**
    * A description of the execution of a transfer.
    */
   export interface Schema$TransferOperation {
@@ -773,6 +790,10 @@ export namespace storagetransfer_v1 {
      * Specifies the agent pool name associated with the posix data source. When unspecified, the default name is used.
      */
     sourceAgentPoolName?: string | null;
+    /**
+     * A manifest file provides a list of objects to be transferred from the data source. This field points to the location of the manifest file. Otherwise, the entire source bucket is used. ObjectConditions still apply.
+     */
+    transferManifest?: Schema$TransferManifest;
     /**
      * If the option delete_objects_unique_in_sink is `true` and time-based object conditions such as 'last modification time' are specified, the request fails with an INVALID_ARGUMENT error.
      */
