@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20211102",
+  "revision": "20211112",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -317,6 +317,44 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
           "description": "The basic metadata of the long running operation."
+        },
+        "destDatasetType": {
+          "description": "The destination dataset split type.",
+          "enum": [
+            "DATASET_SPLIT_TYPE_UNSPECIFIED",
+            "DATASET_SPLIT_TRAIN",
+            "DATASET_SPLIT_TEST",
+            "DATASET_SPLIT_UNASSIGNED"
+          ],
+          "enumDescriptions": [
+            "Default value if the enum is not set. go/protodosdonts#do-include-an-unspecified-value-in-an-enum",
+            "Identifies the train documents.",
+            "Identifies the test documents.",
+            "Identifies the unassigned documents."
+          ],
+          "type": "string"
+        },
+        "individualBatchMoveStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadataIndividualBatchMoveStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadataIndividualBatchMoveStatus": {
+      "description": "The status of each individual document in the batch move process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadataIndividualBatchMoveStatus",
+      "properties": {
+        "documentId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+          "description": "The document id of the document."
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of moving the document."
         }
       },
       "type": "object"
@@ -450,6 +488,35 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDocumentaiUiv1beta3DocumentId": {
+      "description": "Document Identifier.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DocumentId",
+      "properties": {
+        "gcsManagedDocId": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId"
+        },
+        "revisionReference": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3RevisionReference",
+          "description": "Points to a specific revision of the document if set."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId": {
+      "description": "Identifies a document uniquely within the scope of a dataset in the GCS-based option.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DocumentIdGCSManagedDocumentId",
+      "properties": {
+        "cwDocId": {
+          "description": "Optional. Id of the document (indexed) managed by Content Warehouse.",
+          "type": "string"
+        },
+        "gcsUri": {
+          "description": "Required. The Cloud Storage uri where the actual document is stored.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata": {
       "description": "The long running operation metadata for enable processor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata",
@@ -518,6 +585,32 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
           "description": "The basic metadata of the long running operation."
+        },
+        "individualImportStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatus": {
+      "description": "The status of each individual document in the import process.",
+      "id": "GoogleCloudDocumentaiUiv1beta3ImportDocumentsMetadataIndividualImportStatus",
+      "properties": {
+        "inputGcsSource": {
+          "description": "The source Cloud Storage URI of the document.",
+          "type": "string"
+        },
+        "outputGcsDestination": {
+          "description": "The output_gcs_destination of the processed document if it was successful, otherwise empty.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of the importing of the document."
         }
       },
       "type": "object"
@@ -526,6 +619,35 @@
       "description": "Response of the import document operation.",
       "id": "GoogleCloudDocumentaiUiv1beta3ImportDocumentsResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3RevisionReference": {
+      "description": "The revision reference specifies which revision on the document to read.",
+      "id": "GoogleCloudDocumentaiUiv1beta3RevisionReference",
+      "properties": {
+        "latestProcessorVersion": {
+          "description": "Read the revision generated by the processor version, returns error if it does not exist.",
+          "type": "string"
+        },
+        "revisionCase": {
+          "description": "Read the revision by the predefined case.",
+          "enum": [
+            "REVISION_CASE_UNSPECIFIED",
+            "LATEST_HUMAN_REVIEW",
+            "LATEST_TIMESTAMP"
+          ],
+          "enumDescriptions": [
+            "Unspecified case, fallback to read the first (OCR) revision.",
+            "The latest revision made by a human.",
+            "The latest revision based on timestamp."
+          ],
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Read the revision given by the id, returns error if it does not exist.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata": {
