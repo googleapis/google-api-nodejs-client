@@ -455,7 +455,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333",
+              "description": "Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/list-query-operators",
               "location": "query",
               "type": "string"
             },
@@ -4402,7 +4402,7 @@
       }
     }
   },
-  "revision": "20211026",
+  "revision": "20211116",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {

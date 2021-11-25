@@ -3463,7 +3463,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
+     *     // Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/list-query-operators
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.
      *     sortOrder: 'placeholder-value',
@@ -4195,7 +4195,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
+     * Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/list-query-operators
      */
     query?: string;
     /**
