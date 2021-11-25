@@ -171,6 +171,318 @@
         }
       }
     },
+    "projects": {
+      "resources": {
+        "locations": {
+          "resources": {
+            "customClasses": {
+              "methods": {
+                "create": {
+                  "description": "Create a custom class.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customClasses",
+                  "httpMethod": "POST",
+                  "id": "speech.projects.locations.customClasses.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this custom class will be created. Format: {api_version}/projects/{project}/locations/{location}/customClasses",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customClasses",
+                  "request": {
+                    "$ref": "CreateCustomClassRequest"
+                  },
+                  "response": {
+                    "$ref": "CustomClass"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a custom class.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customClasses/{customClassesId}",
+                  "httpMethod": "DELETE",
+                  "id": "speech.projects.locations.customClasses.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the custom class to delete. Format: {api_version}/projects/{project}/locations/{location}/customClasses/{custom_class}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customClasses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get a custom class.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customClasses/{customClassesId}",
+                  "httpMethod": "GET",
+                  "id": "speech.projects.locations.customClasses.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the custom class to retrieve. Format: {api_version}/projects/{project}/locations/{location}/customClasses/{custom_class}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customClasses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "CustomClass"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List custom classes.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customClasses",
+                  "httpMethod": "GET",
+                  "id": "speech.projects.locations.customClasses.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of custom classes to return. The service may return fewer than this value. If unspecified, at most 50 custom classes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListCustomClass` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCustomClass` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of custom classes. Format: {api_version}/projects/{project}/locations/{location}/customClasses",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/customClasses",
+                  "response": {
+                    "$ref": "ListCustomClassesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a custom class.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/customClasses/{customClassesId}",
+                  "httpMethod": "PATCH",
+                  "id": "speech.projects.locations.customClasses.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The resource name of the custom class.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/customClasses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "CustomClass"
+                  },
+                  "response": {
+                    "$ref": "CustomClass"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "phraseSets": {
+              "methods": {
+                "create": {
+                  "description": "Create a set of phrase hints. Each item in the set can be a single word or a multi-word phrase. The items in the PhraseSet are favored by the recognition model when you send a call that includes the PhraseSet.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/phraseSets",
+                  "httpMethod": "POST",
+                  "id": "speech.projects.locations.phraseSets.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this phrase set will be created. Format: {api_version}/projects/{project}/locations/{location}/phraseSets",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/phraseSets",
+                  "request": {
+                    "$ref": "CreatePhraseSetRequest"
+                  },
+                  "response": {
+                    "$ref": "PhraseSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a phrase set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/phraseSets/{phraseSetsId}",
+                  "httpMethod": "DELETE",
+                  "id": "speech.projects.locations.phraseSets.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the phrase set to delete. Format: {api_version}/projects/{project}/locations/{location}/phraseSets/{phrase_set}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/phraseSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get a phrase set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/phraseSets/{phraseSetsId}",
+                  "httpMethod": "GET",
+                  "id": "speech.projects.locations.phraseSets.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the phrase set to retrieve. Format: {api_version}/projects/{project}/locations/{location}/phraseSets/{phrase_set}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/phraseSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "PhraseSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List phrase sets.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/phraseSets",
+                  "httpMethod": "GET",
+                  "id": "speech.projects.locations.phraseSets.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of phrase sets to return. The service may return fewer than this value. If unspecified, at most 50 phrase sets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListPhraseSet` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPhraseSet` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of phrase set. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/phraseSets",
+                  "response": {
+                    "$ref": "ListPhraseSetResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a phrase set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/phraseSets/{phraseSetsId}",
+                  "httpMethod": "PATCH",
+                  "id": "speech.projects.locations.phraseSets.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The resource name of the phrase set.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/phraseSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "PhraseSet"
+                  },
+                  "response": {
+                    "$ref": "PhraseSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "speech": {
       "methods": {
         "longrunningrecognize": {
@@ -212,9 +524,96 @@
       }
     }
   },
-  "revision": "20211021",
+  "revision": "20211104",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
+    "ClassItem": {
+      "description": "An item of the class.",
+      "id": "ClassItem",
+      "properties": {
+        "value": {
+          "description": "The class item's value.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateCustomClassRequest": {
+      "description": "Message sent by the client for the `CreateCustomClass` method.",
+      "id": "CreateCustomClassRequest",
+      "properties": {
+        "customClass": {
+          "$ref": "CustomClass",
+          "description": "Required. The custom class to create."
+        },
+        "customClassId": {
+          "description": "Required. The ID to use for the custom class, which will become the final component of the custom class' resource name. This value should be 4-63 characters, and valid characters are /a-z-/.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreatePhraseSetRequest": {
+      "description": "Message sent by the client for the `CreatePhraseSet` method.",
+      "id": "CreatePhraseSetRequest",
+      "properties": {
+        "phraseSet": {
+          "$ref": "PhraseSet",
+          "description": "Required. The phrase set to create."
+        },
+        "phraseSetId": {
+          "description": "Required. The ID to use for the phrase set, which will become the final component of the phrase set's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomClass": {
+      "description": "A set of words or phrases that represents a common concept likely to appear in your audio, for example a list of passenger ship names. CustomClass items can be substituted into placeholders that you set in PhraseSet phrases.",
+      "id": "CustomClass",
+      "properties": {
+        "customClassId": {
+          "description": "If this custom class is a resource, the custom_class_id is the resource id of the CustomClass. Case sensitive.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A collection of class items.",
+          "items": {
+            "$ref": "ClassItem"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The resource name of the custom class.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "ListCustomClassesResponse": {
+      "description": "Message returned to the client by the `ListCustomClasses` method.",
+      "id": "ListCustomClassesResponse",
+      "properties": {
+        "customClasses": {
+          "description": "The custom classes.",
+          "items": {
+            "$ref": "CustomClass"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -227,6 +626,24 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListPhraseSetResponse": {
+      "description": "Message returned to the client by the `ListPhraseSet` method.",
+      "id": "ListPhraseSetResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "phraseSets": {
+          "description": "The phrase set.",
+          "items": {
+            "$ref": "PhraseSet"
           },
           "type": "array"
         }
@@ -341,6 +758,45 @@
       },
       "type": "object"
     },
+    "Phrase": {
+      "description": "A phrases containing words and phrase \"hints\" so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content). List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. \"i was born in january\", \"i was born in febuary\", ...), use the pre-built `$MONTH` class improves the likelihood of correctly transcribing audio that includes months (e.g. \"i was born in $month\"). To refer to pre-built classes, use the class' symbol prepended with `$` e.g. `$MONTH`. To refer to custom classes that were defined inline in the request, set the class's `custom_class_id` to a string unique to all class resources and inline classes. Then use the class' id wrapped in $`{...}` e.g. \"${my-months}\". To refer to custom classes resources, use the class' id wrapped in `${}` (e.g. `${my-months}`).",
+      "id": "Phrase",
+      "properties": {
+        "boost": {
+          "description": "Hint Boost. Overrides the boost set at the phrase set level. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 and 20. We recommend using a binary search approach to finding the optimal value for your use case. Speech recognition will skip PhraseSets with a boost value of 0.",
+          "format": "float",
+          "type": "number"
+        },
+        "value": {
+          "description": "The phrase itself.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PhraseSet": {
+      "description": "Provides \"hints\" to the speech recognizer to favor specific words and phrases in the results.",
+      "id": "PhraseSet",
+      "properties": {
+        "boost": {
+          "description": "Hint Boost. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 (exclusive) and 20. We recommend using a binary search approach to finding the optimal value for your use case. Speech recognition will skip PhraseSets with a boost value of 0.",
+          "format": "float",
+          "type": "number"
+        },
+        "name": {
+          "description": "The resource name of the phrase set.",
+          "type": "string"
+        },
+        "phrases": {
+          "description": "A list of word and phrases.",
+          "items": {
+            "$ref": "Phrase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RecognitionAudio": {
       "description": "Contains audio data in the encoding specified in the `RecognitionConfig`. Either `content` or `uri` must be supplied. Supplying both or neither returns google.rpc.Code.INVALID_ARGUMENT. See [content limits](https://cloud.google.com/speech-to-text/quotas#content).",
       "id": "RecognitionAudio",
@@ -361,6 +817,10 @@
       "description": "Provides information to the recognizer that specifies how to process the request.",
       "id": "RecognitionConfig",
       "properties": {
+        "adaptation": {
+          "$ref": "SpeechAdaptation",
+          "description": "Speech adaptation configuration improves the accuracy of speech recognition. For more information, see the [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation) documentation. When speech adaptation is set it supersedes the `speech_contexts` field."
+        },
         "alternativeLanguageCodes": {
           "description": "A list of up to 3 additional [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags, listing possible alternative languages of the supplied audio. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes. If alternative languages are listed, recognition result will contain recognition in the most likely language detected including the main language_code. The recognition result will include the language tag of the language detected in the audio. Note: This feature is only supported for Voice Command and Voice Search use cases and performance may vary for other use cases (e.g., phone call transcription).",
           "items": {
@@ -423,7 +883,7 @@
             "Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000.",
             "Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000.",
             "Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Cloud Speech API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000.",
-            "Opus encoded audio frames in WebM container ([OggOpus](https://wiki.xiph.org/OggOpus)). This is a Beta features and only available in v1p1beta1. `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000."
+            "Opus encoded audio frames in WebM container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be one of 8000, 12000, 16000, 24000, or 48000."
           ],
           "type": "string"
         },
@@ -630,10 +1090,43 @@
       },
       "type": "object"
     },
+    "SpeechAdaptation": {
+      "description": "Speech adaptation configuration.",
+      "id": "SpeechAdaptation",
+      "properties": {
+        "customClasses": {
+          "description": "A collection of custom classes. To specify the classes inline, leave the class' `name` blank and fill in the rest of its fields, giving it a unique `custom_class_id`. Refer to the inline defined class in phrase hints by its `custom_class_id`.",
+          "items": {
+            "$ref": "CustomClass"
+          },
+          "type": "array"
+        },
+        "phraseSetReferences": {
+          "description": "A collection of phrase set resource names to use.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phraseSets": {
+          "description": "A collection of phrase sets. To specify the hints inline, leave the phrase set's `name` blank and fill in the rest of its fields. Any phrase set can use any custom class.",
+          "items": {
+            "$ref": "PhraseSet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SpeechContext": {
       "description": "Provides \"hints\" to the speech recognizer to favor specific words and phrases in the results.",
       "id": "SpeechContext",
       "properties": {
+        "boost": {
+          "description": "Hint Boost. Positive value will increase the probability that a specific phrase will be recognized over other similar sounding phrases. The higher the boost, the higher the chance of false positive recognition as well. Negative boost values would correspond to anti-biasing. Anti-biasing is not enabled, so negative boost will simply be ignored. Though `boost` can accept a wide range of positive values, most use cases are best served with values between 0 and 20. We recommend using a binary search approach to finding the optimal value for your use case.",
+          "format": "float",
+          "type": "number"
+        },
         "phrases": {
           "description": "A list of strings containing words and phrases \"hints\" so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content). List items can also be set to classes for groups of words that represent common concepts that occur in natural language. For example, rather than providing phrase hints for every month of the year, using the $MONTH class improves the likelihood of correctly transcribing audio that includes months.",
           "items": {
@@ -686,6 +1179,11 @@
         "languageCode": {
           "description": "Output only. The [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag of the language in this result. This language code was detected to have the most likelihood of being spoken in the audio.",
           "readOnly": true,
+          "type": "string"
+        },
+        "resultEndTime": {
+          "description": "Time offset of the end of this result relative to the beginning of the audio.",
+          "format": "google-duration",
           "type": "string"
         }
       },
