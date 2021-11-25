@@ -804,6 +804,10 @@ export namespace healthcare_v1 {
    */
   export interface Schema$FhirConfig {
     /**
+     * The behaviour for handling FHIR extensions that aren't otherwise specified for de-identification. If true, all extensions are preserved during de-identification by default. If false or unspecified, all extensions are removed during de-identification by default.
+     */
+    defaultKeepExtensions?: boolean | null;
+    /**
      * Specifies FHIR paths to match and how to transform them. Any field that is not matched by a FieldMetadata is passed through to the output dataset unmodified. All extensions will be processed according to `default_keep_extensions`.
      */
     fieldMetadataList?: Schema$FieldMetadata[];
