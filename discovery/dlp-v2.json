@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20211029",
+  "revision": "20211112",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6372,6 +6372,10 @@
           "$ref": "GooglePrivacyDlpV2ReplaceValueConfig",
           "description": "Replace with a specified value."
         },
+        "replaceDictionaryConfig": {
+          "$ref": "GooglePrivacyDlpV2ReplaceDictionaryConfig",
+          "description": "Replace with a value randomly drawn (with replacement) from a dictionary."
+        },
         "replaceWithInfoTypeConfig": {
           "$ref": "GooglePrivacyDlpV2ReplaceWithInfoTypeConfig",
           "description": "Replace with infotype"
@@ -6740,6 +6744,17 @@
         "overview": {
           "$ref": "GooglePrivacyDlpV2TransformationOverview",
           "description": "An overview of the changes that were made to the `item`."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2ReplaceDictionaryConfig": {
+      "description": "Replace each input value with a value randomly selected from the dictionary.",
+      "id": "GooglePrivacyDlpV2ReplaceDictionaryConfig",
+      "properties": {
+        "wordList": {
+          "$ref": "GooglePrivacyDlpV2WordList",
+          "description": "A list of words to select from for random replacement. The [limits](https://cloud.google.com/dlp/limits) page contains details about the size limits of dictionaries."
         }
       },
       "type": "object"
