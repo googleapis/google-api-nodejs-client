@@ -477,6 +477,10 @@ export namespace sqladmin_v1beta4 {
      */
     currentDiskSize?: string | null;
     /**
+     * Output only. The databaseInstalledVersion stores the current fully resolved database version running on the instance including minor version such as MYSQL_5_6_50
+     */
+    databaseInstalledVersion?: string | null;
+    /**
      * The database engine type and version. The **databaseVersion** field cannot be changed after instance creation.
      */
     databaseVersion?: string | null;
@@ -501,7 +505,7 @@ export namespace sqladmin_v1beta4 {
      */
     gceZone?: string | null;
     /**
-     * The instance type. This can be one of the following: * **CLOUD_SQL_INSTANCE**: A Cloud SQL instance that is not replicating from a primary instance. * **ON_PREMISES_INSTANCE**: An instance running on the customer's premises. * **READ_REPLICA_INSTANCE**: A Cloud SQL instance configured as a read-replica.
+     * The instance type.
      */
     instanceType?: string | null;
     /**
@@ -731,11 +735,11 @@ export namespace sqladmin_v1beta4 {
       selectQuery?: string;
     } | null;
     /**
-     * Databases to be exported. * **MySQL instances:** If **fileType** is **SQL** and no database is specified, all databases are exported, except for the **mysql** system database. If **fileType** is **CSV**, you can specify one database, either by using this property or by using the **csvExportOptions.selectQuery** property, which takes precedence over this property. * **PostgreSQL instances:** You must specify one database to be exported. If **fileType** is **CSV**, this database must match the one specified in the **csvExportOptions.selectQuery** property. * **SQL Server instances:** You must specify one database to be exported, and the **fileType** must be **BAK**.
+     * Databases to be exported. **MySQL instances:** If **fileType** is **SQL** and no database is specified, all databases are exported, except for the **mysql** system database. If **fileType** is **CSV**, you can specify one database, either by using this property or by using the **csvExportOptions.selectQuery** property, which takes precedence over this property. **PostgreSQL instances:** You must specify one database to be exported. If **fileType** is **CSV**, this database must match the one specified in the **csvExportOptions.selectQuery** property. **SQL Server instances:** You must specify one database to be exported, and the **fileType** must be **BAK**.
      */
     databases?: string[] | null;
     /**
-     * The file type for the specified uri. * **SQL**: The file contains SQL statements. * **CSV**: The file contains CSV data. * **BAK**: The file contains backup data for a SQL Server instance.
+     * The file type for the specified uri.
      */
     fileType?: string | null;
     /**
@@ -1060,7 +1064,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.` Reserved for future use.
+     * The name of the allocated ip range for the private ip CloudSQL instance. For example: "google-managed-services-default". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.`
      */
     allocatedIpRange?: string | null;
     /**
@@ -1287,7 +1291,7 @@ export namespace sqladmin_v1beta4 {
      */
     startTime?: string | null;
     /**
-     * The status of an operation. Valid values are: * **PENDING** * **RUNNING** * **DONE** * **SQL_OPERATION_STATUS_UNSPECIFIED**
+     * The status of an operation.
      */
     status?: string | null;
     /**
@@ -1350,6 +1354,44 @@ export namespace sqladmin_v1beta4 {
      * The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Read-only password status.
+   */
+  export interface Schema$PasswordStatus {
+    /**
+     * If true, user does not have login privileges.
+     */
+    locked?: boolean | null;
+    /**
+     * The expiration time of the current password.
+     */
+    passwordExpirationTime?: string | null;
+  }
+  /**
+   * Database instance local user password validation policy
+   */
+  export interface Schema$PasswordValidationPolicy {
+    /**
+     * The complexity of the password.
+     */
+    complexity?: string | null;
+    /**
+     * Disallow username as a part of the password.
+     */
+    disallowUsernameSubstring?: boolean | null;
+    /**
+     * Minimum number of characters allowed.
+     */
+    minLength?: number | null;
+    /**
+     * Minimum interval after which the password can be changed.
+     */
+    passwordChangeInterval?: string | null;
+    /**
+     * Number of previous passwords that cannot be reused.
+     */
+    reuseInterval?: number | null;
   }
   /**
    * Read-replica configuration for connecting to the primary instance.
@@ -1484,6 +1526,10 @@ export namespace sqladmin_v1beta4 {
      * The maintenance window for this instance. This specifies when the instance can be restarted for maintenance purposes.
      */
     maintenanceWindow?: Schema$MaintenanceWindow;
+    /**
+     * The local user password validation policy of the instance.
+     */
+    passwordValidationPolicy?: Schema$PasswordValidationPolicy;
     /**
      * The pricing plan for this instance. This can be either **PER_USE** or **PACKAGE**. Only **PER_USE** is supported for Second Generation instances.
      */
@@ -1858,7 +1904,7 @@ export namespace sqladmin_v1beta4 {
      */
     etag?: string | null;
     /**
-     * The host name from which the user can connect. For *insert* operations, host defaults to an empty string. For *update* operations, host is specified as part of the request URL. The host name cannot be updated after insertion.
+     * Optional. The host name from which the user can connect. For **insert** operations, host defaults to an empty string. For **update** operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.
      */
     host?: string | null;
     /**
@@ -1870,13 +1916,17 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
-     * The name of the user in the Cloud SQL instance. Can be omitted for *update* since it is already specified in the URL.
+     * The name of the user in the Cloud SQL instance. Can be omitted for **update** since it is already specified in the URL.
      */
     name?: string | null;
     /**
      * The password for the user.
      */
     password?: string | null;
+    /**
+     * User level password validation policy.
+     */
+    passwordPolicy?: Schema$UserPasswordValidationPolicy;
     /**
      * The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for *update* since it is already specified on the URL.
      */
@@ -1886,6 +1936,27 @@ export namespace sqladmin_v1beta4 {
      * The user type. It determines the method to authenticate the user during login. The default is the database's built-in user type.
      */
     type?: string | null;
+  }
+  /**
+   * User level password validation policy.
+   */
+  export interface Schema$UserPasswordValidationPolicy {
+    /**
+     * Number of failed login attempts allowed before user get locked.
+     */
+    allowedFailedAttempts?: number | null;
+    /**
+     * If true, failed login attempts check will be enabled.
+     */
+    enableFailedAttemptsCheck?: boolean | null;
+    /**
+     * Expiration duration after password is updated.
+     */
+    passwordExpirationDuration?: string | null;
+    /**
+     * Output only. Read-only password status.
+     */
+    status?: Schema$PasswordStatus;
   }
   /**
    * User list response.
@@ -5066,6 +5137,7 @@ export namespace sqladmin_v1beta4 {
      *   //   "connectionName": "my_connectionName",
      *   //   "createTime": "my_createTime",
      *   //   "currentDiskSize": "my_currentDiskSize",
+     *   //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *   //   "databaseVersion": "my_databaseVersion",
      *   //   "diskEncryptionConfiguration": {},
      *   //   "diskEncryptionStatus": {},
@@ -5381,6 +5453,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
@@ -5857,6 +5930,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
@@ -7260,6 +7334,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
+     *       //   "databaseInstalledVersion": "my_databaseInstalledVersion",
      *       //   "databaseVersion": "my_databaseVersion",
      *       //   "diskEncryptionConfiguration": {},
      *       //   "diskEncryptionStatus": {},
@@ -9714,6 +9789,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "password": "my_password",
+     *       //   "passwordPolicy": {},
      *       //   "project": "my_project",
      *       //   "sqlserverUserDetails": {},
      *       //   "type": "my_type"
@@ -10020,6 +10096,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
      *       //   "password": "my_password",
+     *       //   "passwordPolicy": {},
      *       //   "project": "my_project",
      *       //   "sqlserverUserDetails": {},
      *       //   "type": "my_type"

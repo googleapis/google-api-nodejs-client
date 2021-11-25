@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "revision": "20211023",
+  "revision": "20211110",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2243,7 +2243,10 @@
             "POSTGRES_10",
             "POSTGRES_12",
             "MYSQL_8_0",
+            "MYSQL_8_0_18",
+            "MYSQL_8_0_26",
             "POSTGRES_13",
+            "POSTGRES_14",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -2264,7 +2267,10 @@
             "The database version is PostgreSQL 10.",
             "The database version is PostgreSQL 12.",
             "The database version is MySQL 8.",
+            "The database major version is MySQL 8.0 and the minor version is 18.",
+            "The database major version is MySQL 8.0 and the minor version is 26.",
             "The database version is PostgreSQL 13.",
+            "The database version is PostgreSQL 14.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -2386,6 +2392,11 @@
           "format": "int64",
           "type": "string"
         },
+        "databaseInstalledVersion": {
+          "description": "Output only. The databaseInstalledVersion stores the current fully resolved database version running on the instance including minor version such as MYSQL_5_6_50",
+          "readOnly": true,
+          "type": "string"
+        },
         "databaseVersion": {
           "description": "The database engine type and version. The **databaseVersion** field cannot be changed after instance creation.",
           "enum": [
@@ -2403,7 +2414,10 @@
             "POSTGRES_10",
             "POSTGRES_12",
             "MYSQL_8_0",
+            "MYSQL_8_0_18",
+            "MYSQL_8_0_26",
             "POSTGRES_13",
+            "POSTGRES_14",
             "SQLSERVER_2019_STANDARD",
             "SQLSERVER_2019_ENTERPRISE",
             "SQLSERVER_2019_EXPRESS",
@@ -2424,7 +2438,10 @@
             "The database version is PostgreSQL 10.",
             "The database version is PostgreSQL 12.",
             "The database version is MySQL 8.",
+            "The database major version is MySQL 8.0 and the minor version is 18.",
+            "The database major version is MySQL 8.0 and the minor version is 26.",
             "The database version is PostgreSQL 13.",
+            "The database version is PostgreSQL 14.",
             "The database version is SQL Server 2019 Standard.",
             "The database version is SQL Server 2019 Enterprise.",
             "The database version is SQL Server 2019 Express.",
@@ -2463,7 +2480,7 @@
           "type": "string"
         },
         "instanceType": {
-          "description": "The instance type. This can be one of the following: * **CLOUD_SQL_INSTANCE**: A Cloud SQL instance that is not replicating from a primary instance. * **ON_PREMISES_INSTANCE**: An instance running on the customer's premises. * **READ_REPLICA_INSTANCE**: A Cloud SQL instance configured as a read-replica.",
+          "description": "The instance type.",
           "enum": [
             "SQL_INSTANCE_TYPE_UNSPECIFIED",
             "CLOUD_SQL_INSTANCE",
@@ -2472,7 +2489,7 @@
           ],
           "enumDescriptions": [
             "This is an unknown Cloud SQL instance type.",
-            "A regular Cloud SQL instance.",
+            "A regular Cloud SQL instance that is not replicating from a primary instance.",
             "An instance running on the customer's premises that is not managed by Cloud SQL.",
             "A Cloud SQL instance acting as a read-replica."
           ],
@@ -2585,7 +2602,7 @@
             "The instance is being created.",
             "The instance is down for maintenance.",
             "The creation of the instance failed or a fatal error occurred during maintenance.",
-            "The instance is under maintenance operations and the database is available."
+            "Deprecated"
           ],
           "type": "string"
         },
@@ -2784,14 +2801,14 @@
           "type": "object"
         },
         "databases": {
-          "description": "Databases to be exported. * **MySQL instances:** If **fileType** is **SQL** and no database is specified, all databases are exported, except for the **mysql** system database. If **fileType** is **CSV**, you can specify one database, either by using this property or by using the **csvExportOptions.selectQuery** property, which takes precedence over this property. * **PostgreSQL instances:** You must specify one database to be exported. If **fileType** is **CSV**, this database must match the one specified in the **csvExportOptions.selectQuery** property. * **SQL Server instances:** You must specify one database to be exported, and the **fileType** must be **BAK**.",
+          "description": "Databases to be exported. **MySQL instances:** If **fileType** is **SQL** and no database is specified, all databases are exported, except for the **mysql** system database. If **fileType** is **CSV**, you can specify one database, either by using this property or by using the **csvExportOptions.selectQuery** property, which takes precedence over this property. **PostgreSQL instances:** You must specify one database to be exported. If **fileType** is **CSV**, this database must match the one specified in the **csvExportOptions.selectQuery** property. **SQL Server instances:** You must specify one database to be exported, and the **fileType** must be **BAK**.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "fileType": {
-          "description": "The file type for the specified uri. * **SQL**: The file contains SQL statements. * **CSV**: The file contains CSV data. * **BAK**: The file contains backup data for a SQL Server instance.",
+          "description": "The file type for the specified uri.",
           "enum": [
             "SQL_FILE_TYPE_UNSPECIFIED",
             "SQL",
@@ -2821,7 +2838,7 @@
               "description": "Options for exporting from MySQL.",
               "properties": {
                 "masterData": {
-                  "description": "Option to include SQL statement required to set up replication. * If set to **1**, the dump file includes a CHANGE MASTER TO statement with the binary log coordinates, and --set-gtid-purged is set to ON. * If set to **2**, the CHANGE MASTER TO statement is written as a SQL comment and has no effect. * If set to any value other than **1**, --set-gtid-purged is set to OFF.",
+                  "description": "Option to include SQL statement required to set up replication. If set to **1**, the dump file includes a CHANGE MASTER TO statement with the binary log coordinates, and --set-gtid-purged is set to ON. If set to **2**, the CHANGE MASTER TO statement is written as a SQL comment and has no effect. If set to any value other than **1**, --set-gtid-purged is set to OFF.",
                   "format": "int32",
                   "type": "integer"
                 }
@@ -2902,7 +2919,10 @@
               "POSTGRES_10",
               "POSTGRES_12",
               "MYSQL_8_0",
+              "MYSQL_8_0_18",
+              "MYSQL_8_0_26",
               "POSTGRES_13",
+              "POSTGRES_14",
               "SQLSERVER_2019_STANDARD",
               "SQLSERVER_2019_ENTERPRISE",
               "SQLSERVER_2019_EXPRESS",
@@ -2923,7 +2943,10 @@
               "The database version is PostgreSQL 10.",
               "The database version is PostgreSQL 12.",
               "The database version is MySQL 8.",
+              "The database major version is MySQL 8.0 and the minor version is 18.",
+              "The database major version is MySQL 8.0 and the minor version is 26.",
               "The database version is PostgreSQL 13.",
+              "The database version is PostgreSQL 14.",
               "The database version is SQL Server 2019 Standard.",
               "The database version is SQL Server 2019 Enterprise.",
               "The database version is SQL Server 2019 Express.",
@@ -3326,7 +3349,7 @@
       "id": "IpConfiguration",
       "properties": {
         "allocatedIpRange": {
-          "description": "The name of the allocated ip range for the private ip CloudSQL instance. For example: \"google-managed-services-default\". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.` Reserved for future use.",
+          "description": "The name of the allocated ip range for the private ip CloudSQL instance. For example: \"google-managed-services-default\". If set, the instance ip will be created in the allocated range. The range name must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?.`",
           "type": "string"
         },
         "authorizedNetworks": {
@@ -3679,7 +3702,7 @@
           "type": "string"
         },
         "status": {
-          "description": "The status of an operation. Valid values are: * **PENDING** * **RUNNING** * **DONE** * **SQL_OPERATION_STATUS_UNSPECIFIED**",
+          "description": "The status of an operation.",
           "enum": [
             "SQL_OPERATION_STATUS_UNSPECIFIED",
             "PENDING",
@@ -3767,6 +3790,60 @@
         "nextPageToken": {
           "description": "The continuation token, used to page through large result sets. Provide this value in a subsequent request to return the next page of results.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PasswordStatus": {
+      "description": "Read-only password status.",
+      "id": "PasswordStatus",
+      "properties": {
+        "locked": {
+          "description": "If true, user does not have login privileges.",
+          "type": "boolean"
+        },
+        "passwordExpirationTime": {
+          "description": "The expiration time of the current password.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PasswordValidationPolicy": {
+      "description": "Database instance local user password validation policy",
+      "id": "PasswordValidationPolicy",
+      "properties": {
+        "complexity": {
+          "description": "The complexity of the password.",
+          "enum": [
+            "COMPLEXITY_UNSPECIFIED",
+            "COMPLEXITY_DEFAULT"
+          ],
+          "enumDescriptions": [
+            "Complexity check is not specified.",
+            "A combination of lowercase, uppercase, numeric, and non-alphanumeric characters."
+          ],
+          "type": "string"
+        },
+        "disallowUsernameSubstring": {
+          "description": "Disallow username as a part of the password.",
+          "type": "boolean"
+        },
+        "minLength": {
+          "description": "Minimum number of characters allowed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "passwordChangeInterval": {
+          "description": "Minimum interval after which the password can be changed.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "reuseInterval": {
+          "description": "Number of previous passwords that cannot be reused.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3971,6 +4048,10 @@
         "maintenanceWindow": {
           "$ref": "MaintenanceWindow",
           "description": "The maintenance window for this instance. This specifies when the instance can be restarted for maintenance purposes."
+        },
+        "passwordValidationPolicy": {
+          "$ref": "PasswordValidationPolicy",
+          "description": "The local user password validation policy of the instance."
         },
         "pricingPlan": {
           "description": "The pricing plan for this instance. This can be either **PER_USE** or **PACKAGE**. Only **PER_USE** is supported for Second Generation instances.",
@@ -4533,7 +4614,7 @@
           "type": "string"
         },
         "host": {
-          "description": "The host name from which the user can connect. For *insert* operations, host defaults to an empty string. For *update* operations, host is specified as part of the request URL. The host name cannot be updated after insertion.",
+          "description": "Optional. The host name from which the user can connect. For **insert** operations, host defaults to an empty string. For **update** operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.",
           "type": "string"
         },
         "instance": {
@@ -4545,12 +4626,16 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the user in the Cloud SQL instance. Can be omitted for *update* since it is already specified in the URL.",
+          "description": "The name of the user in the Cloud SQL instance. Can be omitted for **update** since it is already specified in the URL.",
           "type": "string"
         },
         "password": {
           "description": "The password for the user.",
           "type": "string"
+        },
+        "passwordPolicy": {
+          "$ref": "UserPasswordValidationPolicy",
+          "description": "User level password validation policy."
         },
         "project": {
           "description": "The project ID of the project containing the Cloud SQL database. The Google apps domain is prefixed if applicable. Can be omitted for *update* since it is already specified on the URL.",
@@ -4572,6 +4657,32 @@
             "Cloud IAM service account."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UserPasswordValidationPolicy": {
+      "description": "User level password validation policy.",
+      "id": "UserPasswordValidationPolicy",
+      "properties": {
+        "allowedFailedAttempts": {
+          "description": "Number of failed login attempts allowed before user get locked.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "enableFailedAttemptsCheck": {
+          "description": "If true, failed login attempts check will be enabled.",
+          "type": "boolean"
+        },
+        "passwordExpirationDuration": {
+          "description": "Expiration duration after password is updated.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "PasswordStatus",
+          "description": "Output only. Read-only password status.",
+          "readOnly": true
         }
       },
       "type": "object"
