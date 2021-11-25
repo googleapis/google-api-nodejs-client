@@ -2245,6 +2245,10 @@ export namespace dlp_v2 {
      */
     replaceConfig?: Schema$GooglePrivacyDlpV2ReplaceValueConfig;
     /**
+     * Replace with a value randomly drawn (with replacement) from a dictionary.
+     */
+    replaceDictionaryConfig?: Schema$GooglePrivacyDlpV2ReplaceDictionaryConfig;
+    /**
      * Replace with infotype
      */
     replaceWithInfoTypeConfig?: Schema$GooglePrivacyDlpV2ReplaceWithInfoTypeConfig;
@@ -2544,6 +2548,15 @@ export namespace dlp_v2 {
      * An overview of the changes that were made to the `item`.
      */
     overview?: Schema$GooglePrivacyDlpV2TransformationOverview;
+  }
+  /**
+   * Replace each input value with a value randomly selected from the dictionary.
+   */
+  export interface Schema$GooglePrivacyDlpV2ReplaceDictionaryConfig {
+    /**
+     * A list of words to select from for random replacement. The [limits](https://cloud.google.com/dlp/limits) page contains details about the size limits of dictionaries.
+     */
+    wordList?: Schema$GooglePrivacyDlpV2WordList;
   }
   /**
    * Replace each input value with a given `Value`.
