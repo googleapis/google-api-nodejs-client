@@ -392,6 +392,19 @@ export namespace datastore_v1beta3 {
     state?: string | null;
   }
   /**
+   * Metadata for Datastore to Firestore migration operations. The DatastoreFirestoreMigration operation is not started by the end-user via an explicit "creation" method. This is an intentional deviation from the LRO design pattern. This singleton resource can be accessed at: "projects/{project_id\}/datastore-firestore-migration"
+   */
+  export interface Schema$GoogleDatastoreAdminV1DatastoreFirestoreMigrationMetadata {
+    /**
+     * The current state of migration from Cloud Datastore to Cloud Firestore in Datastore mode.
+     */
+    migrationState?: string | null;
+    /**
+     * The current step of migration from Cloud Datastore to Cloud Firestore in Datastore mode.
+     */
+    migrationStep?: string | null;
+  }
+  /**
    * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage: Entire project: kinds=[], namespace_ids=[] Kinds Foo and Bar in all namespaces: kinds=['Foo', 'Bar'], namespace_ids=[] Kinds Foo and Bar only in the default namespace: kinds=['Foo', 'Bar'], namespace_ids=[''] Kinds Foo and Bar in both the default and Baz namespaces: kinds=['Foo', 'Bar'], namespace_ids=['', 'Baz'] The entire Baz namespace: kinds=[], namespace_ids=['Baz']
    */
   export interface Schema$GoogleDatastoreAdminV1EntityFilter {
