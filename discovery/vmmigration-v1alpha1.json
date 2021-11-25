@@ -1010,7 +1010,7 @@
                             "MIGRATING_VM_VIEW_FULL"
                           ],
                           "enumDescriptions": [
-                            "The default / unset value. Will fallback to FULL.",
+                            "View is unspecified. The API will fallback to the default value.",
                             "Get the migrating VM basic details. The basic details do not include the recent clone jobs and recent cutover jobs lists.",
                             "Include everything."
                           ],
@@ -1071,7 +1071,7 @@
                             "MIGRATING_VM_VIEW_FULL"
                           ],
                           "enumDescriptions": [
-                            "The default / unset value. Will fallback to FULL.",
+                            "View is unspecified. The API will fallback to the default value.",
                             "Get the migrating VM basic details. The basic details do not include the recent clone jobs and recent cutover jobs lists.",
                             "Include everything."
                           ],
@@ -1858,7 +1858,7 @@
       }
     }
   },
-  "revision": "20211021",
+  "revision": "20211107",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
