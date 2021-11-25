@@ -633,7 +633,7 @@
       }
     }
   },
-  "revision": "20211029",
+  "revision": "20211106",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptRepository": {
@@ -1816,9 +1816,9 @@
           ],
           "enumDescriptions": [
             "Invalid. A frequency must be specified.",
-            "Indicates that the frequency should be expressed in terms of weeks.",
-            "Indicates that the frequency should be expressed in terms of months.",
-            "Indicates that the recurrence frequency should be expressed in terms of days."
+            "Indicates that the frequency of recurrence should be expressed in terms of weeks.",
+            "Indicates that the frequency of recurrence should be expressed in terms of months.",
+            "Indicates that the frequency of recurrence should be expressed in terms of days."
           ],
           "type": "string"
         },
@@ -2243,6 +2243,11 @@
             "Sunday"
           ],
           "type": "string"
+        },
+        "dayOffset": {
+          "description": "Optional. Represents the number of days before or after the given week day of month that the patch deployment is scheduled for. For example if `week_ordinal` and `day_of_week` values point to the second day of the month and this `day_offset` value is set to `3`, the patch deployment takes place three days after the second Tuesday of the month. If this value is negative, for example -5, the patches are deployed five days before before the second Tuesday of the month. Allowed values are in range [-30, 30].",
+          "format": "int32",
+          "type": "integer"
         },
         "weekOrdinal": {
           "description": "Required. Week number in a month. 1-4 indicates the 1st to 4th week of the month. -1 indicates the last week of the month.",

@@ -684,7 +684,7 @@
       }
     }
   },
-  "revision": "20211029",
+  "revision": "20211106",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -2614,6 +2614,13 @@
           },
           "type": "array"
         },
+        "items": {
+          "description": "List of items affected by the vulnerability.",
+          "items": {
+            "$ref": "VulnerabilityReportVulnerabilityItem"
+          },
+          "type": "array"
+        },
         "updateTime": {
           "description": "The timestamp for when the vulnerability was last modified.",
           "format": "google-datetime",
@@ -2667,6 +2674,29 @@
         },
         "url": {
           "description": "The url of the reference.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VulnerabilityReportVulnerabilityItem": {
+      "description": "OS inventory item that is affected by a vulnerability or fixed as a result of a vulnerability.",
+      "id": "VulnerabilityReportVulnerabilityItem",
+      "properties": {
+        "availableInventoryItemId": {
+          "description": "Corresponds to the `AVAILABLE_PACKAGE` inventory item on the VM. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. If there is no available fix, the field is empty. The `inventory_item` value specifies the latest `SoftwarePackage` available to the VM that fixes the vulnerability.",
+          "type": "string"
+        },
+        "fixedCpeUri": {
+          "description": "The recommended [CPE URI](https://cpe.mitre.org/specification/) update that contains a fix for this vulnerability.",
+          "type": "string"
+        },
+        "installedInventoryItemId": {
+          "description": "Corresponds to the `INSTALLED_PACKAGE` inventory item on the VM. This field displays the inventory items affected by this vulnerability. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. For some operating systems, this field might be empty.",
+          "type": "string"
+        },
+        "upstreamFix": {
+          "description": "The upstream OS patch, packages or KB that fixes the vulnerability.",
           "type": "string"
         }
       },

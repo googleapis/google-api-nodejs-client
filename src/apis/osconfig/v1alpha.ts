@@ -1429,6 +1429,10 @@ export namespace osconfig_v1alpha {
      */
     installedInventoryItemIds?: string[] | null;
     /**
+     * List of items affected by the vulnerability.
+     */
+    items?: Schema$VulnerabilityReportVulnerabilityItem[];
+    /**
      * The timestamp for when the vulnerability was last modified.
      */
     updateTime?: string | null;
@@ -1474,6 +1478,27 @@ export namespace osconfig_v1alpha {
      * The url of the reference.
      */
     url?: string | null;
+  }
+  /**
+   * OS inventory item that is affected by a vulnerability or fixed as a result of a vulnerability.
+   */
+  export interface Schema$VulnerabilityReportVulnerabilityItem {
+    /**
+     * Corresponds to the `AVAILABLE_PACKAGE` inventory item on the VM. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. If there is no available fix, the field is empty. The `inventory_item` value specifies the latest `SoftwarePackage` available to the VM that fixes the vulnerability.
+     */
+    availableInventoryItemId?: string | null;
+    /**
+     * The recommended [CPE URI](https://cpe.mitre.org/specification/) update that contains a fix for this vulnerability.
+     */
+    fixedCpeUri?: string | null;
+    /**
+     * Corresponds to the `INSTALLED_PACKAGE` inventory item on the VM. This field displays the inventory items affected by this vulnerability. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. For some operating systems, this field might be empty.
+     */
+    installedInventoryItemId?: string | null;
+    /**
+     * The upstream OS patch, packages or KB that fixes the vulnerability.
+     */
+    upstreamFix?: string | null;
   }
 
   export class Resource$Projects {
