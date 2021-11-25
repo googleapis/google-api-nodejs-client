@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20211104",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -4131,6 +4131,17 @@
       },
       "type": "object"
     },
+    "ManagedPrometheusConfig": {
+      "description": "ManagedPrometheusConfig defines the configuration for Google Cloud Managed Service for Prometheus.",
+      "id": "ManagedPrometheusConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enable Managed Collection.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Master": {
       "description": "Master is the configuration for components on master.",
       "id": "Master",
@@ -4264,6 +4275,10 @@
         "componentConfig": {
           "$ref": "MonitoringComponentConfig",
           "description": "Monitoring components configuration"
+        },
+        "managedPrometheusConfig": {
+          "$ref": "ManagedPrometheusConfig",
+          "description": "Enable Google Cloud Managed Service for Prometheus in the cluster."
         }
       },
       "type": "object"
