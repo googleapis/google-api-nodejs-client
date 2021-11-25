@@ -191,7 +191,7 @@
                       ],
                       "parameters": {
                         "hubId": {
-                          "description": "Optional. A unique identifier for the hub.",
+                          "description": "Required. A unique identifier for the hub.",
                           "location": "query",
                           "type": "string"
                         },
@@ -284,7 +284,7 @@
                       ],
                       "parameters": {
                         "options.requestedPolicyVersion": {
-                          "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -460,7 +460,7 @@
                       ],
                       "parameters": {
                         "options.requestedPolicyVersion": {
-                          "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -688,7 +688,7 @@
                       "type": "string"
                     },
                     "spokeId": {
-                      "description": "Optional. Unique id for the spoke to create.",
+                      "description": "Required. Unique id for the spoke to create.",
                       "location": "query",
                       "type": "string"
                     }
@@ -769,7 +769,7 @@
                   ],
                   "parameters": {
                     "options.requestedPolicyVersion": {
-                      "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -938,7 +938,7 @@
       }
     }
   },
-  "revision": "20211026",
+  "revision": "20211113",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1341,6 +1341,30 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LocationMetadata": {
+      "description": "Metadata about locations",
+      "id": "LocationMetadata",
+      "properties": {
+        "locationFeatures": {
+          "description": "List of supported features",
+          "items": {
+            "enum": [
+              "LOCATION_FEATURE_UNSPECIFIED",
+              "SITE_TO_CLOUD_SPOKES",
+              "SITE_TO_SITE_SPOKES"
+            ],
+            "enumDescriptions": [
+              "No publicly supported feature in this location",
+              "Site-to-cloud spokes are supported in this location",
+              "Site-to-site spokes are supported in this location"
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

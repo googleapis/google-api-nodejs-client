@@ -401,6 +401,15 @@ export namespace networkconnectivity_v1 {
     name?: string | null;
   }
   /**
+   * Metadata about locations
+   */
+  export interface Schema$LocationMetadata {
+    /**
+     * List of supported features
+     */
+    locationFeatures?: string[] | null;
+  }
+  /**
    * Represents the metadata of the long-running operation.
    */
   export interface Schema$OperationMetadata {
@@ -926,7 +935,7 @@ export namespace networkconnectivity_v1 {
      *
      *   // Do the magic
      *   const res = await networkconnectivity.projects.locations.global.hubs.create({
-     *     // Optional. A unique identifier for the hub.
+     *     // Required. A unique identifier for the hub.
      *     hubId: 'placeholder-value',
      *     // Required. The parent resource.
      *     parent: 'projects/my-project/locations/global',
@@ -1358,7 +1367,7 @@ export namespace networkconnectivity_v1 {
      *   // Do the magic
      *   const res =
      *     await networkconnectivity.projects.locations.global.hubs.getIamPolicy({
-     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/hubs/my-hub',
@@ -2058,7 +2067,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Global$Hubs$Create
     extends StandardParameters {
     /**
-     * Optional. A unique identifier for the hub.
+     * Required. A unique identifier for the hub.
      */
     hubId?: string;
     /**
@@ -2096,7 +2105,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -2207,7 +2216,7 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.global.policyBasedRoutes.getIamPolicy(
      *       {
-     *         // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *         'options.requestedPolicyVersion': 'placeholder-value',
      *         // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *         resource:
@@ -2619,7 +2628,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Global$Policybasedroutes$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -3282,7 +3291,7 @@ export namespace networkconnectivity_v1 {
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. A unique request ID (optional). If you specify this ID, you can use it in cases when you need to retry your request. When you need to retry, this ID lets the server know that it can ignore the request if it has already been completed. The server guarantees that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check to see whether the original operation was received. If it was, the server ignores the second request. This behavior prevents clients from mistakenly creating duplicate commitments. The request ID must be a valid UUID, with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
-     *     // Optional. Unique id for the spoke to create.
+     *     // Required. Unique id for the spoke to create.
      *     spokeId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3718,7 +3727,7 @@ export namespace networkconnectivity_v1 {
      *
      *   // Do the magic
      *   const res = await networkconnectivity.projects.locations.spokes.getIamPolicy({
-     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/spokes/my-spoke',
@@ -4430,7 +4439,7 @@ export namespace networkconnectivity_v1 {
      */
     requestId?: string;
     /**
-     * Optional. Unique id for the spoke to create.
+     * Required. Unique id for the spoke to create.
      */
     spokeId?: string;
 
@@ -4460,7 +4469,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Spokes$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
