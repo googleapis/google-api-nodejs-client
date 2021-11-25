@@ -225,6 +225,101 @@ export namespace chromemanagement_v1 {
     type?: string | null;
   }
   /**
+   * Battery info
+   */
+  export interface Schema$GoogleChromeManagementV1BatteryInfo {
+    /**
+     * Output only. Design capacity (mAmpere-hours).
+     */
+    designCapacity?: string | null;
+    /**
+     * Output only. Designed minimum output voltage (mV)
+     */
+    designMinVoltage?: number | null;
+    /**
+     * Output only. The date the battery was manufactured.
+     */
+    manufactureDate?: Schema$GoogleTypeDate;
+    /**
+     * Output only. Battery manufacturer.
+     */
+    manufacturer?: string | null;
+    /**
+     * Output only. Battery serial number.
+     */
+    serialNumber?: string | null;
+    /**
+     * Output only. Technology of the battery. Example: Li-ion
+     */
+    technology?: string | null;
+  }
+  /**
+   * Sampling data for battery.
+   */
+  export interface Schema$GoogleChromeManagementV1BatterySampleReport {
+    /**
+     * Output only. Battery charge percentage.
+     */
+    chargeRate?: number | null;
+    /**
+     * Output only. Battery current (mA).
+     */
+    current?: string | null;
+    /**
+     * Output only. The battery discharge rate measured in mW. Positive if the battery is being discharged, negative if it's being charged.
+     */
+    dischargeRate?: number | null;
+    /**
+     * Output only. Battery remaining capacity (mAmpere-hours).
+     */
+    remainingCapacity?: string | null;
+    /**
+     * Output only. Timestamp of when the sample was collected on device
+     */
+    reportTime?: string | null;
+    /**
+     * Output only. Battery status read from sysfs. Example: Discharging
+     */
+    status?: string | null;
+    /**
+     * Output only. Temperature in Celsius degrees.
+     */
+    temperature?: number | null;
+    /**
+     * Output only. Battery voltage (millivolt).
+     */
+    voltage?: string | null;
+  }
+  /**
+   * Status data for battery.
+   */
+  export interface Schema$GoogleChromeManagementV1BatteryStatusReport {
+    /**
+     * Output only. Battery health.
+     */
+    batteryHealth?: string | null;
+    /**
+     * Output only. Cycle count.
+     */
+    cycleCount?: number | null;
+    /**
+     * Output only. Full charge capacity (mAmpere-hours).
+     */
+    fullChargeCapacity?: string | null;
+    /**
+     * Output only. Timestamp of when the sample was collected on device
+     */
+    reportTime?: string | null;
+    /**
+     * Output only. Sampling data for the battery.
+     */
+    sample?: Schema$GoogleChromeManagementV1BatterySampleReport[];
+    /**
+     * Output only. Battery serial number.
+     */
+    serialNumber?: string | null;
+  }
+  /**
    * Describes a browser version and its install count.
    */
   export interface Schema$GoogleChromeManagementV1BrowserVersion {
@@ -393,6 +488,57 @@ export namespace chromemanagement_v1 {
     totalSize?: number | null;
   }
   /**
+   * CPU specs for a CPU.
+   */
+  export interface Schema$GoogleChromeManagementV1CpuInfo {
+    /**
+     * Output only. The CPU architecture.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The max CPU clock speed in kHz.
+     */
+    maxClockSpeed?: number | null;
+    /**
+     * Output only. The CPU model name. Example: Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz
+     */
+    model?: string | null;
+  }
+  /**
+   * Contains samples of the cpu status reports.
+   */
+  export interface Schema$GoogleChromeManagementV1CpuStatusReport {
+    /**
+     * Output only. CPU temperature sample info per CPU core in Celsius
+     */
+    cpuTemperatureInfo?: Schema$GoogleChromeManagementV1CpuTemperatureInfo[];
+    /**
+     * Output only. Sample of CPU utilization (0-100 percent).
+     */
+    cpuUtilizationPct?: number | null;
+    /**
+     * Output only. The timestamp in milliseconds representing time at which this report was sampled.
+     */
+    reportTime?: string | null;
+    /**
+     * Output only. Frequency the report is sampled.
+     */
+    sampleFrequency?: string | null;
+  }
+  /**
+   * CPU temperature of a device. Sampled per CPU core in Celsius
+   */
+  export interface Schema$GoogleChromeManagementV1CpuTemperatureInfo {
+    /**
+     * Output only. CPU label. Example: Core 0
+     */
+    label?: string | null;
+    /**
+     * Output only. CPU temperature in Celsius.
+     */
+    temperatureCelsius?: number | null;
+  }
+  /**
    * Describes a device reporting Chrome browser information.
    */
   export interface Schema$GoogleChromeManagementV1Device {
@@ -404,6 +550,88 @@ export namespace chromemanagement_v1 {
      * Output only. The name of the machine within its local network.
      */
     machine?: string | null;
+  }
+  /**
+   * Status of the single storage device.
+   */
+  export interface Schema$GoogleChromeManagementV1DiskInfo {
+    /**
+     * Output only. Number of bytes read since last boot.
+     */
+    bytesReadThisSession?: string | null;
+    /**
+     * Output only. Number of bytes written since last boot.
+     */
+    bytesWrittenThisSession?: string | null;
+    /**
+     * Output only. Time spent discarding since last boot. Discarding is writing to clear blocks which are no longer in use. Supported on kernels 4.18+.
+     */
+    discardTimeThisSession?: string | null;
+    /**
+     * Output only. Disk health.
+     */
+    health?: string | null;
+    /**
+     * Output only. Counts the time the disk and queue were busy, so unlike the fields above, parallel requests are not counted multiple times.
+     */
+    ioTimeThisSession?: string | null;
+    /**
+     * Output only. Disk manufacturer.
+     */
+    manufacturer?: string | null;
+    /**
+     * Output only. Disk model.
+     */
+    model?: string | null;
+    /**
+     * Output only. Time spent reading from disk since last boot.
+     */
+    readTimeThisSession?: string | null;
+    /**
+     * Output only. Disk serial number.
+     */
+    serialNumber?: string | null;
+    /**
+     * Output only. Disk size.
+     */
+    sizeBytes?: string | null;
+    /**
+     * Output only. Disk type: eMMC / NVMe / ATA / SCSI.
+     */
+    type?: string | null;
+    /**
+     * Output only. Disk volumes.
+     */
+    volumeIds?: string[] | null;
+    /**
+     * Output only. Time spent writing to disk since last boot.
+     */
+    writeTimeThisSession?: string | null;
+  }
+  /**
+   * Information for a display.
+   */
+  export interface Schema$GoogleChromeManagementV1DisplayInfo {
+    /**
+     * Output only. Represents the graphics card device id.
+     */
+    deviceId?: string | null;
+    /**
+     * Output only. Indicates if display is internal or not.
+     */
+    isInternal?: boolean | null;
+    /**
+     * Output only. Refresh rate in Hz.
+     */
+    refreshRate?: number | null;
+    /**
+     * Output only. Resolution height in pixels.
+     */
+    resolutionHeight?: number | null;
+    /**
+     * Output only. Resolution width in pixels.
+     */
+    resolutionWidth?: number | null;
   }
   /**
    * Response containing a list of devices with queried app installed.
@@ -421,6 +649,45 @@ export namespace chromemanagement_v1 {
      * Total number of devices matching request.
      */
     totalSize?: number | null;
+  }
+  /**
+   * Information of a graphics adapter (GPU).
+   */
+  export interface Schema$GoogleChromeManagementV1GraphicsAdapterInfo {
+    /**
+     * Output only. Adapter name. Example: Mesa DRI Intel(R) UHD Graphics 620 (Kabylake GT2).
+     */
+    adapter?: string | null;
+    /**
+     * Output only. Represents the graphics card device id.
+     */
+    deviceId?: string | null;
+    /**
+     * Output only. Version of the GPU driver.
+     */
+    driverVersion?: string | null;
+  }
+  /**
+   * Information of the graphics subsystem.
+   */
+  export interface Schema$GoogleChromeManagementV1GraphicsInfo {
+    /**
+     * Output only. Information about the graphics adapter (GPU).
+     */
+    adapterInfo?: Schema$GoogleChromeManagementV1GraphicsAdapterInfo;
+  }
+  /**
+   * Information of the graphics subsystem.
+   */
+  export interface Schema$GoogleChromeManagementV1GraphicsStatusReport {
+    /**
+     * Output only. Information about the displays for the device.
+     */
+    displays?: Schema$GoogleChromeManagementV1DisplayInfo[];
+    /**
+     * Output only. Time at which the graphics data was reported.
+     */
+    reportTime?: string | null;
   }
   /**
    * Describes an installed app.
@@ -471,6 +738,224 @@ export namespace chromemanagement_v1 {
      */
     permissions?: string[] | null;
   }
+  export interface Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse {
+    /**
+     * Telemetry devices returned in the response.
+     */
+    devices?: Schema$GoogleChromeManagementV1TelemetryDevice[];
+    /**
+     * Token to specify next page in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Memory information of a device.
+   */
+  export interface Schema$GoogleChromeManagementV1MemoryInfo {
+    /**
+     * Output only. Amount of available RAM in bytes.
+     */
+    availableRamBytes?: string | null;
+    /**
+     * Output only. Total RAM in bytes.
+     */
+    totalRamBytes?: string | null;
+  }
+  /**
+   * Contains samples of memory status reports.
+   */
+  export interface Schema$GoogleChromeManagementV1MemoryStatusReport {
+    /**
+     * Output only. Number of page faults during this collection
+     */
+    pageFaults?: number | null;
+    /**
+     * Output only. The timestamp in milliseconds representing time at which this report was sampled.
+     */
+    reportTime?: string | null;
+    /**
+     * Output only. Frequency the report is sampled.
+     */
+    sampleFrequency?: string | null;
+    /**
+     * Output only. Amount of free RAM in bytes (unreliable due to Garbage Collection).
+     */
+    systemRamFreeBytes?: string | null;
+  }
+  /**
+   * State of visible/configured networks.
+   */
+  export interface Schema$GoogleChromeManagementV1NetworkStatusReport {
+    /**
+     * Output only. Gateway IP address.
+     */
+    gatewayIpAddress?: string | null;
+    /**
+     * Output only. LAN IP address.
+     */
+    lanIpAddress?: string | null;
+    /**
+     * Output only. Time at which the network state was reported.
+     */
+    reportTime?: string | null;
+    /**
+     * Output only. Frequency the report is sampled.
+     */
+    sampleFrequency?: string | null;
+    /**
+     * Output only. Signal strength for wireless networks measured in decibels.
+     */
+    signalStrengthDbm?: number | null;
+  }
+  /**
+   * Contains information regarding the current OS update status.
+   */
+  export interface Schema$GoogleChromeManagementV1OsUpdateStatus {
+    /**
+     * Output only. Timestamp of the last reboot.
+     */
+    lastRebootTime?: string | null;
+    /**
+     * Output only. Timestamp of the last update check.
+     */
+    lastUpdateCheckTime?: string | null;
+    /**
+     * Output only. Timestamp of the last successful update.
+     */
+    lastUpdateTime?: string | null;
+    /**
+     * Output only. New platform version of the os image being downloaded and applied. It is only set when update status is OS_IMAGE_DOWNLOAD_IN_PROGRESS or OS_UPDATE_NEED_REBOOT. Note this could be a dummy "0.0.0.0" for OS_UPDATE_NEED_REBOOT status for some edge cases, e.g. update engine is restarted without a reboot.
+     */
+    newPlatformVersion?: string | null;
+    /**
+     * Output only. New requested platform version from the pending updated kiosk app.
+     */
+    newRequestedPlatformVersion?: string | null;
+    /**
+     * Output only. Current state of the os update.
+     */
+    updateState?: string | null;
+  }
+  /**
+   * Status data for storage.
+   */
+  export interface Schema$GoogleChromeManagementV1StorageInfo {
+    /**
+     * The available space for user data storage in the device in bytes.
+     */
+    availableDiskBytes?: string | null;
+    /**
+     * The total space for user data storage in the device in bytes.
+     */
+    totalDiskBytes?: string | null;
+    /**
+     * Information for disk volumes
+     */
+    volume?: Schema$GoogleChromeManagementV1StorageInfoDiskVolume[];
+  }
+  /**
+   * Information for disk volumes
+   */
+  export interface Schema$GoogleChromeManagementV1StorageInfoDiskVolume {
+    /**
+     * Free storage space in bytes.
+     */
+    storageFreeBytes?: string | null;
+    /**
+     * Total storage space in bytes.
+     */
+    storageTotalBytes?: string | null;
+    /**
+     * Disk volume id.
+     */
+    volumeId?: string | null;
+  }
+  /**
+   * Status data for storage.
+   */
+  export interface Schema$GoogleChromeManagementV1StorageStatusReport {
+    /**
+     * Output only. Reports on disk
+     */
+    disk?: Schema$GoogleChromeManagementV1DiskInfo[];
+    /**
+     * Output only. Timestamp of when the sample was collected on device
+     */
+    reportTime?: string | null;
+  }
+  /**
+   * Telemetry data collected from a managed device.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryDevice {
+    /**
+     * Output only. Information on battery specs for the device.
+     */
+    batteryInfo?: Schema$GoogleChromeManagementV1BatteryInfo[];
+    /**
+     * Output only. Battery reports collected periodically.
+     */
+    batteryStatusReport?: Schema$GoogleChromeManagementV1BatteryStatusReport[];
+    /**
+     * Output only. Information regarding CPU specs for the device.
+     */
+    cpuInfo?: Schema$GoogleChromeManagementV1CpuInfo[];
+    /**
+     * Output only. CPU status reports collected periodically.
+     */
+    cpuStatusReport?: Schema$GoogleChromeManagementV1CpuStatusReport[];
+    /**
+     * Output only. Google Workspace Customer whose enterprise enrolled the device.
+     */
+    customer?: string | null;
+    /**
+     * Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the Chrome OS Devices tab
+     */
+    deviceId?: string | null;
+    /**
+     * Output only. Contains information regarding Graphic peripherals for the device.
+     */
+    graphicsInfo?: Schema$GoogleChromeManagementV1GraphicsInfo;
+    /**
+     * Output only. Graphics reports collected periodically.
+     */
+    graphicsStatusReport?: Schema$GoogleChromeManagementV1GraphicsStatusReport[];
+    /**
+     * Output only. Information regarding memory specs for the device.
+     */
+    memoryInfo?: Schema$GoogleChromeManagementV1MemoryInfo;
+    /**
+     * Output only. Memory status reports collected periodically.
+     */
+    memoryStatusReport?: Schema$GoogleChromeManagementV1MemoryStatusReport[];
+    /**
+     * Output only. Resource name of the device.
+     */
+    name?: string | null;
+    /**
+     * Output only. Network specs collected periodically.
+     */
+    networkStatusReport?: Schema$GoogleChromeManagementV1NetworkStatusReport[];
+    /**
+     * Output only. Organization unit ID of the device.
+     */
+    orgUnitId?: string | null;
+    /**
+     * Output only. Contains relevant information regarding ChromeOS update status.
+     */
+    osUpdateStatus?: Schema$GoogleChromeManagementV1OsUpdateStatus[];
+    /**
+     * Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the Chrome OS Devices tab.
+     */
+    serialNumber?: string | null;
+    /**
+     * Output only. Information of storage specs for the device.
+     */
+    storageInfo?: Schema$GoogleChromeManagementV1StorageInfo;
+    /**
+     * Output only. Storage reports collected periodically.
+     */
+    storageStatusReport?: Schema$GoogleChromeManagementV1StorageStatusReport[];
+  }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -488,15 +973,34 @@ export namespace chromemanagement_v1 {
      */
     message?: string | null;
   }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$GoogleTypeDate {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
 
   export class Resource$Customers {
     context: APIRequestContext;
     apps: Resource$Customers$Apps;
     reports: Resource$Customers$Reports;
+    telemetry: Resource$Customers$Telemetry;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.apps = new Resource$Customers$Apps(this.context);
       this.reports = new Resource$Customers$Reports(this.context);
+      this.telemetry = new Resource$Customers$Telemetry(this.context);
     }
   }
 
@@ -1750,5 +2254,195 @@ export namespace chromemanagement_v1 {
      * Token to specify the page of the request to be returned.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Customers$Telemetry {
+    context: APIRequestContext;
+    devices: Resource$Customers$Telemetry$Devices;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.devices = new Resource$Customers$Telemetry$Devices(this.context);
+    }
+  }
+
+  export class Resource$Customers$Telemetry$Devices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all telemetry devices.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.devices.list({
+     *     // Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number
+     *     filter: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     parent: 'customers/my-customer',
+     *     // Required. Read mask to specify which fields to return.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Telemetry$Devices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Telemetry$Devices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>;
+    list(
+      params: Params$Resource$Customers$Telemetry$Devices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Telemetry$Devices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Telemetry$Devices$List,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Telemetry$Devices$List
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Telemetry$Devices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Telemetry$Devices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/telemetry/devices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementV1ListTelemetryDevicesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Telemetry$Devices$List
+    extends StandardParameters {
+    /**
+     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number
+     */
+    filter?: string;
+    /**
+     * Maximum number of results to return. Maximum and default are 100.
+     */
+    pageSize?: number;
+    /**
+     * Token to specify next page in the list.
+     */
+    pageToken?: string;
+    /**
+     * Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     */
+    parent?: string;
+    /**
+     * Required. Read mask to specify which fields to return.
+     */
+    readMask?: string;
   }
 }

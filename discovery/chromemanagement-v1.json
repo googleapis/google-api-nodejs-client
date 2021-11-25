@@ -7,6 +7,9 @@
         },
         "https://www.googleapis.com/auth/chrome.management.reports.readonly": {
           "description": "See reports about devices and Chrome browsers managed within your organization"
+        },
+        "https://www.googleapis.com/auth/chrome.management.telemetry.readonly": {
+          "description": "See basic device and telemetry information collected from Chrome OS devices or users managed within your organization"
         }
       }
     }
@@ -426,11 +429,66 @@
               ]
             }
           }
+        },
+        "telemetry": {
+          "resources": {
+            "devices": {
+              "methods": {
+                "list": {
+                  "description": "List all telemetry devices.",
+                  "flatPath": "v1/customers/{customersId}/telemetry/devices",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.telemetry.devices.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number ",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum number of results to return. Maximum and default are 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token to specify next page in the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Customer id or \"my_customer\" to use the customer associated to the account making the request.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Required. Read mask to specify which fields to return.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/telemetry/devices",
+                  "response": {
+                    "$ref": "GoogleChromeManagementV1ListTelemetryDevicesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.telemetry.readonly"
+                  ]
+                }
+              }
+            }
+          }
         }
       }
     }
   },
-  "revision": "20211026",
+  "revision": "20211119",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -572,6 +630,154 @@
             "ARC++ app.",
             "Web app."
           ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1BatteryInfo": {
+      "description": "Battery info",
+      "id": "GoogleChromeManagementV1BatteryInfo",
+      "properties": {
+        "designCapacity": {
+          "description": "Output only. Design capacity (mAmpere-hours).",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "designMinVoltage": {
+          "description": "Output only. Designed minimum output voltage (mV)",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "manufactureDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Output only. The date the battery was manufactured.",
+          "readOnly": true
+        },
+        "manufacturer": {
+          "description": "Output only. Battery manufacturer.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Output only. Battery serial number.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "technology": {
+          "description": "Output only. Technology of the battery. Example: Li-ion",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1BatterySampleReport": {
+      "description": "Sampling data for battery.",
+      "id": "GoogleChromeManagementV1BatterySampleReport",
+      "properties": {
+        "chargeRate": {
+          "description": "Output only. Battery charge percentage.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "current": {
+          "description": "Output only. Battery current (mA).",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dischargeRate": {
+          "description": "Output only. The battery discharge rate measured in mW. Positive if the battery is being discharged, negative if it's being charged.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "remainingCapacity": {
+          "description": "Output only. Battery remaining capacity (mAmpere-hours).",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "Output only. Timestamp of when the sample was collected on device",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Output only. Battery status read from sysfs. Example: Discharging",
+          "readOnly": true,
+          "type": "string"
+        },
+        "temperature": {
+          "description": "Output only. Temperature in Celsius degrees.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voltage": {
+          "description": "Output only. Battery voltage (millivolt).",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1BatteryStatusReport": {
+      "description": "Status data for battery.",
+      "id": "GoogleChromeManagementV1BatteryStatusReport",
+      "properties": {
+        "batteryHealth": {
+          "description": "Output only. Battery health.",
+          "enum": [
+            "BATTERY_HEALTH_UNSPECIFIED",
+            "BATTERY_HEALTH_NORMAL",
+            "BATTERY_REPLACE_SOON",
+            "BATTERY_REPLACE_NOW"
+          ],
+          "enumDescriptions": [
+            "Health unknown.",
+            "Battery is healthy.",
+            "Battery is moderately unhealthy and should be replaced soon.",
+            "Battery is unhealthy and should be replaced."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "cycleCount": {
+          "description": "Output only. Cycle count.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullChargeCapacity": {
+          "description": "Output only. Full charge capacity (mAmpere-hours).",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "Output only. Timestamp of when the sample was collected on device",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sample": {
+          "description": "Output only. Sampling data for the battery.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1BatterySampleReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "serialNumber": {
+          "description": "Output only. Battery serial number.",
           "readOnly": true,
           "type": "string"
         }
@@ -841,6 +1047,88 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1CpuInfo": {
+      "description": "CPU specs for a CPU.",
+      "id": "GoogleChromeManagementV1CpuInfo",
+      "properties": {
+        "architecture": {
+          "description": "Output only. The CPU architecture.",
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "X64"
+          ],
+          "enumDescriptions": [
+            "Architecture unknown.",
+            "x64 architecture"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "maxClockSpeed": {
+          "description": "Output only. The max CPU clock speed in kHz.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "model": {
+          "description": "Output only. The CPU model name. Example: Intel(R) Core(TM) i5-8250U CPU @ 1.60GHz",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CpuStatusReport": {
+      "description": "Contains samples of the cpu status reports.",
+      "id": "GoogleChromeManagementV1CpuStatusReport",
+      "properties": {
+        "cpuTemperatureInfo": {
+          "description": "Output only. CPU temperature sample info per CPU core in Celsius",
+          "items": {
+            "$ref": "GoogleChromeManagementV1CpuTemperatureInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cpuUtilizationPct": {
+          "description": "Output only. Sample of CPU utilization (0-100 percent).",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "reportTime": {
+          "description": "Output only. The timestamp in milliseconds representing time at which this report was sampled.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sampleFrequency": {
+          "description": "Output only. Frequency the report is sampled.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1CpuTemperatureInfo": {
+      "description": "CPU temperature of a device. Sampled per CPU core in Celsius",
+      "id": "GoogleChromeManagementV1CpuTemperatureInfo",
+      "properties": {
+        "label": {
+          "description": "Output only. CPU label. Example: Core 0",
+          "readOnly": true,
+          "type": "string"
+        },
+        "temperatureCelsius": {
+          "description": "Output only. CPU temperature in Celsius.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementV1Device": {
       "description": "Describes a device reporting Chrome browser information.",
       "id": "GoogleChromeManagementV1Device",
@@ -854,6 +1142,124 @@
           "description": "Output only. The name of the machine within its local network.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1DiskInfo": {
+      "description": "Status of the single storage device.",
+      "id": "GoogleChromeManagementV1DiskInfo",
+      "properties": {
+        "bytesReadThisSession": {
+          "description": "Output only. Number of bytes read since last boot.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "bytesWrittenThisSession": {
+          "description": "Output only. Number of bytes written since last boot.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "discardTimeThisSession": {
+          "description": "Output only. Time spent discarding since last boot. Discarding is writing to clear blocks which are no longer in use. Supported on kernels 4.18+.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "health": {
+          "description": "Output only. Disk health.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ioTimeThisSession": {
+          "description": "Output only. Counts the time the disk and queue were busy, so unlike the fields above, parallel requests are not counted multiple times.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "manufacturer": {
+          "description": "Output only. Disk manufacturer.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "model": {
+          "description": "Output only. Disk model.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "readTimeThisSession": {
+          "description": "Output only. Time spent reading from disk since last boot.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Output only. Disk serial number.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. Disk size.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. Disk type: eMMC / NVMe / ATA / SCSI.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "volumeIds": {
+          "description": "Output only. Disk volumes.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "writeTimeThisSession": {
+          "description": "Output only. Time spent writing to disk since last boot.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1DisplayInfo": {
+      "description": "Information for a display.",
+      "id": "GoogleChromeManagementV1DisplayInfo",
+      "properties": {
+        "deviceId": {
+          "description": "Output only. Represents the graphics card device id.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "isInternal": {
+          "description": "Output only. Indicates if display is internal or not.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "refreshRate": {
+          "description": "Output only. Refresh rate in Hz.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "resolutionHeight": {
+          "description": "Output only. Resolution height in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "resolutionWidth": {
+          "description": "Output only. Resolution width in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -877,6 +1283,62 @@
           "description": "Total number of devices matching request.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1GraphicsAdapterInfo": {
+      "description": "Information of a graphics adapter (GPU).",
+      "id": "GoogleChromeManagementV1GraphicsAdapterInfo",
+      "properties": {
+        "adapter": {
+          "description": "Output only. Adapter name. Example: Mesa DRI Intel(R) UHD Graphics 620 (Kabylake GT2).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceId": {
+          "description": "Output only. Represents the graphics card device id.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "driverVersion": {
+          "description": "Output only. Version of the GPU driver.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1GraphicsInfo": {
+      "description": "Information of the graphics subsystem.",
+      "id": "GoogleChromeManagementV1GraphicsInfo",
+      "properties": {
+        "adapterInfo": {
+          "$ref": "GoogleChromeManagementV1GraphicsAdapterInfo",
+          "description": "Output only. Information about the graphics adapter (GPU).",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1GraphicsStatusReport": {
+      "description": "Information of the graphics subsystem.",
+      "id": "GoogleChromeManagementV1GraphicsStatusReport",
+      "properties": {
+        "displays": {
+          "description": "Output only. Information about the displays for the device.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1DisplayInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "reportTime": {
+          "description": "Output only. Time at which the graphics data was reported.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -992,6 +1454,345 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementV1ListTelemetryDevicesResponse": {
+      "id": "GoogleChromeManagementV1ListTelemetryDevicesResponse",
+      "properties": {
+        "devices": {
+          "description": "Telemetry devices returned in the response.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1TelemetryDevice"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to specify next page in the list.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1MemoryInfo": {
+      "description": "Memory information of a device.",
+      "id": "GoogleChromeManagementV1MemoryInfo",
+      "properties": {
+        "availableRamBytes": {
+          "description": "Output only. Amount of available RAM in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalRamBytes": {
+          "description": "Output only. Total RAM in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1MemoryStatusReport": {
+      "description": "Contains samples of memory status reports.",
+      "id": "GoogleChromeManagementV1MemoryStatusReport",
+      "properties": {
+        "pageFaults": {
+          "description": "Output only. Number of page faults during this collection",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "reportTime": {
+          "description": "Output only. The timestamp in milliseconds representing time at which this report was sampled.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sampleFrequency": {
+          "description": "Output only. Frequency the report is sampled.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "systemRamFreeBytes": {
+          "description": "Output only. Amount of free RAM in bytes (unreliable due to Garbage Collection).",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1NetworkStatusReport": {
+      "description": "State of visible/configured networks.",
+      "id": "GoogleChromeManagementV1NetworkStatusReport",
+      "properties": {
+        "gatewayIpAddress": {
+          "description": "Output only. Gateway IP address.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lanIpAddress": {
+          "description": "Output only. LAN IP address.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportTime": {
+          "description": "Output only. Time at which the network state was reported.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sampleFrequency": {
+          "description": "Output only. Frequency the report is sampled.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "signalStrengthDbm": {
+          "description": "Output only. Signal strength for wireless networks measured in decibels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1OsUpdateStatus": {
+      "description": "Contains information regarding the current OS update status.",
+      "id": "GoogleChromeManagementV1OsUpdateStatus",
+      "properties": {
+        "lastRebootTime": {
+          "description": "Output only. Timestamp of the last reboot.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastUpdateCheckTime": {
+          "description": "Output only. Timestamp of the last update check.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastUpdateTime": {
+          "description": "Output only. Timestamp of the last successful update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "newPlatformVersion": {
+          "description": "Output only. New platform version of the os image being downloaded and applied. It is only set when update status is OS_IMAGE_DOWNLOAD_IN_PROGRESS or OS_UPDATE_NEED_REBOOT. Note this could be a dummy \"0.0.0.0\" for OS_UPDATE_NEED_REBOOT status for some edge cases, e.g. update engine is restarted without a reboot.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "newRequestedPlatformVersion": {
+          "description": "Output only. New requested platform version from the pending updated kiosk app.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateState": {
+          "description": "Output only. Current state of the os update.",
+          "enum": [
+            "UPDATE_STATE_UNSPECIFIED",
+            "OS_IMAGE_DOWNLOAD_NOT_STARTED",
+            "OS_IMAGE_DOWNLOAD_IN_PROGRESS",
+            "OS_UPDATE_NEED_REBOOT"
+          ],
+          "enumDescriptions": [
+            "State unspecified.",
+            "OS has not started downloading.",
+            "OS has started download on device.",
+            "Device needs reboot to finish upload."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1StorageInfo": {
+      "description": "Status data for storage.",
+      "id": "GoogleChromeManagementV1StorageInfo",
+      "properties": {
+        "availableDiskBytes": {
+          "description": "The available space for user data storage in the device in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalDiskBytes": {
+          "description": "The total space for user data storage in the device in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "volume": {
+          "description": "Information for disk volumes",
+          "items": {
+            "$ref": "GoogleChromeManagementV1StorageInfoDiskVolume"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1StorageInfoDiskVolume": {
+      "description": "Information for disk volumes",
+      "id": "GoogleChromeManagementV1StorageInfoDiskVolume",
+      "properties": {
+        "storageFreeBytes": {
+          "description": "Free storage space in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "storageTotalBytes": {
+          "description": "Total storage space in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "volumeId": {
+          "description": "Disk volume id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1StorageStatusReport": {
+      "description": "Status data for storage.",
+      "id": "GoogleChromeManagementV1StorageStatusReport",
+      "properties": {
+        "disk": {
+          "description": "Output only. Reports on disk",
+          "items": {
+            "$ref": "GoogleChromeManagementV1DiskInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "reportTime": {
+          "description": "Output only. Timestamp of when the sample was collected on device",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryDevice": {
+      "description": "Telemetry data collected from a managed device.",
+      "id": "GoogleChromeManagementV1TelemetryDevice",
+      "properties": {
+        "batteryInfo": {
+          "description": "Output only. Information on battery specs for the device.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1BatteryInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "batteryStatusReport": {
+          "description": "Output only. Battery reports collected periodically.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1BatteryStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cpuInfo": {
+          "description": "Output only. Information regarding CPU specs for the device.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1CpuInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cpuStatusReport": {
+          "description": "Output only. CPU status reports collected periodically.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1CpuStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customer": {
+          "description": "Output only. Google Workspace Customer whose enterprise enrolled the device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviceId": {
+          "description": "Output only. The unique Directory API ID of the device. This value is the same as the Admin Console's Directory API ID in the Chrome OS Devices tab",
+          "readOnly": true,
+          "type": "string"
+        },
+        "graphicsInfo": {
+          "$ref": "GoogleChromeManagementV1GraphicsInfo",
+          "description": "Output only. Contains information regarding Graphic peripherals for the device.",
+          "readOnly": true
+        },
+        "graphicsStatusReport": {
+          "description": "Output only. Graphics reports collected periodically.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1GraphicsStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "memoryInfo": {
+          "$ref": "GoogleChromeManagementV1MemoryInfo",
+          "description": "Output only. Information regarding memory specs for the device.",
+          "readOnly": true
+        },
+        "memoryStatusReport": {
+          "description": "Output only. Memory status reports collected periodically.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1MemoryStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Resource name of the device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "networkStatusReport": {
+          "description": "Output only. Network specs collected periodically.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1NetworkStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "orgUnitId": {
+          "description": "Output only. Organization unit ID of the device.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "osUpdateStatus": {
+          "description": "Output only. Contains relevant information regarding ChromeOS update status.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1OsUpdateStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "serialNumber": {
+          "description": "Output only. Device serial number. This value is the same as the Admin Console's Serial Number in the Chrome OS Devices tab.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "storageInfo": {
+          "$ref": "GoogleChromeManagementV1StorageInfo",
+          "description": "Output only. Information of storage specs for the device.",
+          "readOnly": true
+        },
+        "storageStatusReport": {
+          "description": "Output only. Storage reports collected periodically.",
+          "items": {
+            "$ref": "GoogleChromeManagementV1StorageStatusReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleRpcStatus": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "GoogleRpcStatus",
@@ -1015,6 +1816,28 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeDate": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "id": "GoogleTypeDate",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
