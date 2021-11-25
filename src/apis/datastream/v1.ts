@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace datastream_v1alpha1 {
+export namespace datastream_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1alpha1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace datastream_v1alpha1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const datastream = google.datastream('v1alpha1');
+   * const datastream = google.datastream('v1');
    * ```
    */
   export class Datastream {
@@ -175,6 +175,9 @@ export namespace datastream_v1alpha1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * A set of reusable connection configurations to be used as a source or destination for a stream.
+   */
   export interface Schema$ConnectionProfile {
     /**
      * Output only. The create time of the resource.
@@ -205,10 +208,6 @@ export namespace datastream_v1alpha1 {
      */
     name?: string | null;
     /**
-     * No connectivity option chosen.
-     */
-    noConnectivity?: Schema$NoConnectivitySettings;
-    /**
      * Oracle ConnectionProfile configuration.
      */
     oracleProfile?: Schema$OracleProfile;
@@ -230,9 +229,12 @@ export namespace datastream_v1alpha1 {
    */
   export interface Schema$DestinationConfig {
     /**
-     * Required. Destination connection profile identifier.
+     * Required. Destination connection profile resource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
-    destinationConnectionProfileName?: string | null;
+    destinationConnectionProfile?: string | null;
+    /**
+     * A configuration for how data should be loaded to Cloud Storage.
+     */
     gcsDestinationConfig?: Schema$GcsDestinationConfig;
   }
   /**
@@ -240,13 +242,21 @@ export namespace datastream_v1alpha1 {
    */
   export interface Schema$DiscoverConnectionProfileRequest {
     /**
-     * An ad-hoc ConnectionProfile configuration.
+     * An ad-hoc connection profile configuration.
      */
     connectionProfile?: Schema$ConnectionProfile;
     /**
-     * A reference to an existing ConnectionProfile.
+     * A reference to an existing connection profile.
      */
     connectionProfileName?: string | null;
+    /**
+     * Whether to retrieve the full hierarchy of data objects (TRUE) or only the current level (FALSE).
+     */
+    fullHierarchy?: boolean | null;
+    /**
+     * The number of hierarchy levels below the current level to be retrieved.
+     */
+    hierarchyDepth?: number | null;
     /**
      * MySQL RDBMS to enrich with child data objects and metadata.
      */
@@ -255,15 +265,10 @@ export namespace datastream_v1alpha1 {
      * Oracle RDBMS to enrich with child data objects and metadata.
      */
     oracleRdbms?: Schema$OracleRdbms;
-    /**
-     * The number of hierarchy levels below the current level to be retrieved.
-     */
-    recursionDepth?: number | null;
-    /**
-     * Whether to retrieve the full hierarchy of data objects (TRUE) or only the current level (FALSE).
-     */
-    recursive?: boolean | null;
   }
+  /**
+   * Response from a discover request.
+   */
   export interface Schema$DiscoverConnectionProfileResponse {
     /**
      * Enriched MySQL RDBMS object.
@@ -302,19 +307,6 @@ export namespace datastream_v1alpha1 {
      * A title that explains the reason for the error.
      */
     reason?: string | null;
-  }
-  /**
-   * Request message for 'FetchErrors' request.
-   */
-  export interface Schema$FetchErrorsRequest {}
-  /**
-   * Response message for a 'FetchErrors' response.
-   */
-  export interface Schema$FetchErrorsResponse {
-    /**
-     * The list of errors on the Stream.
-     */
-    errors?: Schema$Error[];
   }
   /**
    * Response message for a 'FetchStaticIps' response.
@@ -371,10 +363,6 @@ export namespace datastream_v1alpha1 {
      */
     fileRotationMb?: number | null;
     /**
-     * File format that data should be written in. Deprecated field (b/169501737) - use file_format instead.
-     */
-    gcsFileFormat?: string | null;
-    /**
      * JSON file format configuration.
      */
     jsonFileFormat?: Schema$JsonFileFormat;
@@ -388,9 +376,9 @@ export namespace datastream_v1alpha1 {
    */
   export interface Schema$GcsProfile {
     /**
-     * Required. The full project and resource path for Cloud Storage bucket including the name.
+     * Required. The Cloud Storage bucket name.
      */
-    bucketName?: string | null;
+    bucket?: string | null;
     /**
      * The root path inside the Cloud Storage bucket.
      */
@@ -409,6 +397,9 @@ export namespace datastream_v1alpha1 {
      */
     schemaFileFormat?: string | null;
   }
+  /**
+   * Response message for listing connection profiles.
+   */
   export interface Schema$ListConnectionProfilesResponse {
     /**
      * List of connection profiles.
@@ -449,6 +440,9 @@ export namespace datastream_v1alpha1 {
      */
     operations?: Schema$Operation[];
   }
+  /**
+   * Response containing a list of private connection configurations.
+   */
   export interface Schema$ListPrivateConnectionsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
@@ -464,7 +458,7 @@ export namespace datastream_v1alpha1 {
     unreachable?: string[] | null;
   }
   /**
-   * route list response
+   * Route list response.
    */
   export interface Schema$ListRoutesResponse {
     /**
@@ -493,6 +487,9 @@ export namespace datastream_v1alpha1 {
      */
     streamObjects?: Schema$StreamObject[];
   }
+  /**
+   * Response message for listing streams.
+   */
   export interface Schema$ListStreamsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
@@ -533,6 +530,15 @@ export namespace datastream_v1alpha1 {
     name?: string | null;
   }
   /**
+   * Request for looking up a specific stream object by its source object identifier.
+   */
+  export interface Schema$LookupStreamObjectRequest {
+    /**
+     * Required. The source object identifier which maps to the stream object.
+     */
+    sourceObjectIdentifier?: Schema$SourceObjectIdentifier;
+  }
+  /**
    * MySQL Column.
    */
   export interface Schema$MysqlColumn {
@@ -543,7 +549,7 @@ export namespace datastream_v1alpha1 {
     /**
      * Column name.
      */
-    columnName?: string | null;
+    column?: string | null;
     /**
      * The MySQL data type. Full data types list can be found here: https://dev.mysql.com/doc/refman/8.0/en/data-types.html
      */
@@ -572,7 +578,7 @@ export namespace datastream_v1alpha1 {
     /**
      * Database name.
      */
-    databaseName?: string | null;
+    database?: string | null;
     /**
      * Tables in the database.
      */
@@ -630,13 +636,13 @@ export namespace datastream_v1alpha1 {
    */
   export interface Schema$MysqlSourceConfig {
     /**
-     * MySQL objects to retrieve from the source.
-     */
-    allowlist?: Schema$MysqlRdbms;
-    /**
      * MySQL objects to exclude from the stream.
      */
-    rejectlist?: Schema$MysqlRdbms;
+    excludeObjects?: Schema$MysqlRdbms;
+    /**
+     * MySQL objects to retrieve from the source.
+     */
+    includeObjects?: Schema$MysqlRdbms;
   }
   /**
    * MySQL SSL configuration information.
@@ -678,12 +684,8 @@ export namespace datastream_v1alpha1 {
     /**
      * Table name.
      */
-    tableName?: string | null;
+    table?: string | null;
   }
-  /**
-   * No connectivity settings.
-   */
-  export interface Schema$NoConnectivitySettings {}
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -753,7 +755,7 @@ export namespace datastream_v1alpha1 {
     /**
      * Column name.
      */
-    columnName?: string | null;
+    column?: string | null;
     /**
      * The Oracle data type.
      */
@@ -849,20 +851,20 @@ export namespace datastream_v1alpha1 {
     /**
      * Schema name.
      */
-    schemaName?: string | null;
+    schema?: string | null;
   }
   /**
    * Oracle data source configuration
    */
   export interface Schema$OracleSourceConfig {
     /**
-     * Oracle objects to include in the stream.
-     */
-    allowlist?: Schema$OracleRdbms;
-    /**
      * Oracle objects to exclude from the stream.
      */
-    rejectlist?: Schema$OracleRdbms;
+    excludeObjects?: Schema$OracleRdbms;
+    /**
+     * Oracle objects to include in the stream.
+     */
+    includeObjects?: Schema$OracleRdbms;
   }
   /**
    * Oracle table.
@@ -875,7 +877,7 @@ export namespace datastream_v1alpha1 {
     /**
      * Table name.
      */
-    tableName?: string | null;
+    table?: string | null;
   }
   /**
    * The PrivateConnection resource is used to establish private connectivity between Datastream and a customer's network.
@@ -910,7 +912,7 @@ export namespace datastream_v1alpha1 {
      */
     updateTime?: string | null;
     /**
-     * VPC Peering Config
+     * VPC Peering Config.
      */
     vpcPeeringConfig?: Schema$VpcPeeringConfig;
   }
@@ -918,10 +920,13 @@ export namespace datastream_v1alpha1 {
    * Private Connectivity
    */
   export interface Schema$PrivateConnectivity {
-    privateConnectionName?: string | null;
+    /**
+     * Required. A reference to a private connection resource. Format: `projects/{project\}/locations/{location\}/privateConnections/{name\}`
+     */
+    privateConnection?: string | null;
   }
   /**
-   * The Route resource is the child of the PrivateConnection resource. It used to define a route for a PrivateConnection setup.
+   * The route resource is the child of the private connection resource, used for defining a route for a private connection.
    */
   export interface Schema$Route {
     /**
@@ -966,9 +971,9 @@ export namespace datastream_v1alpha1 {
      */
     oracleSourceConfig?: Schema$OracleSourceConfig;
     /**
-     * Required. Source connection profile identifier.
+     * Required. Source connection profile resoource. Format: `projects/{project\}/locations/{location\}/connectionProfiles/{name\}`
      */
-    sourceConnectionProfileName?: string | null;
+    sourceConnectionProfile?: string | null;
   }
   /**
    * Represents an identifier of an object in the data source.
@@ -983,6 +988,10 @@ export namespace datastream_v1alpha1 {
      */
     oracleIdentifier?: Schema$OracleObjectIdentifier;
   }
+  /**
+   * Request for manually initiating a backfill job for a specific stream object.
+   */
+  export interface Schema$StartBackfillJobRequest {}
   /**
    * Response for manually initiating a backfill job for a specific stream object.
    */
@@ -1014,6 +1023,10 @@ export namespace datastream_v1alpha1 {
     message?: string | null;
   }
   /**
+   * Request for manually stopping a running backfill job for a specific stream object.
+   */
+  export interface Schema$StopBackfillJobRequest {}
+  /**
    * Response for manually stop a backfill job for a specific stream object.
    */
   export interface Schema$StopBackfillJobResponse {
@@ -1022,6 +1035,9 @@ export namespace datastream_v1alpha1 {
      */
     object?: Schema$StreamObject;
   }
+  /**
+   * A resource representing streaming data from a source to a destination.
+   */
   export interface Schema$Stream {
     /**
      * Automatically backfill objects included in the stream source configuration. Specific objects can be excluded.
@@ -1093,7 +1109,7 @@ export namespace datastream_v1alpha1 {
      */
     errors?: Schema$Error[];
     /**
-     * Output only. The object's name.
+     * Output only. The object resource's name.
      */
     name?: string | null;
     /**
@@ -1105,6 +1121,9 @@ export namespace datastream_v1alpha1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * A validation to perform on a stream.
+   */
   export interface Schema$Validation {
     /**
      * A custom code identifying this validation.
@@ -1121,7 +1140,7 @@ export namespace datastream_v1alpha1 {
     /**
      * Validation execution status.
      */
-    status?: string | null;
+    state?: string | null;
   }
   /**
    * Represent user-facing validation result message.
@@ -1162,9 +1181,9 @@ export namespace datastream_v1alpha1 {
      */
     subnet?: string | null;
     /**
-     * Required. fully qualified name of the VPC Datastream will peer to.
+     * Required. Fully qualified name of the VPC that Datastream will peer to. Format: `projects/{project\}/global/{networks\}/{name\}`
      */
-    vpcName?: string | null;
+    vpc?: string | null;
   }
 
   export class Resource$Projects {
@@ -1207,7 +1226,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1312,7 +1331,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}:fetchStaticIps').replace(
+            url: (rootUrl + '/v1/{+name}:fetchStaticIps').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1348,7 +1367,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1445,7 +1464,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1478,7 +1497,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1583,7 +1602,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1668,7 +1687,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1684,6 +1703,8 @@ export namespace datastream_v1alpha1 {
      *   const res = await datastream.projects.locations.connectionProfiles.create({
      *     // Required. The connection profile identifier.
      *     connectionProfileId: 'placeholder-value',
+     *     // Optional. Create the connection profile without validating it.
+     *     force: 'placeholder-value',
      *     // Required. The parent that owns the collection of ConnectionProfiles.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
@@ -1700,7 +1721,6 @@ export namespace datastream_v1alpha1 {
      *       //   "labels": {},
      *       //   "mysqlProfile": {},
      *       //   "name": "my_name",
-     *       //   "noConnectivity": {},
      *       //   "oracleProfile": {},
      *       //   "privateConnectivity": {},
      *       //   "staticServiceIpConnectivity": {},
@@ -1789,7 +1809,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/connectionProfiles').replace(
+            url: (rootUrl + '/v1/{+parent}/connectionProfiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1825,7 +1845,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1925,7 +1945,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1958,7 +1978,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1972,7 +1992,7 @@ export namespace datastream_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.connectionProfiles.discover({
-     *     // Required. The parent resource of the ConnectionProfile type. Must be in the format `projects/x/locations/x`.
+     *     // Required. The parent resource of the connection profile type. Must be in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1981,10 +2001,10 @@ export namespace datastream_v1alpha1 {
      *       // {
      *       //   "connectionProfile": {},
      *       //   "connectionProfileName": "my_connectionProfileName",
+     *       //   "fullHierarchy": false,
+     *       //   "hierarchyDepth": 0,
      *       //   "mysqlRdbms": {},
-     *       //   "oracleRdbms": {},
-     *       //   "recursionDepth": 0,
-     *       //   "recursive": false
+     *       //   "oracleRdbms": {}
      *       // }
      *     },
      *   });
@@ -2074,7 +2094,7 @@ export namespace datastream_v1alpha1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1alpha1/{+parent}/connectionProfiles:discover'
+              rootUrl + '/v1/{+parent}/connectionProfiles:discover'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
@@ -2110,7 +2130,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2138,7 +2158,6 @@ export namespace datastream_v1alpha1 {
      *   //   "labels": {},
      *   //   "mysqlProfile": {},
      *   //   "name": "my_name",
-     *   //   "noConnectivity": {},
      *   //   "oracleProfile": {},
      *   //   "privateConnectivity": {},
      *   //   "staticServiceIpConnectivity": {},
@@ -2218,7 +2237,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2251,7 +2270,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2362,7 +2381,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/connectionProfiles').replace(
+            url: (rootUrl + '/v1/{+parent}/connectionProfiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2400,7 +2419,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2414,14 +2433,14 @@ export namespace datastream_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.connectionProfiles.patch({
+     *     // Optional. Execute the update without validating it.
+     *     force: 'placeholder-value',
      *     // Output only. The resource's name.
      *     name: 'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
      *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the ConnectionProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
-     *     // Optional. Only validate the connection profile, but do not update any resources. The default is false.
-     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2434,7 +2453,6 @@ export namespace datastream_v1alpha1 {
      *       //   "labels": {},
      *       //   "mysqlProfile": {},
      *       //   "name": "my_name",
-     *       //   "noConnectivity": {},
      *       //   "oracleProfile": {},
      *       //   "privateConnectivity": {},
      *       //   "staticServiceIpConnectivity": {},
@@ -2523,7 +2541,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -2550,6 +2568,10 @@ export namespace datastream_v1alpha1 {
      * Required. The connection profile identifier.
      */
     connectionProfileId?: string;
+    /**
+     * Optional. Create the connection profile without validating it.
+     */
+    force?: boolean;
     /**
      * Required. The parent that owns the collection of ConnectionProfiles.
      */
@@ -2578,7 +2600,7 @@ export namespace datastream_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Connectionprofiles$Discover
     extends StandardParameters {
     /**
-     * Required. The parent resource of the ConnectionProfile type. Must be in the format `projects/x/locations/x`.
+     * Required. The parent resource of the connection profile type. Must be in the format `projects/x/locations/x`.
      */
     parent?: string;
 
@@ -2620,6 +2642,10 @@ export namespace datastream_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch
     extends StandardParameters {
     /**
+     * Optional. Execute the update without validating it.
+     */
+    force?: boolean;
+    /**
      * Output only. The resource's name.
      */
     name?: string;
@@ -2631,10 +2657,6 @@ export namespace datastream_v1alpha1 {
      * Optional. Field mask is used to specify the fields to be overwritten in the ConnectionProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
-    /**
-     * Optional. Only validate the connection profile, but do not update any resources. The default is false.
-     */
-    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -2661,7 +2683,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2758,10 +2780,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -2794,7 +2813,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2885,7 +2904,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2918,7 +2937,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3015,7 +3034,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3048,7 +3067,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3153,7 +3172,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3246,7 +3265,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3363,7 +3382,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/privateConnections').replace(
+            url: (rootUrl + '/v1/{+parent}/privateConnections').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3399,7 +3418,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3501,7 +3520,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -3534,7 +3553,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3638,7 +3657,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3671,7 +3690,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3782,7 +3801,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/privateConnections').replace(
+            url: (rootUrl + '/v1/{+parent}/privateConnections').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3893,7 +3912,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4011,7 +4030,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/routes').replace(
+            url: (rootUrl + '/v1/{+parent}/routes').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4047,7 +4066,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4148,7 +4167,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -4181,7 +4200,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4283,7 +4302,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -4316,7 +4335,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4425,7 +4444,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/routes').replace(
+            url: (rootUrl + '/v1/{+parent}/routes').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4534,7 +4553,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4658,7 +4677,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/streams').replace(
+            url: (rootUrl + '/v1/{+parent}/streams').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4694,7 +4713,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4793,7 +4812,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -4801,145 +4820,6 @@ export namespace datastream_v1alpha1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Use this method to fetch any errors associated with a stream.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datastream.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datastream.projects.locations.streams.fetchErrors({
-     *     // Name of the Stream resource for which to fetch any errors.
-     *     stream: 'projects/my-project/locations/my-location/streams/my-stream',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    fetchErrors(
-      params: Params$Resource$Projects$Locations$Streams$Fetcherrors,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    fetchErrors(
-      params?: Params$Resource$Projects$Locations$Streams$Fetcherrors,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    fetchErrors(
-      params: Params$Resource$Projects$Locations$Streams$Fetcherrors,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    fetchErrors(
-      params: Params$Resource$Projects$Locations$Streams$Fetcherrors,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    fetchErrors(
-      params: Params$Resource$Projects$Locations$Streams$Fetcherrors,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    fetchErrors(callback: BodyResponseCallback<Schema$Operation>): void;
-    fetchErrors(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Streams$Fetcherrors
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Streams$Fetcherrors;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Streams$Fetcherrors;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://datastream.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+stream}:fetchErrors').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['stream'],
-        pathParams: ['stream'],
         context: this.context,
       };
       if (callback) {
@@ -4965,7 +4845,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5069,7 +4949,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -5102,7 +4982,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5208,7 +5088,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/streams').replace(
+            url: (rootUrl + '/v1/{+parent}/streams').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5244,7 +5124,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5258,7 +5138,7 @@ export namespace datastream_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.streams.patch({
-     *     // Optional. Execute the update without validating it.
+     *     // Optional. Create the stream without validating it.
      *     force: 'placeholder-value',
      *     // Output only. The stream's name.
      *     name: 'projects/my-project/locations/my-location/streams/my-stream',
@@ -5368,7 +5248,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -5428,18 +5308,6 @@ export namespace datastream_v1alpha1 {
      */
     requestId?: string;
   }
-  export interface Params$Resource$Projects$Locations$Streams$Fetcherrors
-    extends StandardParameters {
-    /**
-     * Name of the Stream resource for which to fetch any errors.
-     */
-    stream?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$FetchErrorsRequest;
-  }
   export interface Params$Resource$Projects$Locations$Streams$Get
     extends StandardParameters {
     /**
@@ -5473,7 +5341,7 @@ export namespace datastream_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Streams$Patch
     extends StandardParameters {
     /**
-     * Optional. Execute the update without validating it.
+     * Optional. Create the stream without validating it.
      */
     force?: boolean;
     /**
@@ -5518,7 +5386,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5617,7 +5485,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -5650,7 +5518,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5755,7 +5623,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+parent}/objects').replace(
+            url: (rootUrl + '/v1/{+parent}/objects').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5779,6 +5647,150 @@ export namespace datastream_v1alpha1 {
     }
 
     /**
+     * Use this method to look up a stream object by its source object identifier.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datastream.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datastream = google.datastream('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datastream.projects.locations.streams.objects.lookup({
+     *     // Required. The parent stream that owns the collection of objects.
+     *     parent: 'projects/my-project/locations/my-location/streams/my-stream',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "sourceObjectIdentifier": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backfillJob": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errors": [],
+     *   //   "name": "my_name",
+     *   //   "sourceObject": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookup(
+      params: Params$Resource$Projects$Locations$Streams$Objects$Lookup,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookup(
+      params?: Params$Resource$Projects$Locations$Streams$Objects$Lookup,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$StreamObject>;
+    lookup(
+      params: Params$Resource$Projects$Locations$Streams$Objects$Lookup,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Locations$Streams$Objects$Lookup,
+      options: MethodOptions | BodyResponseCallback<Schema$StreamObject>,
+      callback: BodyResponseCallback<Schema$StreamObject>
+    ): void;
+    lookup(
+      params: Params$Resource$Projects$Locations$Streams$Objects$Lookup,
+      callback: BodyResponseCallback<Schema$StreamObject>
+    ): void;
+    lookup(callback: BodyResponseCallback<Schema$StreamObject>): void;
+    lookup(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Streams$Objects$Lookup
+        | BodyResponseCallback<Schema$StreamObject>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$StreamObject>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$StreamObject>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$StreamObject> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Streams$Objects$Lookup;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Streams$Objects$Lookup;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datastream.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/objects:lookup').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$StreamObject>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$StreamObject>(parameters);
+      }
+    }
+
+    /**
      * Starts backfill job for the specified stream object.
      * @example
      * ```js
@@ -5791,7 +5803,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5809,6 +5821,12 @@ export namespace datastream_v1alpha1 {
      *       // Required. The name of the stream object resource to start a backfill job for.
      *       object:
      *         'projects/my-project/locations/my-location/streams/my-stream/objects/my-object',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
      *     });
      *   console.log(res.data);
      *
@@ -5894,7 +5912,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+object}:startBackfillJob').replace(
+            url: (rootUrl + '/v1/{+object}:startBackfillJob').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5930,7 +5948,7 @@ export namespace datastream_v1alpha1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datastream = google.datastream('v1alpha1');
+     * const datastream = google.datastream('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5948,6 +5966,12 @@ export namespace datastream_v1alpha1 {
      *       // Required. The name of the stream object resource to stop the backfill job for.
      *       object:
      *         'projects/my-project/locations/my-location/streams/my-stream/objects/my-object',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
      *     });
      *   console.log(res.data);
      *
@@ -6033,7 +6057,7 @@ export namespace datastream_v1alpha1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha1/{+object}:stopBackfillJob').replace(
+            url: (rootUrl + '/v1/{+object}:stopBackfillJob').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6079,12 +6103,29 @@ export namespace datastream_v1alpha1 {
      */
     parent?: string;
   }
+  export interface Params$Resource$Projects$Locations$Streams$Objects$Lookup
+    extends StandardParameters {
+    /**
+     * Required. The parent stream that owns the collection of objects.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LookupStreamObjectRequest;
+  }
   export interface Params$Resource$Projects$Locations$Streams$Objects$Startbackfilljob
     extends StandardParameters {
     /**
      * Required. The name of the stream object resource to start a backfill job for.
      */
     object?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartBackfillJobRequest;
   }
   export interface Params$Resource$Projects$Locations$Streams$Objects$Stopbackfilljob
     extends StandardParameters {
@@ -6092,5 +6133,10 @@ export namespace datastream_v1alpha1 {
      * Required. The name of the stream object resource to stop the backfill job for.
      */
     object?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopBackfillJobRequest;
   }
 }
