@@ -308,7 +308,7 @@
       }
     }
   },
-  "revision": "20210901",
+  "revision": "20211029",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
@@ -568,6 +568,53 @@
             "Request has completed successfully.",
             "Request has finished being processed, but encountered an error.",
             "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDatastoreAdminV1DatastoreFirestoreMigrationMetadata": {
+      "description": "Metadata for Datastore to Firestore migration operations. The DatastoreFirestoreMigration operation is not started by the end-user via an explicit \"creation\" method. This is an intentional deviation from the LRO design pattern. This singleton resource can be accessed at: \"projects/{project_id}/datastore-firestore-migration\"",
+      "id": "GoogleDatastoreAdminV1DatastoreFirestoreMigrationMetadata",
+      "properties": {
+        "migrationState": {
+          "description": "The current state of migration from Cloud Datastore to Cloud Firestore in Datastore mode.",
+          "enum": [
+            "MIGRATION_STATE_UNSPECIFIED",
+            "RUNNING",
+            "PAUSED",
+            "COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "The migration is running.",
+            "The migration is paused.",
+            "The migration is complete."
+          ],
+          "type": "string"
+        },
+        "migrationStep": {
+          "description": "The current step of migration from Cloud Datastore to Cloud Firestore in Datastore mode.",
+          "enum": [
+            "MIGRATION_STEP_UNSPECIFIED",
+            "PREPARE",
+            "START",
+            "APPLY_WRITES_SYNCHRONOUSLY",
+            "COPY_AND_VERIFY",
+            "REDIRECT_EVENTUALLY_CONSISTENT_READS",
+            "REDIRECT_STRONGLY_CONSISTENT_READS",
+            "REDIRECT_WRITES"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Pre-migration: the database is prepared for migration.",
+            "Start of migration.",
+            "Writes are applied synchronously to at least one replica.",
+            "Data is copied to Cloud Firestore and then verified to match the data in Cloud Datastore.",
+            "Eventually-consistent reads are redirected to Cloud Firestore.",
+            "Strongly-consistent reads are redirected to Cloud Firestore.",
+            "Writes are redirected to Cloud Firestore."
           ],
           "type": "string"
         }
