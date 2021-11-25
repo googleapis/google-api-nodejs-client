@@ -2784,6 +2784,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1AnalyzeContentRequest {
     /**
+     * Parameters for a human assist query.
+     */
+    assistQueryParams?: Schema$GoogleCloudDialogflowV2beta1AssistQueryParameters;
+    /**
      * An input event to send to Dialogflow.
      */
     eventInput?: Schema$GoogleCloudDialogflowV2beta1EventInput;
@@ -2928,6 +2932,15 @@ export namespace dialogflow_v2beta1 {
      * The article URI.
      */
     uri?: string | null;
+  }
+  /**
+   * Represents the parameters of human assist query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AssistQueryParameters {
+    /**
+     * Key-value filters on the metadata of documents returned by article suggestion. If specified, article suggestion only returns suggested documents that match all filters in their Document.metadata. Multiple values for a metadata key should be concatenated by comma. For example, filters to match all documents that have 'US' or 'CA' in their market metadata values and 'agent' in their user metadata values will be ``` documents_metadata_filters { key: "market" value: "US,CA" \} documents_metadata_filters { key: "user" value: "agent" \} ```
+     */
+    documentsMetadataFilters?: {[key: string]: string} | null;
   }
   /**
    * Defines the Automated Agent to connect to a conversation.
@@ -5263,6 +5276,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Participant {
     /**
+     * Optional. Key-value filters on the metadata of documents returned by article suggestion. If specified, article suggestion only returns suggested documents that match all filters in their Document.metadata. Multiple values for a metadata key should be concatenated by comma. For example, filters to match all documents that have 'US' or 'CA' in their market metadata values and 'agent' in their user metadata values will be ``` documents_metadata_filters { key: "market" value: "US,CA" \} documents_metadata_filters { key: "user" value: "agent" \} ```
+     */
+    documentsMetadataFilters?: {[key: string]: string} | null;
+    /**
      * Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
      */
     name?: string | null;
@@ -5618,6 +5635,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestArticlesRequest {
     /**
+     * Optional. Parameters for a human assist query.
+     */
+    assistQueryParams?: Schema$GoogleCloudDialogflowV2beta1AssistQueryParameters;
+    /**
      * Optional. Max number of messages prior to and including latest_message to use as context when compiling the suggestion. By default 20 and at most 50.
      */
     contextSize?: number | null;
@@ -5647,6 +5668,10 @@ export namespace dialogflow_v2beta1 {
    * The request message for Participants.SuggestFaqAnswers.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersRequest {
+    /**
+     * Optional. Parameters for a human assist query.
+     */
+    assistQueryParams?: Schema$GoogleCloudDialogflowV2beta1AssistQueryParameters;
     /**
      * Optional. Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.
      */
@@ -22037,6 +22062,7 @@ export namespace dialogflow_v2beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "assistQueryParams": {},
      *         //   "eventInput": {},
      *         //   "messageSendTime": "my_messageSendTime",
      *         //   "queryParams": {},
@@ -22198,6 +22224,7 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "documentsMetadataFilters": {},
      *       //   "name": "my_name",
      *       //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *       //   "role": "my_role"
@@ -22208,6 +22235,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role"
@@ -22352,6 +22380,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role"
@@ -22640,6 +22669,7 @@ export namespace dialogflow_v2beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "documentsMetadataFilters": {},
      *       //   "name": "my_name",
      *       //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *       //   "role": "my_role"
@@ -22650,6 +22680,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role"
@@ -23170,6 +23201,7 @@ export namespace dialogflow_v2beta1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -23326,6 +23358,7 @@ export namespace dialogflow_v2beta1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -38988,6 +39021,7 @@ export namespace dialogflow_v2beta1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "eventInput": {},
      *           //   "messageSendTime": "my_messageSendTime",
      *           //   "queryParams": {},
@@ -39152,6 +39186,7 @@ export namespace dialogflow_v2beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "documentsMetadataFilters": {},
      *         //   "name": "my_name",
      *         //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *         //   "role": "my_role"
@@ -39162,6 +39197,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role"
@@ -39307,6 +39343,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role"
@@ -39600,6 +39637,7 @@ export namespace dialogflow_v2beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "documentsMetadataFilters": {},
      *         //   "name": "my_name",
      *         //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *         //   "role": "my_role"
@@ -39610,6 +39648,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
      *   //   "role": "my_role"
@@ -39824,6 +39863,7 @@ export namespace dialogflow_v2beta1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -39980,6 +40020,7 @@ export namespace dialogflow_v2beta1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
