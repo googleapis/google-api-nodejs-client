@@ -232,7 +232,7 @@ export namespace redis_v1beta1 {
     gcsSource?: Schema$GcsSource;
   }
   /**
-   * A Google Cloud Redis instance. next id = 38
+   * A Google Cloud Redis instance.
    */
   export interface Schema$Instance {
     /**
@@ -316,7 +316,7 @@ export namespace redis_v1beta1 {
      */
     readEndpointPort?: number | null;
     /**
-     * Optional. Read replica mode.
+     * Optional. Read replica mode. Can only be specified when trying to create the instance.
      */
     readReplicasMode?: string | null;
     /**
@@ -328,7 +328,7 @@ export namespace redis_v1beta1 {
      */
     redisVersion?: string | null;
     /**
-     * Optional. The number of replica nodes. Valid range for standard tier is [1-5] and defaults to 2. Valid value for basic tier is 0 and defaults to 0.
+     * Optional. The number of replica nodes. The valid range for the Standard Tier with read replicas enabled is [1-5] and defaults to 2. If read replicas are not enabled for a Standard Tier instance, the only valid value is 1 and the default is 1. The valid value for basic tier is 0 and the default is also 0.
      */
     replicaCount?: number | null;
     /**
