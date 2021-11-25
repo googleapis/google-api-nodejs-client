@@ -1433,6 +1433,15 @@ export namespace container_v1beta1 {
     recurringWindow?: Schema$RecurringTimeWindow;
   }
   /**
+   * ManagedPrometheusConfig defines the configuration for Google Cloud Managed Service for Prometheus.
+   */
+  export interface Schema$ManagedPrometheusConfig {
+    /**
+     * Enable Managed Collection.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Master is the configuration for components on master.
    */
   export interface Schema$Master {}
@@ -1531,6 +1540,10 @@ export namespace container_v1beta1 {
      * Monitoring components configuration
      */
     componentConfig?: Schema$MonitoringComponentConfig;
+    /**
+     * Enable Google Cloud Managed Service for Prometheus in the cluster.
+     */
+    managedPrometheusConfig?: Schema$ManagedPrometheusConfig;
   }
   /**
    * NetworkConfig reports the relative names of network & subnetwork.
