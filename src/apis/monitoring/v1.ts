@@ -389,6 +389,19 @@ export namespace monitoring_v1 {
     metricsScopes?: Schema$MetricsScope[];
   }
   /**
+   * A widget that displays a stream of log.
+   */
+  export interface Schema$LogsPanel {
+    /**
+     * A filter that chooses which log entries to return. See Advanced Logs Queries (https://cloud.google.com/logging/docs/view/advanced-queries). Only log entries that match the filter are returned. An empty filter matches all log entries.
+     */
+    filter?: string | null;
+    /**
+     * The names of logging resources to collect logs for. Does not implicitly include the current host project. Currently only projects are supported. There must be at least one resource_name.
+     */
+    resourceNames?: string[] | null;
+  }
+  /**
    * Represents a Metrics Scope (https://cloud.google.com/monitoring/settings#concept-scope) in Cloud Monitoring, which specifies one or more Google projects and zero or more AWS accounts to monitor together.
    */
   export interface Schema$MetricsScope {
@@ -893,6 +906,10 @@ export namespace monitoring_v1 {
      * A blank space.
      */
     blank?: Schema$Empty;
+    /**
+     * A widget that shows a stream of logs.
+     */
+    logsPanel?: Schema$LogsPanel;
     /**
      * A scorecard summarizing time series data.
      */
