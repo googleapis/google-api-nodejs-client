@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20211101",
+  "revision": "20211108",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1561,7 +1561,7 @@
           "type": "array"
         },
         "type": {
-          "description": "The type of the command.",
+          "description": "The type of the command. See also params",
           "enum": [
             "COMMAND_TYPE_UNSPECIFIED",
             "LOCK",
