@@ -12,7 +12,7 @@
   "baseUrl": "https://binaryauthorization.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Binary Authorization",
-  "description": "The management interface for Binary Authorization, a system providing policy control for images deployed to Kubernetes Engine clusters. ",
+  "description": "The management interface for Binary Authorization, a service that provides policy-based deployment validation and control for images deployed to Google Kubernetes Engine (GKE), Anthos Service Mesh, Anthos Clusters, and Cloud Run. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/binary-authorization/",
   "fullyEncodeReservedExpansion": true,
@@ -551,7 +551,7 @@
       }
     }
   },
-  "revision": "20211105",
+  "revision": "20211112",
   "rootUrl": "https://binaryauthorization.googleapis.com/",
   "schemas": {
     "AdmissionRule": {
