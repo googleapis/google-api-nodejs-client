@@ -225,6 +225,10 @@ export namespace cloudfunctions_v1 {
      */
     description?: string | null;
     /**
+     * User managed repository created in Artifact Registry optionally with a customer managed encryption key. If specified, deployments will use Artifact Registry. If unspecified and the deployment is eligible to use Artifact Registry, GCF will create and use a repository named 'gcf-artifacts' for every deployed region. This is the repository to which the function docker image will be pushed after it is built by Cloud Build. It must match the pattern `projects/{project\}/locations/{location\}/repositories/{repository\}`. Cross-project repositories are not supported. Cross-location repositories are not supported. Repository format must be 'DOCKER'.
+     */
+    dockerRepository?: string | null;
+    /**
      * The name of the function (as defined in source code) that will be executed. Defaults to the resource name suffix, if not specified. For backward compatibility, if function with given name is not found, then the system will try to use function named "function". For Node.js this is name of a function exported by the module specified in `source_location`.
      */
     entryPoint?: string | null;
@@ -244,6 +248,10 @@ export namespace cloudfunctions_v1 {
      * The ingress settings for the function, controlling what traffic can reach it.
      */
     ingressSettings?: string | null;
+    /**
+     * Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt function resources. It must match the pattern `projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{crypto_key\}`. If specified, you must also provide an artifact registry repository using the `docker_repository` field that was created with the same KMS crypto key. The following service accounts need to be granted the role 'Cloud KMS CryptoKey Encrypter/Decrypter (roles/cloudkms.cryptoKeyEncrypterDecrypter)' on the Key/KeyRing/Project/Organization (least access preferred). 1. Google Cloud Functions service account (service-{project_number\}@gcf-admin-robot.iam.gserviceaccount.com) - Required to protect the function's image. 2. Google Storage service account (service-{project_number\}@gs-project-accounts.iam.gserviceaccount.com) - Required to protect the function's source code. If this service account does not exist, deploying a function without a KMS key or retrieving the service agent name provisions it. For more information, see https://cloud.google.com/storage/docs/projects#service-agents and https://cloud.google.com/storage/docs/getting-service-agent#gsutil. Google Cloud Functions delegates access to service agents to protect function resources in internal projects that are not accessible by the end user.
+     */
+    kmsKeyName?: string | null;
     /**
      * Labels associated with this Cloud Function.
      */
@@ -1356,11 +1364,13 @@ export namespace cloudfunctions_v1 {
      *       //   "buildName": "my_buildName",
      *       //   "buildWorkerPool": "my_buildWorkerPool",
      *       //   "description": "my_description",
+     *       //   "dockerRepository": "my_dockerRepository",
      *       //   "entryPoint": "my_entryPoint",
      *       //   "environmentVariables": {},
      *       //   "eventTrigger": {},
      *       //   "httpsTrigger": {},
      *       //   "ingressSettings": "my_ingressSettings",
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "maxInstances": 0,
      *       //   "minInstances": 0,
@@ -1949,11 +1959,13 @@ export namespace cloudfunctions_v1 {
      *   //   "buildName": "my_buildName",
      *   //   "buildWorkerPool": "my_buildWorkerPool",
      *   //   "description": "my_description",
+     *   //   "dockerRepository": "my_dockerRepository",
      *   //   "entryPoint": "my_entryPoint",
      *   //   "environmentVariables": {},
      *   //   "eventTrigger": {},
      *   //   "httpsTrigger": {},
      *   //   "ingressSettings": "my_ingressSettings",
+     *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "maxInstances": 0,
      *   //   "minInstances": 0,
@@ -2092,7 +2104,7 @@ export namespace cloudfunctions_v1 {
      *
      *   // Do the magic
      *   const res = await cloudfunctions.projects.locations.functions.getIamPolicy({
-     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/functions/my-function',
@@ -2384,11 +2396,13 @@ export namespace cloudfunctions_v1 {
      *       //   "buildName": "my_buildName",
      *       //   "buildWorkerPool": "my_buildWorkerPool",
      *       //   "description": "my_description",
+     *       //   "dockerRepository": "my_dockerRepository",
      *       //   "entryPoint": "my_entryPoint",
      *       //   "environmentVariables": {},
      *       //   "eventTrigger": {},
      *       //   "httpsTrigger": {},
      *       //   "ingressSettings": "my_ingressSettings",
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "maxInstances": 0,
      *       //   "minInstances": 0,
@@ -2869,7 +2883,7 @@ export namespace cloudfunctions_v1 {
   export interface Params$Resource$Projects$Locations$Functions$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
