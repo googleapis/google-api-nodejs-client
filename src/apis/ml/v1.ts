@@ -684,6 +684,10 @@ export namespace ml_v1 {
      */
     jobId?: string | null;
     /**
+     * Output only. It's only effect when the job is in QUEUED state. If it's positive, it indicates the job's position in the job scheduler. It's 0 when the job is already scheduled.
+     */
+    jobPosition?: string | null;
+    /**
      * Optional. One or more labels that you can add, to organize your jobs. Each label is a key-value pair, where both the key and the value are arbitrary strings that you supply. For more information, see the documentation on using labels.
      */
     labels?: {[key: string]: string} | null;
@@ -2348,6 +2352,7 @@ export namespace ml_v1 {
      *       //   "errorMessage": "my_errorMessage",
      *       //   "etag": "my_etag",
      *       //   "jobId": "my_jobId",
+     *       //   "jobPosition": "my_jobPosition",
      *       //   "labels": {},
      *       //   "predictionInput": {},
      *       //   "predictionOutput": {},
@@ -2367,6 +2372,7 @@ export namespace ml_v1 {
      *   //   "errorMessage": "my_errorMessage",
      *   //   "etag": "my_etag",
      *   //   "jobId": "my_jobId",
+     *   //   "jobPosition": "my_jobPosition",
      *   //   "labels": {},
      *   //   "predictionInput": {},
      *   //   "predictionOutput": {},
@@ -2512,6 +2518,7 @@ export namespace ml_v1 {
      *   //   "errorMessage": "my_errorMessage",
      *   //   "etag": "my_etag",
      *   //   "jobId": "my_jobId",
+     *   //   "jobPosition": "my_jobPosition",
      *   //   "labels": {},
      *   //   "predictionInput": {},
      *   //   "predictionOutput": {},
@@ -2642,7 +2649,7 @@ export namespace ml_v1 {
      *
      *   // Do the magic
      *   const res = await ml.projects.jobs.getIamPolicy({
-     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/jobs/my-job',
@@ -2940,6 +2947,7 @@ export namespace ml_v1 {
      *       //   "errorMessage": "my_errorMessage",
      *       //   "etag": "my_etag",
      *       //   "jobId": "my_jobId",
+     *       //   "jobPosition": "my_jobPosition",
      *       //   "labels": {},
      *       //   "predictionInput": {},
      *       //   "predictionOutput": {},
@@ -2959,6 +2967,7 @@ export namespace ml_v1 {
      *   //   "errorMessage": "my_errorMessage",
      *   //   "etag": "my_etag",
      *   //   "jobId": "my_jobId",
+     *   //   "jobPosition": "my_jobPosition",
      *   //   "labels": {},
      *   //   "predictionInput": {},
      *   //   "predictionOutput": {},
@@ -3389,7 +3398,7 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Jobs$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -6721,7 +6730,7 @@ export namespace ml_v1 {
      *
      *   // Do the magic
      *   const res = await ml.projects.models.getIamPolicy({
-     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/models/my-model',
@@ -7459,7 +7468,7 @@ export namespace ml_v1 {
   export interface Params$Resource$Projects$Models$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
