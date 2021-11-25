@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebasedynamiclinks-v0.2.0...firebasedynamiclinks-v0.2.1) (2021-11-25)
+
+
+### Bug Fixes
+
+* **firebasedynamiclinks:** update the API ([18c9b30](https://www.github.com/googleapis/google-api-nodejs-client/commit/18c9b30f02d8f1a800532b9a5846816aeb63e6d0))
+
 ## [0.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebasedynamiclinks-v0.1.0...firebasedynamiclinks-v0.2.0) (2021-09-14)
 
 
