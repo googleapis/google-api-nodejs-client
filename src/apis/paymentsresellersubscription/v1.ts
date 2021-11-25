@@ -366,6 +366,10 @@ export namespace paymentsresellersubscription_v1 {
      */
     redirectUri?: string | null;
     /**
+     * Output only. The time at which the subscription is expected to be renewed by Google - a new charge will be incurred and the service entitlement will be renewed. A non-immediate cancellation will take place at this time too, before which, the service entitlement for the end user will remain valid. UTC timezone in ISO 8061 format. For example: "2019-08-31T17:28:54.564Z"
+     */
+    renewalTime?: string | null;
+    /**
      * Required. The location that the service is provided as indicated by the partner.
      */
     serviceLocation?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Location;
@@ -985,6 +989,7 @@ export namespace paymentsresellersubscription_v1 {
      *       //   "products": [],
      *       //   "promotions": [],
      *       //   "redirectUri": "my_redirectUri",
+     *       //   "renewalTime": "my_renewalTime",
      *       //   "serviceLocation": {},
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime",
@@ -1007,6 +1012,7 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "products": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",
+     *   //   "renewalTime": "my_renewalTime",
      *   //   "serviceLocation": {},
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime",
@@ -1457,6 +1463,7 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "products": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",
+     *   //   "renewalTime": "my_renewalTime",
      *   //   "serviceLocation": {},
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime",
@@ -1611,6 +1618,7 @@ export namespace paymentsresellersubscription_v1 {
      *         //   "products": [],
      *         //   "promotions": [],
      *         //   "redirectUri": "my_redirectUri",
+     *         //   "renewalTime": "my_renewalTime",
      *         //   "serviceLocation": {},
      *         //   "state": "my_state",
      *         //   "updateTime": "my_updateTime",
@@ -1633,6 +1641,7 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "products": [],
      *   //   "promotions": [],
      *   //   "redirectUri": "my_redirectUri",
+     *   //   "renewalTime": "my_renewalTime",
      *   //   "serviceLocation": {},
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime",
