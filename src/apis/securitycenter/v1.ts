@@ -227,6 +227,19 @@ export namespace securitycenter_v1 {
     role?: string | null;
   }
   /**
+   * Request message for bulk findings update. Note: 1. If multiple bulk update requests match the same resource, the order in which they get executed is not defined. 2. Once a bulk operation is started, there is no way to stop it.
+   */
+  export interface Schema$BulkMuteFindingsRequest {
+    /**
+     * Expression that identifies findings that should be updated. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource. The supported operators are: * `=` for all value types. * `\>`, `<`, `\>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.
+     */
+    filter?: string | null;
+    /**
+     * This can be a mute configuration name or any identifier for mute/unmute of findings based on the filter.
+     */
+    muteAnnotation?: string | null;
+  }
+  /**
    * CVE stands for Common Vulnerabilities and Exposures. More information: https://cve.mitre.org
    */
   export interface Schema$Cve {
@@ -330,6 +343,12 @@ export namespace securitycenter_v1 {
      */
     eventTime?: string | null;
     /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.
+     */
+    externalSystems?: {
+      [key: string]: Schema$GoogleCloudSecuritycenterV1ExternalSystem;
+    } | null;
+    /**
      * The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
      */
     externalUri?: string | null;
@@ -341,6 +360,18 @@ export namespace securitycenter_v1 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined).
+     */
+    mute?: string | null;
+    /**
+     * First known as mute_annotation. Records additional information about the mute operation e.g. mute config that muted the finding, user who muted the finding, etc.
+     */
+    muteInitiator?: string | null;
+    /**
+     * Output only. The most recent time this finding was muted or unmuted.
+     */
+    muteUpdateTime?: string | null;
     /**
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
@@ -417,6 +448,64 @@ export namespace securitycenter_v1 {
      * The state of an asset discovery run.
      */
     state?: string | null;
+  }
+  /**
+   * Representation of third party SIEM/SOAR fields within SCC.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ExternalSystem {
+    /**
+     * References primary/secondary etc assignees in the external system.
+     */
+    assignees?: string[] | null;
+    /**
+     * The most recent time when the corresponding finding's ticket/tracker was updated in the external system.
+     */
+    externalSystemUpdateTime?: string | null;
+    /**
+     * Identifier that's used to track the given finding in the external system.
+     */
+    externalUid?: string | null;
+    /**
+     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     */
+    name?: string | null;
+    /**
+     * Most recent status of the corresponding finding's ticket/tracker in the external system.
+     */
+    status?: string | null;
+  }
+  /**
+   * A mute config is a Cloud SCC resource that contains the configuration to mute create/update events of findings.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1MuteConfig {
+    /**
+     * Output only. The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.
+     */
+    createTime?: string | null;
+    /**
+     * A description of the mute config.
+     */
+    description?: string | null;
+    /**
+     * The human readable name to be displayed for the mute config.
+     */
+    displayName?: string | null;
+    /**
+     * Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`
+     */
+    filter?: string | null;
+    /**
+     * Output only. Email address of the user who last edited the mute config. This field is set by the server and will be ignored if provided on config creation or update.
+     */
+    mostRecentEditor?: string | null;
+    /**
+     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.
+     */
+    updateTime?: string | null;
   }
   /**
    * Cloud SCC's Notification
@@ -835,6 +924,19 @@ export namespace securitycenter_v1 {
     stateChange?: string | null;
   }
   /**
+   * Response message for listing mute configs.
+   */
+  export interface Schema$ListMuteConfigsResponse {
+    /**
+     * The mute configs from the specified parent.
+     */
+    muteConfigs?: Schema$GoogleCloudSecuritycenterV1MuteConfig[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for listing notification configs.
    */
   export interface Schema$ListNotificationConfigsResponse {
@@ -1100,6 +1202,15 @@ export namespace securitycenter_v1 {
     updateMask?: string | null;
   }
   /**
+   * Request message for updating a finding's mute status.
+   */
+  export interface Schema$SetMuteRequest {
+    /**
+     * Required. The desired state of the Mute.
+     */
+    mute?: string | null;
+  }
+  /**
    * Security Command Center finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, and other tools.
    */
   export interface Schema$Source {
@@ -1177,10 +1288,14 @@ export namespace securitycenter_v1 {
   export class Resource$Folders {
     context: APIRequestContext;
     assets: Resource$Folders$Assets;
+    findings: Resource$Folders$Findings;
+    muteConfigs: Resource$Folders$Muteconfigs;
     sources: Resource$Folders$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Folders$Assets(this.context);
+      this.findings = new Resource$Folders$Findings(this.context);
+      this.muteConfigs = new Resource$Folders$Muteconfigs(this.context);
       this.sources = new Resource$Folders$Sources(this.context);
     }
   }
@@ -1704,6 +1819,964 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$SecurityMarks;
   }
 
+  export class Resource$Folders$Findings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Kicks off an LRO to bulk mute findings for a parent based on a filter. The parent can be either an organization, folder or project. The findings matched by the filter will be muted after the LRO is done.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.findings.bulkMute({
+     *     // Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "muteAnnotation": "my_muteAnnotation"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkMute(
+      params: Params$Resource$Folders$Findings$Bulkmute,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkMute(
+      params?: Params$Resource$Folders$Findings$Bulkmute,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    bulkMute(
+      params: Params$Resource$Folders$Findings$Bulkmute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkMute(
+      params: Params$Resource$Folders$Findings$Bulkmute,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    bulkMute(
+      params: Params$Resource$Folders$Findings$Bulkmute,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    bulkMute(callback: BodyResponseCallback<Schema$Operation>): void;
+    bulkMute(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Findings$Bulkmute
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Findings$Bulkmute;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Findings$Bulkmute;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/findings:bulkMute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Findings$Bulkmute
+    extends StandardParameters {
+    /**
+     * Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkMuteFindingsRequest;
+  }
+
+  export class Resource$Folders$Muteconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.muteConfigs.create({
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     muteConfigId: 'placeholder-value',
+     *     // Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Muteconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Folders$Muteconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    create(
+      params: Params$Resource$Folders$Muteconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Muteconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Muteconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Muteconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Muteconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Muteconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an existing mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.muteConfigs.delete({
+     *     // Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     *     name: 'folders/my-folder/muteConfigs/my-muteConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Muteconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Folders$Muteconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Muteconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Muteconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Muteconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Muteconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Muteconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Muteconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.muteConfigs.get({
+     *     // Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     *     name: 'folders/my-folder/muteConfigs/my-muteConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Muteconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Muteconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    get(
+      params: Params$Resource$Folders$Muteconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Muteconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Muteconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Muteconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Muteconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Muteconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists mute configs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.muteConfigs.list({
+     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "muteConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Muteconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Muteconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMuteConfigsResponse>;
+    list(
+      params: Params$Resource$Folders$Muteconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Muteconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Muteconfigs$List,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Muteconfigs$List
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMuteConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Muteconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Muteconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMuteConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMuteConfigsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.muteConfigs.patch({
+     *     // This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     *     name: 'folders/my-folder/muteConfigs/my-muteConfig',
+     *     // The list of fields to be updated. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Muteconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Muteconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    patch(
+      params: Params$Resource$Folders$Muteconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Muteconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Muteconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Muteconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Muteconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Muteconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Muteconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    muteConfigId?: string;
+    /**
+     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
+  }
+  export interface Params$Resource$Folders$Muteconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Muteconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Muteconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Muteconfigs$Patch
+    extends StandardParameters {
+    /**
+     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
+  }
+
   export class Resource$Folders$Sources {
     context: APIRequestContext;
     findings: Resource$Folders$Sources$Findings;
@@ -1869,8 +2942,11 @@ export namespace securitycenter_v1 {
 
   export class Resource$Folders$Sources$Findings {
     context: APIRequestContext;
+    externalSystems: Resource$Folders$Sources$Findings$Externalsystems;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.externalSystems =
+        new Resource$Folders$Sources$Findings$Externalsystems(this.context);
     }
 
     /**
@@ -2216,9 +3292,13 @@ export namespace securitycenter_v1 {
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
+     *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
      *       //   "indicator": {},
+     *       //   "mute": "my_mute",
+     *       //   "muteInitiator": "my_muteInitiator",
+     *       //   "muteUpdateTime": "my_muteUpdateTime",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
@@ -2238,9 +3318,13 @@ export namespace securitycenter_v1 {
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -2342,6 +3426,162 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Updates the mute state of a finding.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.sources.findings.setMute({
+     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     name: 'folders/my-folder/sources/my-source/findings/my-finding',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "mute": "my_mute"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "canonicalName": "my_canonicalName",
+     *   //   "category": "my_category",
+     *   //   "createTime": "my_createTime",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
+     *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "securityMarks": {},
+     *   //   "severity": "my_severity",
+     *   //   "sourceProperties": {},
+     *   //   "state": "my_state",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setMute(
+      params: Params$Resource$Folders$Sources$Findings$Setmute,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setMute(
+      params?: Params$Resource$Folders$Sources$Findings$Setmute,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Finding>;
+    setMute(
+      params: Params$Resource$Folders$Sources$Findings$Setmute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setMute(
+      params: Params$Resource$Folders$Sources$Findings$Setmute,
+      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    setMute(
+      params: Params$Resource$Folders$Sources$Findings$Setmute,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    setMute(callback: BodyResponseCallback<Schema$Finding>): void;
+    setMute(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Sources$Findings$Setmute
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Finding> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Sources$Findings$Setmute;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Sources$Findings$Setmute;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setMute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Finding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Finding>(parameters);
+      }
+    }
+
+    /**
      * Updates the state of a finding.
      * @example
      * ```js
@@ -2388,9 +3628,13 @@ export namespace securitycenter_v1 {
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -2706,6 +3950,18 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Finding;
   }
+  export interface Params$Resource$Folders$Sources$Findings$Setmute
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetMuteRequest;
+  }
   export interface Params$Resource$Folders$Sources$Findings$Setstate
     extends StandardParameters {
     /**
@@ -2739,15 +3995,199 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$SecurityMarks;
   }
 
+  export class Resource$Folders$Sources$Findings$Externalsystems {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Updates external system. This is for a given finding.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.folders.sources.findings.externalSystems.patch({
+     *       // External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     *       name: 'folders/my-folder/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
+     *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignees": [],
+     *         //   "externalSystemUpdateTime": "my_externalSystemUpdateTime",
+     *         //   "externalUid": "my_externalUid",
+     *         //   "name": "my_name",
+     *         //   "status": "my_status"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignees": [],
+     *   //   "externalSystemUpdateTime": "my_externalSystemUpdateTime",
+     *   //   "externalUid": "my_externalUid",
+     *   //   "name": "my_name",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Sources$Findings$Externalsystems$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Sources$Findings$Externalsystems$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ExternalSystem>;
+    patch(
+      params: Params$Resource$Folders$Sources$Findings$Externalsystems$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Sources$Findings$Externalsystems$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Sources$Findings$Externalsystems$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Sources$Findings$Externalsystems$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Sources$Findings$Externalsystems$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Sources$Findings$Externalsystems$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1ExternalSystem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1ExternalSystem>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Sources$Findings$Externalsystems$Patch
+    extends StandardParameters {
+    /**
+     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     */
+    name?: string;
+    /**
+     * The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1ExternalSystem;
+  }
+
   export class Resource$Organizations {
     context: APIRequestContext;
     assets: Resource$Organizations$Assets;
+    findings: Resource$Organizations$Findings;
+    muteConfigs: Resource$Organizations$Muteconfigs;
     notificationConfigs: Resource$Organizations$Notificationconfigs;
     operations: Resource$Organizations$Operations;
     sources: Resource$Organizations$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Organizations$Assets(this.context);
+      this.findings = new Resource$Organizations$Findings(this.context);
+      this.muteConfigs = new Resource$Organizations$Muteconfigs(this.context);
       this.notificationConfigs = new Resource$Organizations$Notificationconfigs(
         this.context
       );
@@ -3733,6 +5173,964 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityMarks;
+  }
+
+  export class Resource$Organizations$Findings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Kicks off an LRO to bulk mute findings for a parent based on a filter. The parent can be either an organization, folder or project. The findings matched by the filter will be muted after the LRO is done.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.findings.bulkMute({
+     *     // Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "muteAnnotation": "my_muteAnnotation"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkMute(
+      params: Params$Resource$Organizations$Findings$Bulkmute,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkMute(
+      params?: Params$Resource$Organizations$Findings$Bulkmute,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    bulkMute(
+      params: Params$Resource$Organizations$Findings$Bulkmute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkMute(
+      params: Params$Resource$Organizations$Findings$Bulkmute,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    bulkMute(
+      params: Params$Resource$Organizations$Findings$Bulkmute,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    bulkMute(callback: BodyResponseCallback<Schema$Operation>): void;
+    bulkMute(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Findings$Bulkmute
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Findings$Bulkmute;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Findings$Bulkmute;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/findings:bulkMute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Findings$Bulkmute
+    extends StandardParameters {
+    /**
+     * Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkMuteFindingsRequest;
+  }
+
+  export class Resource$Organizations$Muteconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.muteConfigs.create({
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     muteConfigId: 'placeholder-value',
+     *     // Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Muteconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Muteconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    create(
+      params: Params$Resource$Organizations$Muteconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Muteconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Muteconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Muteconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Muteconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Muteconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an existing mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.muteConfigs.delete({
+     *     // Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     *     name: 'organizations/my-organization/muteConfigs/my-muteConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Muteconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Muteconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Muteconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Muteconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Muteconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Muteconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Muteconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Muteconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.muteConfigs.get({
+     *     // Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     *     name: 'organizations/my-organization/muteConfigs/my-muteConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Muteconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Muteconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    get(
+      params: Params$Resource$Organizations$Muteconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Muteconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Muteconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Muteconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Muteconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Muteconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists mute configs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.muteConfigs.list({
+     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "muteConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Muteconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Muteconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMuteConfigsResponse>;
+    list(
+      params: Params$Resource$Organizations$Muteconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Muteconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Muteconfigs$List,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Muteconfigs$List
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMuteConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Muteconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Muteconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMuteConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMuteConfigsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.muteConfigs.patch({
+     *     // This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     *     name: 'organizations/my-organization/muteConfigs/my-muteConfig',
+     *     // The list of fields to be updated. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Muteconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Muteconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    patch(
+      params: Params$Resource$Organizations$Muteconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Muteconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Muteconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Muteconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Muteconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Muteconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Muteconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    muteConfigId?: string;
+    /**
+     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
+  }
+  export interface Params$Resource$Organizations$Muteconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Muteconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Muteconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Muteconfigs$Patch
+    extends StandardParameters {
+    /**
+     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
   }
 
   export class Resource$Organizations$Notificationconfigs {
@@ -6155,8 +8553,13 @@ export namespace securitycenter_v1 {
 
   export class Resource$Organizations$Sources$Findings {
     context: APIRequestContext;
+    externalSystems: Resource$Organizations$Sources$Findings$Externalsystems;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.externalSystems =
+        new Resource$Organizations$Sources$Findings$Externalsystems(
+          this.context
+        );
     }
 
     /**
@@ -6199,9 +8602,13 @@ export namespace securitycenter_v1 {
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
+     *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
      *       //   "indicator": {},
+     *       //   "mute": "my_mute",
+     *       //   "muteInitiator": "my_muteInitiator",
+     *       //   "muteUpdateTime": "my_muteUpdateTime",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
@@ -6221,9 +8628,13 @@ export namespace securitycenter_v1 {
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -6670,9 +9081,13 @@ export namespace securitycenter_v1 {
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
+     *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
      *       //   "indicator": {},
+     *       //   "mute": "my_mute",
+     *       //   "muteInitiator": "my_muteInitiator",
+     *       //   "muteUpdateTime": "my_muteUpdateTime",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
@@ -6692,9 +9107,13 @@ export namespace securitycenter_v1 {
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -6796,6 +9215,162 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Updates the mute state of a finding.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.sources.findings.setMute({
+     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     name: 'organizations/my-organization/sources/my-source/findings/my-finding',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "mute": "my_mute"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "canonicalName": "my_canonicalName",
+     *   //   "category": "my_category",
+     *   //   "createTime": "my_createTime",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
+     *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "securityMarks": {},
+     *   //   "severity": "my_severity",
+     *   //   "sourceProperties": {},
+     *   //   "state": "my_state",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setMute(
+      params: Params$Resource$Organizations$Sources$Findings$Setmute,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setMute(
+      params?: Params$Resource$Organizations$Sources$Findings$Setmute,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Finding>;
+    setMute(
+      params: Params$Resource$Organizations$Sources$Findings$Setmute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setMute(
+      params: Params$Resource$Organizations$Sources$Findings$Setmute,
+      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    setMute(
+      params: Params$Resource$Organizations$Sources$Findings$Setmute,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    setMute(callback: BodyResponseCallback<Schema$Finding>): void;
+    setMute(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Findings$Setmute
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Finding> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Findings$Setmute;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Sources$Findings$Setmute;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setMute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Finding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Finding>(parameters);
+      }
+    }
+
+    /**
      * Updates the state of a finding.
      * @example
      * ```js
@@ -6842,9 +9417,13 @@ export namespace securitycenter_v1 {
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -7175,6 +9754,18 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Finding;
   }
+  export interface Params$Resource$Organizations$Sources$Findings$Setmute
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetMuteRequest;
+  }
   export interface Params$Resource$Organizations$Sources$Findings$Setstate
     extends StandardParameters {
     /**
@@ -7208,13 +9799,197 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$SecurityMarks;
   }
 
+  export class Resource$Organizations$Sources$Findings$Externalsystems {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Updates external system. This is for a given finding.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.sources.findings.externalSystems.patch({
+     *       // External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     *       name: 'organizations/my-organization/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
+     *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignees": [],
+     *         //   "externalSystemUpdateTime": "my_externalSystemUpdateTime",
+     *         //   "externalUid": "my_externalUid",
+     *         //   "name": "my_name",
+     *         //   "status": "my_status"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignees": [],
+     *   //   "externalSystemUpdateTime": "my_externalSystemUpdateTime",
+     *   //   "externalUid": "my_externalUid",
+     *   //   "name": "my_name",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ExternalSystem>;
+    patch(
+      params: Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1ExternalSystem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1ExternalSystem>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch
+    extends StandardParameters {
+    /**
+     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     */
+    name?: string;
+    /**
+     * The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1ExternalSystem;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     assets: Resource$Projects$Assets;
+    findings: Resource$Projects$Findings;
+    muteConfigs: Resource$Projects$Muteconfigs;
     sources: Resource$Projects$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Projects$Assets(this.context);
+      this.findings = new Resource$Projects$Findings(this.context);
+      this.muteConfigs = new Resource$Projects$Muteconfigs(this.context);
       this.sources = new Resource$Projects$Sources(this.context);
     }
   }
@@ -7738,6 +10513,964 @@ export namespace securitycenter_v1 {
     requestBody?: Schema$SecurityMarks;
   }
 
+  export class Resource$Projects$Findings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Kicks off an LRO to bulk mute findings for a parent based on a filter. The parent can be either an organization, folder or project. The findings matched by the filter will be muted after the LRO is done.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.findings.bulkMute({
+     *     // Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "muteAnnotation": "my_muteAnnotation"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkMute(
+      params: Params$Resource$Projects$Findings$Bulkmute,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkMute(
+      params?: Params$Resource$Projects$Findings$Bulkmute,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    bulkMute(
+      params: Params$Resource$Projects$Findings$Bulkmute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkMute(
+      params: Params$Resource$Projects$Findings$Bulkmute,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    bulkMute(
+      params: Params$Resource$Projects$Findings$Bulkmute,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    bulkMute(callback: BodyResponseCallback<Schema$Operation>): void;
+    bulkMute(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Findings$Bulkmute
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Findings$Bulkmute;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Findings$Bulkmute;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/findings:bulkMute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Findings$Bulkmute
+    extends StandardParameters {
+    /**
+     * Required. The parent, at which bulk action needs to be applied. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BulkMuteFindingsRequest;
+  }
+
+  export class Resource$Projects$Muteconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.muteConfigs.create({
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     muteConfigId: 'placeholder-value',
+     *     // Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Muteconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Muteconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    create(
+      params: Params$Resource$Projects$Muteconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Muteconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Muteconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Muteconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Muteconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Muteconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an existing mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.muteConfigs.delete({
+     *     // Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     *     name: 'projects/my-project/muteConfigs/my-muteConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Muteconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Muteconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Muteconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Muteconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Muteconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Muteconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Muteconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Muteconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.muteConfigs.get({
+     *     // Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     *     name: 'projects/my-project/muteConfigs/my-muteConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Muteconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Muteconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    get(
+      params: Params$Resource$Projects$Muteconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Muteconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Muteconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Muteconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Muteconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Muteconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists mute configs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.muteConfigs.list({
+     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "muteConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Muteconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Muteconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListMuteConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Muteconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Muteconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Muteconfigs$List,
+      callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListMuteConfigsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Muteconfigs$List
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListMuteConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListMuteConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Muteconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Muteconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/muteConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListMuteConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListMuteConfigsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a mute config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.muteConfigs.patch({
+     *     // This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     *     name: 'projects/my-project/muteConfigs/my-muteConfig',
+     *     // The list of fields to be updated. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Muteconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Muteconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>;
+    patch(
+      params: Params$Resource$Projects$Muteconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Muteconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Muteconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Muteconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1MuteConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Muteconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Muteconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1MuteConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Muteconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    muteConfigId?: string;
+    /**
+     * Required. Resource name of the new mute configs's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
+  }
+  export interface Params$Resource$Projects$Muteconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the mute config to delete. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Muteconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the mute config to retrieve. Its format is organizations/{organization\}/muteConfigs/{config_id\}, folders/{folder\}/muteConfigs/{config_id\}, or projects/{project\}/muteConfigs/{config_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Muteconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of mute configs. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Muteconfigs$Patch
+    extends StandardParameters {
+    /**
+     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1MuteConfig;
+  }
+
   export class Resource$Projects$Sources {
     context: APIRequestContext;
     findings: Resource$Projects$Sources$Findings;
@@ -7903,8 +11636,11 @@ export namespace securitycenter_v1 {
 
   export class Resource$Projects$Sources$Findings {
     context: APIRequestContext;
+    externalSystems: Resource$Projects$Sources$Findings$Externalsystems;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.externalSystems =
+        new Resource$Projects$Sources$Findings$Externalsystems(this.context);
     }
 
     /**
@@ -8250,9 +11986,13 @@ export namespace securitycenter_v1 {
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
+     *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
      *       //   "indicator": {},
+     *       //   "mute": "my_mute",
+     *       //   "muteInitiator": "my_muteInitiator",
+     *       //   "muteUpdateTime": "my_muteUpdateTime",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
@@ -8272,9 +12012,13 @@ export namespace securitycenter_v1 {
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -8376,6 +12120,162 @@ export namespace securitycenter_v1 {
     }
 
     /**
+     * Updates the mute state of a finding.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.sources.findings.setMute({
+     *     // Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     *     name: 'projects/my-project/sources/my-source/findings/my-finding',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "mute": "my_mute"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "canonicalName": "my_canonicalName",
+     *   //   "category": "my_category",
+     *   //   "createTime": "my_createTime",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
+     *   //   "externalUri": "my_externalUri",
+     *   //   "findingClass": "my_findingClass",
+     *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "resourceName": "my_resourceName",
+     *   //   "securityMarks": {},
+     *   //   "severity": "my_severity",
+     *   //   "sourceProperties": {},
+     *   //   "state": "my_state",
+     *   //   "vulnerability": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setMute(
+      params: Params$Resource$Projects$Sources$Findings$Setmute,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setMute(
+      params?: Params$Resource$Projects$Sources$Findings$Setmute,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Finding>;
+    setMute(
+      params: Params$Resource$Projects$Sources$Findings$Setmute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setMute(
+      params: Params$Resource$Projects$Sources$Findings$Setmute,
+      options: MethodOptions | BodyResponseCallback<Schema$Finding>,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    setMute(
+      params: Params$Resource$Projects$Sources$Findings$Setmute,
+      callback: BodyResponseCallback<Schema$Finding>
+    ): void;
+    setMute(callback: BodyResponseCallback<Schema$Finding>): void;
+    setMute(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sources$Findings$Setmute
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Finding>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Finding> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sources$Findings$Setmute;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sources$Findings$Setmute;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:setMute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Finding>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Finding>(parameters);
+      }
+    }
+
+    /**
      * Updates the state of a finding.
      * @example
      * ```js
@@ -8422,9 +12322,13 @@ export namespace securitycenter_v1 {
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
+     *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mute": "my_mute",
+     *   //   "muteInitiator": "my_muteInitiator",
+     *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
@@ -8739,6 +12643,18 @@ export namespace securitycenter_v1 {
      */
     requestBody?: Schema$Finding;
   }
+  export interface Params$Resource$Projects$Sources$Findings$Setmute
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/finding/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/finding/{finding_id\}", "projects/{project_id\}/sources/{source_id\}/finding/{finding_id\}".
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetMuteRequest;
+  }
   export interface Params$Resource$Projects$Sources$Findings$Setstate
     extends StandardParameters {
     /**
@@ -8770,5 +12686,185 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityMarks;
+  }
+
+  export class Resource$Projects$Sources$Findings$Externalsystems {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Updates external system. This is for a given finding.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.projects.sources.findings.externalSystems.patch({
+     *       // External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     *       name: 'projects/my-project/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
+     *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignees": [],
+     *         //   "externalSystemUpdateTime": "my_externalSystemUpdateTime",
+     *         //   "externalUid": "my_externalUid",
+     *         //   "name": "my_name",
+     *         //   "status": "my_status"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignees": [],
+     *   //   "externalSystemUpdateTime": "my_externalSystemUpdateTime",
+     *   //   "externalUid": "my_externalUid",
+     *   //   "name": "my_name",
+     *   //   "status": "my_status"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Sources$Findings$Externalsystems$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Sources$Findings$Externalsystems$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ExternalSystem>;
+    patch(
+      params: Params$Resource$Projects$Sources$Findings$Externalsystems$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Sources$Findings$Externalsystems$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Sources$Findings$Externalsystems$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sources$Findings$Externalsystems$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1ExternalSystem>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sources$Findings$Externalsystems$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Sources$Findings$Externalsystems$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1ExternalSystem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1ExternalSystem>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Sources$Findings$Externalsystems$Patch
+    extends StandardParameters {
+    /**
+     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     */
+    name?: string;
+    /**
+     * The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1ExternalSystem;
   }
 }
