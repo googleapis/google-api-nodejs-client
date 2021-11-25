@@ -2,7 +2,7 @@
 
 # logging
 
-> Writes log entries and manages your Cloud Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the documentation at https://cloud.google.com/logging/docs.
+> Writes log entries and manages your Cloud Logging configuration.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
