@@ -350,6 +350,168 @@
         }
       }
     },
+    "savedQueries": {
+      "methods": {
+        "create": {
+          "description": "Creates a saved query in a parent project/folder/organization.",
+          "flatPath": "v1/{v1Id}/{v1Id1}/savedQueries",
+          "httpMethod": "POST",
+          "id": "cloudasset.savedQueries.create",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. The name of the project/folder/organization where this saved_query should be created in. It can only be an organization number (such as \"organizations/123\"), a folder number (such as \"folders/123\"), a project ID (such as \"projects/my-project-id\")\", or a project number (such as \"projects/12345\").",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "savedQueryId": {
+              "description": "Required. The ID to use for the saved query, which must be unique in the specified parent. It will become the final component of the saved query's resource name. This value should be 4-63 characters, and valid characters are /a-z-/. Notice that this field is required in the saved query creation, and the `name` field of the `saved_query` will be ignored.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}/savedQueries",
+          "request": {
+            "$ref": "SavedQuery"
+          },
+          "response": {
+            "$ref": "SavedQuery"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a saved query.",
+          "flatPath": "v1/{v1Id}/{v1Id1}/savedQueries/{savedQueriesId}",
+          "httpMethod": "DELETE",
+          "id": "cloudasset.savedQueries.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the saved query to delete. It must be in the format of: * projects/project_number/savedQueries/saved_query_id * folders/folder_number/savedQueries/saved_query_id * organizations/organization_number/savedQueries/saved_query_id",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+/savedQueries/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "get": {
+          "description": "Gets details about a saved query.",
+          "flatPath": "v1/{v1Id}/{v1Id1}/savedQueries/{savedQueriesId}",
+          "httpMethod": "GET",
+          "id": "cloudasset.savedQueries.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the saved query and it must be in the format of: * projects/project_number/savedQueries/saved_query_id * folders/folder_number/savedQueries/saved_query_id * organizations/organization_number/savedQueries/saved_query_id",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+/savedQueries/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "SavedQuery"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "list": {
+          "description": "Lists all saved queries in a parent project/folder/organization.",
+          "flatPath": "v1/{v1Id}/{v1Id1}/savedQueries",
+          "httpMethod": "GET",
+          "id": "cloudasset.savedQueries.list",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "Optional. The expression to filter resources. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. When `AND` and `OR` are both used in the expression, parentheses must be appropriately used to group the combinations. The expression may also contain regular expressions. See https://google.aip.dev/160 for more information on the grammar.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Optional. The maximum number of saved queries to return per page. The service may return fewer than this value. If unspecified, at most 50 will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A page token, received from a previous `ListSavedQueries` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSavedQueries` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The parent project/folder/organization whose savedQueries are to be listed. It can only be using project/folder/organization number (such as \"folders/12345\")\", or a project ID (such as \"projects/my-project-id\").",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}/savedQueries",
+          "response": {
+            "$ref": "ListSavedQueriesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "patch": {
+          "description": "Updates a saved query.",
+          "flatPath": "v1/{v1Id}/{v1Id1}/savedQueries/{savedQueriesId}",
+          "httpMethod": "PATCH",
+          "id": "cloudasset.savedQueries.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The resource name of the saved query. The format must be: * projects/project_number/savedQueries/saved_query_id * folders/folder_number/savedQueries/saved_query_id * organizations/organization_number/savedQueries/saved_query_id",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+/savedQueries/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The list of fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "request": {
+            "$ref": "SavedQuery"
+          },
+          "response": {
+            "$ref": "SavedQuery"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
     "v1": {
       "methods": {
         "analyzeIamPolicy": {
@@ -422,6 +584,11 @@
             "executionTimeout": {
               "description": "Optional. Amount of time executable has to complete. See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json). If this field is set with a value less than the RPC deadline, and the execution of your query hasn't finished in the specified execution timeout, you will get a response with partial result. Otherwise, your query's execution will continue until the RPC deadline. If it's not finished until then, you will get a DEADLINE_EXCEEDED error. Default is empty.",
               "format": "google-duration",
+              "location": "query",
+              "type": "string"
+            },
+            "savedAnalysisQuery": {
+              "description": "Optional. The name of a saved query, which must be in the format of: * projects/project_number/savedQueries/saved_query_id * folders/folder_number/savedQueries/saved_query_id * organizations/organization_number/savedQueries/saved_query_id If both `analysis_query` and `saved_analysis_query` are provided, they will be merged together with the `saved_analysis_query` as base and the `analysis_query` as overrides. For more details of the merge behavior, please refer to the [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details) page. Note that you cannot override primitive fields with default value, such as 0 or empty string, etc., because we use proto3, which doesn't support field presence yet.",
               "location": "query",
               "type": "string"
             },
@@ -727,7 +894,7 @@
       }
     }
   },
-  "revision": "20211022",
+  "revision": "20211105",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -775,6 +942,10 @@
         "outputConfig": {
           "$ref": "IamPolicyAnalysisOutputConfig",
           "description": "Required. Output configuration indicating where the results will be output to."
+        },
+        "savedAnalysisQuery": {
+          "description": "Optional. The name of a saved query, which must be in the format of: * projects/project_number/savedQueries/saved_query_id * folders/folder_number/savedQueries/saved_query_id * organizations/organization_number/savedQueries/saved_query_id If both `analysis_query` and `saved_analysis_query` are provided, they will be merged together with the `saved_analysis_query` as base and the `analysis_query` as overrides. For more details of the merge behavior, please refer to the [MergeFrom](https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.message#Message.MergeFrom.details) doc. Note that you cannot override primitive fields with default value, such as 0 or empty string, etc., because we use proto3, which doesn't support field presence yet.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2536,6 +2707,24 @@
       },
       "type": "object"
     },
+    "ListSavedQueriesResponse": {
+      "description": "Response of listing saved queries.",
+      "id": "ListSavedQueriesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "savedQueries": {
+          "description": "A list of savedQueries.",
+          "items": {
+            "$ref": "SavedQuery"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "MoveAnalysis": {
       "description": "A message to group the analysis information.",
       "id": "MoveAnalysis",
@@ -2780,6 +2969,17 @@
         "topic": {
           "description": "The name of the Pub/Sub topic to publish to. Example: `projects/PROJECT_ID/topics/TOPIC_ID`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueryContent": {
+      "description": "The query content.",
+      "id": "QueryContent",
+      "properties": {
+        "iamPolicyAnalysisQuery": {
+          "$ref": "IamPolicyAnalysisQuery",
+          "description": "An IAM Policy Analysis query, which could be used in the AssetService.AnalyzeIamPolicy rpc or the AssetService.AnalyzeIamPolicyLongrunning rpc."
         }
       },
       "type": "object"
@@ -3032,6 +3232,54 @@
       "properties": {
         "fullResourceName": {
           "description": "Required. The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of a resource of [supported resource types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#analyzable_asset_types).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SavedQuery": {
+      "description": "A saved query which can be shared with others or used later.",
+      "id": "SavedQuery",
+      "properties": {
+        "content": {
+          "$ref": "QueryContent",
+          "description": "The query content."
+        },
+        "createTime": {
+          "description": "Output only. The create time of this saved query.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creator": {
+          "description": "Output only. The account's email address who has created this saved query.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of this saved query. This value should be fewer than 255 characters.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels applied on the resource. This value should not contain more than 10 entries. The key and value of each entry must be non-empty and fewer than 64 characters.",
+          "type": "object"
+        },
+        "lastUpdateTime": {
+          "description": "Output only. The last update time of this saved query.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastUpdater": {
+          "description": "Output only. The account's email address who has updated this saved query most recently.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the saved query. The format must be: * projects/project_number/savedQueries/saved_query_id * folders/folder_number/savedQueries/saved_query_id * organizations/organization_number/savedQueries/saved_query_id",
           "type": "string"
         }
       },
