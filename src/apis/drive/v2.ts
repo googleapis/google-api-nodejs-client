@@ -891,6 +891,7 @@ export namespace drive_v2 {
      * Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.
      */
     capabilities?: {
+      canAcceptOwnership?: boolean;
       canAddChildren?: boolean;
       canAddFolderFromAnotherDrive?: boolean;
       canAddMyDriveParent?: boolean;
@@ -1382,6 +1383,10 @@ export namespace drive_v2 {
      * The name for this permission.
      */
     name?: string | null;
+    /**
+     * Whether the account associated with this permission is a pending owner. Only populated for user type permissions for files that are not in a shared drive.
+     */
+    pendingOwner?: boolean | null;
     /**
      * Details of whether the permissions on this shared drive item are inherited or directly on this item. This is an output-only field which is present only for shared drive items.
      */
@@ -10325,6 +10330,7 @@ export namespace drive_v2 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "pendingOwner": false,
      *   //   "permissionDetails": [],
      *   //   "photoLink": "my_photoLink",
      *   //   "role": "my_role",
@@ -10626,6 +10632,7 @@ export namespace drive_v2 {
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "pendingOwner": false,
      *       //   "permissionDetails": [],
      *       //   "photoLink": "my_photoLink",
      *       //   "role": "my_role",
@@ -10652,6 +10659,7 @@ export namespace drive_v2 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "pendingOwner": false,
      *   //   "permissionDetails": [],
      *   //   "photoLink": "my_photoLink",
      *   //   "role": "my_role",
@@ -10965,6 +10973,7 @@ export namespace drive_v2 {
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "pendingOwner": false,
      *       //   "permissionDetails": [],
      *       //   "photoLink": "my_photoLink",
      *       //   "role": "my_role",
@@ -10991,6 +11000,7 @@ export namespace drive_v2 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "pendingOwner": false,
      *   //   "permissionDetails": [],
      *   //   "photoLink": "my_photoLink",
      *   //   "role": "my_role",
@@ -11152,6 +11162,7 @@ export namespace drive_v2 {
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "pendingOwner": false,
      *       //   "permissionDetails": [],
      *       //   "photoLink": "my_photoLink",
      *       //   "role": "my_role",
@@ -11178,6 +11189,7 @@ export namespace drive_v2 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "pendingOwner": false,
      *   //   "permissionDetails": [],
      *   //   "photoLink": "my_photoLink",
      *   //   "role": "my_role",
