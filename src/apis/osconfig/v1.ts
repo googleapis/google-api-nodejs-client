@@ -1823,6 +1823,10 @@ export namespace osconfig_v1 {
      */
     installedInventoryItemIds?: string[] | null;
     /**
+     * List of items affected by the vulnerability.
+     */
+    items?: Schema$VulnerabilityReportVulnerabilityItem[];
+    /**
      * The timestamp for when the vulnerability was last modified.
      */
     updateTime?: string | null;
@@ -1870,9 +1874,34 @@ export namespace osconfig_v1 {
     url?: string | null;
   }
   /**
+   * OS inventory item that is affected by a vulnerability or fixed as a result of a vulnerability.
+   */
+  export interface Schema$VulnerabilityReportVulnerabilityItem {
+    /**
+     * Corresponds to the `AVAILABLE_PACKAGE` inventory item on the VM. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. If there is no available fix, the field is empty. The `inventory_item` value specifies the latest `SoftwarePackage` available to the VM that fixes the vulnerability.
+     */
+    availableInventoryItemId?: string | null;
+    /**
+     * The recommended [CPE URI](https://cpe.mitre.org/specification/) update that contains a fix for this vulnerability.
+     */
+    fixedCpeUri?: string | null;
+    /**
+     * Corresponds to the `INSTALLED_PACKAGE` inventory item on the VM. This field displays the inventory items affected by this vulnerability. If the vulnerability report was not updated after the VM inventory update, these values might not display in VM inventory. For some operating systems, this field might be empty.
+     */
+    installedInventoryItemId?: string | null;
+    /**
+     * The upstream OS patch, packages or KB that fixes the vulnerability.
+     */
+    upstreamFix?: string | null;
+  }
+  /**
    * Represents one week day in a month. An example is "the 4th Sunday".
    */
   export interface Schema$WeekDayOfMonth {
+    /**
+     * Optional. Represents the number of days before or after the given week day of month that the patch deployment is scheduled for. For example if `week_ordinal` and `day_of_week` values point to the second day of the month and this `day_offset` value is set to `3`, the patch deployment takes place three days after the second Tuesday of the month. If this value is negative, for example -5, the patches are deployed five days before before the second Tuesday of the month. Allowed values are in range [-30, 30].
+     */
+    dayOffset?: number | null;
     /**
      * Required. A day of the week.
      */
