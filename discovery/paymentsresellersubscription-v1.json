@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20211105",
+  "revision": "20211116",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
@@ -759,6 +759,12 @@
         },
         "redirectUri": {
           "description": "Output only. The place where partners should redirect the end-user to after creation. This field might also be populated when creation failed. However, Partners should always prepare a default URL to redirect the user in case this field is empty.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "renewalTime": {
+          "description": "Output only. The time at which the subscription is expected to be renewed by Google - a new charge will be incurred and the service entitlement will be renewed. A non-immediate cancellation will take place at this time too, before which, the service entitlement for the end user will remain valid. UTC timezone in ISO 8061 format. For example: \"2019-08-31T17:28:54.564Z\"",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
