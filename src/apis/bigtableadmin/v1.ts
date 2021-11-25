@@ -123,6 +123,28 @@ export namespace bigtableadmin_v1 {
   }
 
   /**
+   * Limits for the number of nodes a Cluster can autoscale up/down to.
+   */
+  export interface Schema$AutoscalingLimits {
+    /**
+     * Required. Maximum number of nodes to scale up to.
+     */
+    maxServeNodes?: number | null;
+    /**
+     * Required. Minimum number of nodes to scale down to.
+     */
+    minServeNodes?: number | null;
+  }
+  /**
+   * The Autoscaling targets for a Cluster. These determine the recommended nodes.
+   */
+  export interface Schema$AutoscalingTargets {
+    /**
+     * The cpu utilization that the Autoscaler should be trying to achieve. This number is on a scale from 0 (no utilization) to 100 (total utilization).
+     */
+    cpuUtilizationPercent?: number | null;
+  }
+  /**
    * A backup of a Cloud Bigtable table.
    */
   export interface Schema$Backup {
@@ -185,6 +207,10 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$Cluster {
     /**
+     * Configuration for this cluster.
+     */
+    clusterConfig?: Schema$ClusterConfig;
+    /**
      * Immutable. The type of storage used by this cluster to serve its parent instance's tables, unless explicitly overridden.
      */
     defaultStorageType?: string | null;
@@ -208,6 +234,28 @@ export namespace bigtableadmin_v1 {
      * Output only. The current state of the cluster.
      */
     state?: string | null;
+  }
+  /**
+   * Autoscaling config for a cluster.
+   */
+  export interface Schema$ClusterAutoscalingConfig {
+    /**
+     * Required. Autoscaling limits for this cluster.
+     */
+    autoscalingLimits?: Schema$AutoscalingLimits;
+    /**
+     * Required. Autoscaling targets for this cluster.
+     */
+    autoscalingTargets?: Schema$AutoscalingTargets;
+  }
+  /**
+   * Configuration for a cluster.
+   */
+  export interface Schema$ClusterConfig {
+    /**
+     * Autoscaling configuration for this cluster. Note that when creating or updating a cluster, exactly one of serve_nodes or cluster_autoscaling_config must be set. If serve_nodes is set, then serve_nodes is fixed and autoscaling is turned off. If cluster_autoscaling_config is set, then serve_nodes will be autoscaled.
+     */
+    clusterAutoscalingConfig?: Schema$ClusterAutoscalingConfig;
   }
   /**
    * Metadata type for the operation returned by CreateBackup.
@@ -348,7 +396,7 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$Instance {
     /**
-     * Output only. A server-assigned timestamp representing when this Instance was created.
+     * Output only. A server-assigned timestamp representing when this Instance was created. For instances created before this field was added (August 2021), this value is `seconds: 0, nanos: 1`.
      */
     createTime?: string | null;
     /**
@@ -401,6 +449,33 @@ export namespace bigtableadmin_v1 {
      * The progress of the post-restore optimizations.
      */
     progress?: Schema$OperationProgress;
+  }
+  /**
+   * The metadata for the Operation returned by PartialUpdateCluster.
+   */
+  export interface Schema$PartialUpdateClusterMetadata {
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
+    originalRequest?: Schema$PartialUpdateClusterRequest;
+    /**
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+  }
+  /**
+   * Request message for BigtableInstanceAdmin.PartialUpdateCluster.
+   */
+  export interface Schema$PartialUpdateClusterRequest {
+    /**
+     * Required. The Cluster which contains the partial updates to be applied, subject to the update_mask.
+     */
+    cluster?: Schema$Cluster;
+    /**
+     * Required. The subset of Cluster fields which should be replaced. Must be explicitly set.
+     */
+    updateMask?: string | null;
   }
   /**
    * Request message for BigtableInstanceAdmin.PartialUpdateInstance.
