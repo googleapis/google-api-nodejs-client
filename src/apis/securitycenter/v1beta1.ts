@@ -318,6 +318,12 @@ export namespace securitycenter_v1beta1 {
      */
     eventTime?: string | null;
     /**
+     * Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.
+     */
+    externalSystems?: {
+      [key: string]: Schema$GoogleCloudSecuritycenterV1ExternalSystem;
+    } | null;
+    /**
      * The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.
      */
     externalUri?: string | null;
@@ -329,6 +335,18 @@ export namespace securitycenter_v1beta1 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined).
+     */
+    mute?: string | null;
+    /**
+     * First known as mute_annotation. Records additional information about the mute operation e.g. mute config that muted the finding, user who muted the finding, etc.
+     */
+    muteInitiator?: string | null;
+    /**
+     * Output only. The most recent time this finding was muted or unmuted.
+     */
+    muteUpdateTime?: string | null;
     /**
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
@@ -463,6 +481,64 @@ export namespace securitycenter_v1beta1 {
      * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
     name?: string | null;
+  }
+  /**
+   * Representation of third party SIEM/SOAR fields within SCC.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1ExternalSystem {
+    /**
+     * References primary/secondary etc assignees in the external system.
+     */
+    assignees?: string[] | null;
+    /**
+     * The most recent time when the corresponding finding's ticket/tracker was updated in the external system.
+     */
+    externalSystemUpdateTime?: string | null;
+    /**
+     * Identifier that's used to track the given finding in the external system.
+     */
+    externalUid?: string | null;
+    /**
+     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     */
+    name?: string | null;
+    /**
+     * Most recent status of the corresponding finding's ticket/tracker in the external system.
+     */
+    status?: string | null;
+  }
+  /**
+   * A mute config is a Cloud SCC resource that contains the configuration to mute create/update events of findings.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1MuteConfig {
+    /**
+     * Output only. The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.
+     */
+    createTime?: string | null;
+    /**
+     * A description of the mute config.
+     */
+    description?: string | null;
+    /**
+     * The human readable name to be displayed for the mute config.
+     */
+    displayName?: string | null;
+    /**
+     * Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`
+     */
+    filter?: string | null;
+    /**
+     * Output only. Email address of the user who last edited the mute config. This field is set by the server and will be ignored if provided on config creation or update.
+     */
+    mostRecentEditor?: string | null;
+    /**
+     * This field will be ignored if provided on config creation. Format "organizations/{organization\}/muteConfigs/{mute_config\}" "folders/{folder\}/muteConfigs/{mute_config\}" "projects/{project\}/muteConfigs/{mute_config\}"
+     */
+    name?: string | null;
+    /**
+     * Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.
+     */
+    updateTime?: string | null;
   }
   /**
    * Cloud SCC's Notification

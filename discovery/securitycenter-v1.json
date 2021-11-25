@@ -243,6 +243,195 @@
             }
           }
         },
+        "findings": {
+          "methods": {
+            "bulkMute": {
+              "description": "Kicks off an LRO to bulk mute findings for a parent based on a filter. The parent can be either an organization, folder or project. The findings matched by the filter will be muted after the LRO is done.",
+              "flatPath": "v1/folders/{foldersId}/findings:bulkMute",
+              "httpMethod": "POST",
+              "id": "securitycenter.folders.findings.bulkMute",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/findings:bulkMute",
+              "request": {
+                "$ref": "BulkMuteFindingsRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "muteConfigs": {
+          "methods": {
+            "create": {
+              "description": "Creates a mute config.",
+              "flatPath": "v1/folders/{foldersId}/muteConfigs",
+              "httpMethod": "POST",
+              "id": "securitycenter.folders.muteConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "muteConfigId": {
+                  "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/muteConfigs",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an existing mute config.",
+              "flatPath": "v1/folders/{foldersId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "securitycenter.folders.muteConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a mute config.",
+              "flatPath": "v1/folders/{foldersId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "GET",
+              "id": "securitycenter.folders.muteConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists mute configs.",
+              "flatPath": "v1/folders/{foldersId}/muteConfigs",
+              "httpMethod": "GET",
+              "id": "securitycenter.folders.muteConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/muteConfigs",
+              "response": {
+                "$ref": "ListMuteConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a mute config.",
+              "flatPath": "v1/folders/{foldersId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "securitycenter.folders.muteConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "sources": {
           "methods": {
             "list": {
@@ -411,6 +600,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "setMute": {
+                  "description": "Updates the mute state of a finding.",
+                  "flatPath": "v1/folders/{foldersId}/sources/{sourcesId}/findings/{findingsId}:setMute",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.folders.sources.findings.setMute",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/finding/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/finding/{finding_id}\", \"projects/{project_id}/sources/{source_id}/finding/{finding_id}\".",
+                      "location": "path",
+                      "pattern": "^folders/[^/]+/sources/[^/]+/findings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:setMute",
+                  "request": {
+                    "$ref": "SetMuteRequest"
+                  },
+                  "response": {
+                    "$ref": "Finding"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setState": {
                   "description": "Updates the state of a finding.",
                   "flatPath": "v1/folders/{foldersId}/sources/{sourcesId}/findings/{findingsId}:setState",
@@ -478,6 +695,46 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "externalSystems": {
+                  "methods": {
+                    "patch": {
+                      "description": "Updates external system. This is for a given finding.",
+                      "flatPath": "v1/folders/{foldersId}/sources/{sourcesId}/findings/{findingsId}/externalSystems/{externalSystemsId}",
+                      "httpMethod": "PATCH",
+                      "id": "securitycenter.folders.sources.findings.externalSystems.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+                          "location": "path",
+                          "pattern": "^folders/[^/]+/sources/[^/]+/findings/[^/]+/externalSystems/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -705,6 +962,195 @@
               },
               "response": {
                 "$ref": "SecurityMarks"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "findings": {
+          "methods": {
+            "bulkMute": {
+              "description": "Kicks off an LRO to bulk mute findings for a parent based on a filter. The parent can be either an organization, folder or project. The findings matched by the filter will be muted after the LRO is done.",
+              "flatPath": "v1/organizations/{organizationsId}/findings:bulkMute",
+              "httpMethod": "POST",
+              "id": "securitycenter.organizations.findings.bulkMute",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/findings:bulkMute",
+              "request": {
+                "$ref": "BulkMuteFindingsRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "muteConfigs": {
+          "methods": {
+            "create": {
+              "description": "Creates a mute config.",
+              "flatPath": "v1/organizations/{organizationsId}/muteConfigs",
+              "httpMethod": "POST",
+              "id": "securitycenter.organizations.muteConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "muteConfigId": {
+                  "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/muteConfigs",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an existing mute config.",
+              "flatPath": "v1/organizations/{organizationsId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "securitycenter.organizations.muteConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a mute config.",
+              "flatPath": "v1/organizations/{organizationsId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "GET",
+              "id": "securitycenter.organizations.muteConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists mute configs.",
+              "flatPath": "v1/organizations/{organizationsId}/muteConfigs",
+              "httpMethod": "GET",
+              "id": "securitycenter.organizations.muteConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/muteConfigs",
+              "response": {
+                "$ref": "ListMuteConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a mute config.",
+              "flatPath": "v1/organizations/{organizationsId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "securitycenter.organizations.muteConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1361,6 +1807,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "setMute": {
+                  "description": "Updates the mute state of a finding.",
+                  "flatPath": "v1/organizations/{organizationsId}/sources/{sourcesId}/findings/{findingsId}:setMute",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.organizations.sources.findings.setMute",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/finding/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/finding/{finding_id}\", \"projects/{project_id}/sources/{source_id}/finding/{finding_id}\".",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/sources/[^/]+/findings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:setMute",
+                  "request": {
+                    "$ref": "SetMuteRequest"
+                  },
+                  "response": {
+                    "$ref": "Finding"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setState": {
                   "description": "Updates the state of a finding.",
                   "flatPath": "v1/organizations/{organizationsId}/sources/{sourcesId}/findings/{findingsId}:setState",
@@ -1428,6 +1902,46 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              },
+              "resources": {
+                "externalSystems": {
+                  "methods": {
+                    "patch": {
+                      "description": "Updates external system. This is for a given finding.",
+                      "flatPath": "v1/organizations/{organizationsId}/sources/{sourcesId}/findings/{findingsId}/externalSystems/{externalSystemsId}",
+                      "httpMethod": "PATCH",
+                      "id": "securitycenter.organizations.sources.findings.externalSystems.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+                          "location": "path",
+                          "pattern": "^organizations/[^/]+/sources/[^/]+/findings/[^/]+/externalSystems/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -1566,6 +2080,195 @@
               },
               "response": {
                 "$ref": "SecurityMarks"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "findings": {
+          "methods": {
+            "bulkMute": {
+              "description": "Kicks off an LRO to bulk mute findings for a parent based on a filter. The parent can be either an organization, folder or project. The findings matched by the filter will be muted after the LRO is done.",
+              "flatPath": "v1/projects/{projectsId}/findings:bulkMute",
+              "httpMethod": "POST",
+              "id": "securitycenter.projects.findings.bulkMute",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent, at which bulk action needs to be applied. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/findings:bulkMute",
+              "request": {
+                "$ref": "BulkMuteFindingsRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "muteConfigs": {
+          "methods": {
+            "create": {
+              "description": "Creates a mute config.",
+              "flatPath": "v1/projects/{projectsId}/muteConfigs",
+              "httpMethod": "POST",
+              "id": "securitycenter.projects.muteConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "muteConfigId": {
+                  "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the new mute configs's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/muteConfigs",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an existing mute config.",
+              "flatPath": "v1/projects/{projectsId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "securitycenter.projects.muteConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the mute config to delete. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a mute config.",
+              "flatPath": "v1/projects/{projectsId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "GET",
+              "id": "securitycenter.projects.muteConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the mute config to retrieve. Its format is organizations/{organization}/muteConfigs/{config_id}, folders/{folder}/muteConfigs/{config_id}, or projects/{project}/muteConfigs/{config_id}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists mute configs.",
+              "flatPath": "v1/projects/{projectsId}/muteConfigs",
+              "httpMethod": "GET",
+              "id": "securitycenter.projects.muteConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListMuteConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMuteConfigs` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns the collection of mute configs. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/muteConfigs",
+              "response": {
+                "$ref": "ListMuteConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a mute config.",
+              "flatPath": "v1/projects/{projectsId}/muteConfigs/{muteConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "securitycenter.projects.muteConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/muteConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1741,6 +2444,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "setMute": {
+                  "description": "Updates the mute state of a finding.",
+                  "flatPath": "v1/projects/{projectsId}/sources/{sourcesId}/findings/{findingsId}:setMute",
+                  "httpMethod": "POST",
+                  "id": "securitycenter.projects.sources.findings.setMute",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The relative resource name of the finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/finding/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/finding/{finding_id}\", \"projects/{project_id}/sources/{source_id}/finding/{finding_id}\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/sources/[^/]+/findings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:setMute",
+                  "request": {
+                    "$ref": "SetMuteRequest"
+                  },
+                  "response": {
+                    "$ref": "Finding"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setState": {
                   "description": "Updates the state of a finding.",
                   "flatPath": "v1/projects/{projectsId}/sources/{sourcesId}/findings/{findingsId}:setState",
@@ -1809,6 +2540,46 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "externalSystems": {
+                  "methods": {
+                    "patch": {
+                      "description": "Updates external system. This is for a given finding.",
+                      "flatPath": "v1/projects/{projectsId}/sources/{sourcesId}/findings/{findingsId}/externalSystems/{externalSystemsId}",
+                      "httpMethod": "PATCH",
+                      "id": "securitycenter.projects.sources.findings.externalSystems.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/sources/[^/]+/findings/[^/]+/externalSystems/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             }
           }
@@ -1816,7 +2587,7 @@
       }
     }
   },
-  "revision": "20211103",
+  "revision": "20211112",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -1963,6 +2734,21 @@
         },
         "role": {
           "description": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BulkMuteFindingsRequest": {
+      "description": "Request message for bulk findings update. Note: 1. If multiple bulk update requests match the same resource, the order in which they get executed is not defined. 2. Once a bulk operation is started, there is no way to stop it.",
+      "id": "BulkMuteFindingsRequest",
+      "properties": {
+        "filter": {
+          "description": "Expression that identifies findings that should be updated. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource. The supported operators are: * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes.",
+          "type": "string"
+        },
+        "muteAnnotation": {
+          "description": "This can be a mute configuration name or any identifier for mute/unmute of findings based on the filter.",
           "type": "string"
         }
       },
@@ -2177,6 +2963,14 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "externalSystems": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
+          },
+          "description": "Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.",
+          "readOnly": true,
+          "type": "object"
+        },
         "externalUri": {
           "description": "The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.",
           "type": "string"
@@ -2204,6 +2998,32 @@
         "indicator": {
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
+        },
+        "mute": {
+          "description": "Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined).",
+          "enum": [
+            "MUTE_UNSPECIFIED",
+            "MUTED",
+            "UNMUTED",
+            "UNDEFINED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Finding has been muted.",
+            "Finding has been unmuted.",
+            "Finding has never been muted/unmuted."
+          ],
+          "type": "string"
+        },
+        "muteInitiator": {
+          "description": "First known as mute_annotation. Records additional information about the mute operation e.g. mute config that muted the finding, user who muted the finding, etc.",
+          "type": "string"
+        },
+        "muteUpdateTime": {
+          "description": "Output only. The most recent time this finding was muted or unmuted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\"",
@@ -2302,6 +3122,77 @@
           "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ExternalSystem": {
+      "description": "Representation of third party SIEM/SOAR fields within SCC.",
+      "id": "GoogleCloudSecuritycenterV1ExternalSystem",
+      "properties": {
+        "assignees": {
+          "description": "References primary/secondary etc assignees in the external system.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "externalSystemUpdateTime": {
+          "description": "The most recent time when the corresponding finding's ticket/tracker was updated in the external system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "externalUid": {
+          "description": "Identifier that's used to track the given finding in the external system.",
+          "type": "string"
+        },
+        "name": {
+          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+          "type": "string"
+        },
+        "status": {
+          "description": "Most recent status of the corresponding finding's ticket/tracker in the external system.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1MuteConfig": {
+      "description": "A mute config is a Cloud SCC resource that contains the configuration to mute create/update events of findings.",
+      "id": "GoogleCloudSecuritycenterV1MuteConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the mute config.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The human readable name to be displayed for the mute config.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`",
+          "type": "string"
+        },
+        "mostRecentEditor": {
+          "description": "Output only. Email address of the user who last edited the mute config. This field is set by the server and will be ignored if provided on config creation or update.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2920,6 +3811,24 @@
       },
       "type": "object"
     },
+    "ListMuteConfigsResponse": {
+      "description": "Response message for listing mute configs.",
+      "id": "ListMuteConfigsResponse",
+      "properties": {
+        "muteConfigs": {
+          "description": "The mute configs from the specified parent.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1MuteConfig"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListNotificationConfigsResponse": {
       "description": "Response message for listing notification configs.",
       "id": "ListNotificationConfigsResponse",
@@ -3258,6 +4167,29 @@
         "updateMask": {
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetMuteRequest": {
+      "description": "Request message for updating a finding's mute status.",
+      "id": "SetMuteRequest",
+      "properties": {
+        "mute": {
+          "description": "Required. The desired state of the Mute.",
+          "enum": [
+            "MUTE_UNSPECIFIED",
+            "MUTED",
+            "UNMUTED",
+            "UNDEFINED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Finding has been muted.",
+            "Finding has been unmuted.",
+            "Finding has never been muted/unmuted."
+          ],
           "type": "string"
         }
       },

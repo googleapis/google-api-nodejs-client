@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20211103",
+  "revision": "20211112",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -1248,6 +1248,14 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "externalSystems": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudSecuritycenterV1ExternalSystem"
+          },
+          "description": "Output only. Third party SIEM/SOAR fields within SCC, contains external system information and external system finding fields.",
+          "readOnly": true,
+          "type": "object"
+        },
         "externalUri": {
           "description": "The URI that, if available, points to a web page outside of Security Command Center where additional information about the finding can be found. This field is guaranteed to be either empty or a well formed URL.",
           "type": "string"
@@ -1275,6 +1283,32 @@
         "indicator": {
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
+        },
+        "mute": {
+          "description": "Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined).",
+          "enum": [
+            "MUTE_UNSPECIFIED",
+            "MUTED",
+            "UNMUTED",
+            "UNDEFINED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Finding has been muted.",
+            "Finding has been unmuted.",
+            "Finding has never been muted/unmuted."
+          ],
+          "type": "string"
+        },
+        "muteInitiator": {
+          "description": "First known as mute_annotation. Records additional information about the mute operation e.g. mute config that muted the finding, user who muted the finding, etc.",
+          "type": "string"
+        },
+        "muteUpdateTime": {
+          "description": "Output only. The most recent time this finding was muted or unmuted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\"",
@@ -1373,6 +1407,77 @@
           "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1ExternalSystem": {
+      "description": "Representation of third party SIEM/SOAR fields within SCC.",
+      "id": "GoogleCloudSecuritycenterV1ExternalSystem",
+      "properties": {
+        "assignees": {
+          "description": "References primary/secondary etc assignees in the external system.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "externalSystemUpdateTime": {
+          "description": "The most recent time when the corresponding finding's ticket/tracker was updated in the external system.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "externalUid": {
+          "description": "Identifier that's used to track the given finding in the external system.",
+          "type": "string"
+        },
+        "name": {
+          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+          "type": "string"
+        },
+        "status": {
+          "description": "Most recent status of the corresponding finding's ticket/tracker in the external system.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1MuteConfig": {
+      "description": "A mute config is a Cloud SCC resource that contains the configuration to mute create/update events of findings.",
+      "id": "GoogleCloudSecuritycenterV1MuteConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the mute config.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The human readable name to be displayed for the mute config.",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Required. An expression that defines the filter to apply across create/update events of findings. While creating a filter string, be mindful of the scope in which the mute configuration is being created. E.g., If a filter contains project = X but is created under the project = Y scope, it might not match any findings. The following field and operator combinations are supported: * severity: `=`, `:` * category: `=`, `:` * resource.name: `=`, `:` * resource.project_name: `=`, `:` * resource.project_display_name: `=`, `:` * resource.folders.resource_folder: `=`, `:` * resource.parent_name: `=`, `:` * resource.parent_display_name: `=`, `:` * resource.type: `=`, `:` * finding_class: `=`, `:` * indicator.ip_addresses: `=`, `:` * indicator.domains: `=`, `:`",
+          "type": "string"
+        },
+        "mostRecentEditor": {
+          "description": "Output only. Email address of the user who last edited the mute config. This field is set by the server and will be ignored if provided on config creation or update.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "This field will be ignored if provided on config creation. Format \"organizations/{organization}/muteConfigs/{mute_config}\" \"folders/{folder}/muteConfigs/{mute_config}\" \"projects/{project}/muteConfigs/{mute_config}\"",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the mute config was updated. This field is set by the server and will be ignored if provided on config creation or update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
