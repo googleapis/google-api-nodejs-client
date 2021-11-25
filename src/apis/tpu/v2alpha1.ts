@@ -345,6 +345,10 @@ export namespace tpu_v2alpha1 {
    */
   export interface Schema$NetworkConfig {
     /**
+     * Allows the TPU node to send and receive packets with non-matching destination or source IPs. This is required if you plan to use the TPU workers to forward routes.
+     */
+    canIpForward?: boolean | null;
+    /**
      * Indicates that external IP addresses would be associated with the TPU workers. If set to false, the specified subnetwork or network should have Private Google Access enabled.
      */
     enableExternalIps?: boolean | null;
