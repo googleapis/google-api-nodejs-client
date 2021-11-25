@@ -212,7 +212,7 @@
                   ],
                   "parameters": {
                     "conversationId": {
-                      "description": "A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-32 characters and must match the regular expression /^[a-z0-9-]{4,32}$/. Valid characters are /a-z-/",
+                      "description": "A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression /^[a-z0-9-]{4,64}$/. Valid characters are /a-z-/",
                       "location": "query",
                       "type": "string"
                     },
@@ -1123,7 +1123,7 @@
       }
     }
   },
-  "revision": "20211029",
+  "revision": "20211123",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1347,6 +1347,13 @@
             "type": "integer"
           },
           "description": "A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/` Deprecated, use `issue_matches_stats` field instead.",
+          "type": "object"
+        },
+        "issueMatchesStats": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStats"
+          },
+          "description": "A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/`",
           "type": "object"
         },
         "smartHighlighterMatches": {
@@ -2355,6 +2362,10 @@
       "description": "Aggregated statistics about an issue.",
       "id": "GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStats",
       "properties": {
+        "displayName": {
+          "description": "Display name of the issue.",
+          "type": "string"
+        },
         "issue": {
           "description": "Issue resource. Format: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}",
           "type": "string"
@@ -3175,6 +3186,10 @@
       "description": "Aggregated statistics about an issue.",
       "id": "GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStats",
       "properties": {
+        "displayName": {
+          "description": "Display name of the issue.",
+          "type": "string"
+        },
         "issue": {
           "description": "Issue resource. Format: projects/{project}/locations/{location}/issueModels/{issue_model}/issues/{issue}",
           "type": "string"
