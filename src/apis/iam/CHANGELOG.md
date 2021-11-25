@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/iam-v2.1.0...iam-v2.1.1) (2021-11-25)
+
+
+### Bug Fixes
+
+* **iam:** update the API ([60cc9e8](https://www.github.com/googleapis/google-api-nodejs-client/commit/60cc9e8646ccd59e4d3bcc5f708c7e536ac88108))
+
 ## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/iam-v2.0.2...iam-v2.1.0) (2021-10-28)
 
 

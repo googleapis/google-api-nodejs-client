@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/iap-v2.1.1...iap-v2.1.2) (2021-11-25)
+
+
+### Bug Fixes
+
+* **iap:** update the API ([d908ca9](https://www.github.com/googleapis/google-api-nodejs-client/commit/d908ca96eab2edc160f6ae6019e2aa2dee1a4b14))
+
 ### [2.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/iap-v2.1.0...iap-v2.1.1) (2021-10-28)
 
 

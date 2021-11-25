@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.4.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v0.4.0...streetviewpublish-v0.4.1) (2021-11-25)
+
+
+### Bug Fixes
+
+* **streetviewpublish:** update the API ([5539850](https://www.github.com/googleapis/google-api-nodejs-client/commit/5539850022bcb3d98061e4e05c9471bf011c5690))
+
 ## [0.4.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/streetviewpublish-v0.3.2...streetviewpublish-v0.4.0) (2021-11-08)
 
 
