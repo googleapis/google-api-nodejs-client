@@ -287,7 +287,7 @@
                   ],
                   "parameters": {
                     "options.requestedPolicyVersion": {
-                      "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -444,6 +444,122 @@
                   },
                   "response": {
                     "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "fleets": {
+              "methods": {
+                "create": {
+                  "description": "Creates a fleet.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/fleets",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.fleets.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent (project and location) where the Fleet will be created. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/fleets",
+                  "request": {
+                    "$ref": "Fleet"
+                  },
+                  "response": {
+                    "$ref": "Fleet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Removes a Fleet. There must be no memberships remaining in the Fleet.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/fleets/{fleetsId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkehub.projects.locations.fleets.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Fleet resource name in the format `projects/*/locations/*/fleets/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/fleets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns the details of a fleet.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/fleets/{fleetsId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.fleets.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The Fleet resource name in the format `projects/*/locations/*/fleets/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/fleets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "Fleet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a fleet.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/fleets/{fleetsId}",
+                  "httpMethod": "PATCH",
+                  "id": "gkehub.projects.locations.fleets.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each GCP project can have at most one fleet resource, named \"default\".",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/fleets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The fields to be updated;",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "Fleet"
+                  },
+                  "response": {
+                    "$ref": "Fleet"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -613,7 +729,7 @@
                   ],
                   "parameters": {
                     "options.requestedPolicyVersion": {
-                      "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -951,7 +1067,7 @@
       }
     }
   },
-  "revision": "20211029",
+  "revision": "20211111",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -1186,6 +1302,10 @@
         "git": {
           "$ref": "ConfigManagementGitConfig",
           "description": "Git repo configuration for the cluster."
+        },
+        "preventDrift": {
+          "description": "Set to true to enable the Config Sync admission webhook to prevent drifts. If set to `false`, disables the Config Sync admission webhook and does not prevent drifts.",
+          "type": "boolean"
         },
         "sourceFormat": {
           "description": "Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.",
@@ -1462,7 +1582,7 @@
           "type": "string"
         },
         "secretType": {
-          "description": "Type of secret configured for access to the Git repo.",
+          "description": "Type of secret configured for access to the Git repo. Must be one of ssh, cookiefile, gcenode, token, gcpserviceaccount or none. The validation of this is case-sensitive. Required.",
           "type": "string"
         },
         "syncBranch": {
@@ -2014,6 +2134,49 @@
       },
       "type": "object"
     },
+    "Fleet": {
+      "description": "Fleet contains the Fleet-wide metadata and configuration.",
+      "id": "Fleet",
+      "properties": {
+        "createTime": {
+          "description": "Output only. When the Fleet was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. When the Fleet was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. A user-assigned display name of the Fleet. When present, it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `Production Fleet`",
+          "type": "string"
+        },
+        "fleetName": {
+          "description": "The name for the fleet. The name must meet the following constraints: + The name of a fleet should be unique within the organization; + It must consist of lower case alphanumeric characters or `-`; + The length of the name must be less than or equal to 63; + Unicode names must be expressed in Punycode format (rfc3492). Examples: + prod-fleet + xn--wlq33vhyw9jb （Punycode form for \"生产环境\")",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The full, unique resource name of this fleet in the format of `projects/{project}/locations/{location}/fleets/{fleet}`. Each GCP project can have at most one fleet resource, named \"default\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uid": {
+          "description": "Output only. Google-generated UUID for this resource. This is unique across all Fleet resources. If a Fleet resource is deleted and another resource with the same name is created, it gets a different uid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the Fleet was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GenerateConnectManifestResponse": {
       "description": "GenerateConnectManifestResponse contains manifest information for installing/upgrading a Connect agent.",
       "id": "GenerateConnectManifestResponse",
@@ -2225,6 +2388,37 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "KubernetesResource": {
+      "description": "KubernetesResource contains the YAML manifests and configuration for Membership Kubernetes resources in the cluster. After CreateMembership or UpdateMembership, these resources should be re-applied in the cluster.",
+      "id": "KubernetesResource",
+      "properties": {
+        "connectResources": {
+          "description": "Output only. The Kubernetes resources for installing the GKE Connect agent This field is only populated in the Membership returned from a successful long-running operation from CreateMembership or UpdateMembership. It is not populated during normal GetMembership or ListMemberships requests. To get the resource manifest after the initial registration, the caller should make a UpdateMembership call with an empty field mask.",
+          "items": {
+            "$ref": "ResourceManifest"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "membershipCrManifest": {
+          "description": "Input only. The YAML representation of the Membership CR. This field is ignored for GKE clusters where Hub can read the CR directly. Callers should provide the CR that is currently present in the cluster during CreateMembership or UpdateMembership, or leave this field empty if none exists. The CR manifest is used to validate the cluster has not been registered with another Membership.",
+          "type": "string"
+        },
+        "membershipResources": {
+          "description": "Output only. Additional Kubernetes resources that need to be applied to the cluster after Membership creation, and after every update. This field is only populated in the Membership returned from a successful long-running operation from CreateMembership or UpdateMembership. It is not populated during normal GetMembership or ListMemberships requests. To get the resource manifest after the initial registration, the caller should make a UpdateMembership call with an empty field mask.",
+          "items": {
+            "$ref": "ResourceManifest"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "resourceOptions": {
+          "$ref": "ResourceOptions",
+          "description": "Optional. Options for Kubernetes resource generation."
         }
       },
       "type": "object"
@@ -2449,6 +2643,10 @@
           "$ref": "KubernetesMetadata",
           "description": "Output only. Useful Kubernetes-specific metadata.",
           "readOnly": true
+        },
+        "kubernetesResource": {
+          "$ref": "KubernetesResource",
+          "description": "Optional. The in-cluster Kubernetes Resources that should be applied for a correctly registered cluster, in the steady state. These resources: * Ensure that the cluster is exclusively registered to one and only one Hub Membership. * Propagate Workload Pool Information available in the Membership Authority field. * Ensure proper initial configuration of default Hub Features."
         },
         "multiCloudCluster": {
           "$ref": "MultiCloudCluster",
@@ -2723,6 +2921,36 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceManifest": {
+      "description": "ResourceManifest represents a single Kubernetes resource to be applied to the cluster.",
+      "id": "ResourceManifest",
+      "properties": {
+        "clusterScoped": {
+          "description": "Whether the resource provided in the manifest is `cluster_scoped`. If unset, the manifest is assumed to be namespace scoped. This field is used for REST mapping when applying the resource in a cluster.",
+          "type": "boolean"
+        },
+        "manifest": {
+          "description": "YAML manifest of the resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceOptions": {
+      "description": "ResourceOptions represent options for Kubernetes resource generation.",
+      "id": "ResourceOptions",
+      "properties": {
+        "connectVersion": {
+          "description": "Optional. The Connect agent version to use for connect_resources. Defaults to the latest GKE Connect version. The version must be a currently supported version, obsolete versions will be rejected.",
+          "type": "string"
+        },
+        "v1beta1Crd": {
+          "description": "Optional. Use `apiextensions/v1beta1` instead of `apiextensions/v1` for CustomResourceDefinition resources. This option should be set for clusters with Kubernetes apiserver versions <1.16.",
+          "type": "boolean"
         }
       },
       "type": "object"
