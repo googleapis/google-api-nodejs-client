@@ -571,6 +571,10 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     canDelete?: boolean | null;
     /**
+     * Output only. Indicates if the listing is eligible for business calls.
+     */
+    canHaveBusinessCalls?: boolean | null;
+    /**
      * Output only. Indicates if the listing is eligible for food menu.
      */
     canHaveFoodMenus?: boolean | null;
