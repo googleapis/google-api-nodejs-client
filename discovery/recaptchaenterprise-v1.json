@@ -371,13 +371,155 @@
               ]
             }
           }
+        },
+        "relatedaccountgroupmemberships": {
+          "methods": {
+            "search": {
+              "description": "Search group memberships related to a given account.",
+              "flatPath": "v1/projects/{projectsId}/relatedaccountgroupmemberships:search",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.relatedaccountgroupmemberships.search",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the project to search related account group memberships from, in the format \"projects/{project}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/relatedaccountgroupmemberships:search",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "relatedaccountgroups": {
+          "methods": {
+            "list": {
+              "description": "List groups of related accounts.",
+              "flatPath": "v1/projects/{projectsId}/relatedaccountgroups",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.relatedaccountgroups.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListRelatedAccountGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRelatedAccountGroups` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the project to list related account groups from, in the format \"projects/{project}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/relatedaccountgroups",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          },
+          "resources": {
+            "memberships": {
+              "methods": {
+                "list": {
+                  "description": "Get the memberships in a group of related accounts.",
+                  "flatPath": "v1/projects/{projectsId}/relatedaccountgroups/{relatedaccountgroupsId}/memberships",
+                  "httpMethod": "GET",
+                  "id": "recaptchaenterprise.projects.relatedaccountgroups.memberships.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListRelatedAccountGroupMemberships` call. When paginating, all other parameters provided to `ListRelatedAccountGroupMemberships` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name for the related account group in the format `projects/{project}/relatedaccountgroups/{relatedaccountgroup}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/relatedaccountgroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/memberships",
+                  "response": {
+                    "$ref": "GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            }
+          }
         }
       }
     }
   },
-  "revision": "20211022",
+  "revision": "20211105",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
+    "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
+      "description": "Account Defender risk assessment.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
+      "properties": {
+        "labels": {
+          "description": "Labels for this request.",
+          "items": {
+            "enum": [
+              "ACCOUNT_DEFENDER_LABEL_UNSPECIFIED",
+              "PROFILE_MATCH",
+              "SUSPICIOUS_LOGIN_ACTIVITY",
+              "SUSPICIOUS_ACCOUNT_CREATION",
+              "RELATED_ACCOUNTS_NUMBER_HIGH"
+            ],
+            "enumDescriptions": [
+              "Default unspecified type.",
+              "The request matches a known good profile for the user.",
+              "The request is potentially a suspicious login event and should be further verified either via multi-factor authentication or another system.",
+              "The request matched a profile that previously had suspicious account creation behavior. This could mean this is a fake account.",
+              "The account in the request has a high number of related accounts. It does not necessarily imply that the account is bad but could require investigating."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings": {
       "description": "Settings specific to keys that can be used by Android apps.",
       "id": "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings",
@@ -416,6 +558,11 @@
             "Provides information that the event was related to a login event in which the user typed the correct password. Deprecated, prefer indicating CORRECT_PASSWORD through the reasons field instead.",
             "Provides information that the event was related to a login event in which the user typed the incorrect password. Deprecated, prefer indicating INCORRECT_PASSWORD through the reasons field instead."
           ],
+          "type": "string"
+        },
+        "hashedAccountId": {
+          "description": "Optional. Optional unique stable hashed user identifier to apply to the assessment. This is an alternative to setting the hashed_account_id in CreateAssessment, for example when the account identifier is not yet known in the initial request. It is recommended that the identifier is hashed using hmac-sha256 with stable secret.",
+          "format": "byte",
           "type": "string"
         },
         "reasons": {
@@ -458,6 +605,10 @@
       "description": "A recaptcha assessment resource.",
       "id": "GoogleCloudRecaptchaenterpriseV1Assessment",
       "properties": {
+        "accountDefenderAssessment": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment",
+          "description": "Assessment returned by Account Defender when a hashed_account_id is provided."
+        },
         "event": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1Event",
           "description": "The event being assessed."
@@ -612,6 +763,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse": {
+      "description": "The response to a `ListRelatedAccountGroupMemberships` call.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "relatedAccountGroupMemberships": {
+          "description": "The memberships listed by the query.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse": {
+      "description": "The response to a `ListRelatedAccountGroups` call.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "relatedAccountGroups": {
+          "description": "The groups of related accounts listed by the query.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRecaptchaenterpriseV1Metrics": {
       "description": "Metrics for a single Key.",
       "id": "GoogleCloudRecaptchaenterpriseV1Metrics",
@@ -647,6 +834,33 @@
       "description": "The migrate key request message.",
       "id": "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup": {
+      "description": "A group of related accounts.",
+      "id": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup",
+      "properties": {
+        "name": {
+          "description": "Required. The resource name for the related account group in the format `projects/{project}/relatedaccountgroups/{related_account_group}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership": {
+      "description": "A membership in a group of related accounts.",
+      "id": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership",
+      "properties": {
+        "hashedAccountId": {
+          "description": "The unique stable hashed user identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous CreateAssessment or AnnotateAssessment call.",
+          "format": "byte",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The resource name for this membership in the format `projects/{project}/relatedaccountgroups/{relatedaccountgroup}/memberships/{membership}`.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRecaptchaenterpriseV1RiskAnalysis": {
@@ -713,6 +927,45 @@
         "overallMetrics": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1ScoreDistribution",
           "description": "Aggregated score metrics for all traffic."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest": {
+      "description": "The request message to search related account group memberships.",
+      "id": "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest",
+      "properties": {
+        "hashedAccountId": {
+          "description": "Optional. The unique stable hashed user identifier we should search connections to. The identifier should correspond to a `hashed_account_id` provided in a previous CreateAssessment or AnnotateAssessment call.",
+          "format": "byte",
+          "type": "string"
+        },
+        "pageSize": {
+          "description": "Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "Optional. A page token, received from a previous `SearchRelatedAccountGroupMemberships` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchRelatedAccountGroupMemberships` must match the call that provided the page token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse": {
+      "description": "The response to a `SearchRelatedAccountGroupMemberships` call.",
+      "id": "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "relatedAccountGroupMemberships": {
+          "description": "The queried memberships.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership"
+          },
+          "type": "array"
         }
       },
       "type": "object"

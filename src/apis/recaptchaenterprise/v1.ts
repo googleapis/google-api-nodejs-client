@@ -126,6 +126,15 @@ export namespace recaptchaenterprise_v1 {
   }
 
   /**
+   * Account Defender risk assessment.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment {
+    /**
+     * Labels for this request.
+     */
+    labels?: string[] | null;
+  }
+  /**
    * Settings specific to keys that can be used by Android apps.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1AndroidKeySettings {
@@ -147,6 +156,10 @@ export namespace recaptchaenterprise_v1 {
      */
     annotation?: string | null;
     /**
+     * Optional. Optional unique stable hashed user identifier to apply to the assessment. This is an alternative to setting the hashed_account_id in CreateAssessment, for example when the account identifier is not yet known in the initial request. It is recommended that the identifier is hashed using hmac-sha256 with stable secret.
+     */
+    hashedAccountId?: string | null;
+    /**
      * Optional. Optional reasons for the annotation that will be assigned to the Event.
      */
     reasons?: string[] | null;
@@ -159,6 +172,10 @@ export namespace recaptchaenterprise_v1 {
    * A recaptcha assessment resource.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Assessment {
+    /**
+     * Assessment returned by Account Defender when a hashed_account_id is provided.
+     */
+    accountDefenderAssessment?: Schema$GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment;
     /**
      * The event being assessed.
      */
@@ -283,6 +300,32 @@ export namespace recaptchaenterprise_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response to a `ListRelatedAccountGroupMemberships` call.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The memberships listed by the query.
+     */
+    relatedAccountGroupMemberships?: Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership[];
+  }
+  /**
+   * The response to a `ListRelatedAccountGroups` call.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The groups of related accounts listed by the query.
+     */
+    relatedAccountGroups?: Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup[];
+  }
+  /**
    * Metrics for a single Key.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1Metrics {
@@ -307,6 +350,28 @@ export namespace recaptchaenterprise_v1 {
    * The migrate key request message.
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest {}
+  /**
+   * A group of related accounts.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroup {
+    /**
+     * Required. The resource name for the related account group in the format `projects/{project\}/relatedaccountgroups/{related_account_group\}`.
+     */
+    name?: string | null;
+  }
+  /**
+   * A membership in a group of related accounts.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership {
+    /**
+     * The unique stable hashed user identifier of the member. The identifier corresponds to a `hashed_account_id` provided in a previous CreateAssessment or AnnotateAssessment call.
+     */
+    hashedAccountId?: string | null;
+    /**
+     * Required. The resource name for this membership in the format `projects/{project\}/relatedaccountgroups/{relatedaccountgroup\}/memberships/{membership\}`.
+     */
+    name?: string | null;
+  }
   /**
    * Risk analysis result for an event.
    */
@@ -343,6 +408,36 @@ export namespace recaptchaenterprise_v1 {
      * Aggregated score metrics for all traffic.
      */
     overallMetrics?: Schema$GoogleCloudRecaptchaenterpriseV1ScoreDistribution;
+  }
+  /**
+   * The request message to search related account group memberships.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest {
+    /**
+     * Optional. The unique stable hashed user identifier we should search connections to. The identifier should correspond to a `hashed_account_id` provided in a previous CreateAssessment or AnnotateAssessment call.
+     */
+    hashedAccountId?: string | null;
+    /**
+     * Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number | null;
+    /**
+     * Optional. A page token, received from a previous `SearchRelatedAccountGroupMemberships` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `SearchRelatedAccountGroupMemberships` must match the call that provided the page token.
+     */
+    pageToken?: string | null;
+  }
+  /**
+   * The response to a `SearchRelatedAccountGroupMemberships` call.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The queried memberships.
+     */
+    relatedAccountGroupMemberships?: Schema$GoogleCloudRecaptchaenterpriseV1RelatedAccountGroupMembership[];
   }
   /**
    * Options for user acceptance testing.
@@ -413,10 +508,17 @@ export namespace recaptchaenterprise_v1 {
     context: APIRequestContext;
     assessments: Resource$Projects$Assessments;
     keys: Resource$Projects$Keys;
+    relatedaccountgroupmemberships: Resource$Projects$Relatedaccountgroupmemberships;
+    relatedaccountgroups: Resource$Projects$Relatedaccountgroups;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assessments = new Resource$Projects$Assessments(this.context);
       this.keys = new Resource$Projects$Keys(this.context);
+      this.relatedaccountgroupmemberships =
+        new Resource$Projects$Relatedaccountgroupmemberships(this.context);
+      this.relatedaccountgroups = new Resource$Projects$Relatedaccountgroups(
+        this.context
+      );
     }
   }
 
@@ -461,6 +563,7 @@ export namespace recaptchaenterprise_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotation": "my_annotation",
+     *       //   "hashedAccountId": "my_hashedAccountId",
      *       //   "reasons": []
      *       // }
      *     },
@@ -606,6 +709,7 @@ export namespace recaptchaenterprise_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "accountDefenderAssessment": {},
      *       //   "event": {},
      *       //   "name": "my_name",
      *       //   "riskAnalysis": {},
@@ -617,6 +721,7 @@ export namespace recaptchaenterprise_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "accountDefenderAssessment": {},
      *   //   "event": {},
      *   //   "name": "my_name",
      *   //   "riskAnalysis": {},
@@ -1854,5 +1959,516 @@ export namespace recaptchaenterprise_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1Key;
+  }
+
+  export class Resource$Projects$Relatedaccountgroupmemberships {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Search group memberships related to a given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recaptchaenterprise.projects.relatedaccountgroupmemberships.search({
+     *       // Required. The name of the project to search related account group memberships from, in the format "projects/{project\}".
+     *       parent: 'projects/my-project',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "hashedAccountId": "my_hashedAccountId",
+     *         //   "pageSize": 0,
+     *         //   "pageToken": "my_pageToken"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "relatedAccountGroupMemberships": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Relatedaccountgroupmemberships$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Relatedaccountgroupmemberships$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>;
+    search(
+      params: Params$Resource$Projects$Relatedaccountgroupmemberships$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Relatedaccountgroupmemberships$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Relatedaccountgroupmemberships$Search,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Relatedaccountgroupmemberships$Search
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Relatedaccountgroupmemberships$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Relatedaccountgroupmemberships$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/relatedaccountgroupmemberships:search'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Relatedaccountgroupmemberships$Search
+    extends StandardParameters {
+    /**
+     * Required. The name of the project to search related account group memberships from, in the format "projects/{project\}".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest;
+  }
+
+  export class Resource$Projects$Relatedaccountgroups {
+    context: APIRequestContext;
+    memberships: Resource$Projects$Relatedaccountgroups$Memberships;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.memberships = new Resource$Projects$Relatedaccountgroups$Memberships(
+        this.context
+      );
+    }
+
+    /**
+     * List groups of related accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recaptchaenterprise.projects.relatedaccountgroups.list({
+     *     // Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListRelatedAccountGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRelatedAccountGroups` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project to list related account groups from, in the format "projects/{project\}".
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "relatedAccountGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Relatedaccountgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Relatedaccountgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>;
+    list(
+      params: Params$Resource$Projects$Relatedaccountgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Relatedaccountgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Relatedaccountgroups$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Relatedaccountgroups$List
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Relatedaccountgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Relatedaccountgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/relatedaccountgroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Relatedaccountgroups$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 50 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListRelatedAccountGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRelatedAccountGroups` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project to list related account groups from, in the format "projects/{project\}".
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Relatedaccountgroups$Memberships {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get the memberships in a group of related accounts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recaptchaenterprise.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recaptchaenterprise = google.recaptchaenterprise('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await recaptchaenterprise.projects.relatedaccountgroups.memberships.list({
+     *       // Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListRelatedAccountGroupMemberships` call. When paginating, all other parameters provided to `ListRelatedAccountGroupMemberships` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name for the related account group in the format `projects/{project\}/relatedaccountgroups/{relatedaccountgroup\}`.
+     *       parent: 'projects/my-project/relatedaccountgroups/my-relatedaccountgroup',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "relatedAccountGroupMemberships": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Relatedaccountgroups$Memberships$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Relatedaccountgroups$Memberships$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>;
+    list(
+      params: Params$Resource$Projects$Relatedaccountgroups$Memberships$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Relatedaccountgroups$Memberships$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Relatedaccountgroups$Memberships$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Relatedaccountgroups$Memberships$List
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Relatedaccountgroups$Memberships$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Relatedaccountgroups$Memberships$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://recaptchaenterprise.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/memberships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecaptchaenterpriseV1ListRelatedAccountGroupMembershipsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Relatedaccountgroups$Memberships$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 50 accounts will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListRelatedAccountGroupMemberships` call. When paginating, all other parameters provided to `ListRelatedAccountGroupMemberships` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name for the related account group in the format `projects/{project\}/relatedaccountgroups/{relatedaccountgroup\}`.
+     */
+    parent?: string;
   }
 }
