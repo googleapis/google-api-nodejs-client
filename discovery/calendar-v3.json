@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20210823",
+  "revision": "20211105",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2380,7 +2380,7 @@
         },
         "eventType": {
           "default": "default",
-          "description": "Specific type of the event. Read-only. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event.",
+          "description": "Specific type of the event. Read-only. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event. \n- \"focusTime\" - A focus-time event.",
           "type": "string"
         },
         "extendedProperties": {
