@@ -103,7 +103,7 @@ export namespace orgpolicy_v2 {
   /**
    * Organization Policy API
    *
-   * The Org Policy API allows users to configure governance ruleson their GCP resources across the Cloud Resource Hierarchy.
+   * The Org Policy API allows users to configure governance rules on their GCP resources across the Cloud Resource Hierarchy.
    *
    * @example
    * ```js
