@@ -403,10 +403,6 @@ export namespace gameservices_v1beta {
    */
   export interface Schema$GameServerCluster {
     /**
-     * Optional. The allocation priority assigned to the game server cluster. Game server clusters receive new game server allocations based on the relative allocation priorites set for each cluster, if the realm is configured for multicluster allocation.
-     */
-    allocationPriority?: string | null;
-    /**
      * Output only. The state of the Kubernetes cluster, this will be available if 'view' is set to `FULL` in the relevant List/Get/Preview request.
      */
     clusterState?: Schema$KubernetesClusterState;
@@ -447,10 +443,6 @@ export namespace gameservices_v1beta {
      * Reference to the GKE cluster where the game servers are installed.
      */
     gkeClusterReference?: Schema$GkeClusterReference;
-    /**
-     * Reference to a Kubernetes cluster registered through GKE Hub. See https://cloud.google.com/anthos/multicluster-management/ for more information about registering Kubernetes clusters.
-     */
-    gkeHubClusterReference?: Schema$GkeHubClusterReference;
     /**
      * Namespace designated on the game server cluster where the Agones game server instances will be created. Existence of the namespace will be validated during creation.
      */
@@ -568,15 +560,6 @@ export namespace gameservices_v1beta {
      * The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project\}/locations/{location\}/clusters/{cluster\}` * `locations/{location\}/clusters/{cluster\}` * `{cluster\}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.
      */
     cluster?: string | null;
-  }
-  /**
-   * GkeHubClusterReference represents a reference to a Kubernetes cluster registered through GKE Hub.
-   */
-  export interface Schema$GkeHubClusterReference {
-    /**
-     * The full or partial name of a GKE Hub membership, using one of the following forms: * `https://gkehub.googleapis.com/v1beta1/projects/{project_id\}/locations/global/memberships/{membership_id\}` * `projects/{project_id\}/locations/global/memberships/{membership_id\}` * `{membership_id\}` If project is not specified, the project of the GameServerCluster resource is used to generate the full name of the GKE Hub membership.
-     */
-    membership?: string | null;
   }
   /**
    * The state of the Kubernetes cluster.
@@ -1027,7 +1010,7 @@ export namespace gameservices_v1beta {
     selectors?: Schema$LabelSelector[];
   }
   /**
-   * The schedule of a recurring or one time event. The event's time span is specified by start_time and end_time. If the scheduled event's timespan is larger than the cron_spec + cron_job_duration, the event will be recurring. If only cron_spec + cron_job_duration are specified, the event is effective starting at the local time specified by cron_spec, and is recurring. start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time cron job: cron spec start time + duration
+   * The schedule of a recurring or one time event. The event's time span is specified by start_time and end_time. If the scheduled event's timespan is larger than the cron_spec + cron_job_duration, the event will be recurring. If only cron_spec + cron_job_duration are specified, the event is effective starting at the local time specified by cron_spec, and is recurring. ``` start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time cron job: cron spec start time + duration ```
    */
   export interface Schema$Schedule {
     /**
@@ -2110,7 +2093,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.getIamPolicy({
-     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
@@ -3309,7 +3292,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -5632,7 +5615,6 @@ export namespace gameservices_v1beta {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "allocationPriority": "my_allocationPriority",
      *         //   "clusterState": {},
      *         //   "connectionInfo": {},
      *         //   "createTime": "my_createTime",
@@ -5917,7 +5899,6 @@ export namespace gameservices_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "allocationPriority": "my_allocationPriority",
      *   //   "clusterState": {},
      *   //   "connectionInfo": {},
      *   //   "createTime": "my_createTime",
@@ -6210,7 +6191,6 @@ export namespace gameservices_v1beta {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "allocationPriority": "my_allocationPriority",
      *         //   "clusterState": {},
      *         //   "connectionInfo": {},
      *         //   "createTime": "my_createTime",
@@ -6365,7 +6345,6 @@ export namespace gameservices_v1beta {
      *         requestBody: {
      *           // request body parameters
      *           // {
-     *           //   "allocationPriority": "my_allocationPriority",
      *           //   "clusterState": {},
      *           //   "connectionInfo": {},
      *           //   "createTime": "my_createTime",
@@ -6673,7 +6652,6 @@ export namespace gameservices_v1beta {
      *         requestBody: {
      *           // request body parameters
      *           // {
-     *           //   "allocationPriority": "my_allocationPriority",
      *           //   "clusterState": {},
      *           //   "connectionInfo": {},
      *           //   "createTime": "my_createTime",
