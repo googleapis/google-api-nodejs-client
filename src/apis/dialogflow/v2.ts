@@ -2699,6 +2699,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2AnalyzeContentRequest {
     /**
+     * Parameters for a human assist query.
+     */
+    assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
+    /**
      * An input event to send to Dialogflow.
      */
     eventInput?: Schema$GoogleCloudDialogflowV2EventInput;
@@ -2845,11 +2849,20 @@ export namespace dialogflow_v2 {
     uri?: string | null;
   }
   /**
+   * Represents the parameters of human assist query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2AssistQueryParameters {
+    /**
+     * Key-value filters on the metadata of documents returned by article suggestion. If specified, article suggestion only returns suggested documents that match all filters in their Document.metadata. Multiple values for a metadata key should be concatenated by comma. For example, filters to match all documents that have 'US' or 'CA' in their market metadata values and 'agent' in their user metadata values will be ``` documents_metadata_filters { key: "market" value: "US,CA" \} documents_metadata_filters { key: "user" value: "agent" \} ```
+     */
+    documentsMetadataFilters?: {[key: string]: string} | null;
+  }
+  /**
    * Defines the Automated Agent to connect to a conversation.
    */
   export interface Schema$GoogleCloudDialogflowV2AutomatedAgentConfig {
     /**
-     * Required. ID of the Dialogflow agent environment to use. This project needs to either be the same project as the conversation or you need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API Service Agent` role in this project. Format: `projects//locations//agent/environments/`. If environment is not specified, the default `draft` environment is used. Refer to [DetectIntentRequest](/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2#google.cloud.dialogflow.v2.DetectIntentRequest) for more details.
+     * Required. ID of the Dialogflow agent environment to use. This project needs to either be the same project as the conversation or you need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API Service Agent` role in this project. - For ES agents, use format: `projects//locations//agent/environments/`. If environment is not specified, the default `draft` environment is used. Refer to [DetectIntentRequest](/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2#google.cloud.dialogflow.v2.DetectIntentRequest) for more details. - For CX agents, use format `projects//locations//agents//environments/`. If environment is not specified, the default `draft` environment is used.
      */
     agent?: string | null;
   }
@@ -4569,7 +4582,7 @@ export namespace dialogflow_v2 {
      */
     humanAgentHandoffConfig?: Schema$GoogleCloudDialogflowV2HumanAgentHandoffConfig;
     /**
-     * Language which represents the conversationProfile. If unspecified, the default language code en-us applies. Users need to create a ConversationProfile for each language they want to support.
+     * Language code for the conversation profile. If not specified, the language is en-US. Language at ConversationProfile should be set for all non en-US languages. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US".
      */
     languageCode?: string | null;
     /**
@@ -4589,9 +4602,17 @@ export namespace dialogflow_v2 {
      */
     notificationConfig?: Schema$GoogleCloudDialogflowV2NotificationConfig;
     /**
+     * Name of the CX SecuritySettings reference for the agent. Format: `projects//locations//securitySettings/`.
+     */
+    securitySettings?: string | null;
+    /**
      * Settings for speech transcription.
      */
     sttConfig?: Schema$GoogleCloudDialogflowV2SpeechToTextConfig;
+    /**
+     * The time zone of this conversational profile from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. Defaults to America/New_York.
+     */
+    timeZone?: string | null;
     /**
      * Output only. Update time of the conversation profile.
      */
@@ -5041,7 +5062,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionQueryConfig {
     /**
-     * Confidence threshold of query result. Agent Assist gives each suggestion a score in the range [0.0, 1.0], based on the relevance between the suggestion and the current conversation context. A score of 0.0 has no relevance, while a score of 1.0 has high relevance. Only suggestions with a score greater than or equal to the value of this field are included in the results. For a baseline model (the default), the recommended value is in the range [0.05, 0.1]. For a custom model, there is no recommended value. Tune this value by starting from a very low value and slowly increasing until you have desired results. If this field is not set, it defaults to 0.0, which means that all suggestions are returned. Supported features: ARTICLE_SUGGESTION.
+     * Confidence threshold of query result. Agent Assist gives each suggestion a score in the range [0.0, 1.0], based on the relevance between the suggestion and the current conversation context. A score of 0.0 has no relevance, while a score of 1.0 has high relevance. Only suggestions with a score greater than or equal to the value of this field are included in the results. For a baseline model (the default), the recommended value is in the range [0.05, 0.1]. For a custom model, there is no recommended value. Tune this value by starting from a very low value and slowly increasing until you have desired results. If this field is not set, it defaults to 0.0, which means that all suggestions are returned. Supported features: ARTICLE_SUGGESTION, FAQ, SMART_REPLY, SMART_COMPOSE.
      */
     confidenceThreshold?: number | null;
     /**
@@ -6213,6 +6234,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2Participant {
     /**
+     * Optional. Key-value filters on the metadata of documents returned by article suggestion. If specified, article suggestion only returns suggested documents that match all filters in their Document.metadata. Multiple values for a metadata key should be concatenated by comma. For example, filters to match all documents that have 'US' or 'CA' in their market metadata values and 'agent' in their user metadata values will be ``` documents_metadata_filters { key: "market" value: "US,CA" \} documents_metadata_filters { key: "user" value: "agent" \} ```
+     */
+    documentsMetadataFilters?: {[key: string]: string} | null;
+    /**
      * Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
      */
     name?: string | null;
@@ -6458,6 +6483,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SuggestArticlesRequest {
     /**
+     * Parameters for a human assist query.
+     */
+    assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
+    /**
      * Max number of messages prior to and including latest_message to use as context when compiling the suggestion. By default 20 and at most 50.
      */
     contextSize?: number | null;
@@ -6487,6 +6516,10 @@ export namespace dialogflow_v2 {
    * The request message for Participants.SuggestFaqAnswers.
    */
   export interface Schema$GoogleCloudDialogflowV2SuggestFaqAnswersRequest {
+    /**
+     * Parameters for a human assist query.
+     */
+    assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
     /**
      * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.
      */
@@ -19626,7 +19659,9 @@ export namespace dialogflow_v2 {
      *       //   "name": "my_name",
      *       //   "newMessageEventNotificationConfig": {},
      *       //   "notificationConfig": {},
+     *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -19645,7 +19680,9 @@ export namespace dialogflow_v2 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -19927,7 +19964,9 @@ export namespace dialogflow_v2 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -20224,7 +20263,9 @@ export namespace dialogflow_v2 {
      *       //   "name": "my_name",
      *       //   "newMessageEventNotificationConfig": {},
      *       //   "notificationConfig": {},
+     *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -20243,7 +20284,9 @@ export namespace dialogflow_v2 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -21307,6 +21350,7 @@ export namespace dialogflow_v2 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "assistQueryParams": {},
      *         //   "eventInput": {},
      *         //   "queryParams": {},
      *         //   "replyAudioConfig": {},
@@ -21467,6 +21511,7 @@ export namespace dialogflow_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "documentsMetadataFilters": {},
      *       //   "name": "my_name",
      *       //   "role": "my_role",
      *       //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -21477,6 +21522,7 @@ export namespace dialogflow_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -21621,6 +21667,7 @@ export namespace dialogflow_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -21909,6 +21956,7 @@ export namespace dialogflow_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "documentsMetadataFilters": {},
      *       //   "name": "my_name",
      *       //   "role": "my_role",
      *       //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -21919,6 +21967,7 @@ export namespace dialogflow_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -22133,6 +22182,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -22289,6 +22339,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -35551,7 +35602,9 @@ export namespace dialogflow_v2 {
      *       //   "name": "my_name",
      *       //   "newMessageEventNotificationConfig": {},
      *       //   "notificationConfig": {},
+     *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -35570,7 +35623,9 @@ export namespace dialogflow_v2 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -35854,7 +35909,9 @@ export namespace dialogflow_v2 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -36153,7 +36210,9 @@ export namespace dialogflow_v2 {
      *       //   "name": "my_name",
      *       //   "newMessageEventNotificationConfig": {},
      *       //   "notificationConfig": {},
+     *       //   "securitySettings": "my_securitySettings",
      *       //   "sttConfig": {},
+     *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -36172,7 +36231,9 @@ export namespace dialogflow_v2 {
      *   //   "name": "my_name",
      *   //   "newMessageEventNotificationConfig": {},
      *   //   "notificationConfig": {},
+     *   //   "securitySettings": "my_securitySettings",
      *   //   "sttConfig": {},
+     *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -37242,6 +37303,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "eventInput": {},
      *           //   "queryParams": {},
      *           //   "replyAudioConfig": {},
@@ -37405,6 +37467,7 @@ export namespace dialogflow_v2 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "documentsMetadataFilters": {},
      *         //   "name": "my_name",
      *         //   "role": "my_role",
      *         //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -37415,6 +37478,7 @@ export namespace dialogflow_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -37560,6 +37624,7 @@ export namespace dialogflow_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -37853,6 +37918,7 @@ export namespace dialogflow_v2 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "documentsMetadataFilters": {},
      *         //   "name": "my_name",
      *         //   "role": "my_role",
      *         //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -37863,6 +37929,7 @@ export namespace dialogflow_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "documentsMetadataFilters": {},
      *   //   "name": "my_name",
      *   //   "role": "my_role",
      *   //   "sipRecordingMediaLabel": "my_sipRecordingMediaLabel"
@@ -38077,6 +38144,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
@@ -38233,6 +38301,7 @@ export namespace dialogflow_v2 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "assistQueryParams": {},
      *           //   "contextSize": 0,
      *           //   "latestMessage": "my_latestMessage"
      *           // }
