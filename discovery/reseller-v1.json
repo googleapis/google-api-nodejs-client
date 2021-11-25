@@ -631,7 +631,7 @@
       }
     }
   },
-  "revision": "20211026",
+  "revision": "20211121",
   "rootUrl": "https://reseller.googleapis.com/",
   "schemas": {
     "Address": {
@@ -733,9 +733,9 @@
         "customerType": {
           "description": "Identifies the type of the customer. Acceptable values include: * `domain`: Implies a domain-verified customer (default). * `team`: Implies an email-verified customer. For more information, see [managed teams](https://support.google.com/a/users/answer/9939479).",
           "enum": [
-            "CUSTOMER_TYPE_UNSPECIFIED",
-            "DOMAIN",
-            "TEAM"
+            "customerTypeUnspecified",
+            "domain",
+            "team"
           ],
           "enumDescriptions": [
             "Customer type not known",

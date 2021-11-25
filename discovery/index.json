@@ -712,7 +712,7 @@
       "name": "binaryauthorization",
       "version": "v1beta1",
       "title": "Binary Authorization API",
-      "description": "The management interface for Binary Authorization, a system providing policy control for images deployed to Kubernetes Engine clusters.",
+      "description": "The management interface for Binary Authorization, a service that provides policy-based deployment validation and control for images deployed to Google Kubernetes Engine (GKE), Anthos Service Mesh, Anthos Clusters, and Cloud Run.",
       "discoveryRestUrl": "https://binaryauthorization.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -727,7 +727,7 @@
       "name": "binaryauthorization",
       "version": "v1",
       "title": "Binary Authorization API",
-      "description": "The management interface for Binary Authorization, a system providing policy control for images deployed to Kubernetes Engine clusters.",
+      "description": "The management interface for Binary Authorization, a service that provides policy-based deployment validation and control for images deployed to Google Kubernetes Engine (GKE), Anthos Service Mesh, Anthos Clusters, and Cloud Run.",
       "discoveryRestUrl": "https://binaryauthorization.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -801,8 +801,8 @@
       "id": "chat:v1",
       "name": "chat",
       "version": "v1",
-      "title": "Hangouts Chat API",
-      "description": "Enables bots to fetch information and perform actions in Hangouts Chat.",
+      "title": "Google Chat API",
+      "description": "Enables bots to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.",
       "discoveryRestUrl": "https://chat.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1079,6 +1079,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/debugger",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "clouddeploy:v1",
+      "name": "clouddeploy",
+      "version": "v1",
+      "title": "Google Cloud Deploy API",
+      "description": "",
+      "discoveryRestUrl": "https://clouddeploy.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/deploy/",
       "preferred": true
     },
     {
@@ -1857,6 +1872,21 @@
       "title": "Datastream API",
       "description": "",
       "discoveryRestUrl": "https://datastream.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/datastream/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "datastream:v1",
+      "name": "datastream",
+      "version": "v1",
+      "title": "Datastream API",
+      "description": "",
+      "discoveryRestUrl": "https://datastream.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3222,7 +3252,7 @@
       "name": "logging",
       "version": "v2",
       "title": "Cloud Logging API",
-      "description": "Writes log entries and manages your Cloud Logging configuration. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the documentation at https://cloud.google.com/logging/docs.",
+      "description": "Writes log entries and manages your Cloud Logging configuration.",
       "discoveryRestUrl": "https://logging.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3673,7 +3703,7 @@
       "name": "orgpolicy",
       "version": "v2",
       "title": "Organization Policy API",
-      "description": "The Org Policy API allows users to configure governance ruleson their GCP resources across the Cloud Resource Hierarchy.",
+      "description": "The Org Policy API allows users to configure governance rules on their GCP resources across the Cloud Resource Hierarchy.",
       "discoveryRestUrl": "https://orgpolicy.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -5270,22 +5300,6 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/fonts/docs/developer_api",
-      "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "webmasters:v3",
-      "name": "webmasters",
-      "version": "v3",
-      "title": "Search Console API",
-      "description": "[Deprecated] View Google Search Console data for your verified sites.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/webmasters/v3/rest",
-      "discoveryLink": "./apis/webmasters/v3/rest",
-      "icons": {
-        "x16": "https://www.google.com/images/icons/product/webmaster_tools-16.png",
-        "x32": "https://www.google.com/images/icons/product/webmaster_tools-32.png"
-      },
-      "documentationLink": "https://developers.google.com/webmaster-tools/",
       "preferred": true
     },
     {
