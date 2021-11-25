@@ -456,6 +456,10 @@ export namespace file_v1 {
      */
     fileShares?: Schema$FileShareConfig[];
     /**
+     * KMS key name used for data encryption.
+     */
+    kmsKeyName?: string | null;
+    /**
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
@@ -479,6 +483,10 @@ export namespace file_v1 {
      * Output only. Additional information about the instance state, if available.
      */
     statusMessage?: string | null;
+    /**
+     * Output only. field indicates all the reasons the instance is in "SUSPENDED" state.
+     */
+    suspensionReasons?: string[] | null;
     /**
      * The service tier of the instance.
      */
@@ -543,6 +551,19 @@ export namespace file_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * ListSnapshotsResponse is the result of ListSnapshotsRequest.
+   */
+  export interface Schema$ListSnapshotsResponse {
+    /**
+     * The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of snapshots in the project for the specified instance.
+     */
+    snapshots?: Schema$Snapshot[];
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -620,6 +641,10 @@ export namespace file_v1 {
    */
   export interface Schema$NetworkConfig {
     /**
+     * The network connect mode of the Filestore instance. If not provided, the connect mode defaults to DIRECT_PEERING.
+     */
+    connectMode?: string | null;
+    /**
      * Output only. IPv4 addresses in the format `{octet1\}.{octet2\}.{octet3\}.{octet4\}` or IPv6 addresses in the format `{block1\}:{block2\}:{block3\}:{block4\}:{block5\}:{block6\}:{block7\}:{block8\}`.
      */
     ipAddresses?: string[] | null;
@@ -632,7 +657,7 @@ export namespace file_v1 {
      */
     network?: string | null;
     /**
-     * A /29 CIDR block in one of the [internal IP address ranges](https://www.arin.net/reference/research/statistics/address_filters/) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
+     * Optional, reserved_ip_range can have one of the following two types of values. * CIDR range value when using DIRECT_PEERING connect mode. * [Allocated IP address range](https://cloud.google.com/compute/docs/ip-addresses/reserve-static-internal-ip-address) when using PRIVATE_SERVICE_ACCESS connect mode. When the name of an allocated IP address range is specified, it must be one of the ranges associated with the private service access connection. When specified as a direct CIDR value, it must be a /29 CIDR block for Basic tier or a /24 CIDR block for High Scale or Enterprise tier in one of the [internal IP address ranges](https://www.arin.net/reference/research/statistics/address_filters/) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/24. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
      */
     reservedIpRange?: string | null;
   }
@@ -748,6 +773,35 @@ export namespace file_v1 {
      * Time within the window to start the operations.
      */
     startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * A Filestore snapshot.
+   */
+  export interface Schema$Snapshot {
+    /**
+     * Output only. The time when the snapshot was created.
+     */
+    createTime?: string | null;
+    /**
+     * A description of the snapshot with 2048 characters or less. Requests with longer descriptions will be rejected.
+     */
+    description?: string | null;
+    /**
+     * Output only. The amount of bytes needed to allocate a full copy of the snapshot content
+     */
+    filesystemUsedBytes?: string | null;
+    /**
+     * Resource labels to represent user provided metadata.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The resource name of the snapshot, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The snapshot state.
+     */
+    state?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -1935,8 +1989,12 @@ export namespace file_v1 {
 
   export class Resource$Projects$Locations$Instances {
     context: APIRequestContext;
+    snapshots: Resource$Projects$Locations$Instances$Snapshots;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.snapshots = new Resource$Projects$Locations$Instances$Snapshots(
+        this.context
+      );
     }
 
     /**
@@ -1979,12 +2037,14 @@ export namespace file_v1 {
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "networks": [],
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier"
      *       // }
      *     },
@@ -2119,6 +2179,8 @@ export namespace file_v1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.delete({
+     *     // If set to true, all snapshots of the instance will also be deleted. (Otherwise, the request will only work if the instance has no snapshots.)
+     *     force: 'placeholder-value',
      *     // Required. The instance resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
@@ -2260,12 +2322,14 @@ export namespace file_v1 {
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "fileShares": [],
+     *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "networks": [],
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
      *   //   "statusMessage": "my_statusMessage",
+     *   //   "suspensionReasons": [],
      *   //   "tier": "my_tier"
      *   // }
      * }
@@ -2542,12 +2606,14 @@ export namespace file_v1 {
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "fileShares": [],
+     *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "networks": [],
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
+     *       //   "suspensionReasons": [],
      *       //   "tier": "my_tier"
      *       // }
      *     },
@@ -2814,6 +2880,10 @@ export namespace file_v1 {
   export interface Params$Resource$Projects$Locations$Instances$Delete
     extends StandardParameters {
     /**
+     * If set to true, all snapshots of the instance will also be deleted. (Otherwise, the request will only work if the instance has no snapshots.)
+     */
+    force?: boolean;
+    /**
      * Required. The instance resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
     name?: string;
@@ -2875,6 +2945,785 @@ export namespace file_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RestoreInstanceRequest;
+  }
+
+  export class Resource$Projects$Locations$Instances$Snapshots {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a snapshot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.snapshots.create({
+     *     // Required. The Filestore Instance to create the snapshots of, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *     // Required. The ID to use for the snapshot. The ID must be unique within the specified instance. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     *     snapshotId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "filesystemUsedBytes": "my_filesystemUsedBytes",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Instances$Snapshots$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Snapshots$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Snapshots$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Snapshots$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/snapshots').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a snapshot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.snapshots.delete({
+     *     // Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance/snapshots/my-snapshot',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Instances$Snapshots$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Snapshots$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Snapshots$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Snapshots$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a specific snapshot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.snapshots.get({
+     *     // Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance/snapshots/my-snapshot',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "filesystemUsedBytes": "my_filesystemUsedBytes",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Instances$Snapshots$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Snapshot>;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Snapshot>,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Get,
+      callback: BodyResponseCallback<Schema$Snapshot>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Snapshot>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Snapshots$Get
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Snapshot>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Snapshot> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Snapshots$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Snapshots$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Snapshot>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Snapshot>(parameters);
+      }
+    }
+
+    /**
+     * Lists all snapshots in a project for either a specified location or for all locations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.snapshots.list({
+     *     // List filter.
+     *     filter: 'placeholder-value',
+     *     // Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value to use if there are additional results to retrieve for this list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The instance for which to retrieve snapshot information, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
+     *     parent: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "snapshots": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Instances$Snapshots$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSnapshotsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$List,
+      callback: BodyResponseCallback<Schema$ListSnapshotsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSnapshotsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Snapshots$List
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSnapshotsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSnapshotsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Snapshots$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Snapshots$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/snapshots').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSnapshotsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the settings of a specific snapshot.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.snapshots.patch({
+     *     // Output only. The resource name of the snapshot, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}`.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance/snapshots/my-snapshot',
+     *     // Required. Mask of fields to update. At least one path must be supplied in this field.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "filesystemUsedBytes": "my_filesystemUsedBytes",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Instances$Snapshots$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Instances$Snapshots$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Snapshots$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Snapshots$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Snapshots$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Create
+    extends StandardParameters {
+    /**
+     * Required. The Filestore Instance to create the snapshots of, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the snapshot. The ID must be unique within the specified instance. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
+     */
+    snapshotId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Snapshot;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Delete
+    extends StandardParameters {
+    /**
+     * Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Get
+    extends StandardParameters {
+    /**
+     * Required. The snapshot resource name, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}/snapshots/{snapshot_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$List
+    extends StandardParameters {
+    /**
+     * List filter.
+     */
+    filter?: string;
+    /**
+     * Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value to use if there are additional results to retrieve for this list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The instance for which to retrieve snapshot information, in the format `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Snapshots$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the snapshot, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}/snapshots/{snapshot_id\}`.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update. At least one path must be supplied in this field.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Snapshot;
   }
 
   export class Resource$Projects$Locations$Operations {
