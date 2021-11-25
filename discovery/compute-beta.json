@@ -21163,54 +21163,6 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
-        "resizeAdvanced": {
-          "description": "Resizes the regional managed instance group with advanced configuration options like disabling creation retries. This is an extended version of the resize method. If you increase the size, the group creates new instances using the current instance template. If you decrease the size, the group deletes one or more instances. The resize operation is marked DONE if the resize request is successful. The underlying actions take additional time. You must separately verify the status of the creating or deleting actions with the get or listmanagedinstances method. If the group is part of a backend service that has enabled connection draining, it can take up to 60 seconds after the connection draining duration has elapsed before the VM instance is removed or deleted.",
-          "flatPath": "projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeAdvanced",
-          "httpMethod": "POST",
-          "id": "compute.regionInstanceGroupManagers.resizeAdvanced",
-          "parameterOrder": [
-            "project",
-            "region",
-            "instanceGroupManager"
-          ],
-          "parameters": {
-            "instanceGroupManager": {
-              "description": "The name of the managed instance group. It must be a string that meets the requirements in RFC1035.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "project": {
-              "description": "Project ID for this request.",
-              "location": "path",
-              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
-              "required": true,
-              "type": "string"
-            },
-            "region": {
-              "description": "Name of the region scoping this request. It must be a string that meets the requirements in RFC1035.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "requestId": {
-              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported ( 00000000-0000-0000-0000-000000000000).",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/resizeAdvanced",
-          "request": {
-            "$ref": "RegionInstanceGroupManagersResizeAdvancedRequest"
-          },
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/compute"
-          ]
-        },
         "setAutoHealingPolicies": {
           "description": "Modifies the autohealing policy for the instances in this managed instance group. [Deprecated] This method is deprecated. Use regionInstanceGroupManagers.patch instead.",
           "flatPath": "projects/{project}/regions/{region}/instanceGroupManagers/{instanceGroupManager}/setAutoHealingPolicies",
@@ -32559,7 +32511,7 @@
       }
     }
   },
-  "revision": "20211019",
+  "revision": "20211116",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -33001,11 +32953,11 @@
           "type": "string"
         },
         "publicPtrDomainName": {
-          "description": "The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.",
+          "description": "The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.",
           "type": "string"
         },
         "setPublicPtr": {
-          "description": "Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.",
+          "description": "Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.",
           "type": "boolean"
         },
         "type": {
@@ -34785,7 +34737,7 @@
           "type": "string"
         },
         "clientTtl": {
-          "description": "Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a \"public\" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a \"public\" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 31,622,400s (1 year).",
+          "description": "Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a \"public\" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a \"public\" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 86400s (1 day).",
           "format": "int32",
           "type": "integer"
         },
@@ -35407,7 +35359,7 @@
           "type": "string"
         },
         "clientTtl": {
-          "description": "Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a \"public\" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a \"public\" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 31,622,400s (1 year).",
+          "description": "Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a \"public\" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a \"public\" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 86400s (1 day).",
           "format": "int32",
           "type": "integer"
         },
@@ -38649,7 +38601,7 @@
               "compute.firewalls.patch"
             ]
           },
-          "description": "Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.",
+          "description": "Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
@@ -44434,7 +44386,7 @@
       "properties": {
         "advancedMachineFeatures": {
           "$ref": "AdvancedMachineFeatures",
-          "description": "Controls for advanced machine-related behavior features. Note that for MachineImage, this is not supported yet."
+          "description": "Controls for advanced machine-related behavior features."
         },
         "canIpForward": {
           "description": "Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.",
@@ -44442,7 +44394,7 @@
         },
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig",
-          "description": "Specifies the Confidential Instance options. Note that for MachineImage, this is not supported yet."
+          "description": "Specifies the Confidential Instance options."
         },
         "description": {
           "description": "An optional text description for the instances that are created from these properties.",
@@ -44457,7 +44409,7 @@
         },
         "displayDevice": {
           "$ref": "DisplayDevice",
-          "description": "Display Device properties to enable support for remote display products like: Teradici, VNC and TeamViewer Note that for MachineImage, this is not supported yet."
+          "description": "Display Device properties to enable support for remote display products like: Teradici, VNC and TeamViewer"
         },
         "guestAccelerators": {
           "description": "A list of guest accelerator cards' type and count to use for instances created from these properties.",
@@ -44498,11 +44450,10 @@
           "type": "array"
         },
         "networkPerformanceConfig": {
-          "$ref": "NetworkPerformanceConfig",
-          "description": "Note that for MachineImage, this is not supported yet."
+          "$ref": "NetworkPerformanceConfig"
         },
         "postKeyRevocationActionType": {
-          "description": "PostKeyRevocationActionType of the instance.",
+          "description": "PostKeyRevocationActionType of the instance.(will be deprecated soon)",
           "enum": [
             "NOOP",
             "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
@@ -44516,7 +44467,7 @@
           "type": "string"
         },
         "privateIpv6GoogleAccess": {
-          "description": "The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default. Note that for MachineImage, this is not supported yet.",
+          "description": "The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.",
           "enum": [
             "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
             "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
@@ -44531,10 +44482,10 @@
         },
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
-          "description": "Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet."
+          "description": "Specifies the reservations that instances can consume from."
         },
         "resourcePolicies": {
-          "description": "Resource policies (names, not ULRs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.",
+          "description": "Resource policies (names, not ULRs) applied to instances created from these properties.",
           "items": {
             "type": "string"
           },
@@ -44552,8 +44503,7 @@
           "type": "array"
         },
         "shieldedInstanceConfig": {
-          "$ref": "ShieldedInstanceConfig",
-          "description": "Note that for MachineImage, this is not supported yet."
+          "$ref": "ShieldedInstanceConfig"
         },
         "shieldedVmConfig": {
           "$ref": "ShieldedVmConfig",
@@ -54328,21 +54278,6 @@
       },
       "type": "object"
     },
-    "RegionInstanceGroupManagersResizeAdvancedRequest": {
-      "id": "RegionInstanceGroupManagersResizeAdvancedRequest",
-      "properties": {
-        "noCreationRetries": {
-          "description": "If this flag is true, the managed instance group attempts to create all instances initiated by this resize request only once. If there is an error during creation, the managed instance group does not retry create this instance, and we will decrease the targetSize of the request instead. If the flag is false, the group attempts to recreate each instance continuously until it succeeds. This flag matters only in the first attempt of creation of an instance. After an instance is successfully created while this flag is enabled, the instance behaves the same way as all the other instances created with a regular resize request. In particular, if a running instance dies unexpectedly at a later time and needs to be recreated, this mode does not affect the recreation behavior in that scenario. This flag is applicable only to the current resize request. It does not influence other resize requests in any way. You can see which instances ar being created in which mode by calling the get or listManagedInstances API.",
-          "type": "boolean"
-        },
-        "targetSize": {
-          "description": "The number of running instances that the managed instance group should maintain at any given time. The group automatically adds or removes instances to maintain the number of instances specified by this parameter.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "RegionInstanceGroupManagersSetAutoHealingRequest": {
       "id": "RegionInstanceGroupManagersSetAutoHealingRequest",
       "properties": {
@@ -56907,10 +56842,6 @@
           },
           "type": "array"
         },
-        "enableDynamicPortAllocation": {
-          "description": "Enable Dynamic Port Allocation. If not specified, it is disabled by default. If set to true, - Dynamic Port Allocation will be enabled on this NAT config. - enableEndpointIndependentMapping cannot be set to true. - If minPorts is set, minPortsPerVm must be set to a power of two greater than or equal to 32. If minPortsPerVm is not set, a minimum of 32 ports will be allocated to a VM from this NAT config. ",
-          "type": "boolean"
-        },
         "enableEndpointIndependentMapping": {
           "type": "boolean"
         },
@@ -56922,11 +56853,6 @@
         "logConfig": {
           "$ref": "RouterNatLogConfig",
           "description": "Configure logging on this NAT."
-        },
-        "maxPortsPerVm": {
-          "description": "Maximum number of ports allocated to a VM from this NAT config when Dynamic Port Allocation is enabled. If Dynamic Port Allocation is not enabled, this field has no effect. If Dynamic Port Allocation is enabled, and this field is set, it must be set to a power of two greater than minPortsPerVm, or 64 if minPortsPerVm is not set. If Dynamic Port Allocation is enabled and this field is not set, a maximum of 65536 ports will be allocated to a VM from this NAT config.",
-          "format": "int32",
-          "type": "integer"
         },
         "minPortsPerVm": {
           "description": "Minimum number of ports allocated to a VM from this NAT config. If not set, a default number of ports is allocated to a VM. This is rounded up to the nearest power of 2. For example, if the value of this field is 50, at least 64 ports are allocated to a VM.",
@@ -59557,7 +59483,7 @@
           "type": "array"
         },
         "postKeyRevocationActionType": {
-          "description": "PostKeyRevocationActionType of the instance.",
+          "description": "PostKeyRevocationActionType of the instance. (will be deprecated soon)",
           "enum": [
             "NOOP",
             "POST_KEY_REVOCATION_ACTION_TYPE_UNSPECIFIED",
@@ -61041,11 +60967,6 @@
             "No Subsetting. Clients may open connections and send traffic to all backends of this backend service. This can lead to performance issues if there is substantial imbalance in the count of clients and backends."
           ],
           "type": "string"
-        },
-        "subsetSize": {
-          "description": "The number of backends per backend group assigned to each proxy instance or each service mesh client. An input parameter to the `CONSISTENT_HASH_SUBSETTING` algorithm. Can only be set if `policy` is set to `CONSISTENT_HASH_SUBSETTING`. Can only be set if load balancing scheme is `INTERNAL_MANAGED` or `INTERNAL_SELF_MANAGED`. `subset_size` is optional for Internal HTTP(S) load balancing and required for Traffic Director. If you do not provide this value, Cloud Load Balancing will calculate it dynamically to optimize the number of proxies/clients visible to each backend and vice versa. Must be greater than 0. If `subset_size` is larger than the number of backends/endpoints, then subsetting is disabled.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"

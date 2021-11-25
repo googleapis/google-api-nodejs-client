@@ -28278,7 +28278,7 @@
       }
     }
   },
-  "revision": "20211019",
+  "revision": "20211116",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -28720,11 +28720,11 @@
           "type": "string"
         },
         "publicPtrDomainName": {
-          "description": "The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled in accessConfig. If this field is unspecified in ipv6AccessConfig, a default PTR record will be createc for first IP in associated external IPv6 range.",
+          "description": "The DNS domain name for the public PTR record. You can set this field only if the `setPublicPtr` field is enabled.",
           "type": "string"
         },
         "setPublicPtr": {
-          "description": "Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name. This field is not used in ipv6AccessConfig. A default PTR record will be created if the VM has external IPv6 range associated.",
+          "description": "Specifies whether a public DNS 'PTR' record should be created to map the external IP address of the instance to a DNS domain name.",
           "type": "boolean"
         },
         "type": {
@@ -30414,7 +30414,7 @@
           "type": "string"
         },
         "clientTtl": {
-          "description": "Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a \"public\" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a \"public\" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 31,622,400s (1 year).",
+          "description": "Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a \"public\" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a \"public\" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 86400s (1 day).",
           "format": "int32",
           "type": "integer"
         },
@@ -30992,7 +30992,7 @@
           "type": "string"
         },
         "clientTtl": {
-          "description": "Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a \"public\" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a \"public\" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 31,622,400s (1 year).",
+          "description": "Specifies a separate client (e.g. browser client) maximum TTL. This is used to clamp the max-age (or Expires) value sent to the client. With FORCE_CACHE_ALL, the lesser of client_ttl and default_ttl is used for the response max-age directive, along with a \"public\" directive. For cacheable content in CACHE_ALL_STATIC mode, client_ttl clamps the max-age from the origin (if specified), or else sets the response max-age directive to the lesser of the client_ttl and default_ttl, and also ensures a \"public\" cache-control directive is present. If a client TTL is not specified, a default value (1 hour) will be used. The maximum allowed value is 86400s (1 day).",
           "format": "int32",
           "type": "integer"
         },
@@ -31376,249 +31376,6 @@
       },
       "type": "object"
     },
-    "BfdPacket": {
-      "id": "BfdPacket",
-      "properties": {
-        "authenticationPresent": {
-          "description": "The Authentication Present bit of the BFD packet. This is specified in section 4.1 of RFC5880",
-          "type": "boolean"
-        },
-        "controlPlaneIndependent": {
-          "description": "The Control Plane Independent bit of the BFD packet. This is specified in section 4.1 of RFC5880",
-          "type": "boolean"
-        },
-        "demand": {
-          "description": "The demand bit of the BFD packet. This is specified in section 4.1 of RFC5880",
-          "type": "boolean"
-        },
-        "diagnostic": {
-          "description": "The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880",
-          "enum": [
-            "ADMINISTRATIVELY_DOWN",
-            "CONCATENATED_PATH_DOWN",
-            "CONTROL_DETECTION_TIME_EXPIRED",
-            "DIAGNOSTIC_UNSPECIFIED",
-            "ECHO_FUNCTION_FAILED",
-            "FORWARDING_PLANE_RESET",
-            "NEIGHBOR_SIGNALED_SESSION_DOWN",
-            "NO_DIAGNOSTIC",
-            "PATH_DOWN",
-            "REVERSE_CONCATENATED_PATH_DOWN"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "final": {
-          "description": "The Final bit of the BFD packet. This is specified in section 4.1 of RFC5880",
-          "type": "boolean"
-        },
-        "length": {
-          "description": "The length of the BFD Control packet in bytes. This is specified in section 4.1 of RFC5880",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "minEchoRxIntervalMs": {
-          "description": "The Required Min Echo RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "minRxIntervalMs": {
-          "description": "The Required Min RX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "minTxIntervalMs": {
-          "description": "The Desired Min TX Interval value in the BFD packet. This is specified in section 4.1 of RFC5880",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "multiplier": {
-          "description": "The detection time multiplier of the BFD packet. This is specified in section 4.1 of RFC5880",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "multipoint": {
-          "description": "The multipoint bit of the BFD packet. This is specified in section 4.1 of RFC5880",
-          "type": "boolean"
-        },
-        "myDiscriminator": {
-          "description": "The My Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "poll": {
-          "description": "The Poll bit of the BFD packet. This is specified in section 4.1 of RFC5880",
-          "type": "boolean"
-        },
-        "state": {
-          "description": "The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880",
-          "enum": [
-            "ADMIN_DOWN",
-            "DOWN",
-            "INIT",
-            "STATE_UNSPECIFIED",
-            "UP"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "version": {
-          "description": "The version number of the BFD protocol, as specified in section 4.1 of RFC5880.",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "yourDiscriminator": {
-          "description": "The Your Discriminator value in the BFD packet. This is specified in section 4.1 of RFC5880",
-          "format": "uint32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "BfdStatus": {
-      "description": "Next free: 15",
-      "id": "BfdStatus",
-      "properties": {
-        "bfdSessionInitializationMode": {
-          "description": "The BFD session initialization mode for this BGP peer. If set to ACTIVE, the Cloud Router will initiate the BFD session for this BGP peer. If set to PASSIVE, the Cloud Router will wait for the peer router to initiate the BFD session for this BGP peer. If set to DISABLED, BFD is disabled for this BGP peer.",
-          "enum": [
-            "ACTIVE",
-            "DISABLED",
-            "PASSIVE"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "configUpdateTimestampMicros": {
-          "description": "Unix timestamp of the most recent config update.",
-          "format": "int64",
-          "type": "string"
-        },
-        "controlPacketCounts": {
-          "$ref": "BfdStatusPacketCounts",
-          "description": "Control packet counts for the current BFD session."
-        },
-        "controlPacketIntervals": {
-          "description": "Inter-packet time interval statistics for control packets.",
-          "items": {
-            "$ref": "PacketIntervals"
-          },
-          "type": "array"
-        },
-        "localDiagnostic": {
-          "description": "The diagnostic code specifies the local system's reason for the last change in session state. This allows remote systems to determine the reason that the previous session failed, for example. These diagnostic codes are specified in section 4.1 of RFC5880",
-          "enum": [
-            "ADMINISTRATIVELY_DOWN",
-            "CONCATENATED_PATH_DOWN",
-            "CONTROL_DETECTION_TIME_EXPIRED",
-            "DIAGNOSTIC_UNSPECIFIED",
-            "ECHO_FUNCTION_FAILED",
-            "FORWARDING_PLANE_RESET",
-            "NEIGHBOR_SIGNALED_SESSION_DOWN",
-            "NO_DIAGNOSTIC",
-            "PATH_DOWN",
-            "REVERSE_CONCATENATED_PATH_DOWN"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "localState": {
-          "description": "The current BFD session state as seen by the transmitting system. These states are specified in section 4.1 of RFC5880",
-          "enum": [
-            "ADMIN_DOWN",
-            "DOWN",
-            "INIT",
-            "STATE_UNSPECIFIED",
-            "UP"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "negotiatedLocalControlTxIntervalMs": {
-          "description": "Negotiated transmit interval for control packets.",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "rxPacket": {
-          "$ref": "BfdPacket",
-          "description": "The most recent Rx control packet for this BFD session."
-        },
-        "txPacket": {
-          "$ref": "BfdPacket",
-          "description": "The most recent Tx control packet for this BFD session."
-        },
-        "uptimeMs": {
-          "description": "Session uptime in milliseconds. Value will be 0 if session is not up.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "BfdStatusPacketCounts": {
-      "id": "BfdStatusPacketCounts",
-      "properties": {
-        "numRx": {
-          "description": "Number of packets received since the beginning of the current BFD session.",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "numRxRejected": {
-          "description": "Number of packets received that were rejected because of errors since the beginning of the current BFD session.",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "numRxSuccessful": {
-          "description": "Number of packets received that were successfully processed since the beginning of the current BFD session.",
-          "format": "uint32",
-          "type": "integer"
-        },
-        "numTx": {
-          "description": "Number of packets transmitted since the beginning of the current BFD session.",
-          "format": "uint32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "Binding": {
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
@@ -31892,10 +31649,12 @@
             "GENERAL_PURPOSE_E2",
             "GENERAL_PURPOSE_N2",
             "GENERAL_PURPOSE_N2D",
+            "GENERAL_PURPOSE_T2D",
             "MEMORY_OPTIMIZED",
             "TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -34116,7 +33875,7 @@
               "compute.firewalls.patch"
             ]
           },
-          "description": "Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?`. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.",
+          "description": "Name of the resource; provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. The first character must be a lowercase letter, and all following characters (except for the last character) must be a dash, lowercase letter, or digit. The last character must be a lowercase letter or digit.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
         },
@@ -39725,7 +39484,7 @@
       "properties": {
         "advancedMachineFeatures": {
           "$ref": "AdvancedMachineFeatures",
-          "description": "Controls for advanced machine-related behavior features. Note that for MachineImage, this is not supported yet."
+          "description": "Controls for advanced machine-related behavior features."
         },
         "canIpForward": {
           "description": "Enables instances created based on these properties to send packets with source IP addresses other than their own and receive packets with destination IP addresses other than their own. If these instances will be used as an IP gateway or it will be set as the next-hop in a Route resource, specify true. If unsure, leave this set to false. See the Enable IP forwarding documentation for more information.",
@@ -39733,7 +39492,7 @@
         },
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig",
-          "description": "Specifies the Confidential Instance options. Note that for MachineImage, this is not supported yet."
+          "description": "Specifies the Confidential Instance options."
         },
         "description": {
           "description": "An optional text description for the instances that are created from these properties.",
@@ -39785,7 +39544,7 @@
           "type": "array"
         },
         "privateIpv6GoogleAccess": {
-          "description": "The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default. Note that for MachineImage, this is not supported yet.",
+          "description": "The private IPv6 google access type for VMs. If not specified, use INHERIT_FROM_SUBNETWORK as default.",
           "enum": [
             "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
             "ENABLE_OUTBOUND_VM_ACCESS_TO_GOOGLE",
@@ -39800,10 +39559,10 @@
         },
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
-          "description": "Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet."
+          "description": "Specifies the reservations that instances can consume from."
         },
         "resourcePolicies": {
-          "description": "Resource policies (names, not ULRs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.",
+          "description": "Resource policies (names, not ULRs) applied to instances created from these properties.",
           "items": {
             "type": "string"
           },
@@ -39821,8 +39580,7 @@
           "type": "array"
         },
         "shieldedInstanceConfig": {
-          "$ref": "ShieldedInstanceConfig",
-          "description": "Note that for MachineImage, this is not supported yet."
+          "$ref": "ShieldedInstanceConfig"
         },
         "tags": {
           "$ref": "Tags",
@@ -46358,65 +46116,6 @@
       },
       "type": "object"
     },
-    "PacketIntervals": {
-      "description": "Next free: 7",
-      "id": "PacketIntervals",
-      "properties": {
-        "avgMs": {
-          "description": "Average observed inter-packet interval in milliseconds.",
-          "format": "int64",
-          "type": "string"
-        },
-        "duration": {
-          "description": "From how long ago in the past these intervals were observed.",
-          "enum": [
-            "DURATION_UNSPECIFIED",
-            "HOUR",
-            "MAX",
-            "MINUTE"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "From BfdSession object creation time.",
-            ""
-          ],
-          "type": "string"
-        },
-        "maxMs": {
-          "description": "Maximum observed inter-packet interval in milliseconds.",
-          "format": "int64",
-          "type": "string"
-        },
-        "minMs": {
-          "description": "Minimum observed inter-packet interval in milliseconds.",
-          "format": "int64",
-          "type": "string"
-        },
-        "numIntervals": {
-          "description": "Number of inter-packet intervals from which these statistics were derived.",
-          "format": "int64",
-          "type": "string"
-        },
-        "type": {
-          "description": "The type of packets for which inter-packet intervals were computed.",
-          "enum": [
-            "LOOPBACK",
-            "RECEIVE",
-            "TRANSMIT",
-            "TYPE_UNSPECIFIED"
-          ],
-          "enumDescriptions": [
-            "Only applies to Echo packets. This shows the intervals between sending and receiving the same packet.",
-            "Intervals between received packets.",
-            "Intervals between transmitted packets.",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PacketMirroring": {
       "description": "Represents a Packet Mirroring resource. Packet Mirroring clones the traffic of specified instances in your Virtual Private Cloud (VPC) network and forwards it to a collector destination, such as an instance group of an internal TCP/UDP load balancer, for analysis or examination. For more information about setting up Packet Mirroring, see Using Packet Mirroring.",
       "id": "PacketMirroring",
@@ -49584,10 +49283,6 @@
           "description": "[Output Only] Server-defined fully-qualified URL for this resource.",
           "type": "string"
         },
-        "shareSettings": {
-          "$ref": "ShareSettings",
-          "description": "Share-settings for shared-reservation"
-        },
         "specificReservation": {
           "$ref": "AllocationSpecificSKUReservation",
           "description": "Reservation for instances with specific machine shapes."
@@ -51935,9 +51630,6 @@
           },
           "type": "array"
         },
-        "bfdStatus": {
-          "$ref": "BfdStatus"
-        },
         "ipAddress": {
           "description": "IP address of the local BGP interface.",
           "type": "string"
@@ -53345,25 +53037,6 @@
             }
           },
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "ShareSettings": {
-      "description": "The share setting for reservations and sole tenancy node groups.",
-      "id": "ShareSettings",
-      "properties": {
-        "shareType": {
-          "description": "Type of sharing for this shared-reservation",
-          "enum": [
-            "LOCAL",
-            "SHARE_TYPE_UNSPECIFIED"
-          ],
-          "enumDescriptions": [
-            "Default value.",
-            "Default value. This value is unused."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
