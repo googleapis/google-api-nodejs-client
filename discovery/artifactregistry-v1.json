@@ -211,6 +211,32 @@
               "resources": {
                 "dockerImages": {
                   "methods": {
+                    "get": {
+                      "description": "Gets a docker image.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/dockerImages/{dockerImagesId}",
+                      "httpMethod": "GET",
+                      "id": "artifactregistry.projects.locations.repositories.dockerImages.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the docker images.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/dockerImages/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "DockerImage"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
                     "list": {
                       "description": "Lists docker images.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/dockerImages",
@@ -257,7 +283,7 @@
       }
     }
   },
-  "revision": "20211029",
+  "revision": "20211112",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
