@@ -1369,7 +1369,7 @@ export namespace streetviewpublish_v1 {
      *
      *   // Do the magic
      *   const res = await streetviewpublish.photos.batchGet({
-     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
+     *     // Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      *     languageCode: 'placeholder-value',
      *     // Required. IDs of the Photos. For HTTP GET requests, the URL query parameter should be `photoIds=&photoIds=&...`.
      *     photoIds: 'placeholder-value',
@@ -1772,7 +1772,7 @@ export namespace streetviewpublish_v1 {
   }
   export interface Params$Resource$Photos$Batchget extends StandardParameters {
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
+     * Optional. The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. If language_code is unspecified, the user's language preference for Google services is used.
      */
     languageCode?: string;
     /**
