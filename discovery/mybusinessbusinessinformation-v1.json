@@ -662,7 +662,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20211124",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -1242,6 +1242,11 @@
       "properties": {
         "canDelete": {
           "description": "Output only. Indicates whether the location can be deleted using the API.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "canHaveBusinessCalls": {
+          "description": "Output only. Indicates if the listing is eligible for business calls.",
           "readOnly": true,
           "type": "boolean"
         },
