@@ -912,6 +912,144 @@ export namespace artifactregistry_v1 {
     }
 
     /**
+     * Gets a docker image.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.dockerImages.get({
+     *       // Required. The name of the docker images.
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/dockerImages/my-dockerImage',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buildTime": "my_buildTime",
+     *   //   "imageSizeBytes": "my_imageSizeBytes",
+     *   //   "mediaType": "my_mediaType",
+     *   //   "name": "my_name",
+     *   //   "tags": [],
+     *   //   "uploadTime": "my_uploadTime",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DockerImage>;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DockerImage>,
+      callback: BodyResponseCallback<Schema$DockerImage>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Dockerimages$Get,
+      callback: BodyResponseCallback<Schema$DockerImage>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DockerImage>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Dockerimages$Get
+        | BodyResponseCallback<Schema$DockerImage>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DockerImage>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DockerImage>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DockerImage> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Dockerimages$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Dockerimages$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DockerImage>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DockerImage>(parameters);
+      }
+    }
+
+    /**
      * Lists docker images.
      * @example
      * ```js
@@ -1058,6 +1196,13 @@ export namespace artifactregistry_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Repositories$Dockerimages$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the docker images.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Repositories$Dockerimages$List
     extends StandardParameters {
     /**
