@@ -367,6 +367,10 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IssueModelLabelStatsIssueStats {
     /**
+     * Display name of the issue.
+     */
+    displayName?: string | null;
+    /**
      * Issue resource. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}/issues/{issue\}
      */
     issue?: string | null;
@@ -570,6 +574,14 @@ export namespace contactcenterinsights_v1 {
      * A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/` Deprecated, use `issue_matches_stats` field instead.
      */
     issueMatches?: {[key: string]: number} | null;
+    /**
+     * A map associating each issue resource name with its respective number of matches in the set of conversations. Key has the format: `projects//locations//issueModels//issues/`
+     */
+    issueMatchesStats?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStats;
+    } | null;
     /**
      * A map associating each smart highlighter display name with its respective number of matches in the set of conversations.
      */
@@ -1306,6 +1318,10 @@ export namespace contactcenterinsights_v1 {
    * Aggregated statistics about an issue.
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IssueModelLabelStatsIssueStats {
+    /**
+     * Display name of the issue.
+     */
+    displayName?: string | null;
     /**
      * Issue resource. Format: projects/{project\}/locations/{location\}/issueModels/{issue_model\}/issues/{issue\}
      */
@@ -2137,6 +2153,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "conversationCountTimeSeries": {},
      *   //   "customHighlighterMatches": {},
      *   //   "issueMatches": {},
+     *   //   "issueMatchesStats": {},
      *   //   "smartHighlighterMatches": {}
      *   // }
      * }
@@ -2270,7 +2287,7 @@ export namespace contactcenterinsights_v1 {
      *   // Do the magic
      *   const res =
      *     await contactcenterinsights.projects.locations.conversations.create({
-     *       // A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-32 characters and must match the regular expression /^[a-z0-9-]{4,32\}$/. Valid characters are /a-z-/
+     *       // A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression /^[a-z0-9-]{4,64\}$/. Valid characters are /a-z-/
      *       conversationId: 'placeholder-value',
      *       // Required. The parent resource of the conversation.
      *       parent: 'projects/my-project/locations/my-location',
@@ -3058,7 +3075,7 @@ export namespace contactcenterinsights_v1 {
   export interface Params$Resource$Projects$Locations$Conversations$Create
     extends StandardParameters {
     /**
-     * A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-32 characters and must match the regular expression /^[a-z0-9-]{4,32\}$/. Valid characters are /a-z-/
+     * A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression /^[a-z0-9-]{4,64\}$/. Valid characters are /a-z-/
      */
     conversationId?: string;
     /**
