@@ -14,25 +14,38 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {datastream_v1} from './v1';
 import {datastream_v1alpha1} from './v1alpha1';
 
 export const VERSIONS = {
+  v1: datastream_v1.Datastream,
   v1alpha1: datastream_v1alpha1.Datastream,
 };
 
+export function datastream(version: 'v1'): datastream_v1.Datastream;
+export function datastream(
+  options: datastream_v1.Options
+): datastream_v1.Datastream;
 export function datastream(version: 'v1alpha1'): datastream_v1alpha1.Datastream;
 export function datastream(
   options: datastream_v1alpha1.Options
 ): datastream_v1alpha1.Datastream;
-export function datastream<T = datastream_v1alpha1.Datastream>(
+export function datastream<
+  T = datastream_v1.Datastream | datastream_v1alpha1.Datastream
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha1' | datastream_v1alpha1.Options
+  versionOrOptions:
+    | 'v1'
+    | datastream_v1.Options
+    | 'v1alpha1'
+    | datastream_v1alpha1.Options
 ) {
   return getAPI<T>('datastream', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {datastream_v1};
 export {datastream_v1alpha1};
 export {
   AuthPlus,

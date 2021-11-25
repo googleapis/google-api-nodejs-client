@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "datastream:v1alpha1",
+  "id": "datastream:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://datastream.mtls.googleapis.com/",
   "name": "datastream",
@@ -111,7 +111,7 @@
           "methods": {
             "fetchStaticIps": {
               "description": "The FetchStaticIps API call exposes the static ips used by Datastream. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.",
-              "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}:fetchStaticIps",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:fetchStaticIps",
               "httpMethod": "GET",
               "id": "datastream.projects.locations.fetchStaticIps",
               "parameterOrder": [
@@ -137,7 +137,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha1/{+name}:fetchStaticIps",
+              "path": "v1/{+name}:fetchStaticIps",
               "response": {
                 "$ref": "FetchStaticIpsResponse"
               },
@@ -147,7 +147,7 @@
             },
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "datastream.projects.locations.get",
               "parameterOrder": [
@@ -162,7 +162,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha1/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -172,7 +172,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1alpha1/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "datastream.projects.locations.list",
               "parameterOrder": [
@@ -203,7 +203,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha1/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -217,7 +217,7 @@
               "methods": {
                 "create": {
                   "description": "Use this method to create a connection profile in a project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles",
                   "httpMethod": "POST",
                   "id": "datastream.projects.locations.connectionProfiles.create",
                   "parameterOrder": [
@@ -228,6 +228,11 @@
                       "description": "Required. The connection profile identifier.",
                       "location": "query",
                       "type": "string"
+                    },
+                    "force": {
+                      "description": "Optional. Create the connection profile without validating it.",
+                      "location": "query",
+                      "type": "boolean"
                     },
                     "parent": {
                       "description": "Required. The parent that owns the collection of ConnectionProfiles.",
@@ -242,7 +247,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/connectionProfiles",
+                  "path": "v1/{+parent}/connectionProfiles",
                   "request": {
                     "$ref": "ConnectionProfile"
                   },
@@ -255,7 +260,7 @@
                 },
                 "delete": {
                   "description": "Use this method to delete a connection profile..",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
                   "httpMethod": "DELETE",
                   "id": "datastream.projects.locations.connectionProfiles.delete",
                   "parameterOrder": [
@@ -275,7 +280,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -285,7 +290,7 @@
                 },
                 "discover": {
                   "description": "Use this method to discover a connection profile. The discover API call exposes the data objects and metadata belonging to the profile. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles:discover",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles:discover",
                   "httpMethod": "POST",
                   "id": "datastream.projects.locations.connectionProfiles.discover",
                   "parameterOrder": [
@@ -293,14 +298,14 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent resource of the ConnectionProfile type. Must be in the format `projects/*/locations/*`.",
+                      "description": "Required. The parent resource of the connection profile type. Must be in the format `projects/*/locations/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/connectionProfiles:discover",
+                  "path": "v1/{+parent}/connectionProfiles:discover",
                   "request": {
                     "$ref": "DiscoverConnectionProfileRequest"
                   },
@@ -313,7 +318,7 @@
                 },
                 "get": {
                   "description": "Use this method to get details about a connection profile.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.connectionProfiles.get",
                   "parameterOrder": [
@@ -328,7 +333,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ConnectionProfile"
                   },
@@ -338,7 +343,7 @@
                 },
                 "list": {
                   "description": "Use this method to list connection profiles created in a project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.connectionProfiles.list",
                   "parameterOrder": [
@@ -374,7 +379,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/connectionProfiles",
+                  "path": "v1/{+parent}/connectionProfiles",
                   "response": {
                     "$ref": "ListConnectionProfilesResponse"
                   },
@@ -384,13 +389,18 @@
                 },
                 "patch": {
                   "description": "Use this method to update the parameters of a connection profile.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
                   "httpMethod": "PATCH",
                   "id": "datastream.projects.locations.connectionProfiles.patch",
                   "parameterOrder": [
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. Execute the update without validating it.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Output only. The resource's name.",
                       "location": "path",
@@ -408,14 +418,9 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
-                    },
-                    "validateOnly": {
-                      "description": "Optional. Only validate the connection profile, but do not update any resources. The default is false.",
-                      "location": "query",
-                      "type": "boolean"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "ConnectionProfile"
                   },
@@ -432,7 +437,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "datastream.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -447,7 +452,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
                     "$ref": "CancelOperationRequest"
                   },
@@ -460,7 +465,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "datastream.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -475,7 +480,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -485,7 +490,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.operations.get",
                   "parameterOrder": [
@@ -500,7 +505,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -510,7 +515,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.operations.list",
                   "parameterOrder": [
@@ -541,7 +546,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -555,7 +560,7 @@
               "methods": {
                 "create": {
                   "description": "Use this method to create a private connectivity configuration.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections",
                   "httpMethod": "POST",
                   "id": "datastream.projects.locations.privateConnections.create",
                   "parameterOrder": [
@@ -580,7 +585,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/privateConnections",
+                  "path": "v1/{+parent}/privateConnections",
                   "request": {
                     "$ref": "PrivateConnection"
                   },
@@ -593,7 +598,7 @@
                 },
                 "delete": {
                   "description": "Use this method to delete a private connectivity configuration.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}",
                   "httpMethod": "DELETE",
                   "id": "datastream.projects.locations.privateConnections.delete",
                   "parameterOrder": [
@@ -618,7 +623,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -628,7 +633,7 @@
                 },
                 "get": {
                   "description": "Use this method to get details about a private connectivity configuration.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.privateConnections.get",
                   "parameterOrder": [
@@ -643,7 +648,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "PrivateConnection"
                   },
@@ -653,7 +658,7 @@
                 },
                 "list": {
                   "description": "Use this method to list private connectivity configurations in a project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.privateConnections.list",
                   "parameterOrder": [
@@ -689,7 +694,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/privateConnections",
+                  "path": "v1/{+parent}/privateConnections",
                   "response": {
                     "$ref": "ListPrivateConnectionsResponse"
                   },
@@ -703,7 +708,7 @@
                   "methods": {
                     "create": {
                       "description": "Use this method to create a route for a private connectivity in a project and location.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes",
                       "httpMethod": "POST",
                       "id": "datastream.projects.locations.privateConnections.routes.create",
                       "parameterOrder": [
@@ -728,7 +733,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+parent}/routes",
+                      "path": "v1/{+parent}/routes",
                       "request": {
                         "$ref": "Route"
                       },
@@ -741,7 +746,7 @@
                     },
                     "delete": {
                       "description": "Use this method to delete a route.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes/{routesId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes/{routesId}",
                       "httpMethod": "DELETE",
                       "id": "datastream.projects.locations.privateConnections.routes.delete",
                       "parameterOrder": [
@@ -761,7 +766,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Operation"
                       },
@@ -771,7 +776,7 @@
                     },
                     "get": {
                       "description": "Use this method to get details about a route.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes/{routesId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes/{routesId}",
                       "httpMethod": "GET",
                       "id": "datastream.projects.locations.privateConnections.routes.get",
                       "parameterOrder": [
@@ -786,7 +791,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "Route"
                       },
@@ -796,7 +801,7 @@
                     },
                     "list": {
                       "description": "Use this method to list routes created for a private connectivity in a project and location.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes",
                       "httpMethod": "GET",
                       "id": "datastream.projects.locations.privateConnections.routes.list",
                       "parameterOrder": [
@@ -832,7 +837,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+parent}/routes",
+                      "path": "v1/{+parent}/routes",
                       "response": {
                         "$ref": "ListRoutesResponse"
                       },
@@ -848,7 +853,7 @@
               "methods": {
                 "create": {
                   "description": "Use this method to create a stream.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams",
                   "httpMethod": "POST",
                   "id": "datastream.projects.locations.streams.create",
                   "parameterOrder": [
@@ -883,7 +888,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/streams",
+                  "path": "v1/{+parent}/streams",
                   "request": {
                     "$ref": "Stream"
                   },
@@ -896,7 +901,7 @@
                 },
                 "delete": {
                   "description": "Use this method to delete a stream.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
                   "httpMethod": "DELETE",
                   "id": "datastream.projects.locations.streams.delete",
                   "parameterOrder": [
@@ -916,35 +921,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "fetchErrors": {
-                  "description": "Use this method to fetch any errors associated with a stream.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}:fetchErrors",
-                  "httpMethod": "POST",
-                  "id": "datastream.projects.locations.streams.fetchErrors",
-                  "parameterOrder": [
-                    "stream"
-                  ],
-                  "parameters": {
-                    "stream": {
-                      "description": "Name of the Stream resource for which to fetch any errors.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/streams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha1/{+stream}:fetchErrors",
-                  "request": {
-                    "$ref": "FetchErrorsRequest"
-                  },
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -954,7 +931,7 @@
                 },
                 "get": {
                   "description": "Use this method to get details about a stream.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.streams.get",
                   "parameterOrder": [
@@ -969,7 +946,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Stream"
                   },
@@ -979,7 +956,7 @@
                 },
                 "list": {
                   "description": "Use this method to list streams in a project and location.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams",
                   "httpMethod": "GET",
                   "id": "datastream.projects.locations.streams.list",
                   "parameterOrder": [
@@ -1015,7 +992,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/streams",
+                  "path": "v1/{+parent}/streams",
                   "response": {
                     "$ref": "ListStreamsResponse"
                   },
@@ -1025,7 +1002,7 @@
                 },
                 "patch": {
                   "description": "Use this method to update the configuration of a stream.",
-                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}",
                   "httpMethod": "PATCH",
                   "id": "datastream.projects.locations.streams.patch",
                   "parameterOrder": [
@@ -1033,7 +1010,7 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "Optional. Execute the update without validating it.",
+                      "description": "Optional. Create the stream without validating it.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -1061,7 +1038,7 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1alpha1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Stream"
                   },
@@ -1078,7 +1055,7 @@
                   "methods": {
                     "get": {
                       "description": "Use this method to get details about a stream object.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}",
                       "httpMethod": "GET",
                       "id": "datastream.projects.locations.streams.objects.get",
                       "parameterOrder": [
@@ -1093,7 +1070,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "StreamObject"
                       },
@@ -1103,7 +1080,7 @@
                     },
                     "list": {
                       "description": "Use this method to list the objects of a specific stream.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects",
                       "httpMethod": "GET",
                       "id": "datastream.projects.locations.streams.objects.list",
                       "parameterOrder": [
@@ -1129,7 +1106,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+parent}/objects",
+                      "path": "v1/{+parent}/objects",
                       "response": {
                         "$ref": "ListStreamObjectsResponse"
                       },
@@ -1137,9 +1114,37 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "lookup": {
+                      "description": "Use this method to look up a stream object by its source object identifier.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects:lookup",
+                      "httpMethod": "POST",
+                      "id": "datastream.projects.locations.streams.objects.lookup",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent stream that owns the collection of objects.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/streams/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/objects:lookup",
+                      "request": {
+                        "$ref": "LookupStreamObjectRequest"
+                      },
+                      "response": {
+                        "$ref": "StreamObject"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "startBackfillJob": {
                       "description": "Starts backfill job for the specified stream object.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}:startBackfillJob",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}:startBackfillJob",
                       "httpMethod": "POST",
                       "id": "datastream.projects.locations.streams.objects.startBackfillJob",
                       "parameterOrder": [
@@ -1154,7 +1159,10 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+object}:startBackfillJob",
+                      "path": "v1/{+object}:startBackfillJob",
+                      "request": {
+                        "$ref": "StartBackfillJobRequest"
+                      },
                       "response": {
                         "$ref": "StartBackfillJobResponse"
                       },
@@ -1164,7 +1172,7 @@
                     },
                     "stopBackfillJob": {
                       "description": "Stops the backfill job for the specified stream object.",
-                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}:stopBackfillJob",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}:stopBackfillJob",
                       "httpMethod": "POST",
                       "id": "datastream.projects.locations.streams.objects.stopBackfillJob",
                       "parameterOrder": [
@@ -1179,7 +1187,10 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1alpha1/{+object}:stopBackfillJob",
+                      "path": "v1/{+object}:stopBackfillJob",
+                      "request": {
+                        "$ref": "StopBackfillJobRequest"
+                      },
                       "response": {
                         "$ref": "StopBackfillJobResponse"
                       },
@@ -1298,6 +1309,7 @@
       "type": "object"
     },
     "ConnectionProfile": {
+      "description": "A set of reusable connection configurations to be used as a source or destination for a stream.",
       "id": "ConnectionProfile",
       "properties": {
         "createTime": {
@@ -1334,10 +1346,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "noConnectivity": {
-          "$ref": "NoConnectivitySettings",
-          "description": "No connectivity option chosen."
-        },
         "oracleProfile": {
           "$ref": "OracleProfile",
           "description": "Oracle ConnectionProfile configuration."
@@ -1363,12 +1371,13 @@
       "description": "The configuration of the stream destination.",
       "id": "DestinationConfig",
       "properties": {
-        "destinationConnectionProfileName": {
-          "description": "Required. Destination connection profile identifier.",
+        "destinationConnectionProfile": {
+          "description": "Required. Destination connection profile resource. Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`",
           "type": "string"
         },
         "gcsDestinationConfig": {
-          "$ref": "GcsDestinationConfig"
+          "$ref": "GcsDestinationConfig",
+          "description": "A configuration for how data should be loaded to Cloud Storage."
         }
       },
       "type": "object"
@@ -1379,11 +1388,20 @@
       "properties": {
         "connectionProfile": {
           "$ref": "ConnectionProfile",
-          "description": "An ad-hoc ConnectionProfile configuration."
+          "description": "An ad-hoc connection profile configuration."
         },
         "connectionProfileName": {
-          "description": "A reference to an existing ConnectionProfile.",
+          "description": "A reference to an existing connection profile.",
           "type": "string"
+        },
+        "fullHierarchy": {
+          "description": "Whether to retrieve the full hierarchy of data objects (TRUE) or only the current level (FALSE).",
+          "type": "boolean"
+        },
+        "hierarchyDepth": {
+          "description": "The number of hierarchy levels below the current level to be retrieved.",
+          "format": "int32",
+          "type": "integer"
         },
         "mysqlRdbms": {
           "$ref": "MysqlRdbms",
@@ -1392,20 +1410,12 @@
         "oracleRdbms": {
           "$ref": "OracleRdbms",
           "description": "Oracle RDBMS to enrich with child data objects and metadata."
-        },
-        "recursionDepth": {
-          "description": "The number of hierarchy levels below the current level to be retrieved.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "recursive": {
-          "description": "Whether to retrieve the full hierarchy of data objects (TRUE) or only the current level (FALSE).",
-          "type": "boolean"
         }
       },
       "type": "object"
     },
     "DiscoverConnectionProfileResponse": {
+      "description": "Response from a discover request.",
       "id": "DiscoverConnectionProfileResponse",
       "properties": {
         "mysqlRdbms": {
@@ -1452,26 +1462,6 @@
         "reason": {
           "description": "A title that explains the reason for the error.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "FetchErrorsRequest": {
-      "description": "Request message for 'FetchErrors' request.",
-      "id": "FetchErrorsRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "FetchErrorsResponse": {
-      "description": "Response message for a 'FetchErrors' response.",
-      "id": "FetchErrorsResponse",
-      "properties": {
-        "errors": {
-          "description": "The list of errors on the Stream.",
-          "items": {
-            "$ref": "Error"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -1540,18 +1530,6 @@
           "format": "int32",
           "type": "integer"
         },
-        "gcsFileFormat": {
-          "description": "File format that data should be written in. Deprecated field (b/169501737) - use file_format instead.",
-          "enum": [
-            "GCS_FILE_FORMAT_UNSPECIFIED",
-            "AVRO"
-          ],
-          "enumDescriptions": [
-            "Unspecified Cloud Storage file format.",
-            "Avro file format"
-          ],
-          "type": "string"
-        },
         "jsonFileFormat": {
           "$ref": "JsonFileFormat",
           "description": "JSON file format configuration."
@@ -1567,8 +1545,8 @@
       "description": "Cloud Storage bucket profile.",
       "id": "GcsProfile",
       "properties": {
-        "bucketName": {
-          "description": "Required. The full project and resource path for Cloud Storage bucket including the name.",
+        "bucket": {
+          "description": "Required. The Cloud Storage bucket name.",
           "type": "string"
         },
         "rootPath": {
@@ -1614,6 +1592,7 @@
       "type": "object"
     },
     "ListConnectionProfilesResponse": {
+      "description": "Response message for listing connection profiles.",
       "id": "ListConnectionProfilesResponse",
       "properties": {
         "connectionProfiles": {
@@ -1674,6 +1653,7 @@
       "type": "object"
     },
     "ListPrivateConnectionsResponse": {
+      "description": "Response containing a list of private connection configurations.",
       "id": "ListPrivateConnectionsResponse",
       "properties": {
         "nextPageToken": {
@@ -1698,7 +1678,7 @@
       "type": "object"
     },
     "ListRoutesResponse": {
-      "description": "route list response",
+      "description": "Route list response.",
       "id": "ListRoutesResponse",
       "properties": {
         "nextPageToken": {
@@ -1741,6 +1721,7 @@
       "type": "object"
     },
     "ListStreamsResponse": {
+      "description": "Response message for listing streams.",
       "id": "ListStreamsResponse",
       "properties": {
         "nextPageToken": {
@@ -1798,6 +1779,17 @@
       },
       "type": "object"
     },
+    "LookupStreamObjectRequest": {
+      "description": "Request for looking up a specific stream object by its source object identifier.",
+      "id": "LookupStreamObjectRequest",
+      "properties": {
+        "sourceObjectIdentifier": {
+          "$ref": "SourceObjectIdentifier",
+          "description": "Required. The source object identifier which maps to the stream object."
+        }
+      },
+      "type": "object"
+    },
     "MysqlColumn": {
       "description": "MySQL Column.",
       "id": "MysqlColumn",
@@ -1806,7 +1798,7 @@
           "description": "Column collation.",
           "type": "string"
         },
-        "columnName": {
+        "column": {
           "description": "Column name.",
           "type": "string"
         },
@@ -1839,7 +1831,7 @@
       "description": "MySQL database.",
       "id": "MysqlDatabase",
       "properties": {
-        "databaseName": {
+        "database": {
           "description": "Database name.",
           "type": "string"
         },
@@ -1914,13 +1906,13 @@
       "description": "MySQL source configuration",
       "id": "MysqlSourceConfig",
       "properties": {
-        "allowlist": {
-          "$ref": "MysqlRdbms",
-          "description": "MySQL objects to retrieve from the source."
-        },
-        "rejectlist": {
+        "excludeObjects": {
           "$ref": "MysqlRdbms",
           "description": "MySQL objects to exclude from the stream."
+        },
+        "includeObjects": {
+          "$ref": "MysqlRdbms",
+          "description": "MySQL objects to retrieve from the source."
         }
       },
       "type": "object"
@@ -1970,17 +1962,11 @@
           },
           "type": "array"
         },
-        "tableName": {
+        "table": {
           "description": "Table name.",
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "NoConnectivitySettings": {
-      "description": "No connectivity settings.",
-      "id": "NoConnectivitySettings",
-      "properties": {},
       "type": "object"
     },
     "Operation": {
@@ -2071,7 +2057,7 @@
       "description": "Oracle Column.",
       "id": "OracleColumn",
       "properties": {
-        "columnName": {
+        "column": {
           "description": "Column name.",
           "type": "string"
         },
@@ -2189,7 +2175,7 @@
           },
           "type": "array"
         },
-        "schemaName": {
+        "schema": {
           "description": "Schema name.",
           "type": "string"
         }
@@ -2200,13 +2186,13 @@
       "description": "Oracle data source configuration",
       "id": "OracleSourceConfig",
       "properties": {
-        "allowlist": {
-          "$ref": "OracleRdbms",
-          "description": "Oracle objects to include in the stream."
-        },
-        "rejectlist": {
+        "excludeObjects": {
           "$ref": "OracleRdbms",
           "description": "Oracle objects to exclude from the stream."
+        },
+        "includeObjects": {
+          "$ref": "OracleRdbms",
+          "description": "Oracle objects to include in the stream."
         }
       },
       "type": "object"
@@ -2222,7 +2208,7 @@
           },
           "type": "array"
         },
-        "tableName": {
+        "table": {
           "description": "Table name.",
           "type": "string"
         }
@@ -2271,9 +2257,9 @@
             "FAILED_TO_DELETE"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified state.",
             "The private connection is in creation state - creating resources.",
-            "The private connection has been created with all of it's resources.",
+            "The private connection has been created with all of its resources.",
             "The private connection creation has failed.",
             "The private connection is being deleted.",
             "Delete request has failed, resource is in invalid state."
@@ -2289,7 +2275,7 @@
         },
         "vpcPeeringConfig": {
           "$ref": "VpcPeeringConfig",
-          "description": "VPC Peering Config"
+          "description": "VPC Peering Config."
         }
       },
       "type": "object"
@@ -2298,14 +2284,15 @@
       "description": "Private Connectivity",
       "id": "PrivateConnectivity",
       "properties": {
-        "privateConnectionName": {
+        "privateConnection": {
+          "description": "Required. A reference to a private connection resource. Format: `projects/{project}/locations/{location}/privateConnections/{name}`",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Route": {
-      "description": "The Route resource is the child of the PrivateConnection resource. It used to define a route for a PrivateConnection setup.",
+      "description": "The route resource is the child of the private connection resource, used for defining a route for a private connection.",
       "id": "Route",
       "properties": {
         "createTime": {
@@ -2360,8 +2347,8 @@
           "$ref": "OracleSourceConfig",
           "description": "Oracle data source configuration"
         },
-        "sourceConnectionProfileName": {
-          "description": "Required. Source connection profile identifier.",
+        "sourceConnectionProfile": {
+          "description": "Required. Source connection profile resoource. Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`",
           "type": "string"
         }
       },
@@ -2380,6 +2367,12 @@
           "description": "Oracle data source object identifier."
         }
       },
+      "type": "object"
+    },
+    "StartBackfillJobRequest": {
+      "description": "Request for manually initiating a backfill job for a specific stream object.",
+      "id": "StartBackfillJobRequest",
+      "properties": {},
       "type": "object"
     },
     "StartBackfillJobResponse": {
@@ -2426,6 +2419,12 @@
       },
       "type": "object"
     },
+    "StopBackfillJobRequest": {
+      "description": "Request for manually stopping a running backfill job for a specific stream object.",
+      "id": "StopBackfillJobRequest",
+      "properties": {},
+      "type": "object"
+    },
     "StopBackfillJobResponse": {
       "description": "Response for manually stop a backfill job for a specific stream object.",
       "id": "StopBackfillJobResponse",
@@ -2438,6 +2437,7 @@
       "type": "object"
     },
     "Stream": {
+      "description": "A resource representing streaming data from a source to a destination.",
       "id": "Stream",
       "properties": {
         "backfillAll": {
@@ -2494,7 +2494,7 @@
           "description": "The state of the stream.",
           "enum": [
             "STATE_UNSPECIFIED",
-            "CREATED",
+            "NOT_STARTED",
             "RUNNING",
             "PAUSED",
             "MAINTENANCE",
@@ -2505,7 +2505,7 @@
           ],
           "enumDescriptions": [
             "Unspecified stream state.",
-            "The stream has been created.",
+            "The stream has been created but has not yet started streaming data.",
             "The stream is running.",
             "The stream is paused.",
             "The stream is in maintenance mode. Updates are rejected on the resource in this state.",
@@ -2552,7 +2552,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Output only. The object's name.",
+          "description": "Output only. The object resource's name.",
           "readOnly": true,
           "type": "string"
         },
@@ -2570,6 +2570,7 @@
       "type": "object"
     },
     "Validation": {
+      "description": "A validation to perform on a stream.",
       "id": "Validation",
       "properties": {
         "code": {
@@ -2587,16 +2588,16 @@
           },
           "type": "array"
         },
-        "status": {
+        "state": {
           "description": "Validation execution status.",
           "enum": [
-            "STATUS_UNSPECIFIED",
+            "STATE_UNSPECIFIED",
             "NOT_EXECUTED",
             "FAILED",
             "PASSED"
           ],
           "enumDescriptions": [
-            "Unspecified status.",
+            "Unspecified state.",
             "Validation did not execute.",
             "Validation failed.",
             "Validation passed."
@@ -2664,8 +2665,8 @@
           "description": "Required. A free subnet for peering. (CIDR of /29) TODO(b/172995841) add validators.",
           "type": "string"
         },
-        "vpcName": {
-          "description": "Required. fully qualified name of the VPC Datastream will peer to.",
+        "vpc": {
+          "description": "Required. Fully qualified name of the VPC that Datastream will peer to. Format: `projects/{project}/global/{networks}/{name}`",
           "type": "string"
         }
       },
@@ -2674,6 +2675,6 @@
   },
   "servicePath": "",
   "title": "Datastream API",
-  "version": "v1alpha1",
+  "version": "v1",
   "version_module": true
 }
