@@ -108,7 +108,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
               "location": "path",
               "pattern": "^dms/[^/]+$",
               "required": true,
@@ -143,7 +143,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
               "location": "path",
               "pattern": "^dms/[^/]+$",
               "required": true,
@@ -182,7 +182,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
                   "location": "path",
                   "pattern": "^dms/[^/]+/conversations/[^/]+$",
                   "required": true,
@@ -250,7 +250,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
               "location": "path",
               "pattern": "^rooms/[^/]+$",
               "required": true,
@@ -285,7 +285,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
               "location": "path",
               "pattern": "^rooms/[^/]+$",
               "required": true,
@@ -324,7 +324,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
                   "location": "path",
                   "pattern": "^rooms/[^/]+/conversations/[^/]+$",
                   "required": true,
@@ -411,7 +411,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
               "location": "path",
               "pattern": "^spaces/[^/]+$",
               "required": true,
@@ -509,7 +509,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAA",
                   "location": "path",
                   "pattern": "^spaces/[^/]+$",
                   "required": true,
@@ -544,7 +544,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name of the message to be deleted, in the form \"spaces/*/messages/*\" Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4",
+                  "description": "Required. Resource name of the message to be deleted, in the form \"spaces/*/messages/*\" Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
@@ -566,7 +566,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Resource name of the message to be retrieved, in the form \"spaces/*/messages/*\". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4",
+                  "description": "Required. Resource name of the message to be retrieved, in the form \"spaces/*/messages/*\". Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
@@ -588,7 +588,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`",
+                  "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20211117",
+  "revision": "20211125",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -2346,8 +2346,9 @@
       "id": "Membership",
       "properties": {
         "createTime": {
-          "description": "The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.",
+          "description": "Output only. The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "member": {
@@ -2358,7 +2359,7 @@
           "type": "string"
         },
         "state": {
-          "description": "State of the membership.",
+          "description": "State of the membership. Required for `CreateMembership`. Read-only for other usage.",
           "enum": [
             "MEMBERSHIP_STATE_UNSPECIFIED",
             "JOINED",
@@ -2426,7 +2427,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`",
+          "description": "Resource name in the form `spaces/*/messages/*`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`",
           "type": "string"
         },
         "previewText": {
@@ -2555,7 +2556,7 @@
       "id": "Space",
       "properties": {
         "displayName": {
-          "description": "The display name (only if the space is of type `ROOM`). Please note that this field might not be populated in direct messages between humans.",
+          "description": "The space's display name. For direct messages between humans, this field might be empty.",
           "type": "string"
         },
         "name": {
@@ -2563,15 +2564,17 @@
           "type": "string"
         },
         "singleUserBotDm": {
-          "description": "Whether the space is a DM between a bot and a single human.",
+          "description": "Output only. Whether the space is a DM between a bot and a single human.",
+          "readOnly": true,
           "type": "boolean"
         },
         "threaded": {
-          "description": "Whether the messages are threaded in this space.",
+          "description": "Output only. Whether the messages are threaded in this space.",
+          "readOnly": true,
           "type": "boolean"
         },
         "type": {
-          "description": "Output only. The type of a space. This is deprecated. Use `single_user_bot_dm` instead.",
+          "description": "Deprecated. Use `single_user_bot_dm` instead. Output only. The type of a space.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "ROOM",
@@ -2657,7 +2660,7 @@
       "id": "Thread",
       "properties": {
         "name": {
-          "description": "Resource name, in the form \"spaces/*/threads/*\". Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4",
+          "description": "Resource name, in the form \"spaces/*/threads/*\". Example: spaces/AAAAAAAAAAA/threads/TTTTTTTTTTT",
           "type": "string"
         }
       },

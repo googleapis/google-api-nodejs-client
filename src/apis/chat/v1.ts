@@ -1181,7 +1181,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Membership {
     /**
-     * The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.
+     * Output only. The creation time of the membership a.k.a. the time at which the member joined the space, if applicable.
      */
     createTime?: string | null;
     /**
@@ -1190,7 +1190,7 @@ export namespace chat_v1 {
     member?: Schema$User;
     name?: string | null;
     /**
-     * State of the membership.
+     * State of the membership. Required for `CreateMembership`. Read-only for other usage.
      */
     state?: string | null;
   }
@@ -1231,7 +1231,7 @@ export namespace chat_v1 {
      */
     lastUpdateTime?: string | null;
     /**
-     * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`
+     * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      */
     name?: string | null;
     /**
@@ -1333,7 +1333,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Space {
     /**
-     * The display name (only if the space is of type `ROOM`). Please note that this field might not be populated in direct messages between humans.
+     * The space's display name. For direct messages between humans, this field might be empty.
      */
     displayName?: string | null;
     /**
@@ -1341,15 +1341,15 @@ export namespace chat_v1 {
      */
     name?: string | null;
     /**
-     * Whether the space is a DM between a bot and a single human.
+     * Output only. Whether the space is a DM between a bot and a single human.
      */
     singleUserBotDm?: boolean | null;
     /**
-     * Whether the messages are threaded in this space.
+     * Output only. Whether the messages are threaded in this space.
      */
     threaded?: boolean | null;
     /**
-     * Output only. The type of a space. This is deprecated. Use `single_user_bot_dm` instead.
+     * Deprecated. Use `single_user_bot_dm` instead. Output only. The type of a space.
      */
     type?: string | null;
   }
@@ -1400,7 +1400,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Thread {
     /**
-     * Resource name, in the form "spaces/x/threads/x". Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
+     * Resource name, in the form "spaces/x/threads/x". Example: spaces/AAAAAAAAAAA/threads/TTTTTTTTTTT
      */
     name?: string | null;
   }
@@ -1513,7 +1513,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.dms.messages({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'dms/my-dm',
      *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
      *     requestId: 'placeholder-value',
@@ -1681,7 +1681,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.dms.webhooks({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'dms/my-dm',
      *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
      *     requestId: 'placeholder-value',
@@ -1825,7 +1825,7 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Dms$Messages extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      */
     parent?: string;
     /**
@@ -1844,7 +1844,7 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Dms$Webhooks extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      */
     parent?: string;
     /**
@@ -1895,7 +1895,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.dms.conversations.messages({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'dms/my-dm/conversations/my-conversation',
      *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
      *     requestId: 'placeholder-value',
@@ -2041,7 +2041,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Dms$Conversations$Messages
     extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      */
     parent?: string;
     /**
@@ -2236,7 +2236,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.rooms.messages({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'rooms/my-room',
      *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
      *     requestId: 'placeholder-value',
@@ -2404,7 +2404,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.rooms.webhooks({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'rooms/my-room',
      *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
      *     requestId: 'placeholder-value',
@@ -2548,7 +2548,7 @@ export namespace chat_v1 {
 
   export interface Params$Resource$Rooms$Messages extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      */
     parent?: string;
     /**
@@ -2567,7 +2567,7 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Rooms$Webhooks extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      */
     parent?: string;
     /**
@@ -2618,7 +2618,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.rooms.conversations.messages({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'rooms/my-room/conversations/my-conversation',
      *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
      *     requestId: 'placeholder-value',
@@ -2764,7 +2764,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Rooms$Conversations$Messages
     extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      */
     parent?: string;
     /**
@@ -3079,7 +3079,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.webhooks({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'spaces/my-space',
      *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
      *     requestId: 'placeholder-value',
@@ -3239,7 +3239,7 @@ export namespace chat_v1 {
   }
   export interface Params$Resource$Spaces$Webhooks extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      */
     parent?: string;
     /**
@@ -3590,7 +3590,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.create({
-     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'spaces/my-space',
      *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
      *     requestId: 'placeholder-value',
@@ -3759,7 +3759,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.delete({
-     *     // Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     // Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB
      *     name: 'spaces/my-space/messages/my-message',
      *   });
      *   console.log(res.data);
@@ -3883,7 +3883,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.get({
-     *     // Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *     // Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB
      *     name: 'spaces/my-space/messages/my-message',
      *   });
      *   console.log(res.data);
@@ -4023,7 +4023,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.update({
-     *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`
+     *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      *     name: 'spaces/my-space/messages/my-message',
      *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * gsuite_message_integration_render_data * attachment
      *     updateMask: 'placeholder-value',
@@ -4164,7 +4164,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Create
     extends StandardParameters {
     /**
-     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      */
     parent?: string;
     /**
@@ -4184,21 +4184,21 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB
      */
     name?: string;
   }
   export interface Params$Resource$Spaces$Messages$Update
     extends StandardParameters {
     /**
-     * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4`
+     * Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      */
     name?: string;
     /**
