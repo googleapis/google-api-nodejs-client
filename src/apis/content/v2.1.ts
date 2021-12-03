@@ -224,7 +224,7 @@ export namespace content_v2_1 {
      */
     cssId?: string | null;
     /**
-     * The GMB account which is linked or in the process of being linked with the Merchant Center account.
+     * The Business Profile which is linked or in the process of being linked with the Merchant Center account.
      */
     googleMyBusinessLink?: Schema$AccountGoogleMyBusinessLink;
     /**
@@ -347,15 +347,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountGoogleMyBusinessLink {
     /**
-     * The ID of the GMB account. If this is provided, then `gmbEmail` is ignored. The value of this field should match the `accountId` used by the GMB API.
+     * The ID of the Business Profile. If this is provided, then `gmbEmail` is ignored. The value of this field should match the `accountId` used by the Business Profile API.
      */
     gmbAccountId?: string | null;
     /**
-     * The GMB email address of which a specific account within a GMB account. A sample account within a GMB account could be a business account with set of locations, managed under the GMB account.
+     * The Business Profile email address of a specific account within a Business Profile. A sample account within a Business Profile could be a business account with set of locations, managed under the Business Profile.
      */
     gmbEmail?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the GMB account. Acceptable values are: - "`active`" - "`pending`"
+     * Status of the link between this Merchant Center account and the Business Profile. Acceptable values are: - "`active`" - "`pending`"
      */
     status?: string | null;
   }
@@ -1845,13 +1845,13 @@ export namespace content_v2_1 {
      */
     accountId?: string | null;
     /**
-     * A list of GMB accounts which are available to the merchant.
+     * A list of Business Profiles which are available to the merchant.
      */
     gmbAccounts?: Schema$GmbAccountsGmbAccount[];
   }
   export interface Schema$GmbAccountsGmbAccount {
     /**
-     * The email which identifies the GMB account.
+     * The email which identifies the Business Profile.
      */
     email?: string | null;
     /**
@@ -1859,11 +1859,11 @@ export namespace content_v2_1 {
      */
     listingCount?: string | null;
     /**
-     * The name of the GMB account.
+     * The name of the Business Profile.
      */
     name?: string | null;
     /**
-     * The type of the GMB account (User or Business).
+     * The type of the Business Profile (User or Business).
      */
     type?: string | null;
   }
@@ -2115,7 +2115,7 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * The GMB account. Required only for RequestGmbAccess.
+     * The Business Profile. Required only for RequestGmbAccess.
      */
     gmbEmail?: string | null;
     /**
@@ -2159,7 +2159,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * The list of accessible GMB accounts.
+     * The list of accessible Business Profiles.
      */
     gmbAccounts?: Schema$GmbAccounts;
     /**
@@ -2181,7 +2181,7 @@ export namespace content_v2_1 {
      */
     accountId?: string | null;
     /**
-     * A list of GMB accounts which are available to the merchant.
+     * A list of Business Profiles which are available to the merchant.
      */
     gmbAccounts?: Schema$GmbAccountsGmbAccount[];
     /**
@@ -4341,7 +4341,7 @@ export namespace content_v2_1 {
      */
     productTitle?: string | null;
     /**
-     * Required. The quantity of the line item in the order.
+     * The quantity of the line item in the order.
      */
     quantity?: string | null;
     /**
@@ -4362,7 +4362,7 @@ export namespace content_v2_1 {
      */
     lineItemId?: string | null;
     /**
-     * Required. The line item quantity in the shipment.
+     * The line item quantity in the shipment.
      */
     quantity?: string | null;
     /**
@@ -4589,7 +4589,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4623,7 +4623,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4661,7 +4661,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4713,7 +4713,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4751,7 +4751,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4793,7 +4793,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -16828,7 +16828,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Retrieves the list of accessible Google My Business accounts.
+     * Retrieves the list of accessible Business Profiles.
      * @example
      * ```js
      * // Before running the sample:
@@ -16854,7 +16854,7 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.liasettings.getaccessiblegmbaccounts({
-     *     // The ID of the account for which to retrieve accessible Google My Business accounts.
+     *     // The ID of the account for which to retrieve accessible Business Profiles.
      *     accountId: 'placeholder-value',
      *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      *     merchantId: 'placeholder-value',
@@ -17247,7 +17247,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests access to a specified Google My Business account.
+     * Requests access to a specified Business Profile.
      * @example
      * ```js
      * // Before running the sample:
@@ -17273,9 +17273,9 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.liasettings.requestgmbaccess({
-     *     // The ID of the account for which GMB access is requested.
+     *     // The ID of the account for which Business Profile access is requested.
      *     accountId: 'placeholder-value',
-     *     // The email of the Google My Business account.
+     *     // The email of the Business Profile.
      *     gmbEmail: 'placeholder-value',
      *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      *     merchantId: 'placeholder-value',
@@ -17716,7 +17716,7 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.liasettings.setposdataprovider({
-     *     // The ID of the account for which to retrieve accessible Google My Business accounts.
+     *     // The ID of the account for which to retrieve accessible Business Profiles.
      *     accountId: 'placeholder-value',
      *     // The country for which the POS data provider is selected.
      *     country: 'placeholder-value',
@@ -18000,7 +18000,7 @@ export namespace content_v2_1 {
   export interface Params$Resource$Liasettings$Getaccessiblegmbaccounts
     extends StandardParameters {
     /**
-     * The ID of the account for which to retrieve accessible Google My Business accounts.
+     * The ID of the account for which to retrieve accessible Business Profiles.
      */
     accountId?: string;
     /**
@@ -18027,11 +18027,11 @@ export namespace content_v2_1 {
   export interface Params$Resource$Liasettings$Requestgmbaccess
     extends StandardParameters {
     /**
-     * The ID of the account for which GMB access is requested.
+     * The ID of the account for which Business Profile access is requested.
      */
     accountId?: string;
     /**
-     * The email of the Google My Business account.
+     * The email of the Business Profile.
      */
     gmbEmail?: string;
     /**
@@ -18084,7 +18084,7 @@ export namespace content_v2_1 {
   export interface Params$Resource$Liasettings$Setposdataprovider
     extends StandardParameters {
     /**
-     * The ID of the account for which to retrieve accessible Google My Business accounts.
+     * The ID of the account for which to retrieve accessible Business Profiles.
      */
     accountId?: string;
     /**

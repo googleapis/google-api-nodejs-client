@@ -2042,7 +2042,7 @@
           ]
         },
         "getaccessiblegmbaccounts": {
-          "description": "Retrieves the list of accessible Google My Business accounts.",
+          "description": "Retrieves the list of accessible Business Profiles.",
           "flatPath": "{merchantId}/liasettings/{accountId}/accessiblegmbaccounts",
           "httpMethod": "GET",
           "id": "content.liasettings.getaccessiblegmbaccounts",
@@ -2052,7 +2052,7 @@
           ],
           "parameters": {
             "accountId": {
-              "description": "The ID of the account for which to retrieve accessible Google My Business accounts.",
+              "description": "The ID of the account for which to retrieve accessible Business Profiles.",
               "format": "uint64",
               "location": "path",
               "required": true,
@@ -2126,7 +2126,7 @@
           ]
         },
         "requestgmbaccess": {
-          "description": "Requests access to a specified Google My Business account.",
+          "description": "Requests access to a specified Business Profile.",
           "flatPath": "{merchantId}/liasettings/{accountId}/requestgmbaccess",
           "httpMethod": "POST",
           "id": "content.liasettings.requestgmbaccess",
@@ -2137,14 +2137,14 @@
           ],
           "parameters": {
             "accountId": {
-              "description": "The ID of the account for which GMB access is requested.",
+              "description": "The ID of the account for which Business Profile access is requested.",
               "format": "uint64",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "gmbEmail": {
-              "description": "The email of the Google My Business account.",
+              "description": "The email of the Business Profile.",
               "location": "query",
               "required": true,
               "type": "string"
@@ -2278,7 +2278,7 @@
           ],
           "parameters": {
             "accountId": {
-              "description": "The ID of the account for which to retrieve accessible Google My Business accounts.",
+              "description": "The ID of the account for which to retrieve accessible Business Profiles.",
               "format": "uint64",
               "location": "path",
               "required": true,
@@ -5815,7 +5815,7 @@
       }
     }
   },
-  "revision": "20211027",
+  "revision": "20211126",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5857,7 +5857,7 @@
         },
         "googleMyBusinessLink": {
           "$ref": "AccountGoogleMyBusinessLink",
-          "description": "The GMB account which is linked or in the process of being linked with the Merchant Center account."
+          "description": "The Business Profile which is linked or in the process of being linked with the Merchant Center account."
         },
         "id": {
           "description": "Required for update. Merchant Center account ID.",
@@ -6024,15 +6024,15 @@
       "id": "AccountGoogleMyBusinessLink",
       "properties": {
         "gmbAccountId": {
-          "description": "The ID of the GMB account. If this is provided, then `gmbEmail` is ignored. The value of this field should match the `accountId` used by the GMB API.",
+          "description": "The ID of the Business Profile. If this is provided, then `gmbEmail` is ignored. The value of this field should match the `accountId` used by the Business Profile API.",
           "type": "string"
         },
         "gmbEmail": {
-          "description": "The GMB email address of which a specific account within a GMB account. A sample account within a GMB account could be a business account with set of locations, managed under the GMB account.",
+          "description": "The Business Profile email address of a specific account within a Business Profile. A sample account within a Business Profile could be a business account with set of locations, managed under the Business Profile.",
           "type": "string"
         },
         "status": {
-          "description": "Status of the link between this Merchant Center account and the GMB account. Acceptable values are: - \"`active`\" - \"`pending`\" ",
+          "description": "Status of the link between this Merchant Center account and the Business Profile. Acceptable values are: - \"`active`\" - \"`pending`\" ",
           "type": "string"
         }
       },
@@ -8136,7 +8136,7 @@
           "type": "string"
         },
         "gmbAccounts": {
-          "description": "A list of GMB accounts which are available to the merchant.",
+          "description": "A list of Business Profiles which are available to the merchant.",
           "items": {
             "$ref": "GmbAccountsGmbAccount"
           },
@@ -8149,7 +8149,7 @@
       "id": "GmbAccountsGmbAccount",
       "properties": {
         "email": {
-          "description": "The email which identifies the GMB account.",
+          "description": "The email which identifies the Business Profile.",
           "type": "string"
         },
         "listingCount": {
@@ -8158,11 +8158,11 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the GMB account.",
+          "description": "The name of the Business Profile.",
           "type": "string"
         },
         "type": {
-          "description": "The type of the GMB account (User or Business).",
+          "description": "The type of the Business Profile (User or Business).",
           "type": "string"
         }
       },
@@ -8528,7 +8528,7 @@
           "type": "string"
         },
         "gmbEmail": {
-          "description": "The GMB account. Required only for RequestGmbAccess.",
+          "description": "The Business Profile. Required only for RequestGmbAccess.",
           "type": "string"
         },
         "liaSettings": {
@@ -8587,7 +8587,7 @@
         },
         "gmbAccounts": {
           "$ref": "GmbAccounts",
-          "description": "The list of accessible GMB accounts."
+          "description": "The list of accessible Business Profiles."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#liasettingsCustomBatchResponseEntry`\"",
@@ -8616,7 +8616,7 @@
           "type": "string"
         },
         "gmbAccounts": {
-          "description": "A list of GMB accounts which are available to the merchant.",
+          "description": "A list of Business Profiles which are available to the merchant.",
           "items": {
             "$ref": "GmbAccountsGmbAccount"
           },
@@ -10318,7 +10318,7 @@
           "type": "string"
         },
         "quantity": {
-          "description": "Required. The quantity of the line item in the order.",
+          "description": "The quantity of the line item in the order.",
           "format": "int64",
           "type": "string"
         },
@@ -10342,7 +10342,7 @@
           "type": "string"
         },
         "quantity": {
-          "description": "Required. The line item quantity in the shipment.",
+          "description": "The line item quantity in the shipment.",
           "format": "int64",
           "type": "string"
         },
@@ -11777,7 +11777,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -11816,7 +11816,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -11859,7 +11859,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -11923,7 +11923,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -11966,7 +11966,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -12013,7 +12013,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
