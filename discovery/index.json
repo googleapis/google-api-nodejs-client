@@ -209,7 +209,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://code.google.com/apis/adsense/management/",
+      "documentationLink": "https://developers.google.com/adsense/management/",
       "preferred": true
     },
     {
@@ -1525,7 +1525,7 @@
       "name": "connectors",
       "version": "v1",
       "title": "Connectors API",
-      "description": "",
+      "description": "Enables users to create and manage connections to Google Cloud services and third-party business applications using the Connectors interface.",
       "discoveryRestUrl": "https://connectors.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
