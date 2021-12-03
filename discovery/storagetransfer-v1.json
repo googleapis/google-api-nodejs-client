@@ -107,7 +107,7 @@
     "googleServiceAccounts": {
       "methods": {
         "get": {
-          "description": "Returns the Google service account that is used by Storage Transfer Service to access buckets in the project where transfers run or in other projects. Each Google service account is associated with one Google Cloud Platform Console project. Users should add this service account to the Google Cloud Storage bucket ACLs to grant access to Storage Transfer Service. This service account is created and owned by Storage Transfer Service and can only be used by Storage Transfer Service.",
+          "description": "Returns the Google service account that is used by Storage Transfer Service to access buckets in the project where transfers run or in other projects. Each Google service account is associated with one Google Cloud project. Users should add this service account to the Google Cloud Storage bucket ACLs to grant access to Storage Transfer Service. This service account is created and owned by Storage Transfer Service and can only be used by Storage Transfer Service.",
           "flatPath": "v1/googleServiceAccounts/{projectId}",
           "httpMethod": "GET",
           "id": "storagetransfer.googleServiceAccounts.get",
@@ -116,7 +116,7 @@
           ],
           "parameters": {
             "projectId": {
-              "description": "Required. The ID of the Google Cloud Platform Console project that the Google service account is associated with.",
+              "description": "Required. The ID of the Google Cloud project that the Google service account is associated with.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -146,12 +146,12 @@
               ],
               "parameters": {
                 "agentPoolId": {
-                  "description": "Required. The id of the agent pool to create. The agent_pool_id must be non-empty, less than or equal to 128 characters, and satisfy the following regex: \"^[a-z]([a-z0-9-._~]*[a-z0-9])?$\". Also, agent pool names cannot start with the string \"goog\".",
+                  "description": "Required. The ID of the agent pool to create. The `agent_pool_id` must meet the following requirements: * Length of 128 characters or less. * Not start with the string `goog`. * Start with a lowercase ASCII character, followed by: * Zero or more: lowercase Latin alphabet characters, numerals, hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`). * One or more numerals or lowercase ASCII characters. As expressed by the regular expression: `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.",
                   "location": "query",
                   "type": "string"
                 },
                 "projectId": {
-                  "description": "Required. The ID of the Google Cloud Platform Console project that owns the agent pool.",
+                  "description": "Required. The ID of the Google Cloud project that owns the agent pool.",
                   "location": "path",
                   "pattern": "^[^/]+$",
                   "required": true,
@@ -179,7 +179,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The agent pool name to delete.",
+                  "description": "Required. The name of the agent pool to delete.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/agentPools/[^/]+$",
                   "required": true,
@@ -204,7 +204,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The agent pool to get.",
+                  "description": "Required. The name of the agent pool to get.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/agentPools/[^/]+$",
                   "required": true,
@@ -229,12 +229,12 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A list of optional query parameters specified as JSON text in the form of: `{\"agentPoolNames\":[\"agentpool1\",\"agentpool2\",...]}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. `agentPoolNames` is an optional field. The list returns all agent pools for the project when the filter is not provided or empty.",
+                  "description": "An optional list of query parameters specified as JSON text in the form of: `{\"agentPoolNames\":[\"agentpool1\",\"agentpool2\",...]}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. When the filter is either empty or not provided, the list returns all agent pools for the project.",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The list page size. The max allowed value is 256.",
+                  "description": "The list page size. The max allowed value is `256`.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -245,7 +245,7 @@
                   "type": "string"
                 },
                 "projectId": {
-                  "description": "Required. The ID of the Google Cloud Platform Console project that owns the job.",
+                  "description": "Required. The ID of the Google Cloud project that owns the job.",
                   "location": "path",
                   "pattern": "^[^/]+$",
                   "required": true,
@@ -270,14 +270,14 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id}/agentPools/{agent_pool_id}",
+                  "description": "Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id}/agentPools/{agent_pool_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/agentPools/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "The field mask of the fields in `agentPool` that are to be updated in this request. Fields in `agentPool` that can be updated are: display_name, bandwidth_limit,",
+                  "description": "The [field mask] (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf) of the fields in `agentPool` to update in this request. The following `agentPool` fields can be updated: * display_name * bandwidth_limit",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -336,7 +336,7 @@
               "type": "string"
             },
             "projectId": {
-              "description": "Required. The ID of the Google Cloud Platform Console project that owns the job.",
+              "description": "Required. The ID of the Google Cloud project that owns the job.",
               "location": "query",
               "required": true,
               "type": "string"
@@ -600,7 +600,7 @@
       }
     }
   },
-  "revision": "20211111",
+  "revision": "20211130",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -616,7 +616,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id}/agentPools/{agent_pool_id}",
+          "description": "Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id}/agentPools/{agent_pool_id}`",
           "type": "string"
         },
         "state": {
@@ -712,11 +712,11 @@
       "type": "object"
     },
     "BandwidthLimit": {
-      "description": "Specifies the BandwidthLimit to describe the non-negative bandwidth rate in mbps for the agent pool.",
+      "description": "Specifies a bandwidth limit for an agent pool.",
       "id": "BandwidthLimit",
       "properties": {
         "limitMbps": {
-          "description": "Specifies bandwidth rate in mbps distributed across all the agents in the pool.",
+          "description": "Bandwidth rate in megabytes per second, distributed across all the agents in the pool.",
           "format": "int64",
           "type": "string"
         }
@@ -1126,7 +1126,7 @@
       "id": "RunTransferJobRequest",
       "properties": {
         "projectId": {
-          "description": "Required. The ID of the Google Cloud Platform Console project that owns the transfer job.",
+          "description": "Required. The ID of the Google Cloud project that owns the transfer job.",
           "type": "string"
         }
       },
@@ -1369,7 +1369,7 @@
           "description": "Notification configuration. This is not supported for transfers involving PosixFilesystem."
         },
         "projectId": {
-          "description": "The ID of the Google Cloud Platform Project that owns the job.",
+          "description": "The ID of the Google Cloud project that owns the job.",
           "type": "string"
         },
         "schedule": {
@@ -1404,7 +1404,7 @@
       "id": "TransferManifest",
       "properties": {
         "location": {
-          "description": "Holds URI-encoded path to find the manifest. It can be located in data_source, data_sink, or separately in GCS. For data_source and data_sink, the manifest location is relative to the path specified by that data_source or data_sink. If manifest is in GCS, use format \"gs:///\". If manifest is in data_source, use format \"source://\". If manifest is in data_sink, use format \"sink://\".",
+          "description": "Specifies the path to the manifest in Cloud Storage. The Google-managed service account for the transfer must have `storage.objects.get` permission for this object. An example path is `gs://bucket_name/path/manifest.csv`.",
           "type": "string"
         }
       },
@@ -1439,7 +1439,7 @@
           "description": "Notification configuration."
         },
         "projectId": {
-          "description": "The ID of the Google Cloud Platform Project that owns the operation.",
+          "description": "The ID of the Google Cloud project that owns the operation.",
           "type": "string"
         },
         "startTime": {
@@ -1559,7 +1559,7 @@
       "id": "UpdateTransferJobRequest",
       "properties": {
         "projectId": {
-          "description": "Required. The ID of the Google Cloud Platform Console project that owns the job.",
+          "description": "Required. The ID of the Google Cloud project that owns the job.",
           "type": "string"
         },
         "transferJob": {
