@@ -229,7 +229,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$CustomerSessionStats {
     /**
-     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     * Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned.
      */
     date?: Schema$Date;
     /**
@@ -1766,7 +1766,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$SearchApplicationSessionStats {
     /**
-     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     * Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned.
      */
     date?: Schema$Date;
     /**
@@ -9703,7 +9703,7 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * Initializes the customer. **Note:** This API requires an admin account to execute.
+     * Enables `third party` support in Google Cloud Search. **Note:** This API requires an admin account to execute.
      * @example
      * ```js
      * // Before running the sample:

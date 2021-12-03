@@ -1918,7 +1918,7 @@
     "v1": {
       "methods": {
         "initializeCustomer": {
-          "description": "Initializes the customer. **Note:** This API requires an admin account to execute.",
+          "description": "Enables `third party` support in Google Cloud Search. **Note:** This API requires an admin account to execute.",
           "flatPath": "v1:initializeCustomer",
           "httpMethod": "POST",
           "id": "cloudsearch.initializeCustomer",
@@ -1940,7 +1940,7 @@
       }
     }
   },
-  "revision": "20211018",
+  "revision": "20211130",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AuditLoggingSettings": {
@@ -2082,7 +2082,7 @@
       "properties": {
         "date": {
           "$ref": "Date",
-          "description": "Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned."
+          "description": "Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned."
         },
         "searchSessionsCount": {
           "description": "The count of search sessions on the day",
@@ -4526,7 +4526,7 @@
       "properties": {
         "date": {
           "$ref": "Date",
-          "description": "Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned."
+          "description": "Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned."
         },
         "searchSessionsCount": {
           "description": "The count of search sessions on the day",
