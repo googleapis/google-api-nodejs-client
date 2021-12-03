@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20211108",
+  "revision": "20211122",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1561,7 +1561,7 @@
           "type": "array"
         },
         "type": {
-          "description": "The type of the command. See also params",
+          "description": "The type of the command.",
           "enum": [
             "COMMAND_TYPE_UNSPECIFIED",
             "LOCK",
@@ -1807,7 +1807,7 @@
             "This value is disallowed.",
             "The device is active.",
             "The device is disabled.",
-            "The device was deleted. This state will never be returned by an API call, but is used in the final status report published to Cloud Pub/Sub when the device acknowledges the deletion.",
+            "The device was deleted. This state is never returned by an API call, but is used in the final status report when the device acknowledges the deletion. If the device is deleted via the API call, this state is published to Pub/Sub. If the user deletes the work profile or resets the device, the device state will remain unknown to the server.",
             "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied."
           ],
           "type": "string"
@@ -1967,7 +1967,7 @@
             "This value is disallowed.",
             "The device is active.",
             "The device is disabled.",
-            "The device was deleted. This state will never be returned by an API call, but is used in the final status report published to Cloud Pub/Sub when the device acknowledges the deletion.",
+            "The device was deleted. This state is never returned by an API call, but is used in the final status report when the device acknowledges the deletion. If the device is deleted via the API call, this state is published to Pub/Sub. If the user deletes the work profile or resets the device, the device state will remain unknown to the server.",
             "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied."
           ],
           "type": "string"
