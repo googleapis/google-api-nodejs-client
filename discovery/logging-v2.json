@@ -120,7 +120,7 @@
     "billingAccounts": {
       "methods": {
         "getCmekSettings": {
-          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
+          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
           "flatPath": "v2/billingAccounts/{billingAccountsId}/cmekSettings",
           "httpMethod": "GET",
           "id": "logging.billingAccounts.getCmekSettings",
@@ -1407,7 +1407,7 @@
     "folders": {
       "methods": {
         "getCmekSettings": {
-          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
+          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
           "flatPath": "v2/folders/{foldersId}/cmekSettings",
           "httpMethod": "GET",
           "id": "logging.folders.getCmekSettings",
@@ -3089,7 +3089,7 @@
     "organizations": {
       "methods": {
         "getCmekSettings": {
-          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
+          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
           "flatPath": "v2/organizations/{organizationsId}/cmekSettings",
           "httpMethod": "GET",
           "id": "logging.organizations.getCmekSettings",
@@ -4151,7 +4151,7 @@
     "projects": {
       "methods": {
         "getCmekSettings": {
-          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
+          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
           "flatPath": "v2/projects/{projectsId}/cmekSettings",
           "httpMethod": "GET",
           "id": "logging.projects.getCmekSettings",
@@ -5507,7 +5507,7 @@
     "v2": {
       "methods": {
         "getCmekSettings": {
-          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
+          "description": "Gets the Logging CMEK settings for the given resource.Note: CMEK for the Log Router can be configured for Google Cloud projects, folders, organizations and billing accounts. Once configured for an organization, it applies to all projects and folders in the Google Cloud organization.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
           "flatPath": "v2/{v2Id}/{v2Id1}/cmekSettings",
           "httpMethod": "GET",
           "id": "logging.getCmekSettings",
@@ -5572,7 +5572,7 @@
       }
     }
   },
-  "revision": "20211108",
+  "revision": "20211130",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -5630,7 +5630,7 @@
           "type": "string"
         },
         "serviceAccountId": {
-          "description": "Output only. The service account that will be used by the Log Router to access your Cloud KMS key.Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use GetCmekSettings to obtain the service account ID.See Enabling CMEK for Logs Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
+          "description": "Output only. The service account that will be used by the Log Router to access your Cloud KMS key.Before enabling CMEK for Log Router, you must first assign the cloudkms.cryptoKeyEncrypterDecrypter role to the service account that the Log Router will use to access your Cloud KMS key. Use GetCmekSettings to obtain the service account ID.See Enabling CMEK for Log Router (https://cloud.google.com/logging/docs/routing/managed-encryption) for more information.",
           "readOnly": true,
           "type": "string"
         }
