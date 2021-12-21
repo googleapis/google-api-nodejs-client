@@ -607,6 +607,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "star": {
+                      "description": "Marks an Entry as starred by the current user. Starring information is private to each user.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:star",
+                      "httpMethod": "POST",
+                      "id": "datacatalog.projects.locations.entryGroups.entries.star",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the entry to mark as starred.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:star",
+                      "request": {
+                        "$ref": "GoogleCloudDatacatalogV1StarEntryRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDatacatalogV1StarEntryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "testIamPermissions": {
                       "description": "Gets your permissions on a resource. Returns an empty set of permissions if the resource doesn't exist. Supported resources are: - Tag templates - Entry groups Note: This method gets policies only within Data Catalog and can't be used to get policies from BigQuery, Pub/Sub, Dataproc Metastore, and any external Google Cloud Platform resources ingested into Data Catalog. No Google IAM permissions are required to call this method.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:testIamPermissions",
@@ -634,13 +662,41 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "unstar": {
+                      "description": "Marks an Entry as NOT starred by the current user. Starring information is private to each user.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:unstar",
+                      "httpMethod": "POST",
+                      "id": "datacatalog.projects.locations.entryGroups.entries.unstar",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the entry to mark as **not** starred.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:unstar",
+                      "request": {
+                        "$ref": "GoogleCloudDatacatalogV1UnstarEntryRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDatacatalogV1UnstarEntryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   },
                   "resources": {
                     "tags": {
                       "methods": {
                         "create": {
-                          "description": "Creates a tag and assigns it to: * An Entry if the method name is ``projects.locations.entryGroups.entries.tags.create``. * Or EntryGroupif the method name is ``projects.locations.entryGroups.tags.create``. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.",
+                          "description": "Creates a tag and assigns it to: * An Entry if the method name is `projects.locations.entryGroups.entries.tags.create`. * Or EntryGroupif the method name is `projects.locations.entryGroups.tags.create`. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags",
                           "httpMethod": "POST",
                           "id": "datacatalog.projects.locations.entryGroups.entries.tags.create",
@@ -769,7 +825,7 @@
                 "tags": {
                   "methods": {
                     "create": {
-                      "description": "Creates a tag and assigns it to: * An Entry if the method name is ``projects.locations.entryGroups.entries.tags.create``. * Or EntryGroupif the method name is ``projects.locations.entryGroups.tags.create``. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.",
+                      "description": "Creates a tag and assigns it to: * An Entry if the method name is `projects.locations.entryGroups.entries.tags.create`. * Or EntryGroupif the method name is `projects.locations.entryGroups.tags.create`. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/tags",
                       "httpMethod": "POST",
                       "id": "datacatalog.projects.locations.entryGroups.tags.create",
@@ -1030,7 +1086,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the ``is_publicly_readable`` field may require up to 12 hours to take effect in search results. Additionally, it also requires the ``tagTemplates.getIamPolicy`` and ``tagTemplates.setIamPolicy`` permissions.",
+                      "description": "Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results. Additionally, it also requires the `tagTemplates.getIamPolicy` and `tagTemplates.setIamPolicy` permissions.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1214,7 +1270,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the tag template.",
+                          "description": "Required. The name of the tag template field.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/tagTemplates/[^/]+/fields/[^/]+$",
                           "required": true,
@@ -1841,7 +1897,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20211201",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1911,7 +1967,7 @@
       "id": "GetPolicyOptions",
       "properties": {
         "requestedPolicyVersion": {
-          "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
         }
@@ -2219,6 +2275,11 @@
           "description": "Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.",
           "readOnly": true,
           "type": "string"
+        },
+        "personalDetails": {
+          "$ref": "GoogleCloudDatacatalogV1PersonalDetails",
+          "description": "Output only. Additional information related to the entry. Private to the current user.",
+          "readOnly": true
         },
         "routineSpec": {
           "$ref": "GoogleCloudDatacatalogV1RoutineSpec",
@@ -2544,6 +2605,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1PersonalDetails": {
+      "description": "Entry metadata relevant only to the user and private to them.",
+      "id": "GoogleCloudDatacatalogV1PersonalDetails",
+      "properties": {
+        "starTime": {
+          "description": "Set if the entry is starred; unset otherwise.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "starred": {
+          "description": "True if the entry is starred by the user; false otherwise.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1PolicyTag": {
       "description": "Denotes one policy tag in a taxonomy, for example, SSN. Policy tags can be defined in a hierarchy. For example: ``` + Geolocation + LatLong + City + ZipCode ``` Where the \"Geolocation\" policy tag contains three children.",
       "id": "GoogleCloudDatacatalogV1PolicyTag",
@@ -2703,7 +2780,7 @@
       "id": "GoogleCloudDatacatalogV1SearchCatalogRequest",
       "properties": {
         "orderBy": {
-          "description": "Specifies the order of results. Currently supported case-sensitive values are: * `relevance` that can only be descending * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default If this parameter is omitted, it defaults to the descending `relevance`.",
+          "description": "Specifies the order of results. Currently supported case-sensitive values are: * `relevance` that can only be descending * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default * `default` that can only be descending If this parameter is omitted, it defaults to the descending `relevance`.",
           "type": "string"
         },
         "pageSize": {
@@ -2716,7 +2793,7 @@
           "type": "string"
         },
         "query": {
-          "description": "Optional. The query string with a minimum of 3 characters and specific syntax. For more information, see [Data Catalog search syntax](/data-catalog/docs/how-to/search-reference). An empty query string returns all data assets (in the specified scope) that you have access to. A query string can be a simple `xyz` or qualified by predicates: * `name:x` * `column:y` * `description:z`",
+          "description": "Optional. The query string with a minimum of 3 characters and specific syntax. For more information, see [Data Catalog search syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference). An empty query string returns all data assets (in the specified scope) that you have access to. A query string can be a simple `xyz` or qualified by predicates: * `name:x` * `column:y` * `description:z`",
           "type": "string"
         },
         "scope": {
@@ -2749,7 +2826,7 @@
           "type": "array"
         },
         "includePublicTagTemplates": {
-          "description": "Optional. If `true`, include public tag templates in the search results. By default, they are included only if you have explicit permissions on them to view them. For example, if you are the owner. Other scope fields, for example, ``include_org_ids``, still restrict the returned public tag templates and at least one of them is required.",
+          "description": "Optional. If `true`, include public tag templates in the search results. By default, they are included only if you have explicit permissions on them to view them. For example, if you are the owner. Other scope fields, for example, `include_org_ids`, still restrict the returned public tag templates and at least one of them is required.",
           "type": "boolean"
         },
         "restrictedLocations": {
@@ -2758,6 +2835,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "starredOnly": {
+          "description": "Optional. If `true`, search only among starred entries. By default, all results are returned, starred or not.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2921,6 +3002,18 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1StarEntryRequest": {
+      "description": "Request message for StarEntry.",
+      "id": "GoogleCloudDatacatalogV1StarEntryRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1StarEntryResponse": {
+      "description": "Response message for StarEntry. Empty for now",
+      "id": "GoogleCloudDatacatalogV1StarEntryResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDatacatalogV1SystemTimestamps": {
@@ -3147,6 +3240,18 @@
           "readOnly": true
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1UnstarEntryRequest": {
+      "description": "Request message for UnstarEntry.",
+      "id": "GoogleCloudDatacatalogV1UnstarEntryRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1UnstarEntryResponse": {
+      "description": "Response message for UnstarEntry. Empty for now",
+      "id": "GoogleCloudDatacatalogV1UnstarEntryResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDatacatalogV1UsageSignal": {
