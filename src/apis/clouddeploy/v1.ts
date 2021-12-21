@@ -684,6 +684,10 @@ export namespace clouddeploy_v1 {
      */
     deployEndTime?: string | null;
     /**
+     * Output only. The reason this deploy failed. This will always be unspecified while the deploy in progress.
+     */
+    deployFailureCause?: string | null;
+    /**
      * Output only. The resource name of the Cloud Build `Build` object that is used to deploy the Rollout. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
     deployingBuild?: string | null;
@@ -867,6 +871,10 @@ export namespace clouddeploy_v1 {
    * Details of rendering for a single target.
    */
   export interface Schema$TargetRender {
+    /**
+     * Output only. Reason this render failed. This will always be unspecified while the render in progress.
+     */
+    failureCause?: string | null;
     /**
      * Output only. The resource name of the Cloud Build `Build` object that is used to render the manifest for this target. Format is `projects/{project\}/locations/{location\}/builds/{build\}`.
      */
@@ -3419,6 +3427,7 @@ export namespace clouddeploy_v1 {
      *           //   "approveTime": "my_approveTime",
      *           //   "createTime": "my_createTime",
      *           //   "deployEndTime": "my_deployEndTime",
+     *           //   "deployFailureCause": "my_deployFailureCause",
      *           //   "deployStartTime": "my_deployStartTime",
      *           //   "deployingBuild": "my_deployingBuild",
      *           //   "description": "my_description",
@@ -3580,6 +3589,7 @@ export namespace clouddeploy_v1 {
      *   //   "approveTime": "my_approveTime",
      *   //   "createTime": "my_createTime",
      *   //   "deployEndTime": "my_deployEndTime",
+     *   //   "deployFailureCause": "my_deployFailureCause",
      *   //   "deployStartTime": "my_deployStartTime",
      *   //   "deployingBuild": "my_deployingBuild",
      *   //   "description": "my_description",
