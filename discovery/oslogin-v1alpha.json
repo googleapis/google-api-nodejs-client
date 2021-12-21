@@ -280,13 +280,13 @@
             }
           }
         },
-        "sshPublicKey": {
+        "sshPublicKeys": {
           "methods": {
             "create": {
               "description": "Create an SSH public key",
-              "flatPath": "v1alpha/users/{usersId}/sshPublicKey",
+              "flatPath": "v1alpha/users/{usersId}/sshPublicKeys",
               "httpMethod": "POST",
-              "id": "oslogin.users.sshPublicKey.create",
+              "id": "oslogin.users.sshPublicKeys.create",
               "parameterOrder": [
                 "parent"
               ],
@@ -299,7 +299,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1alpha/{+parent}/sshPublicKey",
+              "path": "v1alpha/{+parent}/sshPublicKeys",
               "request": {
                 "$ref": "SshPublicKey"
               },
@@ -310,11 +310,7 @@
                 "https://www.googleapis.com/auth/cloud-platform",
                 "https://www.googleapis.com/auth/compute"
               ]
-            }
-          }
-        },
-        "sshPublicKeys": {
-          "methods": {
+            },
             "delete": {
               "description": "Deletes an SSH public key.",
               "flatPath": "v1alpha/users/{usersId}/sshPublicKeys/{sshPublicKeysId}",
@@ -407,7 +403,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20211203",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
