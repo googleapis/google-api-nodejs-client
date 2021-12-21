@@ -130,6 +130,35 @@ export namespace securitycenter_v1beta2 {
   }
 
   /**
+   * Represents an access event.
+   */
+  export interface Schema$Access {
+    /**
+     * Caller's IP address, such as "1.1.1.1".
+     */
+    callerIp?: string | null;
+    /**
+     * The caller IP's geolocation, which identifies where the call came from.
+     */
+    callerIpGeo?: Schema$Geolocation;
+    /**
+     * The method that the service account called, e.g. "SetIamPolicy".
+     */
+    methodName?: string | null;
+    /**
+     * Associated email, such as "foo@google.com".
+     */
+    principalEmail?: string | null;
+    /**
+     * This is the API service that the service account made a call to, e.g. "iam.googleapis.com"
+     */
+    serviceName?: string | null;
+    /**
+     * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
+     */
+    userAgentFamily?: string | null;
+  }
+  /**
    * Configuration of a module.
    */
   export interface Schema$Config {
@@ -268,6 +297,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$Finding {
     /**
+     * Access details associated to the Finding, such as more information on the caller, which method was accessed, from where, etc.
+     */
+    access?: Schema$Access;
+    /**
      * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
     canonicalName?: string | null;
@@ -301,6 +334,10 @@ export namespace securitycenter_v1beta2 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
+     */
+    mitreAttack?: Schema$MitreAttack;
     /**
      * Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined).
      */
@@ -360,6 +397,15 @@ export namespace securitycenter_v1beta2 {
     resourceFolderDisplayName?: string | null;
   }
   /**
+   * Represents a geographical location for a given access.
+   */
+  export interface Schema$Geolocation {
+    /**
+     * A CLDR.
+     */
+    regionCode?: string | null;
+  }
+  /**
    * Response of asset discovery run
    */
   export interface Schema$GoogleCloudSecuritycenterV1beta1RunAssetDiscoveryResponse {
@@ -372,6 +418,10 @@ export namespace securitycenter_v1beta2 {
      */
     state?: string | null;
   }
+  /**
+   * The response to a BulkMute request. Contains the LRO information.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
    */
@@ -653,6 +703,31 @@ export namespace securitycenter_v1beta2 {
     ipAddresses?: string[] | null;
   }
   /**
+   * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
+   */
+  export interface Schema$MitreAttack {
+    /**
+     * Additional MITRE ATT&CK tactics related to this finding, if any.
+     */
+    additionalTactics?: string[] | null;
+    /**
+     * Additional MITRE ATT&CK techniques related to this finding, if any, along with any of their respective parent techniques.
+     */
+    additionalTechniques?: string[] | null;
+    /**
+     * The MITRE ATT&CK tactic most closely represented by this finding, if any.
+     */
+    primaryTactic?: string | null;
+    /**
+     * The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. SCANNING_IP_BLOCKS), both the sub-technique and its parent technique(s) will be listed (e.g. SCANNING_IP_BLOCKS, ACTIVE_SCANNING).
+     */
+    primaryTechniques?: string[] | null;
+    /**
+     * The MITRE ATT&CK version referenced by the above fields. E.g. "8".
+     */
+    version?: string | null;
+  }
+  /**
    * Additional Links
    */
   export interface Schema$Reference {
@@ -742,6 +817,31 @@ export namespace securitycenter_v1beta2 {
     tier?: string | null;
   }
   /**
+   * Resource capturing the settings for the Virtual Machine Threat Detection service.
+   */
+  export interface Schema$VirtualMachineThreatDetectionSettings {
+    /**
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
+     */
+    modules?: {[key: string]: Schema$Config} | null;
+    /**
+     * The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string | null;
+    /**
+     * Output only. The service account used by Virtual Machine Threat Detection detectors.
+     */
+    serviceAccount?: string | null;
+    /**
+     * The state of enablement for the service at its level of the resource hierarchy. A DISABLED state will override all module enablement_states to DISABLED.
+     */
+    serviceEnablementState?: string | null;
+    /**
+     * Output only. The time the settings were last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Refers to common vulnerability fields e.g. cve, cvss, cwe etc.
    */
   export interface Schema$Vulnerability {
@@ -777,6 +877,7 @@ export namespace securitycenter_v1beta2 {
     containerThreatDetectionSettings: Resource$Folders$Containerthreatdetectionsettings;
     eventThreatDetectionSettings: Resource$Folders$Eventthreatdetectionsettings;
     securityHealthAnalyticsSettings: Resource$Folders$Securityhealthanalyticssettings;
+    virtualMachineThreatDetectionSettings: Resource$Folders$Virtualmachinethreatdetectionsettings;
     webSecurityScannerSettings: Resource$Folders$Websecurityscannersettings;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -786,6 +887,10 @@ export namespace securitycenter_v1beta2 {
         new Resource$Folders$Eventthreatdetectionsettings(this.context);
       this.securityHealthAnalyticsSettings =
         new Resource$Folders$Securityhealthanalyticssettings(this.context);
+      this.virtualMachineThreatDetectionSettings =
+        new Resource$Folders$Virtualmachinethreatdetectionsettings(
+          this.context
+        );
       this.webSecurityScannerSettings =
         new Resource$Folders$Websecurityscannersettings(this.context);
     }
@@ -1206,6 +1311,148 @@ export namespace securitycenter_v1beta2 {
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get the VirtualMachineThreatDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.folders.getVirtualMachineThreatDetectionSettings({
+     *       // Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *       name: 'folders/my-folder/virtualMachineThreatDetectionSettings',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVirtualMachineThreatDetectionSettings(
+      params?: Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
           parameters
         );
       }
@@ -1814,6 +2061,162 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Update the VirtualMachineThreatDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.folders.updateVirtualMachineThreatDetectionSettings({
+     *       // The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *       name: 'folders/my-folder/virtualMachineThreatDetectionSettings',
+     *       // The list of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "modules": {},
+     *         //   "name": "my_name",
+     *         //   "serviceAccount": "my_serviceAccount",
+     *         //   "serviceEnablementState": "my_serviceEnablementState",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateVirtualMachineThreatDetectionSettings(
+      params?: Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Update the WebSecurityScannerSettings resource.
      * @example
      * ```js
@@ -1985,6 +2388,13 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Folders$Getvirtualmachinethreatdetectionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string;
+  }
   export interface Params$Resource$Folders$Getwebsecurityscannersettings
     extends StandardParameters {
     /**
@@ -2039,6 +2449,22 @@ export namespace securitycenter_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityHealthAnalyticsSettings;
+  }
+  export interface Params$Resource$Folders$Updatevirtualmachinethreatdetectionsettings
+    extends StandardParameters {
+    /**
+     * The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VirtualMachineThreatDetectionSettings;
   }
   export interface Params$Resource$Folders$Updatewebsecurityscannersettings
     extends StandardParameters {
@@ -2536,6 +2962,168 @@ export namespace securitycenter_v1beta2 {
     name?: string;
   }
 
+  export class Resource$Folders$Virtualmachinethreatdetectionsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.folders.virtualMachineThreatDetectionSettings.calculate(
+     *       {
+     *         // Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *         name: 'folders/my-folder/virtualMachineThreatDetectionSettings',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    calculate(
+      params: Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    calculate(
+      params?: Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    calculate(
+      params: Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    calculate(
+      params: Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      params: Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}:calculate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Virtualmachinethreatdetectionsettings$Calculate
+    extends StandardParameters {
+    /**
+     * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string;
+  }
+
   export class Resource$Folders$Websecurityscannersettings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2699,6 +3287,7 @@ export namespace securitycenter_v1beta2 {
     containerThreatDetectionSettings: Resource$Organizations$Containerthreatdetectionsettings;
     eventThreatDetectionSettings: Resource$Organizations$Eventthreatdetectionsettings;
     securityHealthAnalyticsSettings: Resource$Organizations$Securityhealthanalyticssettings;
+    virtualMachineThreatDetectionSettings: Resource$Organizations$Virtualmachinethreatdetectionsettings;
     webSecurityScannerSettings: Resource$Organizations$Websecurityscannersettings;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -2710,6 +3299,10 @@ export namespace securitycenter_v1beta2 {
         new Resource$Organizations$Eventthreatdetectionsettings(this.context);
       this.securityHealthAnalyticsSettings =
         new Resource$Organizations$Securityhealthanalyticssettings(
+          this.context
+        );
+      this.virtualMachineThreatDetectionSettings =
+        new Resource$Organizations$Virtualmachinethreatdetectionsettings(
           this.context
         );
       this.webSecurityScannerSettings =
@@ -3407,6 +4000,150 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Get the VirtualMachineThreatDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.getVirtualMachineThreatDetectionSettings(
+     *       {
+     *         // Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *         name: 'organizations/my-organization/virtualMachineThreatDetectionSettings',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVirtualMachineThreatDetectionSettings(
+      params?: Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get the WebSecurityScannerSettings resource.
      * @example
      * ```js
@@ -4011,6 +4748,164 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Update the VirtualMachineThreatDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.updateVirtualMachineThreatDetectionSettings(
+     *       {
+     *         // The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *         name: 'organizations/my-organization/virtualMachineThreatDetectionSettings',
+     *         // The list of fields to be updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "modules": {},
+     *           //   "name": "my_name",
+     *           //   "serviceAccount": "my_serviceAccount",
+     *           //   "serviceEnablementState": "my_serviceEnablementState",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateVirtualMachineThreatDetectionSettings(
+      params?: Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Update the WebSecurityScannerSettings resource.
      * @example
      * ```js
@@ -4198,6 +5093,13 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Organizations$Getvirtualmachinethreatdetectionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Getwebsecurityscannersettings
     extends StandardParameters {
     /**
@@ -4252,6 +5154,22 @@ export namespace securitycenter_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityHealthAnalyticsSettings;
+  }
+  export interface Params$Resource$Organizations$Updatevirtualmachinethreatdetectionsettings
+    extends StandardParameters {
+    /**
+     * The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VirtualMachineThreatDetectionSettings;
   }
   export interface Params$Resource$Organizations$Updatewebsecurityscannersettings
     extends StandardParameters {
@@ -4753,6 +5671,168 @@ export namespace securitycenter_v1beta2 {
     name?: string;
   }
 
+  export class Resource$Organizations$Virtualmachinethreatdetectionsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.organizations.virtualMachineThreatDetectionSettings.calculate(
+     *       {
+     *         // Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *         name: 'organizations/my-organization/virtualMachineThreatDetectionSettings',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    calculate(
+      params: Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    calculate(
+      params?: Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    calculate(
+      params: Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    calculate(
+      params: Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      params: Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}:calculate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Virtualmachinethreatdetectionsettings$Calculate
+    extends StandardParameters {
+    /**
+     * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string;
+  }
+
   export class Resource$Organizations$Websecurityscannersettings {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4916,6 +5996,7 @@ export namespace securitycenter_v1beta2 {
     eventThreatDetectionSettings: Resource$Projects$Eventthreatdetectionsettings;
     locations: Resource$Projects$Locations;
     securityHealthAnalyticsSettings: Resource$Projects$Securityhealthanalyticssettings;
+    virtualMachineThreatDetectionSettings: Resource$Projects$Virtualmachinethreatdetectionsettings;
     webSecurityScannerSettings: Resource$Projects$Websecurityscannersettings;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -4926,6 +6007,10 @@ export namespace securitycenter_v1beta2 {
       this.locations = new Resource$Projects$Locations(this.context);
       this.securityHealthAnalyticsSettings =
         new Resource$Projects$Securityhealthanalyticssettings(this.context);
+      this.virtualMachineThreatDetectionSettings =
+        new Resource$Projects$Virtualmachinethreatdetectionsettings(
+          this.context
+        );
       this.webSecurityScannerSettings =
         new Resource$Projects$Websecurityscannersettings(this.context);
     }
@@ -5348,6 +6433,148 @@ export namespace securitycenter_v1beta2 {
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get the VirtualMachineThreatDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.projects.getVirtualMachineThreatDetectionSettings({
+     *       // Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *       name: 'projects/my-project/virtualMachineThreatDetectionSettings',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getVirtualMachineThreatDetectionSettings(
+      params?: Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    getVirtualMachineThreatDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
           parameters
         );
       }
@@ -5956,6 +7183,162 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Update the VirtualMachineThreatDetectionSettings resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.projects.updateVirtualMachineThreatDetectionSettings({
+     *       // The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *       name: 'projects/my-project/virtualMachineThreatDetectionSettings',
+     *       // The list of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "modules": {},
+     *         //   "name": "my_name",
+     *         //   "serviceAccount": "my_serviceAccount",
+     *         //   "serviceEnablementState": "my_serviceEnablementState",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateVirtualMachineThreatDetectionSettings(
+      params?: Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      params: Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    updateVirtualMachineThreatDetectionSettings(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Update the WebSecurityScannerSettings resource.
      * @example
      * ```js
@@ -6128,6 +7511,13 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Getvirtualmachinethreatdetectionsettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Getwebsecurityscannersettings
     extends StandardParameters {
     /**
@@ -6182,6 +7572,22 @@ export namespace securitycenter_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityHealthAnalyticsSettings;
+  }
+  export interface Params$Resource$Projects$Updatevirtualmachinethreatdetectionsettings
+    extends StandardParameters {
+    /**
+     * The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VirtualMachineThreatDetectionSettings;
   }
   export interface Params$Resource$Projects$Updatewebsecurityscannersettings
     extends StandardParameters {
@@ -7184,6 +8590,168 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
+     */
+    name?: string;
+  }
+
+  export class Resource$Projects$Virtualmachinethreatdetectionsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await securitycenter.projects.virtualMachineThreatDetectionSettings.calculate(
+     *       {
+     *         // Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
+     *         name: 'projects/my-project/virtualMachineThreatDetectionSettings',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modules": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "serviceEnablementState": "my_serviceEnablementState",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    calculate(
+      params: Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    calculate(
+      params?: Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>;
+    calculate(
+      params: Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    calculate(
+      params: Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      params: Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate,
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      callback: BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+    ): void;
+    calculate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VirtualMachineThreatDetectionSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$VirtualMachineThreatDetectionSettings>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}:calculate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VirtualMachineThreatDetectionSettings>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Virtualmachinethreatdetectionsettings$Calculate
+    extends StandardParameters {
+    /**
+     * Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/virtualMachineThreatDetectionSettings * folders/{folder\}/virtualMachineThreatDetectionSettings * projects/{project\}/virtualMachineThreatDetectionSettings
      */
     name?: string;
   }
