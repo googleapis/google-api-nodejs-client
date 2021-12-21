@@ -1404,7 +1404,7 @@
       }
     }
   },
-  "revision": "20211116",
+  "revision": "20211215",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1516,9 +1516,9 @@
       },
       "type": "object"
     },
-    "CertificateInfo": {
+    "CertificateAttributes": {
       "description": "Stores information about a certificate.",
-      "id": "CertificateInfo",
+      "id": "CertificateAttributes",
       "properties": {
         "certificateTemplate": {
           "$ref": "CertificateTemplate",
@@ -2138,13 +2138,13 @@
       "type": "object"
     },
     "EndpointVerificationSpecificAttributes": {
-      "description": "Resource representing the Endpoint Verification-specific attributes of a Device.",
+      "description": "Resource representing the Endpoint Verification-specific attributes of a Device. https://cloud.google.com/endpoint-verification/docs/overview",
       "id": "EndpointVerificationSpecificAttributes",
       "properties": {
-        "certificateInfo": {
+        "certificateAttributes": {
           "description": "Details of certificates.",
           "items": {
-            "$ref": "CertificateInfo"
+            "$ref": "CertificateAttributes"
           },
           "type": "array"
         }

@@ -209,7 +209,7 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Stores information about a certificate.
    */
-  export interface Schema$CertificateInfo {
+  export interface Schema$CertificateAttributes {
     /**
      * The X.509 extension for CertificateTemplate.
      */
@@ -555,13 +555,13 @@ export namespace cloudidentity_v1beta1 {
     statusTime?: string | null;
   }
   /**
-   * Resource representing the Endpoint Verification-specific attributes of a Device.
+   * Resource representing the Endpoint Verification-specific attributes of a Device. https://cloud.google.com/endpoint-verification/docs/overview
    */
   export interface Schema$EndpointVerificationSpecificAttributes {
     /**
      * Details of certificates.
      */
-    certificateInfo?: Schema$CertificateInfo[];
+    certificateAttributes?: Schema$CertificateAttributes[];
   }
   /**
    * A unique identifier for an entity in the Cloud Identity Groups API. An entity can represent either a group with an optional `namespace` or a user without a `namespace`. The combination of `id` and `namespace` must be unique; however, the same `id` can be used with different `namespace`s.
