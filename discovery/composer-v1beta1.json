@@ -462,7 +462,7 @@
       }
     }
   },
-  "revision": "20211113",
+  "revision": "20211208",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -678,7 +678,7 @@
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
-          "description": "Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*."
+          "description": "Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated."
         },
         "environmentSize": {
           "description": "Optional. The size of the Cloud Composer environment. This field is supported for Cloud Composer environments in versions composer-2.*.*-airflow-*.*.* and newer.",
@@ -1017,7 +1017,8 @@
             "DELETE",
             "UPDATE",
             "CHECK",
-            "STORE_STATE"
+            "STORE_STATE",
+            "LOAD_STATE"
           ],
           "enumDescriptions": [
             "Unused.",
@@ -1025,7 +1026,8 @@
             "A resource deletion operation.",
             "A resource update operation.",
             "A resource check operation.",
-            "Stores the state of the resource operation."
+            "Stores the state of the resource operation.",
+            "Loads the state of the resource operation."
           ],
           "type": "string"
         },
