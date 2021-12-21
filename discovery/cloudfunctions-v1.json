@@ -466,7 +466,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required list of fields to be updated in this request.",
+                      "description": "Required. The list of fields in `CloudFunction` that have to be updated.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20211111",
+  "revision": "20211206",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
