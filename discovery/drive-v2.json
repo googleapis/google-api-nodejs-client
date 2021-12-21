@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/Ko0ACtPLgiYmARW4CMJuezLum3w\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/zekGFAotWiyqWap1z25R6ZBrWoo\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -1659,7 +1659,7 @@
           ]
         },
         "patch": {
-          "description": "Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might might change automatically, such as modifiedDate. This method supports patch semantics.",
+          "description": "Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might change automatically, such as modifiedDate. This method supports patch semantics.",
           "httpMethod": "PATCH",
           "id": "drive.files.patch",
           "parameterOrder": [
@@ -3527,7 +3527,7 @@
       }
     }
   },
-  "revision": "20211118",
+  "revision": "20211213",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
