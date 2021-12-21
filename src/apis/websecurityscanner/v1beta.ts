@@ -252,6 +252,10 @@ export namespace websecurityscanner_v1beta {
      * An addon containing information reported for an XSS, if any.
      */
     xss?: Schema$Xss;
+    /**
+     * An addon containing information reported for an XXE, if any.
+     */
+    xxe?: Schema$Xxe;
   }
   /**
    * A FindingTypeStats resource represents stats regarding a specific FindingType of Findings under a given ScanRun.
@@ -622,6 +626,19 @@ export namespace websecurityscanner_v1beta {
      * Stack traces leading to the point where the XSS occurred.
      */
     stackTraces?: string[] | null;
+  }
+  /**
+   * Information reported for an XXE.
+   */
+  export interface Schema$Xxe {
+    /**
+     * Location within the request where the payload was placed.
+     */
+    payloadLocation?: string | null;
+    /**
+     * The XML string that triggered the XXE vulnerability. Non-payload values might be redacted.
+     */
+    payloadValue?: string | null;
   }
 
   export class Resource$Projects {
@@ -2296,7 +2313,8 @@ export namespace websecurityscanner_v1beta {
      *   //   "violatingResource": {},
      *   //   "vulnerableHeaders": {},
      *   //   "vulnerableParameters": {},
-     *   //   "xss": {}
+     *   //   "xss": {},
+     *   //   "xxe": {}
      *   // }
      * }
      *
