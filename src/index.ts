@@ -383,6 +383,7 @@ export {tpu_v1} from './apis/tpu/v1';
 export {tpu_v1alpha1} from './apis/tpu/v1alpha1';
 export {tpu_v2alpha1} from './apis/tpu/v2alpha1';
 export {trafficdirector_v2} from './apis/trafficdirector/v2';
+export {transcoder_v1} from './apis/transcoder/v1';
 export {transcoder_v1beta1} from './apis/transcoder/v1beta1';
 export {translate_v2} from './apis/translate/v2';
 export {translate_v3} from './apis/translate/v3';

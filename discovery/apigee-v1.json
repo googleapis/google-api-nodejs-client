@@ -2715,6 +2715,34 @@
             },
             "balance": {
               "methods": {
+                "adjust": {
+                  "description": "Adjust the prepaid balance for the developer. This API will be used in scenarios where the developer has been under-charged or over-charged.",
+                  "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/balance:adjust",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.developers.balance.adjust",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Account balance for the developer. Use the following structure in your request: `organizations/{org}/developers/{developer}/balance`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/developers/[^/]+/balance$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:adjust",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1AdjustDeveloperBalanceRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1DeveloperBalance"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "credit": {
                   "description": "Credits the account balance for the developer.",
                   "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/balance:credit",
@@ -7412,7 +7440,7 @@
       }
     }
   },
-  "revision": "20211111",
+  "revision": "20211209",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -7553,6 +7581,17 @@
         "monetizationConfig": {
           "$ref": "GoogleCloudApigeeV1MonetizationConfig",
           "description": "Configuration for the Monetization add-on."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AdjustDeveloperBalanceRequest": {
+      "description": "Request for AdjustDeveloperBalance.",
+      "id": "GoogleCloudApigeeV1AdjustDeveloperBalanceRequest",
+      "properties": {
+        "adjustment": {
+          "$ref": "GoogleTypeMoney",
+          "description": "* A positive value of `adjustment` means that that the API provider wishes to adjust the balance for an over-charged developer i.e. the balance of the developer will increase. * A negative value of `adjustment` means that that the API provider wishes to adjust the balance for an under-charged developer i.e. the balance of the developer will decrease."
         }
       },
       "type": "object"
@@ -7769,7 +7808,7 @@
           "type": "string"
         },
         "status": {
-          "description": "Status of the API product.",
+          "description": "Status of the API product. Valid values are `approved` or `revoked`.",
           "type": "string"
         }
       },
@@ -11140,8 +11179,12 @@
           "description": "Name of the Apigee organization.",
           "type": "string"
         },
+        "projectId": {
+          "description": "GCP project associated with the Apigee organization",
+          "type": "string"
+        },
         "projectIds": {
-          "description": "List of GCP projects associated with the Apigee organization.",
+          "description": "DEPRECATED: Use `project_id`. An Apigee Organization is mapped to a single project.",
           "items": {
             "type": "string"
           },
