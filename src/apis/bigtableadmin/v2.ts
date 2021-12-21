@@ -318,7 +318,7 @@ export namespace bigtableadmin_v2 {
      */
     name?: string | null;
     /**
-     * Required. The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
+     * The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
      */
     serveNodes?: number | null;
     /**
@@ -344,7 +344,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$ClusterConfig {
     /**
-     * Autoscaling configuration for this cluster. Note that when creating or updating a cluster, exactly one of serve_nodes or cluster_autoscaling_config must be set. If serve_nodes is set, then serve_nodes is fixed and autoscaling is turned off. If cluster_autoscaling_config is set, then serve_nodes will be autoscaled.
+     * Autoscaling configuration for this cluster.
      */
     clusterAutoscalingConfig?: Schema$ClusterAutoscalingConfig;
   }
@@ -607,7 +607,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -879,6 +879,9 @@ export namespace bigtableadmin_v2 {
      * The time at which the operation failed or was completed successfully.
      */
     finishTime?: string | null;
+    /**
+     * The original request for PartialUpdateCluster.
+     */
     originalRequest?: Schema$PartialUpdateClusterRequest;
     /**
      * The time at which the original request was received.
@@ -894,7 +897,7 @@ export namespace bigtableadmin_v2 {
      */
     cluster?: Schema$Cluster;
     /**
-     * Required. The subset of Cluster fields which should be replaced. Must be explicitly set.
+     * Required. The subset of Cluster fields which should be replaced.
      */
     updateMask?: string | null;
   }
@@ -1088,6 +1091,23 @@ export namespace bigtableadmin_v2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.
+   */
+  export interface Schema$UndeleteTableMetadata {
+    /**
+     * If set, the time at which this operation finished or was cancelled.
+     */
+    endTime?: string | null;
+    /**
+     * The name of the table being restored.
+     */
+    name?: string | null;
+    /**
+     * The time at which this operation started.
+     */
+    startTime?: string | null;
   }
   /**
    * A GcRule which deletes cells matching any of the given rules.
@@ -1783,7 +1803,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Create an instance within a project.
+     * Create an instance within a project. Note that exactly one of Cluster.serve_nodes and Cluster.cluster_config.cluster_autoscaling_config can be set. If serve_nodes is set to non-zero, then the cluster is manually scaled. If cluster_config.cluster_autoscaling_config is non-empty, then autoscaling is enabled.
      * @example
      * ```js
      * // Before running the sample:
@@ -4036,7 +4056,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Creates a cluster within an instance.
+     * Creates a cluster within an instance. Note that exactly one of Cluster.serve_nodes and Cluster.cluster_config.cluster_autoscaling_config can be set. If serve_nodes is set to non-zero, then the cluster is manually scaled. If cluster_config.cluster_autoscaling_config is non-empty, then autoscaling is enabled.
      * @example
      * ```js
      * // Before running the sample:
@@ -4613,7 +4633,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Partially updates a cluster within a project. This method is the preferred way to update a Cluster.
+     * Partially updates a cluster within a project. This method is the preferred way to update a Cluster. To enable and update autoscaling, set cluster_config.cluster_autoscaling_config. When autoscaling is enabled, serve_nodes is treated as an OUTPUT_ONLY field, meaning that updates to it are ignored. Note that an update cannot simultaneously set serve_nodes to non-zero and cluster_config.cluster_autoscaling_config to non-empty, and also specify both in the update_mask. To disable autoscaling, clear cluster_config.cluster_autoscaling_config, and explicitly set a serve_node count via the update_mask.
      * @example
      * ```js
      * // Before running the sample:
@@ -4649,7 +4669,7 @@ export namespace bigtableadmin_v2 {
      *     await bigtableadmin.projects.instances.clusters.partialUpdateCluster({
      *       // The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
      *       name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
-     *       // Required. The subset of Cluster fields which should be replaced. Must be explicitly set.
+     *       // Required. The subset of Cluster fields which should be replaced.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -4771,7 +4791,7 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Updates a cluster within an instance. UpdateCluster is deprecated. Please use PartialUpdateCluster instead.
+     * Updates a cluster within an instance. Note that UpdateCluster does not support updating cluster_config.cluster_autoscaling_config. In order to update it, you must use PartialUpdateCluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -4971,7 +4991,7 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
     /**
-     * Required. The subset of Cluster fields which should be replaced. Must be explicitly set.
+     * Required. The subset of Cluster fields which should be replaced.
      */
     updateMask?: string;
 
