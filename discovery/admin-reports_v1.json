@@ -164,9 +164,9 @@
                 "The Jamboard activity reports return information about various Jamboard activity events.",
                 "The Login application's activity reports return account information about different types of Login activity events.",
                 "The Meet Audit activity report returns information about different types of Meet Audit activity events.",
-                "The Mobile Audit activity report return information about different types of Mobile Audit activity events.",
-                "The Rules activity report return information about different types of Rules activity events.",
-                "The SAML activity report return information about different types of SAML activity events.",
+                "The Device Audit activity report returns information about different types of Device Audit activity events.",
+                "The Rules activity report returns information about different types of Rules activity events.",
+                "The SAML activity report returns information about different types of SAML activity events.",
                 "The Token application's activity reports return account information about different types of Token activity events.",
                 "The User Accounts application's activity reports return account information about different types of User Accounts activity events.",
                 "The Context-aware access activity reports return information about users' access denied events due to Context-aware access rules.",
@@ -303,9 +303,9 @@
                 "The Jamboard activity reports return information about various Jamboard activity events.",
                 "The Login application's activity reports return account information about different types of Login activity events.",
                 "The Meet Audit activity report returns information about different types of Meet Audit activity events.",
-                "The Mobile Audit activity report return information about different types of Mobile Audit activity events.",
-                "The Rules activity report return information about different types of Rules activity events.",
-                "The SAML activity report return information about different types of SAML activity events.",
+                "The Device Audit activity report returns information about different types of Device Audit activity events.",
+                "The Rules activity report returns information about different types of Rules activity events.",
+                "The SAML activity report returns information about different types of SAML activity events.",
                 "The Token application's activity reports return account information about different types of Token activity events.",
                 "The User Accounts application's activity reports return account information about different types of User Accounts activity events.",
                 "The Context-aware access activity reports return information about users' access denied events due to Context-aware access rules.",
@@ -486,15 +486,7 @@
               "type": "string"
             },
             "entityKey": {
-              "description": "Represents the key of the object to filter the data with.",
-              "enum": [
-                "all",
-                "entityKey"
-              ],
-              "enumDescriptions": [
-                "Returns activity events for all users.",
-                "Represents an app-specific identifier for the entity. For details on how to obtain the `entityKey` for a particular `entityType`, see the Entities Usage parameters reference guides."
-              ],
+              "description": "Represents the key of the object to filter the data with. It is a string which can take the value `all` to get activity events for all users, or any other value for an app-specific entity. For details on how to obtain the `entityKey` for a particular `entityType`, see the Entities Usage parameters reference guides.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -631,7 +623,7 @@
       }
     }
   },
-  "revision": "20211026",
+  "revision": "20211214",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
