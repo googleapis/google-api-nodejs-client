@@ -1067,9 +1067,24 @@
       }
     }
   },
-  "revision": "20211111",
+  "revision": "20211203",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
+    "AnthosObservabilityMembershipSpec": {
+      "description": "**Anthosobservability**: Per-Membership Feature spec.",
+      "id": "AnthosObservabilityMembershipSpec",
+      "properties": {
+        "doNotOptimizeMetrics": {
+          "description": "use full of metrics rather than optimized metrics. See https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/logging-and-monitoring#optimized_metrics_default_metrics",
+          "type": "boolean"
+        },
+        "enableStackdriverOnApplications": {
+          "description": "enable collecting and reporting metrics and logs from user apps See go/onyx-application-metrics-logs-user-guide",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "AppDevExperienceFeatureSpec": {
       "description": "Spec for App Dev Experience Feature.",
       "id": "AppDevExperienceFeatureSpec",
@@ -2663,6 +2678,10 @@
       "description": "MembershipFeatureSpec contains configuration information for a single Membership.",
       "id": "MembershipFeatureSpec",
       "properties": {
+        "anthosobservability": {
+          "$ref": "AnthosObservabilityMembershipSpec",
+          "description": "Anthos Observability-specific spec"
+        },
         "configmanagement": {
           "$ref": "ConfigManagementMembershipSpec",
           "description": "Config Management-specific spec."
@@ -2946,6 +2965,10 @@
       "properties": {
         "connectVersion": {
           "description": "Optional. The Connect agent version to use for connect_resources. Defaults to the latest GKE Connect version. The version must be a currently supported version, obsolete versions will be rejected.",
+          "type": "string"
+        },
+        "k8sVersion": {
+          "description": "Optional. Major version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.",
           "type": "string"
         },
         "v1beta1Crd": {
