@@ -1858,7 +1858,7 @@
       }
     }
   },
-  "revision": "20211107",
+  "revision": "20211207",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -1870,6 +1870,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AddGroupMigrationResponse": {
+      "description": "Response message for 'AddGroupMigration' request.",
+      "id": "AddGroupMigrationResponse",
+      "properties": {},
       "type": "object"
     },
     "AppliedLicense": {
@@ -1905,9 +1911,21 @@
       "properties": {},
       "type": "object"
     },
+    "CancelCloneJobResponse": {
+      "description": "Response message for 'CancelCloneJob' request.",
+      "id": "CancelCloneJobResponse",
+      "properties": {},
+      "type": "object"
+    },
     "CancelCutoverJobRequest": {
       "description": "Request message for 'CancelCutoverJob' request.",
       "id": "CancelCutoverJobRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CancelCutoverJobResponse": {
+      "description": "Response message for 'CancelCutoverJob' request.",
+      "id": "CancelCutoverJobResponse",
       "properties": {},
       "type": "object"
     },
@@ -1979,6 +1997,13 @@
       "description": "ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project.",
       "id": "ComputeEngineTargetDefaults",
       "properties": {
+        "additionalLicenses": {
+          "description": "Additional licenses to assign to the VM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "appliedLicense": {
           "$ref": "AppliedLicense",
           "description": "Output only. The OS license returned from the adaptation module report.",
@@ -2096,6 +2121,13 @@
       "description": "ComputeEngineTargetDetails is a collection of details for creating a VM in a target Compute Engine project.",
       "id": "ComputeEngineTargetDetails",
       "properties": {
+        "additionalLicenses": {
+          "description": "Additional licenses to assign to the VM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "appliedLicense": {
           "$ref": "AppliedLicense",
           "description": "The OS license returned from the adaptation module report."
@@ -2422,6 +2454,12 @@
     "FinalizeMigrationRequest": {
       "description": "Request message for 'FinalizeMigration' request.",
       "id": "FinalizeMigrationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "FinalizeMigrationResponse": {
+      "description": "Response message for 'FinalizeMigration' request.",
+      "id": "FinalizeMigrationResponse",
       "properties": {},
       "type": "object"
     },
@@ -3072,6 +3110,12 @@
       "properties": {},
       "type": "object"
     },
+    "PauseMigrationResponse": {
+      "description": "Response message for 'PauseMigration' request.",
+      "id": "PauseMigrationResponse",
+      "properties": {},
+      "type": "object"
+    },
     "RemoveGroupMigrationRequest": {
       "description": "Request message for 'RemoveMigration' request.",
       "id": "RemoveGroupMigrationRequest",
@@ -3081,6 +3125,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "RemoveGroupMigrationResponse": {
+      "description": "Response message for 'RemoveMigration' request.",
+      "id": "RemoveGroupMigrationResponse",
+      "properties": {},
       "type": "object"
     },
     "ReplicationCycle": {
@@ -3115,6 +3165,12 @@
     "ResumeMigrationRequest": {
       "description": "Request message for 'ResumeMigration' request.",
       "id": "ResumeMigrationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "ResumeMigrationResponse": {
+      "description": "Response message for 'ResumeMigration' request.",
+      "id": "ResumeMigrationResponse",
       "properties": {},
       "type": "object"
     },
@@ -3208,6 +3264,12 @@
     "StartMigrationRequest": {
       "description": "Request message for 'StartMigrationRequest' request.",
       "id": "StartMigrationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "StartMigrationResponse": {
+      "description": "Response message for 'StartMigration' request.",
+      "id": "StartMigrationResponse",
       "properties": {},
       "type": "object"
     },
