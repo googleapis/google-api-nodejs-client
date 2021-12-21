@@ -416,7 +416,7 @@ export namespace androidmanagement_v1 {
      */
     resetPasswordFlags?: string[] | null;
     /**
-     * The type of the command. See also params
+     * The type of the command.
      */
     type?: string | null;
     /**
