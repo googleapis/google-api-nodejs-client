@@ -398,6 +398,29 @@ export namespace ondemandscanning_v1 {
     nonCompliantFiles?: Schema$NonCompliantFile[];
   }
   /**
+   * Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing multiple versions of CVSS. The intention is that as new versions of CVSS scores get added, we will be able to modify this message rather than adding new protos for each new version of the score.
+   */
+  export interface Schema$CVSS {
+    attackComplexity?: string | null;
+    /**
+     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments.
+     */
+    attackVector?: string | null;
+    authentication?: string | null;
+    availabilityImpact?: string | null;
+    /**
+     * The base score is a function of the base metric scores.
+     */
+    baseScore?: number | null;
+    confidentialityImpact?: string | null;
+    exploitabilityScore?: number | null;
+    impactScore?: number | null;
+    integrityImpact?: string | null;
+    privilegesRequired?: string | null;
+    scope?: string | null;
+    userInteraction?: string | null;
+  }
+  /**
    * The period during which some deployable was active in a runtime.
    */
   export interface Schema$DeploymentOccurrence {
@@ -1217,6 +1240,10 @@ export namespace ondemandscanning_v1 {
      * Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.
      */
     cvssScore?: number | null;
+    /**
+     * The cvss v3 score for the vulnerability.
+     */
+    cvssv3?: Schema$CVSS;
     /**
      * The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity. When there are multiple PackageIssues for this vulnerability, they can have different effective severities because some might be provided by the distro while others are provided by the language ecosystem for a language pack. For this reason, it is advised to use the effective severity on the PackageIssue level. In the case where multiple PackageIssues have differing effective severities, this field should be the highest severity for any of the PackageIssues.
      */
