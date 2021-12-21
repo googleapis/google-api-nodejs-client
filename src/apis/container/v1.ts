@@ -729,6 +729,10 @@ export namespace container_v1 {
      */
     desiredResourceUsageExportConfig?: Schema$ResourceUsageExportConfig;
     /**
+     * ServiceExternalIPsConfig specifies the config for the use of Services with ExternalIPs field.
+     */
+    desiredServiceExternalIpsConfig?: Schema$ServiceExternalIPsConfig;
+    /**
      * Configuration for Shielded Nodes.
      */
     desiredShieldedNodes?: Schema$ShieldedNodes;
@@ -900,6 +904,15 @@ export namespace container_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * Allows filtering to one or more specific event types. If event types are present, those and only those event types will be transmitted to the cluster. Other types will be skipped. If no filter is specified, or no event types are present, all event types will be sent
+   */
+  export interface Schema$Filter {
+    /**
+     * Event types to allowlist.
+     */
+    eventType?: string[] | null;
+  }
   /**
    * Configuration for the Compute Engine PD CSI driver.
    */
@@ -1222,6 +1235,15 @@ export namespace container_v1 {
     componentConfig?: Schema$LoggingComponentConfig;
   }
   /**
+   * Represents the Maintenance exclusion option.
+   */
+  export interface Schema$MaintenanceExclusionOptions {
+    /**
+     * Scope specifies the upgrade scope which upgrades are blocked by the exclusion.
+     */
+    scope?: string | null;
+  }
+  /**
    * MaintenancePolicy defines the maintenance policy to be used for the cluster.
    */
   export interface Schema$MaintenancePolicy {
@@ -1383,6 +1405,10 @@ export namespace container_v1 {
      */
     privateIpv6GoogleAccess?: string | null;
     /**
+     * ServiceExternalIPsConfig specifies if services with externalIPs field are blocked or not.
+     */
+    serviceExternalIpsConfig?: Schema$ServiceExternalIPsConfig;
+    /**
      * Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
@@ -1536,7 +1562,7 @@ export namespace container_v1 {
      */
     cpuCfsQuotaPeriod?: string | null;
     /**
-     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - "none": the default, which represents the existing scheduling behavior. - "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
+     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. * "none": the default, which represents the existing scheduling behavior. * "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
      */
     cpuManagerPolicy?: string | null;
   }
@@ -1836,6 +1862,10 @@ export namespace container_v1 {
      */
     enabled?: boolean | null;
     /**
+     * Allows filtering to one or more specific event types. If no filter is specified, or if a filter is specified with no event types, all event types will be sent
+     */
+    filter?: Schema$Filter;
+    /**
      * The desired Pub/Sub topic to which notifications will be sent by GKE. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string | null;
@@ -1965,6 +1995,51 @@ export namespace container_v1 {
     type?: string | null;
   }
   /**
+   * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.
+   */
+  export interface Schema$SecurityBulletinEvent {
+    /**
+     * The GKE minor versions affected by this vulnerability.
+     */
+    affectedSupportedMinors?: string[] | null;
+    /**
+     * A brief description of the bulletin. See the bulletin pointed to by the bulletin_uri field for an expanded description.
+     */
+    briefDescription?: string | null;
+    /**
+     * The ID of the bulletin corresponding to the vulnerability.
+     */
+    bulletinId?: string | null;
+    /**
+     * The URI link to the bulletin on the website for more information.
+     */
+    bulletinUri?: string | null;
+    /**
+     * The CVEs associated with this bulletin.
+     */
+    cveIds?: string[] | null;
+    /**
+     * If this field is specified, it means there are manual steps that the user must take to make their clusters safe.
+     */
+    manualStepsRequired?: boolean | null;
+    /**
+     * The GKE versions where this vulnerability is patched.
+     */
+    patchedVersions?: string[] | null;
+    /**
+     * The resource type (node/control plane) that has the vulnerability. Multiple notifications (1 notification per resource type) will be sent for a vulnerability that affects \> 1 resource type.
+     */
+    resourceTypeAffected?: string | null;
+    /**
+     * The severity of this bulletin as it relates to GKE.
+     */
+    severity?: string | null;
+    /**
+     * This represents a version selected from the patched_versions field that the cluster receiving this notification should most likely want to upgrade to based on its current version. Note that if this notification is being received by a given cluster, it means that this version is currently available as an upgrade target in that cluster's location.
+     */
+    suggestedUpgradeTarget?: string | null;
+  }
+  /**
    * Kubernetes Engine service configuration.
    */
   export interface Schema$ServerConfig {
@@ -1992,6 +2067,15 @@ export namespace container_v1 {
      * List of valid node upgrade target versions, in descending order.
      */
     validNodeVersions?: string[] | null;
+  }
+  /**
+   * Config to block services with externalIPs field.
+   */
+  export interface Schema$ServiceExternalIPsConfig {
+    /**
+     * Whether Services with ExternalIPs field are allowed or not.
+     */
+    enabled?: boolean | null;
   }
   /**
    * SetAddonsConfigRequest sets the addons associated with the cluster.
@@ -2402,6 +2486,10 @@ export namespace container_v1 {
      * The time that the window ends. The end time should take place after the start time.
      */
     endTime?: string | null;
+    /**
+     * MaintenanceExclusionOptions provides maintenance exclusion related options.
+     */
+    maintenanceExclusionOptions?: Schema$MaintenanceExclusionOptions;
     /**
      * The time that the window first starts.
      */
