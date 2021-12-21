@@ -212,7 +212,7 @@
                   ],
                   "parameters": {
                     "conversationId": {
-                      "description": "A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression /^[a-z0-9-]{4,64}$/. Valid characters are /a-z-/",
+                      "description": "A unique ID for the new conversation. This ID will become the final component of the conversation's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z0-9-]{4,64}$`. Valid characters are `a-z-`",
                       "location": "query",
                       "type": "string"
                     },
@@ -290,8 +290,8 @@
                       ],
                       "enumDescriptions": [
                         "Not specified. Defaults to FULL on GetConversationRequest and BASIC for ListConversationsRequest.",
-                        "Transcript field is not populated in the response.",
-                        "All fields are populated."
+                        "Transcript field is not populated in the response for Insights conversation.",
+                        "All fields are populated for Insights conversation."
                       ],
                       "location": "query",
                       "type": "string"
@@ -346,8 +346,8 @@
                       ],
                       "enumDescriptions": [
                         "Not specified. Defaults to FULL on GetConversationRequest and BASIC for ListConversationsRequest.",
-                        "Transcript field is not populated in the response.",
-                        "All fields are populated."
+                        "Transcript field is not populated in the response for Insights conversation.",
+                        "All fields are populated for Insights conversation."
                       ],
                       "location": "query",
                       "type": "string"
@@ -1123,7 +1123,7 @@
       }
     }
   },
-  "revision": "20211123",
+  "revision": "20211211",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -1524,6 +1524,10 @@
         },
         "name": {
           "description": "Immutable. The resource name of the conversation. Format: projects/{project}/locations/{location}/conversations/{conversation}",
+          "type": "string"
+        },
+        "obfuscatedUserId": {
+          "description": "Obfuscated user ID which the customer sent to us.",
           "type": "string"
         },
         "runtimeAnnotations": {
@@ -2081,6 +2085,20 @@
         },
         "parent": {
           "description": "Required. The parent resource to export data from.",
+          "type": "string"
+        },
+        "writeDisposition": {
+          "description": "Options for what to do if the destination table already exists.",
+          "enum": [
+            "WRITE_DISPOSITION_UNSPECIFIED",
+            "WRITE_TRUNCATE",
+            "WRITE_APPEND"
+          ],
+          "enumDescriptions": [
+            "Write disposition is not specified. Defaults to WRITE_TRUNCATE.",
+            "If the table already exists, BigQuery will overwrite the table data and use the schema from the load.",
+            "If the table already exists, BigQuery will append data to the table."
+          ],
           "type": "string"
         }
       },
@@ -3040,6 +3058,20 @@
         },
         "parent": {
           "description": "Required. The parent resource to export data from.",
+          "type": "string"
+        },
+        "writeDisposition": {
+          "description": "Options for what to do if the destination table already exists.",
+          "enum": [
+            "WRITE_DISPOSITION_UNSPECIFIED",
+            "WRITE_TRUNCATE",
+            "WRITE_APPEND"
+          ],
+          "enumDescriptions": [
+            "Write disposition is not specified. Defaults to WRITE_TRUNCATE.",
+            "If the table already exists, BigQuery will overwrite the table data and use the schema from the load.",
+            "If the table already exists, BigQuery will append data to the table."
+          ],
           "type": "string"
         }
       },
