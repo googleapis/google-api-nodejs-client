@@ -227,9 +227,22 @@ export namespace cloudsearch_v1 {
     date?: Schema$Date;
     queryCountByStatus?: Schema$QueryCountByStatus[];
   }
+  /**
+   * Search application stats for a customer for the given date.
+   */
+  export interface Schema$CustomerSearchApplicationStats {
+    /**
+     * The count of search applications for the date.
+     */
+    count?: string | null;
+    /**
+     * Date for which search application stats were calculated.
+     */
+    date?: Schema$Date;
+  }
   export interface Schema$CustomerSessionStats {
     /**
-     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     * Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned.
      */
     date?: Schema$Date;
     /**
@@ -300,6 +313,10 @@ export namespace cloudsearch_v1 {
      * IDs of the Long Running Operations (LROs) currently running for this schema.
      */
     operationIds?: string[] | null;
+    /**
+     * Can a user request to get thumbnail URI for Items indexed in this data source.
+     */
+    returnThumbnailUrls?: boolean | null;
     /**
      * A short name or alias for the source. This value will be used to match the 'source' operator. For example, if the short name is *<value\>* then queries like *source:<value\>* will only return results for this source. The value must be unique across all datasources. The value must only contain alphanumeric characters (a-zA-Z0-9). The value cannot start with 'google' and cannot be one of the following: mail, gmail, docs, drive, groups, sites, calendar, hangouts, gplus, keep, people, teams. Its maximum length is 32 characters.
      */
@@ -631,12 +648,33 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$GetCustomerIndexStatsResponse {
     /**
+     * Average item count for the given date range for which billing is done.
+     */
+    averageIndexedItemCount?: string | null;
+    /**
      * Summary of indexed item counts, one for each day in the requested range.
      */
     stats?: Schema$CustomerIndexStats[];
   }
   export interface Schema$GetCustomerQueryStatsResponse {
     stats?: Schema$CustomerQueryStats[];
+    /**
+     * Total successful query count (status code 200) for the given date range.
+     */
+    totalQueryCount?: string | null;
+  }
+  /**
+   * Response format for search application stats for a customer.
+   */
+  export interface Schema$GetCustomerSearchApplicationStatsResponse {
+    /**
+     * Average search application count for the given date range.
+     */
+    averageSearchApplicationCount?: string | null;
+    /**
+     * Search application stats by date.
+     */
+    stats?: Schema$CustomerSearchApplicationStats[];
   }
   export interface Schema$GetCustomerSessionStatsResponse {
     stats?: Schema$CustomerSessionStats[];
@@ -645,6 +683,10 @@ export namespace cloudsearch_v1 {
     stats?: Schema$CustomerUserStats[];
   }
   export interface Schema$GetDataSourceIndexStatsResponse {
+    /**
+     * Average item count for the given date range for which billing is done.
+     */
+    averageIndexedItemCount?: string | null;
     /**
      * Summary of indexed item counts, one for each day in the requested range.
      */
@@ -658,6 +700,10 @@ export namespace cloudsearch_v1 {
      * Query stats per date for a search application.
      */
     stats?: Schema$SearchApplicationQueryStats[];
+    /**
+     * Total successful query count (status code 200) for the given date range.
+     */
+    totalQueryCount?: string | null;
   }
   export interface Schema$GetSearchApplicationSessionStatsResponse {
     stats?: Schema$SearchApplicationSessionStats[];
@@ -838,7 +884,7 @@ export namespace cloudsearch_v1 {
      */
     structuredData?: Schema$ItemStructuredData;
     /**
-     * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
+     * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. See [this guide](https://developers.devsite.corp.google.com/cloud-search/docs/guides/operations) to understand how item version affects reindexing after delete item.
      */
     version?: string | null;
   }
@@ -890,6 +936,10 @@ export namespace cloudsearch_v1 {
      * Number of items matching the status code.
      */
     count?: string | null;
+    /**
+     * Number of items matching the status code for which billing is done. This excludes virtual container items from the total count. This count would not be applicable for items with ERROR or NEW_ITEM status code.
+     */
+    indexedItemsCount?: string | null;
     /**
      * Status of the items.
      */
@@ -1091,6 +1141,10 @@ export namespace cloudsearch_v1 {
      * The named source for the result, such as Gmail.
      */
     source?: Schema$Source;
+    /**
+     * The thumbnail URL of the result.
+     */
+    thumbnailUrl?: string | null;
     /**
      * The last modified date for the object in the search result. If not set in the item, the value returned here is empty. When `updateTime` is used for calculating freshness and is not set, this value defaults to 2 years from the current time.
      */
@@ -1746,6 +1800,10 @@ export namespace cloudsearch_v1 {
      */
     queryInterpretationConfig?: Schema$QueryInterpretationConfig;
     /**
+     * With each result we should return the URI for its thumbnail (when applicable)
+     */
+    returnResultThumbnailUrls?: boolean | null;
+    /**
      * Configuration for ranking results.
      */
     scoringConfig?: Schema$ScoringConfig;
@@ -1766,7 +1824,7 @@ export namespace cloudsearch_v1 {
   }
   export interface Schema$SearchApplicationSessionStats {
     /**
-     * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
+     * Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned.
      */
     date?: Schema$Date;
     /**
@@ -3721,7 +3779,7 @@ export namespace cloudsearch_v1 {
      *     mode: 'placeholder-value',
      *     // Required. Name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
      *     name: 'datasources/my-datasource/items/my-item',
-     *     // Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
+     *     // Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. See [this guide](https://developers.devsite.corp.google.com/cloud-search/docs/guides/operations) to understand how item version affects reindexing after delete item.
      *     version: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5017,7 +5075,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
     /**
-     * Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.
+     * Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. See [this guide](https://developers.devsite.corp.google.com/cloud-search/docs/guides/operations) to understand how item version affects reindexing after delete item.
      */
     version?: string;
   }
@@ -6476,6 +6534,7 @@ export namespace cloudsearch_v1 {
      *       //   "itemsVisibility": [],
      *       //   "name": "my_name",
      *       //   "operationIds": [],
+     *       //   "returnThumbnailUrls": false,
      *       //   "shortName": "my_shortName"
      *       // }
      *     },
@@ -6769,6 +6828,7 @@ export namespace cloudsearch_v1 {
      *   //   "itemsVisibility": [],
      *   //   "name": "my_name",
      *   //   "operationIds": [],
+     *   //   "returnThumbnailUrls": false,
      *   //   "shortName": "my_shortName"
      *   // }
      * }
@@ -7260,6 +7320,7 @@ export namespace cloudsearch_v1 {
      *       //   "name": "my_name",
      *       //   "operationIds": [],
      *       //   "queryInterpretationConfig": {},
+     *       //   "returnResultThumbnailUrls": false,
      *       //   "scoringConfig": {},
      *       //   "sourceConfig": []
      *       // }
@@ -7555,6 +7616,7 @@ export namespace cloudsearch_v1 {
      *   //   "name": "my_name",
      *   //   "operationIds": [],
      *   //   "queryInterpretationConfig": {},
+     *   //   "returnResultThumbnailUrls": false,
      *   //   "scoringConfig": {},
      *   //   "sourceConfig": []
      *   // }
@@ -7992,6 +8054,7 @@ export namespace cloudsearch_v1 {
      *       //   "name": "my_name",
      *       //   "operationIds": [],
      *       //   "queryInterpretationConfig": {},
+     *       //   "returnResultThumbnailUrls": false,
      *       //   "scoringConfig": {},
      *       //   "sourceConfig": []
      *       // }
@@ -8232,6 +8295,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "averageIndexedItemCount": "my_averageIndexedItemCount",
      *   //   "stats": []
      *   // }
      * }
@@ -8380,7 +8444,8 @@ export namespace cloudsearch_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "stats": []
+     *   //   "stats": [],
+     *   //   "totalQueryCount": "my_totalQueryCount"
      *   // }
      * }
      *
@@ -8475,6 +8540,159 @@ export namespace cloudsearch_v1 {
         );
       } else {
         return createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Get search application stats for customer. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getSearchapplication({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'endDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'endDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'endDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'startDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'startDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'startDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averageSearchApplicationCount": "my_averageSearchApplicationCount",
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getSearchapplication(
+      params: Params$Resource$Stats$Getsearchapplication,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getSearchapplication(
+      params?: Params$Resource$Stats$Getsearchapplication,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GetCustomerSearchApplicationStatsResponse>;
+    getSearchapplication(
+      params: Params$Resource$Stats$Getsearchapplication,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getSearchapplication(
+      params: Params$Resource$Stats$Getsearchapplication,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetCustomerSearchApplicationStatsResponse>,
+      callback: BodyResponseCallback<Schema$GetCustomerSearchApplicationStatsResponse>
+    ): void;
+    getSearchapplication(
+      params: Params$Resource$Stats$Getsearchapplication,
+      callback: BodyResponseCallback<Schema$GetCustomerSearchApplicationStatsResponse>
+    ): void;
+    getSearchapplication(
+      callback: BodyResponseCallback<Schema$GetCustomerSearchApplicationStatsResponse>
+    ): void;
+    getSearchapplication(
+      paramsOrCallback?:
+        | Params$Resource$Stats$Getsearchapplication
+        | BodyResponseCallback<Schema$GetCustomerSearchApplicationStatsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetCustomerSearchApplicationStatsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetCustomerSearchApplicationStatsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GetCustomerSearchApplicationStatsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Stats$Getsearchapplication;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Stats$Getsearchapplication;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/stats/searchapplication').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetCustomerSearchApplicationStatsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetCustomerSearchApplicationStatsResponse>(
           parameters
         );
       }
@@ -8829,6 +9047,33 @@ export namespace cloudsearch_v1 {
      */
     'toDate.year'?: number;
   }
+  export interface Params$Resource$Stats$Getsearchapplication
+    extends StandardParameters {
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'endDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'endDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'endDate.year'?: number;
+    /**
+     * Day of month. Must be from 1 to 31 and valid for the year and month.
+     */
+    'startDate.day'?: number;
+    /**
+     * Month of date. Must be from 1 to 12.
+     */
+    'startDate.month'?: number;
+    /**
+     * Year of date. Must be from 1 to 9999.
+     */
+    'startDate.year'?: number;
+  }
   export interface Params$Resource$Stats$Getsession extends StandardParameters {
     /**
      * Day of month. Must be from 1 to 31 and valid for the year and month.
@@ -8947,6 +9192,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "averageIndexedItemCount": "my_averageIndexedItemCount",
      *   //   "stats": []
      *   // }
      * }
@@ -9151,7 +9397,8 @@ export namespace cloudsearch_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "stats": []
+     *   //   "stats": [],
+     *   //   "totalQueryCount": "my_totalQueryCount"
      *   // }
      * }
      *
@@ -9703,7 +9950,7 @@ export namespace cloudsearch_v1 {
     }
 
     /**
-     * Initializes the customer. **Note:** This API requires an admin account to execute.
+     * Enables `third party` support in Google Cloud Search. **Note:** This API requires an admin account to execute.
      * @example
      * ```js
      * // Before running the sample:

@@ -521,7 +521,7 @@
                       "type": "string"
                     },
                     "version": {
-                      "description": "Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.",
+                      "description": "Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. See [this guide](https://developers.devsite.corp.google.com/cloud-search/docs/guides/operations) to understand how item version affects reindexing after delete item.",
                       "format": "byte",
                       "location": "query",
                       "type": "string"
@@ -1519,6 +1519,60 @@
             "https://www.googleapis.com/auth/cloud_search.stats.indexing"
           ]
         },
+        "getSearchapplication": {
+          "description": "Get search application stats for customer. **Note:** This API requires a standard end user account to execute.",
+          "flatPath": "v1/stats/searchapplication",
+          "httpMethod": "GET",
+          "id": "cloudsearch.stats.getSearchapplication",
+          "parameterOrder": [],
+          "parameters": {
+            "endDate.day": {
+              "description": "Day of month. Must be from 1 to 31 and valid for the year and month.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "endDate.month": {
+              "description": "Month of date. Must be from 1 to 12.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "endDate.year": {
+              "description": "Year of date. Must be from 1 to 9999.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "startDate.day": {
+              "description": "Day of month. Must be from 1 to 31 and valid for the year and month.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "startDate.month": {
+              "description": "Month of date. Must be from 1 to 12.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "startDate.year": {
+              "description": "Year of date. Must be from 1 to 9999.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            }
+          },
+          "path": "v1/stats/searchapplication",
+          "response": {
+            "$ref": "GetCustomerSearchApplicationStatsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud_search",
+            "https://www.googleapis.com/auth/cloud_search.stats",
+            "https://www.googleapis.com/auth/cloud_search.stats.indexing"
+          ]
+        },
         "getSession": {
           "description": "Get the # of search sessions, % of successful sessions with a click query statistics for customer. **Note:** This API requires a standard end user account to execute.",
           "flatPath": "v1/stats/session",
@@ -1918,7 +1972,7 @@
     "v1": {
       "methods": {
         "initializeCustomer": {
-          "description": "Initializes the customer. **Note:** This API requires an admin account to execute.",
+          "description": "Enables `third party` support in Google Cloud Search. **Note:** This API requires an admin account to execute.",
           "flatPath": "v1:initializeCustomer",
           "httpMethod": "POST",
           "id": "cloudsearch.initializeCustomer",
@@ -1940,7 +1994,7 @@
       }
     }
   },
-  "revision": "20211018",
+  "revision": "20211208",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AuditLoggingSettings": {
@@ -2077,12 +2131,28 @@
       },
       "type": "object"
     },
+    "CustomerSearchApplicationStats": {
+      "description": "Search application stats for a customer for the given date.",
+      "id": "CustomerSearchApplicationStats",
+      "properties": {
+        "count": {
+          "description": "The count of search applications for the date.",
+          "format": "int64",
+          "type": "string"
+        },
+        "date": {
+          "$ref": "Date",
+          "description": "Date for which search application stats were calculated."
+        }
+      },
+      "type": "object"
+    },
     "CustomerSessionStats": {
       "id": "CustomerSessionStats",
       "properties": {
         "date": {
           "$ref": "Date",
-          "description": "Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned."
+          "description": "Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned."
         },
         "searchSessionsCount": {
           "description": "The count of search sessions on the day",
@@ -2172,6 +2242,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "returnThumbnailUrls": {
+          "description": "Can a user request to get thumbnail URI for Items indexed in this data source.",
+          "type": "boolean"
         },
         "shortName": {
           "description": "A short name or alias for the source. This value will be used to match the 'source' operator. For example, if the short name is *<value>* then queries like *source:<value>* will only return results for this source. The value must be unique across all datasources. The value must only contain alphanumeric characters (a-zA-Z0-9). The value cannot start with 'google' and cannot be one of the following: mail, gmail, docs, drive, groups, sites, calendar, hangouts, gplus, keep, people, teams. Its maximum length is 32 characters.",
@@ -2726,6 +2800,11 @@
     "GetCustomerIndexStatsResponse": {
       "id": "GetCustomerIndexStatsResponse",
       "properties": {
+        "averageIndexedItemCount": {
+          "description": "Average item count for the given date range for which billing is done.",
+          "format": "int64",
+          "type": "string"
+        },
         "stats": {
           "description": "Summary of indexed item counts, one for each day in the requested range.",
           "items": {
@@ -2742,6 +2821,30 @@
         "stats": {
           "items": {
             "$ref": "CustomerQueryStats"
+          },
+          "type": "array"
+        },
+        "totalQueryCount": {
+          "description": "Total successful query count (status code 200) for the given date range.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetCustomerSearchApplicationStatsResponse": {
+      "description": "Response format for search application stats for a customer.",
+      "id": "GetCustomerSearchApplicationStatsResponse",
+      "properties": {
+        "averageSearchApplicationCount": {
+          "description": "Average search application count for the given date range.",
+          "format": "int64",
+          "type": "string"
+        },
+        "stats": {
+          "description": "Search application stats by date.",
+          "items": {
+            "$ref": "CustomerSearchApplicationStats"
           },
           "type": "array"
         }
@@ -2775,6 +2878,11 @@
     "GetDataSourceIndexStatsResponse": {
       "id": "GetDataSourceIndexStatsResponse",
       "properties": {
+        "averageIndexedItemCount": {
+          "description": "Average item count for the given date range for which billing is done.",
+          "format": "int64",
+          "type": "string"
+        },
         "stats": {
           "description": "Summary of indexed item counts, one for each day in the requested range.",
           "items": {
@@ -2795,6 +2903,11 @@
             "$ref": "SearchApplicationQueryStats"
           },
           "type": "array"
+        },
+        "totalQueryCount": {
+          "description": "Total successful query count (status code 200) for the given date range.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3065,7 +3178,7 @@
           "description": "The structured data for the item that should conform to a registered object definition in the schema for the data source."
         },
         "version": {
-          "description": "Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes.",
+          "description": "Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. See [this guide](https://developers.devsite.corp.google.com/cloud-search/docs/guides/operations) to understand how item version affects reindexing after delete item.",
           "format": "byte",
           "type": "string"
         }
@@ -3160,6 +3273,11 @@
       "properties": {
         "count": {
           "description": "Number of items matching the status code.",
+          "format": "int64",
+          "type": "string"
+        },
+        "indexedItemsCount": {
+          "description": "Number of items matching the status code for which billing is done. This excludes virtual container items from the total count. This count would not be applicable for items with ERROR or NEW_ITEM status code.",
           "format": "int64",
           "type": "string"
         },
@@ -3485,6 +3603,10 @@
         "source": {
           "$ref": "Source",
           "description": "The named source for the result, such as Gmail."
+        },
+        "thumbnailUrl": {
+          "description": "The thumbnail URL of the result.",
+          "type": "string"
         },
         "updateTime": {
           "description": "The last modified date for the object in the search result. If not set in the item, the value returned here is empty. When `updateTime` is used for calculating freshness and is not set, this value defaults to 2 years from the current time.",
@@ -4490,6 +4612,10 @@
           "$ref": "QueryInterpretationConfig",
           "description": "The default options for query interpretation"
         },
+        "returnResultThumbnailUrls": {
+          "description": "With each result we should return the URI for its thumbnail (when applicable)",
+          "type": "boolean"
+        },
         "scoringConfig": {
           "$ref": "ScoringConfig",
           "description": "Configuration for ranking results."
@@ -4526,7 +4652,7 @@
       "properties": {
         "date": {
           "$ref": "Date",
-          "description": "Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned."
+          "description": "Date for which session stats were calculated. Stats are calculated on the following day, close to midnight PST, and then returned."
         },
         "searchSessionsCount": {
           "description": "The count of search sessions on the day",
