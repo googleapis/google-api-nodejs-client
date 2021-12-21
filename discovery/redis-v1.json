@@ -624,13 +624,148 @@
       }
     }
   },
-  "revision": "20211109",
+  "revision": "20211202",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
+    "Cluster": {
+      "description": "A cluster instance.",
+      "id": "Cluster",
+      "properties": {
+        "clusterUid": {
+          "description": "Output only. UID of the cluster for use by Pantheon for analytics.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The timestamp associated with the cluster creation request.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerManagedKey": {
+          "description": "Input only. The KMS key reference that the customer provides when trying to create the instance.",
+          "type": "string"
+        },
+        "defaultReplicaCount": {
+          "description": "Optional. The number of replica nodes per shard. Valid range is [1-2] and defaults to 1.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "displayName": {
+          "description": "Optional. An arbitrary and optional user-provided name for the cluster.",
+          "type": "string"
+        },
+        "endpoints": {
+          "description": "Output only. Hostname or IP address and port pairs used to connect to the cluster.",
+          "items": {
+            "$ref": "Endpoint"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/clusters/{cluster_id}`",
+          "type": "string"
+        },
+        "privateServiceConnect": {
+          "$ref": "PrivateServiceConnect",
+          "description": "Optional. Populate to use private service connect network option."
+        },
+        "redisConfigs": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are: Redis version 6.x and newer: * lfu-decay-time * lfu-log-factor * maxmemory-policy",
+          "type": "object"
+        },
+        "slots": {
+          "description": "Output only. The slots making up the cluster. Read-only. In future versions this will be writable to allow for heterogeneous clusters.",
+          "items": {
+            "$ref": "ClusterSlots"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The current state of this cluster. Can be CREATING, READY, UPDATING, DELETING and SUSPENDED",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "Redis cluster is being created.",
+            "Redis cluster has been created and is fully usable.",
+            "Redis cluster configuration is being updated.",
+            "Redis cluster is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalMemorySizeGb": {
+          "description": "Optional. Redis memory size in GiB for the entire cluster. Defaults to 32.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ClusterSlots": {
+      "description": "A series of slots belonging to a cluster.",
+      "id": "ClusterSlots",
+      "properties": {
+        "endSlotsExclusive": {
+          "description": "Output only. The end of the slots that make up this series.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "memorySizeGb": {
+          "description": "Output only. The total size of keyspace this series has.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "replicaCount": {
+          "description": "Output only. The number of replicas this series has.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startSlotsInclusive": {
+          "description": "Output only. The start of the slots that make up this series.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "Endpoint": {
+      "description": "An endpoint exposed by a cluster. In the future we will add an enum to identify whether this endpoint is read/write or read-only when the feature is ready.",
+      "id": "Endpoint",
+      "properties": {
+        "host": {
+          "description": "Output only. Hostname or IP address of the exposed Redis endpoint used by clients to connect to the service.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "port": {
+          "description": "Output only. The port number of the exposed Redis endpoint.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "ExportInstanceRequest": {
@@ -1258,6 +1393,22 @@
         "rdbSnapshotStartTime": {
           "description": "Optional. Date and time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PrivateServiceConnect": {
+      "description": "Contains private service connect specific options.",
+      "id": "PrivateServiceConnect",
+      "properties": {
+        "pscService": {
+          "description": "Output only. The address of the Private Service Connect (PSC) service that the customer can use to connect this instance to their local network.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pscServiceRoute": {
+          "description": "Optional. The service route to connect using Private Service Connect. On Instance creation, this will automatically connect this route to this instance.",
           "type": "string"
         }
       },
