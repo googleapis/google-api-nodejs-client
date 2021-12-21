@@ -1175,7 +1175,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.create({
-     *     // The name of the parent resource where the repository will be created.
+     *     // Required. The name of the parent resource where the repository will be created.
      *     parent: 'projects/my-project/locations/my-location',
      *     // The repository id to use for this repository.
      *     repositoryId: 'placeholder-value',
@@ -1325,7 +1325,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.delete({
-     *     // The name of the repository to delete.
+     *     // Required. The name of the repository to delete.
      *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
      *   });
      *   console.log(res.data);
@@ -1459,7 +1459,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.get({
-     *     // The name of the repository to retrieve.
+     *     // Required. The name of the repository to retrieve.
      *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
      *   });
      *   console.log(res.data);
@@ -1739,7 +1739,7 @@ export namespace artifactregistry_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The name of the parent resource whose repositories will be listed.
+     *     // Required. The name of the parent resource whose repositories will be listed.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2295,7 +2295,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Create
     extends StandardParameters {
     /**
-     * The name of the parent resource where the repository will be created.
+     * Required. The name of the parent resource where the repository will be created.
      */
     parent?: string;
     /**
@@ -2311,14 +2311,14 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Delete
     extends StandardParameters {
     /**
-     * The name of the repository to delete.
+     * Required. The name of the repository to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Get
     extends StandardParameters {
     /**
-     * The name of the repository to retrieve.
+     * Required. The name of the repository to retrieve.
      */
     name?: string;
   }
@@ -2344,7 +2344,7 @@ export namespace artifactregistry_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The name of the parent resource whose repositories will be listed.
+     * Required. The name of the parent resource whose repositories will be listed.
      */
     parent?: string;
   }
@@ -2749,7 +2749,7 @@ export namespace artifactregistry_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.delete({
-     *       // The name of the package to delete.
+     *       // Required. The name of the package to delete.
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
      *     });
      *   console.log(res.data);
@@ -2885,7 +2885,7 @@ export namespace artifactregistry_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.get({
-     *       // The name of the package to retrieve.
+     *       // Required. The name of the package to retrieve.
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
      *     });
      *   console.log(res.data);
@@ -3024,7 +3024,7 @@ export namespace artifactregistry_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // The name of the parent resource whose packages will be listed.
+     *       // Required. The name of the parent resource whose packages will be listed.
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
      *     });
@@ -3139,14 +3139,14 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Delete
     extends StandardParameters {
     /**
-     * The name of the package to delete.
+     * Required. The name of the package to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Get
     extends StandardParameters {
     /**
-     * The name of the package to retrieve.
+     * Required. The name of the package to retrieve.
      */
     name?: string;
   }
@@ -3161,7 +3161,7 @@ export namespace artifactregistry_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The name of the parent resource whose packages will be listed.
+     * Required. The name of the parent resource whose packages will be listed.
      */
     parent?: string;
   }

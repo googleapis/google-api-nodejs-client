@@ -224,7 +224,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The name of the parent resource where the repository will be created.",
+                      "description": "Required. The name of the parent resource where the repository will be created.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -257,7 +257,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the repository to delete.",
+                      "description": "Required. The name of the repository to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -282,7 +282,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the repository to retrieve.",
+                      "description": "Required. The name of the repository to retrieve.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -351,7 +351,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The name of the parent resource whose repositories will be listed.",
+                      "description": "Required. The name of the parent resource whose repositories will be listed.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -544,7 +544,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the package to delete.",
+                          "description": "Required. The name of the package to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/packages/[^/]+$",
                           "required": true,
@@ -569,7 +569,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the package to retrieve.",
+                          "description": "Required. The name of the package to retrieve.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/packages/[^/]+$",
                           "required": true,
@@ -606,7 +606,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "The name of the parent resource whose packages will be listed.",
+                          "description": "Required. The name of the parent resource whose packages will be listed.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                           "required": true,
@@ -929,7 +929,7 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20211203",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1448,7 +1448,6 @@
             "DOCKER",
             "MAVEN",
             "NPM",
-            "PYPI",
             "APT",
             "YUM",
             "PYTHON"
@@ -1458,7 +1457,6 @@
             "Docker package format.",
             "Maven package format.",
             "NPM package format.",
-            "PyPI package format. Deprecated, use PYTHON instead.",
             "APT package format.",
             "YUM package format.",
             "Python package format."
