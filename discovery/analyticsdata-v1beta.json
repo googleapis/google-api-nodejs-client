@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20211115",
+  "revision": "20211213",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -621,7 +621,7 @@
       "type": "object"
     },
     "Dimension": {
-      "description": "Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, city could be \"Paris\" or \"New York\". Requests are allowed up to 9 dimensions.",
+      "description": "Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, the city could be \"Paris\" or \"New York\". Requests are allowed up to 9 dimensions.",
       "id": "Dimension",
       "properties": {
         "dimensionExpression": {
@@ -799,7 +799,7 @@
         },
         "filter": {
           "$ref": "Filter",
-          "description": "A primitive filter. All fields in filter in same FilterExpression needs to be either all dimensions or metrics."
+          "description": "A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all dimensions or all metrics."
         },
         "notExpression": {
           "$ref": "FilterExpression",
@@ -1685,7 +1685,7 @@
         },
         "metricFilter": {
           "$ref": "FilterExpression",
-          "description": "The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Dimensions cannot be used in this filter."
+          "description": "The filter clause of metrics. Applied after aggregating the report's rows, similar to SQL having-clause. Dimensions cannot be used in this filter."
         },
         "metrics": {
           "description": "The metrics requested and displayed.",
@@ -1822,8 +1822,8 @@
             "Begins with the string value.",
             "Ends with the string value.",
             "Contains the string value.",
-            "Full regular expression match with the string value.",
-            "Partial regular expression match with the string value."
+            "Full match for the regular expression with the string value.",
+            "Partial match for the regular expression with the string value."
           ],
           "type": "string"
         },
