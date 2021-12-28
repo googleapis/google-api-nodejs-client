@@ -7,5 +7,5 @@
   "distribution_name": "googleapis",
   "client_documentation": "https://googleapis.dev/nodejs/googleapis/latest",
   "api_shortname": "googleapis",
-  "library_type": ""
+  "library_type": "REST"
 }
