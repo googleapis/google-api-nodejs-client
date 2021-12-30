@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "revision": "20211110",
+  "revision": "20211206",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2393,7 +2393,7 @@
           "type": "string"
         },
         "databaseInstalledVersion": {
-          "description": "Output only. The databaseInstalledVersion stores the current fully resolved database version running on the instance including minor version such as MYSQL_5_6_50",
+          "description": "Output only. Stores the current database version running on the instance including minor version such as **MYSQL_8_0_18**.",
           "readOnly": true,
           "type": "string"
         },
@@ -2476,7 +2476,7 @@
           "type": "object"
         },
         "gceZone": {
-          "description": "The Compute Engine zone that the instance is currently serving from. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary zone.",
+          "description": "The Compute Engine zone that the instance is currently serving from. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary zone. WARNING: Changing this might restart the instance.",
           "type": "string"
         },
         "instanceType": {
@@ -3353,7 +3353,7 @@
           "type": "string"
         },
         "authorizedNetworks": {
-          "description": "The list of external networks that are allowed to connect to the instance using the IP. In 'CIDR' notation, also known as 'slash' notation (for example: **192.168.100.0/24**).",
+          "description": "The list of external networks that are allowed to connect to the instance using the IP. In 'CIDR' notation, also known as 'slash' notation (for example: **157.197.200.0/24**).",
           "items": {
             "$ref": "AclEntry"
           },
@@ -3413,7 +3413,7 @@
       "id": "LocationPreference",
       "properties": {
         "followGaeApplication": {
-          "description": "The App Engine application to follow, it must be in the same region as the Cloud SQL instance.",
+          "description": "The App Engine application to follow, it must be in the same region as the Cloud SQL instance. WARNING: Changing this might restart the instance.",
           "type": "string"
         },
         "kind": {
@@ -3425,7 +3425,7 @@
           "type": "string"
         },
         "zone": {
-          "description": "The preferred Compute Engine zone (for example: us-central1-a, us-central1-b, etc.).",
+          "description": "The preferred Compute Engine zone (for example: us-central1-a, us-central1-b, etc.). WARNING: Changing this might restart the instance.",
           "type": "string"
         }
       },
@@ -4019,7 +4019,7 @@
           "type": "array"
         },
         "databaseReplicationEnabled": {
-          "description": "Configuration specific to read replica instances. Indicates whether replication is enabled or not.",
+          "description": "Configuration specific to read replica instances. Indicates whether replication is enabled or not. WARNING: Changing this restarts the instance.",
           "type": "boolean"
         },
         "denyMaintenancePeriods": {
@@ -4100,7 +4100,7 @@
           "type": "string"
         },
         "tier": {
-          "description": "The tier (or machine type) for this instance, for example **db-custom-1-3840**.",
+          "description": "The tier (or machine type) for this instance, for example **db-custom-1-3840**. WARNING: Changing this restarts the instance.",
           "type": "string"
         },
         "userLabels": {
