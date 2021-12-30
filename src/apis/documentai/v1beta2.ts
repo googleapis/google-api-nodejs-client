@@ -511,7 +511,7 @@ export namespace documentai_v1beta2 {
      */
     inputGcsSource?: string | null;
     /**
-     * The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.
+     * The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
     /**
@@ -599,7 +599,7 @@ export namespace documentai_v1beta2 {
     uri?: string | null;
   }
   /**
-   * An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.
+   * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentEntity {
     /**
@@ -680,7 +680,7 @@ export namespace documentai_v1beta2 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -1097,7 +1097,7 @@ export namespace documentai_v1beta2 {
     type?: string | null;
   }
   /**
-   * Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.
+   * The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentProvenanceParent {
     /**
@@ -1105,11 +1105,11 @@ export namespace documentai_v1beta2 {
      */
     id?: number | null;
     /**
-     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.
      */
     index?: number | null;
     /**
-     * The index of the [Document.revisions] identifying the parent revision.
+     * The index of the index into current revision's parent_ids list.
      */
     revision?: number | null;
   }
@@ -1137,6 +1137,10 @@ export namespace documentai_v1beta2 {
      * The revisions that this revision is based on. This can include one or more parent (when documents are merged.) This field represents the index into the `revisions` field.
      */
     parent?: number[] | null;
+    /**
+     * The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.
+     */
+    parentIds?: string[] | null;
     /**
      * If the annotation was made by processor identify the processor by its resource name.
      */
@@ -1457,7 +1461,7 @@ export namespace documentai_v1beta2 {
     uri?: string | null;
   }
   /**
-   * An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.
+   * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentEntity {
     /**
@@ -1538,7 +1542,7 @@ export namespace documentai_v1beta2 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -1972,7 +1976,7 @@ export namespace documentai_v1beta2 {
     type?: string | null;
   }
   /**
-   * Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.
+   * The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentProvenanceParent {
     /**
@@ -1980,11 +1984,11 @@ export namespace documentai_v1beta2 {
      */
     id?: number | null;
     /**
-     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.
      */
     index?: number | null;
     /**
-     * The index of the [Document.revisions] identifying the parent revision.
+     * The index of the index into current revision's parent_ids list.
      */
     revision?: number | null;
   }
@@ -2012,6 +2016,10 @@ export namespace documentai_v1beta2 {
      * The revisions that this revision is based on. This can include one or more parent (when documents are merged.) This field represents the index into the `revisions` field.
      */
     parent?: number[] | null;
+    /**
+     * The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.
+     */
+    parentIds?: string[] | null;
     /**
      * If the annotation was made by processor identify the processor by its resource name.
      */
@@ -2407,7 +2415,7 @@ export namespace documentai_v1beta2 {
      */
     inputGcsSource?: string | null;
     /**
-     * The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.
+     * The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
     /**

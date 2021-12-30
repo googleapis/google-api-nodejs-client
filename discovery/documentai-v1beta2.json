@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20211214",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -840,7 +840,7 @@
           "type": "string"
         },
         "outputGcsDestination": {
-          "description": "The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.",
+          "description": "The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.",
           "type": "string"
         },
         "status": {
@@ -1173,7 +1173,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1DocumentEntity": {
-      "description": "An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.",
+      "description": "An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.",
       "id": "GoogleCloudDocumentaiV1beta1DocumentEntity",
       "properties": {
         "confidence": {
@@ -1262,7 +1262,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
-          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
+          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
           "type": "string"
         }
       },
@@ -1858,11 +1858,11 @@
             "EVAL_SKIPPED"
           ],
           "enumDescriptions": [
-            "Operation type unspecified.",
-            "Add an element. Implicit if no `parents` are set for the provenance.",
-            "The element is removed. No `parents` should be set.",
-            "Explicitly replaces the element(s) identified by `parents`.",
-            "Element is requested for human review.",
+            "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
+            "Add an element.",
+            "Remove an element identified by `parent`.",
+            "Replace an element identified by `parent`.",
+            "Request human review for the element identified by `parent`.",
             "Element is reviewed and approved at human review, confidence will be set to 1.0.",
             "Element is skipped in the validation process."
           ],
@@ -1872,7 +1872,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1DocumentProvenanceParent": {
-      "description": "Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.",
+      "description": "The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.",
       "id": "GoogleCloudDocumentaiV1beta1DocumentProvenanceParent",
       "properties": {
         "id": {
@@ -1881,12 +1881,12 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.",
           "format": "int32",
           "type": "integer"
         },
         "revision": {
-          "description": "The index of the [Document.revisions] identifying the parent revision.",
+          "description": "The index of the index into current revision's parent_ids list.",
           "format": "int32",
           "type": "integer"
         }
@@ -1919,6 +1919,13 @@
           "items": {
             "format": "int32",
             "type": "integer"
+          },
+          "type": "array"
+        },
+        "parentIds": {
+          "description": "The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -2359,7 +2366,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta2DocumentEntity": {
-      "description": "An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.",
+      "description": "An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.",
       "id": "GoogleCloudDocumentaiV1beta2DocumentEntity",
       "properties": {
         "confidence": {
@@ -2448,7 +2455,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
-          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
+          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
           "type": "string"
         }
       },
@@ -3064,11 +3071,11 @@
             "EVAL_SKIPPED"
           ],
           "enumDescriptions": [
-            "Operation type unspecified.",
-            "Add an element. Implicit if no `parents` are set for the provenance.",
-            "The element is removed. No `parents` should be set.",
-            "Explicitly replaces the element(s) identified by `parents`.",
-            "Element is requested for human review.",
+            "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
+            "Add an element.",
+            "Remove an element identified by `parent`.",
+            "Replace an element identified by `parent`.",
+            "Request human review for the element identified by `parent`.",
             "Element is reviewed and approved at human review, confidence will be set to 1.0.",
             "Element is skipped in the validation process."
           ],
@@ -3078,7 +3085,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta2DocumentProvenanceParent": {
-      "description": "Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.",
+      "description": "The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.",
       "id": "GoogleCloudDocumentaiV1beta2DocumentProvenanceParent",
       "properties": {
         "id": {
@@ -3087,12 +3094,12 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.",
           "format": "int32",
           "type": "integer"
         },
         "revision": {
-          "description": "The index of the [Document.revisions] identifying the parent revision.",
+          "description": "The index of the index into current revision's parent_ids list.",
           "format": "int32",
           "type": "integer"
         }
@@ -3125,6 +3132,13 @@
           "items": {
             "format": "int32",
             "type": "integer"
+          },
+          "type": "array"
+        },
+        "parentIds": {
+          "description": "The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -3652,7 +3666,7 @@
           "type": "string"
         },
         "outputGcsDestination": {
-          "description": "The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.",
+          "description": "The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.",
           "type": "string"
         },
         "status": {
