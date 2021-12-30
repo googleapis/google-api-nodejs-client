@@ -105,129 +105,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "operations": {
-      "methods": {
-        "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "flatPath": "v1/operations/{operationsId}:cancel",
-          "httpMethod": "POST",
-          "id": "containeranalysis.operations.cancel",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be cancelled.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}:cancel",
-          "request": {
-            "$ref": "CancelOperationRequest"
-          },
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "delete": {
-          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-          "flatPath": "v1/operations/{operationsId}",
-          "httpMethod": "DELETE",
-          "id": "containeranalysis.operations.delete",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be deleted.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}",
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "get": {
-          "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-          "flatPath": "v1/operations/{operationsId}",
-          "httpMethod": "GET",
-          "id": "containeranalysis.operations.get",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}",
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "list": {
-          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-          "flatPath": "v1/operations",
-          "httpMethod": "GET",
-          "id": "containeranalysis.operations.list",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "filter": {
-              "description": "The standard list filter.",
-              "location": "query",
-              "type": "string"
-            },
-            "name": {
-              "description": "The name of the operation's parent resource.",
-              "location": "path",
-              "pattern": "^operations$",
-              "required": true,
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The standard list page size.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "The standard list page token.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}",
-          "response": {
-            "$ref": "ListOperationsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
     "projects": {
       "resources": {
         "notes": {
@@ -878,7 +755,7 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20211203",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1159,6 +1036,158 @@
       },
       "type": "object"
     },
+    "CVSS": {
+      "description": "Common Vulnerability Scoring System. For details, see https://www.first.org/cvss/specification-document This is a message we will try to use for storing multiple versions of CVSS. The intention is that as new versions of CVSS scores get added, we will be able to modify this message rather than adding new protos for each new version of the score.",
+      "id": "CVSS",
+      "properties": {
+        "attackComplexity": {
+          "enum": [
+            "ATTACK_COMPLEXITY_UNSPECIFIED",
+            "ATTACK_COMPLEXITY_LOW",
+            "ATTACK_COMPLEXITY_HIGH"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "attackVector": {
+          "description": "Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments.",
+          "enum": [
+            "ATTACK_VECTOR_UNSPECIFIED",
+            "ATTACK_VECTOR_NETWORK",
+            "ATTACK_VECTOR_ADJACENT",
+            "ATTACK_VECTOR_LOCAL",
+            "ATTACK_VECTOR_PHYSICAL"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "authentication": {
+          "enum": [
+            "AUTHENTICATION_UNSPECIFIED",
+            "AUTHENTICATION_MULTIPLE",
+            "AUTHENTICATION_SINGLE",
+            "AUTHENTICATION_NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "availabilityImpact": {
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "baseScore": {
+          "description": "The base score is a function of the base metric scores.",
+          "format": "float",
+          "type": "number"
+        },
+        "confidentialityImpact": {
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "exploitabilityScore": {
+          "format": "float",
+          "type": "number"
+        },
+        "impactScore": {
+          "format": "float",
+          "type": "number"
+        },
+        "integrityImpact": {
+          "enum": [
+            "IMPACT_UNSPECIFIED",
+            "IMPACT_HIGH",
+            "IMPACT_LOW",
+            "IMPACT_NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "privilegesRequired": {
+          "enum": [
+            "PRIVILEGES_REQUIRED_UNSPECIFIED",
+            "PRIVILEGES_REQUIRED_NONE",
+            "PRIVILEGES_REQUIRED_LOW",
+            "PRIVILEGES_REQUIRED_HIGH"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "scope": {
+          "enum": [
+            "SCOPE_UNSPECIFIED",
+            "SCOPE_UNCHANGED",
+            "SCOPE_CHANGED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "userInteraction": {
+          "enum": [
+            "USER_INTERACTION_UNSPECIFIED",
+            "USER_INTERACTION_NONE",
+            "USER_INTERACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CVSSv3": {
       "description": "Common Vulnerability Scoring System version 3. For details, see https://www.first.org/cvss/specification-document",
       "id": "CVSSv3",
@@ -1294,12 +1323,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "CancelOperationRequest": {
-      "description": "The request message for Operations.CancelOperation.",
-      "id": "CancelOperationRequest",
-      "properties": {},
       "type": "object"
     },
     "Category": {
@@ -3204,24 +3227,6 @@
       },
       "type": "object"
     },
-    "ListOperationsResponse": {
-      "description": "The response message for Operations.ListOperations.",
-      "id": "ListOperationsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "The standard List next-page token.",
-          "type": "string"
-        },
-        "operations": {
-          "description": "A list of operations that matches the specified filter in the request.",
-          "items": {
-            "$ref": "Operation"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "Location": {
       "description": "An occurrence of a particular package installation found within a system's filesystem. E.g., glibc was found in `/var/lib/dpkg/status`.",
       "id": "Location",
@@ -3525,41 +3530,6 @@
         "vulnerability": {
           "$ref": "VulnerabilityOccurrence",
           "description": "Describes a security vulnerability."
-        }
-      },
-      "type": "object"
-    },
-    "Operation": {
-      "description": "This resource represents a long-running operation that is the result of a network API call.",
-      "id": "Operation",
-      "properties": {
-        "done": {
-          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
-          "type": "boolean"
-        },
-        "error": {
-          "$ref": "Status",
-          "description": "The error result of the operation in case of failure or cancellation."
-        },
-        "metadata": {
-          "additionalProperties": {
-            "description": "Properties of the object. Contains field @type with type URL.",
-            "type": "any"
-          },
-          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
-          "type": "object"
-        },
-        "name": {
-          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
-          "type": "string"
-        },
-        "response": {
-          "additionalProperties": {
-            "description": "Properties of the object. Contains field @type with type URL.",
-            "type": "any"
-          },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -4223,6 +4193,10 @@
           "description": "Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0 - 10 where 0 indicates low severity and 10 indicates high severity.",
           "format": "float",
           "type": "number"
+        },
+        "cvssv3": {
+          "$ref": "CVSS",
+          "description": "The cvss v3 score for the vulnerability."
         },
         "effectiveSeverity": {
           "description": "The distro assigned severity for this vulnerability when it is available, otherwise this is the note provider assigned severity. When there are multiple PackageIssues for this vulnerability, they can have different effective severities because some might be provided by the distro while others are provided by the language ecosystem for a language pack. For this reason, it is advised to use the effective severity on the PackageIssue level. In the case where multiple PackageIssues have differing effective severities, this field should be the highest severity for any of the PackageIssues.",
