@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v3.0.0...serviceusage-v3.1.0) (2021-12-30)
+
+
+### Features
+
+* **serviceusage:** update the API ([cea697c](https://www.github.com/googleapis/google-api-nodejs-client/commit/cea697ce297f51aa94b5ef358cbca69755041fe9))
+
 ## [3.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v2.0.2...serviceusage-v3.0.0) (2021-09-14)
 
 

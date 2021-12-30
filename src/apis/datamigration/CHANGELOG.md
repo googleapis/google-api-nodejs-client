@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/datamigration-v2.0.2...datamigration-v2.1.0) (2021-12-30)
+
+
+### Features
+
+* **datamigration:** update the API ([7988ede](https://www.github.com/googleapis/google-api-nodejs-client/commit/7988ede25c7f2115cf6647b59968202fcbf7a6bf))
+
 ### [2.0.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/datamigration-v2.0.1...datamigration-v2.0.2) (2021-11-08)
 
 
