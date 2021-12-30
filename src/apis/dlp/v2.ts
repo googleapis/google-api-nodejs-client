@@ -261,6 +261,10 @@ export namespace dlp_v2 {
      */
     identifyingFields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
+     * Limit scanning only to these fields.
+     */
+    includedFields?: Schema$GooglePrivacyDlpV2FieldId[];
+    /**
      * Max number of rows to scan. If the table has more rows than this value, the rest of the rows are omitted. If not set, or if set to 0, all rows will be scanned. Only one of rows_limit and rows_limit_percent can be specified. Cannot be used in conjunction with TimespanConfig.
      */
     rowsLimit?: string | null;
