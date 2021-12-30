@@ -227,7 +227,7 @@ export namespace bigtableadmin_v1 {
      */
     name?: string | null;
     /**
-     * Required. The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
+     * The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.
      */
     serveNodes?: number | null;
     /**
@@ -253,7 +253,7 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$ClusterConfig {
     /**
-     * Autoscaling configuration for this cluster. Note that when creating or updating a cluster, exactly one of serve_nodes or cluster_autoscaling_config must be set. If serve_nodes is set, then serve_nodes is fixed and autoscaling is turned off. If cluster_autoscaling_config is set, then serve_nodes will be autoscaled.
+     * Autoscaling configuration for this cluster.
      */
     clusterAutoscalingConfig?: Schema$ClusterAutoscalingConfig;
   }
@@ -458,6 +458,9 @@ export namespace bigtableadmin_v1 {
      * The time at which the operation failed or was completed successfully.
      */
     finishTime?: string | null;
+    /**
+     * The original request for PartialUpdateCluster.
+     */
     originalRequest?: Schema$PartialUpdateClusterRequest;
     /**
      * The time at which the original request was received.
@@ -473,7 +476,7 @@ export namespace bigtableadmin_v1 {
      */
     cluster?: Schema$Cluster;
     /**
-     * Required. The subset of Cluster fields which should be replaced. Must be explicitly set.
+     * Required. The subset of Cluster fields which should be replaced.
      */
     updateMask?: string | null;
   }
@@ -542,6 +545,23 @@ export namespace bigtableadmin_v1 {
      */
     estimatedSizeBytes?: string | null;
     state?: string | null;
+  }
+  /**
+   * Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.
+   */
+  export interface Schema$UndeleteTableMetadata {
+    /**
+     * If set, the time at which this operation finished or was cancelled.
+     */
+    endTime?: string | null;
+    /**
+     * The name of the table being restored.
+     */
+    name?: string | null;
+    /**
+     * The time at which this operation started.
+     */
+    startTime?: string | null;
   }
   /**
    * The metadata for the Operation returned by UpdateAppProfile.
