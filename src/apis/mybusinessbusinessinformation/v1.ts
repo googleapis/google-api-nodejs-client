@@ -498,7 +498,7 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     languageCode?: string | null;
     /**
-     * Optional. User-provided latitude and longitude. When creating a location, this field is ignored if the provided address geocodes successfully. This field is only returned on get requests if the user-provided `latlng` value was accepted during create, or the `latlng` value was updated through the Google My Business website. This field can only be updated by approved clients.
+     * Optional. User-provided latitude and longitude. When creating a location, this field is ignored if the provided address geocodes successfully. This field is only returned on get requests if the user-provided `latlng` value was accepted during create, or the `latlng` value was updated through the Google Business Profile website. This field can only be updated by approved clients.
      */
     latlng?: Schema$LatLng;
     /**
@@ -2664,7 +2664,7 @@ export namespace mybusinessbusinessinformation_v1 {
     }
 
     /**
-     * Deletes a location. If this location cannot be deleted using the API and it is marked so in the `google.mybusiness.businessinformation.v1.LocationState`, use the [Google My Business](https://business.google.com/manage/) website.
+     * Deletes a location. If this location cannot be deleted using the API and it is marked so in the `google.mybusiness.businessinformation.v1.LocationState`, use the [Google Business Profile](https://business.google.com/manage/) website.
      * @example
      * ```js
      * // Before running the sample:
