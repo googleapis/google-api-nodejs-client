@@ -627,6 +627,10 @@ export namespace gkehub_v1alpha2 {
      */
     connectVersion?: string | null;
     /**
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.
+     */
+    k8sVersion?: string | null;
+    /**
      * Optional. Use `apiextensions/v1beta1` instead of `apiextensions/v1` for CustomResourceDefinition resources. This option should be set for clusters with Kubernetes apiserver versions <1.16.
      */
     v1beta1Crd?: boolean | null;
