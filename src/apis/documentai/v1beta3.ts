@@ -511,7 +511,7 @@ export namespace documentai_v1beta3 {
      */
     inputGcsSource?: string | null;
     /**
-     * The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.
+     * The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
     /**
@@ -599,7 +599,7 @@ export namespace documentai_v1beta3 {
     uri?: string | null;
   }
   /**
-   * An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.
+   * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentEntity {
     /**
@@ -680,7 +680,7 @@ export namespace documentai_v1beta3 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -1097,7 +1097,7 @@ export namespace documentai_v1beta3 {
     type?: string | null;
   }
   /**
-   * Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.
+   * The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentProvenanceParent {
     /**
@@ -1105,11 +1105,11 @@ export namespace documentai_v1beta3 {
      */
     id?: number | null;
     /**
-     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.
      */
     index?: number | null;
     /**
-     * The index of the [Document.revisions] identifying the parent revision.
+     * The index of the index into current revision's parent_ids list.
      */
     revision?: number | null;
   }
@@ -1137,6 +1137,10 @@ export namespace documentai_v1beta3 {
      * The revisions that this revision is based on. This can include one or more parent (when documents are merged.) This field represents the index into the `revisions` field.
      */
     parent?: number[] | null;
+    /**
+     * The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.
+     */
+    parentIds?: string[] | null;
     /**
      * If the annotation was made by processor identify the processor by its resource name.
      */
@@ -1439,7 +1443,7 @@ export namespace documentai_v1beta3 {
     uri?: string | null;
   }
   /**
-   * An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.
+   * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentEntity {
     /**
@@ -1520,7 +1524,7 @@ export namespace documentai_v1beta3 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -1954,7 +1958,7 @@ export namespace documentai_v1beta3 {
     type?: string | null;
   }
   /**
-   * Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.
+   * The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentProvenanceParent {
     /**
@@ -1962,11 +1966,11 @@ export namespace documentai_v1beta3 {
      */
     id?: number | null;
     /**
-     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.
      */
     index?: number | null;
     /**
-     * The index of the [Document.revisions] identifying the parent revision.
+     * The index of the index into current revision's parent_ids list.
      */
     revision?: number | null;
   }
@@ -1994,6 +1998,10 @@ export namespace documentai_v1beta3 {
      * The revisions that this revision is based on. This can include one or more parent (when documents are merged.) This field represents the index into the `revisions` field.
      */
     parent?: number[] | null;
+    /**
+     * The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.
+     */
+    parentIds?: string[] | null;
     /**
      * If the annotation was made by processor identify the processor by its resource name.
      */
@@ -2275,7 +2283,7 @@ export namespace documentai_v1beta3 {
      */
     inputGcsSource?: string | null;
     /**
-     * The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.
+     * The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.
      */
     outputGcsDestination?: string | null;
     /**
@@ -2478,7 +2486,7 @@ export namespace documentai_v1beta3 {
     uri?: string | null;
   }
   /**
-   * An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.
+   * An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentEntity {
     /**
@@ -2559,7 +2567,7 @@ export namespace documentai_v1beta3 {
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
-     * Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
+     * Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.
      */
     text?: string | null;
   }
@@ -2994,7 +3002,7 @@ export namespace documentai_v1beta3 {
     type?: string | null;
   }
   /**
-   * Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.
+   * The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentProvenanceParent {
     /**
@@ -3002,11 +3010,11 @@ export namespace documentai_v1beta3 {
      */
     id?: number | null;
     /**
-     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.
+     * The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.
      */
     index?: number | null;
     /**
-     * The index of the [Document.revisions] identifying the parent revision.
+     * The index of the index into current revision's parent_ids list.
      */
     revision?: number | null;
   }
@@ -3034,6 +3042,10 @@ export namespace documentai_v1beta3 {
      * The revisions that this revision is based on. This can include one or more parent (when documents are merged.) This field represents the index into the `revisions` field.
      */
     parent?: number[] | null;
+    /**
+     * The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.
+     */
+    parentIds?: string[] | null;
     /**
      * If the annotation was made by processor identify the processor by its resource name.
      */
@@ -3272,7 +3284,7 @@ export namespace documentai_v1beta3 {
     y?: number | null;
   }
   /**
-   * The first-class citizen for DAI. Each processor defines how to extract structural information from a document.
+   * The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Processor {
     /**
@@ -3292,7 +3304,7 @@ export namespace documentai_v1beta3 {
      */
     kmsKeyName?: string | null;
     /**
-     * Output only. Immutable. The resource name of the processor. Format: projects/{project\}/locations/{location\}/processors/{processor\}
+     * Output only. Immutable. The resource name of the processor. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`
      */
     name?: string | null;
     /**
@@ -3309,11 +3321,11 @@ export namespace documentai_v1beta3 {
     type?: string | null;
   }
   /**
-   * A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 9.
+   * A processor type is responsible for performing a certain document understanding task on a certain type of document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorType {
     /**
-     * Whether the processor type allows creation. If yes, user can create a processor of this processor type. Otherwise, user needs to request access.
+     * Whether the processor type allows creation. If true, users can create a processor of this processor type. Otherwise, users need to request access.
      */
     allowCreation?: boolean | null;
     /**
@@ -3359,7 +3371,7 @@ export namespace documentai_v1beta3 {
      */
     displayName?: string | null;
     /**
-     * The resource name of the processor version. Format: projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}
+     * The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
      */
     name?: string | null;
     /**
@@ -3444,7 +3456,7 @@ export namespace documentai_v1beta3 {
     updateTime?: string | null;
   }
   /**
-   * Request message for review document method. Next Id: 6.
+   * Request message for review document method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentRequest {
     /**
@@ -3974,7 +3986,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.fetchProcessorTypes({
-     *     // Required. The project of processor type to list. The available processor types may depend on the whitelisting on projects. Format: projects/{project\}/locations/{location\}
+     *     // Required. The project of processor type to list. The available processor types may depend on the allow-listing on projects. Format: `projects/{project\}/locations/{location\}`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -4371,7 +4383,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$Fetchprocessortypes
     extends StandardParameters {
     /**
-     * Required. The project of processor type to list. The available processor types may depend on the whitelisting on projects. Format: projects/{project\}/locations/{location\}
+     * Required. The project of processor type to list. The available processor types may depend on the allow-listing on projects. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
   }
@@ -4895,7 +4907,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.processors.batchProcess({
-     *     // Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     *     // Required. The resource name of Processor or ProcessorVersion. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      *     name: 'projects/my-project/locations/my-location/processors/my-processor',
      *
      *     // Request body metadata
@@ -5048,7 +5060,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.processors.create({
-     *     // Required. The parent (project and location) under which to create the processor. Format: projects/{project\}/locations/{location\}
+     *     // Required. The parent (project and location) under which to create the processor. Format: `projects/{project\}/locations/{location\}`
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -5783,7 +5795,7 @@ export namespace documentai_v1beta3 {
      *     pageSize: 'placeholder-value',
      *     // We will return the processors sorted by creation time. The page token will point to the next processor.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent (project and location) which owns this collection of Processors. Format: projects/{project\}/locations/{location\}
+     *     // Required. The parent (project and location) which owns this collection of Processors. Format: `projects/{project\}/locations/{location\}`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5922,7 +5934,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.processors.process({
-     *     // Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     *     // Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      *     name: 'projects/my-project/locations/my-location/processors/my-processor',
      *
      *     // Request body metadata
@@ -6200,7 +6212,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$Processors$Batchprocess
     extends StandardParameters {
     /**
-     * Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     * Required. The resource name of Processor or ProcessorVersion. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
     name?: string;
 
@@ -6212,7 +6224,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$Processors$Create
     extends StandardParameters {
     /**
-     * Required. The parent (project and location) under which to create the processor. Format: projects/{project\}/locations/{location\}
+     * Required. The parent (project and location) under which to create the processor. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
 
@@ -6270,14 +6282,14 @@ export namespace documentai_v1beta3 {
      */
     pageToken?: string;
     /**
-     * Required. The parent (project and location) which owns this collection of Processors. Format: projects/{project\}/locations/{location\}
+     * Required. The parent (project and location) which owns this collection of Processors. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Processors$Process
     extends StandardParameters {
     /**
-     * Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     * Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
     name?: string;
 
@@ -6509,7 +6521,7 @@ export namespace documentai_v1beta3 {
      *   const res =
      *     await documentai.projects.locations.processors.processorVersions.batchProcess(
      *       {
-     *         // Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     *         // Required. The resource name of Processor or ProcessorVersion. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      *         name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
      *
      *         // Request body metadata
@@ -7095,7 +7107,7 @@ export namespace documentai_v1beta3 {
      *       pageSize: 'placeholder-value',
      *       // We will return the processor versions sorted by creation time. The page token will point to the next processor version.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent (project, location and processor) to list all versions. Format: projects/{project\}/locations/{location\}/processors/{processor\}
+     *       // Required. The parent (project, location and processor) to list all versions. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`
      *       parent:
      *         'projects/my-project/locations/my-location/processors/my-processor',
      *     });
@@ -7237,7 +7249,7 @@ export namespace documentai_v1beta3 {
      *   // Do the magic
      *   const res =
      *     await documentai.projects.locations.processors.processorVersions.process({
-     *       // Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     *       // Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      *       name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
      *
      *       // Request body metadata
@@ -7514,7 +7526,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess
     extends StandardParameters {
     /**
-     * Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     * Required. The resource name of Processor or ProcessorVersion. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
     name?: string;
 
@@ -7560,14 +7572,14 @@ export namespace documentai_v1beta3 {
      */
     pageToken?: string;
     /**
-     * Required. The parent (project, location and processor) to list all versions. Format: projects/{project\}/locations/{location\}/processors/{processor\}
+     * Required. The parent (project, location and processor) to list all versions. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Processors$Processorversions$Process
     extends StandardParameters {
     /**
-     * Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     * Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}`, or `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}`
      */
     name?: string;
 

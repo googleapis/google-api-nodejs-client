@@ -148,7 +148,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The project of processor type to list. The available processor types may depend on the whitelisting on projects. Format: projects/{project}/locations/{location}",
+                  "description": "Required. The project of processor type to list. The available processor types may depend on the allow-listing on projects. Format: `projects/{project}/locations/{location}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+$",
                   "required": true,
@@ -338,7 +338,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of Processor or ProcessorVersion. Format: projects/{project}/locations/{location}/processors/{processor}, or projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}",
+                      "description": "Required. The resource name of Processor or ProcessorVersion. Format: `projects/{project}/locations/{location}/processors/{processor}`, or `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
                       "required": true,
@@ -366,7 +366,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent (project and location) under which to create the processor. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The parent (project and location) under which to create the processor. Format: `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -511,7 +511,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent (project and location) which owns this collection of Processors. Format: projects/{project}/locations/{location}",
+                      "description": "Required. The parent (project and location) which owns this collection of Processors. Format: `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -536,7 +536,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project}/locations/{location}/processors/{processor}, or projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}",
+                      "description": "Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: `projects/{project}/locations/{location}/processors/{processor}`, or `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
                       "required": true,
@@ -628,7 +628,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of Processor or ProcessorVersion. Format: projects/{project}/locations/{location}/processors/{processor}, or projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}",
+                          "description": "Required. The resource name of Processor or ProcessorVersion. Format: `projects/{project}/locations/{location}/processors/{processor}`, or `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+/processorVersions/[^/]+$",
                           "required": true,
@@ -745,7 +745,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent (project, location and processor) to list all versions. Format: projects/{project}/locations/{location}/processors/{processor}",
+                          "description": "Required. The parent (project, location and processor) to list all versions. Format: `projects/{project}/locations/{location}/processors/{processor}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
                           "required": true,
@@ -770,7 +770,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project}/locations/{location}/processors/{processor}, or projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}",
+                          "description": "Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: `projects/{project}/locations/{location}/processors/{processor}`, or `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processorVersion}`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+/processorVersions/[^/]+$",
                           "required": true,
@@ -1029,7 +1029,7 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20211214",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1592,7 +1592,7 @@
           "type": "string"
         },
         "outputGcsDestination": {
-          "description": "The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.",
+          "description": "The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.",
           "type": "string"
         },
         "status": {
@@ -1836,7 +1836,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DocumentEntity": {
-      "description": "An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.",
+      "description": "An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.",
       "id": "GoogleCloudDocumentaiV1DocumentEntity",
       "properties": {
         "confidence": {
@@ -1925,7 +1925,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
-          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
+          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
           "type": "string"
         }
       },
@@ -2543,11 +2543,11 @@
             "EVAL_SKIPPED"
           ],
           "enumDescriptions": [
-            "Operation type unspecified.",
-            "Add an element. Implicit if no `parents` are set for the provenance.",
-            "The element is removed. No `parents` should be set.",
-            "Explicitly replaces the element(s) identified by `parents`.",
-            "Element is requested for human review.",
+            "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
+            "Add an element.",
+            "Remove an element identified by `parent`.",
+            "Replace an element identified by `parent`.",
+            "Request human review for the element identified by `parent`.",
             "Element is reviewed and approved at human review, confidence will be set to 1.0.",
             "Element is skipped in the validation process."
           ],
@@ -2557,7 +2557,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1DocumentProvenanceParent": {
-      "description": "Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.",
+      "description": "The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.",
       "id": "GoogleCloudDocumentaiV1DocumentProvenanceParent",
       "properties": {
         "id": {
@@ -2566,12 +2566,12 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.",
           "format": "int32",
           "type": "integer"
         },
         "revision": {
-          "description": "The index of the [Document.revisions] identifying the parent revision.",
+          "description": "The index of the index into current revision's parent_ids list.",
           "format": "int32",
           "type": "integer"
         }
@@ -2604,6 +2604,13 @@
           "items": {
             "format": "int32",
             "type": "integer"
+          },
+          "type": "array"
+        },
+        "parentIds": {
+          "description": "The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -2957,7 +2964,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1Processor": {
-      "description": "The first-class citizen for DAI. Each processor defines how to extract structural information from a document.",
+      "description": "The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.",
       "id": "GoogleCloudDocumentaiV1Processor",
       "properties": {
         "createTime": {
@@ -2978,7 +2985,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Immutable. The resource name of the processor. Format: projects/{project}/locations/{location}/processors/{processor}",
+          "description": "Output only. Immutable. The resource name of the processor. Format: `projects/{project}/locations/{location}/processors/{processor}`",
           "readOnly": true,
           "type": "string"
         },
@@ -3001,7 +3008,7 @@
           ],
           "enumDescriptions": [
             "The processor is in an unspecified state.",
-            "The processor is enabled, i.e, has an enabled version which can currently serve processing requests and all the feature dependencies have been successfully initialized.",
+            "The processor is enabled, i.e., has an enabled version which can currently serve processing requests and all the feature dependencies have been successfully initialized.",
             "The processor is disabled.",
             "The processor is being enabled, will become ENABLED if successful.",
             "The processor is being disabled, will become DISABLED if successful.",
@@ -3020,11 +3027,11 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ProcessorType": {
-      "description": "A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 9.",
+      "description": "A processor type is responsible for performing a certain document understanding task on a certain type of document.",
       "id": "GoogleCloudDocumentaiV1ProcessorType",
       "properties": {
         "allowCreation": {
-          "description": "Whether the processor type allows creation. If yes, user can create a processor of this processor type. Otherwise, user needs to request access.",
+          "description": "Whether the processor type allows creation. If true, users can create a processor of this processor type. Otherwise, users need to request access.",
           "type": "boolean"
         },
         "availableLocations": {
@@ -3098,7 +3105,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the processor version. Format: projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}",
+          "description": "The resource name of the processor version. Format: `projects/{project}/locations/{location}/processors/{processor}/processorVersions/{processor_version}`",
           "type": "string"
         },
         "state": {
@@ -3156,7 +3163,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ReviewDocumentRequest": {
-      "description": "Request message for review document method. Next Id: 6.",
+      "description": "Request message for review document method.",
       "id": "GoogleCloudDocumentaiV1ReviewDocumentRequest",
       "properties": {
         "enableSchemaValidation": {
@@ -3371,7 +3378,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1DocumentEntity": {
-      "description": "An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.",
+      "description": "An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.",
       "id": "GoogleCloudDocumentaiV1beta1DocumentEntity",
       "properties": {
         "confidence": {
@@ -3460,7 +3467,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
-          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
+          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
           "type": "string"
         }
       },
@@ -4056,11 +4063,11 @@
             "EVAL_SKIPPED"
           ],
           "enumDescriptions": [
-            "Operation type unspecified.",
-            "Add an element. Implicit if no `parents` are set for the provenance.",
-            "The element is removed. No `parents` should be set.",
-            "Explicitly replaces the element(s) identified by `parents`.",
-            "Element is requested for human review.",
+            "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
+            "Add an element.",
+            "Remove an element identified by `parent`.",
+            "Replace an element identified by `parent`.",
+            "Request human review for the element identified by `parent`.",
             "Element is reviewed and approved at human review, confidence will be set to 1.0.",
             "Element is skipped in the validation process."
           ],
@@ -4070,7 +4077,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1DocumentProvenanceParent": {
-      "description": "Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.",
+      "description": "The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.",
       "id": "GoogleCloudDocumentaiV1beta1DocumentProvenanceParent",
       "properties": {
         "id": {
@@ -4079,12 +4086,12 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.",
           "format": "int32",
           "type": "integer"
         },
         "revision": {
-          "description": "The index of the [Document.revisions] identifying the parent revision.",
+          "description": "The index of the index into current revision's parent_ids list.",
           "format": "int32",
           "type": "integer"
         }
@@ -4117,6 +4124,13 @@
           "items": {
             "format": "int32",
             "type": "integer"
+          },
+          "type": "array"
+        },
+        "parentIds": {
+          "description": "The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -4532,7 +4546,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta2DocumentEntity": {
-      "description": "An entity that could be a phrase in the text or a property belongs to the document. It is a known entity type, such as a person, an organization, or location.",
+      "description": "An entity that could be a phrase in the text or a property that belongs to the document. It is a known entity type, such as a person, an organization, or location.",
       "id": "GoogleCloudDocumentaiV1beta2DocumentEntity",
       "properties": {
         "confidence": {
@@ -4621,7 +4635,7 @@
           "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
-          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective 'structured_value' fields may also be populated. Also not all the types of 'structured_value' will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
+          "description": "Optional. An optional field to store a normalized string. For some entity types, one of respective `structured_value` fields may also be populated. Also not all the types of `structured_value` will be normalized. For example, some processors may not generate float or int normalized text by default. Below are sample formats mapped to structured values. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
           "type": "string"
         }
       },
@@ -5237,11 +5251,11 @@
             "EVAL_SKIPPED"
           ],
           "enumDescriptions": [
-            "Operation type unspecified.",
-            "Add an element. Implicit if no `parents` are set for the provenance.",
-            "The element is removed. No `parents` should be set.",
-            "Explicitly replaces the element(s) identified by `parents`.",
-            "Element is requested for human review.",
+            "Operation type unspecified. If no operation is specified a provenance entry is simply used to match against a `parent`.",
+            "Add an element.",
+            "Remove an element identified by `parent`.",
+            "Replace an element identified by `parent`.",
+            "Request human review for the element identified by `parent`.",
             "Element is reviewed and approved at human review, confidence will be set to 1.0.",
             "Element is skipped in the validation process."
           ],
@@ -5251,7 +5265,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta2DocumentProvenanceParent": {
-      "description": "Structure for referencing parent provenances. When an element replaces one of more other elements parent references identify the elements that are replaced.",
+      "description": "The parent element the current element is based on. Used for referencing/aligning, removal and replacement operations.",
       "id": "GoogleCloudDocumentaiV1beta2DocumentProvenanceParent",
       "properties": {
         "id": {
@@ -5260,12 +5274,12 @@
           "type": "integer"
         },
         "index": {
-          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) on parent revision.",
+          "description": "The index of the parent item in the corresponding item list (eg. list of entities, properties within entities, etc.) in the parent revision.",
           "format": "int32",
           "type": "integer"
         },
         "revision": {
-          "description": "The index of the [Document.revisions] identifying the parent revision.",
+          "description": "The index of the index into current revision's parent_ids list.",
           "format": "int32",
           "type": "integer"
         }
@@ -5298,6 +5312,13 @@
           "items": {
             "format": "int32",
             "type": "integer"
+          },
+          "type": "array"
+        },
+        "parentIds": {
+          "description": "The revisions that this revision is based on. Must include all the ids that have anything to do with this revision - eg. there are `provenance.parent.revision` fields that index into this field.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -5668,7 +5689,7 @@
           "type": "string"
         },
         "outputGcsDestination": {
-          "description": "The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.",
+          "description": "The output_gcs_destination (in the request as `output_gcs_destination`) of the processed document if it was successful, otherwise empty.",
           "type": "string"
         },
         "status": {
