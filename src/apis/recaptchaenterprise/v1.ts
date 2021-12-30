@@ -133,6 +133,10 @@ export namespace recaptchaenterprise_v1 {
      * Labels for this request.
      */
     labels?: string[] | null;
+    /**
+     * Recommended action after this request.
+     */
+    recommendedAction?: string | null;
   }
   /**
    * Settings specific to keys that can be used by Android apps.
@@ -281,6 +285,10 @@ export namespace recaptchaenterprise_v1 {
      * Options for user acceptance testing.
      */
     testingOptions?: Schema$GoogleCloudRecaptchaenterpriseV1TestingOptions;
+    /**
+     * Settings for WAF
+     */
+    wafSettings?: Schema$GoogleCloudRecaptchaenterpriseV1WafSettings;
     /**
      * Settings for keys that can be used by websites.
      */
@@ -473,6 +481,19 @@ export namespace recaptchaenterprise_v1 {
      * Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).
      */
     valid?: boolean | null;
+  }
+  /**
+   * Settings specific to keys that can be used for WAF (Web Application Firewall).
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1WafSettings {
+    /**
+     * Required. The WAF feature for which this key is enabled.
+     */
+    wafFeature?: string | null;
+    /**
+     * Required. The WAF service that uses this key.
+     */
+    wafService?: string | null;
   }
   /**
    * Settings specific to keys that can be used by websites.
@@ -903,6 +924,7 @@ export namespace recaptchaenterprise_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "testingOptions": {},
+     *       //   "wafSettings": {},
      *       //   "webSettings": {}
      *       // }
      *     },
@@ -918,6 +940,7 @@ export namespace recaptchaenterprise_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "testingOptions": {},
+     *   //   "wafSettings": {},
      *   //   "webSettings": {}
      *   // }
      * }
@@ -1189,6 +1212,7 @@ export namespace recaptchaenterprise_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "testingOptions": {},
+     *   //   "wafSettings": {},
      *   //   "webSettings": {}
      *   // }
      * }
@@ -1618,6 +1642,7 @@ export namespace recaptchaenterprise_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "testingOptions": {},
+     *   //   "wafSettings": {},
      *   //   "webSettings": {}
      *   // }
      * }
@@ -1766,6 +1791,7 @@ export namespace recaptchaenterprise_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "testingOptions": {},
+     *       //   "wafSettings": {},
      *       //   "webSettings": {}
      *       // }
      *     },
@@ -1781,6 +1807,7 @@ export namespace recaptchaenterprise_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "testingOptions": {},
+     *   //   "wafSettings": {},
      *   //   "webSettings": {}
      *   // }
      * }
@@ -1996,7 +2023,7 @@ export namespace recaptchaenterprise_v1 {
      *   const res =
      *     await recaptchaenterprise.projects.relatedaccountgroupmemberships.search({
      *       // Required. The name of the project to search related account group memberships from, in the format "projects/{project\}".
-     *       parent: 'projects/my-project',
+     *       project: 'projects/my-project',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -2095,15 +2122,15 @@ export namespace recaptchaenterprise_v1 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/v1/{+parent}/relatedaccountgroupmemberships:search'
+              rootUrl + '/v1/{+project}/relatedaccountgroupmemberships:search'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
+        requiredParams: ['project'],
+        pathParams: ['project'],
         context: this.context,
       };
       if (callback) {
@@ -2124,7 +2151,7 @@ export namespace recaptchaenterprise_v1 {
     /**
      * Required. The name of the project to search related account group memberships from, in the format "projects/{project\}".
      */
-    parent?: string;
+    project?: string;
 
     /**
      * Request body metadata

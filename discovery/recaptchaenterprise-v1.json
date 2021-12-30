@@ -380,10 +380,10 @@
               "httpMethod": "POST",
               "id": "recaptchaenterprise.projects.relatedaccountgroupmemberships.search",
               "parameterOrder": [
-                "parent"
+                "project"
               ],
               "parameters": {
-                "parent": {
+                "project": {
                   "description": "Required. The name of the project to search related account group memberships from, in the format \"projects/{project}\".",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
@@ -391,7 +391,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1/{+parent}/relatedaccountgroupmemberships:search",
+              "path": "v1/{+project}/relatedaccountgroupmemberships:search",
               "request": {
                 "$ref": "GoogleCloudRecaptchaenterpriseV1SearchRelatedAccountGroupMembershipsRequest"
               },
@@ -489,7 +489,7 @@
       }
     }
   },
-  "revision": "20211105",
+  "revision": "20211211",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -516,6 +516,20 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "recommendedAction": {
+          "description": "Recommended action after this request.",
+          "enum": [
+            "RECOMMENDED_ACTION_UNSPECIFIED",
+            "REQUEST_2FA",
+            "SKIP_2FA"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "The customer should probably request 2FA to their user.",
+            "This is likely an already seen and safe request. 2FA can be skipped."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -571,6 +585,8 @@
             "enum": [
               "REASON_UNSPECIFIED",
               "CHARGEBACK",
+              "CHARGEBACK_FRAUD",
+              "CHARGEBACK_DISPUTE",
               "PAYMENT_HEURISTICS",
               "INITIATED_TWO_FACTOR",
               "PASSED_TWO_FACTOR",
@@ -580,7 +596,9 @@
             ],
             "enumDescriptions": [
               "Default unspecified reason.",
-              "Indicates a chargeback for fraud was issued for the transaction associated with the assessment.",
+              "Indicates a chargeback issued for the transaction with no other details. When possible, specify the type by using CHARGEBACK_FRAUD or CHARGEBACK_DISPUTE instead.",
+              "Indicates a chargeback related to an alleged unauthorized transaction from the cardholder's perspective (for example, the card number was stolen).",
+              "Indicates a chargeback related to the cardholder having provided their card details but allegedly not being satisfied with the purchase (for example, misrepresentation, attempted cancellation).",
               "Indicates the transaction associated with the assessment is suspected of being fraudulent based on the payment method, billing details, shipping address or other transaction information.",
               "Indicates that the user was served a 2FA challenge. An old assessment with `ENUM_VALUES.INITIATED_TWO_FACTOR` reason that has not been overwritten with `PASSED_TWO_FACTOR` is treated as an abandoned 2FA flow. This is equivalent to `FAILED_TWO_FACTOR`.",
               "Indicates that the user passed a 2FA challenge.",
@@ -737,6 +755,10 @@
         "testingOptions": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions",
           "description": "Options for user acceptance testing."
+        },
+        "wafSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WafSettings",
+          "description": "Settings for WAF"
         },
         "webSettings": {
           "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings",
@@ -1037,6 +1059,41 @@
         "valid": {
           "description": "Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1WafSettings": {
+      "description": "Settings specific to keys that can be used for WAF (Web Application Firewall).",
+      "id": "GoogleCloudRecaptchaenterpriseV1WafSettings",
+      "properties": {
+        "wafFeature": {
+          "description": "Required. The WAF feature for which this key is enabled.",
+          "enum": [
+            "WAF_FEATURE_UNSPECIFIED",
+            "CHALLENGE_PAGE",
+            "SESSION_TOKEN",
+            "ACTION_TOKEN"
+          ],
+          "enumDescriptions": [
+            "Undefined feature.",
+            "Redirects suspicious traffic to reCAPTCHA.",
+            "Use reCAPTCHA session-tokens to protect the whole user session on the site's domain.",
+            "Use reCAPTCHA action-tokens to protect user actions."
+          ],
+          "type": "string"
+        },
+        "wafService": {
+          "description": "Required. The WAF service that uses this key.",
+          "enum": [
+            "WAF_SERVICE_UNSPECIFIED",
+            "CA"
+          ],
+          "enumDescriptions": [
+            "Undefined WAF",
+            "Cloud Armor"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
