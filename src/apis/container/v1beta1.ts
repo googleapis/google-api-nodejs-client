@@ -715,7 +715,7 @@ export namespace container_v1beta1 {
      */
     desiredDnsConfig?: Schema$DNSConfig;
     /**
-     * The desired GCFS config for the cluster
+     * The desired GCFS config for the cluster.
      */
     desiredGcfsConfig?: Schema$GcfsConfig;
     /**
@@ -1015,6 +1015,15 @@ export namespace container_v1beta1 {
      * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. Each local SSD is 375 GB in size. If zero, it means to disable using local SSDs as ephemeral storage.
      */
     localSsdCount?: number | null;
+  }
+  /**
+   * Allows filtering to one or more specific event types. If event types are present, those and only those event types will be transmitted to the cluster. Other types will be skipped. If no filter is specified, or no event types are present, all event types will be sent
+   */
+  export interface Schema$Filter {
+    /**
+     * Event types to allowlist.
+     */
+    eventType?: string[] | null;
   }
   /**
    * Configuration for the Compute Engine PD CSI driver.
@@ -1403,6 +1412,15 @@ export namespace container_v1beta1 {
     componentConfig?: Schema$LoggingComponentConfig;
   }
   /**
+   * Represents the Maintenance exclusion option.
+   */
+  export interface Schema$MaintenanceExclusionOptions {
+    /**
+     * Scope specifies the upgrade scope which upgrades are blocked by the exclusion.
+     */
+    scope?: string | null;
+  }
+  /**
    * MaintenancePolicy defines the maintenance policy to be used for the cluster.
    */
   export interface Schema$MaintenancePolicy {
@@ -1752,7 +1770,7 @@ export namespace container_v1beta1 {
      */
     cpuCfsQuotaPeriod?: string | null;
     /**
-     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - "none": the default, which represents the existing scheduling behavior. - "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
+     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. * "none": the default, which represents the existing scheduling behavior. * "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
      */
     cpuManagerPolicy?: string | null;
   }
@@ -2079,6 +2097,10 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
+     * Allows filtering to one or more specific event types. If no filter is specified, or if a filter is specified with no event types, all event types will be sent
+     */
+    filter?: Schema$Filter;
+    /**
      * The desired Pub/Sub topic to which notifications will be sent by GKE. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string | null;
@@ -2214,6 +2236,51 @@ export namespace container_v1beta1 {
      * Type of the sandbox to use for the node.
      */
     type?: string | null;
+  }
+  /**
+   * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.
+   */
+  export interface Schema$SecurityBulletinEvent {
+    /**
+     * The GKE minor versions affected by this vulnerability.
+     */
+    affectedSupportedMinors?: string[] | null;
+    /**
+     * A brief description of the bulletin. See the bulletin pointed to by the bulletin_uri field for an expanded description.
+     */
+    briefDescription?: string | null;
+    /**
+     * The ID of the bulletin corresponding to the vulnerability.
+     */
+    bulletinId?: string | null;
+    /**
+     * The URI link to the bulletin on the website for more information.
+     */
+    bulletinUri?: string | null;
+    /**
+     * The CVEs associated with this bulletin.
+     */
+    cveIds?: string[] | null;
+    /**
+     * If this field is specified, it means there are manual steps that the user must take to make their clusters safe.
+     */
+    manualStepsRequired?: boolean | null;
+    /**
+     * The GKE versions where this vulnerability is patched.
+     */
+    patchedVersions?: string[] | null;
+    /**
+     * The resource type (node/control plane) that has the vulnerability. Multiple notifications (1 notification per resource type) will be sent for a vulnerability that affects \> 1 resource type.
+     */
+    resourceTypeAffected?: string | null;
+    /**
+     * The severity of this bulletin as it relates to GKE.
+     */
+    severity?: string | null;
+    /**
+     * This represents a version selected from the patched_versions field that the cluster receiving this notification should most likely want to upgrade to based on its current version. Note that if this notification is being received by a given cluster, it means that this version is currently available as an upgrade target in that cluster's location.
+     */
+    suggestedUpgradeTarget?: string | null;
   }
   /**
    * Kubernetes Engine service configuration.
@@ -2666,6 +2733,10 @@ export namespace container_v1beta1 {
      * The time that the window ends. The end time should take place after the start time.
      */
     endTime?: string | null;
+    /**
+     * MaintenanceExclusionOptions provides maintenance exclusion related options.
+     */
+    maintenanceExclusionOptions?: Schema$MaintenanceExclusionOptions;
     /**
      * The time that the window first starts.
      */
