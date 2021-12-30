@@ -3607,7 +3607,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Do the magic
      *   const res = await recommender.organizations.locations.insightTypes.getConfig({
-     *     // Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *     // Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
      *     name: 'organizations/my-organization/locations/my-location/insightTypes/my-insightType/config',
      *   });
      *   console.log(res.data);
@@ -3746,7 +3746,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Insighttypes$Getconfig
     extends StandardParameters {
     /**
-     * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
      */
     name?: string;
   }
@@ -4453,7 +4453,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Do the magic
      *   const res = await recommender.organizations.locations.recommenders.getConfig({
-     *     // Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[RECOMMENDER_ID]/config`
+     *     // Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      *     name: 'organizations/my-organization/locations/my-location/recommenders/my-recommender/config',
      *   });
      *   console.log(res.data);
@@ -4592,7 +4592,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Recommenders$Getconfig
     extends StandardParameters {
     /**
-     * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[RECOMMENDER_ID]/config`
+     * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      */
     name?: string;
   }
@@ -5512,7 +5512,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.insightTypes.getConfig({
-     *     // Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     *     // Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
      *     name: 'projects/my-project/locations/my-location/insightTypes/my-insightType/config',
      *   });
      *   console.log(res.data);
@@ -5791,7 +5791,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Insighttypes$Getconfig
     extends StandardParameters {
     /**
-     * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
+     * Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`
      */
     name?: string;
   }
@@ -6354,7 +6354,7 @@ export namespace recommender_v1beta1 {
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.recommenders.getConfig({
-     *     // Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[RECOMMENDER_ID]/config`
+     *     // Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      *     name: 'projects/my-project/locations/my-location/recommenders/my-recommender/config',
      *   });
      *   console.log(res.data);
@@ -6633,7 +6633,7 @@ export namespace recommender_v1beta1 {
   export interface Params$Resource$Projects$Locations$Recommenders$Getconfig
     extends StandardParameters {
     /**
-     * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[RECOMMENDER_ID]/config`
+     * Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`
      */
     name?: string;
   }
