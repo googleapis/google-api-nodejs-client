@@ -361,6 +361,10 @@ import {
   mybusinessplaceactions,
 } from './mybusinessplaceactions';
 import {
+  VERSIONS as mybusinessqandaVersions,
+  mybusinessqanda,
+} from './mybusinessqanda';
+import {
   VERSIONS as mybusinessverificationsVersions,
   mybusinessverifications,
 } from './mybusinessverifications';
@@ -723,6 +727,7 @@ export const APIS: APIList = {
   mybusinesslodging: mybusinesslodgingVersions,
   mybusinessnotifications: mybusinessnotificationsVersions,
   mybusinessplaceactions: mybusinessplaceactionsVersions,
+  mybusinessqanda: mybusinessqandaVersions,
   mybusinessverifications: mybusinessverificationsVersions,
   networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
@@ -962,6 +967,7 @@ export class GeneratedAPIs {
   mybusinesslodging = mybusinesslodging;
   mybusinessnotifications = mybusinessnotifications;
   mybusinessplaceactions = mybusinessplaceactions;
+  mybusinessqanda = mybusinessqanda;
   mybusinessverifications = mybusinessverifications;
   networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;

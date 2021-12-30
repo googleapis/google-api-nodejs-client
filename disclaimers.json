@@ -40,6 +40,10 @@
     "package": "@google-cloud/cloudbuild"
   },
   {
+    "api": "privateca",
+    "package": "@google-cloud/security-private-ca"
+  },
+  {
     "api": "cloudchannel",
     "package": "@google-cloud/channel"
   },
@@ -114,6 +118,10 @@
   {
     "api": "gameservices",
     "package": "@google-cloud/game-servers"
+  },
+  {
+    "api": "gkehub",
+    "package": "@google-cloud/gke-hub"
   },
   {
     "api": "bigquery",
@@ -372,10 +380,6 @@
     "package": "@google-cloud/binary-authorization"
   },
   {
-    "api": "privateca",
-    "package": "@google-cloud/security-private-ca"
-  },
-  {
     "api": "contactcenterinsights",
     "package": "@google-cloud/contact-center-insights"
   },
@@ -414,10 +418,6 @@
   {
     "api": "clouderrorreporting",
     "package": "@google-cloud/error-reporting"
-  },
-  {
-    "api": "gkehub",
-    "package": "@google-cloud/gke-hub"
   },
   {
     "api": "analyticsadmin",
