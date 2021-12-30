@@ -696,7 +696,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`",
+                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
                       "required": true,
@@ -864,7 +864,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[RECOMMENDER_ID]/config`",
+                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
                       "required": true,
@@ -1057,7 +1057,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`",
+                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
                       "required": true,
@@ -1225,7 +1225,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[RECOMMENDER_ID]/config`",
+                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
                       "required": true,
@@ -1442,7 +1442,7 @@
       }
     }
   },
-  "revision": "20211115",
+  "revision": "20211213",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1472,14 +1472,16 @@
             "COST",
             "SECURITY",
             "PERFORMANCE",
-            "MANAGEABILITY"
+            "MANAGEABILITY",
+            "SUSTAINABILITY"
           ],
           "enumDescriptions": [
             "Default unspecified category. Don't use directly.",
             "Indicates a potential increase or decrease in cost.",
             "Indicates a potential increase or decrease in security.",
             "Indicates a potential increase or decrease in performance.",
-            "Indicates a potential increase or decrease in manageability."
+            "Indicates a potential increase or decrease in manageability.",
+            "Indicates a potential increase or decrease in sustainability."
           ],
           "type": "string"
         },
