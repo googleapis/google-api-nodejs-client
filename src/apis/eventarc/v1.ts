@@ -190,7 +190,7 @@ export namespace eventarc_v1 {
    */
   export interface Schema$Destination {
     /**
-     * Cloud Run fully-managed service that receives the events. The service should be running in the same project of the trigger.
+     * Cloud Run fully-managed resource that receives the events. The resource should be in the same project as the trigger.
      */
     cloudRun?: Schema$CloudRun;
     /**
