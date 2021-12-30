@@ -107,6 +107,49 @@
   "resources": {
     "customers": {
       "methods": {
+        "create": {
+          "description": "Creates a new SAS customer.",
+          "flatPath": "v1alpha1/customers",
+          "httpMethod": "POST",
+          "id": "prod_tt_sasportal.customers.create",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1alpha1/customers",
+          "request": {
+            "$ref": "SasPortalCustomer"
+          },
+          "response": {
+            "$ref": "SasPortalCustomer"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/userinfo.email"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a customer.",
+          "flatPath": "v1alpha1/customers/{customersId}",
+          "httpMethod": "DELETE",
+          "id": "prod_tt_sasportal.customers.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the customer.",
+              "location": "path",
+              "pattern": "^customers/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha1/{+name}",
+          "response": {
+            "$ref": "SasPortalEmpty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/userinfo.email"
+          ]
+        },
         "get": {
           "description": "Returns a requested customer.",
           "flatPath": "v1alpha1/customers/{customersId}",
@@ -2484,7 +2527,7 @@
       }
     }
   },
-  "revision": "20210910",
+  "revision": "20211215",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
