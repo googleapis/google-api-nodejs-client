@@ -330,7 +330,7 @@ export namespace speech_v1p1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A phrases containing words and phrase "hints" so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content). List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. "i was born in january", "i was born in febuary", ...), use the pre-built `$MONTH` class improves the likelihood of correctly transcribing audio that includes months (e.g. "i was born in $month"). To refer to pre-built classes, use the class' symbol prepended with `$` e.g. `$MONTH`. To refer to custom classes that were defined inline in the request, set the class's `custom_class_id` to a string unique to all class resources and inline classes. Then use the class' id wrapped in $`{...\}` e.g. "${my-months\}". To refer to custom classes resources, use the class' id wrapped in `${\}` (e.g. `${my-months\}`).
+   * A phrases containing words and phrase "hints" so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech-to-text/quotas#content). List items can also include pre-built or custom classes containing groups of words that represent common concepts that occur in natural language. For example, rather than providing a phrase hint for every month of the year (e.g. "i was born in january", "i was born in febuary", ...), use the pre-built `$MONTH` class improves the likelihood of correctly transcribing audio that includes months (e.g. "i was born in $month"). To refer to pre-built classes, use the class' symbol prepended with `$` e.g. `$MONTH`. To refer to custom classes that were defined inline in the request, set the class's `custom_class_id` to a string unique to all class resources and inline classes. Then use the class' id wrapped in $`{...\}` e.g. "${my-months\}". To refer to custom classes resources, use the class' id wrapped in `${\}` (e.g. `${my-months\}`). Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
    */
   export interface Schema$Phrase {
     /**
@@ -1043,7 +1043,7 @@ export namespace speech_v1p1beta1 {
      *
      *   // Do the magic
      *   const res = await speech.projects.locations.customClasses.create({
-     *     // Required. The parent resource where this custom class will be created. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses
+     *     // Required. The parent resource where this custom class will be created. Format: `projects/{project\}/locations/{location\}/customClasses` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1183,7 +1183,7 @@ export namespace speech_v1p1beta1 {
      *
      *   // Do the magic
      *   const res = await speech.projects.locations.customClasses.delete({
-     *     // Required. The name of the custom class to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
+     *     // Required. The name of the custom class to delete. Format: `projects/{project\}/locations/{location\}/customClasses/{custom_class\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      *     name: 'projects/my-project/locations/my-location/customClasses/my-customClasse',
      *   });
      *   console.log(res.data);
@@ -1307,7 +1307,7 @@ export namespace speech_v1p1beta1 {
      *
      *   // Do the magic
      *   const res = await speech.projects.locations.customClasses.get({
-     *     // Required. The name of the custom class to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
+     *     // Required. The name of the custom class to retrieve. Format: `projects/{project\}/locations/{location\}/customClasses/{custom_class\}`
      *     name: 'projects/my-project/locations/my-location/customClasses/my-customClasse',
      *   });
      *   console.log(res.data);
@@ -1439,7 +1439,7 @@ export namespace speech_v1p1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListCustomClass` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCustomClass` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of custom classes. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses
+     *     // Required. The parent, which owns this collection of custom classes. Format: `projects/{project\}/locations/{location\}/customClasses` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1693,7 +1693,7 @@ export namespace speech_v1p1beta1 {
   export interface Params$Resource$Projects$Locations$Customclasses$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource where this custom class will be created. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses
+     * Required. The parent resource where this custom class will be created. Format: `projects/{project\}/locations/{location\}/customClasses` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
     parent?: string;
 
@@ -1705,14 +1705,14 @@ export namespace speech_v1p1beta1 {
   export interface Params$Resource$Projects$Locations$Customclasses$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the custom class to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
+     * Required. The name of the custom class to delete. Format: `projects/{project\}/locations/{location\}/customClasses/{custom_class\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Customclasses$Get
     extends StandardParameters {
     /**
-     * Required. The name of the custom class to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
+     * Required. The name of the custom class to retrieve. Format: `projects/{project\}/locations/{location\}/customClasses/{custom_class\}`
      */
     name?: string;
   }
@@ -1727,7 +1727,7 @@ export namespace speech_v1p1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of custom classes. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses
+     * Required. The parent, which owns this collection of custom classes. Format: `projects/{project\}/locations/{location\}/customClasses` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
     parent?: string;
   }
@@ -1781,7 +1781,7 @@ export namespace speech_v1p1beta1 {
      *
      *   // Do the magic
      *   const res = await speech.projects.locations.phraseSets.create({
-     *     // Required. The parent resource where this phrase set will be created. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets
+     *     // Required. The parent resource where this phrase set will be created. Format: `projects/{project\}/locations/{location\}/phraseSets` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1921,7 +1921,7 @@ export namespace speech_v1p1beta1 {
      *
      *   // Do the magic
      *   const res = await speech.projects.locations.phraseSets.delete({
-     *     // Required. The name of the phrase set to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}
+     *     // Required. The name of the phrase set to delete. Format: `projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}`
      *     name: 'projects/my-project/locations/my-location/phraseSets/my-phraseSet',
      *   });
      *   console.log(res.data);
@@ -2045,7 +2045,7 @@ export namespace speech_v1p1beta1 {
      *
      *   // Do the magic
      *   const res = await speech.projects.locations.phraseSets.get({
-     *     // Required. The name of the phrase set to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}
+     *     // Required. The name of the phrase set to retrieve. Format: `projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      *     name: 'projects/my-project/locations/my-location/phraseSets/my-phraseSet',
      *   });
      *   console.log(res.data);
@@ -2177,7 +2177,7 @@ export namespace speech_v1p1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListPhraseSet` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPhraseSet` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent, which owns this collection of phrase set. Format: projects/{project\}/locations/{location\}
+     *     // Required. The parent, which owns this collection of phrase set. Format: `projects/{project\}/locations/{location\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2429,7 +2429,7 @@ export namespace speech_v1p1beta1 {
   export interface Params$Resource$Projects$Locations$Phrasesets$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource where this phrase set will be created. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets
+     * Required. The parent resource where this phrase set will be created. Format: `projects/{project\}/locations/{location\}/phraseSets` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
     parent?: string;
 
@@ -2441,14 +2441,14 @@ export namespace speech_v1p1beta1 {
   export interface Params$Resource$Projects$Locations$Phrasesets$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the phrase set to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}
+     * Required. The name of the phrase set to delete. Format: `projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Phrasesets$Get
     extends StandardParameters {
     /**
-     * Required. The name of the phrase set to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}
+     * Required. The name of the phrase set to retrieve. Format: `projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
     name?: string;
   }
@@ -2463,7 +2463,7 @@ export namespace speech_v1p1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which owns this collection of phrase set. Format: projects/{project\}/locations/{location\}
+     * Required. The parent, which owns this collection of phrase set. Format: `projects/{project\}/locations/{location\}` Speech-to-Text supports three locations: `global`, `us` (US North America), and `eu` (Europe). If you are calling the `speech.googleapis.com` endpoint, use the `global` location. To specify a region, use a [regional endpoint](/speech-to-text/docs/endpoints) with matching `us` or `eu` location value.
      */
     parent?: string;
   }
