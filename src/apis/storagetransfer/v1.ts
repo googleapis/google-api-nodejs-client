@@ -146,7 +146,7 @@ export namespace storagetransfer_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id\}/agentPools/{agent_pool_id\}
+     * Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id\}/agentPools/{agent_pool_id\}`
      */
     name?: string | null;
     /**
@@ -214,16 +214,16 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$AzureCredentials {
     /**
-     * Required. Azure shared access signature (SAS). *Note:*Copying data from Azure Data Lake Storage (ADLS) Gen 2 is in [Preview](/products/#product-launch-stages). During Preview, if you are copying data from ADLS Gen 2, you must use an account SAS. For more information about SAS, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview).
+     * Required. Azure shared access signature (SAS). For more information about SAS, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview).
      */
     sasToken?: string | null;
   }
   /**
-   * Specifies the BandwidthLimit to describe the non-negative bandwidth rate in mbps for the agent pool.
+   * Specifies a bandwidth limit for an agent pool.
    */
   export interface Schema$BandwidthLimit {
     /**
-     * Specifies bandwidth rate in mbps distributed across all the agents in the pool.
+     * Bandwidth rate in megabytes per second, distributed across all the agents in the pool.
      */
     limitMbps?: string | null;
   }
@@ -357,21 +357,42 @@ export namespace storagetransfer_v1 {
     transferJobs?: Schema$TransferJob[];
   }
   /**
-   * Logging configuration.
+   * Specifies the logging behavior for transfer operations. For cloud-to-cloud transfers, logs are sent to Cloud Logging. See [Read transfer logs](https://cloud.google.com/storage-transfer/docs/read-transfer-logs) for details. For transfers to or from a POSIX file system, logs are stored in the Cloud Storage bucket that is the source or sink of the transfer. See [Managing Transfer for on-premises jobs] (https://cloud.google.com/storage-transfer/docs/managing-on-prem-jobs#viewing-logs) for details.
    */
   export interface Schema$LoggingConfig {
     /**
-     * Enables the Cloud Storage transfer logs for this transfer. This is only supported for transfer jobs with PosixFilesystem sources. The default is that logs are not generated for this transfer.
+     * For transfers with a PosixFilesystem source, this option enables the Cloud Storage transfer logs for this transfer.
      */
     enableOnpremGcsTransferLogs?: boolean | null;
     /**
-     * Actions to be logged. If empty, no logs are generated. This is not yet supported for transfers with PosixFilesystem data sources.
+     * Specifies the actions to be logged. If empty, no logs are generated. Not supported for transfers with PosixFilesystem data sources; use enable_onprem_gcs_transfer_logs instead.
      */
     logActions?: string[] | null;
     /**
-     * States in which `log_actions` are logged. If empty, no logs are generated. This is not yet supported for transfers with PosixFilesystem data sources.
+     * States in which `log_actions` are logged. If empty, no logs are generated. Not supported for transfers with PosixFilesystem data sources; use enable_onprem_gcs_transfer_logs instead.
      */
     logActionStates?: string[] | null;
+  }
+  /**
+   * Specifies the metadata options for running a transfer.
+   */
+  export interface Schema$MetadataOptions {
+    /**
+     * Specifies how each file's GID attribute should be handled by the transfer. If unspecified, the default behavior is the same as GID_SKIP when the source is a POSIX file system.
+     */
+    gid?: string | null;
+    /**
+     * Specifies how each file's mode attribute should be handled by the transfer. If unspecified, the default behavior is the same as MODE_SKIP when the source is a POSIX file system.
+     */
+    mode?: string | null;
+    /**
+     * Specifies how symlinks should be handled by the transfer. If unspecified, the default behavior is the same as SYMLINK_SKIP when the source is a POSIX file system.
+     */
+    symlink?: string | null;
+    /**
+     * Specifies how each file's UID attribute should be handled by the transfer. If unspecified, the default behavior is the same as UID_SKIP when the source is a POSIX file system.
+     */
+    uid?: string | null;
   }
   /**
    * Specification to configure notifications published to Pub/Sub. Notifications are published to the customer-provided topic using the following `PubsubMessage.attributes`: * `"eventType"`: one of the EventType values * `"payloadFormat"`: one of the PayloadFormat values * `"projectId"`: the project_id of the `TransferOperation` * `"transferJobName"`: the transfer_job_name of the `TransferOperation` * `"transferOperationName"`: the name of the `TransferOperation` The `PubsubMessage.data` contains a TransferOperation resource formatted according to the specified `PayloadFormat`.
@@ -411,11 +432,11 @@ export namespace storagetransfer_v1 {
      */
     lastModifiedSince?: string | null;
     /**
-     * If specified, only objects with a "last modification time" on or after `NOW` - `max_time_elapsed_since_last_modification` and objects that don't have a "last modification time" are transferred. For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
+     * Ensures that objects are not transferred if a specific maximum time has elapsed since the "last modification time". When a TransferOperation begins, objects with a "last modification time" are transferred only if the elapsed time between the start_time of the `TransferOperation`and the "last modification time" of the object is less than the value of max_time_elapsed_since_last_modification`. Objects that do not have a "last modification time" are also transferred.
      */
     maxTimeElapsedSinceLastModification?: string | null;
     /**
-     * If specified, only objects with a "last modification time" before `NOW` - `min_time_elapsed_since_last_modification` and objects that don't have a "last modification time" are transferred. For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
+     * Ensures that objects are not transferred until a specific minimum time has elapsed after the "last modification time". When a TransferOperation begins, objects with a "last modification time" are transferred only if the elapsed time between the start_time of the `TransferOperation` and the "last modification time" of the object is equal to or greater than the value of min_time_elapsed_since_last_modification`. Objects that do not have a "last modification time" are also transferred.
      */
     minTimeElapsedSinceLastModification?: string | null;
   }
@@ -466,7 +487,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$RunTransferJobRequest {
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the transfer job.
+     * Required. The ID of the Google Cloud project that owns the transfer job.
      */
     projectId?: string | null;
   }
@@ -659,7 +680,7 @@ export namespace storagetransfer_v1 {
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
-     * The ID of the Google Cloud Platform Project that owns the job.
+     * The ID of the Google Cloud project that owns the job.
      */
     projectId?: string | null;
     /**
@@ -680,7 +701,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$TransferManifest {
     /**
-     * Holds URI-encoded path to find the manifest. It can be located in data_source, data_sink, or separately in GCS. For data_source and data_sink, the manifest location is relative to the path specified by that data_source or data_sink. If manifest is in GCS, use format "gs:///". If manifest is in data_source, use format "source://". If manifest is in data_sink, use format "sink://".
+     * Specifies the path to the manifest in Cloud Storage. The Google-managed service account for the transfer must have `storage.objects.get` permission for this object. An example path is `gs://bucket_name/path/manifest.csv`.
      */
     location?: string | null;
   }
@@ -709,7 +730,7 @@ export namespace storagetransfer_v1 {
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
-     * The ID of the Google Cloud Platform Project that owns the operation.
+     * The ID of the Google Cloud project that owns the operation.
      */
     projectId?: string | null;
     /**
@@ -742,6 +763,10 @@ export namespace storagetransfer_v1 {
      */
     deleteObjectsUniqueInSink?: boolean | null;
     /**
+     * Represents the selected metadata options for a transfer job.
+     */
+    metadataOptions?: Schema$MetadataOptions;
+    /**
      * When to overwrite objects that already exist in the sink. The default is that only objects that are different from the source are ovewritten. If true, all objects in the sink whose name matches an object in the source are overwritten with the source object.
      */
     overwriteObjectsAlreadyExistingInSink?: boolean | null;
@@ -766,6 +791,10 @@ export namespace storagetransfer_v1 {
      * A Cloud Storage data source.
      */
     gcsDataSource?: Schema$GcsData;
+    /**
+     * Cloud Storage intermediate data location.
+     */
+    gcsIntermediateDataLocation?: Schema$GcsData;
     /**
      * An HTTP URL data source.
      */
@@ -804,15 +833,15 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$UpdateTransferJobRequest {
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the job.
+     * Required. The ID of the Google Cloud project that owns the job.
      */
     projectId?: string | null;
     /**
-     * Required. The job to update. `transferJob` is expected to specify only four fields: description, transfer_spec, notification_config, and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permissions.
+     * Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, [logging_config[TransferJob.logging_config], and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permissions.
      */
     transferJob?: Schema$TransferJob;
     /**
-     * The field mask of the fields in `transferJob` that are to be updated in this request. Fields in `transferJob` that can be updated are: description, transfer_spec, notification_config, and status. To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields is rejected with the error INVALID_ARGUMENT.
+     * The field mask of the fields in `transferJob` that are to be updated in this request. Fields in `transferJob` that can be updated are: description, transfer_spec, notification_config, logging_config, and status. To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields is rejected with the error INVALID_ARGUMENT.
      */
     updateTransferJobFieldMask?: string | null;
   }
@@ -824,7 +853,7 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * Returns the Google service account that is used by Storage Transfer Service to access buckets in the project where transfers run or in other projects. Each Google service account is associated with one Google Cloud Platform Console project. Users should add this service account to the Google Cloud Storage bucket ACLs to grant access to Storage Transfer Service. This service account is created and owned by Storage Transfer Service and can only be used by Storage Transfer Service.
+     * Returns the Google service account that is used by Storage Transfer Service to access buckets in the project where transfers run or in other projects. Each Google service account is associated with one Google Cloud project. Users should add this service account to the Google Cloud Storage bucket ACLs to grant access to Storage Transfer Service. This service account is created and owned by Storage Transfer Service and can only be used by Storage Transfer Service.
      * @example
      * ```js
      * // Before running the sample:
@@ -850,7 +879,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.googleServiceAccounts.get({
-     *     // Required. The ID of the Google Cloud Platform Console project that the Google service account is associated with.
+     *     // Required. The ID of the Google Cloud project that the Google service account is associated with.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -963,7 +992,7 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Googleserviceaccounts$Get
     extends StandardParameters {
     /**
-     * Required. The ID of the Google Cloud Platform Console project that the Google service account is associated with.
+     * Required. The ID of the Google Cloud project that the Google service account is associated with.
      */
     projectId?: string;
   }
@@ -1010,9 +1039,9 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.projects.agentPools.create({
-     *     // Required. The id of the agent pool to create. The agent_pool_id must be non-empty, less than or equal to 128 characters, and satisfy the following regex: "^[a-z]([a-z0-9-._~]*[a-z0-9])?$". Also, agent pool names cannot start with the string "goog".
+     *     // Required. The ID of the agent pool to create. The `agent_pool_id` must meet the following requirements: * Length of 128 characters or less. * Not start with the string `goog`. * Start with a lowercase ASCII character, followed by: * Zero or more: lowercase Latin alphabet characters, numerals, hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`). * One or more numerals or lowercase ASCII characters. As expressed by the regular expression: `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.
      *     agentPoolId: 'placeholder-value',
-     *     // Required. The ID of the Google Cloud Platform Console project that owns the agent pool.
+     *     // Required. The ID of the Google Cloud project that owns the agent pool.
      *     projectId: '[^/]+',
      *
      *     // Request body metadata
@@ -1156,7 +1185,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.projects.agentPools.delete({
-     *     // Required. The agent pool name to delete.
+     *     // Required. The name of the agent pool to delete.
      *     name: 'projects/my-project/agentPools/my-agentPool',
      *   });
      *   console.log(res.data);
@@ -1281,7 +1310,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.projects.agentPools.get({
-     *     // Required. The agent pool to get.
+     *     // Required. The name of the agent pool to get.
      *     name: 'projects/my-project/agentPools/my-agentPool',
      *   });
      *   console.log(res.data);
@@ -1411,13 +1440,13 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.projects.agentPools.list({
-     *     // A list of optional query parameters specified as JSON text in the form of: `{"agentPoolNames":["agentpool1","agentpool2",...]\}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. `agentPoolNames` is an optional field. The list returns all agent pools for the project when the filter is not provided or empty.
+     *     // An optional list of query parameters specified as JSON text in the form of: `{"agentPoolNames":["agentpool1","agentpool2",...]\}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. When the filter is either empty or not provided, the list returns all agent pools for the project.
      *     filter: 'placeholder-value',
-     *     // The list page size. The max allowed value is 256.
+     *     // The list page size. The max allowed value is `256`.
      *     pageSize: 'placeholder-value',
      *     // The list page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The ID of the Google Cloud Platform Console project that owns the job.
+     *     // Required. The ID of the Google Cloud project that owns the job.
      *     projectId: '[^/]+',
      *   });
      *   console.log(res.data);
@@ -1553,9 +1582,9 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.projects.agentPools.patch({
-     *     // Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id\}/agentPools/{agent_pool_id\}
+     *     // Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id\}/agentPools/{agent_pool_id\}`
      *     name: 'projects/my-project/agentPools/my-agentPool',
-     *     // The field mask of the fields in `agentPool` that are to be updated in this request. Fields in `agentPool` that can be updated are: display_name, bandwidth_limit,
+     *     // The [field mask] (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf) of the fields in `agentPool` to update in this request. The following `agentPool` fields can be updated: * display_name * bandwidth_limit
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1673,11 +1702,11 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Projects$Agentpools$Create
     extends StandardParameters {
     /**
-     * Required. The id of the agent pool to create. The agent_pool_id must be non-empty, less than or equal to 128 characters, and satisfy the following regex: "^[a-z]([a-z0-9-._~]*[a-z0-9])?$". Also, agent pool names cannot start with the string "goog".
+     * Required. The ID of the agent pool to create. The `agent_pool_id` must meet the following requirements: * Length of 128 characters or less. * Not start with the string `goog`. * Start with a lowercase ASCII character, followed by: * Zero or more: lowercase Latin alphabet characters, numerals, hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`). * One or more numerals or lowercase ASCII characters. As expressed by the regular expression: `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.
      */
     agentPoolId?: string;
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the agent pool.
+     * Required. The ID of the Google Cloud project that owns the agent pool.
      */
     projectId?: string;
 
@@ -1689,25 +1718,25 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Projects$Agentpools$Delete
     extends StandardParameters {
     /**
-     * Required. The agent pool name to delete.
+     * Required. The name of the agent pool to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agentpools$Get
     extends StandardParameters {
     /**
-     * Required. The agent pool to get.
+     * Required. The name of the agent pool to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Agentpools$List
     extends StandardParameters {
     /**
-     * A list of optional query parameters specified as JSON text in the form of: `{"agentPoolNames":["agentpool1","agentpool2",...]\}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. `agentPoolNames` is an optional field. The list returns all agent pools for the project when the filter is not provided or empty.
+     * An optional list of query parameters specified as JSON text in the form of: `{"agentPoolNames":["agentpool1","agentpool2",...]\}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. When the filter is either empty or not provided, the list returns all agent pools for the project.
      */
     filter?: string;
     /**
-     * The list page size. The max allowed value is 256.
+     * The list page size. The max allowed value is `256`.
      */
     pageSize?: number;
     /**
@@ -1715,18 +1744,18 @@ export namespace storagetransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the job.
+     * Required. The ID of the Google Cloud project that owns the job.
      */
     projectId?: string;
   }
   export interface Params$Resource$Projects$Agentpools$Patch
     extends StandardParameters {
     /**
-     * Required. Specifies a unique string that identifies the agent pool. Format: projects/{project_id\}/agentPools/{agent_pool_id\}
+     * Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id\}/agentPools/{agent_pool_id\}`
      */
     name?: string;
     /**
-     * The field mask of the fields in `agentPool` that are to be updated in this request. Fields in `agentPool` that can be updated are: display_name, bandwidth_limit,
+     * The [field mask] (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf) of the fields in `agentPool` to update in this request. The following `agentPool` fields can be updated: * display_name * bandwidth_limit
      */
     updateMask?: string;
 
@@ -1925,7 +1954,7 @@ export namespace storagetransfer_v1 {
      *   const res = await storagetransfer.transferJobs.get({
      *     // Required. The job to get.
      *     jobName: 'transferJobs/.*',
-     *     // Required. The ID of the Google Cloud Platform Console project that owns the job.
+     *     // Required. The ID of the Google Cloud project that owns the job.
      *     projectId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2472,7 +2501,7 @@ export namespace storagetransfer_v1 {
      */
     jobName?: string;
     /**
-     * Required. The ID of the Google Cloud Platform Console project that owns the job.
+     * Required. The ID of the Google Cloud project that owns the job.
      */
     projectId?: string;
   }
