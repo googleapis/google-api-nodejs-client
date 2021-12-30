@@ -880,7 +880,7 @@ export namespace bigquery_v2 {
      */
     description?: string | null;
     /**
-     * [Optional] The destination table expiration time. If this field is set: For a new table, it will set the table's expiration time (even if there is a dataset level default table expiration time). For an existing table, it will update the table's expiration time. If this field is not set: For a new table, if dataset level default table expiration time is present, that will be applied. For an existing table, no change is made to the table's expiration time. Additionally this field is only applied when data is written to an empty table (WRITE_EMPTY) or data is overwritten to a table (WRITE_TRUNCATE).
+     * [Internal] This field is for Google internal use only.
      */
     expirationTime?: string | null;
     /**
@@ -1218,7 +1218,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -9248,6 +9248,8 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.tables.patch({
+     *     // When true will autodetect schema, else will keep original schema
+     *     autodetect_schema: 'placeholder-value',
      *     // Dataset ID of the table to update
      *     datasetId: 'placeholder-value',
      *     // Project ID of the table to update
@@ -9740,6 +9742,8 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.tables.update({
+     *     // When true will autodetect schema, else will keep original schema
+     *     autodetect_schema: 'placeholder-value',
      *     // Dataset ID of the table to update
      *     datasetId: 'placeholder-value',
      *     // Project ID of the table to update
@@ -9991,6 +9995,10 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Tables$Patch extends StandardParameters {
     /**
+     * When true will autodetect schema, else will keep original schema
+     */
+    autodetect_schema?: boolean;
+    /**
      * Dataset ID of the table to update
      */
     datasetId?: string;
@@ -10033,6 +10041,10 @@ export namespace bigquery_v2 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Tables$Update extends StandardParameters {
+    /**
+     * When true will autodetect schema, else will keep original schema
+     */
+    autodetect_schema?: boolean;
     /**
      * Dataset ID of the table to update
      */
