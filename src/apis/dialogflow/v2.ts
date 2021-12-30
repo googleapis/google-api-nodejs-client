@@ -936,6 +936,10 @@ export namespace dialogflow_v2 {
      */
     playAudio?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio;
     /**
+     * A signal that the client should transfer the phone call connected to this agent to a third-party endpoint.
+     */
+    telephonyTransferCall?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall;
+    /**
      * Returns a text response.
      */
     text?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText;
@@ -1017,6 +1021,15 @@ export namespace dialogflow_v2 {
      * Required. URI of the audio clip. Dialogflow does not impose any validation on this value. It is specific to the client that reads it.
      */
     audioUri?: string | null;
+  }
+  /**
+   * Represents the signal that telles the client to transfer the phone call connected to the agent to a third-party endpoint.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageTelephonyTransferCall {
+    /**
+     * Transfer the call to a phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+     */
+    phoneNumber?: string | null;
   }
   /**
    * The text response message.
@@ -2148,6 +2161,10 @@ export namespace dialogflow_v2 {
      */
     playAudio?: Schema$GoogleCloudDialogflowCxV3ResponseMessagePlayAudio;
     /**
+     * A signal that the client should transfer the phone call connected to this agent to a third-party endpoint.
+     */
+    telephonyTransferCall?: Schema$GoogleCloudDialogflowCxV3ResponseMessageTelephonyTransferCall;
+    /**
      * Returns a text response.
      */
     text?: Schema$GoogleCloudDialogflowCxV3ResponseMessageText;
@@ -2229,6 +2246,15 @@ export namespace dialogflow_v2 {
      * Required. URI of the audio clip. Dialogflow does not impose any validation on this value. It is specific to the client that reads it.
      */
     audioUri?: string | null;
+  }
+  /**
+   * Represents the signal that telles the client to transfer the phone call connected to the agent to a third-party endpoint.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageTelephonyTransferCall {
+    /**
+     * Transfer the call to a phone number in [E.164 format](https://en.wikipedia.org/wiki/E.164).
+     */
+    phoneNumber?: string | null;
   }
   /**
    * The text response message.
@@ -4130,6 +4156,10 @@ export namespace dialogflow_v2 {
    * Metadata in google::longrunning::Operation for Knowledge operations.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
+    /**
+     * The name of the knowledge base interacted with during the operation.
+     */
+    knowledgeBase?: string | null;
     /**
      * Required. Output only. The current state of this operation.
      */
@@ -6474,7 +6504,7 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2SpeechToTextConfig {
     /**
-     * Optional. The speech model used in speech to text. `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as `USE_ENHANCED`. It can be overridden in AnalyzeContentRequest and StreamingAnalyzeContentRequest request.
+     * The speech model used in speech to text. `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as `USE_ENHANCED`. It can be overridden in AnalyzeContentRequest and StreamingAnalyzeContentRequest request. If enhanced model variant is specified and an enhanced version of the specified model for the language does not exist, then it would emit an error.
      */
     speechModelVariant?: string | null;
   }
