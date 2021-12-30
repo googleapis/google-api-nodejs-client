@@ -126,9 +126,96 @@ export namespace redis_v1beta1 {
   }
 
   /**
+   * A cluster instance.
+   */
+  export interface Schema$Cluster {
+    /**
+     * Output only. UID of the cluster for use by Pantheon for analytics.
+     */
+    clusterUid?: string | null;
+    /**
+     * Output only. The timestamp associated with the cluster creation request.
+     */
+    createTime?: string | null;
+    /**
+     * Input only. The KMS key reference that the customer provides when trying to create the instance.
+     */
+    customerManagedKey?: string | null;
+    /**
+     * Optional. The number of replica nodes per shard. Valid range is [1-2] and defaults to 1.
+     */
+    defaultReplicaCount?: number | null;
+    /**
+     * Optional. An arbitrary and optional user-provided name for the cluster.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Hostname or IP address and port pairs used to connect to the cluster.
+     */
+    endpoints?: Schema$Endpoint[];
+    /**
+     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/clusters/{cluster_id\}`
+     */
+    name?: string | null;
+    /**
+     * Optional. Populate to use private service connect network option.
+     */
+    privateServiceConnect?: Schema$PrivateServiceConnect;
+    /**
+     * Optional. Redis configuration parameters, according to http://redis.io/topics/config. Currently, the only supported parameters are: Redis version 6.x and newer: * lfu-decay-time * lfu-log-factor * maxmemory-policy
+     */
+    redisConfigs?: {[key: string]: string} | null;
+    /**
+     * Output only. The slots making up the cluster. Read-only. In future versions this will be writable to allow for heterogeneous clusters.
+     */
+    slots?: Schema$ClusterSlots[];
+    /**
+     * Output only. The current state of this cluster. Can be CREATING, READY, UPDATING, DELETING and SUSPENDED
+     */
+    state?: string | null;
+    /**
+     * Optional. Redis memory size in GiB for the entire cluster. Defaults to 32.
+     */
+    totalMemorySizeGb?: number | null;
+  }
+  /**
+   * A series of slots belonging to a cluster.
+   */
+  export interface Schema$ClusterSlots {
+    /**
+     * Output only. The end of the slots that make up this series.
+     */
+    endSlotsExclusive?: number | null;
+    /**
+     * Output only. The total size of keyspace this series has.
+     */
+    memorySizeGb?: number | null;
+    /**
+     * Output only. The number of replicas this series has.
+     */
+    replicaCount?: number | null;
+    /**
+     * Output only. The start of the slots that make up this series.
+     */
+    startSlotsInclusive?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * An endpoint exposed by a cluster. In the future we will add an enum to identify whether this endpoint is read/write or read-only when the feature is ready.
+   */
+  export interface Schema$Endpoint {
+    /**
+     * Output only. Hostname or IP address of the exposed Redis endpoint used by clients to connect to the service.
+     */
+    host?: string | null;
+    /**
+     * Output only. The port number of the exposed Redis endpoint.
+     */
+    port?: number | null;
+  }
   /**
    * Request for Export.
    */
@@ -542,6 +629,19 @@ export namespace redis_v1beta1 {
      * Optional. Date and time that the first snapshot was/will be attempted, and to which future snapshots will be aligned. If not provided, the current time will be used.
      */
     rdbSnapshotStartTime?: string | null;
+  }
+  /**
+   * Contains private service connect specific options.
+   */
+  export interface Schema$PrivateServiceConnect {
+    /**
+     * Output only. The address of the Private Service Connect (PSC) service that the customer can use to connect this instance to their local network.
+     */
+    pscService?: string | null;
+    /**
+     * Optional. The service route to connect using Private Service Connect. On Instance creation, this will automatically connect this route to this instance.
+     */
+    pscServiceRoute?: string | null;
   }
   /**
    * Request for RescheduleMaintenance.
