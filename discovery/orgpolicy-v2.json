@@ -362,6 +362,38 @@
             }
           }
         },
+        "customConstraints": {
+          "methods": {
+            "patch": {
+              "description": "Updates a Custom Constraint. Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the constraint does not exist. Note: the supplied policy will perform a full overwrite of all fields.",
+              "flatPath": "v2/organizations/{organizationsId}/customConstraints/{customConstraintsId}",
+              "httpMethod": "PATCH",
+              "id": "orgpolicy.organizations.customConstraints.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\"",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/customConstraints/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2/{+name}",
+              "request": {
+                "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
+              },
+              "response": {
+                "$ref": "GoogleCloudOrgpolicyV2CustomConstraint"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "policies": {
           "methods": {
             "create": {
@@ -751,7 +783,7 @@
       }
     }
   },
-  "revision": "20211118",
+  "revision": "20211216",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2Constraint": {
@@ -812,6 +844,69 @@
         "supportsUnder": {
           "description": "Indicates whether subtrees of Cloud Resource Manager resource hierarchy can be used in `Policy.allowed_values` and `Policy.denied_values`. For example, `\"under:folders/123\"` would match any resource under the 'folders/123' folder.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudOrgpolicyV2CustomConstraint": {
+      "description": "A custom constraint defined by customers which can *only* be applied to the given resource types and organization. By creating a custom constraint, customers can applied policies of this custom constraint. *Creating a custom constraint itself does NOT apply any policy enforcement*.",
+      "id": "GoogleCloudOrgpolicyV2CustomConstraint",
+      "properties": {
+        "actionType": {
+          "description": "Allow or deny type.",
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "ALLOW",
+            "DENY"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Will results in user error.",
+            "Allowed action type.",
+            "Deny action type."
+          ],
+          "type": "string"
+        },
+        "condition": {
+          "description": "Org policy condition/expression. For example: `resource.instanceName.matches(\"[production|test]_.*_(\\d)+\")'` or, `resource.management.auto_upgrade == true`",
+          "type": "string"
+        },
+        "description": {
+          "description": "Detailed information about this custom policy constraint.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "One line display name for the UI.",
+          "type": "string"
+        },
+        "methodTypes": {
+          "description": "All the operations being applied for this constraint.",
+          "items": {
+            "enum": [
+              "METHOD_TYPE_UNSPECIFIED",
+              "CREATE",
+              "UPDATE",
+              "DELETE"
+            ],
+            "enumDescriptions": [
+              "Unspecified. Will results in user error.",
+              "Constraint applied when creating the resource.",
+              "Constraint applied when updating the resource.",
+              "Constraint applied when deleting the resource."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Immutable. Name of the constraint. This is unique within the organization. Format of the name should be * `organizations/{organization_id}/customConstraints/{custom_constraint_id}` Example : \"organizations/123/customConstraints/custom.createOnlyE2TypeVms\"",
+          "type": "string"
+        },
+        "resourceTypes": {
+          "description": "Immutable. The Resource Instance type on which this policy applies to. Format will be of the form : \"/\" Example: * `compute.googleapis.com/Instance`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
