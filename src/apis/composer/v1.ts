@@ -252,7 +252,7 @@ export namespace composer_v1 {
      */
     databaseConfig?: Schema$DatabaseConfig;
     /**
-     * Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
+     * Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated.
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
@@ -263,6 +263,10 @@ export namespace composer_v1 {
      * Output only. The Kubernetes Engine cluster used to run this environment.
      */
     gkeCluster?: string | null;
+    /**
+     * Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, the default value for maintenance window will be applied. The default value is Saturday and Sunday 00-06 GMT.
+     */
+    maintenanceWindow?: Schema$MaintenanceWindow;
     /**
      * The configuration used for the Kubernetes Engine cluster.
      */
@@ -384,6 +388,23 @@ export namespace composer_v1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * The configuration settings for Cloud Composer maintenance window. The following example: ``` { "startTime":"2019-08-01T01:00:00Z" "endTime":"2019-08-01T07:00:00Z" "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE" \} ``` would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Required. Maintenance window end time. It is used only to calculate the duration of the maintenance window. The value for end-time must be in the future, relative to `start_time`.
+     */
+    endTime?: string | null;
+    /**
+     * Required. Maintenance window recurrence. Format is a subset of [RFC-5545](https://tools.ietf.org/html/rfc5545) `RRULE`. The only allowed values for `FREQ` field are `FREQ=DAILY` and `FREQ=WEEKLY;BYDAY=...` Example values: `FREQ=WEEKLY;BYDAY=TU,WE`, `FREQ=DAILY`.
+     */
+    recurrence?: string | null;
+    /**
+     * Required. Start time of the first recurrence of the maintenance window.
+     */
+    startTime?: string | null;
   }
   /**
    * The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.
