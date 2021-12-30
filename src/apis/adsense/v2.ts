@@ -159,7 +159,7 @@ export namespace adsense_v2 {
    */
   export interface Schema$AdClient {
     /**
-     * Resource name of the ad client. Format: accounts/{account\}/adclient/{adclient\}
+     * Resource name of the ad client. Format: accounts/{account\}/adclients/{adclient\}
      */
     name?: string | null;
     /**
@@ -201,7 +201,7 @@ export namespace adsense_v2 {
      */
     displayName?: string | null;
     /**
-     * Resource name of the ad unit. Format: accounts/{account\}/adclient/{adclient\}/adunits/{adunit\}
+     * Resource name of the ad unit. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
      */
     name?: string | null;
     /**
@@ -600,7 +600,7 @@ export namespace adsense_v2 {
    */
   export interface Schema$UrlChannel {
     /**
-     * Resource name of the URL channel. Format: accounts/{account\}/adclient/{adclient\}/urlchannels/{urlchannel\}
+     * Resource name of the URL channel. Format: accounts/{account\}/adclients/{adclient\}/urlchannels/{urlchannel\}
      */
     name?: string | null;
     /**
@@ -659,7 +659,7 @@ export namespace adsense_v2 {
      *
      *   // Do the magic
      *   const res = await adsense.accounts.get({
-     *     // Required. Account to get information about. Format: accounts/{account_id\}
+     *     // Required. Account to get information about. Format: accounts/{account\}
      *     name: 'accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -1045,7 +1045,7 @@ export namespace adsense_v2 {
 
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Required. Account to get information about. Format: accounts/{account_id\}
+     * Required. Account to get information about. Format: accounts/{account\}
      */
     name?: string;
   }
@@ -1424,7 +1424,7 @@ export namespace adsense_v2 {
      *
      *   // Do the magic
      *   const res = await adsense.accounts.adclients.adunits.get({
-     *     // Required. AdUnit to get information about. Format: accounts/{account_id\}/adclient/{adclient_id\}/adunit/{adunit_id\}
+     *     // Required. AdUnit to get information about. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
      *     name: 'accounts/my-account/adclients/my-adclient/adunits/my-adunit',
      *   });
      *   console.log(res.data);
@@ -1949,7 +1949,7 @@ export namespace adsense_v2 {
   export interface Params$Resource$Accounts$Adclients$Adunits$Get
     extends StandardParameters {
     /**
-     * Required. AdUnit to get information about. Format: accounts/{account_id\}/adclient/{adclient_id\}/adunit/{adunit_id\}
+     * Required. AdUnit to get information about. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
      */
     name?: string;
   }
