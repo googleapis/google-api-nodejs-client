@@ -114,6 +114,7 @@ export namespace androidpublisher_v3 {
   export class Androidpublisher {
     context: APIRequestContext;
     edits: Resource$Edits;
+    generatedapks: Resource$Generatedapks;
     grants: Resource$Grants;
     inappproducts: Resource$Inappproducts;
     internalappsharingartifacts: Resource$Internalappsharingartifacts;
@@ -131,6 +132,7 @@ export namespace androidpublisher_v3 {
       };
 
       this.edits = new Resource$Edits(this.context);
+      this.generatedapks = new Resource$Generatedapks(this.context);
       this.grants = new Resource$Grants(this.context);
       this.inappproducts = new Resource$Inappproducts(this.context);
       this.internalappsharingartifacts =
@@ -526,6 +528,104 @@ export namespace androidpublisher_v3 {
      * The version name of this APK.
      */
     versionName?: string | null;
+  }
+  /**
+   * Response to list generated APKs.
+   */
+  export interface Schema$GeneratedApksListResponse {
+    /**
+     * All generated APKs, grouped by the APK signing key.
+     */
+    generatedApks?: Schema$GeneratedApksPerSigningKey[];
+  }
+  /**
+   * Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key.
+   */
+  export interface Schema$GeneratedApksPerSigningKey {
+    /**
+     * SHA256 hash of the APK signing public key certificate.
+     */
+    certificateSha256Hash?: string | null;
+    /**
+     * List of asset pack slices which will be served for this app bundle, signed with a key corresponding to certificate_sha256_hash.
+     */
+    generatedAssetPackSlices?: Schema$GeneratedAssetPackSlice[];
+    /**
+     * List of generated split APKs, signed with a key corresponding to certificate_sha256_hash.
+     */
+    generatedSplitApks?: Schema$GeneratedSplitApk[];
+    /**
+     * List of generated standalone APKs, signed with a key corresponding to certificate_sha256_hash.
+     */
+    generatedStandaloneApks?: Schema$GeneratedStandaloneApk[];
+    /**
+     * Generated universal APK, signed with a key corresponding to certificate_sha256_hash. This field is not set if no universal APK was generated for this signing key.
+     */
+    generatedUniversalApk?: Schema$GeneratedUniversalApk;
+  }
+  /**
+   * Download metadata for an asset pack slice.
+   */
+  export interface Schema$GeneratedAssetPackSlice {
+    /**
+     * Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.
+     */
+    downloadId?: string | null;
+    /**
+     * Name of the module that this asset slice belongs to.
+     */
+    moduleName?: string | null;
+    /**
+     * Asset slice ID.
+     */
+    sliceId?: string | null;
+    /**
+     * Asset module version.
+     */
+    version?: string | null;
+  }
+  /**
+   * Download metadata for a split APK.
+   */
+  export interface Schema$GeneratedSplitApk {
+    /**
+     * Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.
+     */
+    downloadId?: string | null;
+    /**
+     * Name of the module that this APK belongs to.
+     */
+    moduleName?: string | null;
+    /**
+     * Split ID. Empty for the main split of the base module.
+     */
+    splitId?: string | null;
+    /**
+     * ID of the generated variant.
+     */
+    variantId?: number | null;
+  }
+  /**
+   * Download metadata for a standalone APK.
+   */
+  export interface Schema$GeneratedStandaloneApk {
+    /**
+     * Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.
+     */
+    downloadId?: string | null;
+    /**
+     * ID of the generated variant.
+     */
+    variantId?: number | null;
+  }
+  /**
+   * Download metadata for a universal APK.
+   */
+  export interface Schema$GeneratedUniversalApk {
+    /**
+     * Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.
+     */
+    downloadId?: string | null;
   }
   /**
    * An access grant resource.
@@ -1256,6 +1356,23 @@ export namespace androidpublisher_v3 {
     track?: string | null;
   }
   /**
+   * Resource for per-track country availability information.
+   */
+  export interface Schema$TrackCountryAvailability {
+    /**
+     * A list of one or more countries where artifacts in this track are available. This list includes all countries that are targeted by the track, even if only specific carriers are targeted in that country.
+     */
+    countries?: Schema$TrackTargetedCountry[];
+    /**
+     * Whether artifacts in this track are available to "rest of the world" countries.
+     */
+    restOfWorld?: boolean | null;
+    /**
+     * Whether this track's availability is synced with the default production track. See https://support.google.com/googleplay/android-developer/answer/7550024 for more information on syncing country availability with production. Note that if this is true, the returned "countries" and "rest_of_world" fields will reflect the values for the default production track.
+     */
+    syncWithProduction?: boolean | null;
+  }
+  /**
    * A release within a track.
    */
   export interface Schema$TrackRelease {
@@ -1300,6 +1417,15 @@ export namespace androidpublisher_v3 {
      * All tracks.
      */
     tracks?: Schema$Track[];
+  }
+  /**
+   * Representation of a single country where the contents of a track are available.
+   */
+  export interface Schema$TrackTargetedCountry {
+    /**
+     * The country to target, as a two-letter CLDR code.
+     */
+    countryCode?: string | null;
   }
   /**
    * A user resource.
@@ -1465,6 +1591,7 @@ export namespace androidpublisher_v3 {
     context: APIRequestContext;
     apks: Resource$Edits$Apks;
     bundles: Resource$Edits$Bundles;
+    countryavailability: Resource$Edits$Countryavailability;
     deobfuscationfiles: Resource$Edits$Deobfuscationfiles;
     details: Resource$Edits$Details;
     expansionfiles: Resource$Edits$Expansionfiles;
@@ -1476,6 +1603,9 @@ export namespace androidpublisher_v3 {
       this.context = context;
       this.apks = new Resource$Edits$Apks(this.context);
       this.bundles = new Resource$Edits$Bundles(this.context);
+      this.countryavailability = new Resource$Edits$Countryavailability(
+        this.context
+      );
       this.deobfuscationfiles = new Resource$Edits$Deobfuscationfiles(
         this.context
       );
@@ -3031,6 +3161,170 @@ export namespace androidpublisher_v3 {
        */
       body?: any;
     };
+  }
+
+  export class Resource$Edits$Countryavailability {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets country availability.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.edits.countryavailability.get({
+     *     // Identifier of the edit.
+     *     editId: 'placeholder-value',
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *     // The track to read from.
+     *     track: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "restOfWorld": false,
+     *   //   "syncWithProduction": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Edits$Countryavailability$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Edits$Countryavailability$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TrackCountryAvailability>;
+    get(
+      params: Params$Resource$Edits$Countryavailability$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Edits$Countryavailability$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TrackCountryAvailability>,
+      callback: BodyResponseCallback<Schema$TrackCountryAvailability>
+    ): void;
+    get(
+      params: Params$Resource$Edits$Countryavailability$Get,
+      callback: BodyResponseCallback<Schema$TrackCountryAvailability>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TrackCountryAvailability>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Edits$Countryavailability$Get
+        | BodyResponseCallback<Schema$TrackCountryAvailability>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TrackCountryAvailability>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TrackCountryAvailability>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TrackCountryAvailability>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Edits$Countryavailability$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Edits$Countryavailability$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/edits/{editId}/countryAvailability/{track}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'editId', 'track'],
+        pathParams: ['editId', 'packageName', 'track'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TrackCountryAvailability>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TrackCountryAvailability>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Edits$Countryavailability$Get
+    extends StandardParameters {
+    /**
+     * Identifier of the edit.
+     */
+    editId?: string;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+    /**
+     * The track to read from.
+     */
+    track?: string;
   }
 
   export class Resource$Edits$Deobfuscationfiles {
@@ -7189,6 +7483,306 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$Track;
+  }
+
+  export class Resource$Generatedapks {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Downloads a single signed APK generated from an app bundle.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.generatedapks.download({
+     *     // Download ID, which uniquely identifies the APK to download. Can be obtained from the response of `generatedapks.list` method.
+     *     downloadId: 'placeholder-value',
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *     // Version code of the app bundle.
+     *     versionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    download(
+      params: Params$Resource$Generatedapks$Download,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    download(
+      params?: Params$Resource$Generatedapks$Download,
+      options?: MethodOptions
+    ): GaxiosPromise<unknown>;
+    download(
+      params: Params$Resource$Generatedapks$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    download(
+      params: Params$Resource$Generatedapks$Download,
+      options: MethodOptions | BodyResponseCallback<unknown>,
+      callback: BodyResponseCallback<unknown>
+    ): void;
+    download(
+      params: Params$Resource$Generatedapks$Download,
+      callback: BodyResponseCallback<unknown>
+    ): void;
+    download(callback: BodyResponseCallback<unknown>): void;
+    download(
+      paramsOrCallback?:
+        | Params$Resource$Generatedapks$Download
+        | BodyResponseCallback<unknown>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<unknown>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Generatedapks$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Generatedapks$Download;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}/downloads/{downloadId}:download'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'versionCode', 'downloadId'],
+        pathParams: ['downloadId', 'packageName', 'versionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<unknown>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<unknown>(parameters);
+      }
+    }
+
+    /**
+     * Returns download metadata for all APKs that were generated from a given app bundle.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.generatedapks.list({
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *     // Version code of the app bundle.
+     *     versionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "generatedApks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Generatedapks$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Generatedapks$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GeneratedApksListResponse>;
+    list(
+      params: Params$Resource$Generatedapks$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Generatedapks$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GeneratedApksListResponse>,
+      callback: BodyResponseCallback<Schema$GeneratedApksListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Generatedapks$List,
+      callback: BodyResponseCallback<Schema$GeneratedApksListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GeneratedApksListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Generatedapks$List
+        | BodyResponseCallback<Schema$GeneratedApksListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GeneratedApksListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GeneratedApksListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GeneratedApksListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Generatedapks$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Generatedapks$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'versionCode'],
+        pathParams: ['packageName', 'versionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GeneratedApksListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GeneratedApksListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Generatedapks$Download
+    extends StandardParameters {
+    /**
+     * Download ID, which uniquely identifies the APK to download. Can be obtained from the response of `generatedapks.list` method.
+     */
+    downloadId?: string;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+    /**
+     * Version code of the app bundle.
+     */
+    versionCode?: number;
+  }
+  export interface Params$Resource$Generatedapks$List
+    extends StandardParameters {
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+    /**
+     * Version code of the app bundle.
+     */
+    versionCode?: number;
   }
 
   export class Resource$Grants {

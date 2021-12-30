@@ -467,6 +467,48 @@
             }
           }
         },
+        "countryavailability": {
+          "methods": {
+            "get": {
+              "description": "Gets country availability.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/countryAvailability/{track}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.edits.countryavailability.get",
+              "parameterOrder": [
+                "packageName",
+                "editId",
+                "track"
+              ],
+              "parameters": {
+                "editId": {
+                  "description": "Identifier of the edit.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Package name of the app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "track": {
+                  "description": "The track to read from.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/edits/{editId}/countryAvailability/{track}",
+              "response": {
+                "$ref": "TrackCountryAvailability"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        },
         "deobfuscationfiles": {
           "methods": {
             "upload": {
@@ -1687,6 +1729,80 @@
               ]
             }
           }
+        }
+      }
+    },
+    "generatedapks": {
+      "methods": {
+        "download": {
+          "description": "Downloads a single signed APK generated from an app bundle.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}/downloads/{downloadId}:download",
+          "httpMethod": "GET",
+          "id": "androidpublisher.generatedapks.download",
+          "parameterOrder": [
+            "packageName",
+            "versionCode",
+            "downloadId"
+          ],
+          "parameters": {
+            "downloadId": {
+              "description": "Download ID, which uniquely identifies the APK to download. Can be obtained from the response of `generatedapks.list` method.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "versionCode": {
+              "description": "Version code of the app bundle.",
+              "format": "int32",
+              "location": "path",
+              "required": true,
+              "type": "integer"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}/downloads/{downloadId}:download",
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ],
+          "supportsMediaDownload": true,
+          "useMediaDownloadService": true
+        },
+        "list": {
+          "description": "Returns download metadata for all APKs that were generated from a given app bundle.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}",
+          "httpMethod": "GET",
+          "id": "androidpublisher.generatedapks.list",
+          "parameterOrder": [
+            "packageName",
+            "versionCode"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "versionCode": {
+              "description": "Version code of the app bundle.",
+              "format": "int32",
+              "location": "path",
+              "required": true,
+              "type": "integer"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/generatedApks/{versionCode}",
+          "response": {
+            "$ref": "GeneratedApksListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
         }
       }
     },
@@ -2924,7 +3040,7 @@
       }
     }
   },
-  "revision": "20211027",
+  "revision": "20211228",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -3407,6 +3523,131 @@
         },
         "versionName": {
           "description": "The version name of this APK.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeneratedApksListResponse": {
+      "description": "Response to list generated APKs.",
+      "id": "GeneratedApksListResponse",
+      "properties": {
+        "generatedApks": {
+          "description": "All generated APKs, grouped by the APK signing key.",
+          "items": {
+            "$ref": "GeneratedApksPerSigningKey"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GeneratedApksPerSigningKey": {
+      "description": "Download metadata for split, standalone and universal APKs, as well as asset pack slices, signed with a given key.",
+      "id": "GeneratedApksPerSigningKey",
+      "properties": {
+        "certificateSha256Hash": {
+          "description": "SHA256 hash of the APK signing public key certificate.",
+          "type": "string"
+        },
+        "generatedAssetPackSlices": {
+          "description": "List of asset pack slices which will be served for this app bundle, signed with a key corresponding to certificate_sha256_hash.",
+          "items": {
+            "$ref": "GeneratedAssetPackSlice"
+          },
+          "type": "array"
+        },
+        "generatedSplitApks": {
+          "description": "List of generated split APKs, signed with a key corresponding to certificate_sha256_hash.",
+          "items": {
+            "$ref": "GeneratedSplitApk"
+          },
+          "type": "array"
+        },
+        "generatedStandaloneApks": {
+          "description": "List of generated standalone APKs, signed with a key corresponding to certificate_sha256_hash.",
+          "items": {
+            "$ref": "GeneratedStandaloneApk"
+          },
+          "type": "array"
+        },
+        "generatedUniversalApk": {
+          "$ref": "GeneratedUniversalApk",
+          "description": "Generated universal APK, signed with a key corresponding to certificate_sha256_hash. This field is not set if no universal APK was generated for this signing key."
+        }
+      },
+      "type": "object"
+    },
+    "GeneratedAssetPackSlice": {
+      "description": "Download metadata for an asset pack slice.",
+      "id": "GeneratedAssetPackSlice",
+      "properties": {
+        "downloadId": {
+          "description": "Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.",
+          "type": "string"
+        },
+        "moduleName": {
+          "description": "Name of the module that this asset slice belongs to.",
+          "type": "string"
+        },
+        "sliceId": {
+          "description": "Asset slice ID.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Asset module version.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GeneratedSplitApk": {
+      "description": "Download metadata for a split APK.",
+      "id": "GeneratedSplitApk",
+      "properties": {
+        "downloadId": {
+          "description": "Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.",
+          "type": "string"
+        },
+        "moduleName": {
+          "description": "Name of the module that this APK belongs to.",
+          "type": "string"
+        },
+        "splitId": {
+          "description": "Split ID. Empty for the main split of the base module.",
+          "type": "string"
+        },
+        "variantId": {
+          "description": "ID of the generated variant.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GeneratedStandaloneApk": {
+      "description": "Download metadata for a standalone APK.",
+      "id": "GeneratedStandaloneApk",
+      "properties": {
+        "downloadId": {
+          "description": "Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.",
+          "type": "string"
+        },
+        "variantId": {
+          "description": "ID of the generated variant.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GeneratedUniversalApk": {
+      "description": "Download metadata for a universal APK.",
+      "id": "GeneratedUniversalApk",
+      "properties": {
+        "downloadId": {
+          "description": "Download ID, which uniquely identifies the APK to download. Should be supplied to `generatedapks.download` method.",
           "type": "string"
         }
       },
@@ -4372,6 +4613,28 @@
       },
       "type": "object"
     },
+    "TrackCountryAvailability": {
+      "description": "Resource for per-track country availability information.",
+      "id": "TrackCountryAvailability",
+      "properties": {
+        "countries": {
+          "description": "A list of one or more countries where artifacts in this track are available. This list includes all countries that are targeted by the track, even if only specific carriers are targeted in that country.",
+          "items": {
+            "$ref": "TrackTargetedCountry"
+          },
+          "type": "array"
+        },
+        "restOfWorld": {
+          "description": "Whether artifacts in this track are available to \"rest of the world\" countries.",
+          "type": "boolean"
+        },
+        "syncWithProduction": {
+          "description": "Whether this track's availability is synced with the default production track. See https://support.google.com/googleplay/android-developer/answer/7550024 for more information on syncing country availability with production. Note that if this is true, the returned \"countries\" and \"rest_of_world\" fields will reflect the values for the default production track.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "TrackRelease": {
       "description": "A release within a track.",
       "id": "TrackRelease",
@@ -4426,6 +4689,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TrackTargetedCountry": {
+      "description": "Representation of a single country where the contents of a track are available.",
+      "id": "TrackTargetedCountry",
+      "properties": {
+        "countryCode": {
+          "description": "The country to target, as a two-letter CLDR code.",
+          "type": "string"
         }
       },
       "type": "object"
