@@ -652,7 +652,7 @@
       }
     }
   },
-  "revision": "20211111",
+  "revision": "20211203",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1353,6 +1353,10 @@
       "properties": {
         "connectVersion": {
           "description": "Optional. The Connect agent version to use for connect_resources. Defaults to the latest GKE Connect version. The version must be a currently supported version, obsolete versions will be rejected.",
+          "type": "string"
+        },
+        "k8sVersion": {
+          "description": "Optional. Major version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.",
           "type": "string"
         },
         "v1beta1Crd": {

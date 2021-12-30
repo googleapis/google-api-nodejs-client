@@ -126,6 +126,19 @@ export namespace gkehub_v1alpha {
   }
 
   /**
+   * **Anthosobservability**: Per-Membership Feature spec.
+   */
+  export interface Schema$AnthosObservabilityMembershipSpec {
+    /**
+     * use full of metrics rather than optimized metrics. See https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/logging-and-monitoring#optimized_metrics_default_metrics
+     */
+    doNotOptimizeMetrics?: boolean | null;
+    /**
+     * enable collecting and reporting metrics and logs from user apps See go/onyx-application-metrics-logs-user-guide
+     */
+    enableStackdriverOnApplications?: boolean | null;
+  }
+  /**
    * Spec for App Dev Experience Feature.
    */
   export interface Schema$AppDevExperienceFeatureSpec {}
@@ -1229,6 +1242,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$MembershipFeatureSpec {
     /**
+     * Anthos Observability-specific spec
+     */
+    anthosobservability?: Schema$AnthosObservabilityMembershipSpec;
+    /**
      * Config Management-specific spec.
      */
     configmanagement?: Schema$ConfigManagementMembershipSpec;
@@ -1435,6 +1452,10 @@ export namespace gkehub_v1alpha {
      * Optional. The Connect agent version to use for connect_resources. Defaults to the latest GKE Connect version. The version must be a currently supported version, obsolete versions will be rejected.
      */
     connectVersion?: string | null;
+    /**
+     * Optional. Major version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.
+     */
+    k8sVersion?: string | null;
     /**
      * Optional. Use `apiextensions/v1beta1` instead of `apiextensions/v1` for CustomResourceDefinition resources. This option should be set for clusters with Kubernetes apiserver versions <1.16.
      */
