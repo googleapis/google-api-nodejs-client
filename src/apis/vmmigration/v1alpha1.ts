@@ -201,6 +201,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$ComputeEngineTargetDefaults {
     /**
+     * Additional licenses to assign to the VM.
+     */
+    additionalLicenses?: string[] | null;
+    /**
      * Output only. The OS license returned from the adaptation module report.
      */
     appliedLicense?: Schema$AppliedLicense;
@@ -269,6 +273,10 @@ export namespace vmmigration_v1alpha1 {
    * ComputeEngineTargetDetails is a collection of details for creating a VM in a target Compute Engine project.
    */
   export interface Schema$ComputeEngineTargetDetails {
+    /**
+     * Additional licenses to assign to the VM.
+     */
+    additionalLicenses?: string[] | null;
     /**
      * The OS license returned from the adaptation module report.
      */
@@ -1111,7 +1119,7 @@ export namespace vmmigration_v1alpha1 {
      */
     networkTags?: string[] | null;
     /**
-     * The project in which to create the VM.
+     * Output only. The project in which to create the VM.
      */
     project?: string | null;
     /**
