@@ -175,6 +175,10 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.
+     */
+    enableSovereignControls?: boolean | null;
+    /**
      * Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.
      */
     etag?: string | null;
@@ -190,6 +194,10 @@ export namespace assuredworkloads_v1 {
      * Required. Input only. Immutable. Settings specific to resources needed for IL4.
      */
     il4Settings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings;
+    /**
+     * Output only. Represents the KAJ enrollment state of the given workload.
+     */
+    kajEnrollmentState?: string | null;
     /**
      * Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes.
      */
@@ -214,6 +222,10 @@ export namespace assuredworkloads_v1 {
      * Input only. Resource properties that are used to customize workload resources. These properties (such as custom project id) will be used to create workload resources if possible. This field is optional.
      */
     resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings[];
+    /**
+     * Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.
+     */
+    saaEnrollmentResponse?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse;
   }
   /**
    * Settings specific to resources needed for CJIS.
@@ -295,6 +307,19 @@ export namespace assuredworkloads_v1 {
     resourceType?: string | null;
   }
   /**
+   * Signed Access Approvals (SAA) enrollment response.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse {
+    /**
+     * Indicates SAA enrollment setup error if any.
+     */
+    setupErrors?: string[] | null;
+    /**
+     * Indicates SAA enrollment status of a given workload.
+     */
+    setupStatus?: string | null;
+  }
+  /**
    * Operation metadata to give request details of CreateWorkload.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata {
@@ -349,9 +374,17 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.
+     */
+    enableSovereignControls?: boolean | null;
+    /**
      * Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.
      */
     etag?: string | null;
+    /**
+     * Output only. Represents the KAJ enrollment state of the given workload.
+     */
+    kajEnrollmentState?: string | null;
     /**
      * Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes.
      */
@@ -376,6 +409,10 @@ export namespace assuredworkloads_v1 {
      * Input only. Resource properties that are used to customize workload resources. These properties (such as custom project id) will be used to create workload resources if possible. This field is optional.
      */
     resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1WorkloadResourceSettings[];
+    /**
+     * Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.
+     */
+    saaEnrollmentResponse?: Schema$GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse;
   }
   /**
    * Settings specific to the Key Management Service.
@@ -419,6 +456,19 @@ export namespace assuredworkloads_v1 {
      * Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)
      */
     resourceType?: string | null;
+  }
+  /**
+   * Signed Access Approvals (SAA) enrollment response.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse {
+    /**
+     * Indicates SAA enrollment setup error if any.
+     */
+    setupErrors?: string[] | null;
+    /**
+     * Indicates SAA enrollment status of a given workload.
+     */
+    setupStatus?: string | null;
   }
   /**
    * Operation metadata to give request details of CreateWorkload.
@@ -470,6 +520,10 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.
+     */
+    enableSovereignControls?: boolean | null;
+    /**
      * Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.
      */
     etag?: string | null;
@@ -485,6 +539,10 @@ export namespace assuredworkloads_v1 {
      * Required. Input only. Immutable. Settings specific to resources needed for IL4.
      */
     il4Settings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadIL4Settings;
+    /**
+     * Output only. Represents the KAJ enrollment state of the given workload.
+     */
+    kajEnrollmentState?: string | null;
     /**
      * Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes.
      */
@@ -509,6 +567,10 @@ export namespace assuredworkloads_v1 {
      * Input only. Resource properties that are used to customize workload resources. These properties (such as custom project id) will be used to create workload resources if possible. This field is optional.
      */
     resourceSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadResourceSettings[];
+    /**
+     * Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.
+     */
+    saaEnrollmentResponse?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadSaaEnrollmentResponse;
   }
   /**
    * Settings specific to resources needed for CJIS.
@@ -588,6 +650,19 @@ export namespace assuredworkloads_v1 {
      * Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)
      */
     resourceType?: string | null;
+  }
+  /**
+   * Signed Access Approvals (SAA) enrollment response.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadSaaEnrollmentResponse {
+    /**
+     * Indicates SAA enrollment setup error if any.
+     */
+    setupErrors?: string[] | null;
+    /**
+     * Indicates SAA enrollment status of a given workload.
+     */
+    setupStatus?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -1037,13 +1112,16 @@ export namespace assuredworkloads_v1 {
      *       //   "complianceRegime": "my_complianceRegime",
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
+     *       //   "enableSovereignControls": false,
      *       //   "etag": "my_etag",
+     *       //   "kajEnrollmentState": "my_kajEnrollmentState",
      *       //   "kmsSettings": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resourceSettings": [],
-     *       //   "resources": []
+     *       //   "resources": [],
+     *       //   "saaEnrollmentResponse": {}
      *       // }
      *     },
      *   });
@@ -1326,13 +1404,16 @@ export namespace assuredworkloads_v1 {
      *   //   "complianceRegime": "my_complianceRegime",
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "enableSovereignControls": false,
      *   //   "etag": "my_etag",
+     *   //   "kajEnrollmentState": "my_kajEnrollmentState",
      *   //   "kmsSettings": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
-     *   //   "resources": []
+     *   //   "resources": [],
+     *   //   "saaEnrollmentResponse": {}
      *   // }
      * }
      *
@@ -1620,13 +1701,16 @@ export namespace assuredworkloads_v1 {
      *       //   "complianceRegime": "my_complianceRegime",
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
+     *       //   "enableSovereignControls": false,
      *       //   "etag": "my_etag",
+     *       //   "kajEnrollmentState": "my_kajEnrollmentState",
      *       //   "kmsSettings": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resourceSettings": [],
-     *       //   "resources": []
+     *       //   "resources": [],
+     *       //   "saaEnrollmentResponse": {}
      *       // }
      *     },
      *   });
@@ -1638,13 +1722,16 @@ export namespace assuredworkloads_v1 {
      *   //   "complianceRegime": "my_complianceRegime",
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "enableSovereignControls": false,
      *   //   "etag": "my_etag",
+     *   //   "kajEnrollmentState": "my_kajEnrollmentState",
      *   //   "kmsSettings": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resourceSettings": [],
-     *   //   "resources": []
+     *   //   "resources": [],
+     *   //   "saaEnrollmentResponse": {}
      *   // }
      * }
      *

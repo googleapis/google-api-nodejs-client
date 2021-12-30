@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20211111",
+  "revision": "20211213",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -466,8 +466,27 @@
           "description": "Required. The user-assigned display name of the Workload. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, and spaces. Example: My Workload",
           "type": "string"
         },
+        "enableSovereignControls": {
+          "description": "Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.",
+          "type": "boolean"
+        },
         "etag": {
           "description": "Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.",
+          "type": "string"
+        },
+        "kajEnrollmentState": {
+          "description": "Output only. Represents the KAJ enrollment state of the given workload.",
+          "enum": [
+            "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+            "KAJ_ENROLLMENT_STATE_PENDING",
+            "KAJ_ENROLLMENT_STATE_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default State for KAJ Enrollment.",
+            "Pending State for KAJ Enrollment.",
+            "Complete State for KAJ Enrollment."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "kmsSettings": {
@@ -503,6 +522,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "saaEnrollmentResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse",
+          "description": "Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -538,12 +562,14 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
+            "CONSUMER_FOLDER",
             "ENCRYPTION_KEYS_PROJECT",
             "KEYRING"
           ],
           "enumDescriptions": [
             "Unknown resource type.",
-            "Consumer project.",
+            "Consumer project. AssuredWorkloads Projects are no longer supported. This field will be ignored only in CreateWorkload requests. ListWorkloads and GetWorkload will continue to provide projects information. Use CONSUMER_FOLDER instead.",
+            "Consumer Folder.",
             "Consumer project containing encryption keys.",
             "Keyring resource that hosts encryption keys."
           ],
@@ -569,14 +595,58 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
+            "CONSUMER_FOLDER",
             "ENCRYPTION_KEYS_PROJECT",
             "KEYRING"
           ],
           "enumDescriptions": [
             "Unknown resource type.",
-            "Consumer project.",
+            "Consumer project. AssuredWorkloads Projects are no longer supported. This field will be ignored only in CreateWorkload requests. ListWorkloads and GetWorkload will continue to provide projects information. Use CONSUMER_FOLDER instead.",
+            "Consumer Folder.",
             "Consumer project containing encryption keys.",
             "Keyring resource that hosts encryption keys."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse": {
+      "description": "Signed Access Approvals (SAA) enrollment response.",
+      "id": "GoogleCloudAssuredworkloadsV1WorkloadSaaEnrollmentResponse",
+      "properties": {
+        "setupErrors": {
+          "description": "Indicates SAA enrollment setup error if any.",
+          "items": {
+            "enum": [
+              "SETUP_ERROR_UNSPECIFIED",
+              "ERROR_INVALID_BASE_SETUP",
+              "ERROR_MISSING_EXTERNAL_SIGNING_KEY",
+              "ERROR_NOT_ALL_SERVICES_ENROLLED",
+              "ERROR_SETUP_CHECK_FAILED"
+            ],
+            "enumDescriptions": [
+              "Unspecified.",
+              "Invalid states for all customers, to be redirected to AA UI for additional details.",
+              "Returned when there is not an EKM key configured.",
+              "Returned when there are no enrolled services or the customer is enrolled in CAA only for a subset of services.",
+              "Returned when exception was encountered during evaluation of other criteria."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "setupStatus": {
+          "description": "Indicates SAA enrollment status of a given workload.",
+          "enum": [
+            "SETUP_STATE_UNSPECIFIED",
+            "STATUS_PENDING",
+            "STATUS_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "SAA enrollment pending.",
+            "SAA enrollment comopleted."
           ],
           "type": "string"
         }
@@ -688,6 +758,10 @@
           "description": "Required. The user-assigned display name of the Workload. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, and spaces. Example: My Workload",
           "type": "string"
         },
+        "enableSovereignControls": {
+          "description": "Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.",
+          "type": "boolean"
+        },
         "etag": {
           "description": "Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.",
           "type": "string"
@@ -703,6 +777,21 @@
         "il4Settings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings",
           "description": "Required. Input only. Immutable. Settings specific to resources needed for IL4."
+        },
+        "kajEnrollmentState": {
+          "description": "Output only. Represents the KAJ enrollment state of the given workload.",
+          "enum": [
+            "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+            "KAJ_ENROLLMENT_STATE_PENDING",
+            "KAJ_ENROLLMENT_STATE_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default State for KAJ Enrollment.",
+            "Pending State for KAJ Enrollment.",
+            "Complete State for KAJ Enrollment."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
@@ -737,6 +826,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "saaEnrollmentResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse",
+          "description": "Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -865,6 +959,48 @@
       },
       "type": "object"
     },
+    "GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse": {
+      "description": "Signed Access Approvals (SAA) enrollment response.",
+      "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadSaaEnrollmentResponse",
+      "properties": {
+        "setupErrors": {
+          "description": "Indicates SAA enrollment setup error if any.",
+          "items": {
+            "enum": [
+              "SETUP_ERROR_UNSPECIFIED",
+              "ERROR_INVALID_BASE_SETUP",
+              "ERROR_MISSING_EXTERNAL_SIGNING_KEY",
+              "ERROR_NOT_ALL_SERVICES_ENROLLED",
+              "ERROR_SETUP_CHECK_FAILED"
+            ],
+            "enumDescriptions": [
+              "Unspecified.",
+              "Invalid states for all customers, to be redirected to AA UI for additional details.",
+              "Returned when there is not an EKM key configured.",
+              "Returned when there are no enrolled services or the customer is enrolled in CAA only for a subset of services.",
+              "Returned when exception was encountered during evaluation of other criteria."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "setupStatus": {
+          "description": "Indicates SAA enrollment status of a given workload.",
+          "enum": [
+            "SETUP_STATE_UNSPECIFIED",
+            "STATUS_PENDING",
+            "STATUS_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "SAA enrollment pending.",
+            "SAA enrollment comopleted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAssuredworkloadsVersioningV1mainCreateWorkloadOperationMetadata": {
       "description": "Operation metadata to give request details of CreateWorkload.",
       "id": "GoogleCloudAssuredworkloadsVersioningV1mainCreateWorkloadOperationMetadata",
@@ -970,6 +1106,10 @@
           "description": "Required. The user-assigned display name of the Workload. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, and spaces. Example: My Workload",
           "type": "string"
         },
+        "enableSovereignControls": {
+          "description": "Optional. Indicates the sovereignty status of the given workload. Currently meant to be used by Europe/Canada customers.",
+          "type": "boolean"
+        },
         "etag": {
           "description": "Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.",
           "type": "string"
@@ -985,6 +1125,21 @@
         "il4Settings": {
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadIL4Settings",
           "description": "Required. Input only. Immutable. Settings specific to resources needed for IL4."
+        },
+        "kajEnrollmentState": {
+          "description": "Output only. Represents the KAJ enrollment state of the given workload.",
+          "enum": [
+            "KAJ_ENROLLMENT_STATE_UNSPECIFIED",
+            "KAJ_ENROLLMENT_STATE_PENDING",
+            "KAJ_ENROLLMENT_STATE_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Default State for KAJ Enrollment.",
+            "Pending State for KAJ Enrollment.",
+            "Complete State for KAJ Enrollment."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings",
@@ -1019,6 +1174,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "saaEnrollmentResponse": {
+          "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadSaaEnrollmentResponse",
+          "description": "Output only. Represents the SAA enrollment response of the given workload. SAA enrollment response is queried during GetWorkload call. In failure cases, user friendly error message is shown in SAA details page.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -1141,6 +1301,48 @@
             "Consumer Folder.",
             "Consumer project containing encryption keys.",
             "Keyring resource that hosts encryption keys."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadSaaEnrollmentResponse": {
+      "description": "Signed Access Approvals (SAA) enrollment response.",
+      "id": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadSaaEnrollmentResponse",
+      "properties": {
+        "setupErrors": {
+          "description": "Indicates SAA enrollment setup error if any.",
+          "items": {
+            "enum": [
+              "SETUP_ERROR_UNSPECIFIED",
+              "ERROR_INVALID_BASE_SETUP",
+              "ERROR_MISSING_EXTERNAL_SIGNING_KEY",
+              "ERROR_NOT_ALL_SERVICES_ENROLLED",
+              "ERROR_SETUP_CHECK_FAILED"
+            ],
+            "enumDescriptions": [
+              "Unspecified.",
+              "Invalid states for all customers, to be redirected to AA UI for additional details.",
+              "Returned when there is not an EKM key configured.",
+              "Returned when there are no enrolled services or the customer is enrolled in CAA only for a subset of services.",
+              "Returned when exception was encountered during evaluation of other criteria."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "setupStatus": {
+          "description": "Indicates SAA enrollment status of a given workload.",
+          "enum": [
+            "SETUP_STATE_UNSPECIFIED",
+            "STATUS_PENDING",
+            "STATUS_COMPLETE"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "SAA enrollment pending.",
+            "SAA enrollment comopleted."
           ],
           "type": "string"
         }
