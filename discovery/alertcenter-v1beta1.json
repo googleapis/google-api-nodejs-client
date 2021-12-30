@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20211019",
+  "revision": "20211214",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountSuspensionDetails": {
@@ -770,6 +770,14 @@
           "description": "Link to the outage event in Google Workspace Status Dashboard",
           "type": "string"
         },
+        "incidentTrackingId": {
+          "description": "Incident tracking ID.",
+          "type": "string"
+        },
+        "mergeInfo": {
+          "$ref": "MergeInfo",
+          "description": "Indicates new alert details under which the outage is communicated. Only populated when Status is MERGED."
+        },
         "nextUpdateTime": {
           "description": "Timestamp by which the next update is expected to arrive.",
           "format": "google-datetime",
@@ -793,13 +801,19 @@
             "STATUS_UNSPECIFIED",
             "NEW",
             "ONGOING",
-            "RESOLVED"
+            "RESOLVED",
+            "FALSE_POSITIVE",
+            "PARTIALLY_RESOLVED",
+            "MERGED"
           ],
           "enumDescriptions": [
             "Status is unspecified.",
             "The incident has just been reported.",
             "The incident is ongoing.",
-            "The incident has been resolved."
+            "The incident has been resolved.",
+            "Further assessment indicated no customer impact.",
+            "The incident has been partially resolved.",
+            "The incident was merged into a parent."
           ],
           "type": "string"
         }
@@ -1266,6 +1280,21 @@
         "userDefinedDetector": {
           "$ref": "UserDefinedDetectorInfo",
           "description": "For matched detector defined by administrators."
+        }
+      },
+      "type": "object"
+    },
+    "MergeInfo": {
+      "description": "New alert tracking numbers.",
+      "id": "MergeInfo",
+      "properties": {
+        "newAlertId": {
+          "description": "New alert ID. Reference the [google.apps.alertcenter.Alert] with this ID for the current state.",
+          "type": "string"
+        },
+        "newIncidentTrackingId": {
+          "description": "The new tracking ID from the parent incident.",
+          "type": "string"
         }
       },
       "type": "object"

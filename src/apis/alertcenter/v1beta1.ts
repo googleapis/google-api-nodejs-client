@@ -377,6 +377,14 @@ export namespace alertcenter_v1beta1 {
      */
     dashboardUri?: string | null;
     /**
+     * Incident tracking ID.
+     */
+    incidentTrackingId?: string | null;
+    /**
+     * Indicates new alert details under which the outage is communicated. Only populated when Status is MERGED.
+     */
+    mergeInfo?: Schema$MergeInfo;
+    /**
      * Timestamp by which the next update is expected to arrive.
      */
     nextUpdateTime?: string | null;
@@ -742,6 +750,19 @@ export namespace alertcenter_v1beta1 {
      * For matched detector defined by administrators.
      */
     userDefinedDetector?: Schema$UserDefinedDetectorInfo;
+  }
+  /**
+   * New alert tracking numbers.
+   */
+  export interface Schema$MergeInfo {
+    /**
+     * New alert ID. Reference the [google.apps.alertcenter.Alert] with this ID for the current state.
+     */
+    newAlertId?: string | null;
+    /**
+     * The new tracking ID from the parent incident.
+     */
+    newIncidentTrackingId?: string | null;
   }
   /**
    * Settings for callback notifications. For more details see [Google Workspace Alert Notification](https://developers.google.com/admin-sdk/alertcenter/guides/notifications).
