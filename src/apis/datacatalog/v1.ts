@@ -185,7 +185,7 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GetPolicyOptions {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
   }
@@ -391,6 +391,10 @@ export namespace datacatalog_v1 {
      * Output only. The resource name of an entry in URL format. Note: The entry itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string | null;
+    /**
+     * Output only. Additional information related to the entry. Private to the current user.
+     */
+    personalDetails?: Schema$GoogleCloudDatacatalogV1PersonalDetails;
     /**
      * Specification that applies to a user-defined function or procedure. Valid only for entries with the `ROUTINE` type.
      */
@@ -599,6 +603,19 @@ export namespace datacatalog_v1 {
     taxonomies?: Schema$GoogleCloudDatacatalogV1Taxonomy[];
   }
   /**
+   * Entry metadata relevant only to the user and private to them.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PersonalDetails {
+    /**
+     * True if the entry is starred by the user; false otherwise.
+     */
+    starred?: boolean | null;
+    /**
+     * Set if the entry is starred; unset otherwise.
+     */
+    starTime?: string | null;
+  }
+  /**
    * Denotes one policy tag in a taxonomy, for example, SSN. Policy tags can be defined in a hierarchy. For example: ``` + Geolocation + LatLong + City + ZipCode ``` Where the "Geolocation" policy tag contains three children.
    */
   export interface Schema$GoogleCloudDatacatalogV1PolicyTag {
@@ -710,7 +727,7 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1SearchCatalogRequest {
     /**
-     * Specifies the order of results. Currently supported case-sensitive values are: * `relevance` that can only be descending * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default If this parameter is omitted, it defaults to the descending `relevance`.
+     * Specifies the order of results. Currently supported case-sensitive values are: * `relevance` that can only be descending * `last_modified_timestamp [asc|desc]` with descending (`desc`) as default * `default` that can only be descending If this parameter is omitted, it defaults to the descending `relevance`.
      */
     orderBy?: string | null;
     /**
@@ -722,7 +739,7 @@ export namespace datacatalog_v1 {
      */
     pageToken?: string | null;
     /**
-     * Optional. The query string with a minimum of 3 characters and specific syntax. For more information, see [Data Catalog search syntax](/data-catalog/docs/how-to/search-reference). An empty query string returns all data assets (in the specified scope) that you have access to. A query string can be a simple `xyz` or qualified by predicates: * `name:x` * `column:y` * `description:z`
+     * Optional. The query string with a minimum of 3 characters and specific syntax. For more information, see [Data Catalog search syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference). An empty query string returns all data assets (in the specified scope) that you have access to. A query string can be a simple `xyz` or qualified by predicates: * `name:x` * `column:y` * `description:z`
      */
     query?: string | null;
     /**
@@ -747,13 +764,17 @@ export namespace datacatalog_v1 {
      */
     includeProjectIds?: string[] | null;
     /**
-     * Optional. If `true`, include public tag templates in the search results. By default, they are included only if you have explicit permissions on them to view them. For example, if you are the owner. Other scope fields, for example, ``include_org_ids``, still restrict the returned public tag templates and at least one of them is required.
+     * Optional. If `true`, include public tag templates in the search results. By default, they are included only if you have explicit permissions on them to view them. For example, if you are the owner. Other scope fields, for example, `include_org_ids`, still restrict the returned public tag templates and at least one of them is required.
      */
     includePublicTagTemplates?: boolean | null;
     /**
      * Optional. The list of locations to search within. If empty, all locations are searched. Returns an error if any location in the list isn't one of the [Supported regions](https://cloud.google.com/data-catalog/docs/concepts/regions#supported_regions). If a location is unreachable, its name is returned in the `SearchCatalogResponse.unreachable` field. To get additional information on the error, repeat the search request and set the location name as the value of this parameter.
      */
     restrictedLocations?: string[] | null;
+    /**
+     * Optional. If `true`, search only among starred entries. By default, all results are returned, starred or not.
+     */
+    starredOnly?: boolean | null;
   }
   /**
    * Response message for SearchCatalog.
@@ -859,6 +880,14 @@ export namespace datacatalog_v1 {
      */
     policyTags?: Schema$GoogleCloudDatacatalogV1SerializedPolicyTag[];
   }
+  /**
+   * Request message for StarEntry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1StarEntryRequest {}
+  /**
+   * Response message for StarEntry. Empty for now
+   */
+  export interface Schema$GoogleCloudDatacatalogV1StarEntryResponse {}
   /**
    * Timestamps associated with this resource in a particular system.
    */
@@ -1037,6 +1066,14 @@ export namespace datacatalog_v1 {
      */
     taxonomyTimestamps?: Schema$GoogleCloudDatacatalogV1SystemTimestamps;
   }
+  /**
+   * Request message for UnstarEntry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1UnstarEntryRequest {}
+  /**
+   * Response message for UnstarEntry. Empty for now
+   */
+  export interface Schema$GoogleCloudDatacatalogV1UnstarEntryResponse {}
   /**
    * The set of all usage signals that Data Catalog stores. Note: Usually, these signals are updated daily. In rare cases, an update may fail but will be performed again on the next day.
    */
@@ -1343,6 +1380,7 @@ export namespace datacatalog_v1 {
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
      *   //   "name": "my_name",
+     *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
@@ -2817,6 +2855,7 @@ export namespace datacatalog_v1 {
      *       //   "labels": {},
      *       //   "linkedResource": "my_linkedResource",
      *       //   "name": "my_name",
+     *       //   "personalDetails": {},
      *       //   "routineSpec": {},
      *       //   "schema": {},
      *       //   "sourceSystemTimestamps": {},
@@ -2844,6 +2883,7 @@ export namespace datacatalog_v1 {
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
      *   //   "name": "my_name",
+     *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
@@ -3127,6 +3167,7 @@ export namespace datacatalog_v1 {
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
      *   //   "name": "my_name",
+     *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
@@ -3573,6 +3614,7 @@ export namespace datacatalog_v1 {
      *       //   "labels": {},
      *       //   "linkedResource": "my_linkedResource",
      *       //   "name": "my_name",
+     *       //   "personalDetails": {},
      *       //   "routineSpec": {},
      *       //   "schema": {},
      *       //   "sourceSystemTimestamps": {},
@@ -3600,6 +3642,7 @@ export namespace datacatalog_v1 {
      *   //   "labels": {},
      *   //   "linkedResource": "my_linkedResource",
      *   //   "name": "my_name",
+     *   //   "personalDetails": {},
      *   //   "routineSpec": {},
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
@@ -3703,6 +3746,146 @@ export namespace datacatalog_v1 {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1Entry>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Marks an Entry as starred by the current user. Starring information is private to each user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datacatalog.projects.locations.entryGroups.entries.star({
+     *     // Required. The name of the entry to mark as starred.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    star(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Star,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    star(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Star,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1StarEntryResponse>;
+    star(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Star,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    star(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Star,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1StarEntryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+    ): void;
+    star(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Star,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+    ): void;
+    star(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+    ): void;
+    star(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Star
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1StarEntryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Star;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Star;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:star').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1StarEntryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1StarEntryResponse>(
           parameters
         );
       }
@@ -3856,6 +4039,146 @@ export namespace datacatalog_v1 {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
       }
     }
+
+    /**
+     * Marks an Entry as NOT starred by the current user. Starring information is private to each user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datacatalog.projects.locations.entryGroups.entries.unstar({
+     *     // Required. The name of the entry to mark as **not** starred.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    unstar(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    unstar(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>;
+    unstar(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    unstar(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+    ): void;
+    unstar(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+    ): void;
+    unstar(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+    ): void;
+    unstar(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:unstar').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1UnstarEntryResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Create
@@ -3935,6 +4258,18 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$GoogleCloudDatacatalogV1Entry;
   }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Star
+    extends StandardParameters {
+    /**
+     * Required. The name of the entry to mark as starred.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1StarEntryRequest;
+  }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions
     extends StandardParameters {
     /**
@@ -3947,6 +4282,18 @@ export namespace datacatalog_v1 {
      */
     requestBody?: Schema$TestIamPermissionsRequest;
   }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Unstar
+    extends StandardParameters {
+    /**
+     * Required. The name of the entry to mark as **not** starred.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1UnstarEntryRequest;
+  }
 
   export class Resource$Projects$Locations$Entrygroups$Entries$Tags {
     context: APIRequestContext;
@@ -3955,7 +4302,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Creates a tag and assigns it to: * An Entry if the method name is ``projects.locations.entryGroups.entries.tags.create``. * Or EntryGroupif the method name is ``projects.locations.entryGroups.tags.create``. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.
+     * Creates a tag and assigns it to: * An Entry if the method name is `projects.locations.entryGroups.entries.tags.create`. * Or EntryGroupif the method name is `projects.locations.entryGroups.tags.create`. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.
      * @example
      * ```js
      * // Before running the sample:
@@ -4587,7 +4934,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Creates a tag and assigns it to: * An Entry if the method name is ``projects.locations.entryGroups.entries.tags.create``. * Or EntryGroupif the method name is ``projects.locations.entryGroups.tags.create``. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.
+     * Creates a tag and assigns it to: * An Entry if the method name is `projects.locations.entryGroups.entries.tags.create`. * Or EntryGroupif the method name is `projects.locations.entryGroups.tags.create`. Note: The project identified by the `parent` parameter for the [tag] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters) and the [tag template] (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters) used to create the tag must be in the same organization.
      * @example
      * ```js
      * // Before running the sample:
@@ -5805,7 +6152,7 @@ export namespace datacatalog_v1 {
      *   const res = await datacatalog.projects.locations.tagTemplates.patch({
      *     // The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.
      *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *     // Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the ``is_publicly_readable`` field may require up to 12 hours to take effect in search results. Additionally, it also requires the ``tagTemplates.getIamPolicy`` and ``tagTemplates.setIamPolicy`` permissions.
+     *     // Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results. Additionally, it also requires the `tagTemplates.getIamPolicy` and `tagTemplates.setIamPolicy` permissions.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6269,7 +6616,7 @@ export namespace datacatalog_v1 {
      */
     name?: string;
     /**
-     * Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the ``is_publicly_readable`` field may require up to 12 hours to take effect in search results. Additionally, it also requires the ``tagTemplates.getIamPolicy`` and ``tagTemplates.setIamPolicy`` permissions.
+     * Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results. Additionally, it also requires the `tagTemplates.getIamPolicy` and `tagTemplates.setIamPolicy` permissions.
      */
     updateMask?: string;
 
@@ -6784,7 +7131,7 @@ export namespace datacatalog_v1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.rename({
-     *     // Required. The name of the tag template.
+     *     // Required. The name of the tag template field.
      *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
      *
      *     // Request body metadata
@@ -6953,7 +7300,7 @@ export namespace datacatalog_v1 {
   export interface Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename
     extends StandardParameters {
     /**
-     * Required. The name of the tag template.
+     * Required. The name of the tag template field.
      */
     name?: string;
 
