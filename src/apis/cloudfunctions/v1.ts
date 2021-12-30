@@ -2383,7 +2383,7 @@ export namespace cloudfunctions_v1 {
      *   const res = await cloudfunctions.projects.locations.functions.patch({
      *     // A user-defined name of the function. Function names must be unique globally and match pattern `projects/x/locations/x/functions/x`
      *     name: 'projects/my-project/locations/my-location/functions/my-function',
-     *     // Required list of fields to be updated in this request.
+     *     // Required. The list of fields in `CloudFunction` that have to be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2913,7 +2913,7 @@ export namespace cloudfunctions_v1 {
      */
     name?: string;
     /**
-     * Required list of fields to be updated in this request.
+     * Required. The list of fields in `CloudFunction` that have to be updated.
      */
     updateMask?: string;
 
