@@ -96,7 +96,7 @@
   },
   "protocol": "rest",
   "resources": {},
-  "revision": "20211104",
+  "revision": "20211202",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AutoscalingLimits": {
@@ -250,7 +250,7 @@
           "type": "string"
         },
         "serveNodes": {
-          "description": "Required. The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.",
+          "description": "The number of nodes allocated to this cluster. More nodes enable higher throughput and more consistent performance.",
           "format": "int32",
           "type": "integer"
         },
@@ -297,7 +297,7 @@
       "properties": {
         "clusterAutoscalingConfig": {
           "$ref": "ClusterAutoscalingConfig",
-          "description": "Autoscaling configuration for this cluster. Note that when creating or updating a cluster, exactly one of serve_nodes or cluster_autoscaling_config must be set. If serve_nodes is set, then serve_nodes is fixed and autoscaling is turned off. If cluster_autoscaling_config is set, then serve_nodes will be autoscaled."
+          "description": "Autoscaling configuration for this cluster."
         }
       },
       "type": "object"
@@ -596,7 +596,8 @@
           "type": "string"
         },
         "originalRequest": {
-          "$ref": "PartialUpdateClusterRequest"
+          "$ref": "PartialUpdateClusterRequest",
+          "description": "The original request for PartialUpdateCluster."
         },
         "requestTime": {
           "description": "The time at which the original request was received.",
@@ -615,7 +616,7 @@
           "description": "Required. The Cluster which contains the partial updates to be applied, subject to the update_mask."
         },
         "updateMask": {
-          "description": "Required. The subset of Cluster fields which should be replaced. Must be explicitly set.",
+          "description": "Required. The subset of Cluster fields which should be replaced.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -728,6 +729,27 @@
             "The table has been fully copied to the new cluster.",
             "The table was deleted before it finished copying to the new cluster. Note that tables deleted after completion will stay marked as COMPLETED, not CANCELLED."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UndeleteTableMetadata": {
+      "description": "Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.",
+      "id": "UndeleteTableMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was cancelled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the table being restored.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time at which this operation started.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
