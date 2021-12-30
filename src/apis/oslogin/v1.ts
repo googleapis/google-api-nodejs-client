@@ -233,12 +233,10 @@ export namespace oslogin_v1 {
   export class Resource$Users {
     context: APIRequestContext;
     projects: Resource$Users$Projects;
-    sshPublicKey: Resource$Users$Sshpublickey;
     sshPublicKeys: Resource$Users$Sshpublickeys;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.projects = new Resource$Users$Projects(this.context);
-      this.sshPublicKey = new Resource$Users$Sshpublickey(this.context);
       this.sshPublicKeys = new Resource$Users$Sshpublickeys(this.context);
     }
 
@@ -710,7 +708,7 @@ export namespace oslogin_v1 {
     name?: string;
   }
 
-  export class Resource$Users$Sshpublickey {
+  export class Resource$Users$Sshpublickeys {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -745,7 +743,7 @@ export namespace oslogin_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await oslogin.users.sshPublicKey.create({
+     *   const res = await oslogin.users.sshPublicKeys.create({
      *     // Required. The unique ID for the user in format `users/{user\}`.
      *     parent: 'users/my-user',
      *
@@ -784,31 +782,31 @@ export namespace oslogin_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
-      params: Params$Resource$Users$Sshpublickey$Create,
+      params: Params$Resource$Users$Sshpublickeys$Create,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     create(
-      params?: Params$Resource$Users$Sshpublickey$Create,
+      params?: Params$Resource$Users$Sshpublickeys$Create,
       options?: MethodOptions
     ): GaxiosPromise<Schema$SshPublicKey>;
     create(
-      params: Params$Resource$Users$Sshpublickey$Create,
+      params: Params$Resource$Users$Sshpublickeys$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     create(
-      params: Params$Resource$Users$Sshpublickey$Create,
+      params: Params$Resource$Users$Sshpublickeys$Create,
       options: MethodOptions | BodyResponseCallback<Schema$SshPublicKey>,
       callback: BodyResponseCallback<Schema$SshPublicKey>
     ): void;
     create(
-      params: Params$Resource$Users$Sshpublickey$Create,
+      params: Params$Resource$Users$Sshpublickeys$Create,
       callback: BodyResponseCallback<Schema$SshPublicKey>
     ): void;
     create(callback: BodyResponseCallback<Schema$SshPublicKey>): void;
     create(
       paramsOrCallback?:
-        | Params$Resource$Users$Sshpublickey$Create
+        | Params$Resource$Users$Sshpublickeys$Create
         | BodyResponseCallback<Schema$SshPublicKey>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -821,12 +819,12 @@ export namespace oslogin_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$SshPublicKey> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Users$Sshpublickey$Create;
+        {}) as Params$Resource$Users$Sshpublickeys$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Sshpublickey$Create;
+        params = {} as Params$Resource$Users$Sshpublickeys$Create;
         options = {};
       }
 
@@ -839,7 +837,7 @@ export namespace oslogin_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+parent}/sshPublicKey').replace(
+            url: (rootUrl + '/v1/{+parent}/sshPublicKeys').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -860,26 +858,6 @@ export namespace oslogin_v1 {
       } else {
         return createAPIRequest<Schema$SshPublicKey>(parameters);
       }
-    }
-  }
-
-  export interface Params$Resource$Users$Sshpublickey$Create
-    extends StandardParameters {
-    /**
-     * Required. The unique ID for the user in format `users/{user\}`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SshPublicKey;
-  }
-
-  export class Resource$Users$Sshpublickeys {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
     }
 
     /**
@@ -1287,6 +1265,18 @@ export namespace oslogin_v1 {
     }
   }
 
+  export interface Params$Resource$Users$Sshpublickeys$Create
+    extends StandardParameters {
+    /**
+     * Required. The unique ID for the user in format `users/{user\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SshPublicKey;
+  }
   export interface Params$Resource$Users$Sshpublickeys$Delete
     extends StandardParameters {
     /**
