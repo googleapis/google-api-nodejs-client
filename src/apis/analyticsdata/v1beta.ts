@@ -333,7 +333,7 @@ export namespace analyticsdata_v1beta {
     startDate?: string | null;
   }
   /**
-   * Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, city could be "Paris" or "New York". Requests are allowed up to 9 dimensions.
+   * Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, the city could be "Paris" or "New York". Requests are allowed up to 9 dimensions.
    */
   export interface Schema$Dimension {
     /**
@@ -469,7 +469,7 @@ export namespace analyticsdata_v1beta {
      */
     andGroup?: Schema$FilterExpressionList;
     /**
-     * A primitive filter. All fields in filter in same FilterExpression needs to be either all dimensions or metrics.
+     * A primitive filter. In the same FilterExpression, all of the filter's field names need to be either all dimensions or all metrics.
      */
     filter?: Schema$Filter;
     /**
@@ -1040,7 +1040,7 @@ export namespace analyticsdata_v1beta {
      */
     metricAggregations?: string[] | null;
     /**
-     * The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Dimensions cannot be used in this filter.
+     * The filter clause of metrics. Applied after aggregating the report's rows, similar to SQL having-clause. Dimensions cannot be used in this filter.
      */
     metricFilter?: Schema$FilterExpression;
     /**
