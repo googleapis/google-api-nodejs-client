@@ -1649,6 +1649,160 @@
             }
           }
         },
+        "dataStreams": {
+          "methods": {
+            "create": {
+              "description": "Creates a DataStream.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams",
+              "httpMethod": "POST",
+              "id": "analyticsadmin.properties.dataStreams.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/dataStreams",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaDataStream"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a DataStream on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}",
+              "httpMethod": "DELETE",
+              "id": "analyticsadmin.properties.dataStreams.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the DataStream to delete. Example format: properties/1234/dataStreams/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            },
+            "get": {
+              "description": "Lookup for a single DataStream.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.dataStreams.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the DataStream to get. Example format: properties/1234/dataStreams/5678",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists DataStreams on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.dataStreams.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListDataStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDataStreams` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Example format: properties/1234",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+parent}/dataStreams",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaListDataStreamsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates a DataStream on a property.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}",
+              "httpMethod": "PATCH",
+              "id": "analyticsadmin.properties.dataStreams.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/dataStreams/{stream_id} Example: \"properties/1000/dataStreams/2000\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string \"*\" to match all fields.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "request": {
+                "$ref": "GoogleAnalyticsAdminV1alphaDataStream"
+              },
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaDataStream"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit"
+              ]
+            }
+          }
+        },
         "displayVideo360AdvertiserLinkProposals": {
           "methods": {
             "approve": {
@@ -3120,7 +3274,7 @@
       }
     }
   },
-  "revision": "20211105",
+  "revision": "20211215",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3719,6 +3873,23 @@
           "description": "Required. Immutable. Tagging name for this custom metric. If this is an event-scoped metric, then this is the event parameter name. May only contain alphanumeric and underscore charactes, starting with a letter. Max length of 40 characters for event-scoped metrics.",
           "type": "string"
         },
+        "restrictedMetricType": {
+          "description": "Optional. Types of restricted data that this metric may contain. Required for metrics with CURRENCY measurement unit. Must be empty for metrics with a non-CURRENCY measurement unit.",
+          "items": {
+            "enum": [
+              "RESTRICTED_METRIC_TYPE_UNSPECIFIED",
+              "COST_DATA",
+              "REVENUE_DATA"
+            ],
+            "enumDescriptions": [
+              "Type unknown or unspecified.",
+              "Metric reports cost data.",
+              "Metric reports revenue data."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "scope": {
           "description": "Required. Immutable. The scope of this custom metric.",
           "enum": [
@@ -3798,6 +3969,115 @@
         "sharingWithOthersEnabled": {
           "description": "Allows Google to share the data anonymously in aggregate form with others.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDataStream": {
+      "description": "A resource message representing a data stream.",
+      "id": "GoogleAnalyticsAdminV1alphaDataStream",
+      "properties": {
+        "androidAppStreamData": {
+          "$ref": "GoogleAnalyticsAdminV1alphaDataStreamAndroidAppStreamData",
+          "description": "Data specific to Android app streams. Must be populated if type is ANDROID_APP_DATA_STREAM."
+        },
+        "createTime": {
+          "description": "Output only. Time when this stream was originally created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Human-readable display name for the Data Stream. Required for web data streams. The max allowed display name length is 255 UTF-16 code units.",
+          "type": "string"
+        },
+        "iosAppStreamData": {
+          "$ref": "GoogleAnalyticsAdminV1alphaDataStreamIosAppStreamData",
+          "description": "Data specific to iOS app streams. Must be populated if type is IOS_APP_DATA_STREAM."
+        },
+        "name": {
+          "description": "Output only. Resource name of this Data Stream. Format: properties/{property_id}/dataStreams/{stream_id} Example: \"properties/1000/dataStreams/2000\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Immutable. The type of this DataStream resource.",
+          "enum": [
+            "DATA_STREAM_TYPE_UNSPECIFIED",
+            "WEB_DATA_STREAM",
+            "ANDROID_APP_DATA_STREAM",
+            "IOS_APP_DATA_STREAM"
+          ],
+          "enumDescriptions": [
+            "Type unknown or not specified.",
+            "Web data stream.",
+            "Android app data stream.",
+            "iOS app data stream."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time when stream payload fields were last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "webStreamData": {
+          "$ref": "GoogleAnalyticsAdminV1alphaDataStreamWebStreamData",
+          "description": "Data specific to web streams. Must be populated if type is WEB_DATA_STREAM."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDataStreamAndroidAppStreamData": {
+      "description": "Data specific to Android app streams.",
+      "id": "GoogleAnalyticsAdminV1alphaDataStreamAndroidAppStreamData",
+      "properties": {
+        "firebaseAppId": {
+          "description": "Output only. ID of the corresponding Android app in Firebase, if any. This ID can change if the Android app is deleted and recreated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Immutable. The package name for the app being measured. Example: \"com.example.myandroidapp\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDataStreamIosAppStreamData": {
+      "description": "Data specific to iOS app streams.",
+      "id": "GoogleAnalyticsAdminV1alphaDataStreamIosAppStreamData",
+      "properties": {
+        "bundleId": {
+          "description": "Required. Immutable. The Apple App Store Bundle ID for the app Example: \"com.example.myiosapp\"",
+          "type": "string"
+        },
+        "firebaseAppId": {
+          "description": "Output only. ID of the corresponding iOS app in Firebase, if any. This ID can change if the iOS app is deleted and recreated.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaDataStreamWebStreamData": {
+      "description": "Data specific to web streams.",
+      "id": "GoogleAnalyticsAdminV1alphaDataStreamWebStreamData",
+      "properties": {
+        "defaultUri": {
+          "description": "Immutable. Domain name of the web app being measured, or empty. Example: \"http://www.google.com\", \"https://www.google.com\"",
+          "type": "string"
+        },
+        "firebaseAppId": {
+          "description": "Output only. ID of the corresponding web app in Firebase, if any. This ID can change if the web app is deleted and recreated.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "measurementId": {
+          "description": "Output only. Analytics \"Measurement ID\", without the \"G-\" prefix. Example: \"G-1A2BCD345E\" would just be \"1A2BCD345E\"",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4204,6 +4484,24 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaListDataStreamsResponse": {
+      "description": "Response message for ListDataStreams RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaListDataStreamsResponse",
+      "properties": {
+        "dataStreams": {
+          "description": "List of DataStreams.",
+          "items": {
+            "$ref": "GoogleAnalyticsAdminV1alphaDataStream"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse": {
       "description": "Response message for ListDisplayVideo360AdvertiserLinkProposals RPC.",
       "id": "GoogleAnalyticsAdminV1alphaListDisplayVideo360AdvertiserLinkProposalsResponse",
@@ -4525,7 +4823,7 @@
       "id": "GoogleAnalyticsAdminV1alphaPropertySummary",
       "properties": {
         "displayName": {
-          "description": "Display name for the property referred to in this account summary.",
+          "description": "Display name for the property referred to in this property summary.",
           "type": "string"
         },
         "property": {
@@ -4631,7 +4929,9 @@
               "MEASUREMENT_PROTOCOL_SECRET",
               "CUSTOM_DIMENSION",
               "CUSTOM_METRIC",
-              "DATA_RETENTION_SETTINGS"
+              "DATA_RETENTION_SETTINGS",
+              "DISPLAY_VIDEO_360_ADVERTISER_LINK",
+              "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -4647,7 +4947,9 @@
               "MeasurementProtocolSecret resource",
               "CustomDimension resource",
               "CustomMetric resource",
-              "DataRetentionSettings resource"
+              "DataRetentionSettings resource",
+              "DisplayVideo360AdvertiserLink resource",
+              "DisplayVideo360AdvertiserLinkProposal resource"
             ],
             "type": "string"
           },
