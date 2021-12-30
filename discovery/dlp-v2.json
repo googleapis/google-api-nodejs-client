@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20211204",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3561,6 +3561,13 @@
         },
         "identifyingFields": {
           "description": "Table fields that may uniquely identify a row within the table. When `actions.saveFindings.outputConfig.table` is specified, the values of columns specified here are available in the output table under `location.content_locations.record_location.record_key.id_values`. Nested fields such as `person.birthdate.year` are allowed.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2FieldId"
+          },
+          "type": "array"
+        },
+        "includedFields": {
+          "description": "Limit scanning only to these fields.",
           "items": {
             "$ref": "GooglePrivacyDlpV2FieldId"
           },
