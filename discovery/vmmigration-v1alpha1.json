@@ -1858,7 +1858,7 @@
       }
     }
   },
-  "revision": "20211107",
+  "revision": "20211207",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -1989,6 +1989,13 @@
       "description": "ComputeEngineTargetDefaults is a collection of details for creating a VM in a target Compute Engine project.",
       "id": "ComputeEngineTargetDefaults",
       "properties": {
+        "additionalLicenses": {
+          "description": "Additional licenses to assign to the VM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "appliedLicense": {
           "$ref": "AppliedLicense",
           "description": "Output only. The OS license returned from the adaptation module report.",
@@ -2106,6 +2113,13 @@
       "description": "ComputeEngineTargetDetails is a collection of details for creating a VM in a target Compute Engine project.",
       "id": "ComputeEngineTargetDetails",
       "properties": {
+        "additionalLicenses": {
+          "description": "Additional licenses to assign to the VM.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "appliedLicense": {
           "$ref": "AppliedLicense",
           "description": "The OS license returned from the adaptation module report."
@@ -3427,7 +3441,8 @@
           "type": "array"
         },
         "project": {
-          "description": "The project in which to create the VM.",
+          "description": "Output only. The project in which to create the VM.",
+          "readOnly": true,
           "type": "string"
         },
         "secureBoot": {
