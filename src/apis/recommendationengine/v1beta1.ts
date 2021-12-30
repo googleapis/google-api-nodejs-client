@@ -2001,7 +2001,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await recommendationengine.projects.locations.catalogs.catalogItems.list({
-     *       // Optional. A filter to apply on the list results.
+     *       // Optional. Use of this field is not supported by version v1beta1.
      *       filter: 'placeholder-value',
      *       // Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.
      *       pageSize: 'placeholder-value',
@@ -2327,7 +2327,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$List
     extends StandardParameters {
     /**
-     * Optional. A filter to apply on the list results.
+     * Optional. Use of this field is not supported by version v1beta1.
      */
     filter?: string;
     /**
