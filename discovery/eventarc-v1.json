@@ -675,7 +675,7 @@
       }
     }
   },
-  "revision": "20211105",
+  "revision": "20211130",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -773,7 +773,7 @@
       "properties": {
         "cloudRun": {
           "$ref": "CloudRun",
-          "description": "Cloud Run fully-managed service that receives the events. The service should be running in the same project of the trigger."
+          "description": "Cloud Run fully-managed resource that receives the events. The resource should be in the same project as the trigger."
         },
         "gke": {
           "$ref": "GKE",
