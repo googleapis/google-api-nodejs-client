@@ -1156,7 +1156,7 @@ export namespace admin_reports_v1 {
      *     customerId: 'C.+|my_customer',
      *     // Represents the date the usage occurred. The timestamp is in the ISO 8601 format, yyyy-mm-dd. We recommend you use your account's time zone for this.
      *     date: '(d){4}-(d){2}-(d){2}',
-     *     // Represents the key of the object to filter the data with.
+     *     // Represents the key of the object to filter the data with. It is a string which can take the value `all` to get activity events for all users, or any other value for an app-specific entity. For details on how to obtain the `entityKey` for a particular `entityType`, see the Entities Usage parameters reference guides.
      *     entityKey: 'placeholder-value',
      *     // Represents the type of entity for the report.
      *     entityType: '(gplus_communities)',
@@ -1285,7 +1285,7 @@ export namespace admin_reports_v1 {
      */
     date?: string;
     /**
-     * Represents the key of the object to filter the data with.
+     * Represents the key of the object to filter the data with. It is a string which can take the value `all` to get activity events for all users, or any other value for an app-specific entity. For details on how to obtain the `entityKey` for a particular `entityType`, see the Entities Usage parameters reference guides.
      */
     entityKey?: string;
     /**

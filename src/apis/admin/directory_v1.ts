@@ -661,6 +661,10 @@ export namespace admin_directory_v1 {
      */
     orderNumber?: string | null;
     /**
+     * The unique ID of the organizational unit. orgUnitPath is the human readable version of orgUnitId. While orgUnitPath may change by renaming an organizational unit within the path, orgUnitId is unchangeable for one organizational unit. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#update_chrome_device) using the API, and this will be supported in the future.
+     */
+    orgUnitId?: string | null;
+    /**
      * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#update_chrome_device) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
      */
     orgUnitPath?: string | null;
@@ -2195,13 +2199,17 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$UserLanguage {
     /**
-     * Other language. User can provide own language name if there is no corresponding Google III language code. If this is set LanguageCode can't be set
+     * Other language. User can provide their own language name if there is no corresponding ISO 639 language code. If this is set, `languageCode` can't be set.
      */
     customLanguage?: string | null;
     /**
-     * Language Code. Should be used for storing Google III LanguageCode string representation for language. Illegal values cause SchemaException.
+     * ISO 639 string representation of a language. See [Language Codes](/admin-sdk/directory/v1/languages) for the list of supported codes. Valid language codes outside the supported set will be accepted by the API but may lead to unexpected behavior. Illegal values cause `SchemaException`. If this is set, `customLanguage` can't be set.
      */
     languageCode?: string | null;
+    /**
+     * Optional. If present, controls whether the specified `languageCode` is the user's preferred language. If `customLanguage` is set, this can't be set. Allowed values are `preferred` and `not_preferred`.
+     */
+    preference?: string | null;
   }
   /**
    * JSON template for a location entry.
@@ -3313,6 +3321,7 @@ export namespace admin_directory_v1 {
      *   //   "model": "my_model",
      *   //   "notes": "my_notes",
      *   //   "orderNumber": "my_orderNumber",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "orgUnitPath": "my_orgUnitPath",
      *   //   "osVersion": "my_osVersion",
      *   //   "platformVersion": "my_platformVersion",
@@ -3457,7 +3466,7 @@ export namespace admin_directory_v1 {
      *     maxResults: 'placeholder-value',
      *     // Device property to use for sorting results.
      *     orderBy: 'placeholder-value',
-     *     // The full path of the organizational unit or its unique ID.
+     *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: 'placeholder-value',
      *     // The `pageToken` query parameter is used to request the next page of query results. The follow-on request's `pageToken` query parameter is the `nextPageToken` from your previous response.
      *     pageToken: 'placeholder-value',
@@ -3766,6 +3775,7 @@ export namespace admin_directory_v1 {
      *       //   "model": "my_model",
      *       //   "notes": "my_notes",
      *       //   "orderNumber": "my_orderNumber",
+     *       //   "orgUnitId": "my_orgUnitId",
      *       //   "orgUnitPath": "my_orgUnitPath",
      *       //   "osVersion": "my_osVersion",
      *       //   "platformVersion": "my_platformVersion",
@@ -3811,6 +3821,7 @@ export namespace admin_directory_v1 {
      *   //   "model": "my_model",
      *   //   "notes": "my_notes",
      *   //   "orderNumber": "my_orderNumber",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "orgUnitPath": "my_orgUnitPath",
      *   //   "osVersion": "my_osVersion",
      *   //   "platformVersion": "my_platformVersion",
@@ -3981,6 +3992,7 @@ export namespace admin_directory_v1 {
      *       //   "model": "my_model",
      *       //   "notes": "my_notes",
      *       //   "orderNumber": "my_orderNumber",
+     *       //   "orgUnitId": "my_orgUnitId",
      *       //   "orgUnitPath": "my_orgUnitPath",
      *       //   "osVersion": "my_osVersion",
      *       //   "platformVersion": "my_platformVersion",
@@ -4026,6 +4038,7 @@ export namespace admin_directory_v1 {
      *   //   "model": "my_model",
      *   //   "notes": "my_notes",
      *   //   "orderNumber": "my_orderNumber",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "orgUnitPath": "my_orgUnitPath",
      *   //   "osVersion": "my_osVersion",
      *   //   "platformVersion": "my_platformVersion",
@@ -4183,7 +4196,7 @@ export namespace admin_directory_v1 {
      */
     orderBy?: string;
     /**
-     * The full path of the organizational unit or its unique ID.
+     * The full path of the organizational unit (minus the leading `/`) or its unique ID.
      */
     orgUnitPath?: string;
     /**
@@ -10527,7 +10540,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieves a paginated list of all mobile devices for an account.
+     * Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -10784,7 +10797,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.orgunits.delete({
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // The full path of the organizational unit or its unique ID.
+     *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: '.*',
      *   });
      *   console.log(res.data);
@@ -10910,7 +10923,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.orgunits.get({
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // The full path of the organizational unit or its unique ID.
+     *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: '.*',
      *   });
      *   console.log(res.data);
@@ -11335,7 +11348,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.orgunits.patch({
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // The full path of the organizational unit or its unique ID.
+     *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: '.*',
      *
      *     // Request body metadata
@@ -11489,7 +11502,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.orgunits.update({
      *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // The full path of the organizational unit or its unique ID.
+     *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: '.*',
      *
      *     // Request body metadata
@@ -11621,7 +11634,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * The full path of the organizational unit or its unique ID.
+     * The full path of the organizational unit (minus the leading `/`) or its unique ID.
      */
     orgUnitPath?: string;
   }
@@ -11631,7 +11644,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * The full path of the organizational unit or its unique ID.
+     * The full path of the organizational unit (minus the leading `/`) or its unique ID.
      */
     orgUnitPath?: string;
   }
@@ -11666,7 +11679,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * The full path of the organizational unit or its unique ID.
+     * The full path of the organizational unit (minus the leading `/`) or its unique ID.
      */
     orgUnitPath?: string;
 
@@ -11681,7 +11694,7 @@ export namespace admin_directory_v1 {
      */
     customerId?: string;
     /**
-     * The full path of the organizational unit or its unique ID.
+     * The full path of the organizational unit (minus the leading `/`) or its unique ID.
      */
     orgUnitPath?: string;
 
