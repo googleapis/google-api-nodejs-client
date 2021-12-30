@@ -118,7 +118,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. Account to get information about. Format: accounts/{account_id}",
+              "description": "Required. Account to get information about. Format: accounts/{account}",
               "location": "path",
               "pattern": "^accounts/[^/]+$",
               "required": true,
@@ -280,7 +280,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. AdUnit to get information about. Format: accounts/{account_id}/adclient/{adclient_id}/adunit/{adunit_id}",
+                      "description": "Required. AdUnit to get information about. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
                       "location": "path",
                       "pattern": "^accounts/[^/]+/adclients/[^/]+/adunits/[^/]+$",
                       "required": true,
@@ -1567,7 +1567,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20211209",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1614,7 +1614,7 @@
       "id": "AdClient",
       "properties": {
         "name": {
-          "description": "Resource name of the ad client. Format: accounts/{account}/adclient/{adclient}",
+          "description": "Resource name of the ad client. Format: accounts/{account}/adclients/{adclient}",
           "type": "string"
         },
         "productCode": {
@@ -1665,7 +1665,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the ad unit. Format: accounts/{account}/adclient/{adclient}/adunits/{adunit}",
+          "description": "Resource name of the ad unit. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
           "type": "string"
         },
         "reportingDimensionId": {
@@ -2258,7 +2258,7 @@
       "id": "UrlChannel",
       "properties": {
         "name": {
-          "description": "Resource name of the URL channel. Format: accounts/{account}/adclient/{adclient}/urlchannels/{urlchannel}",
+          "description": "Resource name of the URL channel. Format: accounts/{account}/adclients/{adclient}/urlchannels/{urlchannel}",
           "type": "string"
         },
         "reportingDimensionId": {
