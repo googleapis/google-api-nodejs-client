@@ -184,21 +184,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "adsense:v1.4",
-      "name": "adsense",
-      "version": "v1.4",
-      "title": "AdSense Management API",
-      "description": "The AdSense Management API allows publishers to access their inventory and run earnings and performance reports.",
-      "discoveryRestUrl": "https://adsense.googleapis.com/$discovery/rest?version=v1.4",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "http://code.google.com/apis/adsense/management/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "adsense:v2",
       "name": "adsense",
       "version": "v2",
@@ -209,7 +194,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://code.google.com/apis/adsense/management/",
+      "documentationLink": "https://developers.google.com/adsense/management/",
       "preferred": true
     },
     {
@@ -1525,7 +1510,7 @@
       "name": "connectors",
       "version": "v1",
       "title": "Connectors API",
-      "description": "",
+      "description": "Enables users to create and manage connections to Google Cloud services and third-party business applications using the Connectors interface.",
       "discoveryRestUrl": "https://connectors.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3053,6 +3038,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "ids:v1",
+      "name": "ids",
+      "version": "v1",
+      "title": "Cloud IDS API",
+      "description": "Cloud IDS (Cloud Intrusion Detection System) detects malware, spyware, command-and-control attacks, and other network-based threats. Its security efficacy is industry leading, built with Palo Alto Networks technologies. When you use this product, your organization name and consumption levels will be shared with Palo Alto Networks.",
+      "discoveryRestUrl": "https://ids.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "indexing:v3",
       "name": "indexing",
       "version": "v3",
@@ -3494,6 +3494,21 @@
       "title": "My Business Place Actions API",
       "description": "The My Business Place Actions API provides an interface for managing place action links of a location on Google.",
       "discoveryRestUrl": "https://mybusinessplaceactions.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/my-business/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "mybusinessqanda:v1",
+      "name": "mybusinessqanda",
+      "version": "v1",
+      "title": "My Business Q&A API",
+      "description": "The My Business Q&A API allows questions and answers to be posted for specific listings.",
+      "discoveryRestUrl": "https://mybusinessqanda.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -5040,6 +5055,21 @@
       "title": "Transcoder API",
       "description": "This API converts video files into formats suitable for consumer distribution.",
       "discoveryRestUrl": "https://transcoder.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/transcoder/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "transcoder:v1",
+      "name": "transcoder",
+      "version": "v1",
+      "title": "Transcoder API",
+      "description": "This API converts video files into formats suitable for consumer distribution.",
+      "discoveryRestUrl": "https://transcoder.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
