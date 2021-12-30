@@ -487,6 +487,10 @@ export namespace displayvideo_v1 {
      */
     audienceGroupDetails?: Schema$AudienceGroupAssignedTargetingOptionDetails;
     /**
+     * Audio content type details. This field will be populated when the targeting_type is 'TARGETING_TYPE_AUDIO_CONTENT_TYPE'.
+     */
+    audioContentTypeDetails?: Schema$AudioContentTypeAssignedTargetingOptionDetails;
+    /**
      * Authorized seller status details. This field will be populated when the targeting_type is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. You can only target one authorized seller status option per resource. If a resource doesn't have an authorized seller status option, all authorized sellers indicated as DIRECT or RESELLER in the ads.txt file are targeted by default.
      */
     authorizedSellerStatusDetails?: Schema$AuthorizedSellerStatusAssignedTargetingOptionDetails;
@@ -696,6 +700,28 @@ export namespace displayvideo_v1 {
      * The Google audience ids of the included Google audience group. Contains Google audience ids only.
      */
     includedGoogleAudienceGroup?: Schema$GoogleAudienceGroup;
+  }
+  /**
+   * Details for audio content type assigned targeting option. This will be populated in the audio_content_type_details field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`. Explicitly targeting all options is not supported. Remove all audio content type targeting options to achieve this effect.
+   */
+  export interface Schema$AudioContentTypeAssignedTargetingOptionDetails {
+    /**
+     * Output only. The audio content type.
+     */
+    audioContentType?: string | null;
+    /**
+     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable audio content type. This will be populated in the audio_content_type_details field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`.
+   */
+  export interface Schema$AudioContentTypeTargetingOptionDetails {
+    /**
+     * Output only. The audio content type.
+     */
+    audioContentType?: string | null;
   }
   /**
    * The length an audio or a video has been played.
@@ -4470,6 +4496,10 @@ export namespace displayvideo_v1 {
      */
     appCategoryDetails?: Schema$AppCategoryTargetingOptionDetails;
     /**
+     * Audio content type details.
+     */
+    audioContentTypeDetails?: Schema$AudioContentTypeTargetingOptionDetails;
+    /**
      * Authorized seller status resource details.
      */
     authorizedSellerStatusDetails?: Schema$AuthorizedSellerStatusTargetingOptionDetails;
@@ -7394,6 +7424,7 @@ export namespace displayvideo_v1 {
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
@@ -11336,6 +11367,7 @@ export namespace displayvideo_v1 {
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
@@ -12036,7 +12068,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests .
+     * Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -13108,7 +13140,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Updates an existing line item. Returns the updated line item if successful.
+     * Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -13445,7 +13477,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful.
+     * Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -13489,6 +13521,7 @@ export namespace displayvideo_v1 {
      *           //   "appDetails": {},
      *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *           //   "audienceGroupDetails": {},
+     *           //   "audioContentTypeDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
      *           //   "browserDetails": {},
      *           //   "businessChainDetails": {},
@@ -13542,6 +13575,7 @@ export namespace displayvideo_v1 {
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
@@ -13685,7 +13719,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Deletes an assigned targeting option from a line item.
+     * Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption
      * @example
      * ```js
      * // Before running the sample:
@@ -13879,6 +13913,7 @@ export namespace displayvideo_v1 {
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
@@ -18253,6 +18288,7 @@ export namespace displayvideo_v1 {
      *           //   "appDetails": {},
      *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *           //   "audienceGroupDetails": {},
+     *           //   "audioContentTypeDetails": {},
      *           //   "authorizedSellerStatusDetails": {},
      *           //   "browserDetails": {},
      *           //   "businessChainDetails": {},
@@ -18306,6 +18342,7 @@ export namespace displayvideo_v1 {
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
@@ -18635,6 +18672,7 @@ export namespace displayvideo_v1 {
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
@@ -26247,6 +26285,7 @@ export namespace displayvideo_v1 {
      *         //   "appDetails": {},
      *         //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *         //   "audienceGroupDetails": {},
+     *         //   "audioContentTypeDetails": {},
      *         //   "authorizedSellerStatusDetails": {},
      *         //   "browserDetails": {},
      *         //   "businessChainDetails": {},
@@ -26299,6 +26338,7 @@ export namespace displayvideo_v1 {
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
@@ -26622,6 +26662,7 @@ export namespace displayvideo_v1 {
      *   //   "appDetails": {},
      *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
      *   //   "audienceGroupDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
@@ -27357,6 +27398,7 @@ export namespace displayvideo_v1 {
      *   // {
      *   //   "ageRangeDetails": {},
      *   //   "appCategoryDetails": {},
+     *   //   "audioContentTypeDetails": {},
      *   //   "authorizedSellerStatusDetails": {},
      *   //   "browserDetails": {},
      *   //   "businessChainDetails": {},
