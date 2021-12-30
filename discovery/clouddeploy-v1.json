@@ -1201,7 +1201,7 @@
       }
     }
   },
-  "revision": "20211115",
+  "revision": "20211212",
   "rootUrl": "https://clouddeploy.googleapis.com/",
   "schemas": {
     "ApproveRolloutRequest": {
@@ -2003,6 +2003,25 @@
           "readOnly": true,
           "type": "string"
         },
+        "deployFailureCause": {
+          "description": "Output only. The reason this deploy failed. This will always be unspecified while the deploy in progress.",
+          "enum": [
+            "FAILURE_CAUSE_UNSPECIFIED",
+            "CLOUD_BUILD_UNAVAILABLE",
+            "EXECUTION_FAILED",
+            "DEADLINE_EXCEEDED",
+            "RELEASE_FAILED"
+          ],
+          "enumDescriptions": [
+            "No reason for failure is specified.",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "The deploy operation did not complete successfully; check Cloud Build logs.",
+            "Deployment did not complete within the alloted time.",
+            "Release is in a failed state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "deployStartTime": {
           "description": "Output only. Time at which the `Rollout` started deploying.",
           "format": "google-datetime",
@@ -2267,6 +2286,21 @@
       "description": "Details of rendering for a single target.",
       "id": "TargetRender",
       "properties": {
+        "failureCause": {
+          "description": "Output only. Reason this render failed. This will always be unspecified while the render in progress.",
+          "enum": [
+            "FAILURE_CAUSE_UNSPECIFIED",
+            "CLOUD_BUILD_UNAVAILABLE",
+            "EXECUTION_FAILED"
+          ],
+          "enumDescriptions": [
+            "No reason for failure is specified.",
+            "Cloud Build is not available, either because it is not enabled or because Cloud Deploy has insufficient permissions. See [required permission](/deploy/docs/cloud-deploy-service-account#required_permissions).",
+            "The render operation did not complete successfully; check Cloud Build logs."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "renderingBuild": {
           "description": "Output only. The resource name of the Cloud Build `Build` object that is used to render the manifest for this target. Format is `projects/{project}/locations/{location}/builds/{build}`.",
           "readOnly": true,
