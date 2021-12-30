@@ -757,7 +757,8 @@
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID"
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -801,7 +802,8 @@
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
                             "Target ads to a specific native content position.",
-                            "Target ads in an Open Measurement enabled inventory."
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -909,7 +911,8 @@
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID"
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -953,7 +956,8 @@
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
                             "Target ads to a specific native content position.",
-                            "Target ads in an Open Measurement enabled inventory."
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1917,7 +1921,8 @@
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID"
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1961,7 +1966,8 @@
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
                             "Target ads to a specific native content position.",
-                            "Target ads in an Open Measurement enabled inventory."
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2069,7 +2075,8 @@
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID"
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2113,7 +2120,8 @@
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
                             "Target ads to a specific native content position.",
-                            "Target ads in an Open Measurement enabled inventory."
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2232,7 +2240,7 @@
         "lineItems": {
           "methods": {
             "bulkEditLineItemAssignedTargetingOptions": {
-              "description": "Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests .",
+              "description": "Bulk edits targeting options under a single line item. The operation will delete the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.delete_requests and then create the assigned targeting options provided in BulkEditLineItemAssignedTargetingOptionsRequest.create_requests. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
               "flatPath": "v1/advertisers/{advertisersId}/lineItems/{lineItemsId}:bulkEditLineItemAssignedTargetingOptions",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.lineItems.bulkEditLineItemAssignedTargetingOptions",
@@ -2501,7 +2509,7 @@
               ]
             },
             "patch": {
-              "description": "Updates an existing line item. Returns the updated line item if successful.",
+              "description": "Updates an existing line item. Returns the updated line item if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
               "flatPath": "v1/advertisers/{advertisersId}/lineItems/{lineItemsId}",
               "httpMethod": "PATCH",
               "id": "displayvideo.advertisers.lineItems.patch",
@@ -2551,7 +2559,7 @@
                 "assignedTargetingOptions": {
                   "methods": {
                     "create": {
-                      "description": "Assigns a targeting option to a line item. Returns the assigned targeting option if successful.",
+                      "description": "Assigns a targeting option to a line item. Returns the assigned targeting option if successful. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
                       "flatPath": "v1/advertisers/{advertisersId}/lineItems/{lineItemsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions",
                       "httpMethod": "POST",
                       "id": "displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create",
@@ -2621,7 +2629,8 @@
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID"
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2665,7 +2674,8 @@
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
                             "Target ads to a specific native content position.",
-                            "Target ads in an Open Measurement enabled inventory."
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2685,7 +2695,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes an assigned targeting option from a line item.",
+                      "description": "Deletes an assigned targeting option from a line item. Requests to this endpoint cannot be made concurrently with the following requests updating the same line item: * BulkEditLineItemAssignedTargetingOptions * UpdateLineItem * CreateLineItemAssignedTargetingOption * DeleteLineItemAssignedTargetingOption",
                       "flatPath": "v1/advertisers/{advertisersId}/lineItems/{lineItemsId}/targetingTypes/{targetingTypesId}/assignedTargetingOptions/{assignedTargetingOptionsId}",
                       "httpMethod": "DELETE",
                       "id": "displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete",
@@ -2763,7 +2773,8 @@
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID"
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2807,7 +2818,8 @@
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
                             "Target ads to a specific native content position.",
-                            "Target ads in an Open Measurement enabled inventory."
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2902,7 +2914,8 @@
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID"
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2946,7 +2959,8 @@
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
                             "Target ads to a specific native content position.",
-                            "Target ads in an Open Measurement enabled inventory."
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3054,7 +3068,8 @@
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                            "TARGETING_TYPE_OMID"
+                            "TARGETING_TYPE_OMID",
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3098,7 +3113,8 @@
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
                             "Target ads to a specific native content position.",
-                            "Target ads in an Open Measurement enabled inventory."
+                            "Target ads in an Open Measurement enabled inventory.",
+                            "Target ads to a specific audio content type."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -4152,7 +4168,8 @@
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                        "TARGETING_TYPE_OMID"
+                        "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4196,7 +4213,8 @@
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
                         "Target ads to a specific native content position.",
-                        "Target ads in an Open Measurement enabled inventory."
+                        "Target ads in an Open Measurement enabled inventory.",
+                        "Target ads to a specific audio content type."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4285,7 +4303,8 @@
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                        "TARGETING_TYPE_OMID"
+                        "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4329,7 +4348,8 @@
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
                         "Target ads to a specific native content position.",
-                        "Target ads in an Open Measurement enabled inventory."
+                        "Target ads in an Open Measurement enabled inventory.",
+                        "Target ads to a specific audio content type."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4415,7 +4435,8 @@
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                        "TARGETING_TYPE_OMID"
+                        "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4459,7 +4480,8 @@
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
                         "Target ads to a specific native content position.",
-                        "Target ads in an Open Measurement enabled inventory."
+                        "Target ads in an Open Measurement enabled inventory.",
+                        "Target ads to a specific audio content type."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4558,7 +4580,8 @@
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                        "TARGETING_TYPE_OMID"
+                        "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4602,7 +4625,8 @@
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
                         "Target ads to a specific native content position.",
-                        "Target ads in an Open Measurement enabled inventory."
+                        "Target ads in an Open Measurement enabled inventory.",
+                        "Target ads to a specific audio content type."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6504,7 +6528,8 @@
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                        "TARGETING_TYPE_OMID"
+                        "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6548,7 +6573,8 @@
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
                         "Target ads to a specific native content position.",
-                        "Target ads in an Open Measurement enabled inventory."
+                        "Target ads in an Open Measurement enabled inventory.",
+                        "Target ads to a specific audio content type."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6637,7 +6663,8 @@
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                        "TARGETING_TYPE_OMID"
+                        "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6681,7 +6708,8 @@
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
                         "Target ads to a specific native content position.",
-                        "Target ads in an Open Measurement enabled inventory."
+                        "Target ads in an Open Measurement enabled inventory.",
+                        "Target ads to a specific audio content type."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6767,7 +6795,8 @@
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                        "TARGETING_TYPE_OMID"
+                        "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6811,7 +6840,8 @@
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
                         "Target ads to a specific native content position.",
-                        "Target ads in an Open Measurement enabled inventory."
+                        "Target ads in an Open Measurement enabled inventory.",
+                        "Target ads to a specific audio content type."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6910,7 +6940,8 @@
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                        "TARGETING_TYPE_OMID"
+                        "TARGETING_TYPE_OMID",
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6954,7 +6985,8 @@
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
                         "Target ads to a specific native content position.",
-                        "Target ads in an Open Measurement enabled inventory."
+                        "Target ads in an Open Measurement enabled inventory.",
+                        "Target ads to a specific audio content type."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -7101,7 +7133,8 @@
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                    "TARGETING_TYPE_OMID"
+                    "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -7145,7 +7178,8 @@
                     "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                     "Target ads around locations of a business chain within a specific geo region.",
                     "Target ads to a specific native content position.",
-                    "Target ads in an Open Measurement enabled inventory."
+                    "Target ads in an Open Measurement enabled inventory.",
+                    "Target ads to a specific audio content type."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -7241,7 +7275,8 @@
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                    "TARGETING_TYPE_OMID"
+                    "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -7285,7 +7320,8 @@
                     "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                     "Target ads around locations of a business chain within a specific geo region.",
                     "Target ads to a specific native content position.",
-                    "Target ads in an Open Measurement enabled inventory."
+                    "Target ads in an Open Measurement enabled inventory.",
+                    "Target ads to a specific audio content type."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -7354,7 +7390,8 @@
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-                    "TARGETING_TYPE_OMID"
+                    "TARGETING_TYPE_OMID",
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -7398,7 +7435,8 @@
                     "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                     "Target ads around locations of a business chain within a specific geo region.",
                     "Target ads to a specific native content position.",
-                    "Target ads in an Open Measurement enabled inventory."
+                    "Target ads in an Open Measurement enabled inventory.",
+                    "Target ads to a specific audio content type."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -7597,7 +7635,7 @@
       }
     }
   },
-  "revision": "20211021",
+  "revision": "20211210",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8222,6 +8260,10 @@
           "$ref": "AudienceGroupAssignedTargetingOptionDetails",
           "description": "Audience targeting details. This field will be populated when the targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. You can only target one audience group option per resource."
         },
+        "audioContentTypeDetails": {
+          "$ref": "AudioContentTypeAssignedTargetingOptionDetails",
+          "description": "Audio content type details. This field will be populated when the targeting_type is 'TARGETING_TYPE_AUDIO_CONTENT_TYPE'."
+        },
         "authorizedSellerStatusDetails": {
           "$ref": "AuthorizedSellerStatusAssignedTargetingOptionDetails",
           "description": "Authorized seller status details. This field will be populated when the targeting_type is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. You can only target one authorized seller status option per resource. If a resource doesn't have an authorized seller status option, all authorized sellers indicated as DIRECT or RESELLER in the ads.txt file are targeted by default."
@@ -8416,7 +8458,8 @@
             "TARGETING_TYPE_POI",
             "TARGETING_TYPE_BUSINESS_CHAIN",
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-            "TARGETING_TYPE_OMID"
+            "TARGETING_TYPE_OMID",
+            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -8460,7 +8503,8 @@
             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
             "Target ads around locations of a business chain within a specific geo region.",
             "Target ads to a specific native content position.",
-            "Target ads in an Open Measurement enabled inventory."
+            "Target ads in an Open Measurement enabled inventory.",
+            "Target ads to a specific audio content type."
           ],
           "readOnly": true,
           "type": "string"
@@ -8572,6 +8616,62 @@
         "includedGoogleAudienceGroup": {
           "$ref": "GoogleAudienceGroup",
           "description": "The Google audience ids of the included Google audience group. Contains Google audience ids only."
+        }
+      },
+      "type": "object"
+    },
+    "AudioContentTypeAssignedTargetingOptionDetails": {
+      "description": "Details for audio content type assigned targeting option. This will be populated in the audio_content_type_details field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`. Explicitly targeting all options is not supported. Remove all audio content type targeting options to achieve this effect.",
+      "id": "AudioContentTypeAssignedTargetingOptionDetails",
+      "properties": {
+        "audioContentType": {
+          "description": "Output only. The audio content type.",
+          "enum": [
+            "AUDIO_CONTENT_TYPE_UNSPECIFIED",
+            "AUDIO_CONTENT_TYPE_UNKNOWN",
+            "AUDIO_CONTENT_TYPE_MUSIC",
+            "AUDIO_CONTENT_TYPE_BROADCAST",
+            "AUDIO_CONTENT_TYPE_PODCAST"
+          ],
+          "enumDescriptions": [
+            "Audio content type is not specified in this version. This enum is a place holder for a default value and does not represent a real content stream type.",
+            "The audio content type is unknown.",
+            "The audio content type is music.",
+            "The audio content type is broadcast.",
+            "The audio content type is podcast."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetingOptionId": {
+          "description": "Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AudioContentTypeTargetingOptionDetails": {
+      "description": "Represents a targetable audio content type. This will be populated in the audio_content_type_details field when targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`.",
+      "id": "AudioContentTypeTargetingOptionDetails",
+      "properties": {
+        "audioContentType": {
+          "description": "Output only. The audio content type.",
+          "enum": [
+            "AUDIO_CONTENT_TYPE_UNSPECIFIED",
+            "AUDIO_CONTENT_TYPE_UNKNOWN",
+            "AUDIO_CONTENT_TYPE_MUSIC",
+            "AUDIO_CONTENT_TYPE_BROADCAST",
+            "AUDIO_CONTENT_TYPE_PODCAST"
+          ],
+          "enumDescriptions": [
+            "Audio content type is not specified in this version. This enum is a place holder for a default value and does not represent a real content stream type.",
+            "The audio content type is unknown.",
+            "The audio content type is music.",
+            "The audio content type is broadcast.",
+            "The audio content type is podcast."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -9962,7 +10062,8 @@
             "TARGETING_TYPE_POI",
             "TARGETING_TYPE_BUSINESS_CHAIN",
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-            "TARGETING_TYPE_OMID"
+            "TARGETING_TYPE_OMID",
+            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -10006,7 +10107,8 @@
             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
             "Target ads around locations of a business chain within a specific geo region.",
             "Target ads to a specific native content position.",
-            "Target ads in an Open Measurement enabled inventory."
+            "Target ads in an Open Measurement enabled inventory.",
+            "Target ads to a specific audio content type."
           ],
           "type": "string"
         }
@@ -10851,7 +10953,8 @@
             "TARGETING_TYPE_POI",
             "TARGETING_TYPE_BUSINESS_CHAIN",
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-            "TARGETING_TYPE_OMID"
+            "TARGETING_TYPE_OMID",
+            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -10895,7 +10998,8 @@
             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
             "Target ads around locations of a business chain within a specific geo region.",
             "Target ads to a specific native content position.",
-            "Target ads in an Open Measurement enabled inventory."
+            "Target ads in an Open Measurement enabled inventory.",
+            "Target ads to a specific audio content type."
           ],
           "type": "string"
         }
@@ -16447,6 +16551,10 @@
           "$ref": "AppCategoryTargetingOptionDetails",
           "description": "App category details."
         },
+        "audioContentTypeDetails": {
+          "$ref": "AudioContentTypeTargetingOptionDetails",
+          "description": "Audio content type details."
+        },
         "authorizedSellerStatusDetails": {
           "$ref": "AuthorizedSellerStatusTargetingOptionDetails",
           "description": "Authorized seller status resource details."
@@ -16597,7 +16705,8 @@
             "TARGETING_TYPE_POI",
             "TARGETING_TYPE_BUSINESS_CHAIN",
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
-            "TARGETING_TYPE_OMID"
+            "TARGETING_TYPE_OMID",
+            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -16641,7 +16750,8 @@
             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
             "Target ads around locations of a business chain within a specific geo region.",
             "Target ads to a specific native content position.",
-            "Target ads in an Open Measurement enabled inventory."
+            "Target ads in an Open Measurement enabled inventory.",
+            "Target ads to a specific audio content type."
           ],
           "readOnly": true,
           "type": "string"
