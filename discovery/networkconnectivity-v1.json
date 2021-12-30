@@ -938,7 +938,7 @@
       }
     }
   },
-  "revision": "20211113",
+  "revision": "20211210",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1463,6 +1463,11 @@
       "description": "RoutingVPC contains information about the VPC network that is associated with a hub's spokes.",
       "id": "RoutingVPC",
       "properties": {
+        "requiredForNewSiteToSiteDataTransferSpokes": {
+          "description": "Output only. If true, indicates that this VPC network is currently associated with spokes that use the data transfer feature (spokes where the site_to_site_data_transfer field is set to true). If you create new spokes that use data transfer, they must be associated with this VPC network.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "uri": {
           "description": "The URI of the VPC network.",
           "type": "string"
