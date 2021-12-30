@@ -765,6 +765,62 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
+            },
+            "pause": {
+              "description": "Change state of patch deployment to \"PAUSED\". Patch deployment in paused state doesn't generate patch jobs.",
+              "flatPath": "v1/projects/{projectsId}/patchDeployments/{patchDeploymentsId}:pause",
+              "httpMethod": "POST",
+              "id": "osconfig.projects.patchDeployments.pause",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the patch deployment in the form `projects/*/patchDeployments/*`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/patchDeployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:pause",
+              "request": {
+                "$ref": "PausePatchDeploymentRequest"
+              },
+              "response": {
+                "$ref": "PatchDeployment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "resume": {
+              "description": "Change state of patch deployment back to \"ACTIVE\". Patch deployment in active state continues to generate patch jobs.",
+              "flatPath": "v1/projects/{projectsId}/patchDeployments/{patchDeploymentsId}:resume",
+              "httpMethod": "POST",
+              "id": "osconfig.projects.patchDeployments.resume",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the patch deployment in the form `projects/*/patchDeployments/*`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/patchDeployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:resume",
+              "request": {
+                "$ref": "ResumePatchDeploymentRequest"
+              },
+              "response": {
+                "$ref": "PatchDeployment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         },
@@ -944,7 +1000,7 @@
       }
     }
   },
-  "revision": "20211106",
+  "revision": "20211203",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -2885,6 +2941,21 @@
           "$ref": "PatchRollout",
           "description": "Optional. Rollout strategy of the patch job."
         },
+        "state": {
+          "description": "Output only. Current state of the patch deployment.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PAUSED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "Active value means that patch deployment generates Patch Jobs.",
+            "Paused value means that patch deployment does not generate Patch jobs. Requires user action to move in and out from this state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. Time the patch deployment was last updated. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
           "format": "google-datetime",
@@ -3210,6 +3281,12 @@
       },
       "type": "object"
     },
+    "PausePatchDeploymentRequest": {
+      "description": "A request message for pausing a patch deployment.",
+      "id": "PausePatchDeploymentRequest",
+      "properties": {},
+      "type": "object"
+    },
     "RecurringSchedule": {
       "description": "Sets the time for recurring patch deployments.",
       "id": "RecurringSchedule",
@@ -3269,6 +3346,12 @@
           "description": "Required. Schedule with weekly executions."
         }
       },
+      "type": "object"
+    },
+    "ResumePatchDeploymentRequest": {
+      "description": "A request message for resuming a patch deployment.",
+      "id": "ResumePatchDeploymentRequest",
+      "properties": {},
       "type": "object"
     },
     "Status": {
