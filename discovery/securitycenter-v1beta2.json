@@ -182,6 +182,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getVirtualMachineThreatDetectionSettings": {
+          "description": "Get the VirtualMachineThreatDetectionSettings resource.",
+          "flatPath": "v1beta2/folders/{foldersId}/virtualMachineThreatDetectionSettings",
+          "httpMethod": "GET",
+          "id": "securitycenter.folders.getVirtualMachineThreatDetectionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "location": "path",
+              "pattern": "^folders/[^/]+/virtualMachineThreatDetectionSettings$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "response": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getWebSecurityScannerSettings": {
           "description": "Get the WebSecurityScannerSettings resource.",
           "flatPath": "v1beta2/folders/{foldersId}/webSecurityScannerSettings",
@@ -309,6 +334,40 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "updateVirtualMachineThreatDetectionSettings": {
+          "description": "Update the VirtualMachineThreatDetectionSettings resource.",
+          "flatPath": "v1beta2/folders/{foldersId}/virtualMachineThreatDetectionSettings",
+          "httpMethod": "PATCH",
+          "id": "securitycenter.folders.updateVirtualMachineThreatDetectionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "location": "path",
+              "pattern": "^folders/[^/]+/virtualMachineThreatDetectionSettings$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The list of fields to be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "request": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
+          },
+          "response": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "updateWebSecurityScannerSettings": {
           "description": "Update the WebSecurityScannerSettings resource.",
           "flatPath": "v1beta2/folders/{foldersId}/webSecurityScannerSettings",
@@ -425,6 +484,35 @@
               "path": "v1beta2/{+name}:calculate",
               "response": {
                 "$ref": "SecurityHealthAnalyticsSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "virtualMachineThreatDetectionSettings": {
+          "methods": {
+            "calculate": {
+              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "flatPath": "v1beta2/folders/{foldersId}/virtualMachineThreatDetectionSettings:calculate",
+              "httpMethod": "GET",
+              "id": "securitycenter.folders.virtualMachineThreatDetectionSettings.calculate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/virtualMachineThreatDetectionSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta2/{+name}:calculate",
+              "response": {
+                "$ref": "VirtualMachineThreatDetectionSettings"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -590,6 +678,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getVirtualMachineThreatDetectionSettings": {
+          "description": "Get the VirtualMachineThreatDetectionSettings resource.",
+          "flatPath": "v1beta2/organizations/{organizationsId}/virtualMachineThreatDetectionSettings",
+          "httpMethod": "GET",
+          "id": "securitycenter.organizations.getVirtualMachineThreatDetectionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/virtualMachineThreatDetectionSettings$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "response": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getWebSecurityScannerSettings": {
           "description": "Get the WebSecurityScannerSettings resource.",
           "flatPath": "v1beta2/organizations/{organizationsId}/webSecurityScannerSettings",
@@ -712,6 +825,40 @@
           },
           "response": {
             "$ref": "SecurityHealthAnalyticsSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "updateVirtualMachineThreatDetectionSettings": {
+          "description": "Update the VirtualMachineThreatDetectionSettings resource.",
+          "flatPath": "v1beta2/organizations/{organizationsId}/virtualMachineThreatDetectionSettings",
+          "httpMethod": "PATCH",
+          "id": "securitycenter.organizations.updateVirtualMachineThreatDetectionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/virtualMachineThreatDetectionSettings$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The list of fields to be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "request": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
+          },
+          "response": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -840,6 +987,35 @@
             }
           }
         },
+        "virtualMachineThreatDetectionSettings": {
+          "methods": {
+            "calculate": {
+              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "flatPath": "v1beta2/organizations/{organizationsId}/virtualMachineThreatDetectionSettings:calculate",
+              "httpMethod": "GET",
+              "id": "securitycenter.organizations.virtualMachineThreatDetectionSettings.calculate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/virtualMachineThreatDetectionSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta2/{+name}:calculate",
+              "response": {
+                "$ref": "VirtualMachineThreatDetectionSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "webSecurityScannerSettings": {
           "methods": {
             "calculate": {
@@ -943,6 +1119,31 @@
           "path": "v1beta2/{+name}",
           "response": {
             "$ref": "SecurityHealthAnalyticsSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getVirtualMachineThreatDetectionSettings": {
+          "description": "Get the VirtualMachineThreatDetectionSettings resource.",
+          "flatPath": "v1beta2/projects/{projectsId}/virtualMachineThreatDetectionSettings",
+          "httpMethod": "GET",
+          "id": "securitycenter.projects.getVirtualMachineThreatDetectionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the VirtualMachineThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "location": "path",
+              "pattern": "^projects/[^/]+/virtualMachineThreatDetectionSettings$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "response": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1070,6 +1271,40 @@
           },
           "response": {
             "$ref": "SecurityHealthAnalyticsSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "updateVirtualMachineThreatDetectionSettings": {
+          "description": "Update the VirtualMachineThreatDetectionSettings resource.",
+          "flatPath": "v1beta2/projects/{projectsId}/virtualMachineThreatDetectionSettings",
+          "httpMethod": "PATCH",
+          "id": "securitycenter.projects.updateVirtualMachineThreatDetectionSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+              "location": "path",
+              "pattern": "^projects/[^/]+/virtualMachineThreatDetectionSettings$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The list of fields to be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1beta2/{+name}",
+          "request": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
+          },
+          "response": {
+            "$ref": "VirtualMachineThreatDetectionSettings"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1296,6 +1531,35 @@
             }
           }
         },
+        "virtualMachineThreatDetectionSettings": {
+          "methods": {
+            "calculate": {
+              "description": "Calculates the effective VirtualMachineThreatDetectionSettings based on its level in the resource hierarchy and its settings.",
+              "flatPath": "v1beta2/projects/{projectsId}/virtualMachineThreatDetectionSettings:calculate",
+              "httpMethod": "GET",
+              "id": "securitycenter.projects.virtualMachineThreatDetectionSettings.calculate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the VirtualMachineThreatDetectionSettings to calculate. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/virtualMachineThreatDetectionSettings$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta2/{+name}:calculate",
+              "response": {
+                "$ref": "VirtualMachineThreatDetectionSettings"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "webSecurityScannerSettings": {
           "methods": {
             "calculate": {
@@ -1328,9 +1592,40 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20211213",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
+    "Access": {
+      "description": "Represents an access event.",
+      "id": "Access",
+      "properties": {
+        "callerIp": {
+          "description": "Caller's IP address, such as \"1.1.1.1\".",
+          "type": "string"
+        },
+        "callerIpGeo": {
+          "$ref": "Geolocation",
+          "description": "The caller IP's geolocation, which identifies where the call came from."
+        },
+        "methodName": {
+          "description": "The method that the service account called, e.g. \"SetIamPolicy\".",
+          "type": "string"
+        },
+        "principalEmail": {
+          "description": "Associated email, such as \"foo@google.com\".",
+          "type": "string"
+        },
+        "serviceName": {
+          "description": "This is the API service that the service account made a call to, e.g. \"iam.googleapis.com\"",
+          "type": "string"
+        },
+        "userAgentFamily": {
+          "description": "What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Config": {
       "description": "Configuration of a module.",
       "id": "Config",
@@ -1644,6 +1939,10 @@
       "description": "Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.",
       "id": "Finding",
       "properties": {
+        "access": {
+          "$ref": "Access",
+          "description": "Access details associated to the Finding, such as more information on the caller, which method was accessed, from where, etc."
+        },
         "canonicalName": {
           "description": "The canonical name of the finding. It's either \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\" or \"projects/{project_number}/sources/{source_id}/findings/{finding_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
           "type": "string"
@@ -1697,6 +1996,10 @@
         "indicator": {
           "$ref": "Indicator",
           "description": "Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise"
+        },
+        "mitreAttack": {
+          "$ref": "MitreAttack",
+          "description": "MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org"
         },
         "mute": {
           "description": "Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined).",
@@ -1800,6 +2103,23 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "Geolocation": {
+      "description": "Represents a geographical location for a given access.",
+      "id": "Geolocation",
+      "properties": {
+        "regionCode": {
+          "description": "A CLDR.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1BulkMuteFindingsResponse": {
+      "description": "The response to a BulkMute request. Contains the LRO information.",
+      "id": "GoogleCloudSecuritycenterV1BulkMuteFindingsResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudSecuritycenterV1ExternalSystem": {
@@ -2216,6 +2536,226 @@
       },
       "type": "object"
     },
+    "MitreAttack": {
+      "description": "MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org",
+      "id": "MitreAttack",
+      "properties": {
+        "additionalTactics": {
+          "description": "Additional MITRE ATT&CK tactics related to this finding, if any.",
+          "items": {
+            "enum": [
+              "TACTIC_UNSPECIFIED",
+              "RECONNAISSANCE",
+              "RESOURCE_DEVELOPMENT",
+              "INITIAL_ACCESS",
+              "EXECUTION",
+              "PERSISTENCE",
+              "PRIVILEGE_ESCALATION",
+              "DEFENSE_EVASION",
+              "CREDENTIAL_ACCESS",
+              "DISCOVERY",
+              "LATERAL_MOVEMENT",
+              "COLLECTION",
+              "COMMAND_AND_CONTROL",
+              "EXFILTRATION",
+              "IMPACT"
+            ],
+            "enumDescriptions": [
+              "Unspecified value.",
+              "TA0043",
+              "TA0042",
+              "TA0001",
+              "TA0002",
+              "TA0003",
+              "TA0004",
+              "TA0005",
+              "TA0006",
+              "TA0007",
+              "TA0008",
+              "TA0009",
+              "TA0011",
+              "TA0010",
+              "TA0040"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "additionalTechniques": {
+          "description": "Additional MITRE ATT&CK techniques related to this finding, if any, along with any of their respective parent techniques.",
+          "items": {
+            "enum": [
+              "TECHNIQUE_UNSPECIFIED",
+              "ACTIVE_SCANNING",
+              "SCANNING_IP_BLOCKS",
+              "INGRESS_TOOL_TRANSFER",
+              "NATIVE_API",
+              "SHARED_MODULES",
+              "COMMAND_AND_SCRIPTING_INTERPRETER",
+              "UNIX_SHELL",
+              "RESOURCE_HIJACKING",
+              "PROXY",
+              "EXTERNAL_PROXY",
+              "MULTI_HOP_PROXY",
+              "DYNAMIC_RESOLUTION",
+              "UNSECURED_CREDENTIALS",
+              "VALID_ACCOUNTS",
+              "LOCAL_ACCOUNTS",
+              "CLOUD_ACCOUNTS",
+              "NETWORK_DENIAL_OF_SERVICE",
+              "PERMISSION_GROUPS_DISCOVERY",
+              "CLOUD_GROUPS",
+              "EXFILTRATION_OVER_WEB_SERVICE",
+              "EXFILTRATION_TO_CLOUD_STORAGE",
+              "ACCOUNT_MANIPULATION",
+              "SSH_AUTHORIZED_KEYS",
+              "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "STEAL_WEB_SESSION_COOKIE",
+              "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE"
+            ],
+            "enumDescriptions": [
+              "Unspecified value.",
+              "T1595",
+              "T1595.001",
+              "T1105",
+              "T1106",
+              "T1129",
+              "T1059",
+              "T1059.004",
+              "T1496",
+              "T1090",
+              "T1090.002",
+              "T1090.003",
+              "T1568",
+              "T1552",
+              "T1078",
+              "T1078.003",
+              "T1078.004",
+              "T1498",
+              "T1069",
+              "T1069.003",
+              "T1567",
+              "T1567.002",
+              "T1098",
+              "T1098.004",
+              "T1543",
+              "T1539",
+              "T1578"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "primaryTactic": {
+          "description": "The MITRE ATT&CK tactic most closely represented by this finding, if any.",
+          "enum": [
+            "TACTIC_UNSPECIFIED",
+            "RECONNAISSANCE",
+            "RESOURCE_DEVELOPMENT",
+            "INITIAL_ACCESS",
+            "EXECUTION",
+            "PERSISTENCE",
+            "PRIVILEGE_ESCALATION",
+            "DEFENSE_EVASION",
+            "CREDENTIAL_ACCESS",
+            "DISCOVERY",
+            "LATERAL_MOVEMENT",
+            "COLLECTION",
+            "COMMAND_AND_CONTROL",
+            "EXFILTRATION",
+            "IMPACT"
+          ],
+          "enumDescriptions": [
+            "Unspecified value.",
+            "TA0043",
+            "TA0042",
+            "TA0001",
+            "TA0002",
+            "TA0003",
+            "TA0004",
+            "TA0005",
+            "TA0006",
+            "TA0007",
+            "TA0008",
+            "TA0009",
+            "TA0011",
+            "TA0010",
+            "TA0040"
+          ],
+          "type": "string"
+        },
+        "primaryTechniques": {
+          "description": "The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. SCANNING_IP_BLOCKS), both the sub-technique and its parent technique(s) will be listed (e.g. SCANNING_IP_BLOCKS, ACTIVE_SCANNING).",
+          "items": {
+            "enum": [
+              "TECHNIQUE_UNSPECIFIED",
+              "ACTIVE_SCANNING",
+              "SCANNING_IP_BLOCKS",
+              "INGRESS_TOOL_TRANSFER",
+              "NATIVE_API",
+              "SHARED_MODULES",
+              "COMMAND_AND_SCRIPTING_INTERPRETER",
+              "UNIX_SHELL",
+              "RESOURCE_HIJACKING",
+              "PROXY",
+              "EXTERNAL_PROXY",
+              "MULTI_HOP_PROXY",
+              "DYNAMIC_RESOLUTION",
+              "UNSECURED_CREDENTIALS",
+              "VALID_ACCOUNTS",
+              "LOCAL_ACCOUNTS",
+              "CLOUD_ACCOUNTS",
+              "NETWORK_DENIAL_OF_SERVICE",
+              "PERMISSION_GROUPS_DISCOVERY",
+              "CLOUD_GROUPS",
+              "EXFILTRATION_OVER_WEB_SERVICE",
+              "EXFILTRATION_TO_CLOUD_STORAGE",
+              "ACCOUNT_MANIPULATION",
+              "SSH_AUTHORIZED_KEYS",
+              "CREATE_OR_MODIFY_SYSTEM_PROCESS",
+              "STEAL_WEB_SESSION_COOKIE",
+              "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE"
+            ],
+            "enumDescriptions": [
+              "Unspecified value.",
+              "T1595",
+              "T1595.001",
+              "T1105",
+              "T1106",
+              "T1129",
+              "T1059",
+              "T1059.004",
+              "T1496",
+              "T1090",
+              "T1090.002",
+              "T1090.003",
+              "T1568",
+              "T1552",
+              "T1078",
+              "T1078.003",
+              "T1078.004",
+              "T1498",
+              "T1069",
+              "T1069.003",
+              "T1567",
+              "T1567.002",
+              "T1098",
+              "T1098.004",
+              "T1543",
+              "T1539",
+              "T1578"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "The MITRE ATT&CK version referenced by the above fields. E.g. \"8\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Reference": {
       "description": "Additional Links",
       "id": "Reference",
@@ -2341,6 +2881,51 @@
             "The standard tier.",
             "The premium tier."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VirtualMachineThreatDetectionSettings": {
+      "description": "Resource capturing the settings for the Virtual Machine Threat Detection service.",
+      "id": "VirtualMachineThreatDetectionSettings",
+      "properties": {
+        "modules": {
+          "additionalProperties": {
+            "$ref": "Config"
+          },
+          "description": "The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The resource name of the VirtualMachineThreatDetectionSettings. Formats: * organizations/{organization}/virtualMachineThreatDetectionSettings * folders/{folder}/virtualMachineThreatDetectionSettings * projects/{project}/virtualMachineThreatDetectionSettings",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Output only. The service account used by Virtual Machine Threat Detection detectors.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceEnablementState": {
+          "description": "The state of enablement for the service at its level of the resource hierarchy. A DISABLED state will override all module enablement_states to DISABLED.",
+          "enum": [
+            "ENABLEMENT_STATE_UNSPECIFIED",
+            "INHERITED",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "State is inherited from the parent resource.",
+            "State is enabled.",
+            "State is disabled."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the settings were last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

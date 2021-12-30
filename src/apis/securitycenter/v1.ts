@@ -130,6 +130,35 @@ export namespace securitycenter_v1 {
   }
 
   /**
+   * Represents an access event.
+   */
+  export interface Schema$Access {
+    /**
+     * Caller's IP address, such as "1.1.1.1".
+     */
+    callerIp?: string | null;
+    /**
+     * The caller IP's geolocation, which identifies where the call came from.
+     */
+    callerIpGeo?: Schema$Geolocation;
+    /**
+     * The method that the service account called, e.g. "SetIamPolicy".
+     */
+    methodName?: string | null;
+    /**
+     * Associated email, such as "foo@google.com".
+     */
+    principalEmail?: string | null;
+    /**
+     * This is the API service that the service account made a call to, e.g. "iam.googleapis.com"
+     */
+    serviceName?: string | null;
+    /**
+     * What kind of user agent is associated, e.g. operating system shells, embedded or stand-alone applications, etc.
+     */
+    userAgentFamily?: string | null;
+  }
+  /**
    * Security Command Center representation of a Google Cloud resource. The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don't affect the referenced Google Cloud resource.
    */
   export interface Schema$Asset {
@@ -327,6 +356,10 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$Finding {
     /**
+     * Access details associated to the Finding, such as more information on the caller, which method was accessed, from where, etc.
+     */
+    access?: Schema$Access;
+    /**
      * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
      */
     canonicalName?: string | null;
@@ -360,6 +393,10 @@ export namespace securitycenter_v1 {
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
+    /**
+     * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
+     */
+    mitreAttack?: Schema$MitreAttack;
     /**
      * Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined).
      */
@@ -419,6 +456,15 @@ export namespace securitycenter_v1 {
     resourceFolderDisplayName?: string | null;
   }
   /**
+   * Represents a geographical location for a given access.
+   */
+  export interface Schema$Geolocation {
+    /**
+     * A CLDR.
+     */
+    regionCode?: string | null;
+  }
+  /**
    * Request message for `GetIamPolicy` method.
    */
   export interface Schema$GetIamPolicyRequest {
@@ -449,6 +495,10 @@ export namespace securitycenter_v1 {
      */
     state?: string | null;
   }
+  /**
+   * The response to a BulkMute request. Contains the LRO information.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
   /**
    * Representation of third party SIEM/SOAR fields within SCC.
    */
@@ -974,6 +1024,31 @@ export namespace securitycenter_v1 {
      * Sources belonging to the requested parent.
      */
     sources?: Schema$Source[];
+  }
+  /**
+   * MITRE ATT&CK tactics and techniques related to this finding. See: https://attack.mitre.org
+   */
+  export interface Schema$MitreAttack {
+    /**
+     * Additional MITRE ATT&CK tactics related to this finding, if any.
+     */
+    additionalTactics?: string[] | null;
+    /**
+     * Additional MITRE ATT&CK techniques related to this finding, if any, along with any of their respective parent techniques.
+     */
+    additionalTechniques?: string[] | null;
+    /**
+     * The MITRE ATT&CK tactic most closely represented by this finding, if any.
+     */
+    primaryTactic?: string | null;
+    /**
+     * The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. SCANNING_IP_BLOCKS), both the sub-technique and its parent technique(s) will be listed (e.g. SCANNING_IP_BLOCKS, ACTIVE_SCANNING).
+     */
+    primaryTechniques?: string[] | null;
+    /**
+     * The MITRE ATT&CK version referenced by the above fields. E.g. "8".
+     */
+    version?: string | null;
   }
   /**
    * Cloud Security Command Center (Cloud SCC) notification configs. A notification config is a Cloud SCC resource that contains the configuration to send notifications for create/update events of findings, assets and etc.
@@ -3288,6 +3363,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
@@ -3296,6 +3372,7 @@ export namespace securitycenter_v1 {
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
      *       //   "indicator": {},
+     *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
@@ -3314,6 +3391,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -3322,6 +3400,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -3467,6 +3546,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -3475,6 +3555,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -3624,6 +3705,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -3632,6 +3714,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -8598,6 +8681,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
@@ -8606,6 +8690,7 @@ export namespace securitycenter_v1 {
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
      *       //   "indicator": {},
+     *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
@@ -8624,6 +8709,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -8632,6 +8718,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -9077,6 +9164,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
@@ -9085,6 +9173,7 @@ export namespace securitycenter_v1 {
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
      *       //   "indicator": {},
+     *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
@@ -9103,6 +9192,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -9111,6 +9201,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -9256,6 +9347,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -9264,6 +9356,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -9413,6 +9506,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -9421,6 +9515,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -11982,6 +12077,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "access": {},
      *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
@@ -11990,6 +12086,7 @@ export namespace securitycenter_v1 {
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
      *       //   "indicator": {},
+     *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
@@ -12008,6 +12105,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -12016,6 +12114,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -12161,6 +12260,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -12169,6 +12269,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
@@ -12318,6 +12419,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "access": {},
      *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
@@ -12326,6 +12428,7 @@ export namespace securitycenter_v1 {
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
      *   //   "indicator": {},
+     *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
