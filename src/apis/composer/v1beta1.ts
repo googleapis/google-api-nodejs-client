@@ -274,7 +274,7 @@ export namespace composer_v1beta1 {
      */
     databaseConfig?: Schema$DatabaseConfig;
     /**
-     * Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated. This field is supported for Cloud Composer environments in versions composer-1.*.*-airflow-*.*.*.
+     * Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated.
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
