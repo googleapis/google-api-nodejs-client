@@ -698,6 +698,10 @@ export namespace osconfig_v1beta {
      */
     rollout?: Schema$PatchRollout;
     /**
+     * Output only. Current state of the patch deployment.
+     */
+    state?: string | null;
+    /**
      * Output only. Time the patch deployment was last updated. Timestamp is in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     updateTime?: string | null;
@@ -905,6 +909,10 @@ export namespace osconfig_v1beta {
     mode?: string | null;
   }
   /**
+   * A request message for pausing a patch deployment.
+   */
+  export interface Schema$PausePatchDeploymentRequest {}
+  /**
    * Sets the time for recurring patch deployments.
    */
   export interface Schema$RecurringSchedule {
@@ -945,6 +953,10 @@ export namespace osconfig_v1beta {
      */
     weekly?: Schema$WeeklySchedule;
   }
+  /**
+   * A request message for resuming a patch deployment.
+   */
+  export interface Schema$ResumePatchDeploymentRequest {}
   /**
    * A software recipe is a set of instructions for installing and configuring a piece of software. It consists of a set of artifacts that are downloaded, and a set of steps that install, configure, and/or update the software. Recipes support installing and updating software from artifacts in the following formats: Zip archive, Tar archive, Windows MSI, Debian package, and RPM package. Additionally, recipes support executing a script (either defined in a file or directly in this api) in bash, sh, cmd, and powershell. Updating a software recipe If a recipe is assigned to an instance and there is a recipe with the same name but a lower version already installed and the assigned state of the recipe is `UPDATED`, then the recipe is updated to the new version. Script Working Directories Each script or execution step is run in its own temporary directory which is deleted after completing the step.
    */
@@ -2183,6 +2195,7 @@ export namespace osconfig_v1beta {
      *       //   "patchConfig": {},
      *       //   "recurringSchedule": {},
      *       //   "rollout": {},
+     *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -2201,6 +2214,7 @@ export namespace osconfig_v1beta {
      *   //   "patchConfig": {},
      *   //   "recurringSchedule": {},
      *   //   "rollout": {},
+     *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2464,6 +2478,7 @@ export namespace osconfig_v1beta {
      *   //   "patchConfig": {},
      *   //   "recurringSchedule": {},
      *   //   "rollout": {},
+     *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2745,6 +2760,7 @@ export namespace osconfig_v1beta {
      *       //   "patchConfig": {},
      *       //   "recurringSchedule": {},
      *       //   "rollout": {},
+     *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -2763,6 +2779,7 @@ export namespace osconfig_v1beta {
      *   //   "patchConfig": {},
      *   //   "recurringSchedule": {},
      *   //   "rollout": {},
+     *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2854,6 +2871,298 @@ export namespace osconfig_v1beta {
         return createAPIRequest<Schema$PatchDeployment>(parameters);
       }
     }
+
+    /**
+     * Change state of patch deployment to "PAUSED". Patch deployment in paused state doesn't generate patch jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.pause({
+     *     // Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Projects$Patchdeployments$Pause,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pause(
+      params?: Params$Resource$Projects$Patchdeployments$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PatchDeployment>;
+    pause(
+      params: Params$Resource$Projects$Patchdeployments$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Projects$Patchdeployments$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$PatchDeployment>,
+      callback: BodyResponseCallback<Schema$PatchDeployment>
+    ): void;
+    pause(
+      params: Params$Resource$Projects$Patchdeployments$Pause,
+      callback: BodyResponseCallback<Schema$PatchDeployment>
+    ): void;
+    pause(callback: BodyResponseCallback<Schema$PatchDeployment>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Patchdeployments$Pause
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Patchdeployments$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Patchdeployments$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:pause').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PatchDeployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PatchDeployment>(parameters);
+      }
+    }
+
+    /**
+     * Change state of patch deployment back to "ACTIVE". Patch deployment in active state continues to generate patch jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const osconfig = google.osconfig('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await osconfig.projects.patchDeployments.resume({
+     *     // Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
+     *     name: 'projects/my-project/patchDeployments/my-patchDeployment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "duration": "my_duration",
+     *   //   "instanceFilter": {},
+     *   //   "lastExecuteTime": "my_lastExecuteTime",
+     *   //   "name": "my_name",
+     *   //   "oneTimeSchedule": {},
+     *   //   "patchConfig": {},
+     *   //   "recurringSchedule": {},
+     *   //   "rollout": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Projects$Patchdeployments$Resume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resume(
+      params?: Params$Resource$Projects$Patchdeployments$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PatchDeployment>;
+    resume(
+      params: Params$Resource$Projects$Patchdeployments$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Projects$Patchdeployments$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$PatchDeployment>,
+      callback: BodyResponseCallback<Schema$PatchDeployment>
+    ): void;
+    resume(
+      params: Params$Resource$Projects$Patchdeployments$Resume,
+      callback: BodyResponseCallback<Schema$PatchDeployment>
+    ): void;
+    resume(callback: BodyResponseCallback<Schema$PatchDeployment>): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Patchdeployments$Resume
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PatchDeployment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PatchDeployment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Patchdeployments$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Patchdeployments$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://osconfig.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:resume').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PatchDeployment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PatchDeployment>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Patchdeployments$Create
@@ -2916,6 +3225,30 @@ export namespace osconfig_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$PatchDeployment;
+  }
+  export interface Params$Resource$Projects$Patchdeployments$Pause
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PausePatchDeploymentRequest;
+  }
+  export interface Params$Resource$Projects$Patchdeployments$Resume
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResumePatchDeploymentRequest;
   }
 
   export class Resource$Projects$Patchjobs {
