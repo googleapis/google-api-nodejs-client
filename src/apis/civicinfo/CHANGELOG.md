@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v0.3.0...civicinfo-v0.4.0) (2021-12-30)
+
+
+### Features
+
+* **civicinfo:** update the API ([d3ddf0e](https://www.github.com/googleapis/google-api-nodejs-client/commit/d3ddf0e6309921ebfd4ae18283a213916aa476ad))
+
 ## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v0.2.1...civicinfo-v0.3.0) (2021-09-14)
 
 
