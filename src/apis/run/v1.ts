@@ -114,7 +114,6 @@ export namespace run_v1 {
   export class Run {
     context: APIRequestContext;
     namespaces: Resource$Namespaces;
-    operations: Resource$Operations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -124,7 +123,6 @@ export namespace run_v1 {
       };
 
       this.namespaces = new Resource$Namespaces(this.context);
-      this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -460,10 +458,6 @@ export namespace run_v1 {
     url?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
-   */
-  export interface Schema$Empty {}
-  /**
    * Not supported by Cloud Run EnvFromSource represents the source of a set of ConfigMaps
    */
   export interface Schema$EnvFromSource {
@@ -569,10 +563,6 @@ export namespace run_v1 {
      */
     type?: string | null;
   }
-  /**
-   * The request message for Operations.CancelOperation.
-   */
-  export interface Schema$GoogleLongrunningCancelOperationRequest {}
   /**
    * Not supported by Cloud Run HTTPGetAction describes an action based on HTTP Get requests.
    */
@@ -1038,13 +1028,21 @@ export namespace run_v1 {
    */
   export interface Schema$RevisionSpec {
     /**
-     * Optional. ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. Cloud Run fully managed: supported, defaults to 80 Cloud Run for Anthos: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.
+     * ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. Cloud Run fully managed: supported, defaults to 80 Cloud Run for Anthos: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.
      */
     containerConcurrency?: number | null;
     /**
      * Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided. The runtime contract is documented here: https://github.com/knative/serving/blob/main/docs/runtime-contract.md
      */
     containers?: Schema$Container[];
+    /**
+     * Indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Cloud Run fully managed: Not supported. Cloud Run for Anthos: supported, defaults to true.
+     */
+    enableServiceLinks?: boolean | null;
+    /**
+     * ImagePullSecrets is a list of references to secrets in the same namespace to use for pulling any images in pods that reference this ServiceAccount. ImagePullSecrets are distinct from Secrets because Secrets can be mounted in the pod, but ImagePullSecrets are only accessed by the kubelet. More info: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod Cloud Run fully managed: Not supported. Cloud Run for Anthos: supported.
+     */
+    imagePullSecrets?: Schema$LocalObjectReference[];
     /**
      * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
      */
@@ -4315,156 +4313,6 @@ export namespace run_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Service;
-  }
-
-  export class Resource$Operations {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/run.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const run = google.run('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await run.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    cancel(
-      params?: Params$Resource$Operations$Cancel,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Operations$Cancel
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
 
   export class Resource$Projects {
