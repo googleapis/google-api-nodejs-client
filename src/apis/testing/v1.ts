@@ -337,14 +337,6 @@ export namespace testing_v1 {
      */
     appPackageId?: string | null;
     /**
-     * The max depth of the traversal stack Robo can explore. Needs to be at least 2 to make Robo explore the app beyond the first activity. Default is 50.
-     */
-    maxDepth?: number | null;
-    /**
-     * The max number of steps Robo can execute. Default is no limit.
-     */
-    maxSteps?: number | null;
-    /**
      * A set of directives Robo should apply during the crawl. This allows users to customize the crawl. For example, the username and password for a test account can be provided.
      */
     roboDirectives?: Schema$RoboDirective[];
