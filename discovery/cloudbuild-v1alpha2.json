@@ -317,7 +317,7 @@
       }
     }
   },
-  "revision": "20211115",
+  "revision": "20211230",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ApprovalConfig": {
@@ -430,6 +430,20 @@
       },
       "type": "object"
     },
+    "BatchCreateBitbucketServerConnectedRepositoriesResponse": {
+      "description": "Response of BatchCreateBitbucketServerConnectedRepositories RPC method including all successfully connected Bitbucket Server repositories.",
+      "id": "BatchCreateBitbucketServerConnectedRepositoriesResponse",
+      "properties": {
+        "bitbucketServerConnectedRepositories": {
+          "description": "The connected Bitbucket Server repositories.",
+          "items": {
+            "$ref": "BitbucketServerConnectedRepository"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata": {
       "description": "Metadata for `BatchCreateBitbucketServerConnectedRepositories` operation.",
       "id": "BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata",
@@ -447,6 +461,47 @@
           "description": "Time the operation was created.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BitbucketServerConnectedRepository": {
+      "description": "/ BitbucketServerConnectedRepository represents a connected Bitbucket Server / repository.",
+      "id": "BitbucketServerConnectedRepository",
+      "properties": {
+        "parent": {
+          "description": "The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{config}`",
+          "type": "string"
+        },
+        "repo": {
+          "$ref": "BitbucketServerRepositoryId",
+          "description": "The Bitbucket Server repositories to connect."
+        },
+        "status": {
+          "$ref": "Status",
+          "description": "Output only. The status of the repo connection request.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "BitbucketServerRepositoryId": {
+      "description": "BitbucketServerRepositoryId identifies a specific repository hosted on a Bitbucket Server.",
+      "id": "BitbucketServerRepositoryId",
+      "properties": {
+        "projectKey": {
+          "description": "Required. Identifier for the project storing the repository.",
+          "type": "string"
+        },
+        "repoSlug": {
+          "description": "Required. Identifier for the repository.",
+          "type": "string"
+        },
+        "webhookId": {
+          "description": "Output only. The ID of the webhook that was created for receiving events from this repo. We only create and manage a single webhook for each repo.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -957,6 +1012,27 @@
       "properties": {},
       "type": "object"
     },
+    "CreateBitbucketServerConfigOperationMetadata": {
+      "description": "Metadata for `CreateBitbucketServerConfig` operation.",
+      "id": "CreateBitbucketServerConfigOperationMetadata",
+      "properties": {
+        "bitbucketServerConfig": {
+          "description": "The resource name of the BitbucketServerConfig to be created. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{id}`.",
+          "type": "string"
+        },
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CreateGitHubEnterpriseConfigOperationMetadata": {
       "description": "Metadata for `CreateGithubEnterpriseConfig` operation.",
       "id": "CreateGitHubEnterpriseConfigOperationMetadata",
@@ -973,6 +1049,27 @@
         },
         "githubEnterpriseConfig": {
           "description": "The resource name of the GitHubEnterprise to be created. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateGitLabConfigOperationMetadata": {
+      "description": "Metadata for `CreateGitLabConfig` operation.",
+      "id": "CreateGitLabConfigOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "gitlabConfig": {
+          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
           "type": "string"
         }
       },
@@ -999,6 +1096,27 @@
       },
       "type": "object"
     },
+    "DeleteBitbucketServerConfigOperationMetadata": {
+      "description": "Metadata for `DeleteBitbucketServerConfig` operation.",
+      "id": "DeleteBitbucketServerConfigOperationMetadata",
+      "properties": {
+        "bitbucketServerConfig": {
+          "description": "The resource name of the BitbucketServerConfig to be deleted. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{id}`.",
+          "type": "string"
+        },
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeleteGitHubEnterpriseConfigOperationMetadata": {
       "description": "Metadata for `DeleteGitHubEnterpriseConfig` operation.",
       "id": "DeleteGitHubEnterpriseConfigOperationMetadata",
@@ -1015,6 +1133,27 @@
         },
         "githubEnterpriseConfig": {
           "description": "The resource name of the GitHubEnterprise to be deleted. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteGitLabConfigOperationMetadata": {
+      "description": "Metadata for `DeleteGitLabConfig` operation.",
+      "id": "DeleteGitLabConfigOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "gitlabConfig": {
+          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
           "type": "string"
         }
       },
@@ -1757,6 +1896,27 @@
       },
       "type": "object"
     },
+    "UpdateBitbucketServerConfigOperationMetadata": {
+      "description": "Metadata for `UpdateBitbucketServerConfig` operation.",
+      "id": "UpdateBitbucketServerConfigOperationMetadata",
+      "properties": {
+        "bitbucketServerConfig": {
+          "description": "The resource name of the BitbucketServerConfig to be updated. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{id}`.",
+          "type": "string"
+        },
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "UpdateGitHubEnterpriseConfigOperationMetadata": {
       "description": "Metadata for `UpdateGitHubEnterpriseConfig` operation.",
       "id": "UpdateGitHubEnterpriseConfigOperationMetadata",
@@ -1773,6 +1933,27 @@
         },
         "githubEnterpriseConfig": {
           "description": "The resource name of the GitHubEnterprise to be updated. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateGitLabConfigOperationMetadata": {
+      "description": "Metadata for `UpdateGitLabConfig` operation.",
+      "id": "UpdateGitLabConfigOperationMetadata",
+      "properties": {
+        "completeTime": {
+          "description": "Time the operation was completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Time the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "gitlabConfig": {
+          "description": "The resource name of the GitLabConfig to be created. Format: `projects/{project}/locations/{location}/gitlabConfigs/{id}`.",
           "type": "string"
         }
       },
