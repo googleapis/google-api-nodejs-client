@@ -103,7 +103,7 @@ export namespace connectors_v1 {
   /**
    * Connectors API
    *
-   *
+   * Enables users to create and manage connections to Google Cloud services and third-party business applications using the Connectors interface.
    *
    * @example
    * ```js
@@ -395,6 +395,10 @@ export namespace connectors_v1 {
      * Output only. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Flag to mark the version indicating the launch stage.
+     */
+    launchStage?: string | null;
     /**
      * Output only. Resource name of the Connector. Format: projects/{project\}/locations/{location\}/providers/{provider\}/connectors/{connector\}
      */
@@ -895,6 +899,10 @@ export namespace connectors_v1 {
      * Output only. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Output only. Flag to mark the version indicating the launch stage.
+     */
+    launchStage?: string | null;
     /**
      * Output only. Resource name of the Provider. Format: projects/{project\}/locations/{location\}/providers/{provider\}
      */
@@ -3445,6 +3453,7 @@ export namespace connectors_v1 {
      *   //   "documentationUri": "my_documentationUri",
      *   //   "externalUri": "my_externalUri",
      *   //   "labels": {},
+     *   //   "launchStage": "my_launchStage",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "webAssetsLocation": "my_webAssetsLocation"
@@ -3755,6 +3764,7 @@ export namespace connectors_v1 {
      *   //   "documentationUri": "my_documentationUri",
      *   //   "externalUri": "my_externalUri",
      *   //   "labels": {},
+     *   //   "launchStage": "my_launchStage",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "webAssetsLocation": "my_webAssetsLocation"
