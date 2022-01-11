@@ -549,17 +549,6 @@ export namespace bigtableadmin_v2 {
     title?: string | null;
   }
   /**
-   * Added to the error payload.
-   */
-  export interface Schema$FailureTrace {
-    frames?: Schema$Frame[];
-  }
-  export interface Schema$Frame {
-    targetName?: string | null;
-    workflowGuid?: string | null;
-    zoneId?: string | null;
-  }
-  /**
    * Rule for determining which cells to delete during garbage collection.
    */
   export interface Schema$GcRule {
@@ -1091,23 +1080,6 @@ export namespace bigtableadmin_v2 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
-  }
-  /**
-   * Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.
-   */
-  export interface Schema$UndeleteTableMetadata {
-    /**
-     * If set, the time at which this operation finished or was cancelled.
-     */
-    endTime?: string | null;
-    /**
-     * The name of the table being restored.
-     */
-    name?: string | null;
-    /**
-     * The time at which this operation started.
-     */
-    startTime?: string | null;
   }
   /**
    * A GcRule which deletes cells matching any of the given rules.
