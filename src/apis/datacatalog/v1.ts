@@ -254,6 +254,19 @@ export namespace datacatalog_v1 {
     viewSpec?: Schema$GoogleCloudDatacatalogV1ViewSpec;
   }
   /**
+   * Business Context of the entry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1BusinessContext {
+    /**
+     * Contact people for the entry.
+     */
+    contacts?: Schema$GoogleCloudDatacatalogV1Contacts;
+    /**
+     * Entry overview fields for rich text descriptions of entries.
+     */
+    entryOverview?: Schema$GoogleCloudDatacatalogV1EntryOverview;
+  }
+  /**
    * Specification for the BigQuery connection to a Cloud SQL instance.
    */
   export interface Schema$GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec {
@@ -294,6 +307,28 @@ export namespace datacatalog_v1 {
      * Required. Type of the column. Must be a UTF-8 string with the maximum size of 128 bytes.
      */
     type?: string | null;
+  }
+  /**
+   * Contact people for the entry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1Contacts {
+    /**
+     * The list of contact people for the entry.
+     */
+    people?: Schema$GoogleCloudDatacatalogV1ContactsPerson[];
+  }
+  /**
+   * A contact person for the entry.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ContactsPerson {
+    /**
+     * Designation of the person, for example, Data Steward.
+     */
+    designation?: string | null;
+    /**
+     * Email of the person in the format of `john.doe@xyz`, ``, or `John Doe`.
+     */
+    email?: string | null;
   }
   /**
    * Cross-regional source used to import an existing taxonomy into a different region.
@@ -347,6 +382,10 @@ export namespace datacatalog_v1 {
      * Specification that applies to a BigQuery table. Valid only for entries with the `TABLE` type.
      */
     bigqueryTableSpec?: Schema$GoogleCloudDatacatalogV1BigQueryTableSpec;
+    /**
+     * Business Context of the entry.
+     */
+    businessContext?: Schema$GoogleCloudDatacatalogV1BusinessContext;
     /**
      * Specification that applies to a table resource. Valid only for entries with the `TABLE` type.
      */
@@ -444,6 +483,15 @@ export namespace datacatalog_v1 {
      * The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.
      */
     name?: string | null;
+  }
+  /**
+   * Entry overview fields for rich text descriptions of entries.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1EntryOverview {
+    /**
+     * Entry overview with support for rich text. The overview must only contain Unicode characters, and should be formatted using HTML. The maximum length is 10 MiB as this value holds HTML descriptions including encoded images. The maximum length of the text without images is 100 KiB.
+     */
+    overview?: string | null;
   }
   /**
    * Response message for ExportTaxonomies.
@@ -601,6 +649,24 @@ export namespace datacatalog_v1 {
      * Taxonomies that the project contains.
      */
     taxonomies?: Schema$GoogleCloudDatacatalogV1Taxonomy[];
+  }
+  /**
+   * Request message for ModifyEntryContacts.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ModifyEntryContactsRequest {
+    /**
+     * Required. The new value for the Contacts.
+     */
+    contacts?: Schema$GoogleCloudDatacatalogV1Contacts;
+  }
+  /**
+   * Request message for ModifyEntryOverview.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1ModifyEntryOverviewRequest {
+    /**
+     * Required. The new value for the Entry Overview.
+     */
+    entryOverview?: Schema$GoogleCloudDatacatalogV1EntryOverview;
   }
   /**
    * Entry metadata relevant only to the user and private to them.
@@ -1369,6 +1435,7 @@ export namespace datacatalog_v1 {
      *   // {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
+     *   //   "businessContext": {},
      *   //   "dataSource": {},
      *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
@@ -2844,6 +2911,7 @@ export namespace datacatalog_v1 {
      *       // {
      *       //   "bigqueryDateShardedSpec": {},
      *       //   "bigqueryTableSpec": {},
+     *       //   "businessContext": {},
      *       //   "dataSource": {},
      *       //   "dataSourceConnectionSpec": {},
      *       //   "databaseTableSpec": {},
@@ -2872,6 +2940,7 @@ export namespace datacatalog_v1 {
      *   // {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
+     *   //   "businessContext": {},
      *   //   "dataSource": {},
      *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
@@ -3156,6 +3225,7 @@ export namespace datacatalog_v1 {
      *   // {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
+     *   //   "businessContext": {},
      *   //   "dataSource": {},
      *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
@@ -3566,6 +3636,306 @@ export namespace datacatalog_v1 {
     }
 
     /**
+     * Modifies contacts, part of the business context of an Entry. To call this method, you must have the `datacatalog.entries.updateContacts` IAM permission on the corresponding project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.modifyEntryContacts(
+     *       {
+     *         // Required. The full resource name of the entry.
+     *         name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "contacts": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "people": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    modifyEntryContacts(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyEntryContacts(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1Contacts>;
+    modifyEntryContacts(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    modifyEntryContacts(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1Contacts>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1Contacts>
+    ): void;
+    modifyEntryContacts(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1Contacts>
+    ): void;
+    modifyEntryContacts(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1Contacts>
+    ): void;
+    modifyEntryContacts(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1Contacts>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1Contacts>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1Contacts>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1Contacts>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:modifyEntryContacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1Contacts>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1Contacts>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Modifies entry overview, part of the business context of an Entry. To call this method, you must have the `datacatalog.entries.updateOverview` IAM permission on the corresponding project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datacatalog.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datacatalog = google.datacatalog('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.modifyEntryOverview(
+     *       {
+     *         // Required. The full resource name of the entry.
+     *         name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "entryOverview": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "overview": "my_overview"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    modifyEntryOverview(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    modifyEntryOverview(
+      params?: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryOverview>;
+    modifyEntryOverview(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    modifyEntryOverview(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1EntryOverview>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1EntryOverview>
+    ): void;
+    modifyEntryOverview(
+      params: Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1EntryOverview>
+    ): void;
+    modifyEntryOverview(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1EntryOverview>
+    ): void;
+    modifyEntryOverview(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1EntryOverview>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1EntryOverview>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1EntryOverview>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1EntryOverview>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://datacatalog.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:modifyEntryOverview').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatacatalogV1EntryOverview>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatacatalogV1EntryOverview>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates an existing entry. You must enable the Data Catalog API in the project identified by the `entry.name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
      * @example
      * ```js
@@ -3603,6 +3973,7 @@ export namespace datacatalog_v1 {
      *       // {
      *       //   "bigqueryDateShardedSpec": {},
      *       //   "bigqueryTableSpec": {},
+     *       //   "businessContext": {},
      *       //   "dataSource": {},
      *       //   "dataSourceConnectionSpec": {},
      *       //   "databaseTableSpec": {},
@@ -3631,6 +4002,7 @@ export namespace datacatalog_v1 {
      *   // {
      *   //   "bigqueryDateShardedSpec": {},
      *   //   "bigqueryTableSpec": {},
+     *   //   "businessContext": {},
      *   //   "dataSource": {},
      *   //   "dataSourceConnectionSpec": {},
      *   //   "databaseTableSpec": {},
@@ -4242,6 +4614,30 @@ export namespace datacatalog_v1 {
      */
     readMask?: string;
   }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentrycontacts
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the entry.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1ModifyEntryContactsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Modifyentryoverview
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the entry.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDatacatalogV1ModifyEntryOverviewRequest;
+  }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
     extends StandardParameters {
     /**
@@ -4580,7 +4976,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Lists tags assigned to an Entry.
+     * Lists tags assigned to an Entry. The columns in the response are lowercased.
      * @example
      * ```js
      * // Before running the sample:
@@ -5210,7 +5606,7 @@ export namespace datacatalog_v1 {
     }
 
     /**
-     * Lists tags assigned to an Entry.
+     * Lists tags assigned to an Entry. The columns in the response are lowercased.
      * @example
      * ```js
      * // Before running the sample:
