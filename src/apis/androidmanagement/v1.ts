@@ -187,7 +187,7 @@ export namespace androidmanagement_v1 {
      */
     managedProperties?: Schema$ManagedProperty[];
     /**
-     * The name of the app in the form enterprises/{enterpriseId\}/applications/{package_name\}.
+     * The name of the app in the form enterprises/{enterprise\}/applications/{package_name\}.
      */
     name?: string | null;
     /**
@@ -1509,6 +1509,10 @@ export namespace androidmanagement_v1 {
      */
     bluetoothDisabled?: boolean | null;
     /**
+     * Controls the use of the camera and whether the user has access to the camera access toggle.
+     */
+    cameraAccess?: string | null;
+    /**
      * Whether all cameras on the device are disabled.
      */
     cameraDisabled?: boolean | null;
@@ -1608,6 +1612,10 @@ export namespace androidmanagement_v1 {
      * Maximum time in milliseconds for user activity until the device locks. A value of 0 means there is no restriction.
      */
     maximumTimeToLock?: string | null;
+    /**
+     * Controls the use of the microphone and whether the user has access to the microphone access toggle. This applies only on fully managed devices.
+     */
+    microphoneAccess?: string | null;
     /**
      * The minimum allowed Android API level.
      */
@@ -5069,6 +5077,7 @@ export namespace androidmanagement_v1 {
      *   //   "bluetoothConfigDisabled": false,
      *   //   "bluetoothContactSharingDisabled": false,
      *   //   "bluetoothDisabled": false,
+     *   //   "cameraAccess": "my_cameraAccess",
      *   //   "cameraDisabled": false,
      *   //   "cellBroadcastsConfigDisabled": false,
      *   //   "choosePrivateKeyRules": [],
@@ -5094,6 +5103,7 @@ export namespace androidmanagement_v1 {
      *   //   "locationMode": "my_locationMode",
      *   //   "longSupportMessage": {},
      *   //   "maximumTimeToLock": "my_maximumTimeToLock",
+     *   //   "microphoneAccess": "my_microphoneAccess",
      *   //   "minimumApiLevel": 0,
      *   //   "mobileNetworksConfigDisabled": false,
      *   //   "modifyAccountsDisabled": false,
@@ -5422,6 +5432,7 @@ export namespace androidmanagement_v1 {
      *       //   "bluetoothConfigDisabled": false,
      *       //   "bluetoothContactSharingDisabled": false,
      *       //   "bluetoothDisabled": false,
+     *       //   "cameraAccess": "my_cameraAccess",
      *       //   "cameraDisabled": false,
      *       //   "cellBroadcastsConfigDisabled": false,
      *       //   "choosePrivateKeyRules": [],
@@ -5447,6 +5458,7 @@ export namespace androidmanagement_v1 {
      *       //   "locationMode": "my_locationMode",
      *       //   "longSupportMessage": {},
      *       //   "maximumTimeToLock": "my_maximumTimeToLock",
+     *       //   "microphoneAccess": "my_microphoneAccess",
      *       //   "minimumApiLevel": 0,
      *       //   "mobileNetworksConfigDisabled": false,
      *       //   "modifyAccountsDisabled": false,
@@ -5514,6 +5526,7 @@ export namespace androidmanagement_v1 {
      *   //   "bluetoothConfigDisabled": false,
      *   //   "bluetoothContactSharingDisabled": false,
      *   //   "bluetoothDisabled": false,
+     *   //   "cameraAccess": "my_cameraAccess",
      *   //   "cameraDisabled": false,
      *   //   "cellBroadcastsConfigDisabled": false,
      *   //   "choosePrivateKeyRules": [],
@@ -5539,6 +5552,7 @@ export namespace androidmanagement_v1 {
      *   //   "locationMode": "my_locationMode",
      *   //   "longSupportMessage": {},
      *   //   "maximumTimeToLock": "my_maximumTimeToLock",
+     *   //   "microphoneAccess": "my_microphoneAccess",
      *   //   "minimumApiLevel": 0,
      *   //   "mobileNetworksConfigDisabled": false,
      *   //   "modifyAccountsDisabled": false,
