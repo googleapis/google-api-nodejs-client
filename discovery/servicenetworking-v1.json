@@ -860,7 +860,7 @@
       }
     }
   },
-  "revision": "20211215",
+  "revision": "20220105",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -3261,6 +3261,10 @@
     "ValidateConsumerConfigRequest": {
       "id": "ValidateConsumerConfigRequest",
       "properties": {
+        "checkServiceNetworkingUsePermission": {
+          "description": "Optional. The IAM permission check determines whether the consumer project has 'servicenetworking.services.use' permission or not.",
+          "type": "boolean"
+        },
         "consumerNetwork": {
           "description": "Required. The network that the consumer is using to connect with services. Must be in the form of projects/{project}/global/networks/{network} {project} is a project number, as in '12345' {network} is network name.",
           "type": "string"
@@ -3310,7 +3314,8 @@
             "RANGES_EXHAUSTED",
             "RANGES_NOT_RESERVED",
             "RANGES_DELETED_LATER",
-            "COMPUTE_API_NOT_ENABLED"
+            "COMPUTE_API_NOT_ENABLED",
+            "USE_PERMISSION_NOT_FOUND"
           ],
           "enumDescriptions": [
             "",
@@ -3326,7 +3331,8 @@
             "The reserved IP ranges do not have enough space to create a subnet of desired size.",
             "The IP ranges were not reserved.",
             "The IP ranges were reserved but deleted later.",
-            "The consumer project does not have the compute api enabled."
+            "The consumer project does not have the compute api enabled.",
+            "The consumer project does not have the permission from the host project."
           ],
           "type": "string"
         }
