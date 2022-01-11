@@ -130,6 +130,19 @@ export namespace orgpolicy_v2 {
   }
 
   /**
+   * Similar to PolicySpec but with an extra 'launch' field for launch reference. The PolicySpec here is specific for dry-run/darklaunch.
+   */
+  export interface Schema$GoogleCloudOrgpolicyV2AlternatePolicySpec {
+    /**
+     * Reference to the launch that will be used while audit logging and to control the launch. Should be set only in the alternate policy.
+     */
+    launch?: string | null;
+    /**
+     * Specify `Constraint` for configurations of Cloud Platform resources.
+     */
+    spec?: Schema$GoogleCloudOrgpolicyV2PolicySpec;
+  }
+  /**
    * A `constraint` describes a way to restrict resource's configuration. For example, you could enforce a constraint that controls which cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. `Constraints` can be configured by the organization's policy administrator to fit the needs of the organization by setting a `policy` that includes `constraints` at different locations in the organization's resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about `policies`. `Constraints` have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a `policy` being defined or inherited for the resource in question.
    */
   export interface Schema$GoogleCloudOrgpolicyV2Constraint {
@@ -238,6 +251,10 @@ export namespace orgpolicy_v2 {
    * Defines a Cloud Organization `Policy` which is used to specify `Constraints` for configurations of Cloud Platform resources.
    */
   export interface Schema$GoogleCloudOrgpolicyV2Policy {
+    /**
+     * Deprecated.
+     */
+    alternate?: Schema$GoogleCloudOrgpolicyV2AlternatePolicySpec;
     /**
      * Immutable. The resource name of the Policy. Must be one of the following forms, where constraint_name is the name of the constraint which this Policy configures: * `projects/{project_number\}/policies/{constraint_name\}` * `folders/{folder_id\}/policies/{constraint_name\}` * `organizations/{organization_id\}/policies/{constraint_name\}` For example, "projects/123/policies/compute.disableSerialPortAccess". Note: `projects/{project_id\}/policies/{constraint_name\}` is also an acceptable name for API requests, but responses will return the name using the equivalent project number.
      */
@@ -553,6 +570,7 @@ export namespace orgpolicy_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alternate": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -562,6 +580,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -828,6 +847,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -964,6 +984,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -1246,6 +1267,7 @@ export namespace orgpolicy_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alternate": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -1255,6 +1277,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -1815,6 +1838,7 @@ export namespace orgpolicy_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alternate": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -1824,6 +1848,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -2090,6 +2115,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -2226,6 +2252,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -2509,6 +2536,7 @@ export namespace orgpolicy_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alternate": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -2518,6 +2546,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -2899,6 +2928,7 @@ export namespace orgpolicy_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alternate": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -2908,6 +2938,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -3174,6 +3205,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -3310,6 +3342,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
@@ -3592,6 +3625,7 @@ export namespace orgpolicy_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "alternate": {},
      *       //   "name": "my_name",
      *       //   "spec": {}
      *       // }
@@ -3601,6 +3635,7 @@ export namespace orgpolicy_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "alternate": {},
      *   //   "name": "my_name",
      *   //   "spec": {}
      *   // }
