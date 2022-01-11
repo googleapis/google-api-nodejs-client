@@ -833,38 +833,6 @@
         }
       }
     },
-    "operations": {
-      "methods": {
-        "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "flatPath": "v1/operations/{operationsId}:cancel",
-          "httpMethod": "POST",
-          "id": "run.operations.cancel",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be cancelled.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}:cancel",
-          "request": {
-            "$ref": "GoogleLongrunningCancelOperationRequest"
-          },
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
     "projects": {
       "resources": {
         "authorizeddomains": {
@@ -1768,7 +1736,7 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20220103",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2202,12 +2170,6 @@
       },
       "type": "object"
     },
-    "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
-      "id": "Empty",
-      "properties": {},
-      "type": "object"
-    },
     "EnvFromSource": {
       "description": "Not supported by Cloud Run EnvFromSource represents the source of a set of ConfigMaps",
       "id": "EnvFromSource",
@@ -2328,12 +2290,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "GoogleLongrunningCancelOperationRequest": {
-      "description": "The request message for Operations.CancelOperation.",
-      "id": "GoogleLongrunningCancelOperationRequest",
-      "properties": {},
       "type": "object"
     },
     "HTTPGetAction": {
@@ -2935,7 +2891,7 @@
       "id": "RevisionSpec",
       "properties": {
         "containerConcurrency": {
-          "description": "Optional. ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. Cloud Run fully managed: supported, defaults to 80 Cloud Run for Anthos: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.",
+          "description": "ContainerConcurrency specifies the maximum allowed in-flight (concurrent) requests per container instance of the Revision. Cloud Run fully managed: supported, defaults to 80 Cloud Run for Anthos: supported, defaults to 0, which means concurrency to the application is not limited, and the system decides the target concurrency for the autoscaler.",
           "format": "int32",
           "type": "integer"
         },
@@ -2943,6 +2899,17 @@
           "description": "Containers holds the single container that defines the unit of execution for this Revision. In the context of a Revision, we disallow a number of fields on this Container, including: name and lifecycle. In Cloud Run, only a single container may be provided. The runtime contract is documented here: https://github.com/knative/serving/blob/main/docs/runtime-contract.md",
           "items": {
             "$ref": "Container"
+          },
+          "type": "array"
+        },
+        "enableServiceLinks": {
+          "description": "Indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Cloud Run fully managed: Not supported. Cloud Run for Anthos: supported, defaults to true.",
+          "type": "boolean"
+        },
+        "imagePullSecrets": {
+          "description": "ImagePullSecrets is a list of references to secrets in the same namespace to use for pulling any images in pods that reference this ServiceAccount. ImagePullSecrets are distinct from Secrets because Secrets can be mounted in the pod, but ImagePullSecrets are only accessed by the kubelet. More info: https://kubernetes.io/docs/concepts/containers/images/#specifying-imagepullsecrets-on-a-pod Cloud Run fully managed: Not supported. Cloud Run for Anthos: supported.",
+          "items": {
+            "$ref": "LocalObjectReference"
           },
           "type": "array"
         },

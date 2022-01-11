@@ -366,6 +366,10 @@ export namespace script_v1 {
      * The function name in the script project.
      */
     name?: string | null;
+    /**
+     * The ordered list of parameter names of the function in the script project.
+     */
+    parameters?: string[] | null;
   }
   /**
    * A set of functions. No duplicates are permitted.

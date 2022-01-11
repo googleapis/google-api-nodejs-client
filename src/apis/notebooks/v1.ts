@@ -1304,6 +1304,24 @@ export namespace notebooks_v1 {
     config?: Schema$InstanceConfig;
   }
   /**
+   * Request for adding/changing metadata items for an instance.
+   */
+  export interface Schema$UpdateInstanceMetadataItemsRequest {
+    /**
+     * Metadata items to add/update for the instance.
+     */
+    items?: {[key: string]: string} | null;
+  }
+  /**
+   * Response for adding/changing metadata items for an instance.
+   */
+  export interface Schema$UpdateInstanceMetadataItemsResponse {
+    /**
+     * Map of items that were added/updated to/in the metadata.
+     */
+    items?: {[key: string]: string} | null;
+  }
+  /**
    * Request for updating the Shielded Instance config for a notebook instance. You can only use this method on a stopped instance
    */
   export interface Schema$UpdateShieldedInstanceConfigRequest {
@@ -1362,6 +1380,10 @@ export namespace notebooks_v1 {
    */
   export interface Schema$UpgradeInstanceInternalRequest {
     /**
+     * Optional. The optional UpgradeType. Setting this field will search for additional compute images to upgrade this instance.
+     */
+    type?: string | null;
+    /**
      * Required. The VM hardware token for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
      */
     vmId?: string | null;
@@ -1369,7 +1391,12 @@ export namespace notebooks_v1 {
   /**
    * Request for upgrading a notebook instance
    */
-  export interface Schema$UpgradeInstanceRequest {}
+  export interface Schema$UpgradeInstanceRequest {
+    /**
+     * Optional. The optional UpgradeType. Setting this field will search for additional compute images to upgrade this instance.
+     */
+    type?: string | null;
+  }
   /**
    * Parameters used in Vertex AI JobType executions.
    */
@@ -3537,7 +3564,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.instances.getIamPolicy({
-     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/instances/my-instance',
@@ -3812,6 +3839,8 @@ export namespace notebooks_v1 {
      *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      *     notebookInstance:
      *       'projects/my-project/locations/my-location/instances/my-instance',
+     *     // Optional. The optional UpgradeType. Setting this field will search for additional compute images to upgrade this instance.
+     *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -5748,6 +5777,153 @@ export namespace notebooks_v1 {
     }
 
     /**
+     * Add/update metadata items for an instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.updateMetadataItems({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "items": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateMetadataItems(
+      params: Params$Resource$Projects$Locations$Instances$Updatemetadataitems,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateMetadataItems(
+      params?: Params$Resource$Projects$Locations$Instances$Updatemetadataitems,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UpdateInstanceMetadataItemsResponse>;
+    updateMetadataItems(
+      params: Params$Resource$Projects$Locations$Instances$Updatemetadataitems,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateMetadataItems(
+      params: Params$Resource$Projects$Locations$Instances$Updatemetadataitems,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$UpdateInstanceMetadataItemsResponse>,
+      callback: BodyResponseCallback<Schema$UpdateInstanceMetadataItemsResponse>
+    ): void;
+    updateMetadataItems(
+      params: Params$Resource$Projects$Locations$Instances$Updatemetadataitems,
+      callback: BodyResponseCallback<Schema$UpdateInstanceMetadataItemsResponse>
+    ): void;
+    updateMetadataItems(
+      callback: BodyResponseCallback<Schema$UpdateInstanceMetadataItemsResponse>
+    ): void;
+    updateMetadataItems(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Updatemetadataitems
+        | BodyResponseCallback<Schema$UpdateInstanceMetadataItemsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UpdateInstanceMetadataItemsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UpdateInstanceMetadataItemsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$UpdateInstanceMetadataItemsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Updatemetadataitems;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Updatemetadataitems;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:updateMetadataItems').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UpdateInstanceMetadataItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UpdateInstanceMetadataItemsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the Shielded instance configuration of a single Instance.
      * @example
      * ```js
@@ -5925,7 +6101,9 @@ export namespace notebooks_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "type": "my_type"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -6065,6 +6243,7 @@ export namespace notebooks_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "type": "my_type",
      *       //   "vmId": "my_vmId"
      *       // }
      *     },
@@ -6207,7 +6386,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Instances$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**
@@ -6228,6 +6407,10 @@ export namespace notebooks_v1 {
      * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      */
     notebookInstance?: string;
+    /**
+     * Optional. The optional UpgradeType. Setting this field will search for additional compute images to upgrade this instance.
+     */
+    type?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$List
     extends StandardParameters {
@@ -6387,6 +6570,18 @@ export namespace notebooks_v1 {
      * Request body metadata
      */
     requestBody?: Schema$UpdateInstanceConfigRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Updatemetadataitems
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateInstanceMetadataItemsRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig
     extends StandardParameters {
@@ -7451,7 +7646,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.runtimes.getIamPolicy({
-     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *     resource: 'projects/my-project/locations/my-location/runtimes/my-runtime',
@@ -8704,7 +8899,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Runtimes$Getiampolicy
     extends StandardParameters {
     /**
-     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     'options.requestedPolicyVersion'?: number;
     /**

@@ -331,6 +331,7 @@ export {retail_v2beta} from './apis/retail/v2beta';
 export {run_v1} from './apis/run/v1';
 export {run_v1alpha1} from './apis/run/v1alpha1';
 export {run_v1beta1} from './apis/run/v1beta1';
+export {run_v2} from './apis/run/v2';
 export {runtimeconfig_v1} from './apis/runtimeconfig/v1';
 export {runtimeconfig_v1beta1} from './apis/runtimeconfig/v1beta1';
 export {safebrowsing_v4} from './apis/safebrowsing/v4';

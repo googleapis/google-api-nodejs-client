@@ -887,7 +887,7 @@
       }
     }
   },
-  "revision": "20210709",
+  "revision": "20211230",
   "rootUrl": "https://script.googleapis.com/",
   "schemas": {
     "Content": {
@@ -1218,6 +1218,13 @@
         "name": {
           "description": "The function name in the script project.",
           "type": "string"
+        },
+        "parameters": {
+          "description": "The ordered list of parameter names of the function in the script project.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

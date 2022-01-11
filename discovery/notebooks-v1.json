@@ -528,7 +528,7 @@
                   ],
                   "parameters": {
                     "options.requestedPolicyVersion": {
-                      "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -588,6 +588,25 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Optional. The optional UpgradeType. Setting this field will search for additional compute images to upgrade this instance.",
+                      "enum": [
+                        "UPGRADE_TYPE_UNSPECIFIED",
+                        "UPGRADE_FRAMEWORK",
+                        "UPGRADE_OS",
+                        "UPGRADE_CUDA",
+                        "UPGRADE_ALL"
+                      ],
+                      "enumDescriptions": [
+                        "Upgrade type is not specified.",
+                        "Upgrade ML framework.",
+                        "Upgrade Operating System.",
+                        "Upgrade CUDA.",
+                        "Upgrade All (OS, Framework and CUDA)."
+                      ],
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -971,6 +990,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "updateMetadataItems": {
+                  "description": "Add/update metadata items for an instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:updateMetadataItems",
+                  "httpMethod": "PATCH",
+                  "id": "notebooks.projects.locations.instances.updateMetadataItems",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:updateMetadataItems",
+                  "request": {
+                    "$ref": "UpdateInstanceMetadataItemsRequest"
+                  },
+                  "response": {
+                    "$ref": "UpdateInstanceMetadataItemsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "updateShieldedInstanceConfig": {
                   "description": "Updates the Shielded instance configuration of a single Instance.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:updateShieldedInstanceConfig",
@@ -1275,7 +1322,7 @@
                   ],
                   "parameters": {
                     "options.requestedPolicyVersion": {
-                      "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1696,7 +1743,7 @@
       }
     }
   },
-  "revision": "20211019",
+  "revision": "20220104",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3526,6 +3573,34 @@
       },
       "type": "object"
     },
+    "UpdateInstanceMetadataItemsRequest": {
+      "description": "Request for adding/changing metadata items for an instance.",
+      "id": "UpdateInstanceMetadataItemsRequest",
+      "properties": {
+        "items": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Metadata items to add/update for the instance.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateInstanceMetadataItemsResponse": {
+      "description": "Response for adding/changing metadata items for an instance.",
+      "id": "UpdateInstanceMetadataItemsResponse",
+      "properties": {
+        "items": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map of items that were added/updated to/in the metadata.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "UpdateShieldedInstanceConfigRequest": {
       "description": "Request for updating the Shielded Instance config for a notebook instance. You can only use this method on a stopped instance",
       "id": "UpdateShieldedInstanceConfigRequest",
@@ -3611,6 +3686,24 @@
       "description": "Request for upgrading a notebook instance from within the VM",
       "id": "UpgradeInstanceInternalRequest",
       "properties": {
+        "type": {
+          "description": "Optional. The optional UpgradeType. Setting this field will search for additional compute images to upgrade this instance.",
+          "enum": [
+            "UPGRADE_TYPE_UNSPECIFIED",
+            "UPGRADE_FRAMEWORK",
+            "UPGRADE_OS",
+            "UPGRADE_CUDA",
+            "UPGRADE_ALL"
+          ],
+          "enumDescriptions": [
+            "Upgrade type is not specified.",
+            "Upgrade ML framework.",
+            "Upgrade Operating System.",
+            "Upgrade CUDA.",
+            "Upgrade All (OS, Framework and CUDA)."
+          ],
+          "type": "string"
+        },
         "vmId": {
           "description": "Required. The VM hardware token for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity",
           "type": "string"
@@ -3621,7 +3714,26 @@
     "UpgradeInstanceRequest": {
       "description": "Request for upgrading a notebook instance",
       "id": "UpgradeInstanceRequest",
-      "properties": {},
+      "properties": {
+        "type": {
+          "description": "Optional. The optional UpgradeType. Setting this field will search for additional compute images to upgrade this instance.",
+          "enum": [
+            "UPGRADE_TYPE_UNSPECIFIED",
+            "UPGRADE_FRAMEWORK",
+            "UPGRADE_OS",
+            "UPGRADE_CUDA",
+            "UPGRADE_ALL"
+          ],
+          "enumDescriptions": [
+            "Upgrade type is not specified.",
+            "Upgrade ML framework.",
+            "Upgrade Operating System.",
+            "Upgrade CUDA.",
+            "Upgrade All (OS, Framework and CUDA)."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "VertexAIParameters": {

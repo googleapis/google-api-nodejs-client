@@ -573,6 +573,62 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "modifyEntryContacts": {
+                      "description": "Modifies contacts, part of the business context of an Entry. To call this method, you must have the `datacatalog.entries.updateContacts` IAM permission on the corresponding project.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:modifyEntryContacts",
+                      "httpMethod": "POST",
+                      "id": "datacatalog.projects.locations.entryGroups.entries.modifyEntryContacts",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The full resource name of the entry.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:modifyEntryContacts",
+                      "request": {
+                        "$ref": "GoogleCloudDatacatalogV1ModifyEntryContactsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDatacatalogV1Contacts"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "modifyEntryOverview": {
+                      "description": "Modifies entry overview, part of the business context of an Entry. To call this method, you must have the `datacatalog.entries.updateOverview` IAM permission on the corresponding project.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}:modifyEntryOverview",
+                      "httpMethod": "POST",
+                      "id": "datacatalog.projects.locations.entryGroups.entries.modifyEntryOverview",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The full resource name of the entry.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:modifyEntryOverview",
+                      "request": {
+                        "$ref": "GoogleCloudDatacatalogV1ModifyEntryOverviewRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDatacatalogV1EntryOverview"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "patch": {
                       "description": "Updates an existing entry. You must enable the Data Catalog API in the project identified by the `entry.name` parameter. For more information, see [Data Catalog resource project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
@@ -749,7 +805,7 @@
                           ]
                         },
                         "list": {
-                          "description": "Lists tags assigned to an Entry.",
+                          "description": "Lists tags assigned to an Entry. The columns in the response are lowercased.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags",
                           "httpMethod": "GET",
                           "id": "datacatalog.projects.locations.entryGroups.entries.tags.list",
@@ -878,7 +934,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists tags assigned to an Entry.",
+                      "description": "Lists tags assigned to an Entry. The columns in the response are lowercased.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/tags",
                       "httpMethod": "GET",
                       "id": "datacatalog.projects.locations.entryGroups.tags.list",
@@ -1897,7 +1953,7 @@
       }
     }
   },
-  "revision": "20211201",
+  "revision": "20211230",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2075,6 +2131,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1BusinessContext": {
+      "description": "Business Context of the entry.",
+      "id": "GoogleCloudDatacatalogV1BusinessContext",
+      "properties": {
+        "contacts": {
+          "$ref": "GoogleCloudDatacatalogV1Contacts",
+          "description": "Contact people for the entry."
+        },
+        "entryOverview": {
+          "$ref": "GoogleCloudDatacatalogV1EntryOverview",
+          "description": "Entry overview fields for rich text descriptions of entries."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec": {
       "description": "Specification for the BigQuery connection to a Cloud SQL instance.",
       "id": "GoogleCloudDatacatalogV1CloudSqlBigQueryConnectionSpec",
@@ -2129,6 +2200,35 @@
         },
         "type": {
           "description": "Required. Type of the column. Must be a UTF-8 string with the maximum size of 128 bytes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1Contacts": {
+      "description": "Contact people for the entry.",
+      "id": "GoogleCloudDatacatalogV1Contacts",
+      "properties": {
+        "people": {
+          "description": "The list of contact people for the entry.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1ContactsPerson"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ContactsPerson": {
+      "description": "A contact person for the entry.",
+      "id": "GoogleCloudDatacatalogV1ContactsPerson",
+      "properties": {
+        "designation": {
+          "description": "Designation of the person, for example, Data Steward.",
+          "type": "string"
+        },
+        "email": {
+          "description": "Email of the person in the format of `john.doe@xyz`, ``, or `John Doe`.",
           "type": "string"
         }
       },
@@ -2213,6 +2313,10 @@
         "bigqueryTableSpec": {
           "$ref": "GoogleCloudDatacatalogV1BigQueryTableSpec",
           "description": "Specification that applies to a BigQuery table. Valid only for entries with the `TABLE` type."
+        },
+        "businessContext": {
+          "$ref": "GoogleCloudDatacatalogV1BusinessContext",
+          "description": "Business Context of the entry."
         },
         "dataSource": {
           "$ref": "GoogleCloudDatacatalogV1DataSource",
@@ -2356,6 +2460,17 @@
         },
         "name": {
           "description": "The resource name of the entry group in URL format. Note: The entry group itself and its child resources might not be stored in the location specified in its name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1EntryOverview": {
+      "description": "Entry overview fields for rich text descriptions of entries.",
+      "id": "GoogleCloudDatacatalogV1EntryOverview",
+      "properties": {
+        "overview": {
+          "description": "Entry overview with support for rich text. The overview must only contain Unicode characters, and should be formatted using HTML. The maximum length is 10 MiB as this value holds HTML descriptions including encoded images. The maximum length of the text without images is 100 KiB.",
           "type": "string"
         }
       },
@@ -2601,6 +2716,28 @@
             "$ref": "GoogleCloudDatacatalogV1Taxonomy"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ModifyEntryContactsRequest": {
+      "description": "Request message for ModifyEntryContacts.",
+      "id": "GoogleCloudDatacatalogV1ModifyEntryContactsRequest",
+      "properties": {
+        "contacts": {
+          "$ref": "GoogleCloudDatacatalogV1Contacts",
+          "description": "Required. The new value for the Contacts."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1ModifyEntryOverviewRequest": {
+      "description": "Request message for ModifyEntryOverview.",
+      "id": "GoogleCloudDatacatalogV1ModifyEntryOverviewRequest",
+      "properties": {
+        "entryOverview": {
+          "$ref": "GoogleCloudDatacatalogV1EntryOverview",
+          "description": "Required. The new value for the Entry Overview."
         }
       },
       "type": "object"

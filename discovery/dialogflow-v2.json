@@ -1804,6 +1804,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains \"articles\". * 'display_name:\"Best Articles\"' matches knowledge bases whose display name contains \"Best Articles\". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains \"articles\" and whose language code is \"en-gb\". Note: An empty filter string (i.e. \"\") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "The maximum number of items to return in a single page. By default 10 and at most 100.",
                       "format": "int32",
@@ -1961,6 +1966,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "filter": {
+                          "description": "The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * \"knowledge_types:FAQ\" matches documents with FAQ knowledge type. * \"display_name:customer\" matches documents whose display name contains \"customer\". * \"state=ACTIVE\" matches documents with ACTIVE state. * \"knowledge_types:FAQ AND state=ACTIVE\" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "The maximum number of items to return in a single page. By default 10 and at most 100.",
                           "format": "int32",
@@ -3229,6 +3239,35 @@
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
+                    },
+                    "suggestSmartReplies": {
+                      "description": "Gets smart replies for a participant based on specific historical messages.",
+                      "flatPath": "v2/projects/{projectsId}/conversations/{conversationsId}/participants/{participantsId}/suggestions:suggestSmartReplies",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.conversations.participants.suggestions.suggestSmartReplies",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/conversations/[^/]+/participants/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/suggestions:suggestSmartReplies",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
                     }
                   }
                 }
@@ -3333,6 +3372,11 @@
                 "parent"
               ],
               "parameters": {
+                "filter": {
+                  "description": "The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains \"articles\". * 'display_name:\"Best Articles\"' matches knowledge bases whose display name contains \"Best Articles\". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains \"articles\" and whose language code is \"en-gb\". Note: An empty filter string (i.e. \"\") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "The maximum number of items to return in a single page. By default 10 and at most 100.",
                   "format": "int32",
@@ -3455,6 +3499,35 @@
                     "https://www.googleapis.com/auth/dialogflow"
                   ]
                 },
+                "export": {
+                  "description": "Exports a smart messaging candidate document into the specified destination. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: KnowledgeOperationMetadata - `response`: Document",
+                  "flatPath": "v2/projects/{projectsId}/knowledgeBases/{knowledgeBasesId}/documents/{documentsId}:export",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.knowledgeBases.documents.export",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the document to export. Format: `projects//locations//knowledgeBases//documents/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/knowledgeBases/[^/]+/documents/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:export",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2ExportDocumentRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
                 "get": {
                   "description": "Retrieves the specified document.",
                   "flatPath": "v2/projects/{projectsId}/knowledgeBases/{knowledgeBasesId}/documents/{documentsId}",
@@ -3490,6 +3563,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * \"knowledge_types:FAQ\" matches documents with FAQ knowledge type. * \"display_name:customer\" matches documents whose display name contains \"customer\". * \"state=ACTIVE\" matches documents with ACTIVE state. * \"knowledge_types:FAQ AND state=ACTIVE\" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "The maximum number of items to return in a single page. By default 10 and at most 100.",
                       "format": "int32",
@@ -6425,6 +6503,35 @@
                             "https://www.googleapis.com/auth/cloud-platform",
                             "https://www.googleapis.com/auth/dialogflow"
                           ]
+                        },
+                        "suggestSmartReplies": {
+                          "description": "Gets smart replies for a participant based on specific historical messages.",
+                          "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/conversations/{conversationsId}/participants/{participantsId}/suggestions:suggestSmartReplies",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.conversations.participants.suggestions.suggestSmartReplies",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/conversations/[^/]+/participants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+parent}/suggestions:suggestSmartReplies",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
                         }
                       }
                     }
@@ -6529,6 +6636,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains \"articles\". * 'display_name:\"Best Articles\"' matches knowledge bases whose display name contains \"Best Articles\". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains \"articles\" and whose language code is \"en-gb\". Note: An empty filter string (i.e. \"\") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "The maximum number of items to return in a single page. By default 10 and at most 100.",
                       "format": "int32",
@@ -6651,6 +6763,35 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     },
+                    "export": {
+                      "description": "Exports a smart messaging candidate document into the specified destination. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: KnowledgeOperationMetadata - `response`: Document",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/knowledgeBases/{knowledgeBasesId}/documents/{documentsId}:export",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.knowledgeBases.documents.export",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the document to export. Format: `projects//locations//knowledgeBases//documents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/knowledgeBases/[^/]+/documents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}:export",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowV2ExportDocumentRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
                     "get": {
                       "description": "Retrieves the specified document.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/knowledgeBases/{knowledgeBasesId}/documents/{documentsId}",
@@ -6686,6 +6827,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "filter": {
+                          "description": "The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * \"knowledge_types:FAQ\" matches documents with FAQ knowledge type. * \"display_name:customer\" matches documents whose display name contains \"customer\". * \"state=ACTIVE\" matches documents with ACTIVE state. * \"knowledge_types:FAQ AND state=ACTIVE\" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "pageSize": {
                           "description": "The maximum number of items to return in a single page. By default 10 and at most 100.",
                           "format": "int32",
@@ -6983,7 +7129,7 @@
       }
     }
   },
-  "revision": "20211216",
+  "revision": "20211231",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7897,6 +8043,10 @@
       "properties": {
         "currentPage": {
           "description": "Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects//locations//agents//flows//pages/`.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Always present for WebhookRequest. Ignored for WebhookResponse. The display name of the current page.",
           "type": "string"
         },
         "formInfo": {
@@ -9581,6 +9731,10 @@
       "properties": {
         "currentPage": {
           "description": "Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects//locations//agents//flows//pages/`.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Always present for WebhookRequest. Ignored for WebhookResponse. The display name of the current page.",
           "type": "string"
         },
         "formInfo": {
@@ -11524,6 +11678,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ExportDocumentRequest": {
+      "description": "Request message for Documents.ExportDocument.",
+      "id": "GoogleCloudDialogflowV2ExportDocumentRequest",
+      "properties": {
+        "exportFullContent": {
+          "description": "When enabled, export the full content of the document including empirical probability.",
+          "type": "boolean"
+        },
+        "gcsDestination": {
+          "$ref": "GoogleCloudDialogflowV2GcsDestination",
+          "description": "Cloud Storage file path to export the document."
+        },
+        "smartMessagingPartialUpdate": {
+          "description": "When enabled, export the smart messaging allowlist document for partial update.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2FaqAnswer": {
       "description": "Represents answer from \"frequently asked questions\".",
       "id": "GoogleCloudDialogflowV2FaqAnswer",
@@ -11638,6 +11811,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2GcsDestination": {
+      "description": "Google Cloud Storage location for the output.",
+      "id": "GoogleCloudDialogflowV2GcsDestination",
+      "properties": {
+        "uri": {
+          "description": "The Google Cloud Storage URIs for the output. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case. The requesting user must have \"write-permission\" to the bucket.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2HumanAgentAssistantConfig": {
       "description": "Defines the Human Agent Assist to connect to a conversation.",
       "id": "GoogleCloudDialogflowV2HumanAgentAssistantConfig",
@@ -11668,6 +11852,18 @@
         "model": {
           "description": "Conversation model resource name. Format: `projects//conversationModels/`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationProcessConfig": {
+      "description": "Config to process conversation.",
+      "id": "GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationProcessConfig",
+      "properties": {
+        "recentSentencesCount": {
+          "description": "Number of recent non-small-talk sentences to use as context for article and FAQ suggestion",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -11712,6 +11908,10 @@
         "conversationModelConfig": {
           "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationModelConfig",
           "description": "Configs of custom conversation model."
+        },
+        "conversationProcessConfig": {
+          "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationProcessConfig",
+          "description": "Configs for processing conversation."
         },
         "enableEventBasedSuggestion": {
           "description": "Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST.",
@@ -13232,7 +13432,7 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. The time when the message was created.",
+          "description": "Output only. The time when the message was created in Contact Center AI.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -13247,7 +13447,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "The unique identifier of the message. Format: `projects//locations//conversations//messages/`.",
+          "description": "Optional. The unique identifier of the message. Format: `projects//locations//conversations//messages/`.",
           "type": "string"
         },
         "participant": {
@@ -13271,6 +13471,16 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "sendTime": {
+          "description": "Optional. The time when the message was sent.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sentimentAnalysis": {
+          "$ref": "GoogleCloudDialogflowV2SentimentAnalysisResult",
+          "description": "Output only. The sentiment analysis result for the message.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -13600,6 +13810,14 @@
         "contentUri": {
           "description": "Optional. The path of gcs source file for reloading document content. For now, only gcs uri is supported. For documents stored in Google Cloud Storage, these URIs must have the form `gs:///`.",
           "type": "string"
+        },
+        "importGcsCustomMetadata": {
+          "description": "Optional. Whether to import custom metadata from Google Cloud Storage. Only valid when the document source is Google Cloud Storage URI.",
+          "type": "boolean"
+        },
+        "smartMessagingPartialUpdate": {
+          "description": "Optional. When enabled, the reload request is to apply partial update to the smart messaging allowlist.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -13709,6 +13927,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2SmartReplyAnswer": {
+      "description": "Represents a smart reply answer.",
+      "id": "GoogleCloudDialogflowV2SmartReplyAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of answer record, in the format of \"projects//locations//answerRecords/\"",
+          "type": "string"
+        },
+        "confidence": {
+          "description": "Smart reply confidence. The system's confidence score that this reply is a good match for this conversation, as a value from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "float",
+          "type": "number"
+        },
+        "reply": {
+          "description": "The content of the reply.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2SpeechContext": {
       "description": "Hints for the speech recognizer to help with recognition in a specific conversation state.",
       "id": "GoogleCloudDialogflowV2SpeechContext",
@@ -13760,12 +13998,12 @@
           "description": "Parameters for a human assist query."
         },
         "contextSize": {
-          "description": "Max number of messages prior to and including latest_message to use as context when compiling the suggestion. By default 20 and at most 50.",
+          "description": "Optional. Max number of messages prior to and including latest_message to use as context when compiling the suggestion. By default 20 and at most 50.",
           "format": "int32",
           "type": "integer"
         },
         "latestMessage": {
-          "description": "The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.",
+          "description": "Optional. The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.",
           "type": "string"
         }
       },
@@ -13803,12 +14041,12 @@
           "description": "Parameters for a human assist query."
         },
         "contextSize": {
-          "description": "Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.",
+          "description": "Optional. Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.",
           "format": "int32",
           "type": "integer"
         },
         "latestMessage": {
-          "description": "The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.",
+          "description": "Optional. The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.",
           "type": "string"
         }
       },
@@ -13833,6 +14071,50 @@
         "latestMessage": {
           "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SuggestSmartRepliesRequest": {
+      "description": "The request message for Participants.SuggestSmartReplies.",
+      "id": "GoogleCloudDialogflowV2SuggestSmartRepliesRequest",
+      "properties": {
+        "contextSize": {
+          "description": "Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "currentTextInput": {
+          "$ref": "GoogleCloudDialogflowV2TextInput",
+          "description": "The current natural language text segment to compile suggestion for. This provides a way for user to get follow up smart reply suggestion after a smart reply selection, without sending a text message."
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SuggestSmartRepliesResponse": {
+      "description": "The response message for Participants.SuggestSmartReplies.",
+      "id": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
+      "properties": {
+        "contextSize": {
+          "description": "Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestSmartRepliesRequest.context_size field in the request if there aren't that many messages in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        },
+        "smartReplyAnswers": {
+          "description": "Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SmartReplyAnswer"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -13875,6 +14157,10 @@
         "suggestFaqAnswersResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestFaqAnswersResponse",
           "description": "SuggestFaqAnswersResponse if request is for FAQ_ANSWER."
+        },
+        "suggestSmartRepliesResponse": {
+          "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
+          "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
         }
       },
       "type": "object"

@@ -827,6 +827,10 @@ export namespace dialogflow_v2 {
      */
     currentPage?: string | null;
     /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The display name of the current page.
+     */
+    displayName?: string | null;
+    /**
      * Optional for both WebhookRequest and WebhookResponse. Information about the form.
      */
     formInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfo;
@@ -2051,6 +2055,10 @@ export namespace dialogflow_v2 {
      * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects//locations//agents//flows//pages/`.
      */
     currentPage?: string | null;
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The display name of the current page.
+     */
+    displayName?: string | null;
     /**
      * Optional for both WebhookRequest and WebhookResponse. Information about the form.
      */
@@ -4919,6 +4927,23 @@ export namespace dialogflow_v2 {
     agentUri?: string | null;
   }
   /**
+   * Request message for Documents.ExportDocument.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ExportDocumentRequest {
+    /**
+     * When enabled, export the full content of the document including empirical probability.
+     */
+    exportFullContent?: boolean | null;
+    /**
+     * Cloud Storage file path to export the document.
+     */
+    gcsDestination?: Schema$GoogleCloudDialogflowV2GcsDestination;
+    /**
+     * When enabled, export the smart messaging allowlist document for partial update.
+     */
+    smartMessagingPartialUpdate?: boolean | null;
+  }
+  /**
    * Represents answer from "frequently asked questions".
    */
   export interface Schema$GoogleCloudDialogflowV2FaqAnswer {
@@ -5007,6 +5032,15 @@ export namespace dialogflow_v2 {
     username?: string | null;
   }
   /**
+   * Google Cloud Storage location for the output.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GcsDestination {
+    /**
+     * The Google Cloud Storage URIs for the output. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
+     */
+    uri?: string | null;
+  }
+  /**
    * Defines the Human Agent Assist to connect to a conversation.
    */
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfig {
@@ -5035,6 +5069,15 @@ export namespace dialogflow_v2 {
      * Conversation model resource name. Format: `projects//conversationModels/`.
      */
     model?: string | null;
+  }
+  /**
+   * Config to process conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationProcessConfig {
+    /**
+     * Number of recent non-small-talk sentences to use as context for article and FAQ suggestion
+     */
+    recentSentencesCount?: number | null;
   }
   /**
    * Configuration for analyses to run on each conversation message.
@@ -5070,6 +5113,10 @@ export namespace dialogflow_v2 {
      * Configs of custom conversation model.
      */
     conversationModelConfig?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationModelConfig;
+    /**
+     * Configs for processing conversation.
+     */
+    conversationProcessConfig?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigConversationProcessConfig;
     /**
      * Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST.
      */
@@ -6162,7 +6209,7 @@ export namespace dialogflow_v2 {
      */
     content?: string | null;
     /**
-     * Output only. The time when the message was created.
+     * Output only. The time when the message was created in Contact Center AI.
      */
     createTime?: string | null;
     /**
@@ -6174,7 +6221,7 @@ export namespace dialogflow_v2 {
      */
     messageAnnotation?: Schema$GoogleCloudDialogflowV2MessageAnnotation;
     /**
-     * The unique identifier of the message. Format: `projects//locations//conversations//messages/`.
+     * Optional. The unique identifier of the message. Format: `projects//locations//conversations//messages/`.
      */
     name?: string | null;
     /**
@@ -6185,6 +6232,14 @@ export namespace dialogflow_v2 {
      * Output only. The role of the participant.
      */
     participantRole?: string | null;
+    /**
+     * Optional. The time when the message was sent.
+     */
+    sendTime?: string | null;
+    /**
+     * Output only. The sentiment analysis result for the message.
+     */
+    sentimentAnalysis?: Schema$GoogleCloudDialogflowV2SentimentAnalysisResult;
   }
   /**
    * Represents the result of annotation for the message.
@@ -6411,6 +6466,14 @@ export namespace dialogflow_v2 {
      * Optional. The path of gcs source file for reloading document content. For now, only gcs uri is supported. For documents stored in Google Cloud Storage, these URIs must have the form `gs:///`.
      */
     contentUri?: string | null;
+    /**
+     * Optional. Whether to import custom metadata from Google Cloud Storage. Only valid when the document source is Google Cloud Storage URI.
+     */
+    importGcsCustomMetadata?: boolean | null;
+    /**
+     * Optional. When enabled, the reload request is to apply partial update to the smart messaging allowlist.
+     */
+    smartMessagingPartialUpdate?: boolean | null;
   }
   /**
    * The request message for Agents.RestoreAgent.
@@ -6487,6 +6550,23 @@ export namespace dialogflow_v2 {
     name?: string | null;
   }
   /**
+   * Represents a smart reply answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SmartReplyAnswer {
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * Smart reply confidence. The system's confidence score that this reply is a good match for this conversation, as a value from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidence?: number | null;
+    /**
+     * The content of the reply.
+     */
+    reply?: string | null;
+  }
+  /**
    * Hints for the speech recognizer to help with recognition in a specific conversation state.
    */
   export interface Schema$GoogleCloudDialogflowV2SpeechContext {
@@ -6517,11 +6597,11 @@ export namespace dialogflow_v2 {
      */
     assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
     /**
-     * Max number of messages prior to and including latest_message to use as context when compiling the suggestion. By default 20 and at most 50.
+     * Optional. Max number of messages prior to and including latest_message to use as context when compiling the suggestion. By default 20 and at most 50.
      */
     contextSize?: number | null;
     /**
-     * The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
+     * Optional. The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
      */
     latestMessage?: string | null;
   }
@@ -6551,11 +6631,11 @@ export namespace dialogflow_v2 {
      */
     assistQueryParams?: Schema$GoogleCloudDialogflowV2AssistQueryParameters;
     /**
-     * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.
+     * Optional. Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.
      */
     contextSize?: number | null;
     /**
-     * The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
+     * Optional. The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
      */
     latestMessage?: string | null;
   }
@@ -6601,6 +6681,44 @@ export namespace dialogflow_v2 {
      * SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
      */
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse;
+    /**
+     * SuggestSmartRepliesResponse if request is for SMART_REPLY.
+     */
+    suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse;
+  }
+  /**
+   * The request message for Participants.SuggestSmartReplies.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestSmartRepliesRequest {
+    /**
+     * Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.
+     */
+    contextSize?: number | null;
+    /**
+     * The current natural language text segment to compile suggestion for. This provides a way for user to get follow up smart reply suggestion after a smart reply selection, without sending a text message.
+     */
+    currentTextInput?: Schema$GoogleCloudDialogflowV2TextInput;
+    /**
+     * The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * The response message for Participants.SuggestSmartReplies.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestSmartRepliesRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+    /**
+     * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
+     */
+    smartReplyAnswers?: Schema$GoogleCloudDialogflowV2SmartReplyAnswer[];
   }
   /**
    * Configuration of how speech should be synthesized.
@@ -15284,6 +15402,8 @@ export namespace dialogflow_v2 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.list({
+     *     // The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -15585,6 +15705,10 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Knowledgebases$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
@@ -16099,6 +16223,8 @@ export namespace dialogflow_v2 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.knowledgeBases.documents.list({
+     *     // The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -16412,7 +16538,9 @@ export namespace dialogflow_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "contentUri": "my_contentUri"
+     *       //   "contentUri": "my_contentUri",
+     *       //   "importGcsCustomMetadata": false,
+     *       //   "smartMessagingPartialUpdate": false
      *       // }
      *     },
      *   });
@@ -16553,6 +16681,10 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Agent$Knowledgebases$Documents$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
@@ -22485,6 +22617,163 @@ export namespace dialogflow_v2 {
         );
       }
     }
+
+    /**
+     * Gets smart replies for a participant based on specific historical messages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.conversations.participants.suggestions.suggestSmartReplies(
+     *       {
+     *         // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *         parent:
+     *           'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "contextSize": 0,
+     *           //   "currentTextInput": {},
+     *           //   "latestMessage": "my_latestMessage"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage",
+     *   //   "smartReplyAnswers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestSmartReplies(
+      params?: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/suggestions:suggestSmartReplies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles
@@ -22510,6 +22799,18 @@ export namespace dialogflow_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersRequest;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SuggestSmartRepliesRequest;
   }
 
   export class Resource$Projects$Knowledgebases {
@@ -22977,6 +23278,8 @@ export namespace dialogflow_v2 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.list({
+     *     // The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -23278,6 +23581,10 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Knowledgebases$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
@@ -23614,6 +23921,156 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Exports a smart messaging candidate document into the specified destination. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: KnowledgeOperationMetadata - `response`: Document
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.documents.export({
+     *     // Required. The name of the document to export. Format: `projects//locations//knowledgeBases//documents/`.
+     *     name: 'projects/my-project/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "exportFullContent": false,
+     *       //   "gcsDestination": {},
+     *       //   "smartMessagingPartialUpdate": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Knowledgebases$Documents$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Knowledgebases$Documents$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Knowledgebases$Documents$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Knowledgebases$Documents$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves the specified document.
      * @example
      * ```js
@@ -23789,6 +24246,8 @@ export namespace dialogflow_v2 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.knowledgeBases.documents.list({
+     *     // The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -24100,7 +24559,9 @@ export namespace dialogflow_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "contentUri": "my_contentUri"
+     *       //   "contentUri": "my_contentUri",
+     *       //   "importGcsCustomMetadata": false,
+     *       //   "smartMessagingPartialUpdate": false
      *       // }
      *     },
      *   });
@@ -24231,6 +24692,18 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Export
+    extends StandardParameters {
+    /**
+     * Required. The name of the document to export. Format: `projects//locations//knowledgeBases//documents/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2ExportDocumentRequest;
+  }
   export interface Params$Resource$Projects$Knowledgebases$Documents$Get
     extends StandardParameters {
     /**
@@ -24240,6 +24713,10 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Knowledgebases$Documents$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
@@ -38447,6 +38924,163 @@ export namespace dialogflow_v2 {
         );
       }
     }
+
+    /**
+     * Gets smart replies for a participant based on specific historical messages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.conversations.participants.suggestions.suggestSmartReplies(
+     *       {
+     *         // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/conversations/my-conversation/participants/my-participant',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "contextSize": 0,
+     *           //   "currentTextInput": {},
+     *           //   "latestMessage": "my_latestMessage"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage",
+     *   //   "smartReplyAnswers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestSmartReplies(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2/{+parent}/suggestions:suggestSmartReplies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles
@@ -38472,6 +39106,18 @@ export namespace dialogflow_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2SuggestSmartRepliesRequest;
   }
 
   export class Resource$Projects$Locations$Knowledgebases {
@@ -38939,6 +39585,8 @@ export namespace dialogflow_v2 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.knowledgeBases.list({
+     *     // The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
      *     // The maximum number of items to return in a single page. By default 10 and at most 100.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request.
@@ -39240,6 +39888,10 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Locations$Knowledgebases$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter knowledge bases returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * display_name with has(:) operator * language_code with equals(=) operator Examples: * 'language_code=en-us' matches knowledge bases with en-us language code. * 'display_name:articles' matches knowledge bases whose display name contains "articles". * 'display_name:"Best Articles"' matches knowledge bases whose display name contains "Best Articles". * 'language_code=en-gb AND display_name=articles' matches all knowledge bases whose display name contains "articles" and whose language code is "en-gb". Note: An empty filter string (i.e. "") is a no-op and will result in no filtering. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */
@@ -39581,6 +40233,158 @@ export namespace dialogflow_v2 {
     }
 
     /**
+     * Exports a smart messaging candidate document into the specified destination. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: KnowledgeOperationMetadata - `response`: Document
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.knowledgeBases.documents.export({
+     *       // Required. The name of the document to export. Format: `projects//locations//knowledgeBases//documents/`.
+     *       name: 'projects/my-project/locations/my-location/knowledgeBases/my-knowledgeBase/documents/my-document',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "exportFullContent": false,
+     *         //   "gcsDestination": {},
+     *         //   "smartMessagingPartialUpdate": false
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Knowledgebases$Documents$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Knowledgebases$Documents$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Knowledgebases$Documents$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Knowledgebases$Documents$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Knowledgebases$Documents$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Knowledgebases$Documents$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Knowledgebases$Documents$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Knowledgebases$Documents$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves the specified document.
      * @example
      * ```js
@@ -39758,6 +40562,8 @@ export namespace dialogflow_v2 {
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.knowledgeBases.documents.list(
      *     {
+     *       // The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *       filter: 'placeholder-value',
      *       // The maximum number of items to return in a single page. By default 10 and at most 100.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request.
@@ -40075,7 +40881,9 @@ export namespace dialogflow_v2 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "contentUri": "my_contentUri"
+     *         //   "contentUri": "my_contentUri",
+     *         //   "importGcsCustomMetadata": false,
+     *         //   "smartMessagingPartialUpdate": false
      *         // }
      *       },
      *     });
@@ -40207,6 +41015,18 @@ export namespace dialogflow_v2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Export
+    extends StandardParameters {
+    /**
+     * Required. The name of the document to export. Format: `projects//locations//knowledgeBases//documents/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2ExportDocumentRequest;
+  }
   export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Get
     extends StandardParameters {
     /**
@@ -40216,6 +41036,10 @@ export namespace dialogflow_v2 {
   }
   export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$List
     extends StandardParameters {
+    /**
+     * The filter expression used to filter documents returned by the list method. The expression has the following syntax: [AND ] ... The following fields and operators are supported: * knowledge_types with has(:) operator * display_name with has(:) operator * state with equals(=) operator Examples: * "knowledge_types:FAQ" matches documents with FAQ knowledge type. * "display_name:customer" matches documents whose display name contains "customer". * "state=ACTIVE" matches documents with ACTIVE state. * "knowledge_types:FAQ AND state=ACTIVE" matches all active FAQ documents. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
     /**
      * The maximum number of items to return in a single page. By default 10 and at most 100.
      */

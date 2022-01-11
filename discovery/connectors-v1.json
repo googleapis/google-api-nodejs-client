@@ -12,7 +12,7 @@
   "baseUrl": "https://connectors.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Connectors",
-  "description": "",
+  "description": "Enables users to create and manage connections to Google Cloud services and third-party business applications using the Connectors interface.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/apigee/docs/api-platform/connectors/about-connectors",
   "fullyEncodeReservedExpansion": true,
@@ -1055,7 +1055,7 @@
       }
     }
   },
-  "revision": "20211106",
+  "revision": "20211217",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1470,6 +1470,23 @@
           "description": "Output only. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources",
           "readOnly": true,
           "type": "object"
+        },
+        "launchStage": {
+          "description": "Output only. Flag to mark the version indicating the launch stage.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "DEPRECATED"
+          ],
+          "enumDescriptions": [
+            "LAUNCH_STAGE_UNSPECIFIED.",
+            "PREVIEW.",
+            "GA.",
+            "DEPRECATED."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Output only. Resource name of the Connector. Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector}",
@@ -2336,6 +2353,23 @@
           "description": "Output only. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources",
           "readOnly": true,
           "type": "object"
+        },
+        "launchStage": {
+          "description": "Output only. Flag to mark the version indicating the launch stage.",
+          "enum": [
+            "LAUNCH_STAGE_UNSPECIFIED",
+            "PREVIEW",
+            "GA",
+            "DEPRECATED"
+          ],
+          "enumDescriptions": [
+            "LAUNCH_STAGE_UNSPECIFIED.",
+            "PREVIEW.",
+            "GA.",
+            "DEPRECATED."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Output only. Resource name of the Provider. Format: projects/{project}/locations/{location}/providers/{provider}",

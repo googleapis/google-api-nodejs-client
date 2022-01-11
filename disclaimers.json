@@ -440,6 +440,10 @@
     "package": "@google-cloud/media-translation"
   },
   {
+    "api": "vmmigration",
+    "package": "@google-cloud/vmmigration"
+  },
+  {
     "api": "networkconnectivity",
     "package": "@google-cloud/network-connectivity"
   },

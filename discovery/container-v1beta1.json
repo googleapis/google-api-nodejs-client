@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20211203",
+  "revision": "20211208",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2530,6 +2530,10 @@
         "gcpFilestoreCsiDriverConfig": {
           "$ref": "GcpFilestoreCsiDriverConfig",
           "description": "Configuration for the GCP Filestore CSI driver."
+        },
+        "gkeBackupAgentConfig": {
+          "$ref": "GkeBackupAgentConfig",
+          "description": "Configuration for the Backup for GKE agent addon."
         },
         "horizontalPodAutoscaling": {
           "$ref": "HorizontalPodAutoscaling",
@@ -3713,6 +3717,17 @@
       },
       "type": "object"
     },
+    "GkeBackupAgentConfig": {
+      "description": "Configuration for the Backup for GKE Agent.",
+      "id": "GkeBackupAgentConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the Backup for GKE agent is enabled for this cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "HorizontalPodAutoscaling": {
       "description": "Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.",
       "id": "HorizontalPodAutoscaling",
@@ -4714,6 +4729,10 @@
           "$ref": "NodeNetworkConfig",
           "description": "Networking configuration for this NodePool. If specified, it overrides the cluster-level defaults."
         },
+        "placementPolicy": {
+          "$ref": "PlacementPolicy",
+          "description": "Specifies the node placement policy."
+        },
         "podIpv4CidrSize": {
           "description": "[Output only] The pod CIDR block size per node in this node pool.",
           "format": "int32",
@@ -5016,6 +5035,25 @@
             "The operation is currently running.",
             "The operation is done, either cancelled or completed.",
             "The operation is aborting."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PlacementPolicy": {
+      "description": "PlacementPolicy defines the placement policy used by the node pool.",
+      "id": "PlacementPolicy",
+      "properties": {
+        "type": {
+          "description": "The type of placement.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "COMPACT"
+          ],
+          "enumDescriptions": [
+            "TYPE_UNSPECIFIED specifies no requirements on nodes placement.",
+            "COMPACT specifies node placement in the same availability domain to ensure low communication latency."
           ],
           "type": "string"
         }

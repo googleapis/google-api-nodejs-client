@@ -2527,7 +2527,7 @@
       }
     }
   },
-  "revision": "20211215",
+  "revision": "20220105",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2606,37 +2606,6 @@
       "description": "The Deployment.",
       "id": "SasPortalDeployment",
       "properties": {
-        "allowedBillingModes": {
-          "description": "The allowed billing modes under this deployment.",
-          "items": {
-            "enum": [
-              "BILLING_MODE_UNSPECIFIED",
-              "MOBILE",
-              "FIXED_WIRELESS"
-            ],
-            "enumDescriptions": [
-              "Billing mode has not been specified.",
-              "Price is based on category of CBSD: Category A, Category B registered with SAS.",
-              "Price is based on type of CBSD: Base station or CPE."
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "defaultBillingMode": {
-          "description": "Default billing mode for the deployment and devices under it.",
-          "enum": [
-            "BILLING_MODE_UNSPECIFIED",
-            "MOBILE",
-            "FIXED_WIRELESS"
-          ],
-          "enumDescriptions": [
-            "Billing mode has not been specified.",
-            "Price is based on category of CBSD: Category A, Category B registered with SAS.",
-            "Price is based on type of CBSD: Base station or CPE."
-          ],
-          "type": "string"
-        },
         "displayName": {
           "description": "The deployment's display name.",
           "type": "string"

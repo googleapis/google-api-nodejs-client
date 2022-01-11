@@ -28809,7 +28809,7 @@
       }
     }
   },
-  "revision": "20211208",
+  "revision": "20211228",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -29768,6 +29768,10 @@
       "properties": {
         "enableNestedVirtualization": {
           "description": "Whether to enable nested virtualization or not (default is false).",
+          "type": "boolean"
+        },
+        "enableUefiNetworking": {
+          "description": "Whether to enable UEFI networking for instance creation.",
           "type": "boolean"
         },
         "threadsPerCore": {
@@ -31280,6 +31284,7 @@
           "description": "Specifies the load balancer type. A backend service created for one type of load balancer cannot be used with another. For more information, refer to Choosing a load balancer.",
           "enum": [
             "EXTERNAL",
+            "EXTERNAL_MANAGED",
             "INTERNAL",
             "INTERNAL_MANAGED",
             "INTERNAL_SELF_MANAGED",
@@ -31287,6 +31292,7 @@
           ],
           "enumDescriptions": [
             "Signifies that this will be used for external HTTP(S), SSL Proxy, TCP Proxy, or Network Load Balancing",
+            "Signifies that this will be used for External Managed HTTP(S) Load Balancing.",
             "Signifies that this will be used for Internal TCP/UDP Load Balancing.",
             "Signifies that this will be used for Internal HTTP(S) Load Balancing.",
             "Signifies that this will be used by Traffic Director.",
@@ -35421,12 +35427,14 @@
           "description": "Specifies the forwarding rule type. For more information about forwarding rules, refer to Forwarding rule concepts.",
           "enum": [
             "EXTERNAL",
+            "EXTERNAL_MANAGED",
             "INTERNAL",
             "INTERNAL_MANAGED",
             "INTERNAL_SELF_MANAGED",
             "INVALID"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -38978,6 +38986,26 @@
           "format": "int32",
           "type": "integer"
         },
+        "resuming": {
+          "description": "[Output Only] The number of instances in the managed instance group that are scheduled to be resumed or are currently being resumed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "starting": {
+          "description": "[Output Only] The number of instances in the managed instance group that are scheduled to be started or are currently being started.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "stopping": {
+          "description": "[Output Only] The number of instances in the managed instance group that are scheduled to be stopped or are currently being stopped.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "suspending": {
+          "description": "[Output Only] The number of instances in the managed instance group that are scheduled to be suspended or are currently being suspended.",
+          "format": "int32",
+          "type": "integer"
+        },
         "verifying": {
           "description": "[Output Only] The number of instances in the managed instance group that are being verified. See the managedInstances[].currentAction property in the listManagedInstances method documentation.",
           "format": "int32",
@@ -40346,6 +40374,10 @@
             "RECREATING",
             "REFRESHING",
             "RESTARTING",
+            "RESUMING",
+            "STARTING",
+            "STOPPING",
+            "SUSPENDING",
             "VERIFYING"
           ],
           "enumDescriptions": [
@@ -40357,6 +40389,10 @@
             "The managed instance group is recreating this instance.",
             "The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.",
             "The managed instance group is restarting this instance.",
+            "The managed instance group is resuming this instance.",
+            "The managed instance group is starting this instance.",
+            "The managed instance group is stopping this instance.",
+            "The managed instance group is suspending this instance.",
             "The managed instance group is verifying this already created instance. Verification happens every time the instance is (re)created or restarted and consists of: 1. Waiting until health check specified as part of this managed instance group's autohealing policy reports HEALTHY. Note: Applies only if autohealing policy has a health check specified 2. Waiting for addition verification steps performed as post-instance creation (subject to future extensions)."
           ],
           "type": "string"
@@ -40485,6 +40521,13 @@
         "reservationAffinity": {
           "$ref": "ReservationAffinity",
           "description": "Specifies the reservations that instances can consume from. Note that for MachineImage, this is not supported yet."
+        },
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Resource manager tags to be bound to the instance. Tag keys and values have the same definition as resource manager tags. Keys must be in the format `tagKeys/{tag_key_id}`, and values are in the format `tagValues/456`. The field is ignored (both PUT & PATCH) when empty.",
+          "type": "object"
         },
         "resourcePolicies": {
           "description": "Resource policies (names, not URLs) applied to instances created from these properties. Note that for MachineImage, this is not supported yet.",
@@ -42715,7 +42758,7 @@
       "id": "LocationPolicyLocation",
       "properties": {
         "preference": {
-          "description": "Preference for a given location: ALLOW or DENY.",
+          "description": "Preference for a given location.",
           "enum": [
             "ALLOW",
             "DENY",
@@ -43509,6 +43552,10 @@
             "RECREATING",
             "REFRESHING",
             "RESTARTING",
+            "RESUMING",
+            "STARTING",
+            "STOPPING",
+            "SUSPENDING",
             "VERIFYING"
           ],
           "enumDescriptions": [
@@ -43520,6 +43567,10 @@
             "The managed instance group is recreating this instance.",
             "The managed instance group is applying configuration changes to the instance without stopping it. For example, the group can update the target pool list for an instance without stopping that instance.",
             "The managed instance group is restarting this instance.",
+            "The managed instance group is resuming this instance.",
+            "The managed instance group is starting this instance.",
+            "The managed instance group is stopping this instance.",
+            "The managed instance group is suspending this instance.",
             "The managed instance group is verifying this already created instance. Verification happens every time the instance is (re)created or restarted and consists of: 1. Waiting until health check specified as part of this managed instance group's autohealing policy reports HEALTHY. Note: Applies only if autohealing policy has a health check specified 2. Waiting for addition verification steps performed as post-instance creation (subject to future extensions)."
           ],
           "type": "string"
@@ -49013,6 +49064,7 @@
             "COMMITTED_E2_CPUS",
             "COMMITTED_LICENSES",
             "COMMITTED_LOCAL_SSD_TOTAL_GB",
+            "COMMITTED_M3_CPUS",
             "COMMITTED_MEMORY_OPTIMIZED_CPUS",
             "COMMITTED_N2A_CPUS",
             "COMMITTED_N2D_CPUS",
@@ -49056,6 +49108,7 @@
             "LOCAL_SSD_TOTAL_GB",
             "M1_CPUS",
             "M2_CPUS",
+            "M3_CPUS",
             "MACHINE_IMAGES",
             "N2A_CPUS",
             "N2D_CPUS",
@@ -49153,7 +49206,9 @@
             "",
             "",
             "",
+            "",
             "Guest CPUs",
+            "",
             "",
             "",
             "",

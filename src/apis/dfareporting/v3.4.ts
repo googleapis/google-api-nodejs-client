@@ -1562,7 +1562,7 @@ export namespace dfareporting_v3_4 {
      */
     childDirectedTreatment?: boolean | null;
     /**
-     * Custom floodlight variables.
+     * Custom floodlight variables. This field may only be used when calling batchinsert; it is not supported by batchupdate.
      */
     customVariables?: Schema$CustomFloodlightVariable[];
     /**
@@ -2837,7 +2837,7 @@ export namespace dfareporting_v3_4 {
     kind?: string | null;
   }
   /**
-   * A custom floodlight variable.
+   * A custom floodlight variable. This field may only be used when calling batchinsert; it is not supported by batchupdate.
    */
   export interface Schema$CustomFloodlightVariable {
     /**

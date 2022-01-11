@@ -167,6 +167,10 @@ export namespace container_v1beta1 {
      */
     gcpFilestoreCsiDriverConfig?: Schema$GcpFilestoreCsiDriverConfig;
     /**
+     * Configuration for the Backup for GKE agent addon.
+     */
+    gkeBackupAgentConfig?: Schema$GkeBackupAgentConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -1103,6 +1107,15 @@ export namespace container_v1beta1 {
     subject_types_supported?: string[] | null;
   }
   /**
+   * Configuration for the Backup for GKE Agent.
+   */
+  export interface Schema$GkeBackupAgentConfig {
+    /**
+     * Whether the Backup for GKE agent is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
    */
   export interface Schema$HorizontalPodAutoscaling {
@@ -1862,6 +1875,10 @@ export namespace container_v1beta1 {
      */
     networkConfig?: Schema$NodeNetworkConfig;
     /**
+     * Specifies the node placement policy.
+     */
+    placementPolicy?: Schema$PlacementPolicy;
+    /**
      * [Output only] The pod CIDR block size per node in this node pool.
      */
     podIpv4CidrSize?: number | null;
@@ -2036,6 +2053,15 @@ export namespace container_v1beta1 {
      * Status of an operation stage. Unset for single-stage operations.
      */
     status?: string | null;
+  }
+  /**
+   * PlacementPolicy defines the placement policy used by the node pool.
+   */
+  export interface Schema$PlacementPolicy {
+    /**
+     * The type of placement.
+     */
+    type?: string | null;
   }
   /**
    * Configuration for the PodSecurityPolicy feature.
@@ -6981,6 +7007,7 @@ export namespace container_v1beta1 {
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
+     *   //   "placementPolicy": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -12544,6 +12571,7 @@ export namespace container_v1beta1 {
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
+     *   //   "placementPolicy": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",

@@ -1809,7 +1809,7 @@ export namespace datamigration_v1 {
     }
 
     /**
-     * Retrieve a list of all connection profiles in a given project and location.
+     * Retrieves a list of all connection profiles in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -1837,7 +1837,7 @@ export namespace datamigration_v1 {
      *   const res = await datamigration.projects.locations.connectionProfiles.list({
      *     // A filter expression that filters connection profiles listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either =, !=, \>, or <. For example, list connection profiles created this year by specifying **createTime %gt; 2020-01-01T00:00:00.000000000Z**. You can also filter nested fields. For example, you could specify **mySql.username = %lt;my_username%gt;** to list all connection profiles configured to connect with a specific username.
      *     filter: 'placeholder-value',
-     *     // the order by fields for the result.
+     *     // A comma-separated list of fields to order results according to.
      *     orderBy: 'placeholder-value',
      *     // The maximum number of connection profiles to return. The service may return fewer than this value. If unspecified, at most 50 connection profiles will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -2468,7 +2468,7 @@ export namespace datamigration_v1 {
      */
     filter?: string;
     /**
-     * the order by fields for the result.
+     * A comma-separated list of fields to order results according to.
      */
     orderBy?: string;
     /**

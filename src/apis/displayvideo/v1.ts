@@ -487,7 +487,7 @@ export namespace displayvideo_v1 {
      */
     audienceGroupDetails?: Schema$AudienceGroupAssignedTargetingOptionDetails;
     /**
-     * Audio content type details. This field will be populated when the targeting_type is 'TARGETING_TYPE_AUDIO_CONTENT_TYPE'.
+     * Audio content type details. This field will be populated when the targeting_type is `TARGETING_TYPE_AUDIO_CONTENT_TYPE`.
      */
     audioContentTypeDetails?: Schema$AudioContentTypeAssignedTargetingOptionDetails;
     /**
