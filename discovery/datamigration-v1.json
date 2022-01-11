@@ -309,7 +309,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Retrieve a list of all connection profiles in a given project and location.",
+                  "description": "Retrieves a list of all connection profiles in a given project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles",
                   "httpMethod": "GET",
                   "id": "datamigration.projects.locations.connectionProfiles.list",
@@ -323,7 +323,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "the order by fields for the result.",
+                      "description": "A comma-separated list of fields to order results according to.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20211201",
+  "revision": "20220103",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
