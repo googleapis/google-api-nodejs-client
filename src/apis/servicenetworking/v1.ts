@@ -1853,6 +1853,10 @@ export namespace servicenetworking_v1 {
   }
   export interface Schema$ValidateConsumerConfigRequest {
     /**
+     * Optional. The IAM permission check determines whether the consumer project has 'servicenetworking.services.use' permission or not.
+     */
+    checkServiceNetworkingUsePermission?: boolean | null;
+    /**
      * Required. The network that the consumer is using to connect with services. Must be in the form of projects/{project\}/global/networks/{network\} {project\} is a project number, as in '12345' {network\} is network name.
      */
     consumerNetwork?: string | null;
@@ -3121,6 +3125,7 @@ export namespace servicenetworking_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "checkServiceNetworkingUsePermission": false,
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "consumerProject": {},
      *       //   "rangeReservation": {},
