@@ -3274,7 +3274,7 @@
       }
     }
   },
-  "revision": "20211215",
+  "revision": "20220107",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3623,10 +3623,6 @@
           "$ref": "GoogleAnalyticsAdminV1alphaAccount",
           "description": "A snapshot of an Account resource in change history."
         },
-        "androidAppDataStream": {
-          "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream",
-          "description": "A snapshot of an AndroidAppDataStream resource in change history."
-        },
         "conversionEvent": {
           "$ref": "GoogleAnalyticsAdminV1alphaConversionEvent",
           "description": "A snapshot of a ConversionEvent resource in change history."
@@ -3642,6 +3638,10 @@
         "dataRetentionSettings": {
           "$ref": "GoogleAnalyticsAdminV1alphaDataRetentionSettings",
           "description": "A snapshot of a data retention settings resource in change history."
+        },
+        "dataStream": {
+          "$ref": "GoogleAnalyticsAdminV1alphaDataStream",
+          "description": "A snapshot of a DataStream resource in change history."
         },
         "displayVideo360AdvertiserLink": {
           "$ref": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink",
@@ -3663,10 +3663,6 @@
           "$ref": "GoogleAnalyticsAdminV1alphaGoogleSignalsSettings",
           "description": "A snapshot of a GoogleSignalsSettings resource in change history."
         },
-        "iosAppDataStream": {
-          "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream",
-          "description": "A snapshot of an IosAppDataStream resource in change history."
-        },
         "measurementProtocolSecret": {
           "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret",
           "description": "A snapshot of a MeasurementProtocolSecret resource in change history."
@@ -3674,10 +3670,6 @@
         "property": {
           "$ref": "GoogleAnalyticsAdminV1alphaProperty",
           "description": "A snapshot of a Property resource in change history."
-        },
-        "webDataStream": {
-          "$ref": "GoogleAnalyticsAdminV1alphaWebDataStream",
-          "description": "A snapshot of a WebDataStream resource in change history."
         }
       },
       "type": "object"
@@ -4919,9 +4911,6 @@
               "CHANGE_HISTORY_RESOURCE_TYPE_UNSPECIFIED",
               "ACCOUNT",
               "PROPERTY",
-              "WEB_DATA_STREAM",
-              "ANDROID_APP_DATA_STREAM",
-              "IOS_APP_DATA_STREAM",
               "FIREBASE_LINK",
               "GOOGLE_ADS_LINK",
               "GOOGLE_SIGNALS_SETTINGS",
@@ -4931,15 +4920,13 @@
               "CUSTOM_METRIC",
               "DATA_RETENTION_SETTINGS",
               "DISPLAY_VIDEO_360_ADVERTISER_LINK",
-              "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL"
+              "DISPLAY_VIDEO_360_ADVERTISER_LINK_PROPOSAL",
+              "DATA_STREAM"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
               "Account resource",
               "Property resource",
-              "WebDataStream resource",
-              "AndroidAppDataStream resource",
-              "IosAppDataStream resource",
               "FirebaseLink resource",
               "GoogleAdsLink resource",
               "GoogleSignalsSettings resource",
@@ -4949,7 +4936,8 @@
               "CustomMetric resource",
               "DataRetentionSettings resource",
               "DisplayVideo360AdvertiserLink resource",
-              "DisplayVideo360AdvertiserLinkProposal resource"
+              "DisplayVideo360AdvertiserLinkProposal resource",
+              "DataStream resource"
             ],
             "type": "string"
           },
