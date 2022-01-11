@@ -1117,13 +1117,165 @@
                   ]
                 }
               }
+            },
+            "views": {
+              "methods": {
+                "create": {
+                  "description": "Creates a view.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/views",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.views.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the view. Required. The location to create a view for. Format: `projects//locations/` or `projects//locations/`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/views",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1View"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1View"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a view.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/views/{viewsId}",
+                  "httpMethod": "DELETE",
+                  "id": "contactcenterinsights.projects.locations.views.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the view to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/views/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a view.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/views/{viewsId}",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.views.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the view to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/views/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1View"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists views.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/views",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.views.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of views to return in the response. If this value is zero, the service will select a default size. A call may return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The value returned by the last `ListViewsResponse`; indicates that this is a continuation of a prior `ListViews` call and the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the views.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/views",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ListViewsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a view.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/views/{viewsId}",
+                  "httpMethod": "PATCH",
+                  "id": "contactcenterinsights.projects.locations.views.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. The resource name of the view. Format: projects/{project}/locations/{location}/views/{view}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/views/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1View"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1View"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20211211",
+  "revision": "20220103",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -2401,7 +2553,7 @@
       "id": "GoogleCloudContactcenterinsightsV1IssueModelResult",
       "properties": {
         "issueModel": {
-          "description": "Issue model that generates the result.",
+          "description": "Issue model that generates the result. Format: projects/{project}/locations/{location}/issueModels/{issue_model}",
           "type": "string"
         },
         "issues": {
@@ -2490,6 +2642,24 @@
           "description": "The phrase matchers that match the request.",
           "items": {
             "$ref": "GoogleCloudContactcenterinsightsV1PhraseMatcher"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ListViewsResponse": {
+      "description": "The response of listing views.",
+      "id": "GoogleCloudContactcenterinsightsV1ListViewsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "views": {
+          "description": "The views that match the request.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1View"
           },
           "type": "array"
         }
@@ -2872,6 +3042,37 @@
       "description": "The response to undeploy an issue model.",
       "id": "GoogleCloudContactcenterinsightsV1UndeployIssueModelResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1View": {
+      "description": "The View resource.",
+      "id": "GoogleCloudContactcenterinsightsV1View",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which this view was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The human-readable display name of the view.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name of the view. Format: projects/{project}/locations/{location}/views/{view}",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the view was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "String with specific view properties.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudContactcenterinsightsV1alpha1CreateAnalysisOperationMetadata": {
