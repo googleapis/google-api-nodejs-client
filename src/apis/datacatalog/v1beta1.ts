@@ -850,7 +850,7 @@ export namespace datacatalog_v1beta1 {
     } | null;
   }
   /**
-   * Detailed counts on the entry's usage. Caveats: - Only BigQuery tables have usage stats - The usage stats only inlude BigQuery query jobs - The usage stats might be underestimated, e.g. wildcard table references are not yet counted in usage computation https://cloud.google.com/bigquery/docs/querying-wildcard-tables
+   * Detailed counts on the entry's usage. Caveats: - Only BigQuery tables have usage stats - The usage stats only include BigQuery query jobs - The usage stats might be underestimated, e.g. wildcard table references are not yet counted in usage computation https://cloud.google.com/bigquery/docs/querying-wildcard-tables
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1UsageStats {
     /**
@@ -3999,7 +3999,7 @@ export namespace datacatalog_v1beta1 {
     }
 
     /**
-     * Lists the tags on an Entry.
+     * Lists tags assigned to an Entry. The columns in the response are lowercased.
      * @example
      * ```js
      * // Before running the sample:
@@ -4639,7 +4639,7 @@ export namespace datacatalog_v1beta1 {
     }
 
     /**
-     * Lists the tags on an Entry.
+     * Lists tags assigned to an Entry. The columns in the response are lowercased.
      * @example
      * ```js
      * // Before running the sample:

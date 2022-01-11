@@ -688,7 +688,7 @@
                           ]
                         },
                         "list": {
-                          "description": "Lists the tags on an Entry.",
+                          "description": "Lists tags assigned to an Entry. The columns in the response are lowercased.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}/tags",
                           "httpMethod": "GET",
                           "id": "datacatalog.projects.locations.entryGroups.entries.tags.list",
@@ -817,7 +817,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists the tags on an Entry.",
+                      "description": "Lists tags assigned to an Entry. The columns in the response are lowercased.",
                       "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/tags",
                       "httpMethod": "GET",
                       "id": "datacatalog.projects.locations.entryGroups.tags.list",
@@ -1808,7 +1808,7 @@
       }
     }
   },
-  "revision": "20211201",
+  "revision": "20211230",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2816,7 +2816,7 @@
       "type": "object"
     },
     "GoogleCloudDatacatalogV1beta1UsageStats": {
-      "description": "Detailed counts on the entry's usage. Caveats: - Only BigQuery tables have usage stats - The usage stats only inlude BigQuery query jobs - The usage stats might be underestimated, e.g. wildcard table references are not yet counted in usage computation https://cloud.google.com/bigquery/docs/querying-wildcard-tables",
+      "description": "Detailed counts on the entry's usage. Caveats: - Only BigQuery tables have usage stats - The usage stats only include BigQuery query jobs - The usage stats might be underestimated, e.g. wildcard table references are not yet counted in usage computation https://cloud.google.com/bigquery/docs/querying-wildcard-tables",
       "id": "GoogleCloudDatacatalogV1beta1UsageStats",
       "properties": {
         "totalCancellations": {
