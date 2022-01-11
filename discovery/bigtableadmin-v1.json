@@ -96,7 +96,7 @@
   },
   "protocol": "rest",
   "resources": {},
-  "revision": "20211202",
+  "revision": "20211218",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AutoscalingLimits": {
@@ -464,34 +464,6 @@
       },
       "type": "object"
     },
-    "FailureTrace": {
-      "description": "Added to the error payload.",
-      "id": "FailureTrace",
-      "properties": {
-        "frames": {
-          "items": {
-            "$ref": "Frame"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "Frame": {
-      "id": "Frame",
-      "properties": {
-        "targetName": {
-          "type": "string"
-        },
-        "workflowGuid": {
-          "type": "string"
-        },
-        "zoneId": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Instance": {
       "description": "A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance.",
       "id": "Instance",
@@ -729,27 +701,6 @@
             "The table has been fully copied to the new cluster.",
             "The table was deleted before it finished copying to the new cluster. Note that tables deleted after completion will stay marked as COMPLETED, not CANCELLED."
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "UndeleteTableMetadata": {
-      "description": "Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.",
-      "id": "UndeleteTableMetadata",
-      "properties": {
-        "endTime": {
-          "description": "If set, the time at which this operation finished or was cancelled.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "name": {
-          "description": "The name of the table being restored.",
-          "type": "string"
-        },
-        "startTime": {
-          "description": "The time at which this operation started.",
-          "format": "google-datetime",
           "type": "string"
         }
       },

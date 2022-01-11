@@ -381,17 +381,6 @@ export namespace bigtableadmin_v1 {
     kmsKeyVersion?: string | null;
   }
   /**
-   * Added to the error payload.
-   */
-  export interface Schema$FailureTrace {
-    frames?: Schema$Frame[];
-  }
-  export interface Schema$Frame {
-    targetName?: string | null;
-    workflowGuid?: string | null;
-    zoneId?: string | null;
-  }
-  /**
    * A collection of Bigtable Tables and the resources that serve them. All tables in an instance are served from all Clusters in the instance.
    */
   export interface Schema$Instance {
@@ -545,23 +534,6 @@ export namespace bigtableadmin_v1 {
      */
     estimatedSizeBytes?: string | null;
     state?: string | null;
-  }
-  /**
-   * Metadata type for the operation returned by google.bigtable.admin.v2.BigtableTableAdmin.UndeleteTable.
-   */
-  export interface Schema$UndeleteTableMetadata {
-    /**
-     * If set, the time at which this operation finished or was cancelled.
-     */
-    endTime?: string | null;
-    /**
-     * The name of the table being restored.
-     */
-    name?: string | null;
-    /**
-     * The time at which this operation started.
-     */
-    startTime?: string | null;
   }
   /**
    * The metadata for the Operation returned by UpdateAppProfile.
