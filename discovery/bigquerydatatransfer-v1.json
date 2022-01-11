@@ -147,7 +147,7 @@
         "dataSources": {
           "methods": {
             "checkValidCreds": {
-              "description": "Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.",
+              "description": "Returns true if valid credentials exist for the given data source and requesting user.",
               "flatPath": "v1/projects/{projectsId}/dataSources/{dataSourcesId}:checkValidCreds",
               "httpMethod": "POST",
               "id": "bigquerydatatransfer.projects.dataSources.checkValidCreds",
@@ -177,7 +177,7 @@
               ]
             },
             "get": {
-              "description": "Retrieves a supported data source and returns its settings, which can be used for UI rendering.",
+              "description": "Retrieves a supported data source and returns its settings.",
               "flatPath": "v1/projects/{projectsId}/dataSources/{dataSourcesId}",
               "httpMethod": "GET",
               "id": "bigquerydatatransfer.projects.dataSources.get",
@@ -204,7 +204,7 @@
               ]
             },
             "list": {
-              "description": "Lists supported data sources and returns their settings, which can be used for UI rendering.",
+              "description": "Lists supported data sources and returns their settings.",
               "flatPath": "v1/projects/{projectsId}/dataSources",
               "httpMethod": "GET",
               "id": "bigquerydatatransfer.projects.dataSources.list",
@@ -349,7 +349,7 @@
             "dataSources": {
               "methods": {
                 "checkValidCreds": {
-                  "description": "Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.",
+                  "description": "Returns true if valid credentials exist for the given data source and requesting user.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataSources/{dataSourcesId}:checkValidCreds",
                   "httpMethod": "POST",
                   "id": "bigquerydatatransfer.projects.locations.dataSources.checkValidCreds",
@@ -379,7 +379,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Retrieves a supported data source and returns its settings, which can be used for UI rendering.",
+                  "description": "Retrieves a supported data source and returns its settings.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataSources/{dataSourcesId}",
                   "httpMethod": "GET",
                   "id": "bigquerydatatransfer.projects.locations.dataSources.get",
@@ -406,7 +406,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists supported data sources and returns their settings, which can be used for UI rendering.",
+                  "description": "Lists supported data sources and returns their settings.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataSources",
                   "httpMethod": "GET",
                   "id": "bigquerydatatransfer.projects.locations.dataSources.list",
@@ -752,7 +752,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Returns information about running and completed jobs.",
+                      "description": "Returns information about running and completed transfer runs.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transferConfigs/{transferConfigsId}/runs",
                       "httpMethod": "GET",
                       "id": "bigquerydatatransfer.projects.locations.transferConfigs.runs.list",
@@ -829,7 +829,7 @@
                     "transferLogs": {
                       "methods": {
                         "list": {
-                          "description": "Returns user facing log messages for the data transfer run.",
+                          "description": "Returns log messages for the transfer run.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transferConfigs/{transferConfigsId}/runs/{runsId}/transferLogs",
                           "httpMethod": "GET",
                           "id": "bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list",
@@ -1199,7 +1199,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Returns information about running and completed jobs.",
+                  "description": "Returns information about running and completed transfer runs.",
                   "flatPath": "v1/projects/{projectsId}/transferConfigs/{transferConfigsId}/runs",
                   "httpMethod": "GET",
                   "id": "bigquerydatatransfer.projects.transferConfigs.runs.list",
@@ -1276,7 +1276,7 @@
                 "transferLogs": {
                   "methods": {
                     "list": {
-                      "description": "Returns user facing log messages for the data transfer run.",
+                      "description": "Returns log messages for the transfer run.",
                       "flatPath": "v1/projects/{projectsId}/transferConfigs/{transferConfigsId}/runs/{runsId}/transferLogs",
                       "httpMethod": "GET",
                       "id": "bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list",
@@ -1340,7 +1340,7 @@
       }
     }
   },
-  "revision": "20211125",
+  "revision": "20211230",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -1361,7 +1361,7 @@
       "type": "object"
     },
     "DataSource": {
-      "description": "Represents data source metadata. Metadata is sufficient to render UI and request proper OAuth tokens.",
+      "description": "Defines the properties and custom parameters for a data source.",
       "id": "DataSource",
       "properties": {
         "authorizationType": {
@@ -1482,7 +1482,7 @@
       "type": "object"
     },
     "DataSourceParameter": {
-      "description": "Represents a data source parameter with validation rules, so that parameters can be rendered in the UI. These parameters are given to us by supported data sources, and include all needed information for rendering and validation. Thus, whoever uses this api can decide to generate either generic ui, or custom data source specific forms.",
+      "description": "A parameter used to define custom fields in a data source definition.",
       "id": "DataSourceParameter",
       "properties": {
         "allowedValues": {
