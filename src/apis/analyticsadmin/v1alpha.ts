@@ -381,10 +381,6 @@ export namespace analyticsadmin_v1alpha {
      */
     account?: Schema$GoogleAnalyticsAdminV1alphaAccount;
     /**
-     * A snapshot of an AndroidAppDataStream resource in change history.
-     */
-    androidAppDataStream?: Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream;
-    /**
      * A snapshot of a ConversionEvent resource in change history.
      */
     conversionEvent?: Schema$GoogleAnalyticsAdminV1alphaConversionEvent;
@@ -400,6 +396,10 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of a data retention settings resource in change history.
      */
     dataRetentionSettings?: Schema$GoogleAnalyticsAdminV1alphaDataRetentionSettings;
+    /**
+     * A snapshot of a DataStream resource in change history.
+     */
+    dataStream?: Schema$GoogleAnalyticsAdminV1alphaDataStream;
     /**
      * A snapshot of a DisplayVideo360AdvertiserLink resource in change history.
      */
@@ -421,10 +421,6 @@ export namespace analyticsadmin_v1alpha {
      */
     googleSignalsSettings?: Schema$GoogleAnalyticsAdminV1alphaGoogleSignalsSettings;
     /**
-     * A snapshot of an IosAppDataStream resource in change history.
-     */
-    iosAppDataStream?: Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream;
-    /**
      * A snapshot of a MeasurementProtocolSecret resource in change history.
      */
     measurementProtocolSecret?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
@@ -432,10 +428,6 @@ export namespace analyticsadmin_v1alpha {
      * A snapshot of a Property resource in change history.
      */
     property?: Schema$GoogleAnalyticsAdminV1alphaProperty;
-    /**
-     * A snapshot of a WebDataStream resource in change history.
-     */
-    webDataStream?: Schema$GoogleAnalyticsAdminV1alphaWebDataStream;
   }
   /**
    * A set of changes within a Google Analytics account or its child properties that resulted from the same cause. Common causes would be updates made in the Google Analytics UI, changes from customer support, or automatic Google Analytics system changes.
