@@ -113,6 +113,7 @@ export namespace cloudbuild_v1 {
    */
   export class Cloudbuild {
     context: APIRequestContext;
+    locations: Resource$Locations;
     operations: Resource$Operations;
     projects: Resource$Projects;
     v1: Resource$V1;
@@ -123,12 +124,35 @@ export namespace cloudbuild_v1 {
         google,
       };
 
+      this.locations = new Resource$Locations(this.context);
       this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.v1 = new Resource$V1(this.context);
     }
   }
 
+  /**
+   * RPC request object accepted by the AddBitbucketServerConnectedRepository RPC method.
+   */
+  export interface Schema$AddBitbucketServerConnectedRepositoryRequest {
+    /**
+     * The connected repository to add.
+     */
+    connectedRepository?: Schema$BitbucketServerRepositoryId;
+  }
+  /**
+   * RPC request object returned by the AddBitbucketServerConnectedRepository RPC method.
+   */
+  export interface Schema$AddBitbucketServerConnectedRepositoryResponse {
+    /**
+     * The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     */
+    config?: string | null;
+    /**
+     * The connected repository.
+     */
+    connectedRepository?: Schema$BitbucketServerRepositoryId;
+  }
   /**
    * ApprovalConfig describes configuration for manual approval of a build.
    */
@@ -216,6 +240,24 @@ export namespace cloudbuild_v1 {
     objects?: Schema$ArtifactObjects;
   }
   /**
+   * RPC request object accepted by BatchCreateBitbucketServerConnectedRepositories RPC method.
+   */
+  export interface Schema$BatchCreateBitbucketServerConnectedRepositoriesRequest {
+    /**
+     * Required. Requests to connect Bitbucket Server repositories.
+     */
+    requests?: Schema$CreateBitbucketServerConnectedRepositoryRequest[];
+  }
+  /**
+   * Response of BatchCreateBitbucketServerConnectedRepositories RPC method including all successfully connected Bitbucket Server repositories.
+   */
+  export interface Schema$BatchCreateBitbucketServerConnectedRepositoriesResponse {
+    /**
+     * The connected Bitbucket Server repositories.
+     */
+    bitbucketServerConnectedRepositories?: Schema$BitbucketServerConnectedRepository[];
+  }
+  /**
    * Metadata for `BatchCreateBitbucketServerConnectedRepositories` operation.
    */
   export interface Schema$BatchCreateBitbucketServerConnectedRepositoriesResponseMetadata {
@@ -231,6 +273,156 @@ export namespace cloudbuild_v1 {
      * Time the operation was created.
      */
     createTime?: string | null;
+  }
+  /**
+   * BitbucketServerConfig represents the configuration for a Bitbucket Server.
+   */
+  export interface Schema$BitbucketServerConfig {
+    /**
+     * Required. Immutable. API Key that will be attached to webhook. Once this field has been set, it cannot be changed. If you need to change it, please create another BitbucketServerConfig.
+     */
+    apiKey?: string | null;
+    /**
+     * Output only. Connected Bitbucket Server repositories for this config.
+     */
+    connectedRepositories?: Schema$BitbucketServerRepositoryId[];
+    /**
+     * Time when the config was created.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Immutable. The URI of the Bitbucket Server host. Once this field has been set, it cannot be changed. If you need to change it, please create another BitbucketServerConfig.
+     */
+    hostUri?: string | null;
+    /**
+     * The resource name for the config.
+     */
+    name?: string | null;
+    /**
+     * Optional. The network to be used when reaching out to the Bitbucket Server instance. The VPC network must be enabled for private service connection. This should be set if the Bitbucket Server instance is hosted on-premises and not reachable by public internet. If this field is left empty, no network peering will occur and calls to the Bitbucket Server instance will be made over the public internet. Must be in the format `projects/{project\}/global/networks/{network\}`, where {project\} is a project number or id and {network\} is the name of a VPC network in the project.
+     */
+    peeredNetwork?: string | null;
+    /**
+     * Required. Secret Manager secrets needed by the config.
+     */
+    secrets?: Schema$BitbucketServerSecrets;
+    /**
+     * Optional. SSL certificate to use for requests to Bitbucket Server. The format should be PEM format but the extension can be one of .pem, .cer, or .crt.
+     */
+    sslCa?: string | null;
+    /**
+     * Username of the account Cloud Build will use on Bitbucket Server.
+     */
+    username?: string | null;
+    /**
+     * Output only. UUID included in webhook requests. The UUID is used to look up the corresponding config.
+     */
+    webhookKey?: string | null;
+  }
+  /**
+   * / BitbucketServerConnectedRepository represents a connected Bitbucket Server / repository.
+   */
+  export interface Schema$BitbucketServerConnectedRepository {
+    /**
+     * The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     */
+    parent?: string | null;
+    /**
+     * The Bitbucket Server repositories to connect.
+     */
+    repo?: Schema$BitbucketServerRepositoryId;
+    /**
+     * Output only. The status of the repo connection request.
+     */
+    status?: Schema$Status;
+  }
+  /**
+   * BitbucketServerRepository represents a repository hosted on a Bitbucket Server.
+   */
+  export interface Schema$BitbucketServerRepository {
+    /**
+     * Link to the browse repo page on the Bitbucket Server instance.
+     */
+    browseUri?: string | null;
+    /**
+     * Description of the repository.
+     */
+    description?: string | null;
+    /**
+     * Display name of the repository.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the repository.
+     */
+    name?: string | null;
+    /**
+     * Identifier for a repository hosted on a Bitbucket Server.
+     */
+    repoId?: Schema$BitbucketServerRepositoryId;
+  }
+  /**
+   * BitbucketServerRepositoryId identifies a specific repository hosted on a Bitbucket Server.
+   */
+  export interface Schema$BitbucketServerRepositoryId {
+    /**
+     * Required. Identifier for the project storing the repository.
+     */
+    projectKey?: string | null;
+    /**
+     * Required. Identifier for the repository.
+     */
+    repoSlug?: string | null;
+    /**
+     * Output only. The ID of the webhook that was created for receiving events from this repo. We only create and manage a single webhook for each repo.
+     */
+    webhookId?: number | null;
+  }
+  /**
+   * BitbucketServerSecrets represents the secrets in Secret Manager for a Bitbucket Server.
+   */
+  export interface Schema$BitbucketServerSecrets {
+    /**
+     * Required. The resource name for the admin access token's secret version.
+     */
+    adminAccessTokenVersionName?: string | null;
+    /**
+     * Required. The resource name for the read access token's secret version.
+     */
+    readAccessTokenVersionName?: string | null;
+    /**
+     * Required. Immutable. The resource name for the webhook secret's secret version. Once this field has been set, it cannot be changed. If you need to change it, please create another BitbucketServerConfig.
+     */
+    webhookSecretVersionName?: string | null;
+  }
+  /**
+   * BitbucketServerTriggerConfig describes the configuration of a trigger that creates a build whenever a Bitbucket Server event is received.
+   */
+  export interface Schema$BitbucketServerTriggerConfig {
+    /**
+     * Output only. The BitbucketServerConfig specified in the bitbucket_server_config_resource field.
+     */
+    bitbucketServerConfig?: Schema$BitbucketServerConfig;
+    /**
+     * Required. The Bitbucket server config resource that this trigger config maps to.
+     */
+    bitbucketServerConfigResource?: string | null;
+    /**
+     * Required. Key of the project that the repo is in. For example: The key for http://mybitbucket.server/projects/TEST/repos/test-repo is "TEST".
+     */
+    projectKey?: string | null;
+    /**
+     * Filter to match changes in pull requests.
+     */
+    pullRequest?: Schema$PullRequestFilter;
+    /**
+     * Filter to match changes in refs like branches, tags.
+     */
+    push?: Schema$PushFilter;
+    /**
+     * Required. Slug of the repository. A repository slug is a URL-friendly version of a repository name, automatically generated by Bitbucket for use in the URL. For example, if the repository name is 'test repo', in the URL it would become 'test-repo' as in http://mybitbucket.server/projects/TEST/repos/test-repo.
+     */
+    repoSlug?: string | null;
   }
   /**
    * A build resource in the Cloud Build API. At a high level, a `Build` describes where to find source code, how to build it (for example, the builder image to run on the source), and where to store the built artifacts. Fields can include the following variables, which will be expanded when the build is created: - $PROJECT_ID: the project ID of the build. - $PROJECT_NUMBER: the project number of the build. - $LOCATION: the location/region of the build. - $BUILD_ID: the autogenerated ID of the build. - $REPO_NAME: the source repository name specified by RepoSource. - $BRANCH_NAME: the branch name specified by RepoSource. - $TAG_NAME: the tag name specified by RepoSource. - $REVISION_ID or $COMMIT_SHA: the commit SHA specified by RepoSource or resolved from the specified branch or tag. - $SHORT_SHA: first 7 characters of $REVISION_ID or $COMMIT_SHA.
@@ -510,6 +702,10 @@ export namespace cloudbuild_v1 {
      */
     autodetect?: boolean | null;
     /**
+     * BitbucketServerTriggerConfig describes the configuration of a trigger that creates a build whenever a Bitbucket Server event is received.
+     */
+    bitbucketServerTriggerConfig?: Schema$BitbucketServerTriggerConfig;
+    /**
      * Contents of the build template.
      */
     build?: Schema$Build;
@@ -526,7 +722,7 @@ export namespace cloudbuild_v1 {
      */
     disabled?: boolean | null;
     /**
-     * Optional. EventType allows the user to explicitly set the type of event to which this BuildTrigger should respond. This field is optional but will be validated against the rest of the configuration if it is set.
+     * EventType allows the user to explicitly set the type of event to which this BuildTrigger should respond. This field will be validated against the rest of the configuration if it is set.
      */
     eventType?: string | null;
     /**
@@ -633,6 +829,36 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Metadata for `CreateBitbucketServerConfig` operation.
+   */
+  export interface Schema$CreateBitbucketServerConfigOperationMetadata {
+    /**
+     * The resource name of the BitbucketServerConfig to be created. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{id\}`.
+     */
+    bitbucketServerConfig?: string | null;
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+  }
+  /**
+   * Request to connect a repository from a connected Bitbucket Server host.
+   */
+  export interface Schema$CreateBitbucketServerConnectedRepositoryRequest {
+    /**
+     * Required. The Bitbucket Server repository to connect.
+     */
+    bitbucketServerConnectedRepository?: Schema$BitbucketServerConnectedRepository;
+    /**
+     * Required. The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     */
+    parent?: string | null;
+  }
+  /**
    * Metadata for `CreateGithubEnterpriseConfig` operation.
    */
   export interface Schema$CreateGitHubEnterpriseConfigOperationMetadata {
@@ -648,6 +874,23 @@ export namespace cloudbuild_v1 {
      * The resource name of the GitHubEnterprise to be created. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
      */
     githubEnterpriseConfig?: string | null;
+  }
+  /**
+   * Metadata for `CreateGitLabConfig` operation.
+   */
+  export interface Schema$CreateGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
   }
   /**
    * Metadata for the `CreateWorkerPool` operation.
@@ -667,6 +910,23 @@ export namespace cloudbuild_v1 {
     workerPool?: string | null;
   }
   /**
+   * Metadata for `DeleteBitbucketServerConfig` operation.
+   */
+  export interface Schema$DeleteBitbucketServerConfigOperationMetadata {
+    /**
+     * The resource name of the BitbucketServerConfig to be deleted. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{id\}`.
+     */
+    bitbucketServerConfig?: string | null;
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+  }
+  /**
    * Metadata for `DeleteGitHubEnterpriseConfig` operation.
    */
   export interface Schema$DeleteGitHubEnterpriseConfigOperationMetadata {
@@ -682,6 +942,23 @@ export namespace cloudbuild_v1 {
      * The resource name of the GitHubEnterprise to be deleted. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
      */
     githubEnterpriseConfig?: string | null;
+  }
+  /**
+   * Metadata for `DeleteGitLabConfig` operation.
+   */
+  export interface Schema$DeleteGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
   }
   /**
    * Metadata for the `DeleteWorkerPool` operation.
@@ -955,6 +1232,32 @@ export namespace cloudbuild_v1 {
      * Resource name of Cloud KMS crypto key to decrypt the encrypted value. In format: projects/x/locations/x/keyRings/x/cryptoKeys/x
      */
     kmsKeyName?: string | null;
+  }
+  /**
+   * RPC response object returned by ListBitbucketServerConfigs RPC method.
+   */
+  export interface Schema$ListBitbucketServerConfigsResponse {
+    /**
+     * A list of BitbucketServerConfigs
+     */
+    bitbucketServerConfigs?: Schema$BitbucketServerConfig[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * RPC response object returned by the ListBitbucketServerRepositories RPC method.
+   */
+  export interface Schema$ListBitbucketServerRepositoriesResponse {
+    /**
+     * List of Bitbucket Server repositories.
+     */
+    bitbucketServerRepositories?: Schema$BitbucketServerRepository[];
+    /**
+     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response including listed builds.
@@ -1268,6 +1571,15 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$ReceiveTriggerWebhookResponse {}
   /**
+   * RPC request object accepted by RemoveBitbucketServerConnectedRepository RPC method.
+   */
+  export interface Schema$RemoveBitbucketServerConnectedRepositoryRequest {
+    /**
+     * The connected repository to remove.
+     */
+    connectedRepository?: Schema$BitbucketServerRepositoryId;
+  }
+  /**
    * Location of the source in a Google Cloud Source Repository.
    */
   export interface Schema$RepoSource {
@@ -1359,7 +1671,7 @@ export namespace cloudbuild_v1 {
      */
     projectId?: string | null;
     /**
-     * Source to build against this trigger.
+     * Source to build against this trigger. Branch and tag names cannot consist of regular expressions.
      */
     source?: Schema$RepoSource;
     /**
@@ -1547,6 +1859,23 @@ export namespace cloudbuild_v1 {
     startTime?: string | null;
   }
   /**
+   * Metadata for `UpdateBitbucketServerConfig` operation.
+   */
+  export interface Schema$UpdateBitbucketServerConfigOperationMetadata {
+    /**
+     * The resource name of the BitbucketServerConfig to be updated. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{id\}`.
+     */
+    bitbucketServerConfig?: string | null;
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+  }
+  /**
    * Metadata for `UpdateGitHubEnterpriseConfig` operation.
    */
   export interface Schema$UpdateGitHubEnterpriseConfigOperationMetadata {
@@ -1562,6 +1891,23 @@ export namespace cloudbuild_v1 {
      * The resource name of the GitHubEnterprise to be updated. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`.
      */
     githubEnterpriseConfig?: string | null;
+  }
+  /**
+   * Metadata for `UpdateGitLabConfig` operation.
+   */
+  export interface Schema$UpdateGitLabConfigOperationMetadata {
+    /**
+     * Time the operation was completed.
+     */
+    completeTime?: string | null;
+    /**
+     * Time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource name of the GitLabConfig to be created. Format: `projects/{project\}/locations/{location\}/gitlabConfigs/{id\}`.
+     */
+    gitlabConfig?: string | null;
   }
   /**
    * Metadata for the `UpdateWorkerPool` operation.
@@ -1661,7 +2007,7 @@ export namespace cloudbuild_v1 {
      */
     name?: string | null;
     /**
-     * Private Pool using a v1 configuration.
+     * Legacy Private Pool configuration.
      */
     privatePoolV1Config?: Schema$PrivatePoolV1Config;
     /**
@@ -1676,6 +2022,169 @@ export namespace cloudbuild_v1 {
      * Output only. Time at which the request to update the `WorkerPool` was received.
      */
     updateTime?: string | null;
+  }
+
+  export class Resource$Locations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * ReceiveRegionalWebhook is called when the API receives a regional GitHub webhook.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.locations.regionalWebhook({
+     *     // Required. The location where the webhook should be sent.
+     *     location: 'locations/my-location',
+     *     // For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
+     *     webhookKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contentType": "my_contentType",
+     *       //   "data": "my_data",
+     *       //   "extensions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    regionalWebhook(
+      params: Params$Resource$Locations$Regionalwebhook,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    regionalWebhook(
+      params?: Params$Resource$Locations$Regionalwebhook,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    regionalWebhook(
+      params: Params$Resource$Locations$Regionalwebhook,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    regionalWebhook(
+      params: Params$Resource$Locations$Regionalwebhook,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    regionalWebhook(
+      params: Params$Resource$Locations$Regionalwebhook,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    regionalWebhook(callback: BodyResponseCallback<Schema$Empty>): void;
+    regionalWebhook(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Regionalwebhook
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Regionalwebhook;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Regionalwebhook;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+location}/regionalWebhook').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['location'],
+        pathParams: ['location'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Regionalwebhook
+    extends StandardParameters {
+    /**
+     * Required. The location where the webhook should be sent.
+     */
+    location?: string;
+    /**
+     * For GitHub Enterprise webhooks, this key is used to associate the webhook request with the GitHubEnterpriseConfig to use for validation.
+     */
+    webhookKey?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
   }
 
   export class Resource$Operations {
@@ -3816,6 +4325,7 @@ export namespace cloudbuild_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    bitbucketServerConfigs: Resource$Projects$Locations$Bitbucketserverconfigs;
     builds: Resource$Projects$Locations$Builds;
     githubEnterpriseConfigs: Resource$Projects$Locations$Githubenterpriseconfigs;
     operations: Resource$Projects$Locations$Operations;
@@ -3823,6 +4333,8 @@ export namespace cloudbuild_v1 {
     workerPools: Resource$Projects$Locations$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.bitbucketServerConfigs =
+        new Resource$Projects$Locations$Bitbucketserverconfigs(this.context);
       this.builds = new Resource$Projects$Locations$Builds(this.context);
       this.githubEnterpriseConfigs =
         new Resource$Projects$Locations$Githubenterpriseconfigs(this.context);
@@ -3834,6 +4346,1457 @@ export namespace cloudbuild_v1 {
         this.context
       );
     }
+  }
+
+  export class Resource$Projects$Locations$Bitbucketserverconfigs {
+    context: APIRequestContext;
+    connectedRepositories: Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories;
+    repos: Resource$Projects$Locations$Bitbucketserverconfigs$Repos;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.connectedRepositories =
+        new Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories(
+          this.context
+        );
+      this.repos = new Resource$Projects$Locations$Bitbucketserverconfigs$Repos(
+        this.context
+      );
+    }
+
+    /**
+     * Add a Bitbucket Server repository to a given BitbucketServerConfig's connected repositories. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudbuild.projects.locations.bitbucketServerConfigs.addBitbucketServerConnectedRepository(
+     *       {
+     *         // Required. The name of the `BitbucketServerConfig` to add a connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     *         config:
+     *           'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "connectedRepository": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": "my_config",
+     *   //   "connectedRepository": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addBitbucketServerConnectedRepository(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addBitbucketServerConnectedRepository(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AddBitbucketServerConnectedRepositoryResponse>;
+    addBitbucketServerConnectedRepository(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addBitbucketServerConnectedRepository(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>,
+      callback: BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
+    ): void;
+    addBitbucketServerConnectedRepository(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
+      callback: BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
+    ): void;
+    addBitbucketServerConnectedRepository(
+      callback: BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
+    ): void;
+    addBitbucketServerConnectedRepository(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository
+        | BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AddBitbucketServerConnectedRepositoryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+config}:addBitbucketServerConnectedRepository'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['config'],
+        pathParams: ['config'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AddBitbucketServerConnectedRepositoryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AddBitbucketServerConnectedRepositoryResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a new `BitbucketServerConfig`. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.create(
+     *     {
+     *       // Optional. The ID to use for the BitbucketServerConfig, which will become the final component of the BitbucketServerConfig's resource name. bitbucket_server_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character.
+     *       bitbucketServerConfigId: 'placeholder-value',
+     *       // Required. Name of the parent resource.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "apiKey": "my_apiKey",
+     *         //   "connectedRepositories": [],
+     *         //   "createTime": "my_createTime",
+     *         //   "hostUri": "my_hostUri",
+     *         //   "name": "my_name",
+     *         //   "peeredNetwork": "my_peeredNetwork",
+     *         //   "secrets": {},
+     *         //   "sslCa": "my_sslCa",
+     *         //   "username": "my_username",
+     *         //   "webhookKey": "my_webhookKey"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bitbucketServerConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Delete a `BitbucketServerConfig`. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.delete(
+     *     {
+     *       // Required. The config resource name.
+     *       name: 'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieve a `BitbucketServerConfig`. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.get({
+     *     // Required. The config resource name.
+     *     name: 'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiKey": "my_apiKey",
+     *   //   "connectedRepositories": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "hostUri": "my_hostUri",
+     *   //   "name": "my_name",
+     *   //   "peeredNetwork": "my_peeredNetwork",
+     *   //   "secrets": {},
+     *   //   "sslCa": "my_sslCa",
+     *   //   "username": "my_username",
+     *   //   "webhookKey": "my_webhookKey"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BitbucketServerConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BitbucketServerConfig>,
+      callback: BodyResponseCallback<Schema$BitbucketServerConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get,
+      callback: BodyResponseCallback<Schema$BitbucketServerConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BitbucketServerConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get
+        | BodyResponseCallback<Schema$BitbucketServerConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BitbucketServerConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BitbucketServerConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BitbucketServerConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BitbucketServerConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BitbucketServerConfig>(parameters);
+      }
+    }
+
+    /**
+     * List all `BitbucketServerConfigs` for a given project. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.list({
+     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListBitbucketServerConfigsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBitbucketServerConfigsRequest` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the parent resource.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bitbucketServerConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBitbucketServerConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBitbucketServerConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListBitbucketServerConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$List,
+      callback: BodyResponseCallback<Schema$ListBitbucketServerConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBitbucketServerConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$List
+        | BodyResponseCallback<Schema$ListBitbucketServerConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBitbucketServerConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBitbucketServerConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBitbucketServerConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bitbucketServerConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBitbucketServerConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBitbucketServerConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an existing `BitbucketServerConfig`. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudbuild.projects.locations.bitbucketServerConfigs.patch({
+     *     // The resource name for the config.
+     *     name: 'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
+     *     // Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiKey": "my_apiKey",
+     *       //   "connectedRepositories": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "hostUri": "my_hostUri",
+     *       //   "name": "my_name",
+     *       //   "peeredNetwork": "my_peeredNetwork",
+     *       //   "secrets": {},
+     *       //   "sslCa": "my_sslCa",
+     *       //   "username": "my_username",
+     *       //   "webhookKey": "my_webhookKey"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Remove a Bitbucket Server repository from an given BitbucketServerConfig’s connected repositories. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudbuild.projects.locations.bitbucketServerConfigs.removeBitbucketServerConnectedRepository(
+     *       {
+     *         // Required. The name of the `BitbucketServerConfig` to remove a connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     *         config:
+     *           'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "connectedRepository": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeBitbucketServerConnectedRepository(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeBitbucketServerConnectedRepository(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    removeBitbucketServerConnectedRepository(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeBitbucketServerConnectedRepository(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeBitbucketServerConnectedRepository(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeBitbucketServerConnectedRepository(
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    removeBitbucketServerConnectedRepository(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+config}:removeBitbucketServerConnectedRepository'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['config'],
+        pathParams: ['config'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository
+    extends StandardParameters {
+    /**
+     * Required. The name of the `BitbucketServerConfig` to add a connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     */
+    config?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddBitbucketServerConnectedRepositoryRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create
+    extends StandardParameters {
+    /**
+     * Optional. The ID to use for the BitbucketServerConfig, which will become the final component of the BitbucketServerConfig's resource name. bitbucket_server_config_id must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character.
+     */
+    bitbucketServerConfigId?: string;
+    /**
+     * Required. Name of the parent resource.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BitbucketServerConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The config resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The config resource name.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListBitbucketServerConfigsRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBitbucketServerConfigsRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent resource.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Patch
+    extends StandardParameters {
+    /**
+     * The resource name for the config.
+     */
+    name?: string;
+    /**
+     * Update mask for the resource. If this is set, the server will only update the fields specified in the field mask. Otherwise, a full update of the mutable resource fields will be performed.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BitbucketServerConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Removebitbucketserverconnectedrepository
+    extends StandardParameters {
+    /**
+     * Required. The name of the `BitbucketServerConfig` to remove a connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     */
+    config?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveBitbucketServerConnectedRepositoryRequest;
+  }
+
+  export class Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Batch connecting Bitbucket Server repositories to Cloud Build.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudbuild.projects.locations.bitbucketServerConfigs.connectedRepositories.batchCreate(
+     *       {
+     *         // The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchCreate(callback: BodyResponseCallback<Schema$Operation>): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+parent}/connectedRepositories:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Connectedrepositories$Batchcreate
+    extends StandardParameters {
+    /**
+     * The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchCreateBitbucketServerConnectedRepositoriesRequest;
+  }
+
+  export class Resource$Projects$Locations$Bitbucketserverconfigs$Repos {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List all repositories for a given `BitbucketServerConfig`. This API is experimental.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudbuild = google.cloudbuild('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudbuild.projects.locations.bitbucketServerConfigs.repos.list({
+     *       // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListBitbucketServerRepositoriesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBitbucketServerConfigsRequest` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Name of the parent resource.
+     *       parent:
+     *         'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bitbucketServerRepositories": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBitbucketServerRepositoriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBitbucketServerRepositoriesResponse>,
+      callback: BodyResponseCallback<Schema$ListBitbucketServerRepositoriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List,
+      callback: BodyResponseCallback<Schema$ListBitbucketServerRepositoriesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBitbucketServerRepositoriesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List
+        | BodyResponseCallback<Schema$ListBitbucketServerRepositoriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBitbucketServerRepositoriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBitbucketServerRepositoriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBitbucketServerRepositoriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/repos').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBitbucketServerRepositoriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBitbucketServerRepositoriesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Repos$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 50 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListBitbucketServerRepositoriesRequest` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBitbucketServerConfigsRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the parent resource.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Builds {
@@ -5992,6 +7955,7 @@ export namespace cloudbuild_v1 {
      *       // {
      *       //   "approvalConfig": {},
      *       //   "autodetect": false,
+     *       //   "bitbucketServerTriggerConfig": {},
      *       //   "build": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -6022,6 +7986,7 @@ export namespace cloudbuild_v1 {
      *   // {
      *   //   "approvalConfig": {},
      *   //   "autodetect": false,
+     *   //   "bitbucketServerTriggerConfig": {},
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -6305,6 +8270,7 @@ export namespace cloudbuild_v1 {
      *   // {
      *   //   "approvalConfig": {},
      *   //   "autodetect": false,
+     *   //   "bitbucketServerTriggerConfig": {},
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -6601,6 +8567,7 @@ export namespace cloudbuild_v1 {
      *       // {
      *       //   "approvalConfig": {},
      *       //   "autodetect": false,
+     *       //   "bitbucketServerTriggerConfig": {},
      *       //   "build": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -6631,6 +8598,7 @@ export namespace cloudbuild_v1 {
      *   // {
      *   //   "approvalConfig": {},
      *   //   "autodetect": false,
+     *   //   "bitbucketServerTriggerConfig": {},
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -8009,6 +9977,7 @@ export namespace cloudbuild_v1 {
      *       // {
      *       //   "approvalConfig": {},
      *       //   "autodetect": false,
+     *       //   "bitbucketServerTriggerConfig": {},
      *       //   "build": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -8039,6 +10008,7 @@ export namespace cloudbuild_v1 {
      *   // {
      *   //   "approvalConfig": {},
      *   //   "autodetect": false,
+     *   //   "bitbucketServerTriggerConfig": {},
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -8324,6 +10294,7 @@ export namespace cloudbuild_v1 {
      *   // {
      *   //   "approvalConfig": {},
      *   //   "autodetect": false,
+     *   //   "bitbucketServerTriggerConfig": {},
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -8619,6 +10590,7 @@ export namespace cloudbuild_v1 {
      *       // {
      *       //   "approvalConfig": {},
      *       //   "autodetect": false,
+     *       //   "bitbucketServerTriggerConfig": {},
      *       //   "build": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -8649,6 +10621,7 @@ export namespace cloudbuild_v1 {
      *   // {
      *   //   "approvalConfig": {},
      *   //   "autodetect": false,
+     *   //   "bitbucketServerTriggerConfig": {},
      *   //   "build": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
