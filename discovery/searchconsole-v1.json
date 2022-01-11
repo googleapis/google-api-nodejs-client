@@ -143,7 +143,7 @@
     "sitemaps": {
       "methods": {
         "delete": {
-          "description": "Deletes a sitemap from this site.",
+          "description": "Deletes a sitemap from the Sitemaps report. Does not stop Google from crawling this sitemap or the URLs that were previously crawled in the deleted sitemap.",
           "flatPath": "webmasters/v3/sites/{siteUrl}/sitemaps/{feedpath}",
           "httpMethod": "DELETE",
           "id": "webmasters.sitemaps.delete",
@@ -373,7 +373,7 @@
       }
     }
   },
-  "revision": "20211026",
+  "revision": "20220107",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "ApiDataRow": {
