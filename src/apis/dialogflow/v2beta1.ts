@@ -827,6 +827,10 @@ export namespace dialogflow_v2beta1 {
      */
     currentPage?: string | null;
     /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The display name of the current page.
+     */
+    displayName?: string | null;
+    /**
      * Optional for both WebhookRequest and WebhookResponse. Information about the form.
      */
     formInfo?: Schema$GoogleCloudDialogflowCxV3beta1PageInfoFormInfo;
@@ -2051,6 +2055,10 @@ export namespace dialogflow_v2beta1 {
      * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects//locations//agents//flows//pages/`.
      */
     currentPage?: string | null;
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The display name of the current page.
+     */
+    displayName?: string | null;
     /**
      * Optional for both WebhookRequest and WebhookResponse. Information about the form.
      */
@@ -3764,6 +3772,15 @@ export namespace dialogflow_v2beta1 {
     model?: string | null;
   }
   /**
+   * Config to process conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig {
+    /**
+     * Number of recent non-small-talk sentences to use as context for article and FAQ suggestion
+     */
+    recentSentencesCount?: number | null;
+  }
+  /**
    * Configuration for analyses to run on each conversation message.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigMessageAnalysisConfig {
@@ -3797,6 +3814,10 @@ export namespace dialogflow_v2beta1 {
      * Configs of custom conversation model.
      */
     conversationModelConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig;
+    /**
+     * Configs for processing conversation.
+     */
+    conversationProcessConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig;
     /**
      * Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST.
      */
@@ -6898,7 +6919,7 @@ export namespace dialogflow_v2beta1 {
      */
     content?: string | null;
     /**
-     * Output only. The time when the message was created.
+     * Output only. The time when the message was created in Contact Center AI.
      */
     createTime?: string | null;
     /**
@@ -6910,7 +6931,7 @@ export namespace dialogflow_v2beta1 {
      */
     messageAnnotation?: Schema$GoogleCloudDialogflowV2MessageAnnotation;
     /**
-     * The unique identifier of the message. Format: `projects//locations//conversations//messages/`.
+     * Optional. The unique identifier of the message. Format: `projects//locations//conversations//messages/`.
      */
     name?: string | null;
     /**
@@ -6921,6 +6942,14 @@ export namespace dialogflow_v2beta1 {
      * Output only. The role of the participant.
      */
     participantRole?: string | null;
+    /**
+     * Optional. The time when the message was sent.
+     */
+    sendTime?: string | null;
+    /**
+     * Output only. The sentiment analysis result for the message.
+     */
+    sentimentAnalysis?: Schema$GoogleCloudDialogflowV2SentimentAnalysisResult;
   }
   /**
    * Represents the result of annotation for the message.
@@ -7061,6 +7090,23 @@ export namespace dialogflow_v2beta1 {
     name?: string | null;
   }
   /**
+   * Represents a smart reply answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SmartReplyAnswer {
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * Smart reply confidence. The system's confidence score that this reply is a good match for this conversation, as a value from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidence?: number | null;
+    /**
+     * The content of the reply.
+     */
+    reply?: string | null;
+  }
+  /**
    * The response message for Participants.SuggestArticles.
    */
   export interface Schema$GoogleCloudDialogflowV2SuggestArticlesResponse {
@@ -7110,6 +7156,27 @@ export namespace dialogflow_v2beta1 {
      * SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
      */
     suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse;
+    /**
+     * SuggestSmartRepliesResponse if request is for SMART_REPLY.
+     */
+    suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse;
+  }
+  /**
+   * The response message for Participants.SuggestSmartReplies.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestSmartRepliesResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestSmartRepliesRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+    /**
+     * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
+     */
+    smartReplyAnswers?: Schema$GoogleCloudDialogflowV2SmartReplyAnswer[];
   }
   /**
    * The request message for a webhook call.

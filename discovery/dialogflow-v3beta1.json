@@ -3820,7 +3820,7 @@
       }
     }
   },
-  "revision": "20211216",
+  "revision": "20211231",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -4734,6 +4734,10 @@
       "properties": {
         "currentPage": {
           "description": "Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects//locations//agents//flows//pages/`.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Always present for WebhookRequest. Ignored for WebhookResponse. The display name of the current page.",
           "type": "string"
         },
         "formInfo": {
@@ -7874,6 +7878,10 @@
           "description": "Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects//locations//agents//flows//pages/`.",
           "type": "string"
         },
+        "displayName": {
+          "description": "Always present for WebhookRequest. Ignored for WebhookResponse. The display name of the current page.",
+          "type": "string"
+        },
         "formInfo": {
           "$ref": "GoogleCloudDialogflowCxV3beta1PageInfoFormInfo",
           "description": "Optional for both WebhookRequest and WebhookResponse. Information about the form."
@@ -10829,7 +10837,7 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. The time when the message was created.",
+          "description": "Output only. The time when the message was created in Contact Center AI.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -10844,7 +10852,7 @@
           "readOnly": true
         },
         "name": {
-          "description": "The unique identifier of the message. Format: `projects//locations//conversations//messages/`.",
+          "description": "Optional. The unique identifier of the message. Format: `projects//locations//conversations//messages/`.",
           "type": "string"
         },
         "participant": {
@@ -10868,6 +10876,16 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "sendTime": {
+          "description": "Optional. The time when the message was sent.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sentimentAnalysis": {
+          "$ref": "GoogleCloudDialogflowV2SentimentAnalysisResult",
+          "description": "Output only. The sentiment analysis result for the message.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -11064,6 +11082,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2SmartReplyAnswer": {
+      "description": "Represents a smart reply answer.",
+      "id": "GoogleCloudDialogflowV2SmartReplyAnswer",
+      "properties": {
+        "answerRecord": {
+          "description": "The name of answer record, in the format of \"projects//locations//answerRecords/\"",
+          "type": "string"
+        },
+        "confidence": {
+          "description": "Smart reply confidence. The system's confidence score that this reply is a good match for this conversation, as a value from 0.0 (completely uncertain) to 1.0 (completely certain).",
+          "format": "float",
+          "type": "number"
+        },
+        "reply": {
+          "description": "The content of the reply.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2SuggestArticlesResponse": {
       "description": "The response message for Participants.SuggestArticles.",
       "id": "GoogleCloudDialogflowV2SuggestArticlesResponse",
@@ -11110,6 +11148,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2SuggestSmartRepliesResponse": {
+      "description": "The response message for Participants.SuggestSmartReplies.",
+      "id": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
+      "properties": {
+        "contextSize": {
+          "description": "Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestSmartRepliesRequest.context_size field in the request if there aren't that many messages in the conversation.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "latestMessage": {
+          "description": "The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.",
+          "type": "string"
+        },
+        "smartReplyAnswers": {
+          "description": "Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SmartReplyAnswer"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2SuggestionResult": {
       "description": "One response of different type of suggestion response which is used in the response of Participants.AnalyzeContent and Participants.AnalyzeContent, as well as HumanAgentAssistantEvent.",
       "id": "GoogleCloudDialogflowV2SuggestionResult",
@@ -11125,6 +11187,10 @@
         "suggestFaqAnswersResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestFaqAnswersResponse",
           "description": "SuggestFaqAnswersResponse if request is for FAQ_ANSWER."
+        },
+        "suggestSmartRepliesResponse": {
+          "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
+          "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
         }
       },
       "type": "object"
