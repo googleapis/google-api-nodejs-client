@@ -309,7 +309,7 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$HiveMetastoreConfig {
     /**
-     * A mapping of Hive metastore configuration key-value pairs to apply to the Hive metastore (configured in hive-site.xml). The mappings override system defaults (some keys cannot be overridden).
+     * A mapping of Hive metastore configuration key-value pairs to apply to the Hive metastore (configured in hive-site.xml). The mappings override system defaults (some keys cannot be overridden). These overrides are also applied to auxiliary versions and can be further customized in the auxiliary version's AuxiliaryVersionConfig.
      */
     configOverrides?: {[key: string]: string} | null;
     /**
