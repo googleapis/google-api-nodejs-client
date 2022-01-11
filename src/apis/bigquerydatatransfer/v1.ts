@@ -139,7 +139,7 @@ export namespace bigquerydatatransfer_v1 {
     hasValidCreds?: boolean | null;
   }
   /**
-   * Represents data source metadata. Metadata is sufficient to render UI and request proper OAuth tokens.
+   * Defines the properties and custom parameters for a data source.
    */
   export interface Schema$DataSource {
     /**
@@ -216,7 +216,7 @@ export namespace bigquerydatatransfer_v1 {
     updateDeadlineSeconds?: number | null;
   }
   /**
-   * Represents a data source parameter with validation rules, so that parameters can be rendered in the UI. These parameters are given to us by supported data sources, and include all needed information for rendering and validation. Thus, whoever uses this api can decide to generate either generic ui, or custom data source specific forms.
+   * A parameter used to define custom fields in a data source definition.
    */
   export interface Schema$DataSourceParameter {
     /**
@@ -826,7 +826,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
+     * Returns true if valid credentials exist for the given data source and requesting user.
      * @example
      * ```js
      * // Before running the sample:
@@ -973,7 +973,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Retrieves a supported data source and returns its settings, which can be used for UI rendering.
+     * Retrieves a supported data source and returns its settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -1121,7 +1121,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Lists supported data sources and returns their settings, which can be used for UI rendering.
+     * Lists supported data sources and returns their settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -1781,7 +1781,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
+     * Returns true if valid credentials exist for the given data source and requesting user.
      * @example
      * ```js
      * // Before running the sample:
@@ -1930,7 +1930,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Retrieves a supported data source and returns its settings, which can be used for UI rendering.
+     * Retrieves a supported data source and returns its settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -2078,7 +2078,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Lists supported data sources and returns their settings, which can be used for UI rendering.
+     * Lists supported data sources and returns their settings.
      * @example
      * ```js
      * // Before running the sample:
@@ -3759,7 +3759,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Returns information about running and completed jobs.
+     * Returns information about running and completed transfer runs.
      * @example
      * ```js
      * // Before running the sample:
@@ -3952,7 +3952,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Returns user facing log messages for the data transfer run.
+     * Returns log messages for the transfer run.
      * @example
      * ```js
      * // Before running the sample:
@@ -5602,7 +5602,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Returns information about running and completed jobs.
+     * Returns information about running and completed transfer runs.
      * @example
      * ```js
      * // Before running the sample:
@@ -5792,7 +5792,7 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * Returns user facing log messages for the data transfer run.
+     * Returns log messages for the transfer run.
      * @example
      * ```js
      * // Before running the sample:
