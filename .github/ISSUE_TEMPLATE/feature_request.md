@@ -1,7 +1,7 @@
 ---
 name: Feature request
 about: Suggest an idea for this library
-
+labels: 'type: feature request, priority: p3'
 ---
 
 Thanks for stopping by to let us know something could be better!
