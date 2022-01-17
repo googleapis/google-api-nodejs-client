@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/vectortile-v0.3.1...vectortile-v0.4.0) (2022-01-17)
+
+
+### Features
+
+* regenerate index files ([8961002](https://github.com/googleapis/google-api-nodejs-client/commit/8961002a4fa44fe92e6e44cf248d66a4b298262a))
+
+
+### Bug Fixes
+
+* **vectortile:** update the API ([f5dddfd](https://github.com/googleapis/google-api-nodejs-client/commit/f5dddfd151df7f308496c5ea33a2b53fc586c997))
+
 ### [0.3.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/vectortile-v0.3.0...vectortile-v0.3.1) (2021-10-28)
 
 

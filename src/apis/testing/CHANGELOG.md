@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/testing-v0.4.1...testing-v1.0.0) (2022-01-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* **testing:** This release has breaking changes.
+
+### Features
+
+* **testing:** update the API ([7d9ba88](https://github.com/googleapis/google-api-nodejs-client/commit/7d9ba88abbf72d6e392ea1f1acaef998ac964ba1))
+
 ### [0.4.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/testing-v0.4.0...testing-v0.4.1) (2021-12-30)
 
 
