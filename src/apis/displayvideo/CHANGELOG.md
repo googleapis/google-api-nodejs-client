@@ -1,5 +1,12 @@
 # Changelog
 
+### [2.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v2.2.0...displayvideo-v2.2.1) (2022-01-17)
+
+
+### Bug Fixes
+
+* **displayvideo:** update the API ([d07e549](https://github.com/googleapis/google-api-nodejs-client/commit/d07e5498e04db7aecc3dede73782a4c786f33ac3))
+
 ## [2.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v2.1.0...displayvideo-v2.2.0) (2021-12-30)
 
 
