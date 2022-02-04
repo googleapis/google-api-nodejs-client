@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20211101",
+  "revision": "20220131",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "Announcement": {
@@ -2605,6 +2605,10 @@
           "description": "Enrollment code to use when joining this course. Specifying this field in a course update mask results in an error. Read-only.",
           "type": "string"
         },
+        "gradebookSettings": {
+          "$ref": "GradebookSettings",
+          "description": "The gradebook settings that specify how a student's overall grade for the course will be calculated and who it will be displayed to. Read-only"
+        },
         "guardiansEnabled": {
           "description": "Whether or not guardian notifications are enabled for this course. Read-only.",
           "type": "boolean"
@@ -2762,6 +2766,10 @@
         "dueTime": {
           "$ref": "TimeOfDay",
           "description": "Optional time of day, in UTC, that submissions for this course work are due. This must be specified if `due_date` is specified."
+        },
+        "gradeCategory": {
+          "$ref": "GradeCategory",
+          "description": "The category that this coursework's grade contributes to. Present only when a category has been chosen for the coursework. May be used in calculating the overall grade. Read-only."
         },
         "id": {
           "description": "Classroom-assigned identifier of this course work, unique per course. Read-only.",
@@ -2957,7 +2965,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -3099,6 +3107,31 @@
       },
       "type": "object"
     },
+    "GradeCategory": {
+      "description": "Details for a grade category in a course. Coursework may have zero or one grade category, and the category may be used in computing the overall grade. See the [help center article](https://support.google.com/edu/classroom/answer/9184995) for details.",
+      "id": "GradeCategory",
+      "properties": {
+        "defaultGradeDenominator": {
+          "description": "Default value of denominator. Only applicable when grade calculation type is TOTAL_POINTS.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "description": "ID of the grade category.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the grade category.",
+          "type": "string"
+        },
+        "weight": {
+          "description": "The weight of the category average as part of overall average. A weight of 12.34% is represented as 123400 (100% is 1,000,000). The last two digits should always be zero since we use two decimal precision. Only applicable when grade calculation type is WEIGHTED_CATEGORIES.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GradeHistory": {
       "description": "The history of each grade on this submission.",
       "id": "GradeHistory",
@@ -3137,6 +3170,50 @@
           "description": "The numerator of the grade at this time in the submission grade history.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GradebookSettings": {
+      "description": "The gradebook settings for a course. See the [help center article](https://support.google.com/edu/classroom/answer/9184995) for details.",
+      "id": "GradebookSettings",
+      "properties": {
+        "calculationType": {
+          "description": "Indicates how the overall grade is calculated.",
+          "enum": [
+            "CALCULATION_TYPE_UNSPECIFIED",
+            "TOTAL_POINTS",
+            "WEIGHTED_CATEGORIES"
+          ],
+          "enumDescriptions": [
+            "No method specified. This is never returned.",
+            "Overall grade is the sum of grades divided by the sum of total points regardless of category.",
+            "Overall grade is the weighted average by category."
+          ],
+          "type": "string"
+        },
+        "displaySetting": {
+          "description": "Indicates who can see the overall grade..",
+          "enum": [
+            "DISPLAY_SETTING_UNSPECIFIED",
+            "SHOW_OVERALL_GRADE",
+            "HIDE_OVERALL_GRADE",
+            "SHOW_TEACHERS_ONLY"
+          ],
+          "enumDescriptions": [
+            "No setting specified. This is never returned.",
+            "Shows overall grade in the gradebook and student profile to both teachers and students.",
+            "Does not show overall grade in the gradebook or student profile.",
+            "Shows the overall grade to teachers in the gradebook and student profile. Hides from students in their student profile."
+          ],
+          "type": "string"
+        },
+        "gradeCategories": {
+          "description": "Grade categories that are available for coursework in the course.",
+          "items": {
+            "$ref": "GradeCategory"
+          },
+          "type": "array"
         }
       },
       "type": "object"
