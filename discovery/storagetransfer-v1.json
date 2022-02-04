@@ -414,7 +414,7 @@
           ]
         },
         "run": {
-          "description": "Attempts to start a new TransferOperation for the current TransferJob. A TransferJob has a maximum of one active TransferOperation. If this method is called while a TransferOperation is active, an error wil be returned.",
+          "description": "Attempts to start a new TransferOperation for the current TransferJob. A TransferJob has a maximum of one active TransferOperation. If this method is called while a TransferOperation is active, an error will be returned.",
           "flatPath": "v1/transferJobs/{transferJobsId}:run",
           "httpMethod": "POST",
           "id": "storagetransfer.transferJobs.run",
@@ -600,7 +600,7 @@
       }
     }
   },
-  "revision": "20211217",
+  "revision": "20220127",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -660,7 +660,7 @@
       "properties": {
         "awsAccessKey": {
           "$ref": "AwsAccessKey",
-          "description": "Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key. This field is required. For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials)."
+          "description": "Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key. For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials)."
         },
         "bucketName": {
           "description": "Required. S3 Bucket name (see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).",
@@ -982,6 +982,20 @@
       "description": "Specifies the metadata options for running a transfer.",
       "id": "MetadataOptions",
       "properties": {
+        "acl": {
+          "description": "Specifies how each object's ACLs should be preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as ACL_DESTINATION_BUCKET_DEFAULT.",
+          "enum": [
+            "ACL_UNSPECIFIED",
+            "ACL_DESTINATION_BUCKET_DEFAULT",
+            "ACL_PRESERVE"
+          ],
+          "enumDescriptions": [
+            "ACL behavior is unspecified.",
+            "Use the destination bucket's default object ACLS, if applicable.",
+            "Preserve the object's original ACLs. This requires the service account to have `storage.objects.getIamPolicy` permission for the source object. [Uniform bucket-level access](https://cloud.google.com/storage/docs/uniform-bucket-level-access) must not be enabled on either the source or destination buckets."
+          ],
+          "type": "string"
+        },
         "gid": {
           "description": "Specifies how each file's GID attribute should be handled by the transfer. If unspecified, the default behavior is the same as GID_SKIP when the source is a POSIX file system.",
           "enum": [
@@ -993,6 +1007,20 @@
             "GID behavior is unspecified.",
             "Skip GID during a transfer job.",
             "Preserve GID during a transfer job."
+          ],
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "Specifies how each object's Cloud KMS customer-managed encryption key (CMEK) is preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as KMS_KEY_DESTINATION_BUCKET_DEFAULT.",
+          "enum": [
+            "KMS_KEY_UNSPECIFIED",
+            "KMS_KEY_DESTINATION_BUCKET_DEFAULT",
+            "KMS_KEY_PRESERVE"
+          ],
+          "enumDescriptions": [
+            "KmsKey behavior is unspecified.",
+            "Use the destination bucket's default encryption settings.",
+            "Preserve the object's original Cloud KMS customer-managed encryption key (CMEK) if present. Objects that do not use a Cloud KMS encryption key will be encrypted using the destination bucket's encryption settings."
           ],
           "type": "string"
         },
@@ -1010,6 +1038,28 @@
           ],
           "type": "string"
         },
+        "storageClass": {
+          "description": "Specifies the storage class to set on objects being transferred to Google Cloud Storage buckets. If unspecified, the default behavior is the same as STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT.",
+          "enum": [
+            "STORAGE_CLASS_UNSPECIFIED",
+            "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT",
+            "STORAGE_CLASS_PRESERVE",
+            "STORAGE_CLASS_STANDARD",
+            "STORAGE_CLASS_NEARLINE",
+            "STORAGE_CLASS_COLDLINE",
+            "STORAGE_CLASS_ARCHIVE"
+          ],
+          "enumDescriptions": [
+            "Storage class behavior is unspecified.",
+            "Use the destination bucket's default storage class.",
+            "Preserve the object's original storage class. This is only supported for transfers from Google Cloud Storage buckets.",
+            "Set the storage class to STANDARD.",
+            "Set the storage class to NEARLINE.",
+            "Set the storage class to COLDLINE.",
+            "Set the storage class to ARCHIVE."
+          ],
+          "type": "string"
+        },
         "symlink": {
           "description": "Specifies how symlinks should be handled by the transfer. If unspecified, the default behavior is the same as SYMLINK_SKIP when the source is a POSIX file system.",
           "enum": [
@@ -1021,6 +1071,20 @@
             "Symlink behavior is unspecified. The default behavior is to skip symlinks during a transfer job.",
             "Skip symlinks during a transfer job.",
             "Preserve symlinks during a transfer job."
+          ],
+          "type": "string"
+        },
+        "temporaryHold": {
+          "description": "Specifies how each object's temporary hold status should be preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as TEMPORARY_HOLD_PRESERVE.",
+          "enum": [
+            "TEMPORARY_HOLD_UNSPECIFIED",
+            "TEMPORARY_HOLD_SKIP",
+            "TEMPORARY_HOLD_PRESERVE"
+          ],
+          "enumDescriptions": [
+            "Temporary hold behavior is unspecified.",
+            "Do not set a temporary hold on the destination object.",
+            "Preserve the object's original temporary hold status."
           ],
           "type": "string"
         },
@@ -1635,7 +1699,7 @@
         },
         "transferJob": {
           "$ref": "TransferJob",
-          "description": "Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, [logging_config[TransferJob.logging_config], and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permissions."
+          "description": "Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, logging_config, and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permissions."
         },
         "updateTransferJobFieldMask": {
           "description": "The field mask of the fields in `transferJob` that are to be updated in this request. Fields in `transferJob` that can be updated are: description, transfer_spec, notification_config, logging_config, and status. To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields is rejected with the error INVALID_ARGUMENT.",
