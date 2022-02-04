@@ -3820,7 +3820,7 @@
       }
     }
   },
-  "revision": "20211231",
+  "revision": "20220128",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -4575,7 +4575,7 @@
       "id": "GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig",
       "properties": {
         "enableContinuousRun": {
-          "description": "Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.",
+          "description": "Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to true, run once a day.",
           "type": "boolean"
         },
         "enablePredeploymentRun": {
@@ -5969,7 +5969,7 @@
           "type": "number"
         },
         "event": {
-          "description": "The event that matched the query. Only filled for `EVENT` match type.",
+          "description": "The event that matched the query. Filled for `EVENT`, `NO_MATCH` and `NO_INPUT` match types.",
           "type": "string"
         },
         "intent": {
@@ -6879,7 +6879,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowCxV3SecuritySettingsInsightsExportSettings": {
-      "description": "Settings for exporting conversations to [Insights](https://cloud.google.com/dialogflow/priv/docs/insights).",
+      "description": "Settings for exporting conversations to [Insights](https://cloud.google.com/contact-center/insights/docs).",
       "id": "GoogleCloudDialogflowCxV3SecuritySettingsInsightsExportSettings",
       "properties": {
         "enableInsightsExport": {
@@ -9894,6 +9894,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ImportDocumentsResponse": {
+      "description": "Response message for Documents.ImportDocuments.",
+      "id": "GoogleCloudDialogflowV2ImportDocumentsResponse",
+      "properties": {
+        "warnings": {
+          "description": "Includes details about skipped documents or any other warnings.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2Intent": {
       "description": "An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).",
       "id": "GoogleCloudDialogflowV2Intent",
@@ -10808,6 +10822,10 @@
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2KnowledgeOperationMetadata",
       "properties": {
+        "knowledgeBase": {
+          "description": "The name of the knowledge base interacted with during the operation.",
+          "type": "string"
+        },
         "state": {
           "description": "Output only. The current state of this operation.",
           "enum": [

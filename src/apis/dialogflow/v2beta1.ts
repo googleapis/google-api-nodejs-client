@@ -1600,7 +1600,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig {
     /**
-     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.
+     * Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to true, run once a day.
      */
     enableContinuousRun?: boolean | null;
     /**
@@ -6253,6 +6253,15 @@ export namespace dialogflow_v2beta1 {
     suggestionResults?: Schema$GoogleCloudDialogflowV2SuggestionResult[];
   }
   /**
+   * Response message for Documents.ImportDocuments.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ImportDocumentsResponse {
+    /**
+     * Includes details about skipped documents or any other warnings.
+     */
+    warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
    * An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Intent {
@@ -6905,6 +6914,10 @@ export namespace dialogflow_v2beta1 {
    * Metadata in google::longrunning::Operation for Knowledge operations.
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeOperationMetadata {
+    /**
+     * The name of the knowledge base interacted with during the operation.
+     */
+    knowledgeBase?: string | null;
     /**
      * Output only. The current state of this operation.
      */

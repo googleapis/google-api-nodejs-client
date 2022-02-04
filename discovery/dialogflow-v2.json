@@ -3554,6 +3554,35 @@
                     "https://www.googleapis.com/auth/dialogflow"
                   ]
                 },
+                "import": {
+                  "description": "Creates documents by importing data from external sources. Dialogflow supports up to 350 documents in each request. If you try to import more, Dialogflow will return an error. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: KnowledgeOperationMetadata - `response`: ImportDocumentsResponse",
+                  "flatPath": "v2/projects/{projectsId}/knowledgeBases/{knowledgeBasesId}/documents:import",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.knowledgeBases.documents.import",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The knowledge base to import documents into. Format: `projects//locations//knowledgeBases/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/knowledgeBases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/documents:import",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2ImportDocumentsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
                 "list": {
                   "description": "Returns the list of all documents of the knowledge base.",
                   "flatPath": "v2/projects/{projectsId}/knowledgeBases/{knowledgeBasesId}/documents",
@@ -6818,6 +6847,35 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     },
+                    "import": {
+                      "description": "Creates documents by importing data from external sources. Dialogflow supports up to 350 documents in each request. If you try to import more, Dialogflow will return an error. This method is a [long-running operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation). The returned `Operation` type has the following method-specific fields: - `metadata`: KnowledgeOperationMetadata - `response`: ImportDocumentsResponse",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/knowledgeBases/{knowledgeBasesId}/documents:import",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.knowledgeBases.documents.import",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The knowledge base to import documents into. Format: `projects//locations//knowledgeBases/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/knowledgeBases/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/documents:import",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowV2ImportDocumentsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
                     "list": {
                       "description": "Returns the list of all documents of the knowledge base.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/knowledgeBases/{knowledgeBasesId}/documents",
@@ -7129,7 +7187,7 @@
       }
     }
   },
-  "revision": "20211231",
+  "revision": "20220128",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7423,7 +7481,7 @@
       "id": "GoogleCloudDialogflowCxV3EnvironmentTestCasesConfig",
       "properties": {
         "enableContinuousRun": {
-          "description": "Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to ture, run once a day.",
+          "description": "Whether to run test cases in TestCasesConfig.test_cases periodically. Default false. If set to true, run once a day.",
           "type": "boolean"
         },
         "enablePredeploymentRun": {
@@ -11822,6 +11880,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2GcsSources": {
+      "description": "Google Cloud Storage location for the inputs.",
+      "id": "GoogleCloudDialogflowV2GcsSources",
+      "properties": {
+        "uris": {
+          "description": "Required. Google Cloud Storage URIs for the inputs. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2HumanAgentAssistantConfig": {
       "description": "Defines the Human Agent Assist to connect to a conversation.",
       "id": "GoogleCloudDialogflowV2HumanAgentAssistantConfig",
@@ -12121,6 +12193,76 @@
         "agentUri": {
           "description": "The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with \"gs://\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ImportDocumentTemplate": {
+      "description": "The template used for importing documents.",
+      "id": "GoogleCloudDialogflowV2ImportDocumentTemplate",
+      "properties": {
+        "knowledgeTypes": {
+          "description": "Required. The knowledge type of document content.",
+          "items": {
+            "enum": [
+              "KNOWLEDGE_TYPE_UNSPECIFIED",
+              "FAQ",
+              "EXTRACTIVE_QA",
+              "ARTICLE_SUGGESTION"
+            ],
+            "enumDescriptions": [
+              "The type is unspecified or arbitrary.",
+              "The document content contains question and answer pairs as either HTML or CSV. Typical FAQ HTML formats are parsed accurately, but unusual formats may fail to be parsed. CSV must have questions in the first column and answers in the second, with no header. Because of this explicit format, they are always parsed accurately.",
+              "Documents for which unstructured text is extracted and used for question answering.",
+              "The entire document content as a whole can be used for query results. Only for Contact Center Solutions on Dialogflow."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Metadata for the document. The metadata supports arbitrary key-value pairs. Suggested use cases include storing a document's title, an external URL distinct from the document's content_uri, etc. The max size of a `key` or a `value` of the metadata is 1024 bytes.",
+          "type": "object"
+        },
+        "mimeType": {
+          "description": "Required. The MIME type of the document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ImportDocumentsRequest": {
+      "description": "Request message for Documents.ImportDocuments.",
+      "id": "GoogleCloudDialogflowV2ImportDocumentsRequest",
+      "properties": {
+        "documentTemplate": {
+          "$ref": "GoogleCloudDialogflowV2ImportDocumentTemplate",
+          "description": "Required. Document template used for importing all the documents."
+        },
+        "gcsSource": {
+          "$ref": "GoogleCloudDialogflowV2GcsSources",
+          "description": "The Google Cloud Storage location for the documents. The path can include a wildcard. These URIs may have the forms `gs:///`. `gs:////*.`."
+        },
+        "importGcsCustomMetadata": {
+          "description": "Whether to import custom metadata from Google Cloud Storage. Only valid when the document source is Google Cloud Storage URI.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ImportDocumentsResponse": {
+      "description": "Response message for Documents.ImportDocuments.",
+      "id": "GoogleCloudDialogflowV2ImportDocumentsResponse",
+      "properties": {
+        "warnings": {
+          "description": "Includes details about skipped documents or any other warnings.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13158,6 +13300,10 @@
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2KnowledgeOperationMetadata",
       "properties": {
+        "knowledgeBase": {
+          "description": "The name of the knowledge base interacted with during the operation.",
+          "type": "string"
+        },
         "state": {
           "description": "Output only. The current state of this operation.",
           "enum": [
