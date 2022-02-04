@@ -287,7 +287,7 @@
       }
     }
   },
-  "revision": "20210512",
+  "revision": "20220126",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -330,7 +330,7 @@
           "type": "string"
         },
         "excludedDestination": {
-          "description": "A list of excluded destinations.",
+          "description": "A list of excluded destinations such as \"ClientExport\", \"ClientShoppingCatalog\" or \"PartnerShoppingCatalog\". For more information, see https://support.google.com/manufacturers/answer/7443550",
           "items": {
             "type": "string"
           },
@@ -367,7 +367,7 @@
           "description": "The image of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#image."
         },
         "includedDestination": {
-          "description": "A list of included destinations.",
+          "description": "A list of included destinations such as \"ClientExport\", \"ClientShoppingCatalog\" or \"PartnerShoppingCatalog\". For more information, see https://support.google.com/manufacturers/answer/7443550",
           "items": {
             "type": "string"
           },
@@ -457,7 +457,7 @@
           "description": "The suggested retail price (MSRP) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#price."
         },
         "targetClientId": {
-          "description": "The target client id. Should only be used in the accounts of the data partners.",
+          "description": "The target client id. Should only be used in the accounts of the data partners. For more information, see https://support.google.com/manufacturers/answer/10857344",
           "type": "string"
         },
         "theme": {

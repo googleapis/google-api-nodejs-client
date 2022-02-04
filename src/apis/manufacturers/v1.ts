@@ -162,7 +162,7 @@ export namespace manufacturers_v1 {
      */
     disclosureDate?: string | null;
     /**
-     * A list of excluded destinations.
+     * A list of excluded destinations such as "ClientExport", "ClientShoppingCatalog" or "PartnerShoppingCatalog". For more information, see https://support.google.com/manufacturers/answer/7443550
      */
     excludedDestination?: string[] | null;
     /**
@@ -190,7 +190,7 @@ export namespace manufacturers_v1 {
      */
     imageLink?: Schema$Image;
     /**
-     * A list of included destinations.
+     * A list of included destinations such as "ClientExport", "ClientShoppingCatalog" or "PartnerShoppingCatalog". For more information, see https://support.google.com/manufacturers/answer/7443550
      */
     includedDestination?: string[] | null;
     /**
@@ -262,7 +262,7 @@ export namespace manufacturers_v1 {
      */
     suggestedRetailPrice?: Schema$Price;
     /**
-     * The target client id. Should only be used in the accounts of the data partners.
+     * The target client id. Should only be used in the accounts of the data partners. For more information, see https://support.google.com/manufacturers/answer/10857344
      */
     targetClientId?: string | null;
     /**
