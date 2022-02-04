@@ -163,6 +163,10 @@ export namespace servicedirectory_v1 {
      */
     name?: string | null;
     /**
+     * Immutable. The Google Compute Engine network (VPC) of the endpoint in the format `projects//locations/global/networks/x`. The project must be specified by project number (project id is rejected). Incorrectly formatted networks are rejected, we also check to make sure that you have the servicedirectory.networks.attach permission on the project specified.
+     */
+    network?: string | null;
+    /**
      * Optional. Service Directory rejects values outside of `[0, 65535]`.
      */
     port?: number | null;
@@ -3386,6 +3390,7 @@ export namespace servicedirectory_v1 {
      *           //   "address": "my_address",
      *           //   "annotations": {},
      *           //   "name": "my_name",
+     *           //   "network": "my_network",
      *           //   "port": 0
      *           // }
      *         },
@@ -3398,6 +3403,7 @@ export namespace servicedirectory_v1 {
      *   //   "address": "my_address",
      *   //   "annotations": {},
      *   //   "name": "my_name",
+     *   //   "network": "my_network",
      *   //   "port": 0
      *   // }
      * }
@@ -3664,6 +3670,7 @@ export namespace servicedirectory_v1 {
      *   //   "address": "my_address",
      *   //   "annotations": {},
      *   //   "name": "my_name",
+     *   //   "network": "my_network",
      *   //   "port": 0
      *   // }
      * }
@@ -3948,6 +3955,7 @@ export namespace servicedirectory_v1 {
      *           //   "address": "my_address",
      *           //   "annotations": {},
      *           //   "name": "my_name",
+     *           //   "network": "my_network",
      *           //   "port": 0
      *           // }
      *         },
@@ -3960,6 +3968,7 @@ export namespace servicedirectory_v1 {
      *   //   "address": "my_address",
      *   //   "annotations": {},
      *   //   "name": "my_name",
+     *   //   "network": "my_network",
      *   //   "port": 0
      *   // }
      * }
