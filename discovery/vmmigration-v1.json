@@ -1858,7 +1858,7 @@
       }
     }
   },
-  "revision": "20211207",
+  "revision": "20220120",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -1870,12 +1870,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "AddGroupMigrationResponse": {
-      "description": "Response message for 'AddGroupMigration' request.",
-      "id": "AddGroupMigrationResponse",
-      "properties": {},
       "type": "object"
     },
     "AppliedLicense": {
@@ -1911,21 +1905,9 @@
       "properties": {},
       "type": "object"
     },
-    "CancelCloneJobResponse": {
-      "description": "Response message for 'CancelCloneJob' request.",
-      "id": "CancelCloneJobResponse",
-      "properties": {},
-      "type": "object"
-    },
     "CancelCutoverJobRequest": {
       "description": "Request message for 'CancelCutoverJob' request.",
       "id": "CancelCutoverJobRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "CancelCutoverJobResponse": {
-      "description": "Response message for 'CancelCutoverJob' request.",
-      "id": "CancelCutoverJobResponse",
       "properties": {},
       "type": "object"
     },
@@ -2457,12 +2439,6 @@
       "properties": {},
       "type": "object"
     },
-    "FinalizeMigrationResponse": {
-      "description": "Response message for 'FinalizeMigration' request.",
-      "id": "FinalizeMigrationResponse",
-      "properties": {},
-      "type": "object"
-    },
     "Group": {
       "description": "Describes message for 'Group' resource. The Group is a collections of several MigratingVms.",
       "id": "Group",
@@ -2964,7 +2940,8 @@
             "OS_ADAPTATION_ERROR",
             "CLONE_ERROR",
             "CUTOVER_ERROR",
-            "UTILIZATION_REPORT_ERROR"
+            "UTILIZATION_REPORT_ERROR",
+            "APPLIANCE_UPGRADE_ERROR"
           ],
           "enumDescriptions": [
             "Default value. This value is not used.",
@@ -2975,7 +2952,8 @@
             "Migrate for Compute encountered an error during OS adaptation.",
             "Migrate for Compute encountered an error in clone operation.",
             "Migrate for Compute encountered an error in cutover operation.",
-            "Migrate for Compute encountered an error during utilization report creation."
+            "Migrate for Compute encountered an error during utilization report creation.",
+            "Migrate for Compute encountered an error during appliance upgrade."
           ],
           "readOnly": true,
           "type": "string"
@@ -3110,12 +3088,6 @@
       "properties": {},
       "type": "object"
     },
-    "PauseMigrationResponse": {
-      "description": "Response message for 'PauseMigration' request.",
-      "id": "PauseMigrationResponse",
-      "properties": {},
-      "type": "object"
-    },
     "RemoveGroupMigrationRequest": {
       "description": "Request message for 'RemoveMigration' request.",
       "id": "RemoveGroupMigrationRequest",
@@ -3125,12 +3097,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "RemoveGroupMigrationResponse": {
-      "description": "Response message for 'RemoveMigration' request.",
-      "id": "RemoveGroupMigrationResponse",
-      "properties": {},
       "type": "object"
     },
     "ReplicationCycle": {
@@ -3165,12 +3131,6 @@
     "ResumeMigrationRequest": {
       "description": "Request message for 'ResumeMigration' request.",
       "id": "ResumeMigrationRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "ResumeMigrationResponse": {
-      "description": "Response message for 'ResumeMigration' request.",
-      "id": "ResumeMigrationResponse",
       "properties": {},
       "type": "object"
     },
@@ -3264,12 +3224,6 @@
     "StartMigrationRequest": {
       "description": "Request message for 'StartMigrationRequest' request.",
       "id": "StartMigrationRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "StartMigrationResponse": {
-      "description": "Response message for 'StartMigration' request.",
-      "id": "StartMigrationResponse",
       "properties": {},
       "type": "object"
     },
