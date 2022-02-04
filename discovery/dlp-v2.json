@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20211204",
+  "revision": "20220122",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -5031,7 +5031,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2FindingLimits": {
-      "description": "Configuration to control the number of findings returned. Cannot be set if de-identification is requested.",
+      "description": "Configuration to control the number of findings returned for inspection. This is not used for de-identification or data profiling.",
       "id": "GooglePrivacyDlpV2FindingLimits",
       "properties": {
         "maxFindingsPerInfoType": {
@@ -5378,7 +5378,7 @@
       "id": "GooglePrivacyDlpV2InspectConfig",
       "properties": {
         "contentOptions": {
-          "description": "List of options defining data content to scan. If empty, text, images, and other content will be included.",
+          "description": "Deprecated and unused.",
           "items": {
             "enum": [
               "CONTENT_UNSPECIFIED",
@@ -5402,11 +5402,11 @@
           "type": "array"
         },
         "excludeInfoTypes": {
-          "description": "When true, excludes type information of the findings.",
+          "description": "When true, excludes type information of the findings. This is not used for data profiling.",
           "type": "boolean"
         },
         "includeQuote": {
-          "description": "When true, a contextual quote from the data that triggered a finding is included in the response; see Finding.quote.",
+          "description": "When true, a contextual quote from the data that triggered a finding is included in the response; see Finding.quote. This is not used for data profiling.",
           "type": "boolean"
         },
         "infoTypes": {
@@ -5418,7 +5418,7 @@
         },
         "limits": {
           "$ref": "GooglePrivacyDlpV2FindingLimits",
-          "description": "Configuration to control the number of findings returned."
+          "description": "Configuration to control the number of findings returned. This is not used for data profiling."
         },
         "minLikelihood": {
           "description": "Only returns findings equal or above this threshold. The default is POSSIBLE. See https://cloud.google.com/dlp/docs/likelihood to learn more.",
