@@ -706,7 +706,7 @@
       }
     }
   },
-  "revision": "20211203",
+  "revision": "20220122",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -822,6 +822,17 @@
         "type": {
           "$ref": "TypeMeta",
           "description": "Kubernetes type of the resource."
+        }
+      },
+      "type": "object"
+    },
+    "EdgeCluster": {
+      "description": "EdgeCluster contains information specific to Google Edge Clusters.",
+      "id": "EdgeCluster",
+      "properties": {
+        "resourceLink": {
+          "description": "Immutable. Self-link of the GCP resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1181,6 +1192,10 @@
       "description": "MembershipEndpoint contains information needed to contact a Kubernetes API, endpoint and any additional Kubernetes metadata.",
       "id": "MembershipEndpoint",
       "properties": {
+        "edgeCluster": {
+          "$ref": "EdgeCluster",
+          "description": "Optional. Specific information for a Google Edge cluster."
+        },
         "gkeCluster": {
           "$ref": "GkeCluster",
           "description": "Optional. Specific information for a GKE-on-GCP cluster."

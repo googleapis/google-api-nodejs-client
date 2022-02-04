@@ -207,6 +207,15 @@ export namespace gkehub_v1alpha2 {
     type?: Schema$TypeMeta;
   }
   /**
+   * EdgeCluster contains information specific to Google Edge Clusters.
+   */
+  export interface Schema$EdgeCluster {
+    /**
+     * Immutable. Self-link of the GCP resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     */
+    resourceLink?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -466,6 +475,10 @@ export namespace gkehub_v1alpha2 {
    * MembershipEndpoint contains information needed to contact a Kubernetes API, endpoint and any additional Kubernetes metadata.
    */
   export interface Schema$MembershipEndpoint {
+    /**
+     * Optional. Specific information for a Google Edge cluster.
+     */
+    edgeCluster?: Schema$EdgeCluster;
     /**
      * Optional. Specific information for a GKE-on-GCP cluster.
      */
