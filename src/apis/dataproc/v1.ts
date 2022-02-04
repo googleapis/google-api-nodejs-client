@@ -216,6 +216,79 @@ export namespace dataproc_v1 {
     scaleUpMinWorkerFraction?: number | null;
   }
   /**
+   * A representation of a batch workload in the service.
+   */
+  export interface Schema$Batch {
+    /**
+     * Output only. The time when the batch was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The email address of the user who created the batch.
+     */
+    creator?: string | null;
+    /**
+     * Optional. Environment configuration for the batch execution.
+     */
+    environmentConfig?: Schema$EnvironmentConfig;
+    /**
+     * Optional. The labels to associate with this batch. Label keys must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). Label values may be empty, but, if present, must contain 1 to 63 characters, and must conform to RFC 1035 (https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a batch.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The resource name of the batch.
+     */
+    name?: string | null;
+    /**
+     * Output only. The resource name of the operation associated with this batch.
+     */
+    operation?: string | null;
+    /**
+     * Optional. PySpark batch config.
+     */
+    pysparkBatch?: Schema$PySparkBatch;
+    /**
+     * Optional. Runtime configuration for the batch execution.
+     */
+    runtimeConfig?: Schema$RuntimeConfig;
+    /**
+     * Output only. Runtime information about batch execution.
+     */
+    runtimeInfo?: Schema$RuntimeInfo;
+    /**
+     * Optional. Spark batch config.
+     */
+    sparkBatch?: Schema$SparkBatch;
+    /**
+     * Optional. SparkR batch config.
+     */
+    sparkRBatch?: Schema$SparkRBatch;
+    /**
+     * Optional. SparkSql batch config.
+     */
+    sparkSqlBatch?: Schema$SparkSqlBatch;
+    /**
+     * Output only. The state of the batch.
+     */
+    state?: string | null;
+    /**
+     * Output only. Historical state information for the batch.
+     */
+    stateHistory?: Schema$StateHistory[];
+    /**
+     * Output only. Batch state details, such as a failure description if the state is FAILED.
+     */
+    stateMessage?: string | null;
+    /**
+     * Output only. The time when the batch entered a current state.
+     */
+    stateTime?: string | null;
+    /**
+     * Output only. A batch UUID (Unique Universal Identifier). The service generates this value when it creates the batch.
+     */
+    uuid?: string | null;
+  }
+  /**
    * Metadata describing the Batch operation.
    */
   export interface Schema$BatchOperationMetadata {
@@ -532,7 +605,7 @@ export namespace dataproc_v1 {
      */
     bootDiskType?: string | null;
     /**
-     * Optional. Interface type of local SSDs (default is "scsi"). Valid values: "scsi" (Small Computer System Interface), "nvme" (Non-Volatile Memory Express). See SSD Interface types (https://cloud.google.com/compute/docs/disks/local-ssd#performance).
+     * Optional. Interface type of local SSDs (default is "scsi"). Valid values: "scsi" (Small Computer System Interface), "nvme" (Non-Volatile Memory Express). See local SSD performance (https://cloud.google.com/compute/docs/disks/local-ssd#performance).
      */
     localSsdInterface?: string | null;
     /**
@@ -565,6 +638,44 @@ export namespace dataproc_v1 {
      * Output only. The map of port descriptions to URLs. Will only be populated if enable_http_port_access is true.
      */
     httpPorts?: {[key: string]: string} | null;
+  }
+  /**
+   * Environment configuration for a workload.
+   */
+  export interface Schema$EnvironmentConfig {
+    /**
+     * Optional. Execution configuration for a workload.
+     */
+    executionConfig?: Schema$ExecutionConfig;
+    /**
+     * Optional. Peripherals configuration that workload has access to.
+     */
+    peripheralsConfig?: Schema$PeripheralsConfig;
+  }
+  /**
+   * Execution configuration for a workload.
+   */
+  export interface Schema$ExecutionConfig {
+    /**
+     * Optional. The Cloud KMS key to use for encryption.
+     */
+    kmsKey?: string | null;
+    /**
+     * Optional. Tags used for network traffic control.
+     */
+    networkTags?: string[] | null;
+    /**
+     * Optional. Network URI to connect workload to.
+     */
+    networkUri?: string | null;
+    /**
+     * Optional. Service account that used to execute workload.
+     */
+    serviceAccount?: string | null;
+    /**
+     * Optional. Subnetwork URI to connect workload to.
+     */
+    subnetworkUri?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1129,6 +1240,19 @@ export namespace dataproc_v1 {
     policies?: Schema$AutoscalingPolicy[];
   }
   /**
+   * A list of batch workloads.
+   */
+  export interface Schema$ListBatchesResponse {
+    /**
+     * The batches from the specified collection.
+     */
+    batches?: Schema$Batch[];
+    /**
+     * A token, which can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The list of all clusters in a project.
    */
   export interface Schema$ListClustersResponse {
@@ -1355,6 +1479,19 @@ export namespace dataproc_v1 {
     values?: Schema$ValueValidation;
   }
   /**
+   * Auxiliary services configuration for a workload.
+   */
+  export interface Schema$PeripheralsConfig {
+    /**
+     * Optional. Resource name of an existing Dataproc Metastore service.Example: projects/[project_id]/locations/[region]/services/[service_id]
+     */
+    metastoreService?: string | null;
+    /**
+     * Optional. The Spark History Server configuration for the workload.
+     */
+    sparkHistoryServerConfig?: Schema$SparkHistoryServerConfig;
+  }
+  /**
    * A Dataproc job for running Apache Pig (https://pig.apache.org/) queries on YARN.
    */
   export interface Schema$PigJob {
@@ -1436,6 +1573,35 @@ export namespace dataproc_v1 {
      * A list of queries.
      */
     queryList?: Schema$QueryList;
+  }
+  /**
+   * A configuration for running an Apache PySpark (https://spark.apache.org/docs/latest/api/python/getting_started/quickstart.html) batch workload.
+   */
+  export interface Schema$PySparkBatch {
+    /**
+     * Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
+     */
+    archiveUris?: string[] | null;
+    /**
+     * Optional. The arguments to pass to the driver. Do not include arguments that can be set as batch properties, such as --conf, since a collision can occur that causes an incorrect batch submission.
+     */
+    args?: string[] | null;
+    /**
+     * Optional. HCFS URIs of files to be placed in the working directory of each executor.
+     */
+    fileUris?: string[] | null;
+    /**
+     * Optional. HCFS URIs of jar files to add to the classpath of the Spark driver and tasks.
+     */
+    jarFileUris?: string[] | null;
+    /**
+     * Required. The HCFS URI of the main Python file to use as the Spark driver. Must be a .py file.
+     */
+    mainPythonFileUri?: string | null;
+    /**
+     * Optional. HCFS file URIs of Python files to pass to the PySpark framework. Supported file types: .py, .egg, and .zip.
+     */
+    pythonFileUris?: string[] | null;
   }
   /**
    * A Dataproc job for running Apache PySpark (https://spark.apache.org/docs/0.9.0/python-programming-guide.html) applications on YARN.
@@ -1521,6 +1687,40 @@ export namespace dataproc_v1 {
      * Optional. Corresponds to the label values of reservation resource.
      */
     values?: string[] | null;
+  }
+  /**
+   * Runtime configuration for a workload.
+   */
+  export interface Schema$RuntimeConfig {
+    /**
+     * Optional. Optional custom container image for the job runtime environment. If not specified, a default container image will be used.
+     */
+    containerImage?: string | null;
+    /**
+     * Optional. A mapping of property names to values, which are used to configure workload execution.
+     */
+    properties?: {[key: string]: string} | null;
+    /**
+     * Optional. Version of the batch runtime.
+     */
+    version?: string | null;
+  }
+  /**
+   * Runtime information about workload execution.
+   */
+  export interface Schema$RuntimeInfo {
+    /**
+     * Output only. A URI pointing to the location of the diagnostics tarball.
+     */
+    diagnosticOutputUri?: string | null;
+    /**
+     * Output only. Map of remote access endpoints (such as web interfaces and APIs) to their URIs.
+     */
+    endpoints?: {[key: string]: string} | null;
+    /**
+     * Output only. A URI pointing to the location of the stdout and stderr of the workload.
+     */
+    outputUri?: string | null;
   }
   /**
    * Security related configuration, including encryption, Kerberos, etc.
@@ -1616,7 +1816,45 @@ export namespace dataproc_v1 {
     properties?: {[key: string]: string} | null;
   }
   /**
-   * A Dataproc job for running Apache Spark (http://spark.apache.org/) applications on YARN.
+   * A configuration for running an Apache Spark (https://spark.apache.org/) batch workload.
+   */
+  export interface Schema$SparkBatch {
+    /**
+     * Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
+     */
+    archiveUris?: string[] | null;
+    /**
+     * Optional. The arguments to pass to the driver. Do not include arguments that can be set as batch properties, such as --conf, since a collision can occur that causes an incorrect batch submission.
+     */
+    args?: string[] | null;
+    /**
+     * Optional. HCFS URIs of files to be placed in the working directory of each executor.
+     */
+    fileUris?: string[] | null;
+    /**
+     * Optional. HCFS URIs of jar files to add to the classpath of the Spark driver and tasks.
+     */
+    jarFileUris?: string[] | null;
+    /**
+     * Optional. The name of the driver main class. The jar file that contains the class must be in the classpath or specified in jar_file_uris.
+     */
+    mainClass?: string | null;
+    /**
+     * Optional. The HCFS URI of the jar file that contains the main class.
+     */
+    mainJarFileUri?: string | null;
+  }
+  /**
+   * Spark History Server configuration for the workload.
+   */
+  export interface Schema$SparkHistoryServerConfig {
+    /**
+     * Optional. Resource name of an existing Dataproc Cluster to act as a Spark History Server for the workload.Example: projects/[project_id]/regions/[region]/clusters/[cluster_name]
+     */
+    dataprocCluster?: string | null;
+  }
+  /**
+   * A Dataproc job for running Apache Spark (https://spark.apache.org/) applications on YARN.
    */
   export interface Schema$SparkJob {
     /**
@@ -1653,6 +1891,27 @@ export namespace dataproc_v1 {
     properties?: {[key: string]: string} | null;
   }
   /**
+   * A configuration for running an Apache SparkR (https://spark.apache.org/docs/latest/sparkr.html) batch workload.
+   */
+  export interface Schema$SparkRBatch {
+    /**
+     * Optional. HCFS URIs of archives to be extracted into the working directory of each executor. Supported file types: .jar, .tar, .tar.gz, .tgz, and .zip.
+     */
+    archiveUris?: string[] | null;
+    /**
+     * Optional. The arguments to pass to the Spark driver. Do not include arguments that can be set as batch properties, such as --conf, since a collision can occur that causes an incorrect batch submission.
+     */
+    args?: string[] | null;
+    /**
+     * Optional. HCFS URIs of files to be placed in the working directory of each executor.
+     */
+    fileUris?: string[] | null;
+    /**
+     * Required. The HCFS URI of the main R file to use as the driver. Must be a .R or .r file.
+     */
+    mainRFileUri?: string | null;
+  }
+  /**
    * A Dataproc job for running Apache SparkR (https://spark.apache.org/docs/latest/sparkr.html) applications on YARN.
    */
   export interface Schema$SparkRJob {
@@ -1682,7 +1941,24 @@ export namespace dataproc_v1 {
     properties?: {[key: string]: string} | null;
   }
   /**
-   * A Dataproc job for running Apache Spark SQL (http://spark.apache.org/sql/) queries.
+   * A configuration for running Apache Spark SQL (https://spark.apache.org/sql/) queries as a batch workload.
+   */
+  export interface Schema$SparkSqlBatch {
+    /**
+     * Optional. HCFS URIs of jar files to be added to the Spark CLASSPATH.
+     */
+    jarFileUris?: string[] | null;
+    /**
+     * Required. The HCFS URI of the script that contains Spark SQL queries to execute.
+     */
+    queryFileUri?: string | null;
+    /**
+     * Optional. Mapping of query variable names to values (equivalent to the Spark SQL command: SET name="value";).
+     */
+    queryVariables?: {[key: string]: string} | null;
+  }
+  /**
+   * A Dataproc job for running Apache Spark SQL (https://spark.apache.org/sql/) queries.
    */
   export interface Schema$SparkSqlJob {
     /**
@@ -1747,6 +2023,23 @@ export namespace dataproc_v1 {
      * Optional. A unique ID used to identify the request. If the server receives two StartClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.StartClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string | null;
+  }
+  /**
+   * Historical state information.
+   */
+  export interface Schema$StateHistory {
+    /**
+     * Output only. The state of the batch at this point in history.
+     */
+    state?: string | null;
+    /**
+     * Output only. Details about the state at this point in history.
+     */
+    stateMessage?: string | null;
+    /**
+     * Output only. The time when the batch entered the historical state.
+     */
+    stateStartTime?: string | null;
   }
   /**
    * The Status type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by gRPC (https://github.com/grpc). Each Status message contains three pieces of data: error code, error message, and error details.You can find out more about this error model and how to work with it in the API Design Guide (https://cloud.google.com/apis/design/errors).
@@ -2025,11 +2318,13 @@ export namespace dataproc_v1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     autoscalingPolicies: Resource$Projects$Locations$Autoscalingpolicies;
+    batches: Resource$Projects$Locations$Batches;
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.autoscalingPolicies =
         new Resource$Projects$Locations$Autoscalingpolicies(this.context);
+      this.batches = new Resource$Projects$Locations$Batches(this.context);
       this.workflowTemplates =
         new Resource$Projects$Locations$Workflowtemplates(this.context);
     }
@@ -3264,6 +3559,627 @@ export namespace dataproc_v1 {
      * Request body metadata
      */
     requestBody?: Schema$AutoscalingPolicy;
+  }
+
+  export class Resource$Projects$Locations$Batches {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a batch workload that executes asynchronously.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.batches.create({
+     *     // Optional. The ID to use for the batch, which will become the final component of the batch's resource name.This value must be 4-63 characters. Valid characters are /[a-z][0-9]-/.
+     *     batchId: 'placeholder-value',
+     *     // Required. The parent resource where this batch will be created.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. A unique ID used to identify the request. If the service receives two CreateBatchRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateBatchRequest)s with the same request_id, the second request is ignored and the Operation that corresponds to the first Batch created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The value must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "creator": "my_creator",
+     *       //   "environmentConfig": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "operation": "my_operation",
+     *       //   "pysparkBatch": {},
+     *       //   "runtimeConfig": {},
+     *       //   "runtimeInfo": {},
+     *       //   "sparkBatch": {},
+     *       //   "sparkRBatch": {},
+     *       //   "sparkSqlBatch": {},
+     *       //   "state": "my_state",
+     *       //   "stateHistory": [],
+     *       //   "stateMessage": "my_stateMessage",
+     *       //   "stateTime": "my_stateTime",
+     *       //   "uuid": "my_uuid"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Batches$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Batches$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Batches$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Batches$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Batches$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Batches$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/batches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the batch workload resource. If the batch is not in terminal state, the delete fails and the response returns FAILED_PRECONDITION.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.batches.delete({
+     *     // Required. The name of the batch resource to delete.
+     *     name: 'projects/my-project/locations/my-location/batches/my-batche',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Batches$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Batches$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Batches$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Batches$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Batches$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Batches$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the batch workload resource representation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.batches.get({
+     *     // Required. The name of the batch to retrieve.
+     *     name: 'projects/my-project/locations/my-location/batches/my-batche',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "creator": "my_creator",
+     *   //   "environmentConfig": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "operation": "my_operation",
+     *   //   "pysparkBatch": {},
+     *   //   "runtimeConfig": {},
+     *   //   "runtimeInfo": {},
+     *   //   "sparkBatch": {},
+     *   //   "sparkRBatch": {},
+     *   //   "sparkSqlBatch": {},
+     *   //   "state": "my_state",
+     *   //   "stateHistory": [],
+     *   //   "stateMessage": "my_stateMessage",
+     *   //   "stateTime": "my_stateTime",
+     *   //   "uuid": "my_uuid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Batches$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Batches$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Batch>;
+    get(
+      params: Params$Resource$Projects$Locations$Batches$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Batches$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Batch>,
+      callback: BodyResponseCallback<Schema$Batch>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Batches$Get,
+      callback: BodyResponseCallback<Schema$Batch>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Batch>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$Get
+        | BodyResponseCallback<Schema$Batch>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Batch>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Batch>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Batch> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Batches$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Batch>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Batch>(parameters);
+      }
+    }
+
+    /**
+     * Lists batch workloads.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.locations.batches.list({
+     *     // Optional. The maximum number of batches to return in each response. The service may return fewer than this value. The default page size is 20; the maximum page size is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token received from a previous ListBatches call. Provide this token to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of batches.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "batches": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Batches$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Batches$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBatchesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Batches$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Batches$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBatchesResponse>,
+      callback: BodyResponseCallback<Schema$ListBatchesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Batches$List,
+      callback: BodyResponseCallback<Schema$ListBatchesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBatchesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batches$List
+        | BodyResponseCallback<Schema$ListBatchesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBatchesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBatchesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBatchesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batches$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Batches$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/batches').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBatchesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBatchesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Batches$Create
+    extends StandardParameters {
+    /**
+     * Optional. The ID to use for the batch, which will become the final component of the batch's resource name.This value must be 4-63 characters. Valid characters are /[a-z][0-9]-/.
+     */
+    batchId?: string;
+    /**
+     * Required. The parent resource where this batch will be created.
+     */
+    parent?: string;
+    /**
+     * Optional. A unique ID used to identify the request. If the service receives two CreateBatchRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.CreateBatchRequest)s with the same request_id, the second request is ignored and the Operation that corresponds to the first Batch created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The value must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Batch;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the batch resource to delete.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the batch to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Batches$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of batches to return in each response. The service may return fewer than this value. The default page size is 20; the maximum page size is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous ListBatches call. Provide this token to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of batches.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Workflowtemplates {
