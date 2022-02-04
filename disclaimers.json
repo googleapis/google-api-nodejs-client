@@ -12,10 +12,6 @@
     "package": "@google-cloud/apigee-connect"
   },
   {
-    "api": "appengine",
-    "package": "@google-cloud/appengine-admin"
-  },
-  {
     "api": "cloudasset",
     "package": "@google-cloud/asset"
   },
@@ -144,6 +140,10 @@
     "package": "@google-cloud/bigquery-storage"
   },
   {
+    "api": "compute",
+    "package": "@google-cloud/compute"
+  },
+  {
     "api": "containeranalysis",
     "package": "@google-cloud/containeranalysis"
   },
@@ -154,10 +154,6 @@
   {
     "api": "policytroubleshooter",
     "package": "@google-cloud/policy-troubleshooter"
-  },
-  {
-    "api": "iamcredentials",
-    "package": "@google-cloud/iam-credentials"
   },
   {
     "api": "iap",
@@ -260,16 +256,8 @@
     "package": "@google-cloud/security-center"
   },
   {
-    "api": "servicecontrol",
-    "package": "@google-cloud/service-control"
-  },
-  {
     "api": "servicedirectory",
     "package": "@google-cloud/service-directory"
-  },
-  {
-    "api": "servicemanagement",
-    "package": "@google-cloud/service-management"
   },
   {
     "api": "serviceusage",
@@ -360,8 +348,8 @@
     "package": "@google-cloud/notebooks"
   },
   {
-    "api": "gateway",
-    "package": "@google-cloud/gke-connect-gateway"
+    "api": "appengine",
+    "package": "@google-cloud/appengine-admin"
   },
   {
     "api": "area120tables",
@@ -420,6 +408,10 @@
     "package": "@google-cloud/error-reporting"
   },
   {
+    "api": "connectgateway",
+    "package": "@google-cloud/gke-connect-gateway"
+  },
+  {
     "api": "analyticsadmin",
     "package": "@google-analytics/admin"
   },
@@ -428,8 +420,8 @@
     "package": "@google-analytics/data"
   },
   {
-    "api": "compute",
-    "package": "@google-cloud/compute"
+    "api": "iamcredentials",
+    "package": "@google-cloud/iam-credentials"
   },
   {
     "api": "lifesciences",
@@ -464,8 +456,12 @@
     "package": "@google-cloud/resource-manager"
   },
   {
-    "api": "runtimeconfig",
-    "package": "@google-cloud/rcloadenv"
+    "api": "servicecontrol",
+    "package": "@google-cloud/service-control"
+  },
+  {
+    "api": "servicemanagement",
+    "package": "@google-cloud/service-management"
   },
   {
     "api": "clouddebugger",

@@ -285,13 +285,13 @@
                       "description": "The level of details of the conversation. Default is `FULL`.",
                       "enum": [
                         "CONVERSATION_VIEW_UNSPECIFIED",
-                        "BASIC",
-                        "FULL"
+                        "FULL",
+                        "BASIC"
                       ],
                       "enumDescriptions": [
-                        "Not specified. Defaults to FULL on GetConversationRequest and BASIC for ListConversationsRequest.",
-                        "Transcript field is not populated in the response for Insights conversation.",
-                        "All fields are populated for Insights conversation."
+                        "The conversation view is not specified. * Defaults to `FULL` in `GetConversationRequest`. * Defaults to `BASIC` in `ListConversationsRequest`.",
+                        "Populates all fields in the conversation.",
+                        "Populates all fields in the conversation except the transcript."
                       ],
                       "location": "query",
                       "type": "string"
@@ -341,13 +341,13 @@
                       "description": "The level of details of the conversation. Default is `BASIC`.",
                       "enum": [
                         "CONVERSATION_VIEW_UNSPECIFIED",
-                        "BASIC",
-                        "FULL"
+                        "FULL",
+                        "BASIC"
                       ],
                       "enumDescriptions": [
-                        "Not specified. Defaults to FULL on GetConversationRequest and BASIC for ListConversationsRequest.",
-                        "Transcript field is not populated in the response for Insights conversation.",
-                        "All fields are populated for Insights conversation."
+                        "The conversation view is not specified. * Defaults to `FULL` in `GetConversationRequest`. * Defaults to `BASIC` in `ListConversationsRequest`.",
+                        "Populates all fields in the conversation.",
+                        "Populates all fields in the conversation except the transcript."
                       ],
                       "location": "query",
                       "type": "string"
@@ -1275,7 +1275,7 @@
       }
     }
   },
-  "revision": "20220103",
+  "revision": "20220129",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {

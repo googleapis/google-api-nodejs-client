@@ -1257,7 +1257,7 @@
             "keyvaluemaps": {
               "methods": {
                 "create": {
-                  "description": "Creates a key value map in an api proxy.",
+                  "description": "Creates a key value map in an API proxy.",
                   "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps",
                   "httpMethod": "POST",
                   "id": "apigee.organizations.apis.keyvaluemaps.create",
@@ -1266,7 +1266,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The name of the environment in which to create the key value map. Must be of the form `organizations/{organization}/apis/{api}`.",
+                      "description": "Required. Name of the environment in which to create the key value map. Use the following structure in your request: `organizations/{org}/apis/{api}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apis/[^/]+$",
                       "required": true,
@@ -1285,7 +1285,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Delete a key value map in an api proxy.",
+                  "description": "Deletes a key value map from an API proxy.",
                   "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/keyvaluemaps/{keyvaluemapsId}",
                   "httpMethod": "DELETE",
                   "id": "apigee.organizations.apis.keyvaluemaps.delete",
@@ -1294,7 +1294,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the key value map. Must be of the form `organizations/{organization}/apis/{api}/keyvaluemaps/{keyvaluemap}`.",
+                      "description": "Required. Name of the key value map. Use the following structure in your request: `organizations/{org}/apis/{api}/keyvaluemaps/{keyvaluemap}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apis/[^/]+/keyvaluemaps/[^/]+$",
                       "required": true,
@@ -3474,7 +3474,7 @@
               ]
             },
             "update": {
-              "description": "Updates an existing environment. When updating properties, you must pass all existing properties to the API, even if they are not being changed. If you omit properties from the payload, the properties are removed. To get the current list of properties for the environment, use the [Get Environment API](get).",
+              "description": "Updates an existing environment. When updating properties, you must pass all existing properties to the API, even if they are not being changed. If you omit properties from the payload, the properties are removed. To get the current list of properties for the environment, use the [Get Environment API](get). **Note**: Both `PUT` and `POST` methods are supported for updating an existing environment.",
               "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}",
               "httpMethod": "PUT",
               "id": "apigee.organizations.environments.update",
@@ -3541,7 +3541,7 @@
               ]
             },
             "updateEnvironment": {
-              "description": "Updates an existing environment. When updating properties, you must pass all existing properties to the API, even if they are not being changed. If you omit properties from the payload, the properties are removed. To get the current list of properties for the environment, use the [Get Environment API](get).",
+              "description": "Updates an existing environment. When updating properties, you must pass all existing properties to the API, even if they are not being changed. If you omit properties from the payload, the properties are removed. To get the current list of properties for the environment, use the [Get Environment API](get). **Note**: Both `PUT` and `POST` methods are supported for updating an existing environment.",
               "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}",
               "httpMethod": "POST",
               "id": "apigee.organizations.environments.updateEnvironment",
@@ -4731,7 +4731,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The name of the environment in which to create the key value map. Must be of the form `organizations/{organization}/environments/{environment}`.",
+                      "description": "Required. Name of the environment in which to create the key value map. Use the following structure in your request: `organizations/{org}/environments/{env}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+$",
                       "required": true,
@@ -4750,7 +4750,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Delete a key value map in an environment.",
+                  "description": "Deletes a key value map from an environment.",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keyvaluemaps/{keyvaluemapsId}",
                   "httpMethod": "DELETE",
                   "id": "apigee.organizations.environments.keyvaluemaps.delete",
@@ -4759,7 +4759,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the key value map. Must be of the form `organizations/{organization}/environments/{environment}/keyvaluemaps/{keyvaluemap}`.",
+                      "description": "Required. Name of the key value map. Use the following structure in your request: `organizations/{org}/environments/{env}/keyvaluemaps/{keyvaluemap}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/keyvaluemaps/[^/]+$",
                       "required": true,
@@ -6631,7 +6631,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The name of the organization in which to create the key value map file. Must be of the form `organizations/{organization}`.",
+                  "description": "Required. Name of the organization in which to create the key value map file. Use the following structure in your request: `organizations/{org}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -6650,7 +6650,7 @@
               ]
             },
             "delete": {
-              "description": "Delete a key value map in an organization.",
+              "description": "Deletes a key value map from an organization.",
               "flatPath": "v1/organizations/{organizationsId}/keyvaluemaps/{keyvaluemapsId}",
               "httpMethod": "DELETE",
               "id": "apigee.organizations.keyvaluemaps.delete",
@@ -6659,7 +6659,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the key value map. Must be of the form `organizations/{organization}/keyvaluemaps/{keyvaluemap}`.",
+                  "description": "Required. Name of the key value map. Use the following structure in your request: `organizations/{org}/keyvaluemaps/{keyvaluemap}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/keyvaluemaps/[^/]+$",
                   "required": true,
@@ -7440,7 +7440,7 @@
       }
     }
   },
-  "revision": "20211209",
+  "revision": "20220127",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -7591,7 +7591,7 @@
       "properties": {
         "adjustment": {
           "$ref": "GoogleTypeMoney",
-          "description": "* A positive value of `adjustment` means that that the API provider wishes to adjust the balance for an over-charged developer i.e. the balance of the developer will increase. * A negative value of `adjustment` means that that the API provider wishes to adjust the balance for an under-charged developer i.e. the balance of the developer will decrease."
+          "description": "* A positive value of `adjustment` means that that the API provider wants to adjust the balance for an under-charged developer i.e. the balance of the developer will decrease. * A negative value of `adjustment` means that that the API provider wants to adjust the balance for an over-charged developer i.e. the balance of the developer will increase."
         }
       },
       "type": "object"
@@ -8897,6 +8897,12 @@
           "format": "int32",
           "type": "integer"
         },
+        "createTime": {
+          "description": "Output only. The first transaction creation timestamp, recorded by UAP.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "filter": {
           "description": "Optional. A conditional statement which is evaluated against the request message to determine if it should be traced. Syntax matches that of on API Proxy bundle flow Condition.",
           "type": "string"
@@ -10075,6 +10081,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "ipRange": {
+          "description": "Optional. IP range represents the customer-provided CIDR block of length 22 that will be used for the Apigee instance creation. This optional range, if provided, should be freely available as part of larger named range the customer has allocated to the Service Networking peering. If this is not provided, Apigee will automatically request for any available /22 CIDR block from Service Networking. The customer should use this CIDR block for configuring their firewall needs to allow traffic from Apigee. Input format: \"a.b.c.d/22\", Output format: a.b.c.d/22, e.f.g.h/28\"",
+          "type": "string"
+        },
         "lastModifiedAt": {
           "description": "Output only. Time the instance was last modified in milliseconds since epoch.",
           "format": "int64",
@@ -10258,15 +10268,15 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1KeyValueMap": {
-      "description": "A collection of key, value string pairs",
+      "description": "Collection of key/value string pairs.",
       "id": "GoogleCloudApigeeV1KeyValueMap",
       "properties": {
         "encrypted": {
-          "description": "Optional. If `true` entry values will be encrypted.",
+          "description": "Optional. Flag that specifies whether entry values will be encrypted. Enable to encrypt entry values.",
           "type": "boolean"
         },
         "name": {
-          "description": "Required. The id of the key value map.",
+          "description": "Required. ID of the key value map.",
           "type": "string"
         }
       },
@@ -12117,7 +12127,7 @@
           "type": "string"
         },
         "timestampMs": {
-          "description": "The first transaction creation timestamp in millisecond, recoreded by UAP.",
+          "description": "The first transaction creation timestamp in millisecond, recorded by UAP.",
           "format": "int64",
           "type": "string"
         }
@@ -12447,7 +12457,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1TlsInfo": {
-      "description": "TLS configuration information for VirtualHosts and TargetServers.",
+      "description": "TLS configuration information for virtual hosts and TargetServers.",
       "id": "GoogleCloudApigeeV1TlsInfo",
       "properties": {
         "ciphers": {
@@ -12478,7 +12488,7 @@
           "type": "string"
         },
         "keyStore": {
-          "description": "Required if `client_auth_enabled` is true. The resource ID of the keystore. References not yet supported.",
+          "description": "Required if `client_auth_enabled` is true. The resource ID of the keystore.",
           "type": "string"
         },
         "protocols": {
@@ -12489,7 +12499,7 @@
           "type": "array"
         },
         "trustStore": {
-          "description": "The resource ID of the truststore. References not yet supported.",
+          "description": "The resource ID of the truststore.",
           "type": "string"
         }
       },
