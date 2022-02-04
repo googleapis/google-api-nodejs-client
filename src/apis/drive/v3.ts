@@ -472,6 +472,10 @@ export namespace drive_v3 {
      */
     name?: string | null;
     /**
+     * The organizational unit of this shared drive. This field is only populated on drives.list responses when the useDomainAdminAccess parameter is set to true.
+     */
+    orgUnitId?: string | null;
+    /**
      * A set of restrictions that apply to this shared drive or items inside this shared drive.
      */
     restrictions?: {
@@ -1181,6 +1185,10 @@ export namespace drive_v3 {
      * The name of this Team Drive.
      */
     name?: string | null;
+    /**
+     * The organizational unit of this shared drive. This field is only populated on drives.list responses when the useDomainAdminAccess parameter is set to true.
+     */
+    orgUnitId?: string | null;
     /**
      * A set of restrictions that apply to this Team Drive or items inside this Team Drive.
      */
@@ -3047,6 +3055,7 @@ export namespace drive_v3 {
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
      *       //   "restrictions": {},
      *       //   "themeId": "my_themeId"
      *       // }
@@ -3065,6 +3074,7 @@ export namespace drive_v3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "restrictions": {},
      *   //   "themeId": "my_themeId"
      *   // }
@@ -3326,6 +3336,7 @@ export namespace drive_v3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "restrictions": {},
      *   //   "themeId": "my_themeId"
      *   // }
@@ -3464,6 +3475,7 @@ export namespace drive_v3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "restrictions": {},
      *   //   "themeId": "my_themeId"
      *   // }
@@ -3738,6 +3750,7 @@ export namespace drive_v3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "restrictions": {},
      *   //   "themeId": "my_themeId"
      *   // }
@@ -3878,6 +3891,7 @@ export namespace drive_v3 {
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
      *       //   "restrictions": {},
      *       //   "themeId": "my_themeId"
      *       // }
@@ -3896,6 +3910,7 @@ export namespace drive_v3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "restrictions": {},
      *   //   "themeId": "my_themeId"
      *   // }
@@ -8751,6 +8766,7 @@ export namespace drive_v3 {
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
      *       //   "restrictions": {},
      *       //   "themeId": "my_themeId"
      *       // }
@@ -8768,6 +8784,7 @@ export namespace drive_v3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "restrictions": {},
      *   //   "themeId": "my_themeId"
      *   // }
@@ -9033,6 +9050,7 @@ export namespace drive_v3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "restrictions": {},
      *   //   "themeId": "my_themeId"
      *   // }
@@ -9311,6 +9329,7 @@ export namespace drive_v3 {
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
+     *       //   "orgUnitId": "my_orgUnitId",
      *       //   "restrictions": {},
      *       //   "themeId": "my_themeId"
      *       // }
@@ -9328,6 +9347,7 @@ export namespace drive_v3 {
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
      *   //   "restrictions": {},
      *   //   "themeId": "my_themeId"
      *   // }
