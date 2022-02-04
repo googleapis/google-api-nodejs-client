@@ -4128,9 +4128,21 @@ export namespace content_v2 {
    */
   export interface Schema$PosStore {
     /**
+     * The business type of the store.
+     */
+    gcidCategory?: string[] | null;
+    /**
      * Identifies what kind of resource this is. Value: the fixed string "`content#posStore`"
      */
     kind?: string | null;
+    /**
+     * The store phone number.
+     */
+    phoneNumber?: string | null;
+    /**
+     * The Google Place Id of the store location.
+     */
+    placeId?: string | null;
     /**
      * Required. The street address of the store.
      */
@@ -4139,6 +4151,14 @@ export namespace content_v2 {
      * Required. A store identifier that is unique for the given merchant.
      */
     storeCode?: string | null;
+    /**
+     * The merchant or store name.
+     */
+    storeName?: string | null;
+    /**
+     * The website url for the store or merchant.
+     */
+    websiteUrl?: string | null;
   }
   export interface Schema$PostalCodeGroup {
     /**
@@ -16646,9 +16666,14 @@ export namespace content_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "gcidCategory": [],
      *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "placeId": "my_placeId",
      *   //   "storeAddress": "my_storeAddress",
-     *   //   "storeCode": "my_storeCode"
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storeName": "my_storeName",
+     *   //   "websiteUrl": "my_websiteUrl"
      *   // }
      * }
      *
@@ -16781,9 +16806,14 @@ export namespace content_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "gcidCategory": [],
      *       //   "kind": "my_kind",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "placeId": "my_placeId",
      *       //   "storeAddress": "my_storeAddress",
-     *       //   "storeCode": "my_storeCode"
+     *       //   "storeCode": "my_storeCode",
+     *       //   "storeName": "my_storeName",
+     *       //   "websiteUrl": "my_websiteUrl"
      *       // }
      *     },
      *   });
@@ -16791,9 +16821,14 @@ export namespace content_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "gcidCategory": [],
      *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "placeId": "my_placeId",
      *   //   "storeAddress": "my_storeAddress",
-     *   //   "storeCode": "my_storeCode"
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storeName": "my_storeName",
+     *   //   "websiteUrl": "my_websiteUrl"
      *   // }
      * }
      *
