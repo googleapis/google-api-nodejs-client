@@ -229,6 +229,19 @@ export namespace gkehub_v1alpha {
     allowlistedServiceAccounts?: string[] | null;
   }
   /**
+   * **Cloud Build**: Configurations for each Cloud Build enabled cluster.
+   */
+  export interface Schema$CloudBuildMembershipSpec {
+    /**
+     * Whether it is allowed to run the privileged builds on the cluster or not.
+     */
+    securityPolicy?: string | null;
+    /**
+     * Version of the cloud build software on the cluster.
+     */
+    version?: string | null;
+  }
+  /**
    * CommonFeatureSpec contains Hub-wide configuration information
    */
   export interface Schema$CommonFeatureSpec {
@@ -748,6 +761,15 @@ export namespace gkehub_v1alpha {
     type?: Schema$TypeMeta;
   }
   /**
+   * EdgeCluster contains information specific to Google Edge Clusters.
+   */
+  export interface Schema$EdgeCluster {
+    /**
+     * Immutable. Self-link of the GCP resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster
+     */
+    resourceLink?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -1217,6 +1239,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$MembershipEndpoint {
     /**
+     * Optional. Specific information for a Google Edge cluster.
+     */
+    edgeCluster?: Schema$EdgeCluster;
+    /**
      * Optional. Specific information for a GKE-on-GCP cluster.
      */
     gkeCluster?: Schema$GkeCluster;
@@ -1246,6 +1272,10 @@ export namespace gkehub_v1alpha {
      */
     anthosobservability?: Schema$AnthosObservabilityMembershipSpec;
     /**
+     * Cloud Build-specific spec
+     */
+    cloudbuild?: Schema$CloudBuildMembershipSpec;
+    /**
      * Config Management-specific spec.
      */
     configmanagement?: Schema$ConfigManagementMembershipSpec;
@@ -1257,6 +1287,10 @@ export namespace gkehub_v1alpha {
      * Anthos Service Mesh-specific spec
      */
     mesh?: Schema$ServiceMeshMembershipSpec;
+    /**
+     * Policy Controller spec.
+     */
+    policycontroller?: Schema$PolicycontrollerMembershipSpec;
   }
   /**
    * MembershipFeatureState contains Feature status information for a single Membership.
@@ -1278,6 +1312,10 @@ export namespace gkehub_v1alpha {
      * Metering-specific spec.
      */
     metering?: Schema$MeteringMembershipState;
+    /**
+     * Policycontroller-specific state.
+     */
+    policycontroller?: Schema$PolicycontrollerMembershipState;
     /**
      * Service Mesh-specific state.
      */
@@ -1432,6 +1470,104 @@ export namespace gkehub_v1alpha {
     version?: number | null;
   }
   /**
+   * **Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.
+   */
+  export interface Schema$PolicycontrollerMembershipSpec {
+    /**
+     * Policy Controller configuration for the cluster.
+     */
+    policyControllerHubConfig?: Schema$PolicycontrollerPolicyControllerHubConfig;
+    /**
+     * Version of Policy Controller installed.
+     */
+    version?: string | null;
+  }
+  /**
+   * **Policy Controller**: State for a single cluster.
+   */
+  export interface Schema$PolicycontrollerMembershipState {
+    /**
+     * The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.
+     */
+    clusterName?: string | null;
+    /**
+     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
+     */
+    membershipSpec?: Schema$PolicycontrollerMembershipSpec;
+    /**
+     * Policy Controller state observed by the Policy Controller Hub
+     */
+    policyControllerHubState?: Schema$PolicycontrollerPolicyControllerHubState;
+    /**
+     * The lifecycle state Policy Controller is in.
+     */
+    state?: string | null;
+  }
+  /**
+   * Configuration for Policy Controller
+   */
+  export interface Schema$PolicycontrollerPolicyControllerHubConfig {
+    /**
+     * Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.
+     */
+    auditIntervalSeconds?: string | null;
+    /**
+     * The set of namespaces that are excluded from Policy Controller checks. Namespaces do not need to currently exist on the cluster.
+     */
+    exemptableNamespaces?: string[] | null;
+    /**
+     * The install_spec represents the intended state specified by the latest request that mutated install_spec in the feature spec, not the lifecycle state of the feature observed by the Hub feature controller that is reported in the feature state.
+     */
+    installSpec?: string | null;
+    /**
+     * Logs all denies and dry run failures.
+     */
+    logDeniesEnabled?: boolean | null;
+    /**
+     * Enables the ability to mutate resources using Policy Controller.
+     */
+    mutationEnabled?: boolean | null;
+    /**
+     * Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.
+     */
+    referentialRulesEnabled?: boolean | null;
+    /**
+     * Configures the library templates to install along with Policy Controller.
+     */
+    templateLibraryConfig?: Schema$PolicycontrollerTemplateLibraryConfig;
+  }
+  /**
+   * State of the Policy Controller.
+   */
+  export interface Schema$PolicycontrollerPolicyControllerHubState {
+    /**
+     * Map from deployment name to deployment state. Example deployments are gatekeeper-controller-manager, gatekeeper-audit deployment, and gatekeeper-mutation.
+     */
+    deploymentStates?: {[key: string]: string} | null;
+    /**
+     * The version of Gatekeeper Policy Controller deployed.
+     */
+    version?: Schema$PolicycontrollerPolicyControllerHubVersion;
+  }
+  /**
+   * The build version of Gatekeeper that Policy Controller is using.
+   */
+  export interface Schema$PolicycontrollerPolicyControllerHubVersion {
+    /**
+     * The gatekeeper image tag that is composed of ACM version, git tag, build number.
+     */
+    version?: string | null;
+  }
+  /**
+   * The config specifying which default library templates to install.
+   */
+  export interface Schema$PolicycontrollerTemplateLibraryConfig {
+    /**
+     * Whether the standard template library should be installed or not.
+     */
+    included?: boolean | null;
+  }
+  /**
    * ResourceManifest represents a single Kubernetes resource to be applied to the cluster.
    */
   export interface Schema$ResourceManifest {
@@ -1500,6 +1636,19 @@ export namespace gkehub_v1alpha {
     type?: Schema$ServiceMeshType;
   }
   /**
+   * Status of control plane management.
+   */
+  export interface Schema$ServiceMeshControlPlaneManagement {
+    /**
+     * Explanation of state.
+     */
+    details?: Schema$ServiceMeshStatusDetails[];
+    /**
+     * LifecycleState of control plane management.
+     */
+    state?: string | null;
+  }
+  /**
    * **Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.
    */
   export interface Schema$ServiceMeshFeatureState {
@@ -1511,7 +1660,12 @@ export namespace gkehub_v1alpha {
   /**
    * **Service Mesh**: Spec for a single Membership for the servicemesh feature
    */
-  export interface Schema$ServiceMeshMembershipSpec {}
+  export interface Schema$ServiceMeshMembershipSpec {
+    /**
+     * Enables automatic control plane management.
+     */
+    controlPlane?: string | null;
+  }
   /**
    * **Service Mesh**: State for a single Membership, as analyzed by the Service Mesh Hub Controller.
    */
@@ -1520,6 +1674,23 @@ export namespace gkehub_v1alpha {
      * Output only. Results of running Service Mesh analyzers.
      */
     analysisMessages?: Schema$ServiceMeshAnalysisMessage[];
+    /**
+     * Output only. Status of control plane management
+     */
+    controlPlaneManagement?: Schema$ServiceMeshControlPlaneManagement;
+  }
+  /**
+   * Structured and human-readable details for a status.
+   */
+  export interface Schema$ServiceMeshStatusDetails {
+    /**
+     * A machine-readable code that further describes a broad status.
+     */
+    code?: string | null;
+    /**
+     * Human-readable explanation of code.
+     */
+    details?: string | null;
   }
   /**
    * A unique identifier for the type of message. Display_name is intended to be human-readable, code is intended to be machine readable. There should be a one-to-one mapping between display_name and code. (i.e. do not re-use display_names or codes between message types.) See istio.analysis.v1alpha1.AnalysisMessageBase.Type
@@ -1953,9 +2124,9 @@ export namespace gkehub_v1alpha {
      *   const res = await gkehub.projects.locations.features.create({
      *     // The ID of the feature to create.
      *     featureId: 'placeholder-value',
-     *     // The parent (project and location) where the Feature will be created. Specified in the format `projects/x/locations/x`.
+     *     // Required. The parent (project and location) where the Feature will be created. Specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     // A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2107,7 +2278,7 @@ export namespace gkehub_v1alpha {
      *   const res = await gkehub.projects.locations.features.delete({
      *     // If set to true, the delete will ignore any outstanding resources for this Feature (that is, `FeatureState.has_resources` is set to true). These resources will NOT be cleaned up or modified in any way.
      *     force: 'placeholder-value',
-     *     // The Feature resource name in the format `projects/x/locations/x/features/x`.
+     *     // Required. The Feature resource name in the format `projects/x/locations/x/features/x`.
      *     name: 'projects/my-project/locations/my-location/features/my-feature',
      *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -2239,7 +2410,7 @@ export namespace gkehub_v1alpha {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.features.get({
-     *     // The Feature resource name in the format `projects/x/locations/x/features/x`
+     *     // Required. The Feature resource name in the format `projects/x/locations/x/features/x`
      *     name: 'projects/my-project/locations/my-location/features/my-feature',
      *   });
      *   console.log(res.data);
@@ -2516,7 +2687,7 @@ export namespace gkehub_v1alpha {
      *     pageSize: 'placeholder-value',
      *     // Token returned by previous call to `ListFeatures` which specifies the position in the list from where to continue listing the resources.
      *     pageToken: 'placeholder-value',
-     *     // The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x`.
+     *     // Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2651,9 +2822,9 @@ export namespace gkehub_v1alpha {
      *
      *   // Do the magic
      *   const res = await gkehub.projects.locations.features.patch({
-     *     // The Feature resource name in the format `projects/x/locations/x/features/x`.
+     *     // Required. The Feature resource name in the format `projects/x/locations/x/features/x`.
      *     name: 'projects/my-project/locations/my-location/features/my-feature',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     // A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
      *     // Mask of fields to update.
      *     updateMask: 'placeholder-value',
@@ -3069,11 +3240,11 @@ export namespace gkehub_v1alpha {
      */
     featureId?: string;
     /**
-     * The parent (project and location) where the Feature will be created. Specified in the format `projects/x/locations/x`.
+     * Required. The parent (project and location) where the Feature will be created. Specified in the format `projects/x/locations/x`.
      */
     parent?: string;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
 
@@ -3089,7 +3260,7 @@ export namespace gkehub_v1alpha {
      */
     force?: boolean;
     /**
-     * The Feature resource name in the format `projects/x/locations/x/features/x`.
+     * Required. The Feature resource name in the format `projects/x/locations/x/features/x`.
      */
     name?: string;
     /**
@@ -3100,7 +3271,7 @@ export namespace gkehub_v1alpha {
   export interface Params$Resource$Projects$Locations$Features$Get
     extends StandardParameters {
     /**
-     * The Feature resource name in the format `projects/x/locations/x/features/x`
+     * Required. The Feature resource name in the format `projects/x/locations/x/features/x`
      */
     name?: string;
   }
@@ -3134,18 +3305,18 @@ export namespace gkehub_v1alpha {
      */
     pageToken?: string;
     /**
-     * The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x`.
+     * Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/x`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Features$Patch
     extends StandardParameters {
     /**
-     * The Feature resource name in the format `projects/x/locations/x/features/x`.
+     * Required. The Feature resource name in the format `projects/x/locations/x/features/x`.
      */
     name?: string;
     /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
     /**

@@ -194,14 +194,14 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The parent (project and location) where the Feature will be created. Specified in the format `projects/*/locations/*`.",
+                      "description": "Required. The parent (project and location) where the Feature will be created. Specified in the format `projects/*/locations/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     }
@@ -232,7 +232,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "The Feature resource name in the format `projects/*/locations/*/features/*`.",
+                      "description": "Required. The Feature resource name in the format `projects/*/locations/*/features/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
                       "required": true,
@@ -262,7 +262,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The Feature resource name in the format `projects/*/locations/*/features/*`",
+                      "description": "Required. The Feature resource name in the format `projects/*/locations/*/features/*`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
                       "required": true,
@@ -339,7 +339,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*`.",
+                      "description": "Required. The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -364,14 +364,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The Feature resource name in the format `projects/*/locations/*/features/*`.",
+                      "description": "Required. The Feature resource name in the format `projects/*/locations/*/features/*`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
                     },
@@ -1067,7 +1067,7 @@
       }
     }
   },
-  "revision": "20211203",
+  "revision": "20220122",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityMembershipSpec": {
@@ -1214,6 +1214,31 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudBuildMembershipSpec": {
+      "description": "**Cloud Build**: Configurations for each Cloud Build enabled cluster.",
+      "id": "CloudBuildMembershipSpec",
+      "properties": {
+        "securityPolicy": {
+          "description": "Whether it is allowed to run the privileged builds on the cluster or not.",
+          "enum": [
+            "SECURITY_POLICY_UNSPECIFIED",
+            "NON_PRIVILEGED",
+            "PRIVILEGED"
+          ],
+          "enumDescriptions": [
+            "Unspecified policy",
+            "Privileged build pods are disallowed",
+            "Privileged build pods are allowed"
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the cloud build software on the cluster.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1995,6 +2020,17 @@
       },
       "type": "object"
     },
+    "EdgeCluster": {
+      "description": "EdgeCluster contains information specific to Google Edge Clusters.",
+      "id": "EdgeCluster",
+      "properties": {
+        "resourceLink": {
+          "description": "Immutable. Self-link of the GCP resource for the Edge Cluster. For example: //edgecontainer.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
@@ -2650,6 +2686,10 @@
       "description": "MembershipEndpoint contains information needed to contact a Kubernetes API, endpoint and any additional Kubernetes metadata.",
       "id": "MembershipEndpoint",
       "properties": {
+        "edgeCluster": {
+          "$ref": "EdgeCluster",
+          "description": "Optional. Specific information for a Google Edge cluster."
+        },
         "gkeCluster": {
           "$ref": "GkeCluster",
           "description": "Optional. Specific information for a GKE-on-GCP cluster."
@@ -2682,6 +2722,10 @@
           "$ref": "AnthosObservabilityMembershipSpec",
           "description": "Anthos Observability-specific spec"
         },
+        "cloudbuild": {
+          "$ref": "CloudBuildMembershipSpec",
+          "description": "Cloud Build-specific spec"
+        },
         "configmanagement": {
           "$ref": "ConfigManagementMembershipSpec",
           "description": "Config Management-specific spec."
@@ -2693,6 +2737,10 @@
         "mesh": {
           "$ref": "ServiceMeshMembershipSpec",
           "description": "Anthos Service Mesh-specific spec"
+        },
+        "policycontroller": {
+          "$ref": "PolicycontrollerMembershipSpec",
+          "description": "Policy Controller spec."
         }
       },
       "type": "object"
@@ -2716,6 +2764,10 @@
         "metering": {
           "$ref": "MeteringMembershipState",
           "description": "Metering-specific spec."
+        },
+        "policycontroller": {
+          "$ref": "PolicycontrollerMembershipState",
+          "description": "Policycontroller-specific state."
         },
         "servicemesh": {
           "$ref": "ServiceMeshMembershipState",
@@ -2944,6 +2996,167 @@
       },
       "type": "object"
     },
+    "PolicycontrollerMembershipSpec": {
+      "description": "**Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.",
+      "id": "PolicycontrollerMembershipSpec",
+      "properties": {
+        "policyControllerHubConfig": {
+          "$ref": "PolicycontrollerPolicyControllerHubConfig",
+          "description": "Policy Controller configuration for the cluster."
+        },
+        "version": {
+          "description": "Version of Policy Controller installed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicycontrollerMembershipState": {
+      "description": "**Policy Controller**: State for a single cluster.",
+      "id": "PolicycontrollerMembershipState",
+      "properties": {
+        "clusterName": {
+          "description": "The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.",
+          "type": "string"
+        },
+        "membershipSpec": {
+          "$ref": "PolicycontrollerMembershipSpec",
+          "description": "Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state"
+        },
+        "policyControllerHubState": {
+          "$ref": "PolicycontrollerPolicyControllerHubState",
+          "description": "Policy Controller state observed by the Policy Controller Hub"
+        },
+        "state": {
+          "description": "The lifecycle state Policy Controller is in.",
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLING",
+            "ACTIVE",
+            "UPDATING",
+            "DECOMISSIONING",
+            "CLUSTER_ERROR",
+            "HUB_ERROR"
+          ],
+          "enumDescriptions": [
+            "The lifecycle state is unspecified.",
+            "The PC does not exist on the given cluster, and no k8s resources of any type that are associated with the PC should exist there. The cluster does not possess a membership with the PCH.",
+            "The PCH possesses a Membership, however the PC is not fully installed on the cluster. In this state the hub can be expected to be taking actions to install the PC on the cluster.",
+            "The PC is fully installed on the cluster and in an operational mode. In this state PCH will be reconciling state with the PC, and the PC will be performing it’s operational tasks per that software. Entering a READY state requires that the hub has confirmed the PC is installed and its pods are operational with the version of the PC the PCH expects.",
+            "The PC is fully installed, but in the process of changing the configuration (including changing the version of PC either up and down, or modifying the manifests of PC) of the resources running on the cluster. The PCH has a Membership, is aware of the version the cluster should be running in, but has not confirmed for itself that the PC is running with that version.",
+            "The PC may have resources on the cluster, but the PCH wishes to remove the Membership. The Membership still exists.",
+            "The PC is not operational, and the PCH is unable to act to make it operational. Entering a CLUSTER_ERROR state happens automatically when the PCH determines that a PC installed on the cluster is non-operative or that the cluster does not meet requirements set for the PCH to administer the cluster but has nevertheless been given an instruction to do so (such as ‘install’).",
+            "In this state, the PC may still be operational, and only the PCH is unable to act. The hub should not issue instructions to change the PC state, or otherwise interfere with the on-cluster resources. Entering a HUB_ERROR state happens automatically when the PCH determines the hub is in an unhealthy state and it wishes to ‘take hands off’ to avoid corrupting the PC or other data."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicycontrollerPolicyControllerHubConfig": {
+      "description": "Configuration for Policy Controller",
+      "id": "PolicycontrollerPolicyControllerHubConfig",
+      "properties": {
+        "auditIntervalSeconds": {
+          "description": "Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.",
+          "format": "int64",
+          "type": "string"
+        },
+        "exemptableNamespaces": {
+          "description": "The set of namespaces that are excluded from Policy Controller checks. Namespaces do not need to currently exist on the cluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "installSpec": {
+          "description": "The install_spec represents the intended state specified by the latest request that mutated install_spec in the feature spec, not the lifecycle state of the feature observed by the Hub feature controller that is reported in the feature state.",
+          "enum": [
+            "INSTALL_SPEC_UNSPECIFIED",
+            "INSTALL_SPEC_NOT_INSTALLED",
+            "INSTALL_SPEC_ENABLED",
+            "INSTALL_SPEC_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Spec is unknown.",
+            "Request to uninstall Policy Controller.",
+            "Request to install and enable Policy Controller.",
+            "Request to disable Policy Controller. If Policy Controller is not installed, it will be installed but disabled."
+          ],
+          "type": "string"
+        },
+        "logDeniesEnabled": {
+          "description": "Logs all denies and dry run failures.",
+          "type": "boolean"
+        },
+        "mutationEnabled": {
+          "description": "Enables the ability to mutate resources using Policy Controller.",
+          "type": "boolean"
+        },
+        "referentialRulesEnabled": {
+          "description": "Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.",
+          "type": "boolean"
+        },
+        "templateLibraryConfig": {
+          "$ref": "PolicycontrollerTemplateLibraryConfig",
+          "description": "Configures the library templates to install along with Policy Controller."
+        }
+      },
+      "type": "object"
+    },
+    "PolicycontrollerPolicyControllerHubState": {
+      "description": "State of the Policy Controller.",
+      "id": "PolicycontrollerPolicyControllerHubState",
+      "properties": {
+        "deploymentStates": {
+          "additionalProperties": {
+            "enum": [
+              "DEPLOYMENT_STATE_UNSPECIFIED",
+              "DEPLOYMENT_STATE_NOT_INSTALLED",
+              "DEPLOYMENT_STATE_INSTALLED",
+              "DEPLOYMENT_STATE_ERROR"
+            ],
+            "enumDescriptions": [
+              "Deployment's state cannot be determined",
+              "Deployment is not installed",
+              "Deployment is installed",
+              "Deployment was attempted to be installed, but has errors"
+            ],
+            "type": "string"
+          },
+          "description": "Map from deployment name to deployment state. Example deployments are gatekeeper-controller-manager, gatekeeper-audit deployment, and gatekeeper-mutation.",
+          "type": "object"
+        },
+        "version": {
+          "$ref": "PolicycontrollerPolicyControllerHubVersion",
+          "description": "The version of Gatekeeper Policy Controller deployed."
+        }
+      },
+      "type": "object"
+    },
+    "PolicycontrollerPolicyControllerHubVersion": {
+      "description": "The build version of Gatekeeper that Policy Controller is using.",
+      "id": "PolicycontrollerPolicyControllerHubVersion",
+      "properties": {
+        "version": {
+          "description": "The gatekeeper image tag that is composed of ACM version, git tag, build number.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicycontrollerTemplateLibraryConfig": {
+      "description": "The config specifying which default library templates to install.",
+      "id": "PolicycontrollerTemplateLibraryConfig",
+      "properties": {
+        "included": {
+          "description": "Whether the standard template library should be installed or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ResourceManifest": {
       "description": "ResourceManifest represents a single Kubernetes resource to be applied to the cluster.",
       "id": "ResourceManifest",
@@ -3039,6 +3252,42 @@
       },
       "type": "object"
     },
+    "ServiceMeshControlPlaneManagement": {
+      "description": "Status of control plane management.",
+      "id": "ServiceMeshControlPlaneManagement",
+      "properties": {
+        "details": {
+          "description": "Explanation of state.",
+          "items": {
+            "$ref": "ServiceMeshStatusDetails"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "LifecycleState of control plane management.",
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "DISABLED",
+            "FAILED_PRECONDITION",
+            "PROVISIONING",
+            "ACTIVE",
+            "STALLED",
+            "NEEDS_ATTENTION"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "DISABLED means that the component is not enabled.",
+            "FAILED_PRECONDITION means that provisioning cannot proceed because of some characteristic of the member cluster.",
+            "PROVISIONING means that provisioning is in progress.",
+            "ACTIVE means that the component is ready for use.",
+            "STALLED means that provisioning could not be done.",
+            "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServiceMeshFeatureState": {
       "description": "**Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.",
       "id": "ServiceMeshFeatureState",
@@ -3057,7 +3306,22 @@
     "ServiceMeshMembershipSpec": {
       "description": "**Service Mesh**: Spec for a single Membership for the servicemesh feature",
       "id": "ServiceMeshMembershipSpec",
-      "properties": {},
+      "properties": {
+        "controlPlane": {
+          "description": "Enables automatic control plane management.",
+          "enum": [
+            "CONTROL_PLANE_MANAGEMENT_UNSPECIFIED",
+            "AUTOMATIC",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Google should provision a control plane revision and make it available in the cluster. Google will enroll this revision in a release channel and keep it up to date. The control plane revision may be a managed service, or a managed install.",
+            "User will manually configure the control plane (e.g. via CLI, or via the ControlPlaneRevision KRM API)"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ServiceMeshMembershipState": {
@@ -3071,6 +3335,26 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "controlPlaneManagement": {
+          "$ref": "ServiceMeshControlPlaneManagement",
+          "description": "Output only. Status of control plane management",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ServiceMeshStatusDetails": {
+      "description": "Structured and human-readable details for a status.",
+      "id": "ServiceMeshStatusDetails",
+      "properties": {
+        "code": {
+          "description": "A machine-readable code that further describes a broad status.",
+          "type": "string"
+        },
+        "details": {
+          "description": "Human-readable explanation of code.",
+          "type": "string"
         }
       },
       "type": "object"
