@@ -447,7 +447,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "An expression that filters the list of returned backup operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateBackupMetadata is `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`. * `metadata.` - any field in metadata.value. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `metadata.database:prod` - The database the backup was taken from has a name containing the string \"prod\". * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \\ `(metadata.name:howl) AND` \\ `(metadata.progress.start_time < \\\"2018-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The backup name contains the string \"howl\". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.",
+                      "description": "An expression that filters the list of returned backup operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `>`, `<=`, `>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateBackupMetadata is `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`. * `metadata.` - any field in metadata.value. `metadata.type_url` must be specified if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \\ `metadata.database:prod` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The database the backup was taken from has a name containing the string \"prod\". * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \\ `(metadata.name:howl) AND` \\ `(metadata.progress.start_time < \\\"2018-03-28T14:50:00Z\\\") AND` \\ `(error:*)` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The backup name contains the string \"howl\". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2037,7 +2037,7 @@
       }
     }
   },
-  "revision": "20211203",
+  "revision": "20220124",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2052,6 +2052,21 @@
         },
         "database": {
           "description": "Required for the CreateBackup operation. Name of the database from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects//instances//databases/`.",
+          "type": "string"
+        },
+        "databaseDialect": {
+          "description": "Output only. The database dialect information for the backup.",
+          "enum": [
+            "DATABASE_DIALECT_UNSPECIFIED",
+            "GOOGLE_STANDARD_SQL",
+            "POSTGRESQL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value will create a database with the GOOGLE_STANDARD_SQL dialect.",
+            "Google standard SQL.",
+            "PostgreSQL supported SQL."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "encryptionInfo": {
@@ -2357,6 +2372,20 @@
           "description": "Required. A `CREATE DATABASE` statement, which specifies the ID of the new database. The database ID must conform to the regular expression `a-z*[a-z0-9]` and be between 2 and 30 characters in length. If the database ID is a reserved word or if it contains a hyphen, the database ID must be enclosed in backticks (`` ` ``).",
           "type": "string"
         },
+        "databaseDialect": {
+          "description": "Optional. The dialect of the Cloud Spanner Database.",
+          "enum": [
+            "DATABASE_DIALECT_UNSPECIFIED",
+            "GOOGLE_STANDARD_SQL",
+            "POSTGRESQL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value will create a database with the GOOGLE_STANDARD_SQL dialect.",
+            "Google standard SQL.",
+            "PostgreSQL supported SQL."
+          ],
+          "type": "string"
+        },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
           "description": "Optional. The encryption configuration for the database. If this field is not specified, Cloud Spanner will encrypt/decrypt all data at rest using Google default encryption."
@@ -2430,6 +2459,21 @@
         "createTime": {
           "description": "Output only. If exists, the time at which the database creation started.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "databaseDialect": {
+          "description": "Output only. The dialect of the Cloud Spanner Database.",
+          "enum": [
+            "DATABASE_DIALECT_UNSPECIFIED",
+            "GOOGLE_STANDARD_SQL",
+            "POSTGRESQL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value will create a database with the GOOGLE_STANDARD_SQL dialect.",
+            "Google standard SQL.",
+            "PostgreSQL supported SQL."
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -3056,7 +3100,7 @@
           "type": "string"
         },
         "operations": {
-          "description": "The list of matching backup long-running operations. Each operation's name will be prefixed by the backup's name and the operation's metadata will be of type CreateBackupMetadata. Operations returned include those that are pending or have completed/failed/canceled within the last 7 days. Operations returned are ordered by `operation.metadata.value.progress.start_time` in descending order starting from the most recently started operation.",
+          "description": "The list of matching backup long-running operations. Each operation's name will be prefixed by the backup's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that are pending or have completed/failed/canceled within the last 7 days. Operations returned are ordered by `operation.metadata.value.progress.start_time` in descending order starting from the most recently started operation.",
           "items": {
             "$ref": "Operation"
           },
@@ -4381,6 +4425,18 @@
         "structType": {
           "$ref": "StructType",
           "description": "If code == STRUCT, then `struct_type` provides type information for the struct's fields."
+        },
+        "typeAnnotation": {
+          "description": "The TypeAnnotationCode that disambiguates SQL type that Spanner will use to represent values of this type during query processing. This is necessary for some type codes because a single TypeCode can be mapped to different SQL types depending on the SQL dialect. type_annotation typically is not needed to process the content of a value (it doesn't affect serialization) and clients can ignore it on the read path.",
+          "enum": [
+            "TYPE_ANNOTATION_CODE_UNSPECIFIED",
+            "PG_NUMERIC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "PostgreSQL compatible NUMERIC type. This annotation needs to be applied to Type instances having NUMERIC type code to specify that values of this type should be treated as PostgreSQL NUMERIC values. Currently this annotation is always needed for NUMERIC when a client interacts with PostgreSQL-enabled Spanner databases."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

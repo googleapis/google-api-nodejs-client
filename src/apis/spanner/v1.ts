@@ -140,6 +140,10 @@ export namespace spanner_v1 {
      */
     database?: string | null;
     /**
+     * Output only. The database dialect information for the backup.
+     */
+    databaseDialect?: string | null;
+    /**
      * Output only. The encryption information for the backup.
      */
     encryptionInfo?: Schema$EncryptionInfo;
@@ -365,6 +369,10 @@ export namespace spanner_v1 {
      */
     createStatement?: string | null;
     /**
+     * Optional. The dialect of the Cloud Spanner Database.
+     */
+    databaseDialect?: string | null;
+    /**
      * Optional. The encryption configuration for the database. If this field is not specified, Cloud Spanner will encrypt/decrypt all data at rest using Google default encryption.
      */
     encryptionConfig?: Schema$EncryptionConfig;
@@ -424,6 +432,10 @@ export namespace spanner_v1 {
      * Output only. If exists, the time at which the database creation started.
      */
     createTime?: string | null;
+    /**
+     * Output only. The dialect of the Cloud Spanner Database.
+     */
+    databaseDialect?: string | null;
     /**
      * Output only. The read-write region which contains the database's leader replicas. This is the same as the value of default_leader database option set using DatabaseAdmin.CreateDatabase or DatabaseAdmin.UpdateDatabaseDdl. If not explicitly set, this is empty.
      */
@@ -855,7 +867,7 @@ export namespace spanner_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * The list of matching backup long-running operations. Each operation's name will be prefixed by the backup's name and the operation's metadata will be of type CreateBackupMetadata. Operations returned include those that are pending or have completed/failed/canceled within the last 7 days. Operations returned are ordered by `operation.metadata.value.progress.start_time` in descending order starting from the most recently started operation.
+     * The list of matching backup long-running operations. Each operation's name will be prefixed by the backup's name. The operation's metadata field type `metadata.type_url` describes the type of the metadata. Operations returned include those that are pending or have completed/failed/canceled within the last 7 days. Operations returned are ordered by `operation.metadata.value.progress.start_time` in descending order starting from the most recently started operation.
      */
     operations?: Schema$Operation[];
   }
@@ -1796,6 +1808,10 @@ export namespace spanner_v1 {
      * If code == STRUCT, then `struct_type` provides type information for the struct's fields.
      */
     structType?: Schema$StructType;
+    /**
+     * The TypeAnnotationCode that disambiguates SQL type that Spanner will use to represent values of this type during query processing. This is necessary for some type codes because a single TypeCode can be mapped to different SQL types depending on the SQL dialect. type_annotation typically is not needed to process the content of a value (it doesn't affect serialization) and clients can ignore it on the read path.
+     */
+    typeAnnotation?: string | null;
   }
   /**
    * Metadata type for the operation returned by UpdateDatabaseDdl.
@@ -3538,7 +3554,7 @@ export namespace spanner_v1 {
      *
      *   // Do the magic
      *   const res = await spanner.projects.instances.backupOperations.list({
-     *     // An expression that filters the list of returned backup operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateBackupMetadata is `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`. * `metadata.` - any field in metadata.value. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `metadata.database:prod` - The database the backup was taken from has a name containing the string "prod". * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `(metadata.name:howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The backup name contains the string "howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.
+     *     // An expression that filters the list of returned backup operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateBackupMetadata is `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`. * `metadata.` - any field in metadata.value. `metadata.type_url` must be specified if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `metadata.database:prod` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The database the backup was taken from has a name containing the string "prod". * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `(metadata.name:howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The backup name contains the string "howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.
      *     filter: 'placeholder-value',
      *     // Number of operations to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      *     pageSize: 'placeholder-value',
@@ -3660,7 +3676,7 @@ export namespace spanner_v1 {
   export interface Params$Resource$Projects$Instances$Backupoperations$List
     extends StandardParameters {
     /**
-     * An expression that filters the list of returned backup operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateBackupMetadata is `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`. * `metadata.` - any field in metadata.value. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `metadata.database:prod` - The database the backup was taken from has a name containing the string "prod". * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `(metadata.name:howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The backup name contains the string "howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.
+     * An expression that filters the list of returned backup operations. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string, a number, or a boolean. The comparison operator must be one of: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, or `:`. Colon `:` is the contains operator. Filter rules are not case sensitive. The following fields in the operation are eligible for filtering: * `name` - The name of the long-running operation * `done` - False if the operation is in progress, else true. * `metadata.@type` - the type of metadata. For example, the type string for CreateBackupMetadata is `type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata`. * `metadata.` - any field in metadata.value. `metadata.type_url` must be specified if filtering on metadata fields. * `error` - Error associated with the long-running operation. * `response.@type` - the type of response. * `response.` - any field in response.value. You can combine multiple expressions by enclosing each expression in parentheses. By default, expressions are combined with AND logic, but you can specify AND, OR, and NOT logic explicitly. Here are a few examples: * `done:true` - The operation is complete. * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `metadata.database:prod` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The database the backup was taken from has a name containing the string "prod". * `(metadata.@type=type.googleapis.com/google.spanner.admin.database.v1.CreateBackupMetadata) AND` \ `(metadata.name:howl) AND` \ `(metadata.progress.start_time < \"2018-03-28T14:50:00Z\") AND` \ `(error:*)` - Returns operations where: * The operation's metadata type is CreateBackupMetadata. * The backup name contains the string "howl". * The operation started before 2018-03-28T14:50:00Z. * The operation resulted in an error.
      */
     filter?: string;
     /**
@@ -3732,6 +3748,7 @@ export namespace spanner_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "database": "my_database",
+     *       //   "databaseDialect": "my_databaseDialect",
      *       //   "encryptionInfo": {},
      *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
@@ -4011,6 +4028,7 @@ export namespace spanner_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "database": "my_database",
+     *   //   "databaseDialect": "my_databaseDialect",
      *   //   "encryptionInfo": {},
      *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
@@ -4434,6 +4452,7 @@ export namespace spanner_v1 {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "database": "my_database",
+     *       //   "databaseDialect": "my_databaseDialect",
      *       //   "encryptionInfo": {},
      *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
@@ -4450,6 +4469,7 @@ export namespace spanner_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "database": "my_database",
+     *   //   "databaseDialect": "my_databaseDialect",
      *   //   "encryptionInfo": {},
      *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
@@ -5757,6 +5777,7 @@ export namespace spanner_v1 {
      *       // request body parameters
      *       // {
      *       //   "createStatement": "my_createStatement",
+     *       //   "databaseDialect": "my_databaseDialect",
      *       //   "encryptionConfig": {},
      *       //   "extraStatements": []
      *       // }
@@ -6031,6 +6052,7 @@ export namespace spanner_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "databaseDialect": "my_databaseDialect",
      *   //   "defaultLeader": "my_defaultLeader",
      *   //   "earliestVersionTime": "my_earliestVersionTime",
      *   //   "encryptionConfig": {},
