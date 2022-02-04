@@ -194,7 +194,7 @@
       }
     }
   },
-  "revision": "20210910",
+  "revision": "20220201",
   "rootUrl": "https://mybusinesslodging.googleapis.com/",
   "schemas": {
     "Accessibility": {
@@ -5165,7 +5165,7 @@
           "type": "string"
         },
         "vegetarianMeals": {
-          "description": "Vegetarian meals. The property provides vegetarian menu options for guests. Vegetarian food does not contain animal products.",
+          "description": "Vegetarian meals. The property provides vegetarian menu options for guests. Vegetarian food does not contain meat, poultry, fish, or seafood.",
           "type": "boolean"
         },
         "vegetarianMealsException": {
