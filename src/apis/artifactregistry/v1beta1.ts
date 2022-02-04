@@ -126,35 +126,6 @@ export namespace artifactregistry_v1beta1 {
   }
 
   /**
-   * A detailed representation of an Apt artifact. Information in the record is derived from the archive's control file. See https://www.debian.org/doc/debian-policy/ch-controlfields.html
-   */
-  export interface Schema$AptArtifact {
-    /**
-     * Output only. Operating system architecture of the artifact.
-     */
-    architecture?: string | null;
-    /**
-     * Output only. Repository component of the artifact.
-     */
-    component?: string | null;
-    /**
-     * Output only. Contents of the artifact's control metadata file.
-     */
-    controlFile?: string | null;
-    /**
-     * Output only. The Artifact Registry resource name of the artifact.
-     */
-    name?: string | null;
-    /**
-     * Output only. The Apt package name of the artifact.
-     */
-    packageName?: string | null;
-    /**
-     * Output only. An artifact is a binary or source package.
-     */
-    packageType?: string | null;
-  }
-  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -237,84 +208,6 @@ export namespace artifactregistry_v1beta1 {
      * The hash value.
      */
     value?: string | null;
-  }
-  /**
-   * Error information explaining why a package was not imported.
-   */
-  export interface Schema$ImportAptArtifactsErrorInfo {
-    /**
-     * The detailed error status.
-     */
-    error?: Schema$Status;
-    /**
-     * Google Cloud Storage location requested.
-     */
-    gcsSource?: Schema$ImportAptArtifactsGcsSource;
-  }
-  /**
-   * Google Cloud Storage location where the artifacts currently reside.
-   */
-  export interface Schema$ImportAptArtifactsGcsSource {
-    /**
-     * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
-     */
-    uris?: string[] | null;
-    /**
-     * Supports URI wildcards for matching multiple objects from a single URI.
-     */
-    useWildcards?: boolean | null;
-  }
-  /**
-   * The response message from importing artifacts.
-   */
-  export interface Schema$ImportAptArtifactsResponse {
-    /**
-     * The Apt artifacts updated.
-     */
-    aptArtifacts?: Schema$AptArtifact[];
-    /**
-     * Detailed error info for packages that were not imported.
-     */
-    errors?: Schema$ImportAptArtifactsErrorInfo[];
-  }
-  /**
-   * Error information explaining why a package was not imported.
-   */
-  export interface Schema$ImportYumArtifactsErrorInfo {
-    /**
-     * The detailed error status.
-     */
-    error?: Schema$Status;
-    /**
-     * Google Cloud Storage location requested.
-     */
-    gcsSource?: Schema$ImportYumArtifactsGcsSource;
-  }
-  /**
-   * Google Cloud Storage location where the artifacts currently reside.
-   */
-  export interface Schema$ImportYumArtifactsGcsSource {
-    /**
-     * Cloud Storage paths URI (e.g., gs://my_bucket//my_object).
-     */
-    uris?: string[] | null;
-    /**
-     * Supports URI wildcards for matching multiple objects from a single URI.
-     */
-    useWildcards?: boolean | null;
-  }
-  /**
-   * The response message from importing artifacts.
-   */
-  export interface Schema$ImportYumArtifactsResponse {
-    /**
-     * Detailed error info for packages that were not imported.
-     */
-    errors?: Schema$ImportYumArtifactsErrorInfo[];
-    /**
-     * The yum artifacts updated.
-     */
-    yumArtifacts?: Schema$YumArtifact[];
   }
   /**
    * The response from listing files.
@@ -550,7 +443,7 @@ export namespace artifactregistry_v1beta1 {
      */
     name?: string | null;
     /**
-     * The name of the version the tag refers to, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811"
+     * The name of the version the tag refers to, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811" If the package or version ID parts contain slashes, the slashes are escaped.
      */
     version?: string | null;
   }
@@ -571,42 +464,6 @@ export namespace artifactregistry_v1beta1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
-  }
-  /**
-   * The response to upload an artifact.
-   */
-  export interface Schema$UploadAptArtifactMediaResponse {
-    /**
-     * Operation to be returned to the user.
-     */
-    operation?: Schema$Operation;
-  }
-  /**
-   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
-   */
-  export interface Schema$UploadAptArtifactResponse {
-    /**
-     * The Apt artifacts updated.
-     */
-    aptArtifacts?: Schema$AptArtifact[];
-  }
-  /**
-   * The response to upload an artifact.
-   */
-  export interface Schema$UploadYumArtifactMediaResponse {
-    /**
-     * Operation to be returned to the user.
-     */
-    operation?: Schema$Operation;
-  }
-  /**
-   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
-   */
-  export interface Schema$UploadYumArtifactResponse {
-    /**
-     * The Apt artifacts updated.
-     */
-    yumArtifacts?: Schema$YumArtifact[];
   }
   /**
    * The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.
@@ -632,27 +489,6 @@ export namespace artifactregistry_v1beta1 {
      * The time when the version was last updated.
      */
     updateTime?: string | null;
-  }
-  /**
-   * A detailed representation of a Yum artifact.
-   */
-  export interface Schema$YumArtifact {
-    /**
-     * Output only. Operating system architecture of the artifact.
-     */
-    architecture?: string | null;
-    /**
-     * Output only. The Artifact Registry resource name of the artifact.
-     */
-    name?: string | null;
-    /**
-     * Output only. The yum package name of the artifact.
-     */
-    packageName?: string | null;
-    /**
-     * Output only. An artifact is a binary or source package.
-     */
-    packageType?: string | null;
   }
 
   export class Resource$Projects {
@@ -1735,7 +1571,7 @@ export namespace artifactregistry_v1beta1 {
      *
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.list({
-     *     // The maximum number of repositories to return.
+     *     // The maximum number of repositories to return. Maximum page size is 1,000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
@@ -2336,7 +2172,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$List
     extends StandardParameters {
     /**
-     * The maximum number of repositories to return.
+     * The maximum number of repositories to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -3020,7 +2856,7 @@ export namespace artifactregistry_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.list({
-     *       // The maximum number of packages to return.
+     *       // The maximum number of packages to return. Maximum page size is 1,000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
@@ -3153,7 +2989,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$List
     extends StandardParameters {
     /**
-     * The maximum number of packages to return.
+     * The maximum number of packages to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
@@ -3614,7 +3450,7 @@ export namespace artifactregistry_v1beta1 {
      *     await artifactregistry.projects.locations.repositories.packages.tags.list({
      *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`.
      *       filter: 'placeholder-value',
-     *       // The maximum number of tags to return.
+     *       // The maximum number of tags to return. Maximum page size is 10,000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
@@ -3903,7 +3739,7 @@ export namespace artifactregistry_v1beta1 {
      */
     filter?: string;
     /**
-     * The maximum number of tags to return.
+     * The maximum number of tags to return. Maximum page size is 10,000.
      */
     pageSize?: number;
     /**
@@ -4247,9 +4083,9 @@ export namespace artifactregistry_v1beta1 {
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.versions.list(
      *       {
-     *         // Optional. Sorting field and order
+     *         // Optional. The field to order the results by.
      *         orderBy: 'placeholder-value',
-     *         // The maximum number of versions to return.
+     *         // The maximum number of versions to return. Maximum page size is 1,000.
      *         pageSize: 'placeholder-value',
      *         // The next_page_token value returned from a previous list request, if any.
      *         pageToken: 'placeholder-value',
@@ -4393,11 +4229,11 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$List
     extends StandardParameters {
     /**
-     * Optional. Sorting field and order
+     * Optional. The field to order the results by.
      */
     orderBy?: string;
     /**
-     * The maximum number of versions to return.
+     * The maximum number of versions to return. Maximum page size is 1,000.
      */
     pageSize?: number;
     /**
