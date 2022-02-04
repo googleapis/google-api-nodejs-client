@@ -164,7 +164,7 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$File {
     /**
-     * Textual Content.
+     * Required. Textual Content.
      */
     content?: string | null;
     /**
@@ -172,7 +172,7 @@ export namespace firebaserules_v1 {
      */
     fingerprint?: string | null;
     /**
-     * File name.
+     * Required. File name.
      */
     name?: string | null;
   }
@@ -338,7 +338,7 @@ export namespace firebaserules_v1 {
      */
     name?: string | null;
     /**
-     * `Source` for the `Ruleset`.
+     * Required. `Source` for the `Ruleset`.
      */
     source?: Schema$Source;
   }
@@ -347,7 +347,7 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$Source {
     /**
-     * `File` set constituting the `Source` bundle.
+     * Required. `File` set constituting the `Source` bundle.
      */
     files?: Schema$File[];
   }
