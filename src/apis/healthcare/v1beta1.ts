@@ -558,6 +558,10 @@ export namespace healthcare_v1beta1 {
      * An AES 128/192/256 bit key. Causes the hash to be computed based on this key. A default key is generated for each Deidentify operation and is used when neither `crypto_key` nor `kms_wrapped` is specified. Must not be set if `kms_wrapped` is set.
      */
     cryptoKey?: string | null;
+    /**
+     * KMS wrapped key. Must not be set if `crypto_key` is set.
+     */
+    kmsWrapped?: Schema$KmsWrappedCryptoKey;
   }
   /**
    * A message representing a health dataset. A health dataset represents a collection of healthcare data pertaining to one or more patients. This may include multiple modalities of healthcare data, such as electronic medical records or medical imaging data.
@@ -580,6 +584,10 @@ export namespace healthcare_v1beta1 {
      * An AES 128/192/256 bit key. Causes the shift to be computed based on this key and the patient ID. A default key is generated for each de-identification operation and is used when neither `crypto_key` nor `kms_wrapped` is specified. Must not be set if `kms_wrapped` is set.
      */
     cryptoKey?: string | null;
+    /**
+     * KMS wrapped key. Must not be set if `crypto_key` is set.
+     */
+    kmsWrapped?: Schema$KmsWrappedCryptoKey;
   }
   /**
    * Configures de-id options specific to different types of content. Each submessage customizes the handling of an https://tools.ietf.org/html/rfc6838 media type or subtype. Configs are applied in a nested manner at runtime.
@@ -624,7 +632,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$DeidentifyDicomStoreRequest {
     /**
-     * De-identify configuration.
+     * Deidentify configuration.
      */
     config?: Schema$DeidentifyConfig;
     /**
@@ -1535,6 +1543,19 @@ export namespace healthcare_v1beta1 {
      * Created message resource.
      */
     message?: Schema$Message;
+  }
+  /**
+   * Include to use an existing data crypto key wrapped by KMS. The wrapped key must be a 128-, 192-, or 256-bit key. The key must grant the Cloud IAM permission `cloudkms.cryptoKeyVersions.useToDecrypt` to the project's Cloud Healthcare Service Agent service account. For more information, see [Creating a wrapped key] (https://cloud.google.com/dlp/docs/create-wrapped-key).
+   */
+  export interface Schema$KmsWrappedCryptoKey {
+    /**
+     * Required. The resource name of the KMS CryptoKey to use for unwrapping.
+     */
+    cryptoKey?: string | null;
+    /**
+     * Required. The wrapped data crypto key.
+     */
+    wrappedKey?: string | null;
   }
   /**
    * EntityMentions can be linked to multiple entities using a LinkedEntity message lets us add other fields, e.g. confidence.
