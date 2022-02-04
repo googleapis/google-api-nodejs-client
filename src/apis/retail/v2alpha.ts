@@ -253,6 +253,15 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2AddFulfillmentPlacesResponse {}
   /**
+   * Request for AddControl method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaAddControlRequest {
+    /**
+     * Required. The id of the control to apply. Assumed to be in the same catalog as the serving config - if id is not found a NOT_FOUND error is returned.
+     */
+    controlId?: string | null;
+  }
+  /**
    * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesMetadata {}
@@ -454,6 +463,74 @@ export namespace retail_v2alpha {
     selectedSuggestion?: string | null;
   }
   /**
+   * Metadata that is used to define a condition that triggers an action. A valid condition must specify at least one of 'query_terms' or 'products_filter'. If multiple fields are specified, the condition is met if all the fields are satisfied e.g. if a set of query terms and product_filter are set, then only items matching the product_filter for requests with a query matching the query terms wil get boosted.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaCondition {
+    /**
+     * Range of time(s) specifying when Condition is active. Condition true if any time range matches.
+     */
+    activeTimeRange?: Schema$GoogleCloudRetailV2alphaConditionTimeRange[];
+    /**
+     * A list (up to 10 entries) of terms to match the query on. If not specified, match all queries. If many query terms are specified, the condition is matched if any of the terms is a match (i.e. using the OR operator).
+     */
+    queryTerms?: Schema$GoogleCloudRetailV2alphaConditionQueryTerm[];
+  }
+  /**
+   * Query terms that we want to match on.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaConditionQueryTerm {
+    /**
+     * Whether this is supposed to be a full or partial match.
+     */
+    fullMatch?: boolean | null;
+    /**
+     * The value of the term to match on. Value cannot be empty. Value can have at most 3 terms if specified as a partial match. Each space separated string is considered as one term. Example) "a b c" is 3 terms and allowed, " a b c d" is 4 terms and not allowed for partial match.
+     */
+    value?: string | null;
+  }
+  /**
+   * Used for time-dependent conditions. Example: Want to have rule applied for week long sale.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaConditionTimeRange {
+    /**
+     * End of time range. Range is inclusive.
+     */
+    endTime?: string | null;
+    /**
+     * Start of time range. Range is inclusive.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Configures dynamic serving time metadata that is used to pre and post process search/recommendation model results.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaControl {
+    /**
+     * Output only. List of serving configuration ids that that are associated with this control. Note the association is managed via the ServingConfig, this is an output only denormalizeed view. Assumed to be in the same catalog.
+     */
+    associatedServingConfigIds?: string[] | null;
+    /**
+     * Required. The human readable control display name. Used in Retail UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is thrown.
+     */
+    displayName?: string | null;
+    /**
+     * A facet specification to perform faceted search.
+     */
+    facetSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpec;
+    /**
+     * Immutable. Fully qualified name projects/x/locations/global/catalogs/x/controls/x
+     */
+    name?: string | null;
+    /**
+     * A rule control - a condition-action pair. Enacts a set action when the condition is triggered. For example: Boost "gShoe" when query full matches "Running Shoes".
+     */
+    rule?: Schema$GoogleCloudRetailV2alphaRule;
+    /**
+     * Required. Immutable. The solution types that the serving config is used for. Currently we support setting only one type of solution at creation time. Only `SOLUTION_TYPE_SEARCH` value is supported at the moment.
+     */
+    solutionTypes?: string[] | null;
+  }
+  /**
    * A custom attribute that is not explicitly modeled in Product.
    */
   export interface Schema$GoogleCloudRetailV2alphaCustomAttribute {
@@ -540,7 +617,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaGcsSource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719. Supported values for control imports: * 'control' (default): One JSON Control per line.
+     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719. Supported values for control imports: * 'control' (default): One JSON Control per line. Supported values for catalog attribute imports: * 'catalog_attribute' (default): One CSV CatalogAttribute per line.
      */
     dataSchema?: string | null;
     /**
@@ -749,6 +826,19 @@ export namespace retail_v2alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response for ListControls method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaListControlsResponse {
+    /**
+     * All the Controls for a given catalog.
+     */
+    controls?: Schema$GoogleCloudRetailV2alphaControl[];
+    /**
+     * Pagination token, if not returned indicates the last page.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ProductService.ListProducts method.
    */
   export interface Schema$GoogleCloudRetailV2alphaListProductsResponse {
@@ -764,6 +854,19 @@ export namespace retail_v2alpha {
      * The total count of matched Products irrespective of pagination. The total number of Products returned by pagination may be less than the total_size that matches. This field is ignored if ListProductsRequest.require_total_size is not set or ListProductsRequest.page_token is not empty.
      */
     totalSize?: number | null;
+  }
+  /**
+   * Response for ListServingConfigs method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaListServingConfigsResponse {
+    /**
+     * Pagination token, if not returned indicates the last page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * All the ServingConfigs for a given catalog.
+     */
+    servingConfigs?: Schema$GoogleCloudRetailV2alphaServingConfig[];
   }
   /**
    * The inventory information at a place (e.g. a store) identified by a place ID.
@@ -966,7 +1069,7 @@ export namespace retail_v2alpha {
      */
     categories?: string[] | null;
     /**
-     * The id of the collection members when type is Type.COLLECTION. Should not set it for other types. A maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is return.
+     * The id of the collection members when type is Type.COLLECTION. Non-existent product ids are allowed. The type of the members must be either Type.PRIMARY or Type.VARIANT otherwise and INVALID_ARGUMENT error is thrown. Should not set it for other types. A maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is return.
      */
     collectionMemberIds?: string[] | null;
     /**
@@ -974,7 +1077,7 @@ export namespace retail_v2alpha {
      */
     colorInfo?: Schema$GoogleCloudRetailV2alphaColorInfo;
     /**
-     * The condition of the product. Strongly encouraged to use the standard values: "new", "refurbished", "used". A maximum of 5 values are allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [condition](https://support.google.com/merchants/answer/6324469). Schema.org property [Offer.itemCondition](https://schema.org/itemCondition).
+     * The condition of the product. Strongly encouraged to use the standard values: "new", "refurbished", "used". A maximum of 1 value is allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [condition](https://support.google.com/merchants/answer/6324469). Schema.org property [Offer.itemCondition](https://schema.org/itemCondition).
      */
     conditions?: string[] | null;
     /**
@@ -1026,7 +1129,7 @@ export namespace retail_v2alpha {
      */
     primaryProductId?: string | null;
     /**
-     * The promotions applied to the product. A maximum of 10 values are allowed per Product.
+     * The promotions applied to the product. A maximum of 10 values are allowed per Product. Only Promotion.promotion_id will be used, other fields will be ignored if set.
      */
     promotions?: Schema$GoogleCloudRetailV2alphaPromotion[];
     /**
@@ -1127,7 +1230,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaPromotion {
     /**
-     * ID of the promotion. For example, "free gift". The value value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: `a-zA-Z*`. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [promotion](https://support.google.com/merchants/answer/7050148).
+     * ID of the promotion. For example, "free gift". The value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: `a-zA-Z*`. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [promotion](https://support.google.com/merchants/answer/7050148).
      */
     promotionId?: string | null;
   }
@@ -1222,6 +1325,15 @@ export namespace retail_v2alpha {
     rejoinedUserEventsCount?: string | null;
   }
   /**
+   * Request for RemoveControl method.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRemoveControlRequest {
+    /**
+     * Required. The id of the control to apply. Assumed to be in the same catalog as the serving config.
+     */
+    controlId?: string | null;
+  }
+  /**
    * Metadata related to the progress of the RemoveFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the RemoveFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2alphaRemoveFulfillmentPlacesMetadata {}
@@ -1276,6 +1388,147 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaRemoveLocalInventoriesResponse {}
   /**
+   * A rule is a condition-action pair * A condition defines when a rule is to be triggered. * An action specifies what occurs on that trigger. Currently only boost rules are supported. Currently only supported by the search endpoint.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRule {
+    /**
+     * A boost action.
+     */
+    boostAction?: Schema$GoogleCloudRetailV2alphaRuleBoostAction;
+    /**
+     * Required. The condition that triggers the rule. If the condition is empty, the rule will always apply.
+     */
+    condition?: Schema$GoogleCloudRetailV2alphaCondition;
+    /**
+     * Prevents term from being associated with other terms.
+     */
+    doNotAssociateAction?: Schema$GoogleCloudRetailV2alphaRuleDoNotAssociateAction;
+    /**
+     * Filters results.
+     */
+    filterAction?: Schema$GoogleCloudRetailV2alphaRuleFilterAction;
+    /**
+     * Ignores specific terms from query during search.
+     */
+    ignoreAction?: Schema$GoogleCloudRetailV2alphaRuleIgnoreAction;
+    /**
+     * Treats specific term as a synonym with a group of terms. Group of terms will not be treated as synonyms with the specific term.
+     */
+    onewaySynonymsAction?: Schema$GoogleCloudRetailV2alphaRuleOnewaySynonymsAction;
+    /**
+     * Redirects a shopper to a specific page.
+     */
+    redirectAction?: Schema$GoogleCloudRetailV2alphaRuleRedirectAction;
+    /**
+     * Replaces specific terms in the query.
+     */
+    replacementAction?: Schema$GoogleCloudRetailV2alphaRuleReplacementAction;
+    /**
+     * Treats a set of terms as synonyms of one another.
+     */
+    twowaySynonymsAction?: Schema$GoogleCloudRetailV2alphaRuleTwowaySynonymsAction;
+  }
+  /**
+   * A boost action to apply to results matching condition specified above.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRuleBoostAction {
+    /**
+     * Strength of the condition boost, which must be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the item a big promotion. However, it does not necessarily mean that the boosted item will be the top result at all times, nor that other items will be excluded. Results could still be shown even when none of them matches the condition. And results that are significantly more relevant to the search query can still trump your heavily favored but irrelevant items. Setting to -1.0 gives the item a big demotion. However, results that are deeply relevant might still be shown. The item will have an upstream battle to get a fairly high ranking, but it is not blocked out completely. Setting to 0.0 means no boost applied. The boosting condition is ignored.
+     */
+    boost?: number | null;
+    /**
+     * The filter can have a max size of 5000 characters. An expression which specifies which products to apply an action to. The syntax and supported fields are the same as a filter expression. See SearchRequest.filter for detail syntax and limitations. Examples: * To boost products with product ID "product_1" or "product_2", and color "Red" or "Blue": *(id: ANY("product_1", "product_2")) * *AND * *(colorFamilies: ANY("Red", "Blue")) *
+     */
+    productsFilter?: string | null;
+  }
+  /**
+   * Prevents `query_term` from being associated with specified terms during search. Example: Don't associate "gShoe" and "cheap".
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRuleDoNotAssociateAction {
+    /**
+     * Cannot contain duplicates or the query term. Can specify up to 100 terms.
+     */
+    doNotAssociateTerms?: string[] | null;
+    /**
+     * Terms from the search query. Will not consider do_not_associate_terms for search if in search query. Can specify up to 100 terms.
+     */
+    queryTerms?: string[] | null;
+    /**
+     * Will be [deprecated = true] post migration;
+     */
+    terms?: string[] | null;
+  }
+  /**
+   * * Rule Condition: - No Condition provided is a global match. - 1 or more Condition provided is combined with OR operator. * Action Input: The request query and filter that will be applied to the retrieved products, in addition to any filters already provided with the SearchRequest. The AND operator is used to combine the query's existing filters with the filter rule(s). NOTE: May result in 0 results when filters conflict. * Action Result: Filters the returned objects to be ONLY those that passed the filter.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRuleFilterAction {
+    /**
+     * A filter to apply on the matching condition results. Supported features: * filter must be set. * Filter syntax is identical to SearchRequest.filter. See more details at the Retail Search [user guide](/retail/search/docs/filter-and-order#filter). * To filter products with product ID "product_1" or "product_2", and color "Red" or "Blue": *(id: ANY("product_1", "product_2")) * *AND * *(colorFamilies: ANY("Red", "Blue")) *
+     */
+    filter?: string | null;
+  }
+  /**
+   * Prevents a term in the query from being used in search. Example: Don't search for "shoddy".
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRuleIgnoreAction {
+    /**
+     * Terms to ignore in the search query.
+     */
+    ignoreTerms?: string[] | null;
+  }
+  /**
+   * Maps a set of terms to a set of synonyms. Set of synonyms will be treated as synonyms of each query term only. `query_terms` will not be treated as synonyms of each other. Example: "sneakers" will use a synonym of "shoes". "shoes" will not use a synonym of "sneakers".
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRuleOnewaySynonymsAction {
+    /**
+     * Will be [deprecated = true] post migration;
+     */
+    onewayTerms?: string[] | null;
+    /**
+     * Terms from the search query. Will treat synonyms as their synonyms. Not themselves synonyms of the synonyms. Can specify up to 100 terms.
+     */
+    queryTerms?: string[] | null;
+    /**
+     * Defines a set of synonyms. Cannot contain duplicates. Can specify up to 100 synonyms.
+     */
+    synonyms?: string[] | null;
+  }
+  /**
+   * Redirects a shopper to a specific page. * Rule Condition: - Must specify Condition. * Action Input: Request Query * Action Result: Redirects shopper to provided uri.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRuleRedirectAction {
+    /**
+     * URL must have length equal or less than 2000 characters.
+     */
+    redirectUri?: string | null;
+  }
+  /**
+   * Replaces a term in the query. Multiple replacement candidates can be specified. All `query_terms` will be replaced with the replacement term. Example: Replace "gShoe" with "google shoe".
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRuleReplacementAction {
+    /**
+     * Terms from the search query. Will be replaced by replacement term. Can specify up to 100 terms.
+     */
+    queryTerms?: string[] | null;
+    /**
+     * Term that will be used for replacement.
+     */
+    replacementTerm?: string | null;
+    /**
+     * Will be [deprecated = true] post migration;
+     */
+    term?: string | null;
+  }
+  /**
+   * Creates a set of terms that will be treated as synonyms of each other. Example: synonyms of "sneakers" and "shoes". * "sneakers" will use a synonym of "shoes". * "shoes" will use a synonym of "sneakers".
+   */
+  export interface Schema$GoogleCloudRetailV2alphaRuleTwowaySynonymsAction {
+    /**
+     * Defines a set of synonyms. Can specify up to 100 synonyms. Must specify at least 2 synonyms.
+     */
+    synonyms?: string[] | null;
+  }
+  /**
    * Request message for SearchService.Search method.
    */
   export interface Schema$GoogleCloudRetailV2alphaSearchRequest {
@@ -1323,6 +1576,10 @@ export namespace retail_v2alpha {
      * A page token SearchResponse.next_page_token, received from a previous SearchService.Search call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SearchService.Search must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     pageToken?: string | null;
+    /**
+     * The specification for personalization.
+     */
+    personalizationSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestPersonalizationSpec;
     /**
      * Raw search query.
      */
@@ -1436,6 +1693,15 @@ export namespace retail_v2alpha {
      * Only get facet for the given restricted values. For example, when using "pickupInStore" as key and set restricted values to ["store123", "store456"], only facets for "store123" and "store456" are returned. Only supported on textual fields and fulfillments. Maximum is 20. Must be set for the fulfillment facet keys: * pickupInStore * shipToStore * sameDayDelivery * nextDayDelivery * customFulfillment1 * customFulfillment2 * customFulfillment3 * customFulfillment4 * customFulfillment5
      */
     restrictedValues?: string[] | null;
+  }
+  /**
+   * The specification for personalization.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaSearchRequestPersonalizationSpec {
+    /**
+     * Defaults to Mode.AUTO.
+     */
+    mode?: string | null;
   }
   /**
    * Specification to determine under which conditions query expansion should occur.
@@ -1564,6 +1830,79 @@ export namespace retail_v2alpha {
     variantRollupValues?: {[key: string]: any} | null;
   }
   /**
+   * Configures metadata that is used to generate serving time results (e.g. search results or recommendation predictions). The ServingConfig is passed in the search and predict request and together with the Catalog.default_branch, generates results.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaServingConfig {
+    /**
+     * Condition boost specifications. If a product matches multiple conditions in the specifications, boost scores from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 10. Notice that if both ServingConfig.boost_control_ids and [SearchRequest.boost_spec] are set, the boost conditions from both places are evaluated. If a search request matches multiple boost conditions, the final boost score is equal to the sum of the boost scores from all matched boost conditions. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    boostControlIds?: string[] | null;
+    /**
+     * Required. The human readable serving config display name. Used in Retail UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    displayName?: string | null;
+    /**
+     * How much diversity to use in recommendation model results e.g. 'medium-diversity' or 'high-diversity'. Currently supported values: * 'no-diversity' * 'low-diversity' * 'medium-diversity' * 'high-diversity' * 'auto-diversity' If not specified, we choose default based on recommendation model type. Default value: 'no-diversity'. Can only be set if solution_types is SOLUTION_TYPE_RECOMMENDATION.
+     */
+    diversityLevel?: string | null;
+    /**
+     * Condition do not associate specifications. If multiple do not associate conditions match, all matching do not associate controls in the list will execute. - Order does not matter. - Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    doNotAssociateControlIds?: string[] | null;
+    /**
+     * The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    dynamicFacetSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec;
+    /**
+     * Whether to add additional category filters on the 'similar-items' model. If not specified, we enable it by default. Allowed values are: * 'no-category-match': No additional filtering of original results from the model and the customer's filters. * 'relaxed-category-match': Only keep results with categories that match at least one item categories in the PredictRequests's context item. * If customer also sends filters in the PredictRequest, then the results will satisfy both conditions (user given and category match). Can only be set if solution_types is SOLUTION_TYPE_RECOMMENDATION.
+     */
+    enableCategoryFilterLevel?: string | null;
+    /**
+     * Facet specifications for faceted search. If empty, no facets are returned. The ids refer to the ids of Control resources with only the Facet control set. These controls are assumed to be in the same Catalog as the ServingConfig. A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    facetControlIds?: string[] | null;
+    /**
+     * Condition filter specifications. If a product matches multiple conditions in the specifications, filters from these specifications are all applied and combined via the AND operator. Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    filterControlIds?: string[] | null;
+    /**
+     * Condition ignore specifications. If multiple ignore conditions match, all matching ignore controls in the list will execute. - Order does not matter. - Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    ignoreControlIds?: string[] | null;
+    /**
+     * The id of the model to use at serving time. Currently only RecommendationModels are supported: https://cloud.google.com/retail/recommendations-ai/docs/create-models Can be changed but only to a compatible model (e.g. others-you-may-like CTR to others-you-may-like CVR). Required when solution_types is SOLUTION_TYPE_RECOMMENDATION.
+     */
+    modelId?: string | null;
+    /**
+     * Immutable. Fully qualified name projects/x/locations/global/catalogs/x/servingConfig/x
+     */
+    name?: string | null;
+    /**
+     * Condition oneway synonyms specifications. If multiple oneway synonyms conditions match, all matching oneway synonyms controls in the list will execute. Order of controls in the list will not matter. Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    onewaySynonymsControlIds?: string[] | null;
+    /**
+     * How much price ranking we want in serving results. Price reranking causes product items with a similar recommendation probability to be ordered by price, with the highest-priced items first. This setting could result in a decrease in click-through and conversion rates. Allowed values are: * 'no-price-reranking' * 'low-price-raranking' * 'medium-price-reranking' * 'high-price-reranking' If not specified, we choose default based on model type. Default value: 'no-price-reranking'. Can only be set if solution_types is SOLUTION_TYPE_RECOMMENDATION.
+     */
+    priceRerankingLevel?: string | null;
+    /**
+     * Condition redirect specifications. Only the first triggered redirect action is applied, even if multiple apply. Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    redirectControlIds?: string[] | null;
+    /**
+     * Condition replacement specifications. - Applied according to the order in the list. - A previously replaced term can not be re-replaced. - Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    replacementControlIds?: string[] | null;
+    /**
+     * Required. Immutable. Specifies the solution types that a serving config can be associated with. Currently we support setting only one type of solution.
+     */
+    solutionTypes?: string[] | null;
+    /**
+     * Condition synonyms specifications. If multiple syonyms conditions match, all matching synonyms control in the list will execute. Order of controls in the list will not matter. Maximum number of specifications is 100. Can only be set if solution_types is SOLUTION_TYPE_SEARCH.
+     */
+    twowaySynonymsControlIds?: string[] | null;
+  }
+  /**
    * Request message to set a specified branch as new default_branch.
    */
   export interface Schema$GoogleCloudRetailV2alphaSetDefaultBranchRequest {
@@ -1605,31 +1944,6 @@ export namespace retail_v2alpha {
    * Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the SetInventory method.
    */
   export interface Schema$GoogleCloudRetailV2alphaSetInventoryResponse {}
-  /**
-   * Metadata related to the progress of the SetLocalInventories operation. Currently empty because there is no meaningful metadata populated from the SetLocalInventories method.
-   */
-  export interface Schema$GoogleCloudRetailV2alphaSetLocalInventoriesMetadata {}
-  /**
-   * Request message for SetLocalInventories method.
-   */
-  export interface Schema$GoogleCloudRetailV2alphaSetLocalInventoriesRequest {
-    /**
-     * If set to true, and the Product is not found, the local inventory will still be processed and retained for at most 1 day and processed once the Product is created. If set to false, a NOT_FOUND error is returned if the Product is not found.
-     */
-    allowMissing?: boolean | null;
-    /**
-     * A list of inventory information at difference places. Each place is identified by its place ID. For example, if `place1` and `place2` are stored, and this list is `[place1, place3]` with a fresher set timestamp, then the stored places will become `place1` and `place3`. An empty list removes all existing places with staler fields. At most 3000 inventories are allowed per request.
-     */
-    localInventories?: Schema$GoogleCloudRetailV2alphaLocalInventory[];
-    /**
-     * The time when the inventory updates are issued. Used to prevent out-of-order updates on local inventory fields. If not provided, the internal system time will be used.
-     */
-    setTime?: string | null;
-  }
-  /**
-   * Response of the SetLocalInventories API. Currently empty because there is no meaningful response populated from the SetLocalInventories method.
-   */
-  export interface Schema$GoogleCloudRetailV2alphaSetLocalInventoriesResponse {}
   /**
    * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.
    */
@@ -1685,7 +1999,7 @@ export namespace retail_v2alpha {
      */
     pageViewId?: string | null;
     /**
-     * The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `detail-page-view` * `purchase-complete` In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished browsing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new `search` event with different product_details is desired. The end user may have not finished browsing the whole page yet.
+     * The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `detail-page-view` * `purchase-complete` * `search` In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished browsing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new `search` event with different product_details is desired. The end user may have not finished browsing the whole page yet.
      */
     productDetails?: Schema$GoogleCloudRetailV2alphaProductDetail[];
     /**
@@ -2200,8 +2514,10 @@ export namespace retail_v2alpha {
     context: APIRequestContext;
     branches: Resource$Projects$Locations$Catalogs$Branches;
     completionData: Resource$Projects$Locations$Catalogs$Completiondata;
+    controls: Resource$Projects$Locations$Catalogs$Controls;
     operations: Resource$Projects$Locations$Catalogs$Operations;
     placements: Resource$Projects$Locations$Catalogs$Placements;
+    servingConfigs: Resource$Projects$Locations$Catalogs$Servingconfigs;
     userEvents: Resource$Projects$Locations$Catalogs$Userevents;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -2210,12 +2526,17 @@ export namespace retail_v2alpha {
       );
       this.completionData =
         new Resource$Projects$Locations$Catalogs$Completiondata(this.context);
+      this.controls = new Resource$Projects$Locations$Catalogs$Controls(
+        this.context
+      );
       this.operations = new Resource$Projects$Locations$Catalogs$Operations(
         this.context
       );
       this.placements = new Resource$Projects$Locations$Catalogs$Placements(
         this.context
       );
+      this.servingConfigs =
+        new Resource$Projects$Locations$Catalogs$Servingconfigs(this.context);
       this.userEvents = new Resource$Projects$Locations$Catalogs$Userevents(
         this.context
       );
@@ -5018,161 +5339,6 @@ export namespace retail_v2alpha {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
-    /**
-     * Set local inventory information for a Product with the provided list of places at a set timestamp. If a place in the provided list does not exist, the place will be created. If a place in the provided list already exists, it will be updated while respecting the last update timestamps of each inventory field. If an existing place is not in the provided list, it will be removed. This process is asynchronous. If the request is valid, the set operation will be enqueued and processed downstream. As a consequence, when a response is returned, set operations are not immediately manifested in the Product queried by GetProduct or ListProducts. When applying the set operation, this process takes a snapshot of currently existing places and their corresponding timestamps to determine the places to update. Avoid concurrent AddLocalInventories and RemoveLocalInventories calls, since they can introduce asynchronous updates that could be missed by the set operation. Local inventory information can only be updated with this method and other local inventory-specific methods. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact Cloud sales if you are interested in using Retail Search.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const retail = google.retail('v2alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await retail.projects.locations.catalogs.branches.products.setLocalInventories(
-     *       {
-     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
-     *         product:
-     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "allowMissing": false,
-     *           //   "localInventories": [],
-     *           //   "setTime": "my_setTime"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    setLocalInventories(
-      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    setLocalInventories(
-      params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    setLocalInventories(
-      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    setLocalInventories(
-      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setLocalInventories(
-      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setLocalInventories(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    setLocalInventories(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2alpha/{+product}:setLocalInventories').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['product'],
-        pathParams: ['product'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addfulfillmentplaces
@@ -5323,18 +5489,6 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaSetInventoryRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setlocalinventories
-    extends StandardParameters {
-    /**
-     * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
-     */
-    product?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudRetailV2alphaSetLocalInventoriesRequest;
   }
 
   export class Resource$Projects$Locations$Catalogs$Completiondata {
@@ -5505,6 +5659,808 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaImportCompletionDataRequest;
+  }
+
+  export class Resource$Projects$Locations$Catalogs$Controls {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Control. If the Control to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.create({
+     *     // Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
+     *     controlId: 'placeholder-value',
+     *     // Required. Full resource name of parent catalog. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "associatedServingConfigIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "facetSpec": {},
+     *       //   "name": "my_name",
+     *       //   "rule": {},
+     *       //   "solutionTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "facetSpec": {},
+     *   //   "name": "my_name",
+     *   //   "rule": {},
+     *   //   "solutionTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Catalogs$Controls$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaControl>;
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Controls$Create
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaControl>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Controls$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Controls$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}/controls').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaControl>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaControl>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.delete({
+     *     // Required. The resource name of the Control to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Catalogs$Controls$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Controls$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Controls$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Controls$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.get({
+     *     // Required. The resource name of the Control to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "facetSpec": {},
+     *   //   "name": "my_name",
+     *   //   "rule": {},
+     *   //   "solutionTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Catalogs$Controls$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaControl>;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Controls$Get
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaControl>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Controls$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Catalogs$Controls$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaControl>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaControl>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all Controls linked to this catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.list({
+     *     // Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List controls that are used in a single ServingConfig: 'serving_config = "boosted_home_page_cvr"'
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The catalog resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controls": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Catalogs$Controls$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaListControlsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListControlsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListControlsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListControlsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListControlsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Controls$List
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListControlsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListControlsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListControlsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaListControlsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Controls$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Controls$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}/controls').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaListControlsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaListControlsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a Control. Control cannot be set to a different oneof field, if so an INVALID_ARGUMENT is returned. If the Control to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.controls.patch({
+     *     // Immutable. Fully qualified name projects/x/locations/global/catalogs/x/controls/x
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/controls/my-control',
+     *     // Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name If not set or empty, all supported fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "associatedServingConfigIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "facetSpec": {},
+     *       //   "name": "my_name",
+     *       //   "rule": {},
+     *       //   "solutionTypes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "facetSpec": {},
+     *   //   "name": "my_name",
+     *   //   "rule": {},
+     *   //   "solutionTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Catalogs$Controls$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaControl>;
+    patch(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Catalogs$Controls$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Controls$Patch
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaControl>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaControl>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Controls$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Controls$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaControl>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaControl>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
+     */
+    controlId?: string;
+    /**
+     * Required. Full resource name of parent catalog. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaControl;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Control to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Control to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/controls/{control_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$List
+    extends StandardParameters {
+    /**
+     * Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. * List controls that are used in a single ServingConfig: 'serving_config = "boosted_home_page_cvr"'
+     */
+    filter?: string;
+    /**
+     * Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The catalog resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Controls$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Fully qualified name projects/x/locations/global/catalogs/x/controls/x
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name If not set or empty, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaControl;
   }
 
   export class Resource$Projects$Locations$Catalogs$Operations {
@@ -6034,6 +6990,7 @@ export namespace retail_v2alpha {
      *       //   "pageCategories": [],
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
+     *       //   "personalizationSpec": {},
      *       //   "query": "my_query",
      *       //   "queryExpansionSpec": {},
      *       //   "relevanceThreshold": "my_relevanceThreshold",
@@ -6185,6 +7142,1212 @@ export namespace retail_v2alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2alphaSearchRequest;
+  }
+
+  export class Resource$Projects$Locations$Catalogs$Servingconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Enables a Control on the specified ServingConfig. The control is added in the last position of the list of controls it belongs to (e.g. if it's a facet spec control it will be applied in the last position of servingConfig.facetSpecIds) Returns a ALREADY_EXISTS error if the control has already been applied. Returns a FAILED_PRECONDITION error if the addition could exceed maximum number of control allowed for that type of control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.servingConfigs.addControl({
+     *       // Required. The source ServingConfig resource name . Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}
+     *       servingConfig:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "controlId": "my_controlId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addControl(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addControl(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>;
+    addControl(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addControl(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    addControl(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    addControl(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    addControl(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+servingConfig}:addControl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['servingConfig'],
+        pathParams: ['servingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a ServingConfig. A maximum of 100 ServingConfigs are allowed in a Catalog, otherwise a FAILED_PRECONDITION error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.create({
+     *     // Required. Full resource name of parent. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *     // Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
+     *     servingConfigId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostControlIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "diversityLevel": "my_diversityLevel",
+     *       //   "doNotAssociateControlIds": [],
+     *       //   "dynamicFacetSpec": {},
+     *       //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *       //   "facetControlIds": [],
+     *       //   "filterControlIds": [],
+     *       //   "ignoreControlIds": [],
+     *       //   "modelId": "my_modelId",
+     *       //   "name": "my_name",
+     *       //   "onewaySynonymsControlIds": [],
+     *       //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *       //   "redirectControlIds": [],
+     *       //   "replacementControlIds": [],
+     *       //   "solutionTypes": [],
+     *       //   "twowaySynonymsControlIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>;
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.delete({
+     *     // Required. The resource name of the ServingConfig to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.get({
+     *     // Required. The resource name of the ServingConfig to get. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all ServingConfigs linked to this catalog.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.list({
+     *     // Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The catalog resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     *     parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "servingConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+parent}/servingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaListServingConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a ServingConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.patch({
+     *     // Immutable. Fully qualified name projects/x/locations/global/catalogs/x/servingConfig/x
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *     // Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostControlIds": [],
+     *       //   "displayName": "my_displayName",
+     *       //   "diversityLevel": "my_diversityLevel",
+     *       //   "doNotAssociateControlIds": [],
+     *       //   "dynamicFacetSpec": {},
+     *       //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *       //   "facetControlIds": [],
+     *       //   "filterControlIds": [],
+     *       //   "ignoreControlIds": [],
+     *       //   "modelId": "my_modelId",
+     *       //   "name": "my_name",
+     *       //   "onewaySynonymsControlIds": [],
+     *       //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *       //   "redirectControlIds": [],
+     *       //   "replacementControlIds": [],
+     *       //   "solutionTypes": [],
+     *       //   "twowaySynonymsControlIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>;
+    patch(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Disables a Control on the specified ServingConfig. The control is removed from the ServingConfig. Returns a NOT_FOUND error if the Control is not enabled for the ServingConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.servingConfigs.removeControl({
+     *       // Required. The source ServingConfig resource name . Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}
+     *       servingConfig:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "controlId": "my_controlId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boostControlIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "doNotAssociateControlIds": [],
+     *   //   "dynamicFacetSpec": {},
+     *   //   "enableCategoryFilterLevel": "my_enableCategoryFilterLevel",
+     *   //   "facetControlIds": [],
+     *   //   "filterControlIds": [],
+     *   //   "ignoreControlIds": [],
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "priceRerankingLevel": "my_priceRerankingLevel",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionTypes": [],
+     *   //   "twowaySynonymsControlIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeControl(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeControl(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>;
+    removeControl(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeControl(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    removeControl(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    removeControl(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+    ): void;
+    removeControl(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2alphaServingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2alphaServingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2alpha/{+servingConfig}:removeControl').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['servingConfig'],
+        pathParams: ['servingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2alphaServingConfig>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Addcontrol
+    extends StandardParameters {
+    /**
+     * Required. The source ServingConfig resource name . Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}
+     */
+    servingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaAddControlRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of parent. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the ServingConfig, which will become the final component of the ServingConfig's resource name. This value should be 4-63 characters, and valid characters are /a-z-_/.
+     */
+    servingConfigId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaServingConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ServingConfig to delete. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the ServingConfig to get. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The catalog resource name. Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Fully qualified name projects/x/locations/global/catalogs/x/servingConfig/x
+     */
+    name?: string;
+    /**
+     * Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaServingConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Removecontrol
+    extends StandardParameters {
+    /**
+     * Required. The source ServingConfig resource name . Format: projects/{project_number\}/locations/{location_id\}/catalogs/{catalog_id\}/servingConfigs/{serving_config_id\}
+     */
+    servingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2alphaRemoveControlRequest;
   }
 
   export class Resource$Projects$Locations$Catalogs$Userevents {
