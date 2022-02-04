@@ -665,7 +665,7 @@ export namespace apikeys_v2 {
     }
 
     /**
-     * Clones the existing key's restriction and display name to a new API key. The service account must have the `apikeys.keys.get` and `apikeys.keys.create` permissions in the project. NOTE: Key is a global resource; hence the only supported value for location is `global`.
+     * DEPRECATED: API customers can call `GetKey` and then `CreateKey` methods to create a copy of an existing key. Retire `CloneKey` method to eliminate the unnessary method from API Keys API. Clones the existing key's restriction and display name to a new API key. The service account must have the `apikeys.keys.get` and `apikeys.keys.create` permissions in the project. NOTE: Key is a global resource; hence the only supported value for location is `global`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1388,7 +1388,7 @@ export namespace apikeys_v2 {
      *
      *   // Do the magic
      *   const res = await apikeys.projects.locations.keys.list({
-     *     // Optional. Only list keys that conform to the specified filter. The allowed filter strings are `state:ACTIVE` and `state:DELETED`. By default, ListKeys returns only active keys.
+     *     // Optional. Deprecated: Use `show_deleted` instead. Only list keys that conform to the specified filter. The allowed filter strings are `state:ACTIVE` and `state:DELETED`. By default, ListKeys returns only active keys.
      *     filter: 'placeholder-value',
      *     // Optional. Specifies the maximum number of results to be returned at a time.
      *     pageSize: 'placeholder-value',
@@ -1396,6 +1396,8 @@ export namespace apikeys_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. Lists all API keys associated with this project.
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Indicate that keys are marked as deleted within 30 days should also be returned. Normally only active keys are returned.
+     *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1841,7 +1843,7 @@ export namespace apikeys_v2 {
   export interface Params$Resource$Projects$Locations$Keys$List
     extends StandardParameters {
     /**
-     * Optional. Only list keys that conform to the specified filter. The allowed filter strings are `state:ACTIVE` and `state:DELETED`. By default, ListKeys returns only active keys.
+     * Optional. Deprecated: Use `show_deleted` instead. Only list keys that conform to the specified filter. The allowed filter strings are `state:ACTIVE` and `state:DELETED`. By default, ListKeys returns only active keys.
      */
     filter?: string;
     /**
@@ -1856,6 +1858,10 @@ export namespace apikeys_v2 {
      * Required. Lists all API keys associated with this project.
      */
     parent?: string;
+    /**
+     * Optional. Indicate that keys are marked as deleted within 30 days should also be returned. Normally only active keys are returned.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Keys$Patch
     extends StandardParameters {
