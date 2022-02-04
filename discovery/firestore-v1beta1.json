@@ -849,7 +849,7 @@
       }
     }
   },
-  "revision": "20211013",
+  "revision": "20220119",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -1372,6 +1372,12 @@
           "description": "A filter that takes exactly one argument."
         }
       },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1UpdateDatabaseMetadata": {
+      "description": "Metadata related to the update database operation.",
+      "id": "GoogleFirestoreAdminV1UpdateDatabaseMetadata",
+      "properties": {},
       "type": "object"
     },
     "GoogleFirestoreAdminV1beta1ExportDocumentsMetadata": {
