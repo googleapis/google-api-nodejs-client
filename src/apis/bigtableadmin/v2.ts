@@ -196,7 +196,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$AutoscalingTargets {
     /**
-     * The cpu utilization that the Autoscaler should be trying to achieve. This number is on a scale from 0 (no utilization) to 100 (total utilization).
+     * The cpu utilization that the Autoscaler should be trying to achieve. This number is on a scale from 0 (no utilization) to 100 (total utilization), and is limited between 10 and 80.
      */
     cpuUtilizationPercent?: number | null;
   }
