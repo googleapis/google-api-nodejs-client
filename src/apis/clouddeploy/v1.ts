@@ -126,6 +126,15 @@ export namespace clouddeploy_v1 {
   }
 
   /**
+   * Information specifying an Anthos Cluster.
+   */
+  export interface Schema$AnthosCluster {
+    /**
+     * Membership of the GKE Hub registered cluster that the Skaffold configuration should be applied to. Format is `projects/{project\}/locations/{location\}/memberships/{membership_name\}`.
+     */
+    membership?: string | null;
+  }
+  /**
    * The request object used by `ApproveRollout`.
    */
   export interface Schema$ApproveRolloutRequest {
@@ -299,6 +308,10 @@ export namespace clouddeploy_v1 {
    */
   export interface Schema$ExecutionConfig {
     /**
+     * Optional. Cloud Storage location where execution outputs should be stored. This can either be a bucket ("gs://my-bucket") or a path within a bucket ("gs://my-bucket/my-dir"). If unspecified, a default bucket located in the same region will be used.
+     */
+    artifactStorage?: string | null;
+    /**
      * Optional. Use default Cloud Build pool.
      */
     defaultPool?: Schema$DefaultPool;
@@ -307,9 +320,17 @@ export namespace clouddeploy_v1 {
      */
     privatePool?: Schema$PrivatePool;
     /**
+     * Optional. Google service account to use for execution. If unspecified, the project execution service account (-compute@developer.gserviceaccount.com) will be used.
+     */
+    serviceAccount?: string | null;
+    /**
      * Required. Usages when this configuration should be applied.
      */
     usages?: string[] | null;
+    /**
+     * Optional. The resource name of the `WorkerPool`, with the format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. If this optional field is unspecified, the default Cloud Build pool will be used.
+     */
+    workerPool?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -651,7 +672,7 @@ export namespace clouddeploy_v1 {
      */
     targetRenders?: {[key: string]: Schema$TargetRender} | null;
     /**
-     * Output only. Snapshot of the parent pipeline's targets taken at release creation time.
+     * Output only. Snapshot of the targets taken at release creation time.
      */
     targetSnapshots?: Schema$Target[];
     /**
@@ -776,7 +797,7 @@ export namespace clouddeploy_v1 {
      */
     profiles?: string[] | null;
     /**
-     * The target_id to which this stage points. This field refers exclusively to the last segment of a target name. For example, this field would just be `my-target` (rather than `projects/project/deliveryPipelines/pipeline/targets/my-target`). The parent `DeliveryPipeline` of the `Target` is inferred to be the parent `DeliveryPipeline` of the `Release` in which this `Stage` lives.
+     * The target_id to which this stage points. This field refers exclusively to the last segment of a target name. For example, this field would just be `my-target` (rather than `projects/project/locations/location/targets/my-target`). The location of the `Target` is inferred to be the same as the location of the `DeliveryPipeline` that contains this `Stage`.
      */
     targetId?: string | null;
   }
@@ -806,6 +827,10 @@ export namespace clouddeploy_v1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
+     * Information specifying an Anthos Cluster.
+     */
+    anthosCluster?: Schema$AnthosCluster;
+    /**
      * Output only. Time at which the `Target` was created.
      */
     createTime?: string | null;
@@ -830,7 +855,7 @@ export namespace clouddeploy_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/ deliveryPipelines/{deliveryPipeline\}/targets/a-z{0,62\}.
+     * Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/targets/a-z{0,62\}.
      */
     name?: string | null;
     /**
@@ -4535,6 +4560,7 @@ export namespace clouddeploy_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "anthosCluster": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
@@ -4825,6 +4851,7 @@ export namespace clouddeploy_v1 {
      *   // Example response
      *   // {
      *   //   "annotations": {},
+     *   //   "anthosCluster": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -5232,7 +5259,7 @@ export namespace clouddeploy_v1 {
      *   const res = await clouddeploy.projects.locations.targets.patch({
      *     // Optional. If set to true, updating a `Target` that does not exist will result in the creation of a new `Target`.
      *     allowMissing: 'placeholder-value',
-     *     // Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/ deliveryPipelines/{deliveryPipeline\}/targets/a-z{0,62\}.
+     *     // Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/targets/a-z{0,62\}.
      *     name: 'projects/my-project/locations/my-location/targets/my-target',
      *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -5246,6 +5273,7 @@ export namespace clouddeploy_v1 {
      *       // request body parameters
      *       // {
      *       //   "annotations": {},
+     *       //   "anthosCluster": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
@@ -5742,7 +5770,7 @@ export namespace clouddeploy_v1 {
      */
     allowMissing?: boolean;
     /**
-     * Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/ deliveryPipelines/{deliveryPipeline\}/targets/a-z{0,62\}.
+     * Optional. Name of the `Target`. Format is projects/{project\}/locations/{location\}/targets/a-z{0,62\}.
      */
     name?: string;
     /**
