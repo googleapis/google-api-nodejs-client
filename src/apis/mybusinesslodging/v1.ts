@@ -2258,7 +2258,7 @@ export namespace mybusinesslodging_v1 {
      */
     veganMealsException?: string | null;
     /**
-     * Vegetarian meals. The property provides vegetarian menu options for guests. Vegetarian food does not contain animal products.
+     * Vegetarian meals. The property provides vegetarian menu options for guests. Vegetarian food does not contain meat, poultry, fish, or seafood.
      */
     vegetarianMeals?: boolean | null;
     /**
