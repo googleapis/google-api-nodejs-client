@@ -111,7 +111,7 @@
     "projects": {
       "methods": {
         "getProjectSettings": {
-          "description": "Retrieves the Settings for the Project",
+          "description": "Retrieves the Settings for the Project.",
           "flatPath": "v1beta2/projects/{projectsId}/projectSettings",
           "httpMethod": "GET",
           "id": "artifactregistry.projects.getProjectSettings",
@@ -137,7 +137,7 @@
           ]
         },
         "updateProjectSettings": {
-          "description": "Retrieves the Settings for the Project",
+          "description": "Updates the Settings for the Project.",
           "flatPath": "v1beta2/projects/{projectsId}/projectSettings",
           "httpMethod": "PATCH",
           "id": "artifactregistry.projects.updateProjectSettings",
@@ -286,7 +286,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "The name of the parent resource where the repository will be created.",
+                      "description": "Required. The name of the parent resource where the repository will be created.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -319,7 +319,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the repository to delete.",
+                      "description": "Required. The name of the repository to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -344,7 +344,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the repository to retrieve.",
+                      "description": "Required. The name of the repository to retrieve.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                       "required": true,
@@ -413,7 +413,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The name of the parent resource whose repositories will be listed.",
+                      "description": "Required. The name of the parent resource whose repositories will be listed.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -682,7 +682,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the package to delete.",
+                          "description": "Required. The name of the package to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/packages/[^/]+$",
                           "required": true,
@@ -707,7 +707,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The name of the package to retrieve.",
+                          "description": "Required. The name of the package to retrieve.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+/packages/[^/]+$",
                           "required": true,
@@ -744,7 +744,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "The name of the parent resource whose packages will be listed.",
+                          "description": "Required. The name of the parent resource whose packages will be listed.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                           "required": true,
@@ -1009,7 +1009,7 @@
                           ],
                           "parameters": {
                             "orderBy": {
-                              "description": "Optional. Sorting field and order",
+                              "description": "Optional. The field to order the results by.",
                               "location": "query",
                               "type": "string"
                             },
@@ -1143,7 +1143,7 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20220121",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1353,11 +1353,11 @@
       "type": "object"
     },
     "ImportAptArtifactsResponse": {
-      "description": "The response message from importing artifacts.",
+      "description": "The response message from importing APT artifacts.",
       "id": "ImportAptArtifactsResponse",
       "properties": {
         "aptArtifacts": {
-          "description": "The Apt artifacts updated.",
+          "description": "The Apt artifacts imported.",
           "items": {
             "$ref": "AptArtifact"
           },
@@ -1418,7 +1418,7 @@
       "type": "object"
     },
     "ImportYumArtifactsResponse": {
-      "description": "The response message from importing artifacts.",
+      "description": "The response message from importing YUM artifacts.",
       "id": "ImportYumArtifactsResponse",
       "properties": {
         "errors": {
@@ -1429,7 +1429,7 @@
           "type": "array"
         },
         "yumArtifacts": {
-          "description": "The yum artifacts updated.",
+          "description": "The yum artifacts imported.",
           "items": {
             "$ref": "YumArtifact"
           },
@@ -1640,6 +1640,12 @@
       },
       "type": "object"
     },
+    "OperationMetadata": {
+      "description": "Metadata type for longrunning-operations, currently empty.",
+      "id": "OperationMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "Package": {
       "description": "Packages are named collections of versions.",
       "id": "Package",
@@ -1736,7 +1742,6 @@
             "DOCKER",
             "MAVEN",
             "NPM",
-            "PYPI",
             "APT",
             "YUM",
             "PYTHON"
@@ -1746,7 +1751,6 @@
             "Docker package format.",
             "Maven package format.",
             "NPM package format.",
-            "PyPI package format. Deprecated, use PYTHON instead.",
             "APT package format.",
             "YUM package format.",
             "Python package format."
@@ -1992,7 +1996,7 @@
           ],
           "enumDescriptions": [
             "Package type is not specified.",
-            "Binary package (.rpm). .rpm",
+            "Binary package (.rpm).",
             "Source package (.srpm)."
           ],
           "readOnly": true,
