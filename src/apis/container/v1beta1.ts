@@ -408,7 +408,7 @@ export namespace container_v1beta1 {
      */
     conditions?: Schema$StatusCondition[];
     /**
-     * Configuration of Confidential Nodes
+     * Configuration of Confidential Nodes. All the nodes in the cluster will be Confidential VM once enabled.
      */
     confidentialNodes?: Schema$ConfidentialNodes;
     /**
@@ -844,7 +844,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -861,7 +861,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$ConfidentialNodes {
     /**
-     * Whether Confidential Nodes feature is enabled for all nodes in this cluster.
+     * Whether Confidential Nodes feature is enabled.
      */
     enabled?: boolean | null;
   }
@@ -917,7 +917,7 @@ export namespace container_v1beta1 {
      */
     nodePool?: Schema$NodePool;
     /**
-     * The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The parent (project, location, cluster name) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string | null;
     /**
@@ -2388,7 +2388,7 @@ export namespace container_v1beta1 {
      */
     labelFingerprint?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2417,7 +2417,7 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2492,7 +2492,7 @@ export namespace container_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
-     * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2567,7 +2567,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2701,7 +2701,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -3644,7 +3644,7 @@ export namespace container_v1beta1 {
      *
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.completeIpRotation({
-     *     // The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The name (project, location, cluster name) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -4297,7 +4297,7 @@ export namespace container_v1beta1 {
      *
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.getJwks({
-     *     // The cluster (project, location, cluster id) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The cluster (project, location, cluster name) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
      *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *   });
      *   console.log(res.data);
@@ -4728,7 +4728,7 @@ export namespace container_v1beta1 {
      *
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setLegacyAbac({
-     *     // The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The name (project, location, cluster name) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -5194,7 +5194,7 @@ export namespace container_v1beta1 {
      *
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setMaintenancePolicy({
-     *     // The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The name (project, location, cluster name) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -5665,7 +5665,7 @@ export namespace container_v1beta1 {
      *
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setNetworkPolicy({
-     *     // The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The name (project, location, cluster name) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -5821,7 +5821,7 @@ export namespace container_v1beta1 {
      *
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.setResourceLabels({
-     *     // The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The name (project, location, cluster name) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -5978,7 +5978,7 @@ export namespace container_v1beta1 {
      *
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.startIpRotation({
-     *     // The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The name (project, location, cluster name) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -6418,7 +6418,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Completeiprotation
     extends StandardParameters {
     /**
-     * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -6480,7 +6480,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Getjwks
     extends StandardParameters {
     /**
-     * The cluster (project, location, cluster id) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The cluster (project, location, cluster name) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
   }
@@ -6514,7 +6514,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setlegacyabac
     extends StandardParameters {
     /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -6550,7 +6550,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy
     extends StandardParameters {
     /**
-     * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -6586,7 +6586,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy
     extends StandardParameters {
     /**
-     * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -6598,7 +6598,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Setresourcelabels
     extends StandardParameters {
     /**
-     * The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -6610,7 +6610,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Startiprotation
     extends StandardParameters {
     /**
-     * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The name (project, location, cluster name) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string;
 
@@ -6677,7 +6677,7 @@ export namespace container_v1beta1 {
      *
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.nodePools.create({
-     *     // The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The parent (project, location, cluster name) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
      *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *
      *     // Request body metadata
@@ -7135,7 +7135,7 @@ export namespace container_v1beta1 {
      *   const res = await container.projects.locations.clusters.nodePools.list({
      *     // Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      *     clusterId: 'placeholder-value',
-     *     // The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The parent (project, location, cluster name) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *     // Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
@@ -8045,7 +8045,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$Nodepools$Create
     extends StandardParameters {
     /**
-     * The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The parent (project, location, cluster name) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
 
@@ -8107,7 +8107,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The parent (project, location, cluster name) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
     /**
@@ -8216,7 +8216,7 @@ export namespace container_v1beta1 {
      *     (await container.projects.locations.clusters.well) -
      *     known.getOpenid -
      *     configuration({
-     *       // The cluster (project, location, cluster id) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
+     *       // The cluster (project, location, cluster name) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
      *       parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
      *     });
      *   console.log(res.data);
@@ -8336,7 +8336,7 @@ export namespace container_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration
     extends StandardParameters {
     /**
-     * The cluster (project, location, cluster id) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The cluster (project, location, cluster name) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
   }
@@ -12701,7 +12701,7 @@ export namespace container_v1beta1 {
      *   const res = await container.projects.zones.clusters.nodePools.list({
      *     // Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
      *     clusterId: 'placeholder-value',
-     *     // The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     // The parent (project, location, cluster name) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      *     parent: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
      *     projectId: 'placeholder-value',
@@ -13571,7 +13571,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string;
     /**
-     * The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
+     * The parent (project, location, cluster name) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string;
     /**
