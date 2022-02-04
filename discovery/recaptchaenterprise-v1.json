@@ -489,7 +489,7 @@
       }
     }
   },
-  "revision": "20211211",
+  "revision": "20220129",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -516,20 +516,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "recommendedAction": {
-          "description": "Recommended action after this request.",
-          "enum": [
-            "RECOMMENDED_ACTION_UNSPECIFIED",
-            "REQUEST_2FA",
-            "SKIP_2FA"
-          ],
-          "enumDescriptions": [
-            "Default unspecified type.",
-            "The customer should probably request 2FA to their user.",
-            "This is likely an already seen and safe request. 2FA can be skipped."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -681,6 +667,11 @@
       "properties": {
         "expectedAction": {
           "description": "Optional. The expected action for this type of event. This should be the same action provided at token generation time on client-side platforms already integrated with recaptcha enterprise.",
+          "type": "string"
+        },
+        "hashedAccountId": {
+          "description": "Optional. Optional unique stable hashed user identifier for the request. The identifier should ideally be hashed using sha256 with stable secret.",
+          "format": "byte",
           "type": "string"
         },
         "siteKey": {

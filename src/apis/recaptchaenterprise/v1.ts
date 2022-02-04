@@ -133,10 +133,6 @@ export namespace recaptchaenterprise_v1 {
      * Labels for this request.
      */
     labels?: string[] | null;
-    /**
-     * Recommended action after this request.
-     */
-    recommendedAction?: string | null;
   }
   /**
    * Settings specific to keys that can be used by Android apps.
@@ -223,6 +219,10 @@ export namespace recaptchaenterprise_v1 {
      * Optional. The expected action for this type of event. This should be the same action provided at token generation time on client-side platforms already integrated with recaptcha enterprise.
      */
     expectedAction?: string | null;
+    /**
+     * Optional. Optional unique stable hashed user identifier for the request. The identifier should ideally be hashed using sha256 with stable secret.
+     */
+    hashedAccountId?: string | null;
     /**
      * Optional. The site key that was used to invoke reCAPTCHA on your site and generate the token.
      */
