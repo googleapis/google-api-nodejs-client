@@ -1341,7 +1341,7 @@
       }
     }
   },
-  "revision": "20211220",
+  "revision": "20220201",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "CheckTransitiveMembershipResponse": {
@@ -2297,7 +2297,7 @@
         },
         "groupKey": {
           "$ref": "EntityKey",
-          "description": "Required. Immutable. The `EntityKey` of the `Group`."
+          "description": "Required. The `EntityKey` of the `Group`."
         },
         "labels": {
           "additionalProperties": {

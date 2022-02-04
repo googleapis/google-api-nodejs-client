@@ -1402,9 +1402,85 @@
           }
         }
       }
+    },
+    "orgUnits": {
+      "resources": {
+        "memberships": {
+          "methods": {
+            "list": {
+              "description": "List OrgMembership resources in an OrgUnit treated as 'parent'. Parent format: orgUnits/{$orgUnitId} where `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits)",
+              "flatPath": "v1beta1/orgUnits/{orgUnitsId}/memberships",
+              "httpMethod": "GET",
+              "id": "cloudidentity.orgUnits.memberships.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "customer": {
+                  "description": "Required. Immutable. Customer that this OrgMembership belongs to. All authorization will happen on the role assignments of this customer. Format: customers/{$customerId} where `$customerId` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may also use `customers/my_customer` to specify your own organization.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the `type` (e.g., `type == 'shared_drive'`).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of results to return. The service may return fewer than this value. If omitted (or defaulted to zero) the server will default to 50. The maximum allowed value is 100, though requests with page_size greater than that will be silently interpreted as 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `OrgMembershipsService.ListOrgMemberships` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOrgMembershipsRequest` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Immutable. OrgUnit which is queried for a list of memberships. Format: orgUnits/{$orgUnitId} where `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits).",
+                  "location": "path",
+                  "pattern": "^orgUnits/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/memberships",
+              "response": {
+                "$ref": "ListOrgMembershipsResponse"
+              }
+            },
+            "move": {
+              "description": "Move an OrgMembership to a new OrgUnit. NOTE: This is an atomic copy-and-delete. The resource will have a new copy under the destination OrgUnit and be deleted from the source OrgUnit. The resource can only be searched under the destination OrgUnit afterwards.",
+              "flatPath": "v1beta1/orgUnits/{orgUnitsId}/memberships/{membershipsId}:move",
+              "httpMethod": "POST",
+              "id": "cloudidentity.orgUnits.memberships.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Immutable. The [resource name](https://cloud.google.com/apis/design/resource_names) of the OrgMembership. Format: orgUnits/{$orgUnitId}/memberships/{$membership} The `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits), The `$membership` shall be of the form `{$entityType};{$memberId}`, where `$entityType` is the enum value of OrgMembership.EntityType, and `memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource) for OrgMembership.EntityType.SHARED_DRIVE.",
+                  "location": "path",
+                  "pattern": "^orgUnits/[^/]+/memberships/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:move",
+              "request": {
+                "$ref": "MoveOrgMembershipRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              }
+            }
+          }
+        }
+      }
     }
   },
-  "revision": "20211220",
+  "revision": "20220201",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -2873,7 +2949,7 @@
         },
         "groupKey": {
           "$ref": "EntityKey",
-          "description": "Required. Immutable. The `EntityKey` of the `Group`."
+          "description": "Required. The `EntityKey` of the `Group`."
         },
         "labels": {
           "additionalProperties": {
@@ -3053,6 +3129,24 @@
         "nextPageToken": {
           "description": "A continuation token to retrieve the next page of results, or empty if there are no more results available.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListOrgMembershipsResponse": {
+      "description": "The response message for OrgMembershipsService.ListOrgMemberships.",
+      "id": "ListOrgMembershipsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "orgMemberships": {
+          "description": "The non-vacuous membership in an orgUnit.",
+          "items": {
+            "$ref": "OrgMembership"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3338,6 +3432,21 @@
       },
       "type": "object"
     },
+    "MoveOrgMembershipRequest": {
+      "description": "The request message for OrgMembershipsService.MoveOrgMembership.",
+      "id": "MoveOrgMembershipRequest",
+      "properties": {
+        "customer": {
+          "description": "Required. Immutable. Customer on whose membership change is made. All authorization will happen on the role assignments of this customer. Format: customers/{$customerId} where `$customerId` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may also use `customers/my_customer` to specify your own organization.",
+          "type": "string"
+        },
+        "destinationOrgUnit": {
+          "description": "Required. Immutable. OrgUnit where the membership will be moved to. Format: orgUnits/{$orgUnitId} where `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -3369,6 +3478,37 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OrgMembership": {
+      "description": "A membership in an OrgUnit. An `OrgMembership` defines a relationship between an `OrgUnit` and an entity belonging to that `OrgUnit`, referred to as a \"member\".",
+      "id": "OrgMembership",
+      "properties": {
+        "member": {
+          "description": "Immutable. Org member id as full resource name. Format for shared drive resource: //drive.googleapis.com/drives/{$memberId} where `$memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource).",
+          "type": "string"
+        },
+        "memberUri": {
+          "description": "Uri with which you can read the member. This follows https://aip.dev/122 Format for shared drive resource: https://drive.googleapis.com/drive/v3/drives/{$memberId} where `$memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource).",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Immutable. The [resource name](https://cloud.google.com/apis/design/resource_names) of the OrgMembership. Format: orgUnits/{$orgUnitId}/memberships/{$membership} The `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits). The `$membership` shall be of the form `{$entityType};{$memberId}`, where `$entityType` is the enum value of [OrgMembership.EntityType], and `memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource) for OrgMembership.EntityType.SHARED_DRIVE.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Immutable. Entity type for the org member.",
+          "enum": [
+            "ENTITY_TYPE_UNSPECIFIED",
+            "SHARED_DRIVE"
+          ],
+          "enumDescriptions": [
+            "Equivalent to no resource type mentioned",
+            "Shared drive as resource type"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
