@@ -273,7 +273,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string | null;
     /**
-     * The VPC network associated with this hub's spokes. All of the VPN tunnels, VLAN attachments, and router appliance instances referenced by this hub's spokes must belong to this VPC network. This field is read-only. Network Connectivity Center automatically populates it based on the set of spokes attached to the hub.
+     * The VPC networks associated with this hub's spokes. This field is read-only. Network Connectivity Center automatically populates it based on the set of spokes attached to the hub.
      */
     routingVpcs?: Schema$RoutingVPC[];
     /**
@@ -294,7 +294,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedInterconnectAttachments {
     /**
-     * A value that controls whether site-to-site data transfer is enabled for these resources. This field is set to false by default, but you must set it to true. Note that data transfer is available only in supported locations.
+     * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
     siteToSiteDataTransfer?: boolean | null;
     /**
@@ -311,7 +311,7 @@ export namespace networkconnectivity_v1 {
      */
     instances?: Schema$RouterApplianceInstance[];
     /**
-     * A value that controls whether site-to-site data transfer is enabled for these resources. This field is set to false by default, but you must set it to true. Note that data transfer is available only in supported locations.
+     * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
     siteToSiteDataTransfer?: boolean | null;
   }
@@ -320,7 +320,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedVpnTunnels {
     /**
-     * A value that controls whether site-to-site data transfer is enabled for these resources. This field is set to false by default, but you must set it to true. Note that data transfer is available only in supported locations.
+     * A value that controls whether site-to-site data transfer is enabled for these resources. Data transfer is available only in [supported locations](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/locations).
      */
     siteToSiteDataTransfer?: boolean | null;
     /**
@@ -477,11 +477,11 @@ export namespace networkconnectivity_v1 {
     virtualMachine?: string | null;
   }
   /**
-   * RoutingVPC contains information about the VPC network that is associated with a hub's spokes.
+   * RoutingVPC contains information about the VPC networks that are associated with a hub's spokes.
    */
   export interface Schema$RoutingVPC {
     /**
-     * Output only. If true, indicates that this VPC network is currently associated with spokes that use the data transfer feature (spokes where the site_to_site_data_transfer field is set to true). If you create new spokes that use data transfer, they must be associated with this VPC network.
+     * Output only. If true, indicates that this VPC network is currently associated with spokes that use the data transfer feature (spokes where the site_to_site_data_transfer field is set to true). If you create new spokes that use data transfer, they must be associated with this VPC network. At most, one VPC network will have this field set to true.
      */
     requiredForNewSiteToSiteDataTransferSpokes?: boolean | null;
     /**
