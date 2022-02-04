@@ -2571,7 +2571,7 @@
       }
     }
   },
-  "revision": "20211213",
+  "revision": "20220124",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -4276,7 +4276,7 @@
       "type": "object"
     },
     "MonitoredResource": {
-      "description": "An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for \"gce_instance\" has labels \"instance_id\" and \"zone\": { \"type\": \"gce_instance\", \"labels\": { \"instance_id\": \"12345678901234\", \"zone\": \"us-central1-a\" }} ",
+      "description": "An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for \"gce_instance\" has labels \"project_id\", \"instance_id\" and \"zone\": { \"type\": \"gce_instance\", \"labels\": { \"project_id\": \"my-project\", \"instance_id\": \"12345678901234\", \"zone\": \"us-central1-a\" }} ",
       "id": "MonitoredResource",
       "properties": {
         "labels": {
@@ -5218,6 +5218,20 @@
       "description": "This message configures which resources and services to monitor for availability.",
       "id": "UptimeCheckConfig",
       "properties": {
+        "checkerType": {
+          "description": "The type of checkers to use to execute the Uptime check.",
+          "enum": [
+            "CHECKER_TYPE_UNSPECIFIED",
+            "STATIC_IP_CHECKERS",
+            "VPC_CHECKERS"
+          ],
+          "enumDescriptions": [
+            "The default checker type. Currently converted to STATIC_IP_CHECKERS on creation, the default conversion behavior may change in the future.",
+            "STATIC_IP_CHECKERS are used for uptime checks that perform egress across the public internet. STATIC_IP_CHECKERS use the static IP addresses returned by ListUptimeCheckIps.",
+            "VPC_CHECKERS are used for uptime checks that perform egress using Service Directory and private network access. When using VPC_CHECKERS, the monitored resource type must be servicedirectory_service."
+          ],
+          "type": "string"
+        },
         "contentMatchers": {
           "description": "The content that is expected to appear in the data returned by the target server against which the check is run. Currently, only the first entry in the content_matchers list is supported, and additional entries will be ignored. This field is optional and should only be specified if a content match is required as part of the/ Uptime check.",
           "items": {

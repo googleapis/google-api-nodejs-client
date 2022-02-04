@@ -1249,7 +1249,7 @@ export namespace monitoring_v3 {
     trigger?: Schema$Trigger;
   }
   /**
-   * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for "gce_instance" has labels "instance_id" and "zone": { "type": "gce_instance", "labels": { "instance_id": "12345678901234", "zone": "us-central1-a" \}\}
+   * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for "gce_instance" has labels "project_id", "instance_id" and "zone": { "type": "gce_instance", "labels": { "project_id": "my-project", "instance_id": "12345678901234", "zone": "us-central1-a" \}\}
    */
   export interface Schema$MonitoredResource {
     /**
@@ -1882,6 +1882,10 @@ export namespace monitoring_v3 {
    * This message configures which resources and services to monitor for availability.
    */
   export interface Schema$UptimeCheckConfig {
+    /**
+     * The type of checkers to use to execute the Uptime check.
+     */
+    checkerType?: string | null;
     /**
      * The content that is expected to appear in the data returned by the target server against which the check is run. Currently, only the first entry in the content_matchers list is supported, and additional entries will be ignored. This field is optional and should only be specified if a content match is required as part of the/ Uptime check.
      */
@@ -7843,6 +7847,7 @@ export namespace monitoring_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "checkerType": "my_checkerType",
      *       //   "contentMatchers": [],
      *       //   "displayName": "my_displayName",
      *       //   "httpCheck": {},
@@ -7862,6 +7867,7 @@ export namespace monitoring_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "checkerType": "my_checkerType",
      *   //   "contentMatchers": [],
      *   //   "displayName": "my_displayName",
      *   //   "httpCheck": {},
@@ -8136,6 +8142,7 @@ export namespace monitoring_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "checkerType": "my_checkerType",
      *   //   "contentMatchers": [],
      *   //   "displayName": "my_displayName",
      *   //   "httpCheck": {},
@@ -8429,6 +8436,7 @@ export namespace monitoring_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "checkerType": "my_checkerType",
      *       //   "contentMatchers": [],
      *       //   "displayName": "my_displayName",
      *       //   "httpCheck": {},
@@ -8448,6 +8456,7 @@ export namespace monitoring_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "checkerType": "my_checkerType",
      *   //   "contentMatchers": [],
      *   //   "displayName": "my_displayName",
      *   //   "httpCheck": {},

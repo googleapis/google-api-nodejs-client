@@ -397,7 +397,7 @@ export namespace monitoring_v1 {
      */
     filter?: string | null;
     /**
-     * The names of logging resources to collect logs for. Does not implicitly include the current host project. Currently only projects are supported. There must be at least one resource_name.
+     * The names of logging resources to collect logs for. Currently only projects are supported. If empty, the widget will default to the host project.
      */
     resourceNames?: string[] | null;
   }
