@@ -485,11 +485,19 @@ export namespace secretmanager_v1 {
      * The secret data. Must be no larger than 64KiB.
      */
     data?: string | null;
+    /**
+     * Optional. If specified, SecretManagerService will verify the integrity of the received data on SecretManagerService.AddSecretVersion calls using the crc32c checksum and store it to include in future SecretManagerService.AccessSecretVersion responses. If a checksum is not provided in the SecretManagerService.AddSecretVersion request, the SecretManagerService will generate and store one for you. The CRC32C value is encoded as a Int64 for compatibility, and can be safely downconverted to uint32 in languages that support this type. https://cloud.google.com/apis/design/design_patterns#integer_types
+     */
+    dataCrc32c?: string | null;
   }
   /**
    * A secret version resource in the Secret Manager API.
    */
   export interface Schema$SecretVersion {
+    /**
+     * Output only. True if payload checksum specified in SecretPayload object has been received by SecretManagerService on SecretManagerService.AddSecretVersion.
+     */
+    clientSpecifiedPayloadChecksum?: boolean | null;
     /**
      * Output only. The time at which the SecretVersion was created.
      */
@@ -942,6 +950,7 @@ export namespace secretmanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "etag": "my_etag",
@@ -2478,6 +2487,7 @@ export namespace secretmanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "etag": "my_etag",
@@ -2621,6 +2631,7 @@ export namespace secretmanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "etag": "my_etag",
@@ -2764,6 +2775,7 @@ export namespace secretmanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "etag": "my_etag",
@@ -2896,6 +2908,7 @@ export namespace secretmanager_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientSpecifiedPayloadChecksum": false,
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
      *   //   "etag": "my_etag",
