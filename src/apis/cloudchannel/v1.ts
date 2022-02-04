@@ -324,7 +324,7 @@ export namespace cloudchannel_v1 {
      */
     productId?: string | null;
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the underlying Subscription ID.
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the underlying Subscription ID. For Google Cloud Platform, this would be the Billing Account ID of the billing subaccount."
      */
     provisioningId?: string | null;
     /**
@@ -1358,7 +1358,7 @@ export namespace cloudchannel_v1 {
      */
     productId?: string | null;
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the underlying Subscription ID.
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the underlying Subscription ID. For Google Cloud Platform, this would be the Billing Account ID of the billing subaccount."
      */
     provisioningId?: string | null;
     /**
