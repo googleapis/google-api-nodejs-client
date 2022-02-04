@@ -491,10 +491,6 @@ export namespace firestore_v1 {
      */
     concurrencyMode?: string | null;
     /**
-     * Output only. The earliest timestamp at which older versions of the data can be read from the database. See [version_retention_period] above; this field is populated with `now - version_retention_period`. This value is continuously updated, and becomes stale the moment it is queried. If you are using this value to recover data, make sure to account for the time from the moment when the value is queried to the moment when you initiate the recovery. Note that you should not need to query this field: if you know the `version_retention_period` then you can query within that time.
-     */
-    earliestVersionTime?: string | null;
-    /**
      * This checksum is computed by the server based on the value of other fields, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
@@ -811,6 +807,10 @@ export namespace firestore_v1 {
      */
     estimatedWork?: string | null;
   }
+  /**
+   * Metadata related to the update database operation.
+   */
+  export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
   /**
    * The request message for Operations.CancelOperation.
    */
@@ -1630,7 +1630,6 @@ export namespace firestore_v1 {
      *   // Example response
      *   // {
      *   //   "concurrencyMode": "my_concurrencyMode",
-     *   //   "earliestVersionTime": "my_earliestVersionTime",
      *   //   "etag": "my_etag",
      *   //   "locationId": "my_locationId",
      *   //   "name": "my_name",
@@ -2068,7 +2067,6 @@ export namespace firestore_v1 {
      *       // request body parameters
      *       // {
      *       //   "concurrencyMode": "my_concurrencyMode",
-     *       //   "earliestVersionTime": "my_earliestVersionTime",
      *       //   "etag": "my_etag",
      *       //   "locationId": "my_locationId",
      *       //   "name": "my_name",

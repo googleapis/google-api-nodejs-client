@@ -417,6 +417,10 @@ export namespace firestore_v1beta2 {
     estimatedWork?: string | null;
   }
   /**
+   * Metadata related to the update database operation.
+   */
+  export interface Schema$GoogleFirestoreAdminV1UpdateDatabaseMetadata {}
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$GoogleLongrunningOperation {
