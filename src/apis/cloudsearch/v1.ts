@@ -990,7 +990,7 @@ export namespace cloudsearch_v1 {
      */
     searchQualityMetadata?: Schema$SearchQualityMetadata;
     /**
-     * Link to the source repository serving the data. Search results apply this link to the title. Whitespace or special characters may cause Cloud Search result links to trigger a redirect notice; to avoid this, encode the URL. The maximum length is 2048 characters.
+     * Link to the source repository serving the data. Seach results apply this link to the title. Whitespace or special characters may cause Cloud Seach result links to trigger a redirect notice; to avoid this, encode the URL. The maximum length is 2048 characters.
      */
     sourceRepositoryUrl?: string | null;
     /**
@@ -2306,7 +2306,7 @@ export namespace cloudsearch_v1 {
     validateOnly?: boolean | null;
   }
   /**
-   * Represents an upload session reference. This reference is created via upload method. Updating of item content may refer to this uploaded content via contentDataRef.
+   * Represents an upload session reference. This reference is created via upload method. This reference is valid for 30 days after its creation. Updating of item content may refer to this uploaded content via contentDataRef.
    */
   export interface Schema$UploadItemRef {
     /**
