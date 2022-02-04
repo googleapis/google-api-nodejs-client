@@ -273,6 +273,10 @@ export namespace classroom_v1 {
      */
     enrollmentCode?: string | null;
     /**
+     * The gradebook settings that specify how a student's overall grade for the course will be calculated and who it will be displayed to. Read-only
+     */
+    gradebookSettings?: Schema$GradebookSettings;
+    /**
      * Whether or not guardian notifications are enabled for this course. Read-only.
      */
     guardiansEnabled?: boolean | null;
@@ -406,6 +410,10 @@ export namespace classroom_v1 {
      */
     dueTime?: Schema$TimeOfDay;
     /**
+     * The category that this coursework's grade contributes to. Present only when a category has been chosen for the coursework. May be used in calculating the overall grade. Read-only.
+     */
+    gradeCategory?: Schema$GradeCategory;
+    /**
      * Classroom-assigned identifier of this course work, unique per course. Read-only.
      */
     id?: string | null;
@@ -525,7 +533,7 @@ export namespace classroom_v1 {
     updateTime?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -629,6 +637,44 @@ export namespace classroom_v1 {
      * Permission value.
      */
     permission?: string | null;
+  }
+  /**
+   * The gradebook settings for a course. See the [help center article](https://support.google.com/edu/classroom/answer/9184995) for details.
+   */
+  export interface Schema$GradebookSettings {
+    /**
+     * Indicates how the overall grade is calculated.
+     */
+    calculationType?: string | null;
+    /**
+     * Indicates who can see the overall grade..
+     */
+    displaySetting?: string | null;
+    /**
+     * Grade categories that are available for coursework in the course.
+     */
+    gradeCategories?: Schema$GradeCategory[];
+  }
+  /**
+   * Details for a grade category in a course. Coursework may have zero or one grade category, and the category may be used in computing the overall grade. See the [help center article](https://support.google.com/edu/classroom/answer/9184995) for details.
+   */
+  export interface Schema$GradeCategory {
+    /**
+     * Default value of denominator. Only applicable when grade calculation type is TOTAL_POINTS.
+     */
+    defaultGradeDenominator?: number | null;
+    /**
+     * ID of the grade category.
+     */
+    id?: string | null;
+    /**
+     * Name of the grade category.
+     */
+    name?: string | null;
+    /**
+     * The weight of the category average as part of overall average. A weight of 12.34% is represented as 123400 (100% is 1,000,000). The last two digits should always be zero since we use two decimal precision. Only applicable when grade calculation type is WEIGHTED_CATEGORIES.
+     */
+    weight?: number | null;
   }
   /**
    * The history of each grade on this submission.
@@ -1359,6 +1405,7 @@ export namespace classroom_v1 {
      *       //   "description": "my_description",
      *       //   "descriptionHeading": "my_descriptionHeading",
      *       //   "enrollmentCode": "my_enrollmentCode",
+     *       //   "gradebookSettings": {},
      *       //   "guardiansEnabled": false,
      *       //   "id": "my_id",
      *       //   "name": "my_name",
@@ -1384,6 +1431,7 @@ export namespace classroom_v1 {
      *   //   "description": "my_description",
      *   //   "descriptionHeading": "my_descriptionHeading",
      *   //   "enrollmentCode": "my_enrollmentCode",
+     *   //   "gradebookSettings": {},
      *   //   "guardiansEnabled": false,
      *   //   "id": "my_id",
      *   //   "name": "my_name",
@@ -1652,6 +1700,7 @@ export namespace classroom_v1 {
      *   //   "description": "my_description",
      *   //   "descriptionHeading": "my_descriptionHeading",
      *   //   "enrollmentCode": "my_enrollmentCode",
+     *   //   "gradebookSettings": {},
      *   //   "guardiansEnabled": false,
      *   //   "id": "my_id",
      *   //   "name": "my_name",
@@ -1936,6 +1985,7 @@ export namespace classroom_v1 {
      *       //   "description": "my_description",
      *       //   "descriptionHeading": "my_descriptionHeading",
      *       //   "enrollmentCode": "my_enrollmentCode",
+     *       //   "gradebookSettings": {},
      *       //   "guardiansEnabled": false,
      *       //   "id": "my_id",
      *       //   "name": "my_name",
@@ -1961,6 +2011,7 @@ export namespace classroom_v1 {
      *   //   "description": "my_description",
      *   //   "descriptionHeading": "my_descriptionHeading",
      *   //   "enrollmentCode": "my_enrollmentCode",
+     *   //   "gradebookSettings": {},
      *   //   "guardiansEnabled": false,
      *   //   "id": "my_id",
      *   //   "name": "my_name",
@@ -2103,6 +2154,7 @@ export namespace classroom_v1 {
      *       //   "description": "my_description",
      *       //   "descriptionHeading": "my_descriptionHeading",
      *       //   "enrollmentCode": "my_enrollmentCode",
+     *       //   "gradebookSettings": {},
      *       //   "guardiansEnabled": false,
      *       //   "id": "my_id",
      *       //   "name": "my_name",
@@ -2128,6 +2180,7 @@ export namespace classroom_v1 {
      *   //   "description": "my_description",
      *   //   "descriptionHeading": "my_descriptionHeading",
      *   //   "enrollmentCode": "my_enrollmentCode",
+     *   //   "gradebookSettings": {},
      *   //   "guardiansEnabled": false,
      *   //   "id": "my_id",
      *   //   "name": "my_name",
@@ -3797,6 +3850,7 @@ export namespace classroom_v1 {
      *       //   "description": "my_description",
      *       //   "dueDate": {},
      *       //   "dueTime": {},
+     *       //   "gradeCategory": {},
      *       //   "id": "my_id",
      *       //   "individualStudentsOptions": {},
      *       //   "materials": [],
@@ -3826,6 +3880,7 @@ export namespace classroom_v1 {
      *   //   "description": "my_description",
      *   //   "dueDate": {},
      *   //   "dueTime": {},
+     *   //   "gradeCategory": {},
      *   //   "id": "my_id",
      *   //   "individualStudentsOptions": {},
      *   //   "materials": [],
@@ -4112,6 +4167,7 @@ export namespace classroom_v1 {
      *   //   "description": "my_description",
      *   //   "dueDate": {},
      *   //   "dueTime": {},
+     *   //   "gradeCategory": {},
      *   //   "id": "my_id",
      *   //   "individualStudentsOptions": {},
      *   //   "materials": [],
@@ -4421,6 +4477,7 @@ export namespace classroom_v1 {
      *   //   "description": "my_description",
      *   //   "dueDate": {},
      *   //   "dueTime": {},
+     *   //   "gradeCategory": {},
      *   //   "id": "my_id",
      *   //   "individualStudentsOptions": {},
      *   //   "materials": [],
@@ -4574,6 +4631,7 @@ export namespace classroom_v1 {
      *       //   "description": "my_description",
      *       //   "dueDate": {},
      *       //   "dueTime": {},
+     *       //   "gradeCategory": {},
      *       //   "id": "my_id",
      *       //   "individualStudentsOptions": {},
      *       //   "materials": [],
@@ -4603,6 +4661,7 @@ export namespace classroom_v1 {
      *   //   "description": "my_description",
      *   //   "dueDate": {},
      *   //   "dueTime": {},
+     *   //   "gradeCategory": {},
      *   //   "id": "my_id",
      *   //   "individualStudentsOptions": {},
      *   //   "materials": [],
