@@ -233,6 +233,9 @@ export namespace datastream_v1alpha1 {
      * Required. Destination connection profile identifier.
      */
     destinationConnectionProfileName?: string | null;
+    /**
+     * GCS destination configuration.
+     */
     gcsDestinationConfig?: Schema$GcsDestinationConfig;
   }
   /**
@@ -583,11 +586,11 @@ export namespace datastream_v1alpha1 {
    */
   export interface Schema$MysqlObjectIdentifier {
     /**
-     * The database name.
+     * Required. The database name.
      */
     database?: string | null;
     /**
-     * The table name.
+     * Required. The table name.
      */
     table?: string | null;
   }
@@ -792,11 +795,11 @@ export namespace datastream_v1alpha1 {
    */
   export interface Schema$OracleObjectIdentifier {
     /**
-     * The schema name.
+     * Required. The schema name.
      */
     schema?: string | null;
     /**
-     * The table name.
+     * Required. The table name.
      */
     table?: string | null;
   }
@@ -1195,7 +1198,7 @@ export namespace datastream_v1alpha1 {
     }
 
     /**
-     * The FetchStaticIps API call exposes the static ips used by Datastream. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.
+     * The FetchStaticIps API call exposes the static IP addresses used by Datastream.
      * @example
      * ```js
      * // Before running the sample:

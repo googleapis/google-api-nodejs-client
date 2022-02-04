@@ -110,7 +110,7 @@
         "locations": {
           "methods": {
             "fetchStaticIps": {
-              "description": "The FetchStaticIps API call exposes the static ips used by Datastream. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.",
+              "description": "The FetchStaticIps API call exposes the static IP addresses used by Datastream.",
               "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}:fetchStaticIps",
               "httpMethod": "GET",
               "id": "datastream.projects.locations.fetchStaticIps",
@@ -1196,7 +1196,7 @@
       }
     }
   },
-  "revision": "20211110",
+  "revision": "20220117",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1368,7 +1368,8 @@
           "type": "string"
         },
         "gcsDestinationConfig": {
-          "$ref": "GcsDestinationConfig"
+          "$ref": "GcsDestinationConfig",
+          "description": "GCS destination configuration."
         }
       },
       "type": "object"
@@ -1858,11 +1859,11 @@
       "id": "MysqlObjectIdentifier",
       "properties": {
         "database": {
-          "description": "The database name.",
+          "description": "Required. The database name.",
           "type": "string"
         },
         "table": {
-          "description": "The table name.",
+          "description": "Required. The table name.",
           "type": "string"
         }
       },
@@ -2119,11 +2120,11 @@
       "id": "OracleObjectIdentifier",
       "properties": {
         "schema": {
-          "description": "The schema name.",
+          "description": "Required. The schema name.",
           "type": "string"
         },
         "table": {
-          "description": "The table name.",
+          "description": "Required. The table name.",
           "type": "string"
         }
       },
@@ -2273,7 +2274,7 @@
           "enumDescriptions": [
             "",
             "The private connection is in creation state - creating resources.",
-            "The private connection has been created with all of it's resources.",
+            "The private connection has been created with all of its resources.",
             "The private connection creation has failed.",
             "The private connection is being deleted.",
             "Delete request has failed, resource is in invalid state."
