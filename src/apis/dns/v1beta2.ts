@@ -694,6 +694,10 @@ export namespace dns_v1beta2 {
      */
     networksPerPolicy?: number | null;
     /**
+     * Maximum allowed number of consumer peering zones per target network owned by this producer project
+     */
+    peeringZonesPerTargetNetwork?: number | null;
+    /**
      * Maximum allowed number of policies per project.
      */
     policies?: number | null;
@@ -904,6 +908,9 @@ export namespace dns_v1beta2 {
     wrr?: Schema$RRSetRoutingPolicyWrrPolicy;
     wrrPolicy?: Schema$RRSetRoutingPolicyWrrPolicy;
   }
+  /**
+   * Configures a RRSetRoutingPolicy that routes based on the geo location of the querying user.
+   */
   export interface Schema$RRSetRoutingPolicyGeoPolicy {
     /**
      * The primary geo routing configuration. If there are multiple items with the same location, an error is returned instead.
@@ -911,6 +918,9 @@ export namespace dns_v1beta2 {
     items?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
     kind?: string | null;
   }
+  /**
+   * ResourceRecordSet data for one geo location.
+   */
   export interface Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem {
     kind?: string | null;
     /**
@@ -919,19 +929,25 @@ export namespace dns_v1beta2 {
     location?: string | null;
     rrdatas?: string[] | null;
     /**
-     * DNSSEC generated signatures for the above geo_rrdata.
+     * DNSSEC generated signatures for all the rrdata within this item. Note that if health checked targets are provided for DNSSEC enabled zones, there's a restriction of 1 ip per item. .
      */
     signatureRrdatas?: string[] | null;
   }
+  /**
+   * Configures a RRSetRoutingPolicy that routes in a weighted round robin fashion.
+   */
   export interface Schema$RRSetRoutingPolicyWrrPolicy {
     items?: Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem[];
     kind?: string | null;
   }
+  /**
+   * A routing block which contains the routing information for one WRR item.
+   */
   export interface Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem {
     kind?: string | null;
     rrdatas?: string[] | null;
     /**
-     * DNSSEC generated signatures for the above wrr_rrdata.
+     * DNSSEC generated signatures for all the rrdata within this item. Note that if health checked targets are provided for DNSSEC enabled zones, there's a restriction of 1 ip per item. .
      */
     signatureRrdatas?: string[] | null;
     /**
