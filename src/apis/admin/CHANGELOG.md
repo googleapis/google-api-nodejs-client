@@ -1,5 +1,12 @@
 # Changelog
 
+### [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v5.0.0...admin-v5.0.1) (2022-02-04)
+
+
+### Bug Fixes
+
+* **admin:** update the API ([f82a927](https://github.com/googleapis/google-api-nodejs-client/commit/f82a9276ea7b3c668830aa4111c5bea9bc5002d7))
+
 ## [5.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/admin-v4.2.1...admin-v5.0.0) (2021-12-30)
 
 

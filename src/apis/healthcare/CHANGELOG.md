@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.7.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v3.6.0...healthcare-v3.7.0) (2022-02-04)
+
+
+### Features
+
+* **healthcare:** update the API ([e45ad7a](https://github.com/googleapis/google-api-nodejs-client/commit/e45ad7adfe8815ee557af4c83ba03e595a30a1bf))
+
 ## [3.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/healthcare-v3.5.0...healthcare-v3.6.0) (2022-01-17)
 
 

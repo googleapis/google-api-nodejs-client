@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/people-v1.0.0...people-v1.0.1) (2022-02-04)
+
+
+### Bug Fixes
+
+* **people:** update the API ([29c530f](https://github.com/googleapis/google-api-nodejs-client/commit/29c530f5a84bef70a833595544415982f62964d4))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/people-v0.5.0...people-v1.0.0) (2021-09-14)
 
 

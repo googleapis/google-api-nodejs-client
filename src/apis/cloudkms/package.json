@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudkms",
-  "version": "3.2.1",
+  "version": "3.3.0",
   "description": "cloudkms",
   "main": "build/index.js",
   "types": "build/index.d.ts",
