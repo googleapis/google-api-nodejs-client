@@ -194,14 +194,6 @@ export namespace sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalDeployment {
     /**
-     * The allowed billing modes under this deployment.
-     */
-    allowedBillingModes?: string[] | null;
-    /**
-     * Default billing mode for the deployment and devices under it.
-     */
-    defaultBillingMode?: string | null;
-    /**
      * The deployment's display name.
      */
     displayName?: string | null;
@@ -1247,8 +1239,6 @@ export namespace sasportal_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "allowedBillingModes": [],
-     *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
      *       //   "frns": [],
      *       //   "name": "my_name",
@@ -1260,8 +1250,6 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Example response
      *   // {
-     *   //   "allowedBillingModes": [],
-     *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
      *   //   "frns": [],
      *   //   "name": "my_name",
@@ -1521,8 +1509,6 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Example response
      *   // {
-     *   //   "allowedBillingModes": [],
-     *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
      *   //   "frns": [],
      *   //   "name": "my_name",
@@ -1946,8 +1932,6 @@ export namespace sasportal_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "allowedBillingModes": [],
-     *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
      *       //   "frns": [],
      *       //   "name": "my_name",
@@ -1959,8 +1943,6 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Example response
      *   // {
-     *   //   "allowedBillingModes": [],
-     *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
      *   //   "frns": [],
      *   //   "name": "my_name",
@@ -4993,8 +4975,6 @@ export namespace sasportal_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "allowedBillingModes": [],
-     *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
      *       //   "frns": [],
      *       //   "name": "my_name",
@@ -5006,8 +4986,6 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Example response
      *   // {
-     *   //   "allowedBillingModes": [],
-     *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
      *   //   "frns": [],
      *   //   "name": "my_name",
@@ -6153,8 +6131,6 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Example response
      *   // {
-     *   //   "allowedBillingModes": [],
-     *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
      *   //   "frns": [],
      *   //   "name": "my_name",
@@ -7796,8 +7772,6 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Example response
      *   // {
-     *   //   "allowedBillingModes": [],
-     *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
      *   //   "frns": [],
      *   //   "name": "my_name",
@@ -8221,8 +8195,6 @@ export namespace sasportal_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "allowedBillingModes": [],
-     *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
      *       //   "frns": [],
      *       //   "name": "my_name",
@@ -8234,8 +8206,6 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Example response
      *   // {
-     *   //   "allowedBillingModes": [],
-     *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
      *   //   "frns": [],
      *   //   "name": "my_name",
@@ -11249,8 +11219,6 @@ export namespace sasportal_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "allowedBillingModes": [],
-     *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
      *       //   "frns": [],
      *       //   "name": "my_name",
@@ -11262,8 +11230,6 @@ export namespace sasportal_v1alpha1 {
      *
      *   // Example response
      *   // {
-     *   //   "allowedBillingModes": [],
-     *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
      *   //   "frns": [],
      *   //   "name": "my_name",
