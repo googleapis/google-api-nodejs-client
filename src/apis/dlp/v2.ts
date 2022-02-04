@@ -1279,7 +1279,7 @@ export namespace dlp_v2 {
     triggerName?: string | null;
   }
   /**
-   * Configuration to control the number of findings returned. Cannot be set if de-identification is requested.
+   * Configuration to control the number of findings returned for inspection. This is not used for de-identification or data profiling.
    */
   export interface Schema$GooglePrivacyDlpV2FindingLimits {
     /**
@@ -1544,7 +1544,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2InspectConfig {
     /**
-     * List of options defining data content to scan. If empty, text, images, and other content will be included.
+     * Deprecated and unused.
      */
     contentOptions?: string[] | null;
     /**
@@ -1552,11 +1552,11 @@ export namespace dlp_v2 {
      */
     customInfoTypes?: Schema$GooglePrivacyDlpV2CustomInfoType[];
     /**
-     * When true, excludes type information of the findings.
+     * When true, excludes type information of the findings. This is not used for data profiling.
      */
     excludeInfoTypes?: boolean | null;
     /**
-     * When true, a contextual quote from the data that triggered a finding is included in the response; see Finding.quote.
+     * When true, a contextual quote from the data that triggered a finding is included in the response; see Finding.quote. This is not used for data profiling.
      */
     includeQuote?: boolean | null;
     /**
@@ -1564,7 +1564,7 @@ export namespace dlp_v2 {
      */
     infoTypes?: Schema$GooglePrivacyDlpV2InfoType[];
     /**
-     * Configuration to control the number of findings returned.
+     * Configuration to control the number of findings returned. This is not used for data profiling.
      */
     limits?: Schema$GooglePrivacyDlpV2FindingLimits;
     /**
