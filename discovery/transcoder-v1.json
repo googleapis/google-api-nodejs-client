@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20211108",
+  "revision": "20220201",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -1503,7 +1503,7 @@
           "type": "integer"
         },
         "crfLevel": {
-          "description": "Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21.",
+          "description": "Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21. *Note*: This field is not supported. ",
           "format": "int32",
           "type": "integer"
         },
@@ -1536,7 +1536,7 @@
           "type": "string"
         },
         "rateControlMode": {
-          "description": "Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor",
+          "description": "Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate",
           "type": "string"
         },
         "widthPixels": {
