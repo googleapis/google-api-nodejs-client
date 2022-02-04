@@ -724,7 +724,7 @@ export namespace cloudidentity_v1 {
      */
     dynamicGroupMetadata?: Schema$DynamicGroupMetadata;
     /**
-     * Required. Immutable. The `EntityKey` of the `Group`.
+     * Required. The `EntityKey` of the `Group`.
      */
     groupKey?: Schema$EntityKey;
     /**

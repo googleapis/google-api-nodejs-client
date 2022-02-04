@@ -116,6 +116,7 @@ export namespace cloudidentity_v1beta1 {
     customers: Resource$Customers;
     devices: Resource$Devices;
     groups: Resource$Groups;
+    orgUnits: Resource$Orgunits;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -126,6 +127,7 @@ export namespace cloudidentity_v1beta1 {
       this.customers = new Resource$Customers(this.context);
       this.devices = new Resource$Devices(this.context);
       this.groups = new Resource$Groups(this.context);
+      this.orgUnits = new Resource$Orgunits(this.context);
     }
   }
 
@@ -999,7 +1001,7 @@ export namespace cloudidentity_v1beta1 {
      */
     dynamicGroupMetadata?: Schema$DynamicGroupMetadata;
     /**
-     * Required. Immutable. The `EntityKey` of the `Group`.
+     * Required. The `EntityKey` of the `Group`.
      */
     groupKey?: Schema$EntityKey;
     /**
@@ -1125,6 +1127,19 @@ export namespace cloudidentity_v1beta1 {
      * A continuation token to retrieve the next page of results, or empty if there are no more results available.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * The response message for OrgMembershipsService.ListOrgMemberships.
+   */
+  export interface Schema$ListOrgMembershipsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The non-vacuous membership in an orgUnit.
+     */
+    orgMemberships?: Schema$OrgMembership[];
   }
   /**
    * Response message for UserInvitation listing request.
@@ -1307,6 +1322,19 @@ export namespace cloudidentity_v1beta1 {
     membership?: Schema$Membership;
   }
   /**
+   * The request message for OrgMembershipsService.MoveOrgMembership.
+   */
+  export interface Schema$MoveOrgMembershipRequest {
+    /**
+     * Required. Immutable. Customer on whose membership change is made. All authorization will happen on the role assignments of this customer. Format: customers/{$customerId\} where `$customerId` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may also use `customers/my_customer` to specify your own organization.
+     */
+    customer?: string | null;
+    /**
+     * Required. Immutable. OrgUnit where the membership will be moved to. Format: orgUnits/{$orgUnitId\} where `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits).
+     */
+    destinationOrgUnit?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1330,6 +1358,27 @@ export namespace cloudidentity_v1beta1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * A membership in an OrgUnit. An `OrgMembership` defines a relationship between an `OrgUnit` and an entity belonging to that `OrgUnit`, referred to as a "member".
+   */
+  export interface Schema$OrgMembership {
+    /**
+     * Immutable. Org member id as full resource name. Format for shared drive resource: //drive.googleapis.com/drives/{$memberId\} where `$memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource).
+     */
+    member?: string | null;
+    /**
+     * Uri with which you can read the member. This follows https://aip.dev/122 Format for shared drive resource: https://drive.googleapis.com/drive/v3/drives/{$memberId\} where `$memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource).
+     */
+    memberUri?: string | null;
+    /**
+     * Required. Immutable. The [resource name](https://cloud.google.com/apis/design/resource_names) of the OrgMembership. Format: orgUnits/{$orgUnitId\}/memberships/{$membership\} The `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits). The `$membership` shall be of the form `{$entityType\};{$memberId\}`, where `$entityType` is the enum value of [OrgMembership.EntityType], and `memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource) for OrgMembership.EntityType.SHARED_DRIVE.
+     */
+    name?: string | null;
+    /**
+     * Immutable. Entity type for the org member.
+     */
+    type?: string | null;
   }
   /**
    * POSIX Group definition to represent a group in a POSIX compliant system.
@@ -7779,5 +7828,346 @@ export namespace cloudidentity_v1beta1 {
      * [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is the unique ID assigned to the Group.
      */
     parent?: string;
+  }
+
+  export class Resource$Orgunits {
+    context: APIRequestContext;
+    memberships: Resource$Orgunits$Memberships;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.memberships = new Resource$Orgunits$Memberships(this.context);
+    }
+  }
+
+  export class Resource$Orgunits$Memberships {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List OrgMembership resources in an OrgUnit treated as 'parent'. Parent format: orgUnits/{$orgUnitId\} where `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits)
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.orgUnits.memberships.list({
+     *     // Required. Immutable. Customer that this OrgMembership belongs to. All authorization will happen on the role assignments of this customer. Format: customers/{$customerId\} where `$customerId` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may also use `customers/my_customer` to specify your own organization.
+     *     customer: 'placeholder-value',
+     *     // The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the `type` (e.g., `type == 'shared_drive'`).
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return. The service may return fewer than this value. If omitted (or defaulted to zero) the server will default to 50. The maximum allowed value is 100, though requests with page_size greater than that will be silently interpreted as 100.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `OrgMembershipsService.ListOrgMemberships` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOrgMembershipsRequest` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Immutable. OrgUnit which is queried for a list of memberships. Format: orgUnits/{$orgUnitId\} where `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits).
+     *     parent: 'orgUnits/my-orgUnit',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "orgMemberships": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Orgunits$Memberships$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Orgunits$Memberships$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListOrgMembershipsResponse>;
+    list(
+      params: Params$Resource$Orgunits$Memberships$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Orgunits$Memberships$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOrgMembershipsResponse>,
+      callback: BodyResponseCallback<Schema$ListOrgMembershipsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Orgunits$Memberships$List,
+      callback: BodyResponseCallback<Schema$ListOrgMembershipsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOrgMembershipsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Orgunits$Memberships$List
+        | BodyResponseCallback<Schema$ListOrgMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOrgMembershipsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOrgMembershipsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListOrgMembershipsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orgunits$Memberships$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orgunits$Memberships$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/memberships').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOrgMembershipsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOrgMembershipsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Move an OrgMembership to a new OrgUnit. NOTE: This is an atomic copy-and-delete. The resource will have a new copy under the destination OrgUnit and be deleted from the source OrgUnit. The resource can only be searched under the destination OrgUnit afterwards.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.orgUnits.memberships.move({
+     *     // Required. Immutable. The [resource name](https://cloud.google.com/apis/design/resource_names) of the OrgMembership. Format: orgUnits/{$orgUnitId\}/memberships/{$membership\} The `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits), The `$membership` shall be of the form `{$entityType\};{$memberId\}`, where `$entityType` is the enum value of OrgMembership.EntityType, and `memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource) for OrgMembership.EntityType.SHARED_DRIVE.
+     *     name: 'orgUnits/my-orgUnit/memberships/my-membership',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customer": "my_customer",
+     *       //   "destinationOrgUnit": "my_destinationOrgUnit"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    move(
+      params: Params$Resource$Orgunits$Memberships$Move,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    move(
+      params?: Params$Resource$Orgunits$Memberships$Move,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    move(
+      params: Params$Resource$Orgunits$Memberships$Move,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    move(
+      params: Params$Resource$Orgunits$Memberships$Move,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    move(
+      params: Params$Resource$Orgunits$Memberships$Move,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    move(callback: BodyResponseCallback<Schema$Operation>): void;
+    move(
+      paramsOrCallback?:
+        | Params$Resource$Orgunits$Memberships$Move
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orgunits$Memberships$Move;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orgunits$Memberships$Move;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:move').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Orgunits$Memberships$List
+    extends StandardParameters {
+    /**
+     * Required. Immutable. Customer that this OrgMembership belongs to. All authorization will happen on the role assignments of this customer. Format: customers/{$customerId\} where `$customerId` is the `id` from the [Admin SDK `Customer` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). You may also use `customers/my_customer` to specify your own organization.
+     */
+    customer?: string;
+    /**
+     * The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the `type` (e.g., `type == 'shared_drive'`).
+     */
+    filter?: string;
+    /**
+     * The maximum number of results to return. The service may return fewer than this value. If omitted (or defaulted to zero) the server will default to 50. The maximum allowed value is 100, though requests with page_size greater than that will be silently interpreted as 100.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `OrgMembershipsService.ListOrgMemberships` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOrgMembershipsRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Immutable. OrgUnit which is queried for a list of memberships. Format: orgUnits/{$orgUnitId\} where `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits).
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Orgunits$Memberships$Move
+    extends StandardParameters {
+    /**
+     * Required. Immutable. The [resource name](https://cloud.google.com/apis/design/resource_names) of the OrgMembership. Format: orgUnits/{$orgUnitId\}/memberships/{$membership\} The `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits), The `$membership` shall be of the form `{$entityType\};{$memberId\}`, where `$entityType` is the enum value of OrgMembership.EntityType, and `memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource) for OrgMembership.EntityType.SHARED_DRIVE.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$MoveOrgMembershipRequest;
   }
 }
