@@ -589,11 +589,11 @@ export namespace datastream_v1 {
    */
   export interface Schema$MysqlObjectIdentifier {
     /**
-     * The database name.
+     * Required. The database name.
      */
     database?: string | null;
     /**
-     * The table name.
+     * Required. The table name.
      */
     table?: string | null;
   }
@@ -794,11 +794,11 @@ export namespace datastream_v1 {
    */
   export interface Schema$OracleObjectIdentifier {
     /**
-     * The schema name.
+     * Required. The schema name.
      */
     schema?: string | null;
     /**
-     * The table name.
+     * Required. The table name.
      */
     table?: string | null;
   }
@@ -1214,7 +1214,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * The FetchStaticIps API call exposes the static ips used by Datastream. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.
+     * The FetchStaticIps API call exposes the static IP addresses used by Datastream.
      * @example
      * ```js
      * // Before running the sample:
@@ -1240,7 +1240,7 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.fetchStaticIps({
-     *     // Required. The name resource of the Response type. Must be in the format `projects/x/locations/x`.
+     *     // Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      *     name: 'projects/my-project/locations/my-location',
      *     // Maximum number of Ips to return, will likely not be specified.
      *     pageSize: 'placeholder-value',
@@ -1629,7 +1629,7 @@ export namespace datastream_v1 {
   export interface Params$Resource$Projects$Locations$Fetchstaticips
     extends StandardParameters {
     /**
-     * Required. The name resource of the Response type. Must be in the format `projects/x/locations/x`.
+     * Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/x/locations/x`.
      */
     name?: string;
     /**
@@ -1709,6 +1709,8 @@ export namespace datastream_v1 {
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
+     *     // Optional. Only validate the connection profile, but don't create any resources. The default is false.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1833,7 +1835,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Use this method to delete a connection profile..
+     * Use this method to delete a connection profile.
      * @example
      * ```js
      * // Before running the sample:
@@ -1966,7 +1968,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Use this method to discover a connection profile. The discover API call exposes the data objects and metadata belonging to the profile. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.
+     * Use this method to discover a connection profile. The discover API call exposes the data objects and metadata belonging to the profile. Typically, a request returns children data objects of a parent data object that's optionally supplied in the request.
      * @example
      * ```js
      * // Before running the sample:
@@ -2433,7 +2435,7 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.connectionProfiles.patch({
-     *     // Optional. Execute the update without validating it.
+     *     // Optional. Update the connection profile without validating it.
      *     force: 'placeholder-value',
      *     // Output only. The resource's name.
      *     name: 'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
@@ -2441,6 +2443,8 @@ export namespace datastream_v1 {
      *     requestId: 'placeholder-value',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the ConnectionProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the connection profile, but don't update any resources. The default is false.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2580,6 +2584,10 @@ export namespace datastream_v1 {
      * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string;
+    /**
+     * Optional. Only validate the connection profile, but don't create any resources. The default is false.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -2642,7 +2650,7 @@ export namespace datastream_v1 {
   export interface Params$Resource$Projects$Locations$Connectionprofiles$Patch
     extends StandardParameters {
     /**
-     * Optional. Execute the update without validating it.
+     * Optional. Update the connection profile without validating it.
      */
     force?: boolean;
     /**
@@ -2657,6 +2665,10 @@ export namespace datastream_v1 {
      * Optional. Field mask is used to specify the fields to be overwritten in the ConnectionProfile resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      */
     updateMask?: string;
+    /**
+     * Optional. Only validate the connection profile, but don't update any resources. The default is false.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -3900,7 +3912,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Use this method to create a route for a private connectivity in a project and location.
+     * Use this method to create a route for a private connectivity configuration in a project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4323,7 +4335,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Use this method to list routes created for a private connectivity in a project and location.
+     * Use this method to list routes created for a private connectivity configuration in a project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -4575,7 +4587,7 @@ export namespace datastream_v1 {
      *     requestId: 'placeholder-value',
      *     // Required. The stream identifier.
      *     streamId: 'placeholder-value',
-     *     // Optional. Only validate the stream, but do not create any resources. The default is false.
+     *     // Optional. Only validate the stream, but don't create any resources. The default is false.
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5138,7 +5150,7 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.streams.patch({
-     *     // Optional. Create the stream without validating it.
+     *     // Optional. Update the stream without validating it.
      *     force: 'placeholder-value',
      *     // Output only. The stream's name.
      *     name: 'projects/my-project/locations/my-location/streams/my-stream',
@@ -5288,7 +5300,7 @@ export namespace datastream_v1 {
      */
     streamId?: string;
     /**
-     * Optional. Only validate the stream, but do not create any resources. The default is false.
+     * Optional. Only validate the stream, but don't create any resources. The default is false.
      */
     validateOnly?: boolean;
 
@@ -5341,7 +5353,7 @@ export namespace datastream_v1 {
   export interface Params$Resource$Projects$Locations$Streams$Patch
     extends StandardParameters {
     /**
-     * Optional. Create the stream without validating it.
+     * Optional. Update the stream without validating it.
      */
     force?: boolean;
     /**
@@ -5791,7 +5803,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Starts backfill job for the specified stream object.
+     * Use this method to start a backfill job for the specified stream object.
      * @example
      * ```js
      * // Before running the sample:
@@ -5936,7 +5948,7 @@ export namespace datastream_v1 {
     }
 
     /**
-     * Stops the backfill job for the specified stream object.
+     * Use this method to stop a backfill job for the specified stream object.
      * @example
      * ```js
      * // Before running the sample:

@@ -110,7 +110,7 @@
         "locations": {
           "methods": {
             "fetchStaticIps": {
-              "description": "The FetchStaticIps API call exposes the static ips used by Datastream. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.",
+              "description": "The FetchStaticIps API call exposes the static IP addresses used by Datastream.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:fetchStaticIps",
               "httpMethod": "GET",
               "id": "datastream.projects.locations.fetchStaticIps",
@@ -119,7 +119,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name resource of the Response type. Must be in the format `projects/*/locations/*`.",
+                  "description": "Required. The resource name for the location for which static IPs should be returned. Must be in the format `projects/*/locations/*`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+$",
                   "required": true,
@@ -245,6 +245,11 @@
                       "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the connection profile, but don't create any resources. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/connectionProfiles",
@@ -259,7 +264,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Use this method to delete a connection profile..",
+                  "description": "Use this method to delete a connection profile.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles/{connectionProfilesId}",
                   "httpMethod": "DELETE",
                   "id": "datastream.projects.locations.connectionProfiles.delete",
@@ -289,7 +294,7 @@
                   ]
                 },
                 "discover": {
-                  "description": "Use this method to discover a connection profile. The discover API call exposes the data objects and metadata belonging to the profile. Typically, a request returns children data objects under a parent data object that's optionally supplied in the request.",
+                  "description": "Use this method to discover a connection profile. The discover API call exposes the data objects and metadata belonging to the profile. Typically, a request returns children data objects of a parent data object that's optionally supplied in the request.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/connectionProfiles:discover",
                   "httpMethod": "POST",
                   "id": "datastream.projects.locations.connectionProfiles.discover",
@@ -397,7 +402,7 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "Optional. Execute the update without validating it.",
+                      "description": "Optional. Update the connection profile without validating it.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -418,6 +423,11 @@
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. Only validate the connection profile, but don't update any resources. The default is false.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+name}",
@@ -707,7 +717,7 @@
                 "routes": {
                   "methods": {
                     "create": {
-                      "description": "Use this method to create a route for a private connectivity in a project and location.",
+                      "description": "Use this method to create a route for a private connectivity configuration in a project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes",
                       "httpMethod": "POST",
                       "id": "datastream.projects.locations.privateConnections.routes.create",
@@ -800,7 +810,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Use this method to list routes created for a private connectivity in a project and location.",
+                      "description": "Use this method to list routes created for a private connectivity configuration in a project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateConnections/{privateConnectionsId}/routes",
                       "httpMethod": "GET",
                       "id": "datastream.projects.locations.privateConnections.routes.list",
@@ -883,7 +893,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Only validate the stream, but do not create any resources. The default is false.",
+                      "description": "Optional. Only validate the stream, but don't create any resources. The default is false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1010,7 +1020,7 @@
                   ],
                   "parameters": {
                     "force": {
-                      "description": "Optional. Create the stream without validating it.",
+                      "description": "Optional. Update the stream without validating it.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -1143,7 +1153,7 @@
                       ]
                     },
                     "startBackfillJob": {
-                      "description": "Starts backfill job for the specified stream object.",
+                      "description": "Use this method to start a backfill job for the specified stream object.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}:startBackfillJob",
                       "httpMethod": "POST",
                       "id": "datastream.projects.locations.streams.objects.startBackfillJob",
@@ -1171,7 +1181,7 @@
                       ]
                     },
                     "stopBackfillJob": {
-                      "description": "Stops the backfill job for the specified stream object.",
+                      "description": "Use this method to stop a backfill job for the specified stream object.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/streams/{streamsId}/objects/{objectsId}:stopBackfillJob",
                       "httpMethod": "POST",
                       "id": "datastream.projects.locations.streams.objects.stopBackfillJob",
@@ -1207,7 +1217,7 @@
       }
     }
   },
-  "revision": "20211110",
+  "revision": "20220117",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1850,11 +1860,11 @@
       "id": "MysqlObjectIdentifier",
       "properties": {
         "database": {
-          "description": "The database name.",
+          "description": "Required. The database name.",
           "type": "string"
         },
         "table": {
-          "description": "The table name.",
+          "description": "Required. The table name.",
           "type": "string"
         }
       },
@@ -2105,11 +2115,11 @@
       "id": "OracleObjectIdentifier",
       "properties": {
         "schema": {
-          "description": "The schema name.",
+          "description": "Required. The schema name.",
           "type": "string"
         },
         "table": {
-          "description": "The table name.",
+          "description": "Required. The table name.",
           "type": "string"
         }
       },
