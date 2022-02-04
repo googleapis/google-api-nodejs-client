@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20211218",
+  "revision": "20220126",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -682,7 +682,7 @@
             "Post as a new message in the topic.",
             "Update the bot's message. This is only permitted on a CARD_CLICKED event where the message sender type is BOT.",
             "Update the cards on a user's message. This is only permitted as a response to a MESSAGE event with a matched url, or a CARD_CLICKED event where the message sender type is HUMAN. Text will be ignored.",
-            "Update a message, with cards only. (Only after a MESSAGE event with a matched url, or a CARD_CLICKED event on a human created message)."
+            "Privately ask the user for additional auth or config."
           ],
           "type": "string"
         },
@@ -2366,13 +2366,13 @@
         },
         "member": {
           "$ref": "User",
-          "description": "A user in Google Chat. Represents a person in the People API. Formatted as `users/person_id` where `person_id` is available from the [People API](https://developers.google.com/people/api/rest/v1/people)."
+          "description": "A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API. Format: `users/{person}`"
         },
         "name": {
           "type": "string"
         },
         "state": {
-          "description": "State of the membership. Required for `CreateMembership`. Read-only for other usage.",
+          "description": "Output only. State of the membership.",
           "enum": [
             "MEMBERSHIP_STATE_UNSPECIFIED",
             "JOINED",
@@ -2385,6 +2385,7 @@
             "The user has been invited, is able to join the space, but currently has not joined.",
             "The user is not a member of the space, has not been invited and is not able to join the space."
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
