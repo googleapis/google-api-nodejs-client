@@ -1082,7 +1082,7 @@ export namespace notebooks_v1 {
     enableVtpm?: boolean | null;
   }
   /**
-   * Specifies the selection and configuration of software inside the runtime. The properties to set on runtime. Properties keys are specified in `key:value` format, for example: * `idle_shutdown: true` * `idle_shutdown_timeout: 180` * `report-system-health: true`
+   * Specifies the selection and configuration of software inside the runtime. The properties to set on runtime. Properties keys are specified in `key:value` format, for example: * `idle_shutdown: true` * `idle_shutdown_timeout: 180` * `enable_health_monitoring: true`
    */
   export interface Schema$RuntimeSoftwareConfig {
     /**
@@ -1105,6 +1105,10 @@ export namespace notebooks_v1 {
      * Install Nvidia Driver automatically.
      */
     installGpuDriver?: boolean | null;
+    /**
+     * Optional. Use a list of container images to use as Kernels in the notebook instance.
+     */
+    kernels?: Schema$ContainerImage[];
     /**
      * Cron expression in UTC timezone, used to schedule instance auto upgrade. Please follow the [cron format](https://en.wikipedia.org/wiki/Cron).
      */
@@ -1436,7 +1440,7 @@ export namespace notebooks_v1 {
      */
     acceleratorConfig?: Schema$RuntimeAcceleratorConfig;
     /**
-     * Optional. Use a list of container images to start the notebook instance.
+     * Optional. Use a list of container images to use as Kernels in the notebook instance.
      */
     containerImages?: Schema$ContainerImage[];
     /**

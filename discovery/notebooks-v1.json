@@ -1743,7 +1743,7 @@
       }
     }
   },
-  "revision": "20220104",
+  "revision": "20220125",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3216,7 +3216,7 @@
       "type": "object"
     },
     "RuntimeSoftwareConfig": {
-      "description": "Specifies the selection and configuration of software inside the runtime. The properties to set on runtime. Properties keys are specified in `key:value` format, for example: * `idle_shutdown: true` * `idle_shutdown_timeout: 180` * `report-system-health: true`",
+      "description": "Specifies the selection and configuration of software inside the runtime. The properties to set on runtime. Properties keys are specified in `key:value` format, for example: * `idle_shutdown: true` * `idle_shutdown_timeout: 180` * `enable_health_monitoring: true`",
       "id": "RuntimeSoftwareConfig",
       "properties": {
         "customGpuDriverPath": {
@@ -3239,6 +3239,13 @@
         "installGpuDriver": {
           "description": "Install Nvidia Driver automatically.",
           "type": "boolean"
+        },
+        "kernels": {
+          "description": "Optional. Use a list of container images to use as Kernels in the notebook instance.",
+          "items": {
+            "$ref": "ContainerImage"
+          },
+          "type": "array"
         },
         "notebookUpgradeSchedule": {
           "description": "Cron expression in UTC timezone, used to schedule instance auto upgrade. Please follow the [cron format](https://en.wikipedia.org/wiki/Cron).",
@@ -3784,7 +3791,7 @@
           "description": "Optional. The Compute Engine accelerator configuration for this runtime."
         },
         "containerImages": {
-          "description": "Optional. Use a list of container images to start the notebook instance.",
+          "description": "Optional. Use a list of container images to use as Kernels in the notebook instance.",
           "items": {
             "$ref": "ContainerImage"
           },
