@@ -152,6 +152,23 @@ export namespace metastore_v1beta {
     logType?: string | null;
   }
   /**
+   * Configuration information for the auxiliary service versions.
+   */
+  export interface Schema$AuxiliaryVersionConfig {
+    /**
+     * A mapping of Hive metastore configuration key-value pairs to apply to the auxiliary Hive metastore (configured in hive-site.xml) in addition to the primary version's overrides. If keys are present in both the auxiliary version's overrides and the primary version's overrides, the value from the auxiliary version's overrides takes precedence.
+     */
+    configOverrides?: {[key: string]: string} | null;
+    /**
+     * Output only. The network configuration contains the endpoint URI(s) of the auxiliary Hive metastore service.
+     */
+    networkConfig?: Schema$NetworkConfig;
+    /**
+     * The Hive metastore version of the auxiliary service. It must be less than the primary Hive metastore service's version.
+     */
+    version?: string | null;
+  }
+  /**
    * The details of a backup resource.
    */
   export interface Schema$Backup {
@@ -308,6 +325,10 @@ export namespace metastore_v1beta {
    * Specifies configuration information specific to running Hive metastore software as the metastore service.
    */
   export interface Schema$HiveMetastoreConfig {
+    /**
+     * A mapping of Hive metastore version to the auxiliary version configuration. When specified, a secondary Hive metastore service is created along with the primary service. All auxiliary versions must be less than the service's primary version. The key is the auxiliary service name and it must match the regular expression a-z?. This means that the first character must be a lowercase letter, and all the following characters must be hyphens, lowercase letters, or digits, except the last character, which cannot be a hyphen.
+     */
+    auxiliaryVersions?: {[key: string]: Schema$AuxiliaryVersionConfig} | null;
     /**
      * A mapping of Hive metastore configuration key-value pairs to apply to the Hive metastore (configured in hive-site.xml). The mappings override system defaults (some keys cannot be overridden). These overrides are also applied to auxiliary versions and can be further customized in the auxiliary version's AuxiliaryVersionConfig.
      */
@@ -661,6 +682,19 @@ export namespace metastore_v1beta {
     version?: number | null;
   }
   /**
+   * Request message for DataprocMetastore.RemoveIamPolicy.
+   */
+  export interface Schema$RemoveIamPolicyRequest {}
+  /**
+   * Response message for DataprocMetastore.RemoveIamPolicy.
+   */
+  export interface Schema$RemoveIamPolicyResponse {
+    /**
+     * whether related policies are removed
+     */
+    success?: boolean | null;
+  }
+  /**
    * The details of a metadata restore operation.
    */
   export interface Schema$Restore {
@@ -727,6 +761,10 @@ export namespace metastore_v1beta {
      * Output only. The time when the metastore service was created.
      */
     createTime?: string | null;
+    /**
+     * Immutable. The database type that the Metastore service stores its data.
+     */
+    databaseType?: string | null;
     /**
      * Immutable. Information used to configure the Dataproc Metastore service to encrypt customer data at rest. Cannot be updated.
      */
@@ -1654,6 +1692,7 @@ export namespace metastore_v1beta {
      *       // {
      *       //   "artifactGcsUri": "my_artifactGcsUri",
      *       //   "createTime": "my_createTime",
+     *       //   "databaseType": "my_databaseType",
      *       //   "encryptionConfig": {},
      *       //   "endpointUri": "my_endpointUri",
      *       //   "hiveMetastoreConfig": {},
@@ -2089,6 +2128,7 @@ export namespace metastore_v1beta {
      *   // {
      *   //   "artifactGcsUri": "my_artifactGcsUri",
      *   //   "createTime": "my_createTime",
+     *   //   "databaseType": "my_databaseType",
      *   //   "encryptionConfig": {},
      *   //   "endpointUri": "my_endpointUri",
      *   //   "hiveMetastoreConfig": {},
@@ -2515,6 +2555,7 @@ export namespace metastore_v1beta {
      *       // {
      *       //   "artifactGcsUri": "my_artifactGcsUri",
      *       //   "createTime": "my_createTime",
+     *       //   "databaseType": "my_databaseType",
      *       //   "encryptionConfig": {},
      *       //   "endpointUri": "my_endpointUri",
      *       //   "hiveMetastoreConfig": {},
@@ -2632,6 +2673,150 @@ export namespace metastore_v1beta {
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Removes the attached IAM policies for a resource
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.removeIamPolicy({
+     *     // Required. The relative resource name of the dataplane resource to remove IAM policy, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\} or projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\}/tables/{table_id\}.
+     *     resource:
+     *       'projects/my-project/locations/my-location/services/my-service/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "success": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeIamPolicy(
+      params?: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemoveIamPolicyResponse>;
+    removeIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>,
+      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+    ): void;
+    removeIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+    ): void;
+    removeIamPolicy(
+      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+    ): void;
+    removeIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Removeiampolicy
+        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemoveIamPolicyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Removeiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Removeiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+resource}:removeIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoveIamPolicyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemoveIamPolicyResponse>(parameters);
       }
     }
 
@@ -3168,6 +3353,18 @@ export namespace metastore_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$Service;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Removeiampolicy
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the dataplane resource to remove IAM policy, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\} or projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\}/tables/{table_id\}.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Restore
     extends StandardParameters {
