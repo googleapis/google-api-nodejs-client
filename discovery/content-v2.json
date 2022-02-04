@@ -3298,7 +3298,7 @@
       }
     }
   },
-  "revision": "20211007",
+  "revision": "20220126",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8519,8 +8519,23 @@
       "description": "Store resource.",
       "id": "PosStore",
       "properties": {
+        "gcidCategory": {
+          "description": "The business type of the store.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#posStore`\"",
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "The store phone number.",
+          "type": "string"
+        },
+        "placeId": {
+          "description": "The Google Place Id of the store location.",
           "type": "string"
         },
         "storeAddress": {
@@ -8529,6 +8544,14 @@
         },
         "storeCode": {
           "description": "Required. A store identifier that is unique for the given merchant.",
+          "type": "string"
+        },
+        "storeName": {
+          "description": "The merchant or store name.",
+          "type": "string"
+        },
+        "websiteUrl": {
+          "description": "The website url for the store or merchant.",
           "type": "string"
         }
       },

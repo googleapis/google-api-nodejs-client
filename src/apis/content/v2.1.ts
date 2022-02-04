@@ -212,6 +212,10 @@ export namespace content_v2_1 {
      */
     adultContent?: boolean | null;
     /**
+     * The automatic improvements of the account can be used to automatically update items, improve images and shipping. Each section inside AutomaticImprovements is updated separately.
+     */
+    automaticImprovements?: Schema$AccountAutomaticImprovements;
+    /**
      * Automatically created label IDs that are assigned to the account by CSS Center.
      */
     automaticLabelIds?: string[] | null;
@@ -292,6 +296,23 @@ export namespace content_v2_1 {
      */
     status?: string | null;
   }
+  /**
+   * The automatic improvements of the account can be used to automatically update items, improve images and shipping.
+   */
+  export interface Schema$AccountAutomaticImprovements {
+    /**
+     * This improvement will attempt to automatically correct submitted images if they don't meet the [image requirements](https://support.google.com/merchants/answer/6324350), for example, removing overlays. If successful, the image will be replaced and approved. This improvement is only applied to images of disapproved offers. For more information see: [Automatic image improvements](https://support.google.com/merchants/answer/9242973) This field is only updated (cleared) if provided.
+     */
+    imageImprovements?: Schema$AccountImageImprovements;
+    /**
+     * Turning on [item updates](https://support.google.com/merchants/answer/3246284) allows Google to automatically update items for you. When item updates are on, Google uses the structured data markup on the website and advanced data extractors to update the price and availability of the items. When the item updates are off, items with mismatched data aren't shown. This field is only updated (cleared) if provided.
+     */
+    itemUpdates?: Schema$AccountItemUpdates;
+    /**
+     * Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: - Delivery address of an order - Current handling time and shipping time settings - Estimated weekdays or business days - Parcel tracking data This field is only updated (cleared) if provided.
+     */
+    shippingImprovements?: Schema$AccountShippingImprovements;
+  }
   export interface Schema$AccountBusinessInformation {
     /**
      * The address of the business.
@@ -368,6 +389,66 @@ export namespace content_v2_1 {
      * The merchant account ID, set for individual accounts and subaccounts.
      */
     merchantId?: string | null;
+  }
+  /**
+   * This improvement will attempt to automatically correct submitted images if they don't meet the [image requirements](https://support.google.com/merchants/answer/6324350), for example, removing overlays. If successful, the image will be replaced and approved. This improvement is only applied to images of disapproved offers. For more information see: [Automatic image improvements](https://support.google.com/merchants/answer/9242973)
+   */
+  export interface Schema$AccountImageImprovements {
+    /**
+     * Determines how the images should be automatically updated. If this field is not present, then the settings will be deleted. If there are no settings for subaccount, they are inherited from aggregator.
+     */
+    accountImageImprovementsSettings?: Schema$AccountImageImprovementsSettings;
+    /**
+     * Output only. The effective value of allow_automatic_image_improvements. If account_image_improvements_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.
+     */
+    effectiveAllowAutomaticImageImprovements?: boolean | null;
+  }
+  /**
+   * Settings for the Automatic Image Improvements.
+   */
+  export interface Schema$AccountImageImprovementsSettings {
+    /**
+     * Enables automatic image improvements.
+     */
+    allowAutomaticImageImprovements?: boolean | null;
+  }
+  /**
+   * Turning on [item updates](https://support.google.com/merchants/answer/3246284) allows Google to automatically update items for you. When item updates are on, Google uses the structured data markup on the website and advanced data extractors to update the price and availability of the items. When the item updates are off, items with mismatched data aren't shown.
+   */
+  export interface Schema$AccountItemUpdates {
+    /**
+     * Determines which attributes of the items should be automatically updated. If this field is not present, then the settings will be deleted. If there are no settings for subaccount, they are inherited from aggregator.
+     */
+    accountItemUpdatesSettings?: Schema$AccountItemUpdatesSettings;
+    /**
+     * Output only. The effective value of allow_availability_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.
+     */
+    effectiveAllowAvailabilityUpdates?: boolean | null;
+    /**
+     * Output only. The effective value of allow_price_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.
+     */
+    effectiveAllowPriceUpdates?: boolean | null;
+    /**
+     * Output only. The effective value of allow_strict_availability_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.
+     */
+    effectiveAllowStrictAvailabilityUpdates?: boolean | null;
+  }
+  /**
+   * Settings for the Automatic Item Updates.
+   */
+  export interface Schema$AccountItemUpdatesSettings {
+    /**
+     * If availability updates are enabled, any previous availability values get overwritten if Google finds an out-of-stock annotation on the offer's page. If additionally `allow_availability_updates` field is set to true, values get overwritten if Google finds an in-stock annotation on the offer’s page.
+     */
+    allowAvailabilityUpdates?: boolean | null;
+    /**
+     * If price updates are enabled, Google always updates the active price with the crawled information.
+     */
+    allowPriceUpdates?: boolean | null;
+    /**
+     * If allow_availability_updates is enabled, items are automatically updated in all your Shopping target countries. By default, availability updates will only be applied to items that are 'out of stock' on your website but 'in stock' on Shopping. Set this to true to also update items that are 'in stock' on your website, but 'out of stock' on Google Shopping. In order for this field to have an effect, you must also allow availability updates.
+     */
+    allowStrictAvailabilityUpdates?: boolean | null;
   }
   /**
    * Label assigned by CSS domain or CSS group to one of its sub-accounts.
@@ -530,6 +611,15 @@ export namespace content_v2_1 {
      * Identifies what kind of resource this is. Value: the fixed string "`content#accountsCustomBatchResponseEntry`"
      */
     kind?: string | null;
+  }
+  /**
+   * Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data
+   */
+  export interface Schema$AccountShippingImprovements {
+    /**
+     * Enables automatic shipping improvements.
+     */
+    allowShippingImprovements?: boolean | null;
   }
   export interface Schema$AccountsLinkRequest {
     /**
@@ -1642,7 +1732,7 @@ export namespace content_v2_1 {
      */
     excludedDestinations?: string[] | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. List of supported destinations (if available to the account): - DisplayAds - Shopping - ShoppingActions - SurfacesAcrossGoogle
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.
      */
     includedDestinations?: string[] | null;
     /**
@@ -4810,9 +4900,21 @@ export namespace content_v2_1 {
    */
   export interface Schema$PosStore {
     /**
+     * The business type of the store.
+     */
+    gcidCategory?: string[] | null;
+    /**
      * Identifies what kind of resource this is. Value: the fixed string "`content#posStore`"
      */
     kind?: string | null;
+    /**
+     * The store phone number.
+     */
+    phoneNumber?: string | null;
+    /**
+     * The Google Place Id of the store location.
+     */
+    placeId?: string | null;
     /**
      * Required. The street address of the store.
      */
@@ -4821,6 +4923,14 @@ export namespace content_v2_1 {
      * Required. A store identifier that is unique for the given merchant.
      */
     storeCode?: string | null;
+    /**
+     * The merchant or store name.
+     */
+    storeName?: string | null;
+    /**
+     * The website url for the store or merchant.
+     */
+    websiteUrl?: string | null;
   }
   export interface Schema$PostalCodeGroup {
     /**
@@ -7921,7 +8031,7 @@ export namespace content_v2_1 {
      *     accountId: 'placeholder-value',
      *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      *     merchantId: 'placeholder-value',
-     *     // Only available to selected merchants. When set to `True`, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
+     *     // Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this flag removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
      *     overwrite: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8342,6 +8452,7 @@ export namespace content_v2_1 {
      *   //   "accountManagement": "my_accountManagement",
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
+     *   //   "automaticImprovements": {},
      *   //   "automaticLabelIds": [],
      *   //   "businessInformation": {},
      *   //   "cssId": "my_cssId",
@@ -8484,6 +8595,7 @@ export namespace content_v2_1 {
      *       //   "accountManagement": "my_accountManagement",
      *       //   "adsLinks": [],
      *       //   "adultContent": false,
+     *       //   "automaticImprovements": {},
      *       //   "automaticLabelIds": [],
      *       //   "businessInformation": {},
      *       //   "cssId": "my_cssId",
@@ -8506,6 +8618,7 @@ export namespace content_v2_1 {
      *   //   "accountManagement": "my_accountManagement",
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
+     *   //   "automaticImprovements": {},
      *   //   "automaticLabelIds": [],
      *   //   "businessInformation": {},
      *   //   "cssId": "my_cssId",
@@ -9242,6 +9355,7 @@ export namespace content_v2_1 {
      *       //   "accountManagement": "my_accountManagement",
      *       //   "adsLinks": [],
      *       //   "adultContent": false,
+     *       //   "automaticImprovements": {},
      *       //   "automaticLabelIds": [],
      *       //   "businessInformation": {},
      *       //   "cssId": "my_cssId",
@@ -9264,6 +9378,7 @@ export namespace content_v2_1 {
      *   //   "accountManagement": "my_accountManagement",
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
+     *   //   "automaticImprovements": {},
      *   //   "automaticLabelIds": [],
      *   //   "businessInformation": {},
      *   //   "cssId": "my_cssId",
@@ -9681,7 +9796,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * Only available to selected merchants. When set to `True`, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
+     * Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this flag removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
      */
     overwrite?: boolean;
   }
@@ -24351,9 +24466,14 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "gcidCategory": [],
      *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "placeId": "my_placeId",
      *   //   "storeAddress": "my_storeAddress",
-     *   //   "storeCode": "my_storeCode"
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storeName": "my_storeName",
+     *   //   "websiteUrl": "my_websiteUrl"
      *   // }
      * }
      *
@@ -24484,9 +24604,14 @@ export namespace content_v2_1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "gcidCategory": [],
      *       //   "kind": "my_kind",
+     *       //   "phoneNumber": "my_phoneNumber",
+     *       //   "placeId": "my_placeId",
      *       //   "storeAddress": "my_storeAddress",
-     *       //   "storeCode": "my_storeCode"
+     *       //   "storeCode": "my_storeCode",
+     *       //   "storeName": "my_storeName",
+     *       //   "websiteUrl": "my_websiteUrl"
      *       // }
      *     },
      *   });
@@ -24494,9 +24619,14 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "gcidCategory": [],
      *   //   "kind": "my_kind",
+     *   //   "phoneNumber": "my_phoneNumber",
+     *   //   "placeId": "my_placeId",
      *   //   "storeAddress": "my_storeAddress",
-     *   //   "storeCode": "my_storeCode"
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storeName": "my_storeName",
+     *   //   "websiteUrl": "my_websiteUrl"
      *   // }
      * }
      *
