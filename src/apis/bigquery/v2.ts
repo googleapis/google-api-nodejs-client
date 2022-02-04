@@ -818,13 +818,17 @@ export namespace bigquery_v2 {
      * [Output-only] A URL that can be used to access the resource again. You can use this URL in Get or Update requests to the resource.
      */
     selfLink?: string | null;
+    /**
+     * [Optional]The tags associated with this dataset. Tag keys are globally unique.
+     */
+    tags?: Array<{tagKey?: string; tagValue?: string}> | null;
   }
   export interface Schema$DatasetAccessEntry {
     /**
      * [Required] The dataset this entry applies to.
      */
     dataset?: Schema$DatasetReference;
-    target_types?: Array<{targetType?: string}> | null;
+    target_types?: string[] | null;
   }
   export interface Schema$DatasetList {
     /**
@@ -2680,7 +2684,7 @@ export namespace bigquery_v2 {
     snapshotTime?: string | null;
   }
   /**
-   * The type of a variable, e.g., a function argument. Examples: INT64: {type_kind="INT64"\} ARRAY: {type_kind="ARRAY", array_element_type="STRING"\} STRUCT\>: {type_kind="STRUCT", struct_type={fields=[ {name="x", type={type_kind="STRING"\}\}, {name="y", type={type_kind="ARRAY", array_element_type="DATE"\}\} ]\}\}
+   * The data type of a variable such as a function argument. Examples include: * INT64: `{"typeKind": "INT64"\}` * ARRAY: { "typeKind": "ARRAY", "arrayElementType": {"typeKind": "STRING"\} \} * STRUCT\>: { "typeKind": "STRUCT", "structType": { "fields": [ { "name": "x", "type": {"typeKind: "STRING"\} \}, { "name": "y", "type": { "typeKind": "ARRAY", "arrayElementType": {"typekind": "DATE"\} \} \} ] \} \}
    */
   export interface Schema$StandardSqlDataType {
     /**
@@ -3529,7 +3533,8 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink"
+     *   //   "selfLink": "my_selfLink",
+     *   //   "tags": []
      *   // }
      * }
      *
@@ -3676,7 +3681,8 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "satisfiesPZS": false,
-     *       //   "selfLink": "my_selfLink"
+     *       //   "selfLink": "my_selfLink",
+     *       //   "tags": []
      *       // }
      *     },
      *   });
@@ -3701,7 +3707,8 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink"
+     *   //   "selfLink": "my_selfLink",
+     *   //   "tags": []
      *   // }
      * }
      *
@@ -3992,7 +3999,8 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "satisfiesPZS": false,
-     *       //   "selfLink": "my_selfLink"
+     *       //   "selfLink": "my_selfLink",
+     *       //   "tags": []
      *       // }
      *     },
      *   });
@@ -4017,7 +4025,8 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink"
+     *   //   "selfLink": "my_selfLink",
+     *   //   "tags": []
      *   // }
      * }
      *
@@ -4166,7 +4175,8 @@ export namespace bigquery_v2 {
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "satisfiesPZS": false,
-     *       //   "selfLink": "my_selfLink"
+     *       //   "selfLink": "my_selfLink",
+     *       //   "tags": []
      *       // }
      *     },
      *   });
@@ -4191,7 +4201,8 @@ export namespace bigquery_v2 {
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "satisfiesPZS": false,
-     *   //   "selfLink": "my_selfLink"
+     *   //   "selfLink": "my_selfLink",
+     *   //   "tags": []
      *   // }
      * }
      *
