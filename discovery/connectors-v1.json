@@ -1055,7 +1055,7 @@
       }
     }
   },
-  "revision": "20211217",
+  "revision": "20220120",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1330,10 +1330,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "inactive": {
-          "description": "Optional. Inactive indicates the connection is active to use or not.",
-          "type": "boolean"
-        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1363,6 +1359,10 @@
           "$ref": "ConnectionStatus",
           "description": "Output only. Current status of the connection.",
           "readOnly": true
+        },
+        "suspended": {
+          "description": "Optional. Suspended indicates if a user has suspended a connection or not.",
+          "type": "boolean"
         },
         "updateTime": {
           "description": "Output only. Updated time.",
