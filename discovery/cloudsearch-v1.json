@@ -1994,7 +1994,7 @@
       }
     }
   },
-  "revision": "20211208",
+  "revision": "20220125",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AuditLoggingSettings": {
@@ -3357,7 +3357,7 @@
           "description": "Additional search quality metadata of the item"
         },
         "sourceRepositoryUrl": {
-          "description": "Link to the source repository serving the data. Search results apply this link to the title. Whitespace or special characters may cause Cloud Search result links to trigger a redirect notice; to avoid this, encode the URL. The maximum length is 2048 characters.",
+          "description": "Link to the source repository serving the data. Seach results apply this link to the title. Whitespace or special characters may cause Cloud Seach result links to trigger a redirect notice; to avoid this, encode the URL. The maximum length is 2048 characters.",
           "type": "string"
         },
         "title": {
@@ -5348,7 +5348,7 @@
       "type": "object"
     },
     "UploadItemRef": {
-      "description": "Represents an upload session reference. This reference is created via upload method. Updating of item content may refer to this uploaded content via contentDataRef.",
+      "description": "Represents an upload session reference. This reference is created via upload method. This reference is valid for 30 days after its creation. Updating of item content may refer to this uploaded content via contentDataRef.",
       "id": "UploadItemRef",
       "properties": {
         "name": {
