@@ -287,11 +287,11 @@ export namespace people_v1 {
     value?: string | null;
   }
   /**
-   * A person's birthday. At least one of the `date` and `text` fields are specified. The `date` and `text` fields typically represent the same date, but are not guaranteed to.
+   * A person's birthday. At least one of the `date` and `text` fields are specified. The `date` and `text` fields typically represent the same date, but are not guaranteed to. Clients should always set the `date` field when mutating birthdays.
    */
   export interface Schema$Birthday {
     /**
-     * The date of the birthday.
+     * The structured date of the birthday.
      */
     date?: Schema$Date;
     /**
@@ -299,7 +299,7 @@ export namespace people_v1 {
      */
     metadata?: Schema$FieldMetadata;
     /**
-     * A free-form string representing the user's birthday.
+     * Prefer to use the `date` field if set. A free-form string representing the user's birthday. This value is not validated.
      */
     text?: string | null;
   }
@@ -495,7 +495,7 @@ export namespace people_v1 {
     readGroupFields?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -1771,7 +1771,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Create a new contact group owned by the authenticated user. Created contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error.
+     * Create a new contact group owned by the authenticated user. Created contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -1911,7 +1911,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Delete an existing contact group owned by the authenticated user by specifying a contact group resource name.
+     * Delete an existing contact group owned by the authenticated user by specifying a contact group resource name. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -2329,7 +2329,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Update the name of an existing contact group owned by the authenticated user. Updated contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error.
+     * Update the name of an existing contact group owned by the authenticated user. Updated contact group names must be unique to the users contact groups. Attempting to create a group with a duplicate name will return a HTTP 409 error. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -2731,7 +2731,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Copies an "Other contact" to a new contact in the user's "myContacts" group
+     * Copies an "Other contact" to a new contact in the user's "myContacts" group Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -3255,7 +3255,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Create a batch of new contacts and return the PersonResponses for the newly created contacts. Limited to 10 parallel requests per user.
+     * Create a batch of new contacts and return the PersonResponses for the newly Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -3398,7 +3398,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Delete a batch of contacts. Any non-contact data will not be deleted. Limited to 10 parallel requests per user.
+     * Delete a batch of contacts. Any non-contact data will not be deleted. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -3530,7 +3530,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Update a batch of contacts and return a map of resource names to PersonResponses for the updated contacts. Limited to 10 parallel requests per user.
+     * Update a batch of contacts and return a map of resource names to PersonResponses for the updated contacts. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -3674,7 +3674,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Create a new contact and return the person resource for that contact. The request returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names
+     * Create a new contact and return the person resource for that contact. The request returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -3887,7 +3887,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Delete a contact person. Any non-contact data will not be deleted.
+     * Delete a contact person. Any non-contact data will not be deleted. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -4014,7 +4014,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Delete a contact's photo.
+     * Delete a contact's photo. Mutate requests for the same user should be done sequentially to avoid // lock contention.
      * @example
      * ```js
      * // Before running the sample:
@@ -4925,7 +4925,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Update contact data for an existing contact person. Any non-contact data will not be modified. Any non-contact data in the person to update will be ignored. All fields specified in the `update_mask` will be replaced. The server returns a 400 error if `person.metadata.sources` is not specified for the contact to be updated or if there is no contact source. The server returns a 400 error with reason `"failedPrecondition"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and merge their updates into the latest person. The server returns a 400 error if `memberships` are being updated and there are no contact group memberships specified on the person. The server returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names
+     * Update contact data for an existing contact person. Any non-contact data will not be modified. Any non-contact data in the person to update will be ignored. All fields specified in the `update_mask` will be replaced. The server returns a 400 error if `person.metadata.sources` is not specified for the contact to be updated or if there is no contact source. The server returns a 400 error with reason `"failedPrecondition"` if `person.metadata.sources.etag` is different than the contact's etag, which indicates the contact has changed since its data was read. Clients should get the latest person and merge their updates into the latest person. The server returns a 400 error if `memberships` are being updated and there are no contact group memberships specified on the person. The server returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
@@ -5142,7 +5142,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Update a contact's photo.
+     * Update a contact's photo. Mutate requests for the same user should be sent sequentially to avoid increased latency and failures.
      * @example
      * ```js
      * // Before running the sample:
