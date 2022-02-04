@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20210902",
+  "revision": "20220104",
   "rootUrl": "https://firebaserules.googleapis.com/",
   "schemas": {
     "Arg": {
@@ -531,7 +531,7 @@
       "id": "File",
       "properties": {
         "content": {
-          "description": "Textual Content.",
+          "description": "Required. Textual Content.",
           "type": "string"
         },
         "fingerprint": {
@@ -540,7 +540,7 @@
           "type": "string"
         },
         "name": {
-          "description": "File name.",
+          "description": "Required. File name.",
           "type": "string"
         }
       },
@@ -785,7 +785,7 @@
         },
         "source": {
           "$ref": "Source",
-          "description": "`Source` for the `Ruleset`."
+          "description": "Required. `Source` for the `Ruleset`."
         }
       },
       "type": "object"
@@ -795,7 +795,7 @@
       "id": "Source",
       "properties": {
         "files": {
-          "description": "`File` set constituting the `Source` bundle.",
+          "description": "Required. `File` set constituting the `Source` bundle.",
           "items": {
             "$ref": "File"
           },
