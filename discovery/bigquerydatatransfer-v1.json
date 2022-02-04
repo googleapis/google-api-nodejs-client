@@ -224,7 +224,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}",
+                  "description": "Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -426,7 +426,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}",
+                      "description": "Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -570,7 +570,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`",
+                      "description": "Required. The BigQuery project id for which transfer configs should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1017,7 +1017,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`",
+                  "description": "Required. The BigQuery project id for which transfer configs should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1340,7 +1340,7 @@
       }
     }
   },
-  "revision": "20211230",
+  "revision": "20220127",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {

@@ -1155,7 +1155,7 @@ export namespace bigquerydatatransfer_v1 {
      *     pageSize: 'placeholder-value',
      *     // Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}
+     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1295,7 +1295,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}
+     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
   }
@@ -2112,7 +2112,7 @@ export namespace bigquerydatatransfer_v1 {
      *     pageSize: 'placeholder-value',
      *     // Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}
+     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2252,7 +2252,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}
+     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
   }
@@ -2762,7 +2762,7 @@ export namespace bigquerydatatransfer_v1 {
      *       pageSize: 'placeholder-value',
      *       // Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
+     *       // Required. The BigQuery project id for which transfer configs should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      *       parent: 'projects/my-project/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -3413,7 +3413,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
+     * Required. The BigQuery project id for which transfer configs should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
   }
@@ -4619,7 +4619,7 @@ export namespace bigquerydatatransfer_v1 {
      *     pageSize: 'placeholder-value',
      *     // Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
+     *     // Required. The BigQuery project id for which transfer configs should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -5262,7 +5262,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
+     * Required. The BigQuery project id for which transfer configs should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
   }
