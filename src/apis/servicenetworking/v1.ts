@@ -213,6 +213,10 @@ export namespace servicenetworking_v1 {
    */
   export interface Schema$AddSubnetworkRequest {
     /**
+     * Optional. The IAM permission check determines whether the consumer project has 'servicenetworking.services.use' permission or not.
+     */
+    checkServiceNetworkingUsePermission?: boolean | null;
+    /**
      * Required. A resource that represents the service consumer, such as `projects/123456`. The project number can be different from the value in the consumer network parameter. For example, the network might be part of a Shared VPC network. In those cases, Service Networking validates that this resource belongs to that Shared VPC.
      */
     consumer?: string | null;
@@ -2528,6 +2532,7 @@ export namespace servicenetworking_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "checkServiceNetworkingUsePermission": false,
      *       //   "consumer": "my_consumer",
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "description": "my_description",
