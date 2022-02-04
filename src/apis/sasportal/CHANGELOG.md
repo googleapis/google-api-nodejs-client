@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sasportal-v3.1.0...sasportal-v4.0.0) (2022-02-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **sasportal:** This release has breaking changes.
+
+### Features
+
+* **sasportal:** update the API ([110ea0b](https://github.com/googleapis/google-api-nodejs-client/commit/110ea0b8d51f15e239509b755b5d49c9a7ecbb27))
+
 ## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/sasportal-v3.0.0...sasportal-v3.1.0) (2021-09-15)
 
 

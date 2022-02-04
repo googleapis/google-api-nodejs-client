@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v3.3.0...chat-v3.4.0) (2022-02-04)
+
+
+### Features
+
+* **chat:** update the API ([5a30538](https://github.com/googleapis/google-api-nodejs-client/commit/5a305389d262d29e535dbbeaf309d56f7f3550cb))
+
 ## [3.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/chat-v3.2.0...chat-v3.3.0) (2021-12-30)
 
 
