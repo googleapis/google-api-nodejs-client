@@ -512,7 +512,7 @@ export namespace healthcare_v1 {
    */
   export interface Schema$DeidentifyDicomStoreRequest {
     /**
-     * De-identify configuration.
+     * Deidentify configuration.
      */
     config?: Schema$DeidentifyConfig;
     /**

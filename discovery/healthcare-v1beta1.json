@@ -4865,7 +4865,7 @@
       }
     }
   },
-  "revision": "20220104",
+  "revision": "20220115",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -5506,6 +5506,10 @@
           "description": "An AES 128/192/256 bit key. Causes the hash to be computed based on this key. A default key is generated for each Deidentify operation and is used when neither `crypto_key` nor `kms_wrapped` is specified. Must not be set if `kms_wrapped` is set.",
           "format": "byte",
           "type": "string"
+        },
+        "kmsWrapped": {
+          "$ref": "KmsWrappedCryptoKey",
+          "description": "KMS wrapped key. Must not be set if `crypto_key` is set."
         }
       },
       "type": "object"
@@ -5533,6 +5537,10 @@
           "description": "An AES 128/192/256 bit key. Causes the shift to be computed based on this key and the patient ID. A default key is generated for each de-identification operation and is used when neither `crypto_key` nor `kms_wrapped` is specified. Must not be set if `kms_wrapped` is set.",
           "format": "byte",
           "type": "string"
+        },
+        "kmsWrapped": {
+          "$ref": "KmsWrappedCryptoKey",
+          "description": "KMS wrapped key. Must not be set if `crypto_key` is set."
         }
       },
       "type": "object"
@@ -5585,7 +5593,7 @@
       "properties": {
         "config": {
           "$ref": "DeidentifyConfig",
-          "description": "De-identify configuration."
+          "description": "Deidentify configuration."
         },
         "destinationStore": {
           "description": "The name of the DICOM store to create and write the redacted data to. For example, `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/dicomStores/{dicom_store_id}`. * The destination dataset must exist. * The source dataset and destination dataset must both reside in the same location. De-identifying data across multiple locations is not supported. * The destination DICOM store must not exist. * The caller must have the necessary permissions to create the destination DICOM store.",
@@ -6883,6 +6891,22 @@
         "message": {
           "$ref": "Message",
           "description": "Created message resource."
+        }
+      },
+      "type": "object"
+    },
+    "KmsWrappedCryptoKey": {
+      "description": "Include to use an existing data crypto key wrapped by KMS. The wrapped key must be a 128-, 192-, or 256-bit key. The key must grant the Cloud IAM permission `cloudkms.cryptoKeyVersions.useToDecrypt` to the project's Cloud Healthcare Service Agent service account. For more information, see [Creating a wrapped key] (https://cloud.google.com/dlp/docs/create-wrapped-key).",
+      "id": "KmsWrappedCryptoKey",
+      "properties": {
+        "cryptoKey": {
+          "description": "Required. The resource name of the KMS CryptoKey to use for unwrapping.",
+          "type": "string"
+        },
+        "wrappedKey": {
+          "description": "Required. The wrapped data crypto key.",
+          "format": "byte",
+          "type": "string"
         }
       },
       "type": "object"
