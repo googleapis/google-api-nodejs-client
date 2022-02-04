@@ -465,14 +465,6 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2alphaSetInventoryResponse {}
   /**
-   * Metadata related to the progress of the SetLocalInventories operation. Currently empty because there is no meaningful metadata populated from the SetLocalInventories method.
-   */
-  export interface Schema$GoogleCloudRetailV2alphaSetLocalInventoriesMetadata {}
-  /**
-   * Response of the SetLocalInventories API. Currently empty because there is no meaningful response populated from the SetLocalInventories method.
-   */
-  export interface Schema$GoogleCloudRetailV2alphaSetLocalInventoriesResponse {}
-  /**
    * A summary of import result. The UserEventImportSummary summarizes the import status for user events.
    */
   export interface Schema$GoogleCloudRetailV2alphaUserEventImportSummary {
@@ -851,7 +843,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2GcsSource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719. Supported values for control imports: * 'control' (default): One JSON Control per line.
+     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: Using https://support.google.com/analytics/answer/3437719. Supported values for control imports: * 'control' (default): One JSON Control per line. Supported values for catalog attribute imports: * 'catalog_attribute' (default): One CSV CatalogAttribute per line.
      */
     dataSchema?: string | null;
     /**
@@ -1220,7 +1212,7 @@ export namespace retail_v2 {
      */
     categories?: string[] | null;
     /**
-     * The id of the collection members when type is Type.COLLECTION. Should not set it for other types. A maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is return.
+     * The id of the collection members when type is Type.COLLECTION. Non-existent product ids are allowed. The type of the members must be either Type.PRIMARY or Type.VARIANT otherwise and INVALID_ARGUMENT error is thrown. Should not set it for other types. A maximum of 1000 values are allowed. Otherwise, an INVALID_ARGUMENT error is return.
      */
     collectionMemberIds?: string[] | null;
     /**
@@ -1228,7 +1220,7 @@ export namespace retail_v2 {
      */
     colorInfo?: Schema$GoogleCloudRetailV2ColorInfo;
     /**
-     * The condition of the product. Strongly encouraged to use the standard values: "new", "refurbished", "used". A maximum of 5 values are allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [condition](https://support.google.com/merchants/answer/6324469). Schema.org property [Offer.itemCondition](https://schema.org/itemCondition).
+     * The condition of the product. Strongly encouraged to use the standard values: "new", "refurbished", "used". A maximum of 1 value is allowed per Product. Each value must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned. Corresponding properties: Google Merchant Center property [condition](https://support.google.com/merchants/answer/6324469). Schema.org property [Offer.itemCondition](https://schema.org/itemCondition).
      */
     conditions?: string[] | null;
     /**
@@ -1280,7 +1272,7 @@ export namespace retail_v2 {
      */
     primaryProductId?: string | null;
     /**
-     * The promotions applied to the product. A maximum of 10 values are allowed per Product.
+     * The promotions applied to the product. A maximum of 10 values are allowed per Product. Only Promotion.promotion_id will be used, other fields will be ignored if set.
      */
     promotions?: Schema$GoogleCloudRetailV2Promotion[];
     /**
@@ -1381,7 +1373,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2Promotion {
     /**
-     * ID of the promotion. For example, "free gift". The value value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: `a-zA-Z*`. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [promotion](https://support.google.com/merchants/answer/7050148).
+     * ID of the promotion. For example, "free gift". The value must be a UTF-8 encoded string with a length limit of 128 characters, and match the pattern: `a-zA-Z*`. For example, id0LikeThis or ID_1_LIKE_THIS. Otherwise, an INVALID_ARGUMENT error is returned. Google Merchant Center property [promotion](https://support.google.com/merchants/answer/7050148).
      */
     promotionId?: string | null;
   }
@@ -1553,6 +1545,10 @@ export namespace retail_v2 {
      */
     pageToken?: string | null;
     /**
+     * The specification for personalization.
+     */
+    personalizationSpec?: Schema$GoogleCloudRetailV2SearchRequestPersonalizationSpec;
+    /**
      * Raw search query.
      */
     query?: string | null;
@@ -1661,6 +1657,15 @@ export namespace retail_v2 {
      * Only get facet for the given restricted values. For example, when using "pickupInStore" as key and set restricted values to ["store123", "store456"], only facets for "store123" and "store456" are returned. Only supported on textual fields and fulfillments. Maximum is 20. Must be set for the fulfillment facet keys: * pickupInStore * shipToStore * sameDayDelivery * nextDayDelivery * customFulfillment1 * customFulfillment2 * customFulfillment3 * customFulfillment4 * customFulfillment5
      */
     restrictedValues?: string[] | null;
+  }
+  /**
+   * The specification for personalization.
+   */
+  export interface Schema$GoogleCloudRetailV2SearchRequestPersonalizationSpec {
+    /**
+     * Defaults to Mode.AUTO.
+     */
+    mode?: string | null;
   }
   /**
    * Specification to determine under which conditions query expansion should occur.
@@ -1885,7 +1890,7 @@ export namespace retail_v2 {
      */
     pageViewId?: string | null;
     /**
-     * The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `detail-page-view` * `purchase-complete` In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished browsing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new `search` event with different product_details is desired. The end user may have not finished browsing the whole page yet.
+     * The main product details related to the event. This field is required for the following event types: * `add-to-cart` * `detail-page-view` * `purchase-complete` * `search` In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished browsing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new `search` event with different product_details is desired. The end user may have not finished browsing the whole page yet.
      */
     productDetails?: Schema$GoogleCloudRetailV2ProductDetail[];
     /**
@@ -5397,6 +5402,7 @@ export namespace retail_v2 {
      *       //   "pageCategories": [],
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
+     *       //   "personalizationSpec": {},
      *       //   "query": "my_query",
      *       //   "queryExpansionSpec": {},
      *       //   "searchMode": "my_searchMode",
