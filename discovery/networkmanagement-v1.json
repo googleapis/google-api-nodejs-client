@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20211103",
+  "revision": "20220105",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -886,7 +886,7 @@
             "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP addresss to Network3.",
             "Packet with internal destination address sent to the internet gateway.",
             "Instance with only an internal IP address tries to access Google API and services, but private Google access is not enabled.",
-            "Instance with only an internal IP address tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allow this connection. For more details, see [Special configurations for VM instances](https://cloud.google.com/vpc/docs/special-configurations).",
+            "Instance with only an internal IP address tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allow this connection.",
             "Destination internal address cannot be resolved to a known target. If this is a shared VPC scenario, verify if the service project ID is provided as test input. Otherwise, verify if the IP address is being used in the project.",
             "Forwarding rule's protocol and ports do not match the packet header.",
             "Forwarding rule does not have backends configured.",

@@ -126,6 +126,10 @@ import {
 import {VERSIONS as bloggerVersions, blogger} from './blogger';
 import {VERSIONS as booksVersions, books} from './books';
 import {VERSIONS as calendarVersions, calendar} from './calendar';
+import {
+  VERSIONS as certificatemanagerVersions,
+  certificatemanager,
+} from './certificatemanager';
 import {VERSIONS as chatVersions, chat} from './chat';
 import {
   VERSIONS as chromemanagementVersions,
@@ -316,6 +320,7 @@ import {
   VERSIONS as identitytoolkitVersions,
   identitytoolkit,
 } from './identitytoolkit';
+import {VERSIONS as idsVersions, ids} from './ids';
 import {VERSIONS as indexingVersions, indexing} from './indexing';
 import {VERSIONS as jobsVersions, jobs} from './jobs';
 import {VERSIONS as kgsearchVersions, kgsearch} from './kgsearch';
@@ -616,6 +621,7 @@ export const APIS: APIList = {
   blogger: bloggerVersions,
   books: booksVersions,
   calendar: calendarVersions,
+  certificatemanager: certificatemanagerVersions,
   chat: chatVersions,
   chromemanagement: chromemanagementVersions,
   chromepolicy: chromepolicyVersions,
@@ -707,6 +713,7 @@ export const APIS: APIList = {
   iap: iapVersions,
   ideahub: ideahubVersions,
   identitytoolkit: identitytoolkitVersions,
+  ids: idsVersions,
   indexing: indexingVersions,
   jobs: jobsVersions,
   kgsearch: kgsearchVersions,
@@ -856,6 +863,7 @@ export class GeneratedAPIs {
   blogger = blogger;
   books = books;
   calendar = calendar;
+  certificatemanager = certificatemanager;
   chat = chat;
   chromemanagement = chromemanagement;
   chromepolicy = chromepolicy;
@@ -947,6 +955,7 @@ export class GeneratedAPIs {
   iap = iap;
   ideahub = ideahub;
   identitytoolkit = identitytoolkit;
+  ids = ids;
   indexing = indexing;
   jobs = jobs;
   kgsearch = kgsearch;

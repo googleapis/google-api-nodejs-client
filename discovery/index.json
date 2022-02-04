@@ -633,21 +633,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "bigtableadmin:v1",
-      "name": "bigtableadmin",
-      "version": "v1",
-      "title": "Cloud Bigtable Admin API",
-      "description": "Administer your Cloud Bigtable tables and instances.",
-      "discoveryRestUrl": "https://bigtableadmin.googleapis.com/$discovery/rest?version=v1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/bigtable/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "bigtableadmin:v2",
       "name": "bigtableadmin",
       "version": "v2",
@@ -779,6 +764,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "http://code.google.com/apis/calendar/v3/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "certificatemanager:v1",
+      "name": "certificatemanager",
+      "version": "v1",
+      "title": "Certificate Manager API",
+      "description": "",
+      "discoveryRestUrl": "https://certificatemanager.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/certificate-manager",
       "preferred": true
     },
     {
@@ -4288,7 +4288,7 @@
       "name": "run",
       "version": "v1alpha1",
       "title": "Cloud Run Admin API",
-      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
+      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API v1 follows the Knative Serving API specification, while v2 is aligned with Google Cloud AIP-based API standards, as described in https://google.aip.dev/.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1alpha1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4303,7 +4303,7 @@
       "name": "run",
       "version": "v1",
       "title": "Cloud Run Admin API",
-      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
+      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API v1 follows the Knative Serving API specification, while v2 is aligned with Google Cloud AIP-based API standards, as described in https://google.aip.dev/.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -4318,7 +4318,7 @@
       "name": "run",
       "version": "v2",
       "title": "Cloud Run Admin API",
-      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.",
+      "description": "Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API v1 follows the Knative Serving API specification, while v2 is aligned with Google Cloud AIP-based API standards, as described in https://google.aip.dev/.",
       "discoveryRestUrl": "https://run.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
