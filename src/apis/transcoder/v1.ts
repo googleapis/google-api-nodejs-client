@@ -991,7 +991,7 @@ export namespace transcoder_v1 {
      */
     bitrateBps?: number | null;
     /**
-     * Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21.
+     * Target CRF level. Must be between 10 and 36, where 10 is the highest quality and 36 is the most efficient compression. The default is 21. *Note*: This field is not supported.
      */
     crfLevel?: number | null;
     /**
@@ -1019,7 +1019,7 @@ export namespace transcoder_v1 {
      */
     profile?: string | null;
     /**
-     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate - `crf` - constant rate factor
+     * Specify the `rate_control_mode`. The default is `vbr`. Supported rate control modes: - `vbr` - variable bitrate
      */
     rateControlMode?: string | null;
     /**
