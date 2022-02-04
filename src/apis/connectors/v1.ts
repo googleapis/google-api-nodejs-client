@@ -305,10 +305,6 @@ export namespace connectors_v1 {
      */
     imageLocation?: string | null;
     /**
-     * Optional. Inactive indicates the connection is active to use or not.
-     */
-    inactive?: boolean | null;
-    /**
      * Optional. Resource labels to represent user-provided metadata. Refer to cloud documentation on labels for more details. https://cloud.google.com/compute/docs/labeling-resources
      */
     labels?: {[key: string]: string} | null;
@@ -332,6 +328,10 @@ export namespace connectors_v1 {
      * Output only. Current status of the connection.
      */
     status?: Schema$ConnectionStatus;
+    /**
+     * Optional. Suspended indicates if a user has suspended a connection or not.
+     */
+    suspended?: boolean | null;
     /**
      * Output only. Updated time.
      */
@@ -1668,13 +1668,13 @@ export namespace connectors_v1 {
      *       //   "egressBackends": [],
      *       //   "envoyImageLocation": "my_envoyImageLocation",
      *       //   "imageLocation": "my_imageLocation",
-     *       //   "inactive": false,
      *       //   "labels": {},
      *       //   "lockConfig": {},
      *       //   "name": "my_name",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "serviceDirectory": "my_serviceDirectory",
      *       //   "status": {},
+     *       //   "suspended": false,
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1956,13 +1956,13 @@ export namespace connectors_v1 {
      *   //   "egressBackends": [],
      *   //   "envoyImageLocation": "my_envoyImageLocation",
      *   //   "imageLocation": "my_imageLocation",
-     *   //   "inactive": false,
      *   //   "labels": {},
      *   //   "lockConfig": {},
      *   //   "name": "my_name",
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "serviceDirectory": "my_serviceDirectory",
      *   //   "status": {},
+     *   //   "suspended": false,
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2519,13 +2519,13 @@ export namespace connectors_v1 {
      *       //   "egressBackends": [],
      *       //   "envoyImageLocation": "my_envoyImageLocation",
      *       //   "imageLocation": "my_imageLocation",
-     *       //   "inactive": false,
      *       //   "labels": {},
      *       //   "lockConfig": {},
      *       //   "name": "my_name",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "serviceDirectory": "my_serviceDirectory",
      *       //   "status": {},
+     *       //   "suspended": false,
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
