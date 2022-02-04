@@ -877,7 +877,7 @@ export namespace androidpublisher_v3 {
     users?: Schema$User[];
   }
   /**
-   * Release notes specification, i.e. language and text.
+   * Localized text in given language.
    */
   export interface Schema$LocalizedText {
     /**

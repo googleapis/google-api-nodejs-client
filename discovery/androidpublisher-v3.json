@@ -3040,7 +3040,7 @@
       }
     }
   },
-  "revision": "20211228",
+  "revision": "20220202",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -4004,7 +4004,7 @@
       "type": "object"
     },
     "LocalizedText": {
-      "description": "Release notes specification, i.e. language and text.",
+      "description": "Localized text in given language.",
       "id": "LocalizedText",
       "properties": {
         "language": {
