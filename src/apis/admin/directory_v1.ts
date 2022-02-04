@@ -661,11 +661,11 @@ export namespace admin_directory_v1 {
      */
     orderNumber?: string | null;
     /**
-     * The unique ID of the organizational unit. orgUnitPath is the human readable version of orgUnitId. While orgUnitPath may change by renaming an organizational unit within the path, orgUnitId is unchangeable for one organizational unit. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#update_chrome_device) using the API, and this will be supported in the future.
+     * The unique ID of the organizational unit. orgUnitPath is the human readable version of orgUnitId. While orgUnitPath may change by renaming an organizational unit within the path, orgUnitId is unchangeable for one organizational unit. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
      */
     orgUnitId?: string | null;
     /**
-     * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#update_chrome_device) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
+     * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
      */
     orgUnitPath?: string | null;
     /**
@@ -1170,7 +1170,7 @@ export namespace admin_directory_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * List of printers. If `org_unit_id` was given in the request, then only printers visible for this OU will be returned. If `org_unit_id` was given in the request, then all printers will be returned.
+     * List of printers. If `org_unit_id` was given in the request, then only printers visible for this OU will be returned. If `org_unit_id` was not given in the request, then all printers will be returned.
      */
     printers?: Schema$Printer[];
   }
@@ -1890,7 +1890,7 @@ export namespace admin_directory_v1 {
      */
     gender?: any | null;
     /**
-     * Stores the hash format of the password property. We recommend sending the `password` property value as a base 16 bit hexadecimal-encoded hash value. Set the `hashFunction` values as either the [SHA-1](https://wikipedia.org/wiki/SHA-1), [MD5](https://wikipedia.org/wiki/MD5), or [crypt](https://en.wikipedia.org/wiki/Crypt_\(C\)) hash format.
+     * Stores the hash format of the password property. We recommend sending the `password` property value as a base 16 bit hexadecimal-encoded hash value. The following `hashFunction` values are allowed: * `DES` * `MD5` - hash prefix is `$1$` * `SHA2-256` - hash prefix is `$5$` * `SHA2-512` - hash prefix is `$6$` If rounds are specified as part of the prefix, they must be 10,000 or fewer.
      */
     hashFunction?: string | null;
     /**
@@ -8049,7 +8049,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.groups.list({
      *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
      *     customer: 'placeholder-value',
-     *     // The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
+     *     // The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
      *     domain: 'placeholder-value',
      *     // Maximum number of results to return. Max allowed value is 200.
      *     maxResults: 'placeholder-value',
@@ -8498,7 +8498,7 @@ export namespace admin_directory_v1 {
      */
     customer?: string;
     /**
-     * The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
+     * The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
      */
     domain?: string;
     /**
@@ -18526,7 +18526,7 @@ export namespace admin_directory_v1 {
      *     customer: 'placeholder-value',
      *     // A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.
      *     customFieldMask: 'placeholder-value',
-     *     // The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.
+     *     // The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.
      *     domain: 'placeholder-value',
      *     // Event on which subscription is intended (if subscribing)
      *     event: 'placeholder-value',
@@ -18542,7 +18542,7 @@ export namespace admin_directory_v1 {
      *     query: 'placeholder-value',
      *     // If set to `true`, retrieves the list of deleted users. (Default: `false`)
      *     showDeleted: 'placeholder-value',
-     *     // Whether to return results in ascending or descending order.
+     *     // Whether to return results in ascending or descending order, ignoring case.
      *     sortOrder: 'placeholder-value',
      *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      *     viewType: 'placeholder-value',
@@ -19698,7 +19698,7 @@ export namespace admin_directory_v1 {
      */
     customFieldMask?: string;
     /**
-     * The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.
+     * The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.
      */
     domain?: string;
     /**
@@ -19730,7 +19730,7 @@ export namespace admin_directory_v1 {
      */
     showDeleted?: string;
     /**
-     * Whether to return results in ascending or descending order.
+     * Whether to return results in ascending or descending order, ignoring case.
      */
     sortOrder?: string;
     /**
