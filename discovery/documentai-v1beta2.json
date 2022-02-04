@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20211214",
+  "revision": "20220129",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1014,6 +1014,10 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
           "description": "The basic metadata of the long running operation."
+        },
+        "questionId": {
+          "description": "The Crowd Compute question ID.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1061,6 +1065,62 @@
       "description": "Response message for the undeploy processor version method.",
       "id": "GoogleCloudDocumentaiV1UndeployProcessorVersionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1alpha1AnalyzeHitlDataMetadata": {
+      "description": "The long running operation metadata for AnalyzeHitlData.",
+      "id": "GoogleCloudDocumentaiV1alpha1AnalyzeHitlDataMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1alpha1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1alpha1CommonOperationMetadata": {
+      "description": "The common metadata for long running operations.",
+      "id": "GoogleCloudDocumentaiV1alpha1CommonOperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The creation time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resource": {
+          "description": "A related resource to this operation.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "CANCELLING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Operation is still running.",
+            "Operation is being cancelled.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation is cancelled."
+          ],
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "A message providing more details about the current state of processing.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The last update time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse": {
@@ -3846,6 +3906,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "questionId": {
+          "description": "The Crowd Compute question ID.",
+          "type": "string"
+        },
         "state": {
           "description": "Used only when Operation.done is false.",
           "enum": [
@@ -4019,7 +4083,6 @@
       "type": "object"
     },
     "GoogleTypeDate": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
       "id": "GoogleTypeDate",
       "properties": {
         "day": {
