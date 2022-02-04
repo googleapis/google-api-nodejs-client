@@ -330,7 +330,7 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Optional. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The filters supported at the moment are: `placeId`.",
+              "description": "Optional. The filter expression. For example: `placeId=ChIJj61dQgK6j4AR4GeTYWZsKWw`. The filters supported are: `placeId`, `min_latitude`, `max_latitude`, `min_longitude`, and `max_longitude`. See https://google.aip.dev/160 for more information.",
               "location": "query",
               "type": "string"
             },
@@ -375,7 +375,7 @@
       }
     }
   },
-  "revision": "20211124",
+  "revision": "20220202",
   "rootUrl": "https://streetviewpublish.googleapis.com/",
   "schemas": {
     "BatchDeletePhotosRequest": {
