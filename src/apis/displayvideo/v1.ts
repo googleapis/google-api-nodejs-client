@@ -673,15 +673,15 @@ export namespace displayvideo_v1 {
     userRole?: string | null;
   }
   /**
-   * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is UNION'ed with other groups.
+   * Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is used as an INTERSECTION with other groups.
    */
   export interface Schema$AudienceGroupAssignedTargetingOptionDetails {
     /**
-     * The first and third party audience ids and recencies of the excluded first and third party audience group. Used for negative targeting. Its COMPLEMENT is used to UNION other audience groups.
+     * The first and third party audience ids and recencies of the excluded first and third party audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. All items are logically ‘OR’ of each other.
      */
     excludedFirstAndThirdPartyAudienceGroup?: Schema$FirstAndThirdPartyAudienceGroup;
     /**
-     * The Google audience ids of the excluded Google audience group. Used for negative targeting. It's COMPLEMENT is used to UNION other audience groups. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other.
+     * The Google audience ids of the excluded Google audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other.
      */
     excludedGoogleAudienceGroup?: Schema$GoogleAudienceGroup;
     /**
@@ -1436,6 +1436,44 @@ export namespace displayvideo_v1 {
     combinedAudienceId?: string | null;
   }
   /**
+   * Contact information defining a Customer Match audience member.
+   */
+  export interface Schema$ContactInfo {
+    /**
+     * Country code of the member. Must also be set with the following fields: * hashed_first_name * hashed_last_name * zip_codes
+     */
+    countryCode?: string | null;
+    /**
+     * A list of SHA256 hashed email of the member. Before hashing, remove all whitespace and make sure the string is all lowercase.
+     */
+    hashedEmails?: string[] | null;
+    /**
+     * SHA256 hashed first name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_last_name * zip_codes
+     */
+    hashedFirstName?: string | null;
+    /**
+     * SHA256 hashed last name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_first_name * zip_codes
+     */
+    hashedLastName?: string | null;
+    /**
+     * A list of SHA256 hashed phone numbers of the member. Before hashing, all phone numbers must be formatted using the [E.164 format](//en.wikipedia.org/wiki/E.164) and include the country calling code.
+     */
+    hashedPhoneNumbers?: string[] | null;
+    /**
+     * A list of zip codes of the member. Must also be set with the following fields: * country_code * hashed_first_name * hashed_last_name
+     */
+    zipCodes?: string[] | null;
+  }
+  /**
+   * Wrapper message for a list of contact information defining Customer Match audience members.
+   */
+  export interface Schema$ContactInfoList {
+    /**
+     * A list of ContactInfo objects defining Customer Match audience members.
+     */
+    contactInfos?: Schema$ContactInfo[];
+  }
+  /**
    * Assigned content instream position targeting option details. This will be populated in the content_instream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`.
    */
   export interface Schema$ContentInstreamPositionAssignedTargetingOptionDetails {
@@ -1906,7 +1944,7 @@ export namespace displayvideo_v1 {
     customListId?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -2163,6 +2201,32 @@ export namespace displayvideo_v1 {
     videoViewableRate?: string | null;
   }
   /**
+   * Request message for FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.
+   */
+  export interface Schema$EditCustomerMatchMembersRequest {
+    /**
+     * Input only. A list of contact information to define the members to be added.
+     */
+    addedContactInfoList?: Schema$ContactInfoList;
+    /**
+     * Input only. A list of mobile device IDs to define the members to be added.
+     */
+    addedMobileDeviceIdList?: Schema$MobileDeviceIdList;
+    /**
+     * Required. The ID of the owner advertiser of the updated Customer Match FirstAndThirdPartyAudience.
+     */
+    advertiserId?: string | null;
+  }
+  /**
+   * The response of FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.
+   */
+  export interface Schema$EditCustomerMatchMembersResponse {
+    /**
+     * Required. The ID of the updated Customer Match FirstAndThirdPartyAudience.
+     */
+    firstAndThirdPartyAudienceId?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -2279,13 +2343,21 @@ export namespace displayvideo_v1 {
      */
     activeDisplayAudienceSize?: string | null;
     /**
+     * The app_id matches with the type of the mobile_device_ids being uploaded. Only applicable to audience_type `CUSTOMER_MATCH_DEVICE_ID`
+     */
+    appId?: string | null;
+    /**
      * Output only. The source of the audience.
      */
     audienceSource?: string | null;
     /**
-     * Output only. The type of the audience.
+     * The type of the audience.
      */
     audienceType?: string | null;
+    /**
+     * Input only. A list of contact information to define the initial audience members. Only applicable to audience_type `CUSTOMER_MATCH_CONTACT_INFO`
+     */
+    contactInfoList?: Schema$ContactInfoList;
     /**
      * The user-provided description of the audience. Only applicable to first party audiences.
      */
@@ -2315,7 +2387,7 @@ export namespace displayvideo_v1 {
      */
     firstAndThirdPartyAudienceId?: string | null;
     /**
-     * Output only. Whether the audience is a first or third party audience.
+     * Whether the audience is a first or third party audience.
      */
     firstAndThirdPartyAudienceType?: string | null;
     /**
@@ -2323,9 +2395,13 @@ export namespace displayvideo_v1 {
      */
     gmailAudienceSize?: string | null;
     /**
-     * The duration in days that an entry remains in the audience after the qualifying event. Only applicable to first party audiences.
+     * The duration in days that an entry remains in the audience after the qualifying event. If the audience has no expiration, set the value of this field to 10000. Otherwise, the set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
      */
     membershipDurationDays?: string | null;
+    /**
+     * Input only. A list of mobile device IDs to define the initial audience members. Only applicable to audience_type `CUSTOMER_MATCH_DEVICE_ID`
+     */
+    mobileDeviceIdList?: Schema$MobileDeviceIdList;
     /**
      * Output only. The resource name of the first and third party audience.
      */
@@ -2665,6 +2741,10 @@ export namespace displayvideo_v1 {
      * Required. Performance goal of the insertion order.
      */
     performanceGoal?: Schema$PerformanceGoal;
+    /**
+     * Output only. The reservation type of the insertion order.
+     */
+    reservationType?: string | null;
     /**
      * Output only. The timestamp when the insertion order was last updated. Assigned by the system.
      */
@@ -3091,6 +3171,10 @@ export namespace displayvideo_v1 {
      */
     entityStatus?: string | null;
     /**
+     * Whether to exclude new exchanges from automatically being targeted by the line item. This field is false by default.
+     */
+    excludeNewExchanges?: boolean | null;
+    /**
      * Required. The start and end time of the line item's flight.
      */
     flight?: Schema$LineItemFlight;
@@ -3138,6 +3222,10 @@ export namespace displayvideo_v1 {
      * Required. The partner revenue model setting of the line item.
      */
     partnerRevenueModel?: Schema$PartnerRevenueModel;
+    /**
+     * Output only. The reservation type of the line item.
+     */
+    reservationType?: string | null;
     /**
      * The [targeting expansion](https://support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item.
      */
@@ -3645,6 +3733,15 @@ export namespace displayvideo_v1 {
      * Output only. The app publisher.
      */
     publisher?: string | null;
+  }
+  /**
+   * Wrapper message for a list of mobile device IDs defining Customer Match audience members.
+   */
+  export interface Schema$MobileDeviceIdList {
+    /**
+     * A list of mobile device IDs defining Customer Match audience members.
+     */
+    mobileDeviceIds?: string[] | null;
   }
   /**
    * Represents an amount of money with its currency type.
@@ -6175,7 +6272,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Uploads an asset. Returns the ID of the newly uploaded asset if successful. The asset file size should be no more than 10 MB for images, 200 MB for ZIP files, and 1 GB for videos.
+     * Uploads an asset. Returns the ID of the newly uploaded asset if successful. The asset file size should be no more than 10 MB for images, 200 MB for ZIP files, and 1 GB for videos. Must be used within the [multipart media upload process](/display-video/api/guides/how-tos/upload#multipart). Examples using provided client libraries can be found in our [Creating Creatives guide](/display-video/api/guides/creating-creatives/overview#upload_an_asset).
      * @example
      * ```js
      * // Before running the sample:
@@ -10492,6 +10589,7 @@ export namespace displayvideo_v1 {
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
      *       //   "performanceGoal": {},
+     *       //   "reservationType": "my_reservationType",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -10514,6 +10612,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "performanceGoal": {},
+     *   //   "reservationType": "my_reservationType",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -10787,6 +10886,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "performanceGoal": {},
+     *   //   "reservationType": "my_reservationType",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -11078,6 +11178,7 @@ export namespace displayvideo_v1 {
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
      *       //   "performanceGoal": {},
+     *       //   "reservationType": "my_reservationType",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -11100,6 +11201,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "performanceGoal": {},
+     *   //   "reservationType": "my_reservationType",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -12415,6 +12517,7 @@ export namespace displayvideo_v1 {
      *       //   "creativeIds": [],
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
+     *       //   "excludeNewExchanges": false,
      *       //   "flight": {},
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
@@ -12427,6 +12530,7 @@ export namespace displayvideo_v1 {
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
      *       //   "partnerRevenueModel": {},
+     *       //   "reservationType": "my_reservationType",
      *       //   "targetingExpansion": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "warningMessages": []
@@ -12445,6 +12549,7 @@ export namespace displayvideo_v1 {
      *   //   "creativeIds": [],
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
+     *   //   "excludeNewExchanges": false,
      *   //   "flight": {},
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
@@ -12457,6 +12562,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "partnerRevenueModel": {},
+     *   //   "reservationType": "my_reservationType",
      *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "warningMessages": []
@@ -12735,6 +12841,7 @@ export namespace displayvideo_v1 {
      *   //   "creativeIds": [],
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
+     *   //   "excludeNewExchanges": false,
      *   //   "flight": {},
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
@@ -12747,6 +12854,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "partnerRevenueModel": {},
+     *   //   "reservationType": "my_reservationType",
      *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "warningMessages": []
@@ -12888,6 +12996,7 @@ export namespace displayvideo_v1 {
      *   //   "creativeIds": [],
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
+     *   //   "excludeNewExchanges": false,
      *   //   "flight": {},
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
@@ -12900,6 +13009,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "partnerRevenueModel": {},
+     *   //   "reservationType": "my_reservationType",
      *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "warningMessages": []
@@ -13185,6 +13295,7 @@ export namespace displayvideo_v1 {
      *       //   "creativeIds": [],
      *       //   "displayName": "my_displayName",
      *       //   "entityStatus": "my_entityStatus",
+     *       //   "excludeNewExchanges": false,
      *       //   "flight": {},
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
@@ -13197,6 +13308,7 @@ export namespace displayvideo_v1 {
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
      *       //   "partnerRevenueModel": {},
+     *       //   "reservationType": "my_reservationType",
      *       //   "targetingExpansion": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "warningMessages": []
@@ -13215,6 +13327,7 @@ export namespace displayvideo_v1 {
      *   //   "creativeIds": [],
      *   //   "displayName": "my_displayName",
      *   //   "entityStatus": "my_entityStatus",
+     *   //   "excludeNewExchanges": false,
      *   //   "flight": {},
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
@@ -13227,6 +13340,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "partnerRevenueModel": {},
+     *   //   "reservationType": "my_reservationType",
      *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "warningMessages": []
@@ -21066,6 +21180,334 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * Creates a FirstAndThirdPartyAudience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.firstAndThirdPartyAudiences.create({
+     *     // Required. The ID of the advertiser under whom the FirstAndThirdPartyAudience will be created.
+     *     advertiserId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
+     *       //   "appId": "my_appId",
+     *       //   "audienceSource": "my_audienceSource",
+     *       //   "audienceType": "my_audienceType",
+     *       //   "contactInfoList": {},
+     *       //   "description": "my_description",
+     *       //   "displayAudienceSize": "my_displayAudienceSize",
+     *       //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
+     *       //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
+     *       //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
+     *       //   "displayName": "my_displayName",
+     *       //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
+     *       //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
+     *       //   "gmailAudienceSize": "my_gmailAudienceSize",
+     *       //   "membershipDurationDays": "my_membershipDurationDays",
+     *       //   "mobileDeviceIdList": {},
+     *       //   "name": "my_name",
+     *       //   "youtubeAudienceSize": "my_youtubeAudienceSize"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
+     *   //   "appId": "my_appId",
+     *   //   "audienceSource": "my_audienceSource",
+     *   //   "audienceType": "my_audienceType",
+     *   //   "contactInfoList": {},
+     *   //   "description": "my_description",
+     *   //   "displayAudienceSize": "my_displayAudienceSize",
+     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
+     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
+     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
+     *   //   "displayName": "my_displayName",
+     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
+     *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
+     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
+     *   //   "membershipDurationDays": "my_membershipDurationDays",
+     *   //   "mobileDeviceIdList": {},
+     *   //   "name": "my_name",
+     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Firstandthirdpartyaudiences$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Firstandthirdpartyaudiences$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FirstAndThirdPartyAudience>;
+    create(
+      params: Params$Resource$Firstandthirdpartyaudiences$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Firstandthirdpartyaudiences$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>,
+      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+    ): void;
+    create(
+      params: Params$Resource$Firstandthirdpartyaudiences$Create,
+      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Firstandthirdpartyaudiences$Create
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FirstAndThirdPartyAudience>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Firstandthirdpartyaudiences$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Firstandthirdpartyaudiences$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/firstAndThirdPartyAudiences').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FirstAndThirdPartyAudience>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FirstAndThirdPartyAudience>(parameters);
+      }
+    }
+
+    /**
+     * Updates the member list of a Customer Match audience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await displayvideo.firstAndThirdPartyAudiences.editCustomerMatchMembers({
+     *       // Required. The ID of the Customer Match FirstAndThirdPartyAudience whose members will be edited.
+     *       firstAndThirdPartyAudienceId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "addedContactInfoList": {},
+     *         //   "addedMobileDeviceIdList": {},
+     *         //   "advertiserId": "my_advertiserId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    editCustomerMatchMembers(
+      params: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    editCustomerMatchMembers(
+      params?: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EditCustomerMatchMembersResponse>;
+    editCustomerMatchMembers(
+      params: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    editCustomerMatchMembers(
+      params: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>,
+      callback: BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
+    ): void;
+    editCustomerMatchMembers(
+      params: Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers,
+      callback: BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
+    ): void;
+    editCustomerMatchMembers(
+      callback: BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
+    ): void;
+    editCustomerMatchMembers(
+      paramsOrCallback?:
+        | Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers
+        | BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EditCustomerMatchMembersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$EditCustomerMatchMembersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['firstAndThirdPartyAudienceId'],
+        pathParams: ['firstAndThirdPartyAudienceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EditCustomerMatchMembersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EditCustomerMatchMembersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets a first and third party audience.
      * @example
      * ```js
@@ -21104,8 +21546,10 @@ export namespace displayvideo_v1 {
      *   // Example response
      *   // {
      *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
+     *   //   "appId": "my_appId",
      *   //   "audienceSource": "my_audienceSource",
      *   //   "audienceType": "my_audienceType",
+     *   //   "contactInfoList": {},
      *   //   "description": "my_description",
      *   //   "displayAudienceSize": "my_displayAudienceSize",
      *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
@@ -21116,6 +21560,7 @@ export namespace displayvideo_v1 {
      *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
      *   //   "gmailAudienceSize": "my_gmailAudienceSize",
      *   //   "membershipDurationDays": "my_membershipDurationDays",
+     *   //   "mobileDeviceIdList": {},
      *   //   "name": "my_name",
      *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
      *   // }
@@ -21367,8 +21812,214 @@ export namespace displayvideo_v1 {
         );
       }
     }
+
+    /**
+     * Updates an existing FirstAndThirdPartyAudience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.firstAndThirdPartyAudiences.patch({
+     *     // Required. The ID of the owner advertiser of the updated FirstAndThirdPartyAudience.
+     *     advertiserId: 'placeholder-value',
+     *     // Output only. The unique ID of the first and third party audience. Assigned by the system.
+     *     firstAndThirdPartyAudienceId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
+     *       //   "appId": "my_appId",
+     *       //   "audienceSource": "my_audienceSource",
+     *       //   "audienceType": "my_audienceType",
+     *       //   "contactInfoList": {},
+     *       //   "description": "my_description",
+     *       //   "displayAudienceSize": "my_displayAudienceSize",
+     *       //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
+     *       //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
+     *       //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
+     *       //   "displayName": "my_displayName",
+     *       //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
+     *       //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
+     *       //   "gmailAudienceSize": "my_gmailAudienceSize",
+     *       //   "membershipDurationDays": "my_membershipDurationDays",
+     *       //   "mobileDeviceIdList": {},
+     *       //   "name": "my_name",
+     *       //   "youtubeAudienceSize": "my_youtubeAudienceSize"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeDisplayAudienceSize": "my_activeDisplayAudienceSize",
+     *   //   "appId": "my_appId",
+     *   //   "audienceSource": "my_audienceSource",
+     *   //   "audienceType": "my_audienceType",
+     *   //   "contactInfoList": {},
+     *   //   "description": "my_description",
+     *   //   "displayAudienceSize": "my_displayAudienceSize",
+     *   //   "displayDesktopAudienceSize": "my_displayDesktopAudienceSize",
+     *   //   "displayMobileAppAudienceSize": "my_displayMobileAppAudienceSize",
+     *   //   "displayMobileWebAudienceSize": "my_displayMobileWebAudienceSize",
+     *   //   "displayName": "my_displayName",
+     *   //   "firstAndThirdPartyAudienceId": "my_firstAndThirdPartyAudienceId",
+     *   //   "firstAndThirdPartyAudienceType": "my_firstAndThirdPartyAudienceType",
+     *   //   "gmailAudienceSize": "my_gmailAudienceSize",
+     *   //   "membershipDurationDays": "my_membershipDurationDays",
+     *   //   "mobileDeviceIdList": {},
+     *   //   "name": "my_name",
+     *   //   "youtubeAudienceSize": "my_youtubeAudienceSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Firstandthirdpartyaudiences$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Firstandthirdpartyaudiences$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$FirstAndThirdPartyAudience>;
+    patch(
+      params: Params$Resource$Firstandthirdpartyaudiences$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Firstandthirdpartyaudiences$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>,
+      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+    ): void;
+    patch(
+      params: Params$Resource$Firstandthirdpartyaudiences$Patch,
+      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Firstandthirdpartyaudiences$Patch
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FirstAndThirdPartyAudience>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$FirstAndThirdPartyAudience>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Firstandthirdpartyaudiences$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Firstandthirdpartyaudiences$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['firstAndThirdPartyAudienceId'],
+        pathParams: ['firstAndThirdPartyAudienceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FirstAndThirdPartyAudience>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FirstAndThirdPartyAudience>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Firstandthirdpartyaudiences$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser under whom the FirstAndThirdPartyAudience will be created.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FirstAndThirdPartyAudience;
+  }
+  export interface Params$Resource$Firstandthirdpartyaudiences$Editcustomermatchmembers
+    extends StandardParameters {
+    /**
+     * Required. The ID of the Customer Match FirstAndThirdPartyAudience whose members will be edited.
+     */
+    firstAndThirdPartyAudienceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EditCustomerMatchMembersRequest;
+  }
   export interface Params$Resource$Firstandthirdpartyaudiences$Get
     extends StandardParameters {
     /**
@@ -21410,6 +22061,26 @@ export namespace displayvideo_v1 {
      * The ID of the partner that has access to the fetched first and third party audiences.
      */
     partnerId?: string;
+  }
+  export interface Params$Resource$Firstandthirdpartyaudiences$Patch
+    extends StandardParameters {
+    /**
+     * Required. The ID of the owner advertiser of the updated FirstAndThirdPartyAudience.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique ID of the first and third party audience. Assigned by the system.
+     */
+    firstAndThirdPartyAudienceId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FirstAndThirdPartyAudience;
   }
 
   export class Resource$Floodlightgroups {

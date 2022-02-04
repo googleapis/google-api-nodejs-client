@@ -377,7 +377,7 @@
         "assets": {
           "methods": {
             "upload": {
-              "description": "Uploads an asset. Returns the ID of the newly uploaded asset if successful. The asset file size should be no more than 10 MB for images, 200 MB for ZIP files, and 1 GB for videos.",
+              "description": "Uploads an asset. Returns the ID of the newly uploaded asset if successful. The asset file size should be no more than 10 MB for images, 200 MB for ZIP files, and 1 GB for videos. Must be used within the [multipart media upload process](/display-video/api/guides/how-tos/upload#multipart). Examples using provided client libraries can be found in our [Creating Creatives guide](/display-video/api/guides/creating-creatives/overview#upload_an_asset).",
               "flatPath": "v1/advertisers/{advertisersId}/assets",
               "httpMethod": "POST",
               "id": "displayvideo.advertisers.assets.upload",
@@ -5150,6 +5150,60 @@
     },
     "firstAndThirdPartyAudiences": {
       "methods": {
+        "create": {
+          "description": "Creates a FirstAndThirdPartyAudience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`",
+          "flatPath": "v1/firstAndThirdPartyAudiences",
+          "httpMethod": "POST",
+          "id": "displayvideo.firstAndThirdPartyAudiences.create",
+          "parameterOrder": [],
+          "parameters": {
+            "advertiserId": {
+              "description": "Required. The ID of the advertiser under whom the FirstAndThirdPartyAudience will be created.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/firstAndThirdPartyAudiences",
+          "request": {
+            "$ref": "FirstAndThirdPartyAudience"
+          },
+          "response": {
+            "$ref": "FirstAndThirdPartyAudience"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "editCustomerMatchMembers": {
+          "description": "Updates the member list of a Customer Match audience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`",
+          "flatPath": "v1/firstAndThirdPartyAudiences/{firstAndThirdPartyAudiencesId}:editCustomerMatchMembers",
+          "httpMethod": "POST",
+          "id": "displayvideo.firstAndThirdPartyAudiences.editCustomerMatchMembers",
+          "parameterOrder": [
+            "firstAndThirdPartyAudienceId"
+          ],
+          "parameters": {
+            "firstAndThirdPartyAudienceId": {
+              "description": "Required. The ID of the Customer Match FirstAndThirdPartyAudience whose members will be edited.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}:editCustomerMatchMembers",
+          "request": {
+            "$ref": "EditCustomerMatchMembersRequest"
+          },
+          "response": {
+            "$ref": "EditCustomerMatchMembersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
         "get": {
           "description": "Gets a first and third party audience.",
           "flatPath": "v1/firstAndThirdPartyAudiences/{firstAndThirdPartyAudiencesId}",
@@ -5232,6 +5286,47 @@
           "path": "v1/firstAndThirdPartyAudiences",
           "response": {
             "$ref": "ListFirstAndThirdPartyAudiencesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/display-video"
+          ]
+        },
+        "patch": {
+          "description": "Updates an existing FirstAndThirdPartyAudience. Only supported for the following audience_type: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`",
+          "flatPath": "v1/firstAndThirdPartyAudiences/{firstAndThirdPartyAudiencesId}",
+          "httpMethod": "PATCH",
+          "id": "displayvideo.firstAndThirdPartyAudiences.patch",
+          "parameterOrder": [
+            "firstAndThirdPartyAudienceId"
+          ],
+          "parameters": {
+            "advertiserId": {
+              "description": "Required. The ID of the owner advertiser of the updated FirstAndThirdPartyAudience.",
+              "format": "int64",
+              "location": "query",
+              "type": "string"
+            },
+            "firstAndThirdPartyAudienceId": {
+              "description": "Output only. The unique ID of the first and third party audience. Assigned by the system.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Required. The mask to control which fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/firstAndThirdPartyAudiences/{+firstAndThirdPartyAudienceId}",
+          "request": {
+            "$ref": "FirstAndThirdPartyAudience"
+          },
+          "response": {
+            "$ref": "FirstAndThirdPartyAudience"
           },
           "scopes": [
             "https://www.googleapis.com/auth/display-video"
@@ -7635,7 +7730,7 @@
       }
     }
   },
-  "revision": "20220106",
+  "revision": "20220203",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8587,16 +8682,16 @@
       "type": "object"
     },
     "AudienceGroupAssignedTargetingOptionDetails": {
-      "description": "Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is UNION'ed with other groups.",
+      "description": "Assigned audience group targeting option details. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. The relation between each group is UNION, except for excluded_first_and_third_party_audience_group and excluded_google_audience_group, of which COMPLEMENT is used as an INTERSECTION with other groups.",
       "id": "AudienceGroupAssignedTargetingOptionDetails",
       "properties": {
         "excludedFirstAndThirdPartyAudienceGroup": {
           "$ref": "FirstAndThirdPartyAudienceGroup",
-          "description": "The first and third party audience ids and recencies of the excluded first and third party audience group. Used for negative targeting. Its COMPLEMENT is used to UNION other audience groups."
+          "description": "The first and third party audience ids and recencies of the excluded first and third party audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. All items are logically ‘OR’ of each other."
         },
         "excludedGoogleAudienceGroup": {
           "$ref": "GoogleAudienceGroup",
-          "description": "The Google audience ids of the excluded Google audience group. Used for negative targeting. It's COMPLEMENT is used to UNION other audience groups. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other."
+          "description": "The Google audience ids of the excluded Google audience group. Used for negative targeting. The COMPLEMENT of the UNION of this group and other excluded audience groups is used as an INTERSECTION to any positive audience targeting. Only contains Affinity, In-market and Installed-apps type Google audiences. All items are logically ‘OR’ of each other."
         },
         "includedCombinedAudienceGroup": {
           "$ref": "CombinedAudienceGroup",
@@ -9801,6 +9896,60 @@
       },
       "type": "object"
     },
+    "ContactInfo": {
+      "description": "Contact information defining a Customer Match audience member.",
+      "id": "ContactInfo",
+      "properties": {
+        "countryCode": {
+          "description": "Country code of the member. Must also be set with the following fields: * hashed_first_name * hashed_last_name * zip_codes",
+          "type": "string"
+        },
+        "hashedEmails": {
+          "description": "A list of SHA256 hashed email of the member. Before hashing, remove all whitespace and make sure the string is all lowercase.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hashedFirstName": {
+          "description": "SHA256 hashed first name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_last_name * zip_codes",
+          "type": "string"
+        },
+        "hashedLastName": {
+          "description": "SHA256 hashed last name of the member. Before hashing, remove all whitespace and make sure the string is all lowercase. Must also be set with the following fields: * country_code * hashed_first_name * zip_codes",
+          "type": "string"
+        },
+        "hashedPhoneNumbers": {
+          "description": "A list of SHA256 hashed phone numbers of the member. Before hashing, all phone numbers must be formatted using the [E.164 format](//en.wikipedia.org/wiki/E.164) and include the country calling code.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "zipCodes": {
+          "description": "A list of zip codes of the member. Must also be set with the following fields: * country_code * hashed_first_name * hashed_last_name",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ContactInfoList": {
+      "description": "Wrapper message for a list of contact information defining Customer Match audience members.",
+      "id": "ContactInfoList",
+      "properties": {
+        "contactInfos": {
+          "description": "A list of ContactInfo objects defining Customer Match audience members.",
+          "items": {
+            "$ref": "ContactInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ContentInstreamPositionAssignedTargetingOptionDetails": {
       "description": "Assigned content instream position targeting option details. This will be populated in the content_instream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`.",
       "id": "ContentInstreamPositionAssignedTargetingOptionDetails",
@@ -10801,7 +10950,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -11517,6 +11666,38 @@
       },
       "type": "object"
     },
+    "EditCustomerMatchMembersRequest": {
+      "description": "Request message for FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.",
+      "id": "EditCustomerMatchMembersRequest",
+      "properties": {
+        "addedContactInfoList": {
+          "$ref": "ContactInfoList",
+          "description": "Input only. A list of contact information to define the members to be added."
+        },
+        "addedMobileDeviceIdList": {
+          "$ref": "MobileDeviceIdList",
+          "description": "Input only. A list of mobile device IDs to define the members to be added."
+        },
+        "advertiserId": {
+          "description": "Required. The ID of the owner advertiser of the updated Customer Match FirstAndThirdPartyAudience.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EditCustomerMatchMembersResponse": {
+      "description": "The response of FirstAndThirdPartyAudienceService.EditCustomerMatchMembers.",
+      "id": "EditCustomerMatchMembersResponse",
+      "properties": {
+        "firstAndThirdPartyAudienceId": {
+          "description": "Required. The ID of the updated Customer Match FirstAndThirdPartyAudience.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
@@ -12116,6 +12297,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "appId": {
+          "description": "The app_id matches with the type of the mobile_device_ids being uploaded. Only applicable to audience_type `CUSTOMER_MATCH_DEVICE_ID`",
+          "type": "string"
+        },
         "audienceSource": {
           "description": "Output only. The source of the audience.",
           "enum": [
@@ -12140,7 +12325,7 @@
           "type": "string"
         },
         "audienceType": {
-          "description": "Output only. The type of the audience.",
+          "description": "The type of the audience.",
           "enum": [
             "AUDIENCE_TYPE_UNSPECIFIED",
             "CUSTOMER_MATCH_CONTACT_INFO",
@@ -12163,8 +12348,11 @@
             "Audience was created based on past interactions with videos, YouTube ads, or YouTube channel.",
             "Subtype of third party audience type."
           ],
-          "readOnly": true,
           "type": "string"
+        },
+        "contactInfoList": {
+          "$ref": "ContactInfoList",
+          "description": "Input only. A list of contact information to define the initial audience members. Only applicable to audience_type `CUSTOMER_MATCH_CONTACT_INFO`"
         },
         "description": {
           "description": "The user-provided description of the audience. Only applicable to first party audiences.",
@@ -12205,7 +12393,7 @@
           "type": "string"
         },
         "firstAndThirdPartyAudienceType": {
-          "description": "Output only. Whether the audience is a first or third party audience.",
+          "description": "Whether the audience is a first or third party audience.",
           "enum": [
             "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_UNSPECIFIED",
             "FIRST_AND_THIRD_PARTY_AUDIENCE_TYPE_FIRST_PARTY",
@@ -12216,7 +12404,6 @@
             "Audience that is created via usage of client data.",
             "Audience that is provided by Third Party data providers."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "gmailAudienceSize": {
@@ -12226,9 +12413,13 @@
           "type": "string"
         },
         "membershipDurationDays": {
-          "description": "The duration in days that an entry remains in the audience after the qualifying event. Only applicable to first party audiences.",
+          "description": "The duration in days that an entry remains in the audience after the qualifying event. If the audience has no expiration, set the value of this field to 10000. Otherwise, the set value must be greater than 0 and less than or equal to 540. Only applicable to first party audiences. This field is required if one of the following audience_type is used: * `CUSTOMER_MATCH_CONTACT_INFO` * `CUSTOMER_MATCH_DEVICE_ID`",
           "format": "int64",
           "type": "string"
+        },
+        "mobileDeviceIdList": {
+          "$ref": "MobileDeviceIdList",
+          "description": "Input only. A list of mobile device IDs to define the initial audience members. Only applicable to audience_type `CUSTOMER_MATCH_DEVICE_ID`"
         },
         "name": {
           "description": "Output only. The resource name of the first and third party audience.",
@@ -13022,6 +13213,23 @@
         "performanceGoal": {
           "$ref": "PerformanceGoal",
           "description": "Required. Performance goal of the insertion order."
+        },
+        "reservationType": {
+          "description": "Output only. The reservation type of the insertion order.",
+          "enum": [
+            "RESERVATION_TYPE_UNSPECIFIED",
+            "RESERVATION_TYPE_NOT_GUARANTEED",
+            "RESERVATION_TYPE_PROGRAMMATIC_GUARANTEED",
+            "RESERVATION_TYPE_TAG_GUARANTEED"
+          ],
+          "enumDescriptions": [
+            "Reservation type value is not specified or is unknown in this version.",
+            "Not created through a guaranteed inventory source.",
+            "Created through a programmatic guaranteed inventory source.",
+            "Created through a tag guaranteed inventory source."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. The timestamp when the insertion order was last updated. Assigned by the system.",
@@ -13928,6 +14136,10 @@
           ],
           "type": "string"
         },
+        "excludeNewExchanges": {
+          "description": "Whether to exclude new exchanges from automatically being targeted by the line item. This field is false by default.",
+          "type": "boolean"
+        },
         "flight": {
           "$ref": "LineItemFlight",
           "description": "Required. The start and end time of the line item's flight."
@@ -14008,6 +14220,23 @@
         "partnerRevenueModel": {
           "$ref": "PartnerRevenueModel",
           "description": "Required. The partner revenue model setting of the line item."
+        },
+        "reservationType": {
+          "description": "Output only. The reservation type of the line item.",
+          "enum": [
+            "RESERVATION_TYPE_UNSPECIFIED",
+            "RESERVATION_TYPE_NOT_GUARANTEED",
+            "RESERVATION_TYPE_PROGRAMMATIC_GUARANTEED",
+            "RESERVATION_TYPE_TAG_GUARANTEED"
+          ],
+          "enumDescriptions": [
+            "Reservation type value is not specified or is unknown in this version.",
+            "Not created through a guaranteed inventory source.",
+            "Created through a programmatic guaranteed inventory source.",
+            "Created through a tag guaranteed inventory source."
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "targetingExpansion": {
           "$ref": "TargetingExpansionConfig",
@@ -14875,6 +15104,20 @@
           "description": "Output only. The app publisher.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MobileDeviceIdList": {
+      "description": "Wrapper message for a list of mobile device IDs defining Customer Match audience members.",
+      "id": "MobileDeviceIdList",
+      "properties": {
+        "mobileDeviceIds": {
+          "description": "A list of mobile device IDs defining Customer Match audience members.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
