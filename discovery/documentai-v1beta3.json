@@ -110,7 +110,7 @@
         "locations": {
           "methods": {
             "fetchProcessorTypes": {
-              "description": "Fetches processor types.",
+              "description": "Fetches processor types. Note that we do not use ListProcessorTypes here because it is not paginated.",
               "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}:fetchProcessorTypes",
               "httpMethod": "GET",
               "id": "documentai.projects.locations.fetchProcessorTypes",
@@ -796,7 +796,7 @@
       }
     }
   },
-  "revision": "20211214",
+  "revision": "20220129",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1518,6 +1518,10 @@
         "commonMetadata": {
           "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
           "description": "The basic metadata of the long running operation."
+        },
+        "questionId": {
+          "description": "The Crowd Compute question ID.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1565,6 +1569,62 @@
       "description": "Response message for the undeploy processor version method.",
       "id": "GoogleCloudDocumentaiV1UndeployProcessorVersionResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1alpha1AnalyzeHitlDataMetadata": {
+      "description": "The long running operation metadata for AnalyzeHitlData.",
+      "id": "GoogleCloudDocumentaiV1alpha1AnalyzeHitlDataMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1alpha1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1alpha1CommonOperationMetadata": {
+      "description": "The common metadata for long running operations.",
+      "id": "GoogleCloudDocumentaiV1alpha1CommonOperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The creation time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resource": {
+          "description": "A related resource to this operation.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "CANCELLING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Operation is still running.",
+            "Operation is being cancelled.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation is cancelled."
+          ],
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "A message providing more details about the current state of processing.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The last update time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1BatchProcessDocumentsResponse": {
@@ -5518,10 +5578,10 @@
             "The feature is not yet implemented. Users can not use it.",
             "Prelaunch features are hidden from users and are only visible internally.",
             "Early Access features are limited to a closed group of testers. To use these features, you must sign up in advance and sign a Trusted Tester agreement (which includes confidentiality provisions). These features may be unstable, changed in backward-incompatible ways, and are not guaranteed to be released.",
-            "Alpha is a limited availability test for releases before they are cleared for widespread use. By Alpha, all significant design issues are resolved and we are in the process of verifying functionality. Alpha customers need to apply for access, agree to applicable terms, and have their projects allowlisted. Alpha releases don’t have to be feature complete, no SLAs are provided, and there are no technical support obligations, but they will be far enough along that customers can actually use them in test environments or for limited-use tests -- just like they would in normal production cases.",
+            "Alpha is a limited availability test for releases before they are cleared for widespread use. By Alpha, all significant design issues are resolved and we are in the process of verifying functionality. Alpha customers need to apply for access, agree to applicable terms, and have their projects allowlisted. Alpha releases don't have to be feature complete, no SLAs are provided, and there are no technical support obligations, but they will be far enough along that customers can actually use them in test environments or for limited-use tests -- just like they would in normal production cases.",
             "Beta is the point at which we are ready to open a release for any customer to use. There are no SLA or technical support obligations in a Beta release. Products will be complete from a feature perspective, but may have some open outstanding issues. Beta releases are suitable for limited production use cases.",
             "GA features are open to all developers and are considered stable and fully qualified for production use.",
-            "Deprecated features are scheduled to be shut down and removed. For more information, see the “Deprecation Policy” section of our [Terms of Service](https://cloud.google.com/terms/) and the [Google Cloud Platform Subject to the Deprecation Policy](https://cloud.google.com/terms/deprecation) documentation."
+            "Deprecated features are scheduled to be shut down and removed. For more information, see the \"Deprecation Policy\" section of our [Terms of Service](https://cloud.google.com/terms/) and the [Google Cloud Platform Subject to the Deprecation Policy](https://cloud.google.com/terms/deprecation) documentation."
           ],
           "type": "string"
         },
@@ -5618,6 +5678,10 @@
         "createTime": {
           "description": "The creation time of the operation.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "questionId": {
+          "description": "The Crowd Compute question ID.",
           "type": "string"
         },
         "state": {
@@ -5928,7 +5992,6 @@
       "type": "object"
     },
     "GoogleTypeDate": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
       "id": "GoogleTypeDate",
       "properties": {
         "day": {

@@ -478,6 +478,40 @@ export namespace documentai_v1 {
     commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
+   * The long running operation metadata for AnalyzeHitlData.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1alpha1AnalyzeHitlDataMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1alpha1CommonOperationMetadata;
+  }
+  /**
+   * The common metadata for long running operations.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1alpha1CommonOperationMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * A related resource to this operation.
+     */
+    resource?: string | null;
+    /**
+     * The state of the operation.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The common config to specify a set of documents used as input.
    */
   export interface Schema$GoogleCloudDocumentaiV1BatchDocumentsInputConfig {
@@ -2428,6 +2462,10 @@ export namespace documentai_v1 {
      */
     createTime?: string | null;
     /**
+     * The Crowd Compute question ID.
+     */
+    questionId?: string | null;
+    /**
      * Used only when Operation.done is false.
      */
     state?: string | null;
@@ -3563,6 +3601,10 @@ export namespace documentai_v1 {
      * The basic metadata of the long running operation.
      */
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+    /**
+     * The Crowd Compute question ID.
+     */
+    questionId?: string | null;
   }
   /**
    * Request message for review document method.
@@ -3760,9 +3802,6 @@ export namespace documentai_v1 {
      */
     red?: number | null;
   }
-  /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
-   */
   export interface Schema$GoogleTypeDate {
     /**
      * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
@@ -4066,7 +4105,7 @@ export namespace documentai_v1 {
     }
 
     /**
-     * Fetches processor types.
+     * Fetches processor types. Note that we do not use ListProcessorTypes here because it is not paginated.
      * @example
      * ```js
      * // Before running the sample:
