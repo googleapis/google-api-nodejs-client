@@ -462,6 +462,10 @@ export namespace ondemandscanning_v1beta1 {
      */
     analysisStatusError?: Schema$Status;
     /**
+     * Output only. The time occurrences related to this discovery occurrence were archived.
+     */
+    archiveTime?: string | null;
+    /**
      * Whether the resource is continuously analyzed.
      */
     continuousAnalysis?: string | null;
@@ -627,14 +631,14 @@ export namespace ondemandscanning_v1beta1 {
    */
   export interface Schema$InTotoStatement {
     /**
-     * "https://slsa.dev/provenance/v0.1" for SlsaProvenance.
+     * `https://slsa.dev/provenance/v0.1` for SlsaProvenance.
      */
     predicateType?: string | null;
     provenance?: Schema$InTotoProvenance;
     slsaProvenance?: Schema$SlsaProvenance;
     subject?: Schema$Subject[];
     /**
-     * Always "https://in-toto.io/Statement/v0.1".
+     * Always `https://in-toto.io/Statement/v0.1`.
      */
     _type?: string | null;
   }
@@ -730,7 +734,7 @@ export namespace ondemandscanning_v1beta1 {
     reproducible?: boolean | null;
   }
   /**
-   * Details about files that caused a compliance check to fail.
+   * Details about files that caused a compliance check to fail. display_command is a single command that can be used to display a list of non compliant files. When there is no such command, we can also iterate a list of non compliant file using 'path'.
    */
   export interface Schema$NonCompliantFile {
     /**
@@ -738,7 +742,7 @@ export namespace ondemandscanning_v1beta1 {
      */
     displayCommand?: string | null;
     /**
-     * display_command is a single command that can be used to display a list of non compliant files. When there is no such command, we can also iterate a list of non compliant file using 'path'. Empty if `display_command` is set.
+     * Empty if `display_command` is set.
      */
     path?: string | null;
     /**
@@ -1152,7 +1156,7 @@ export namespace ondemandscanning_v1beta1 {
   }
   export interface Schema$Subject {
     /**
-     * "": "" Algorithms can be e.g. sha256, sha512 See https://github.com/in-toto/attestation/blob/main/spec/field_types.md#DigestSet
+     * `"": ""` Algorithms can be e.g. sha256, sha512 See https://github.com/in-toto/attestation/blob/main/spec/field_types.md#DigestSet
      */
     digest?: {[key: string]: string} | null;
     name?: string | null;
