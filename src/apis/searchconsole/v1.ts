@@ -116,6 +116,7 @@ export namespace searchconsole_v1 {
     searchanalytics: Resource$Searchanalytics;
     sitemaps: Resource$Sitemaps;
     sites: Resource$Sites;
+    urlInspection: Resource$Urlinspection;
     urlTestingTools: Resource$Urltestingtools;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -127,10 +128,61 @@ export namespace searchconsole_v1 {
       this.searchanalytics = new Resource$Searchanalytics(this.context);
       this.sitemaps = new Resource$Sitemaps(this.context);
       this.sites = new Resource$Sites(this.context);
+      this.urlInspection = new Resource$Urlinspection(this.context);
       this.urlTestingTools = new Resource$Urltestingtools(this.context);
     }
   }
 
+  /**
+   * AMP inspection result of the live page or the current information from Google's index, depending on whether you requested a live inspection or not.
+   */
+  export interface Schema$AmpInspectionResult {
+    /**
+     * Index status of the AMP URL.
+     */
+    ampIndexStatusVerdict?: string | null;
+    /**
+     * URL of the AMP that was inspected. If the submitted URL is a desktop page that refers to an AMP version, the AMP version will be inspected.
+     */
+    ampUrl?: string | null;
+    /**
+     * Whether or not the page blocks indexing through a noindex rule.
+     */
+    indexingState?: string | null;
+    /**
+     * A list of zero or more AMP issues found for the inspected URL.
+     */
+    issues?: Schema$AmpIssue[];
+    /**
+     * Last time this AMP version was crawled by Google. Absent if the URL was never crawled successfully.
+     */
+    lastCrawlTime?: string | null;
+    /**
+     * Whether or not Google could fetch the AMP.
+     */
+    pageFetchState?: string | null;
+    /**
+     * Whether or not the page is blocked to Google by a robots.txt rule.
+     */
+    robotsTxtState?: string | null;
+    /**
+     * The status of the most severe error on the page. If a page has both warnings and errors, the page status is error. Error status means the page cannot be shown in Search results.
+     */
+    verdict?: string | null;
+  }
+  /**
+   * AMP issue.
+   */
+  export interface Schema$AmpIssue {
+    /**
+     * Brief description of this issue.
+     */
+    issueMessage?: string | null;
+    /**
+     * Severity of this issue: WARNING or ERROR.
+     */
+    severity?: string | null;
+  }
   export interface Schema$ApiDataRow {
     clicks?: number | null;
     ctr?: number | null;
@@ -163,6 +215,19 @@ export namespace searchconsole_v1 {
     url?: string | null;
   }
   /**
+   * Rich Results items grouped by type.
+   */
+  export interface Schema$DetectedItems {
+    /**
+     * List of Rich Results items.
+     */
+    items?: Schema$Item[];
+    /**
+     * Rich Results type
+     */
+    richResultType?: string | null;
+  }
+  /**
    * Describe image data.
    */
   export interface Schema$Image {
@@ -176,6 +241,94 @@ export namespace searchconsole_v1 {
     mimeType?: string | null;
   }
   /**
+   * Results of index status inspection for either the live page or the version in Google's index, depending on whether you requested a live inspection or not. For more information, see the [Index coverage report documentation](https://support.google.com/webmasters/answer/7440203).
+   */
+  export interface Schema$IndexStatusInspectionResult {
+    /**
+     * Could Google find and index the page. More details about page indexing appear in 'indexing_state'.
+     */
+    coverageState?: string | null;
+    /**
+     * Primary crawler that was used by Google to crawl your site.
+     */
+    crawledAs?: string | null;
+    /**
+     * The URL of the page that Google selected as canonical. If the page was not indexed, this field is absent.
+     */
+    googleCanonical?: string | null;
+    /**
+     * Whether or not the page blocks indexing through a noindex rule.
+     */
+    indexingState?: string | null;
+    /**
+     * Last time this URL was crawled by Google using the [primary crawler](https://support.google.com/webmasters/answer/7440203#primary_crawler). Absent if the URL was never crawled successfully.
+     */
+    lastCrawlTime?: string | null;
+    /**
+     * Whether or not Google could retrieve the page from your server. Equivalent to ["page fetch"](https://support.google.com/webmasters/answer/9012289#index_coverage) in the URL inspection report.
+     */
+    pageFetchState?: string | null;
+    /**
+     * URLs that link to the inspected URL, directly and indirectly.
+     */
+    referringUrls?: string[] | null;
+    /**
+     * Whether or not the page is blocked to Google by a robots.txt rule.
+     */
+    robotsTxtState?: string | null;
+    /**
+     * Any sitemaps that this URL was listed in, as known by Google. Not guaranteed to be an exhaustive list, especially if Google did not discover this URL through a sitemap. Absent if no sitemaps were found.
+     */
+    sitemap?: string[] | null;
+    /**
+     * The URL that your page or site [declares as canonical](https://developers.google.com/search/docs/advanced/crawling/consolidate-duplicate-urls?#define-canonical). If you did not declare a canonical URL, this field is absent.
+     */
+    userCanonical?: string | null;
+    /**
+     * High level verdict about whether the URL *is* indexed (indexed status), or *can be* indexed (live inspection).
+     */
+    verdict?: string | null;
+  }
+  /**
+   * Index inspection request.
+   */
+  export interface Schema$InspectUrlIndexRequest {
+    /**
+     * Required. URL to inspect. Must be under the property specified in "site_url".
+     */
+    inspectionUrl?: string | null;
+    /**
+     * Optional. An [IETF BCP-47](https://en.wikipedia.org/wiki/IETF_language_tag) language code representing the requested language for translated issue messages, e.g. "en-US", "or "de-CH". Default value is "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The URL of the property as defined in Search Console. **Examples:** `http://www.example.com/` for a URL-prefix property, or `sc-domain:example.com` for a Domain property.
+     */
+    siteUrl?: string | null;
+  }
+  /**
+   * Index-Status inspection response.
+   */
+  export interface Schema$InspectUrlIndexResponse {
+    /**
+     * URL inspection results.
+     */
+    inspectionResult?: Schema$UrlInspectionResult;
+  }
+  /**
+   * A specific rich result found on the page.
+   */
+  export interface Schema$Item {
+    /**
+     * A list of zero or more rich result issues found for this instance.
+     */
+    issues?: Schema$RichResultsIssue[];
+    /**
+     * The user-provided name of this item.
+     */
+    name?: string | null;
+  }
+  /**
    * Mobile-friendly issue.
    */
   export interface Schema$MobileFriendlyIssue {
@@ -185,6 +338,36 @@ export namespace searchconsole_v1 {
     rule?: string | null;
   }
   /**
+   * Mobile-usability inspection results.
+   */
+  export interface Schema$MobileUsabilityInspectionResult {
+    /**
+     * A list of zero or more mobile-usability issues detected for this URL.
+     */
+    issues?: Schema$MobileUsabilityIssue[];
+    /**
+     * High-level mobile-usability inspection result for this URL.
+     */
+    verdict?: string | null;
+  }
+  /**
+   * Mobile-usability issue.
+   */
+  export interface Schema$MobileUsabilityIssue {
+    /**
+     * Mobile-usability issue type.
+     */
+    issueType?: string | null;
+    /**
+     * Additional information regarding the issue.
+     */
+    message?: string | null;
+    /**
+     * Not returned; reserved for future use.
+     */
+    severity?: string | null;
+  }
+  /**
    * Information about a resource with issue.
    */
   export interface Schema$ResourceIssue {
@@ -192,6 +375,32 @@ export namespace searchconsole_v1 {
      * Describes a blocked resource issue.
      */
     blockedResource?: Schema$BlockedResource;
+  }
+  /**
+   * Rich-Results inspection result, including any rich results found at this URL.
+   */
+  export interface Schema$RichResultsInspectionResult {
+    /**
+     * A list of zero or more rich results detected on this page. Rich results that cannot even be parsed due to syntactic issues will not be listed here.
+     */
+    detectedItems?: Schema$DetectedItems[];
+    /**
+     * High-level rich results inspection result for this URL.
+     */
+    verdict?: string | null;
+  }
+  /**
+   * Severity and status of a single issue affecting a single rich result instance on a page.
+   */
+  export interface Schema$RichResultsIssue {
+    /**
+     * Rich Results issue type.
+     */
+    issueMessage?: string | null;
+    /**
+     * Severity of this issue: WARNING, or ERROR. Items with an issue of status ERROR cannot appear with rich result features in Google Search results.
+     */
+    severity?: string | null;
   }
   /**
    * Mobile-friendly test request.
@@ -316,6 +525,31 @@ export namespace searchconsole_v1 {
      * Status of the test.
      */
     status?: string | null;
+  }
+  /**
+   * URL inspection result, including all inspection results.
+   */
+  export interface Schema$UrlInspectionResult {
+    /**
+     * Result of the AMP analysis. Absent if the page is not an AMP page.
+     */
+    ampResult?: Schema$AmpInspectionResult;
+    /**
+     * Result of the index status analysis.
+     */
+    indexStatusResult?: Schema$IndexStatusInspectionResult;
+    /**
+     * Link to Search Console URL inspection.
+     */
+    inspectionResultLink?: string | null;
+    /**
+     * Result of the Mobile usability analysis.
+     */
+    mobileUsabilityResult?: Schema$MobileUsabilityInspectionResult;
+    /**
+     * Result of the Rich Results analysis. Absent if there are no rich results found.
+     */
+    richResultsResult?: Schema$RichResultsInspectionResult;
   }
   /**
    * Contains permission level information about a Search Console site. For more information, see [Permissions in Search Console](https://support.google.com/webmasters/answer/2451999).
@@ -1677,6 +1911,177 @@ export namespace searchconsole_v1 {
     siteUrl?: string;
   }
   export interface Params$Resource$Sites$List extends StandardParameters {}
+
+  export class Resource$Urlinspection {
+    context: APIRequestContext;
+    index: Resource$Urlinspection$Index;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.index = new Resource$Urlinspection$Index(this.context);
+    }
+  }
+
+  export class Resource$Urlinspection$Index {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Index inspection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/searchconsole.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const searchconsole = google.searchconsole('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/webmasters',
+     *       'https://www.googleapis.com/auth/webmasters.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await searchconsole.urlInspection.index.inspect({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "inspectionUrl": "my_inspectionUrl",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "siteUrl": "my_siteUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "inspectionResult": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    inspect(
+      params: Params$Resource$Urlinspection$Index$Inspect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    inspect(
+      params?: Params$Resource$Urlinspection$Index$Inspect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InspectUrlIndexResponse>;
+    inspect(
+      params: Params$Resource$Urlinspection$Index$Inspect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    inspect(
+      params: Params$Resource$Urlinspection$Index$Inspect,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InspectUrlIndexResponse>,
+      callback: BodyResponseCallback<Schema$InspectUrlIndexResponse>
+    ): void;
+    inspect(
+      params: Params$Resource$Urlinspection$Index$Inspect,
+      callback: BodyResponseCallback<Schema$InspectUrlIndexResponse>
+    ): void;
+    inspect(
+      callback: BodyResponseCallback<Schema$InspectUrlIndexResponse>
+    ): void;
+    inspect(
+      paramsOrCallback?:
+        | Params$Resource$Urlinspection$Index$Inspect
+        | BodyResponseCallback<Schema$InspectUrlIndexResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InspectUrlIndexResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InspectUrlIndexResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InspectUrlIndexResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Urlinspection$Index$Inspect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Urlinspection$Index$Inspect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://searchconsole.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/urlInspection/index:inspect').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InspectUrlIndexResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InspectUrlIndexResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Urlinspection$Index$Inspect
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InspectUrlIndexRequest;
+  }
 
   export class Resource$Urltestingtools {
     context: APIRequestContext;

@@ -349,6 +349,33 @@
         }
       }
     },
+    "urlInspection": {
+      "resources": {
+        "index": {
+          "methods": {
+            "inspect": {
+              "description": "Index inspection.",
+              "flatPath": "v1/urlInspection/index:inspect",
+              "httpMethod": "POST",
+              "id": "searchconsole.urlInspection.index.inspect",
+              "parameterOrder": [],
+              "parameters": {},
+              "path": "v1/urlInspection/index:inspect",
+              "request": {
+                "$ref": "InspectUrlIndexRequest"
+              },
+              "response": {
+                "$ref": "InspectUrlIndexResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/webmasters",
+                "https://www.googleapis.com/auth/webmasters.readonly"
+              ]
+            }
+          }
+        }
+      }
+    },
     "urlTestingTools": {
       "resources": {
         "mobileFriendlyTest": {
@@ -373,9 +400,155 @@
       }
     }
   },
-  "revision": "20220107",
+  "revision": "20220201",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
+    "AmpInspectionResult": {
+      "description": "AMP inspection result of the live page or the current information from Google's index, depending on whether you requested a live inspection or not.",
+      "id": "AmpInspectionResult",
+      "properties": {
+        "ampIndexStatusVerdict": {
+          "description": "Index status of the AMP URL.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "PASS",
+            "PARTIAL",
+            "FAIL",
+            "NEUTRAL"
+          ],
+          "enumDescriptions": [
+            "Unknown verdict.",
+            "Equivalent to \"Valid\" for the page or item in Search Console.",
+            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
+            "Equivalent to \"Excluded\" for the page or item in Search Console."
+          ],
+          "type": "string"
+        },
+        "ampUrl": {
+          "description": "URL of the AMP that was inspected. If the submitted URL is a desktop page that refers to an AMP version, the AMP version will be inspected.",
+          "type": "string"
+        },
+        "indexingState": {
+          "description": "Whether or not the page blocks indexing through a noindex rule.",
+          "enum": [
+            "AMP_INDEXING_STATE_UNSPECIFIED",
+            "AMP_INDEXING_ALLOWED",
+            "BLOCKED_DUE_TO_NOINDEX",
+            "BLOCKED_DUE_TO_EXPIRED_UNAVAILABLE_AFTER"
+          ],
+          "enumDescriptions": [
+            "Unknown indexing status.",
+            "Indexing allowed.",
+            "Indexing not allowed, 'noindex' detected.",
+            "Indexing not allowed, 'unavailable_after' date expired."
+          ],
+          "type": "string"
+        },
+        "issues": {
+          "description": "A list of zero or more AMP issues found for the inspected URL.",
+          "items": {
+            "$ref": "AmpIssue"
+          },
+          "type": "array"
+        },
+        "lastCrawlTime": {
+          "description": "Last time this AMP version was crawled by Google. Absent if the URL was never crawled successfully.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "pageFetchState": {
+          "description": "Whether or not Google could fetch the AMP.",
+          "enum": [
+            "PAGE_FETCH_STATE_UNSPECIFIED",
+            "SUCCESSFUL",
+            "SOFT_404",
+            "BLOCKED_ROBOTS_TXT",
+            "NOT_FOUND",
+            "ACCESS_DENIED",
+            "SERVER_ERROR",
+            "REDIRECT_ERROR",
+            "ACCESS_FORBIDDEN",
+            "BLOCKED_4XX",
+            "INTERNAL_CRAWL_ERROR",
+            "INVALID_URL"
+          ],
+          "enumDescriptions": [
+            "Unknown fetch state.",
+            "Successful fetch.",
+            "Soft 404.",
+            "Blocked by robots.txt.",
+            "Not found (404).",
+            "Blocked due to unauthorized request (401).",
+            "Server error (5xx).",
+            "Redirection error.",
+            "Blocked due to access forbidden (403).",
+            "Blocked due to other 4xx issue (not 403, 404).",
+            "Internal error.",
+            "Invalid URL."
+          ],
+          "type": "string"
+        },
+        "robotsTxtState": {
+          "description": "Whether or not the page is blocked to Google by a robots.txt rule.",
+          "enum": [
+            "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "ALLOWED",
+            "DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unknown robots.txt state, typically because the page wasn't fetched or found, or because robots.txt itself couldn't be reached.",
+            "Crawl allowed by robots.txt.",
+            "Crawl blocked by robots.txt."
+          ],
+          "type": "string"
+        },
+        "verdict": {
+          "description": "The status of the most severe error on the page. If a page has both warnings and errors, the page status is error. Error status means the page cannot be shown in Search results.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "PASS",
+            "PARTIAL",
+            "FAIL",
+            "NEUTRAL"
+          ],
+          "enumDescriptions": [
+            "Unknown verdict.",
+            "Equivalent to \"Valid\" for the page or item in Search Console.",
+            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
+            "Equivalent to \"Excluded\" for the page or item in Search Console."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AmpIssue": {
+      "description": "AMP issue.",
+      "id": "AmpIssue",
+      "properties": {
+        "issueMessage": {
+          "description": "Brief description of this issue.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "Severity of this issue: WARNING or ERROR.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "WARNING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unknown severity.",
+            "Warning.",
+            "Error."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ApiDataRow": {
       "id": "ApiDataRow",
       "properties": {
@@ -483,6 +656,24 @@
       },
       "type": "object"
     },
+    "DetectedItems": {
+      "description": "Rich Results items grouped by type.",
+      "id": "DetectedItems",
+      "properties": {
+        "items": {
+          "description": "List of Rich Results items.",
+          "items": {
+            "$ref": "Item"
+          },
+          "type": "array"
+        },
+        "richResultType": {
+          "description": "Rich Results type",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Image": {
       "description": "Describe image data.",
       "id": "Image",
@@ -494,6 +685,188 @@
         },
         "mimeType": {
           "description": "The mime-type of the image data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IndexStatusInspectionResult": {
+      "description": "Results of index status inspection for either the live page or the version in Google's index, depending on whether you requested a live inspection or not. For more information, see the [Index coverage report documentation](https://support.google.com/webmasters/answer/7440203).",
+      "id": "IndexStatusInspectionResult",
+      "properties": {
+        "coverageState": {
+          "description": "Could Google find and index the page. More details about page indexing appear in 'indexing_state'.",
+          "type": "string"
+        },
+        "crawledAs": {
+          "description": "Primary crawler that was used by Google to crawl your site.",
+          "enum": [
+            "CRAWLING_USER_AGENT_UNSPECIFIED",
+            "DESKTOP",
+            "MOBILE"
+          ],
+          "enumDescriptions": [
+            "Unknown user agent.",
+            "Desktop user agent.",
+            "Mobile user agent."
+          ],
+          "type": "string"
+        },
+        "googleCanonical": {
+          "description": "The URL of the page that Google selected as canonical. If the page was not indexed, this field is absent.",
+          "type": "string"
+        },
+        "indexingState": {
+          "description": "Whether or not the page blocks indexing through a noindex rule.",
+          "enum": [
+            "INDEXING_STATE_UNSPECIFIED",
+            "INDEXING_ALLOWED",
+            "BLOCKED_BY_META_TAG",
+            "BLOCKED_BY_HTTP_HEADER",
+            "BLOCKED_BY_ROBOTS_TXT"
+          ],
+          "enumDescriptions": [
+            "Unknown indexing status.",
+            "Indexing allowed.",
+            "Indexing not allowed, 'noindex' detected in 'robots' meta tag.",
+            "Indexing not allowed, 'noindex' detected in 'X-Robots-Tag' http header.",
+            "Indexing not allowed, No: 'noindex' detected in robots.txt."
+          ],
+          "type": "string"
+        },
+        "lastCrawlTime": {
+          "description": "Last time this URL was crawled by Google using the [primary crawler](https://support.google.com/webmasters/answer/7440203#primary_crawler). Absent if the URL was never crawled successfully.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "pageFetchState": {
+          "description": "Whether or not Google could retrieve the page from your server. Equivalent to [\"page fetch\"](https://support.google.com/webmasters/answer/9012289#index_coverage) in the URL inspection report.",
+          "enum": [
+            "PAGE_FETCH_STATE_UNSPECIFIED",
+            "SUCCESSFUL",
+            "SOFT_404",
+            "BLOCKED_ROBOTS_TXT",
+            "NOT_FOUND",
+            "ACCESS_DENIED",
+            "SERVER_ERROR",
+            "REDIRECT_ERROR",
+            "ACCESS_FORBIDDEN",
+            "BLOCKED_4XX",
+            "INTERNAL_CRAWL_ERROR",
+            "INVALID_URL"
+          ],
+          "enumDescriptions": [
+            "Unknown fetch state.",
+            "Successful fetch.",
+            "Soft 404.",
+            "Blocked by robots.txt.",
+            "Not found (404).",
+            "Blocked due to unauthorized request (401).",
+            "Server error (5xx).",
+            "Redirection error.",
+            "Blocked due to access forbidden (403).",
+            "Blocked due to other 4xx issue (not 403, 404).",
+            "Internal error.",
+            "Invalid URL."
+          ],
+          "type": "string"
+        },
+        "referringUrls": {
+          "description": "URLs that link to the inspected URL, directly and indirectly.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "robotsTxtState": {
+          "description": "Whether or not the page is blocked to Google by a robots.txt rule.",
+          "enum": [
+            "ROBOTS_TXT_STATE_UNSPECIFIED",
+            "ALLOWED",
+            "DISALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unknown robots.txt state, typically because the page wasn't fetched or found, or because robots.txt itself couldn't be reached.",
+            "Crawl allowed by robots.txt.",
+            "Crawl blocked by robots.txt."
+          ],
+          "type": "string"
+        },
+        "sitemap": {
+          "description": "Any sitemaps that this URL was listed in, as known by Google. Not guaranteed to be an exhaustive list, especially if Google did not discover this URL through a sitemap. Absent if no sitemaps were found.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "userCanonical": {
+          "description": "The URL that your page or site [declares as canonical](https://developers.google.com/search/docs/advanced/crawling/consolidate-duplicate-urls?#define-canonical). If you did not declare a canonical URL, this field is absent.",
+          "type": "string"
+        },
+        "verdict": {
+          "description": "High level verdict about whether the URL *is* indexed (indexed status), or *can be* indexed (live inspection).",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "PASS",
+            "PARTIAL",
+            "FAIL",
+            "NEUTRAL"
+          ],
+          "enumDescriptions": [
+            "Unknown verdict.",
+            "Equivalent to \"Valid\" for the page or item in Search Console.",
+            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
+            "Equivalent to \"Excluded\" for the page or item in Search Console."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InspectUrlIndexRequest": {
+      "description": "Index inspection request.",
+      "id": "InspectUrlIndexRequest",
+      "properties": {
+        "inspectionUrl": {
+          "description": "Required. URL to inspect. Must be under the property specified in \"site_url\".",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Optional. An [IETF BCP-47](https://en.wikipedia.org/wiki/IETF_language_tag) language code representing the requested language for translated issue messages, e.g. \"en-US\", \"or \"de-CH\". Default value is \"en-US\".",
+          "type": "string"
+        },
+        "siteUrl": {
+          "description": "Required. The URL of the property as defined in Search Console. **Examples:** `http://www.example.com/` for a URL-prefix property, or `sc-domain:example.com` for a Domain property.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InspectUrlIndexResponse": {
+      "description": "Index-Status inspection response.",
+      "id": "InspectUrlIndexResponse",
+      "properties": {
+        "inspectionResult": {
+          "$ref": "UrlInspectionResult",
+          "description": "URL inspection results."
+        }
+      },
+      "type": "object"
+    },
+    "Item": {
+      "description": "A specific rich result found on the page.",
+      "id": "Item",
+      "properties": {
+        "issues": {
+          "description": "A list of zero or more rich result issues found for this instance.",
+          "items": {
+            "$ref": "RichResultsIssue"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "The user-provided name of this item.",
           "type": "string"
         }
       },
@@ -517,11 +890,90 @@
           "enumDescriptions": [
             "Unknown rule. Sorry, we don't have any description for the rule that was broken.",
             "Plugins incompatible with mobile devices are being used. [Learn more] (https://support.google.com/webmasters/answer/6352293#flash_usage).",
-            "Viewsport is not specified using the meta viewport tag. [Learn more] (https://support.google.com/webmasters/answer/6352293#viewport_not_configured).",
+            "Viewport is not specified using the meta viewport tag. [Learn more] (https://support.google.com/webmasters/answer/6352293#viewport_not_configured).",
             "Viewport defined to a fixed width. [Learn more] (https://support.google.com/webmasters/answer/6352293#fixed-width_viewport).",
             "Content not sized to viewport. [Learn more] (https://support.google.com/webmasters/answer/6352293#content_not_sized_to_viewport).",
             "Font size is too small for easy reading on a small screen. [Learn More] (https://support.google.com/webmasters/answer/6352293#small_font_size).",
             "Touch elements are too close to each other. [Learn more] (https://support.google.com/webmasters/answer/6352293#touch_elements_too_close)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MobileUsabilityInspectionResult": {
+      "description": "Mobile-usability inspection results.",
+      "id": "MobileUsabilityInspectionResult",
+      "properties": {
+        "issues": {
+          "description": "A list of zero or more mobile-usability issues detected for this URL.",
+          "items": {
+            "$ref": "MobileUsabilityIssue"
+          },
+          "type": "array"
+        },
+        "verdict": {
+          "description": "High-level mobile-usability inspection result for this URL.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "PASS",
+            "PARTIAL",
+            "FAIL",
+            "NEUTRAL"
+          ],
+          "enumDescriptions": [
+            "Unknown verdict.",
+            "Equivalent to \"Valid\" for the page or item in Search Console.",
+            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
+            "Equivalent to \"Excluded\" for the page or item in Search Console."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MobileUsabilityIssue": {
+      "description": "Mobile-usability issue.",
+      "id": "MobileUsabilityIssue",
+      "properties": {
+        "issueType": {
+          "description": "Mobile-usability issue type.",
+          "enum": [
+            "MOBILE_USABILITY_ISSUE_TYPE_UNSPECIFIED",
+            "USES_INCOMPATIBLE_PLUGINS",
+            "CONFIGURE_VIEWPORT",
+            "FIXED_WIDTH_VIEWPORT",
+            "SIZE_CONTENT_TO_VIEWPORT",
+            "USE_LEGIBLE_FONT_SIZES",
+            "TAP_TARGETS_TOO_CLOSE"
+          ],
+          "enumDescriptions": [
+            "Unknown issue. Sorry, we don't have any description for the rule that was broken.",
+            "Plugins incompatible with mobile devices are being used. [Learn more] (https://support.google.com/webmasters/answer/6352293#flash_usage#error-list).",
+            "Viewport is not specified using the meta viewport tag. [Learn more] (https://support.google.com/webmasters/answer/6352293#viewport_not_configured#error-list).",
+            "Viewport defined to a fixed width. [Learn more] (https://support.google.com/webmasters/answer/6352293#fixed-width_viewport#error-list).",
+            "Content not sized to viewport. [Learn more] (https://support.google.com/webmasters/answer/6352293#content_not_sized_to_viewport#error-list).",
+            "Font size is too small for easy reading on a small screen. [Learn More] (https://support.google.com/webmasters/answer/6352293#small_font_size#error-list).",
+            "Touch elements are too close to each other. [Learn more] (https://support.google.com/webmasters/answer/6352293#touch_elements_too_close#error-list)."
+          ],
+          "type": "string"
+        },
+        "message": {
+          "description": "Additional information regarding the issue.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "Not returned; reserved for future use.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "WARNING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unknown severity.",
+            "Warning.",
+            "Error."
           ],
           "type": "string"
         }
@@ -535,6 +987,63 @@
         "blockedResource": {
           "$ref": "BlockedResource",
           "description": "Describes a blocked resource issue."
+        }
+      },
+      "type": "object"
+    },
+    "RichResultsInspectionResult": {
+      "description": "Rich-Results inspection result, including any rich results found at this URL.",
+      "id": "RichResultsInspectionResult",
+      "properties": {
+        "detectedItems": {
+          "description": "A list of zero or more rich results detected on this page. Rich results that cannot even be parsed due to syntactic issues will not be listed here.",
+          "items": {
+            "$ref": "DetectedItems"
+          },
+          "type": "array"
+        },
+        "verdict": {
+          "description": "High-level rich results inspection result for this URL.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "PASS",
+            "PARTIAL",
+            "FAIL",
+            "NEUTRAL"
+          ],
+          "enumDescriptions": [
+            "Unknown verdict.",
+            "Equivalent to \"Valid\" for the page or item in Search Console.",
+            "Equivalent to \"Valid with warnings\" for the page or item in Search Console.",
+            "Equivalent to \"Error\" or \"Invalid\" for the page or item in Search Console.",
+            "Equivalent to \"Excluded\" for the page or item in Search Console."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RichResultsIssue": {
+      "description": "Severity and status of a single issue affecting a single rich result instance on a page.",
+      "id": "RichResultsIssue",
+      "properties": {
+        "issueMessage": {
+          "description": "Rich Results issue type.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "Severity of this issue: WARNING, or ERROR. Items with an issue of status ERROR cannot appear with rich result features in Google Search results.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "WARNING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unknown severity.",
+            "Warning.",
+            "Error."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -798,6 +1307,33 @@
             "Google can not access the URL because of a user error such as a robots.txt blockage, a 403 or 500 code etc. Please make sure that the URL provided is accessible by Googlebot and is not password protected."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UrlInspectionResult": {
+      "description": "URL inspection result, including all inspection results.",
+      "id": "UrlInspectionResult",
+      "properties": {
+        "ampResult": {
+          "$ref": "AmpInspectionResult",
+          "description": "Result of the AMP analysis. Absent if the page is not an AMP page."
+        },
+        "indexStatusResult": {
+          "$ref": "IndexStatusInspectionResult",
+          "description": "Result of the index status analysis."
+        },
+        "inspectionResultLink": {
+          "description": "Link to Search Console URL inspection.",
+          "type": "string"
+        },
+        "mobileUsabilityResult": {
+          "$ref": "MobileUsabilityInspectionResult",
+          "description": "Result of the Mobile usability analysis."
+        },
+        "richResultsResult": {
+          "$ref": "RichResultsInspectionResult",
+          "description": "Result of the Rich Results analysis. Absent if there are no rich results found."
         }
       },
       "type": "object"
