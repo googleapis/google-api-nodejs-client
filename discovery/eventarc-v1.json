@@ -482,6 +482,81 @@
                 }
               }
             },
+            "providers": {
+              "methods": {
+                "get": {
+                  "description": "Get a single Provider.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/providers/{providersId}",
+                  "httpMethod": "GET",
+                  "id": "eventarc.projects.locations.providers.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the provider to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/providers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Provider"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List providers.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/providers",
+                  "httpMethod": "GET",
+                  "id": "eventarc.projects.locations.providers.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter field that the list request will filter on.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting oder is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, _id`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of providers to return on each page.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The page token; provide the value from the `next_page_token` field in a previous `ListProviders` call to retrieve the subsequent page. When paginating, all other parameters provided to `ListProviders` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent of the provider to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/providers",
+                  "response": {
+                    "$ref": "ListProvidersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "triggers": {
               "methods": {
                 "create": {
@@ -506,7 +581,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Required. If set, validate the request and preview the review, but do not actually post it.",
+                      "description": "Required. If set, validate the request and preview the review, but do not post it.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -549,7 +624,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Required. If set, validate the request and preview the review, but do not actually post it.",
+                      "description": "Required. If set, validate the request and preview the review, but do not post it.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -628,7 +703,7 @@
                   ],
                   "parameters": {
                     "orderBy": {
-                      "description": "The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting oder is ascending. To specify descending order for a field, append a ` desc` suffix; for example: `name desc, trigger_id`.",
+                      "description": "The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting order is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, trigger_id`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -681,13 +756,13 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The fields to be updated; only fields explicitly provided will be updated. If no field mask is provided, all provided fields in the request will be updated. To update all fields, provide a field mask of \"*\".",
+                      "description": "The fields to be updated; only fields explicitly provided are updated. If no field mask is provided, all provided fields in the request are updated. To update all fields, provide a field mask of \"*\".",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Required. If set, validate the request and preview the review, but do not actually post it.",
+                      "description": "Required. If set, validate the request and preview the review, but do not post it.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -766,7 +841,7 @@
       }
     }
   },
-  "revision": "20220104",
+  "revision": "20220124",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -862,6 +937,10 @@
       "description": "Represents a target of an invocation over HTTP.",
       "id": "Destination",
       "properties": {
+        "cloudFunction": {
+          "description": "The Cloud Function resource name. Only Cloud Functions V2 is supported. Format: projects/{project}/locations/{location}/functions/{function}",
+          "type": "string"
+        },
         "cloudRun": {
           "$ref": "CloudRun",
           "description": "Cloud Run fully-managed resource that receives the events. The resource should be in the same project as the trigger."
@@ -894,6 +973,36 @@
       },
       "type": "object"
     },
+    "EventType": {
+      "description": "A representation of the event type resource.",
+      "id": "EventType",
+      "properties": {
+        "description": {
+          "description": "Output only. Human friendly description of what the event type is about. For example \"Bucket created in Cloud Storage\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "eventSchemaUri": {
+          "description": "Output only. URI for the event schema. For example \"https://github.com/googleapis/google-cloudevents/blob/master/proto/google/events/cloud/storage/v1/events.proto\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "filteringAttributes": {
+          "description": "Output only. Filtering attributes for the event type.",
+          "items": {
+            "$ref": "FilteringAttribute"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "type": {
+          "description": "Output only. The full name of the event type (for example, \"google.cloud.storage.object.v1.finalized\"). In the form of {provider-id}.{resource}.{version}.{verb}. Types MUST be versioned and event schemas are guaranteed to remain backward compatible within one version. Note that event type versions and API versions do not need to match.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -913,6 +1022,33 @@
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FilteringAttribute": {
+      "description": "A representation of the FilteringAttribute resource. Filtering attributes are per event type.",
+      "id": "FilteringAttribute",
+      "properties": {
+        "attribute": {
+          "description": "Output only. Attribute used for filtering the event type.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Output only. Description of the purpose of the attribute.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pathPatternSupported": {
+          "description": "Output only. If true, the attribute accepts matching expressions in the Eventarc PathPattern format.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "required": {
+          "description": "Output only. If true, the triggers for this provider should always specify a filter on these attributes. Trigger creation will fail otherwise.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1048,8 +1184,33 @@
       },
       "type": "object"
     },
+    "ListProvidersResponse": {
+      "description": "The response message for the `ListProviders` method.",
+      "id": "ListProvidersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A page token that can be sent to ListProviders to request the next page. If this is empty, then there are no more pages.",
+          "type": "string"
+        },
+        "providers": {
+          "description": "The requested providers, up to the number specified in `page_size`.",
+          "items": {
+            "$ref": "Provider"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources, if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListTriggersResponse": {
-      "description": "The response message for the ListTriggers method.",
+      "description": "The response message for the `ListTriggers` method.",
       "id": "ListTriggersResponse",
       "properties": {
         "nextPageToken": {
@@ -1178,6 +1339,31 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Provider": {
+      "description": "A representation of the Provider resource.",
+      "id": "Provider",
+      "properties": {
+        "displayName": {
+          "description": "Output only. Human friendly name for the Provider. For example \"Cloud Storage\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "eventTypes": {
+          "description": "Output only. Event types for this provider.",
+          "items": {
+            "$ref": "EventType"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. In `projects/{project}/locations/{location}/providers/{provider-id}` format.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

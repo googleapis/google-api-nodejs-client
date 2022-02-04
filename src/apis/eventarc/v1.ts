@@ -190,6 +190,10 @@ export namespace eventarc_v1 {
    */
   export interface Schema$Destination {
     /**
+     * The Cloud Function resource name. Only Cloud Functions V2 is supported. Format: projects/{project\}/locations/{location\}/functions/{function\}
+     */
+    cloudFunction?: string | null;
+    /**
      * Cloud Run fully-managed resource that receives the events. The resource should be in the same project as the trigger.
      */
     cloudRun?: Schema$CloudRun;
@@ -216,6 +220,27 @@ export namespace eventarc_v1 {
     value?: string | null;
   }
   /**
+   * A representation of the event type resource.
+   */
+  export interface Schema$EventType {
+    /**
+     * Output only. Human friendly description of what the event type is about. For example "Bucket created in Cloud Storage".
+     */
+    description?: string | null;
+    /**
+     * Output only. URI for the event schema. For example "https://github.com/googleapis/google-cloudevents/blob/master/proto/google/events/cloud/storage/v1/events.proto"
+     */
+    eventSchemaUri?: string | null;
+    /**
+     * Output only. Filtering attributes for the event type.
+     */
+    filteringAttributes?: Schema$FilteringAttribute[];
+    /**
+     * Output only. The full name of the event type (for example, "google.cloud.storage.object.v1.finalized"). In the form of {provider-id\}.{resource\}.{version\}.{verb\}. Types MUST be versioned and event schemas are guaranteed to remain backward compatible within one version. Note that event type versions and API versions do not need to match.
+     */
+    type?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -235,6 +260,27 @@ export namespace eventarc_v1 {
      * Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.
      */
     title?: string | null;
+  }
+  /**
+   * A representation of the FilteringAttribute resource. Filtering attributes are per event type.
+   */
+  export interface Schema$FilteringAttribute {
+    /**
+     * Output only. Attribute used for filtering the event type.
+     */
+    attribute?: string | null;
+    /**
+     * Output only. Description of the purpose of the attribute.
+     */
+    description?: string | null;
+    /**
+     * Output only. If true, the attribute accepts matching expressions in the Eventarc PathPattern format.
+     */
+    pathPatternSupported?: boolean | null;
+    /**
+     * Output only. If true, the triggers for this provider should always specify a filter on these attributes. Trigger creation will fail otherwise.
+     */
+    required?: boolean | null;
   }
   /**
    * Represents a GKE destination.
@@ -334,7 +380,24 @@ export namespace eventarc_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * The response message for the ListTriggers method.
+   * The response message for the `ListProviders` method.
+   */
+  export interface Schema$ListProvidersResponse {
+    /**
+     * A page token that can be sent to ListProviders to request the next page. If this is empty, then there are no more pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The requested providers, up to the number specified in `page_size`.
+     */
+    providers?: Schema$Provider[];
+    /**
+     * Unreachable resources, if any.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * The response message for the `ListTriggers` method.
    */
   export interface Schema$ListTriggersResponse {
     /**
@@ -428,6 +491,23 @@ export namespace eventarc_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * A representation of the Provider resource.
+   */
+  export interface Schema$Provider {
+    /**
+     * Output only. Human friendly name for the Provider. For example "Cloud Storage".
+     */
+    displayName?: string | null;
+    /**
+     * Output only. Event types for this provider.
+     */
+    eventTypes?: Schema$EventType[];
+    /**
+     * Output only. In `projects/{project\}/locations/{location\}/providers/{provider-id\}` format.
+     */
+    name?: string | null;
   }
   /**
    * Represents a Pub/Sub transport.
@@ -542,6 +622,7 @@ export namespace eventarc_v1 {
     channelConnections: Resource$Projects$Locations$Channelconnections;
     channels: Resource$Projects$Locations$Channels;
     operations: Resource$Projects$Locations$Operations;
+    providers: Resource$Projects$Locations$Providers;
     triggers: Resource$Projects$Locations$Triggers;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -551,6 +632,7 @@ export namespace eventarc_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.providers = new Resource$Projects$Locations$Providers(this.context);
       this.triggers = new Resource$Projects$Locations$Triggers(this.context);
     }
 
@@ -2378,6 +2460,316 @@ export namespace eventarc_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Providers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Get a single Provider.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/eventarc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const eventarc = google.eventarc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await eventarc.projects.locations.providers.get({
+     *     // Required. The name of the provider to get.
+     *     name: 'projects/my-project/locations/my-location/providers/my-provider',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "eventTypes": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Providers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Provider>;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Provider>,
+      callback: BodyResponseCallback<Schema$Provider>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Providers$Get,
+      callback: BodyResponseCallback<Schema$Provider>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Provider>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$Get
+        | BodyResponseCallback<Schema$Provider>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Provider>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Provider>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Provider> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Providers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://eventarc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Provider>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Provider>(parameters);
+      }
+    }
+
+    /**
+     * List providers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/eventarc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const eventarc = google.eventarc('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await eventarc.projects.locations.providers.list({
+     *     // The filter field that the list request will filter on.
+     *     filter: 'placeholder-value',
+     *     // The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting oder is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, _id`.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of providers to return on each page.
+     *     pageSize: 'placeholder-value',
+     *     // The page token; provide the value from the `next_page_token` field in a previous `ListProviders` call to retrieve the subsequent page. When paginating, all other parameters provided to `ListProviders` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent of the provider to get.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "providers": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Providers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Providers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListProvidersResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListProvidersResponse>,
+      callback: BodyResponseCallback<Schema$ListProvidersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Providers$List,
+      callback: BodyResponseCallback<Schema$ListProvidersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListProvidersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Providers$List
+        | BodyResponseCallback<Schema$ListProvidersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListProvidersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListProvidersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListProvidersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Providers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Providers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://eventarc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/providers').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListProvidersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListProvidersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Providers$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the provider to get.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Providers$List
+    extends StandardParameters {
+    /**
+     * The filter field that the list request will filter on.
+     */
+    filter?: string;
+    /**
+     * The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting oder is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, _id`.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of providers to return on each page.
+     */
+    pageSize?: number;
+    /**
+     * The page token; provide the value from the `next_page_token` field in a previous `ListProviders` call to retrieve the subsequent page. When paginating, all other parameters provided to `ListProviders` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent of the provider to get.
+     */
+    parent?: string;
+  }
+
   export class Resource$Projects$Locations$Triggers {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -2415,7 +2807,7 @@ export namespace eventarc_v1 {
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The user-provided ID to be assigned to the trigger.
      *     triggerId: 'placeholder-value',
-     *     // Required. If set, validate the request and preview the review, but do not actually post it.
+     *     // Required. If set, validate the request and preview the review, but do not post it.
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2578,7 +2970,7 @@ export namespace eventarc_v1 {
      *     etag: 'placeholder-value',
      *     // Required. The name of the trigger to be deleted.
      *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
-     *     // Required. If set, validate the request and preview the review, but do not actually post it.
+     *     // Required. If set, validate the request and preview the review, but do not post it.
      *     validateOnly: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2984,7 +3376,7 @@ export namespace eventarc_v1 {
      *
      *   // Do the magic
      *   const res = await eventarc.projects.locations.triggers.list({
-     *     // The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting oder is ascending. To specify descending order for a field, append a ` desc` suffix; for example: `name desc, trigger_id`.
+     *     // The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting order is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, trigger_id`.
      *     orderBy: 'placeholder-value',
      *     // The maximum number of triggers to return on each page. Note: The service may send fewer.
      *     pageSize: 'placeholder-value',
@@ -3130,9 +3522,9 @@ export namespace eventarc_v1 {
      *     allowMissing: 'placeholder-value',
      *     // Required. The resource name of the trigger. Must be unique within the location of the project and must be in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
      *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
-     *     // The fields to be updated; only fields explicitly provided will be updated. If no field mask is provided, all provided fields in the request will be updated. To update all fields, provide a field mask of "*".
+     *     // The fields to be updated; only fields explicitly provided are updated. If no field mask is provided, all provided fields in the request are updated. To update all fields, provide a field mask of "*".
      *     updateMask: 'placeholder-value',
-     *     // Required. If set, validate the request and preview the review, but do not actually post it.
+     *     // Required. If set, validate the request and preview the review, but do not post it.
      *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3557,7 +3949,7 @@ export namespace eventarc_v1 {
      */
     triggerId?: string;
     /**
-     * Required. If set, validate the request and preview the review, but do not actually post it.
+     * Required. If set, validate the request and preview the review, but do not post it.
      */
     validateOnly?: boolean;
 
@@ -3581,7 +3973,7 @@ export namespace eventarc_v1 {
      */
     name?: string;
     /**
-     * Required. If set, validate the request and preview the review, but do not actually post it.
+     * Required. If set, validate the request and preview the review, but do not post it.
      */
     validateOnly?: boolean;
   }
@@ -3606,7 +3998,7 @@ export namespace eventarc_v1 {
   export interface Params$Resource$Projects$Locations$Triggers$List
     extends StandardParameters {
     /**
-     * The sorting order of the resources returned. Value should be a comma separated list of fields. The default sorting oder is ascending. To specify descending order for a field, append a ` desc` suffix; for example: `name desc, trigger_id`.
+     * The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting order is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, trigger_id`.
      */
     orderBy?: string;
     /**
@@ -3633,11 +4025,11 @@ export namespace eventarc_v1 {
      */
     name?: string;
     /**
-     * The fields to be updated; only fields explicitly provided will be updated. If no field mask is provided, all provided fields in the request will be updated. To update all fields, provide a field mask of "*".
+     * The fields to be updated; only fields explicitly provided are updated. If no field mask is provided, all provided fields in the request are updated. To update all fields, provide a field mask of "*".
      */
     updateMask?: string;
     /**
-     * Required. If set, validate the request and preview the review, but do not actually post it.
+     * Required. If set, validate the request and preview the review, but do not post it.
      */
     validateOnly?: boolean;
 
