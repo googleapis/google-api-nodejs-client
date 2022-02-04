@@ -1194,12 +1194,12 @@ export namespace chat_v1 {
      */
     createTime?: string | null;
     /**
-     * A user in Google Chat. Represents a person in the People API. Formatted as `users/person_id` where `person_id` is available from the [People API](https://developers.google.com/people/api/rest/v1/people).
+     * A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API. Format: `users/{person\}`
      */
     member?: Schema$User;
     name?: string | null;
     /**
-     * State of the membership. Required for `CreateMembership`. Read-only for other usage.
+     * Output only. State of the membership.
      */
     state?: string | null;
   }
