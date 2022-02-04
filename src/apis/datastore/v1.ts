@@ -396,7 +396,7 @@ export namespace datastore_v1 {
     state?: string | null;
   }
   /**
-   * Metadata for Datastore to Firestore migration operations. The DatastoreFirestoreMigration operation is not started by the end-user via an explicit "creation" method. This is an intentional deviation from the LRO design pattern. This singleton resource can be accessed at: "projects/{project_id\}/datastore-firestore-migration"
+   * Metadata for Datastore to Firestore migration operations. The DatastoreFirestoreMigration operation is not started by the end-user via an explicit "creation" method. This is an intentional deviation from the LRO design pattern. This singleton resource can be accessed at: "projects/{project_id\}/operations/datastore-firestore-migration"
    */
   export interface Schema$GoogleDatastoreAdminV1DatastoreFirestoreMigrationMetadata {
     /**
@@ -587,6 +587,41 @@ export namespace datastore_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * An event signifying the start of a new step in a [migration from Cloud Datastore to Cloud Firestore in Datastore mode](https://cloud.google.com/datastore/docs/upgrade-to-firestore).
+   */
+  export interface Schema$GoogleDatastoreAdminV1MigrationProgressEvent {
+    /**
+     * Details for the `PREPARE` step.
+     */
+    prepareStepDetails?: Schema$GoogleDatastoreAdminV1PrepareStepDetails;
+    /**
+     * Details for the `REDIRECT_WRITES` step.
+     */
+    redirectWritesStepDetails?: Schema$GoogleDatastoreAdminV1RedirectWritesStepDetails;
+    /**
+     * The step that is starting. An event with step set to `START` indicates that the migration has been reverted back to the initial pre-migration state.
+     */
+    step?: string | null;
+  }
+  /**
+   * An event signifying a change in state of a [migration from Cloud Datastore to Cloud Firestore in Datastore mode](https://cloud.google.com/datastore/docs/upgrade-to-firestore).
+   */
+  export interface Schema$GoogleDatastoreAdminV1MigrationStateEvent {
+    /**
+     * The new state of the migration.
+     */
+    state?: string | null;
+  }
+  /**
+   * Details for the `PREPARE` step.
+   */
+  export interface Schema$GoogleDatastoreAdminV1PrepareStepDetails {
+    /**
+     * The concurrency mode this database will use when it reaches the `REDIRECT_WRITES` step.
+     */
+    concurrencyMode?: string | null;
+  }
+  /**
    * Measures the progress of a particular metric.
    */
   export interface Schema$GoogleDatastoreAdminV1Progress {
@@ -598,6 +633,15 @@ export namespace datastore_v1 {
      * An estimate of how much work needs to be performed. May be zero if the work estimate is unavailable.
      */
     workEstimated?: string | null;
+  }
+  /**
+   * Details for the `REDIRECT_WRITES` step.
+   */
+  export interface Schema$GoogleDatastoreAdminV1RedirectWritesStepDetails {
+    /**
+     * Ths concurrency mode for this database.
+     */
+    concurrencyMode?: string | null;
   }
   /**
    * The response message for Operations.ListOperations.
