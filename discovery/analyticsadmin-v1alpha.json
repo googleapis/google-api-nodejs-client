@@ -799,7 +799,7 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```",
+              "description": "Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account/property) or `ancestor:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | parent:properties/123 | The property with property id: 123. | | ancestor:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```",
               "location": "query",
               "type": "string"
             },
@@ -1056,162 +1056,6 @@
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit"
               ]
-            }
-          },
-          "resources": {
-            "measurementProtocolSecrets": {
-              "methods": {
-                "create": {
-                  "description": "Creates a measurement protocol secret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}/measurementProtocolSecrets",
-                  "httpMethod": "POST",
-                  "id": "analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property}/webDataStreams/{webDataStream}",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/androidAppDataStreams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/measurementProtocolSecrets",
-                  "request": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                },
-                "delete": {
-                  "description": "Deletes target MeasurementProtocolSecret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "DELETE",
-                  "id": "analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/androidAppDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleProtobufEmpty"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                },
-                "get": {
-                  "description": "Lookup for a single \"GA4\" MeasurementProtocolSecret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "GET",
-                  "id": "analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the measurement protocol secret to lookup. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/androidAppDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit",
-                    "https://www.googleapis.com/auth/analytics.readonly"
-                  ]
-                },
-                "list": {
-                  "description": "Returns child MeasurementProtocolSecrets under the specified parent Property.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}/measurementProtocolSecrets",
-                  "httpMethod": "GET",
-                  "id": "analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/androidAppDataStreams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/measurementProtocolSecrets",
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit",
-                    "https://www.googleapis.com/auth/analytics.readonly"
-                  ]
-                },
-                "patch": {
-                  "description": "Updates a measurement protocol secret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "PATCH",
-                  "id": "analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/androidAppDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "The list of fields to be updated. Omitted fields will not be updated.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                }
-              }
             }
           }
         },
@@ -1730,6 +1574,32 @@
                 "https://www.googleapis.com/auth/analytics.readonly"
               ]
             },
+            "getGlobalSiteTag": {
+              "description": "Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.",
+              "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/globalSiteTag",
+              "httpMethod": "GET",
+              "id": "analyticsadmin.properties.dataStreams.getGlobalSiteTag",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag Example: \"properties/123/dataStreams/456/globalSiteTag\"",
+                  "location": "path",
+                  "pattern": "^properties/[^/]+/dataStreams/[^/]+/globalSiteTag$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "GoogleAnalyticsAdminV1alphaGlobalSiteTag"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/analytics.edit",
+                "https://www.googleapis.com/auth/analytics.readonly"
+              ]
+            },
             "list": {
               "description": "Lists DataStreams on a property.",
               "flatPath": "v1alpha/properties/{propertiesId}/dataStreams",
@@ -1800,6 +1670,162 @@
               "scopes": [
                 "https://www.googleapis.com/auth/analytics.edit"
               ]
+            }
+          },
+          "resources": {
+            "measurementProtocolSecrets": {
+              "methods": {
+                "create": {
+                  "description": "Creates a measurement protocol secret.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/measurementProtocolSecrets",
+                  "httpMethod": "POST",
+                  "id": "analyticsadmin.properties.dataStreams.measurementProtocolSecrets.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource where this secret will be created. Format: properties/{property}/dataStreams/{dataStream}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/measurementProtocolSecrets",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes target MeasurementProtocolSecret.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
+                  "httpMethod": "DELETE",
+                  "id": "analyticsadmin.properties.dataStreams.measurementProtocolSecrets.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                },
+                "get": {
+                  "description": "Lookup for a single \"GA4\" MeasurementProtocolSecret.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.measurementProtocolSecrets.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the measurement protocol secret to lookup. Format: properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Returns child MeasurementProtocolSecrets under the specified parent Property.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/measurementProtocolSecrets",
+                  "httpMethod": "GET",
+                  "id": "analyticsadmin.properties.dataStreams.measurementProtocolSecrets.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the parent stream. Format: properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/measurementProtocolSecrets",
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit",
+                    "https://www.googleapis.com/auth/analytics.readonly"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a measurement protocol secret.",
+                  "flatPath": "v1alpha/properties/{propertiesId}/dataStreams/{dataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
+                  "httpMethod": "PATCH",
+                  "id": "analyticsadmin.properties.dataStreams.measurementProtocolSecrets.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
+                      "location": "path",
+                      "pattern": "^properties/[^/]+/dataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "The list of fields to be updated. Omitted fields will not be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "request": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
+                  },
+                  "response": {
+                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/analytics.edit"
+                  ]
+                }
+              }
             }
           }
         },
@@ -2479,162 +2505,6 @@
                 "https://www.googleapis.com/auth/analytics.edit"
               ]
             }
-          },
-          "resources": {
-            "measurementProtocolSecrets": {
-              "methods": {
-                "create": {
-                  "description": "Creates a measurement protocol secret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}/measurementProtocolSecrets",
-                  "httpMethod": "POST",
-                  "id": "analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property}/webDataStreams/{webDataStream}",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/iosAppDataStreams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/measurementProtocolSecrets",
-                  "request": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                },
-                "delete": {
-                  "description": "Deletes target MeasurementProtocolSecret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "DELETE",
-                  "id": "analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/iosAppDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleProtobufEmpty"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                },
-                "get": {
-                  "description": "Lookup for a single \"GA4\" MeasurementProtocolSecret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "GET",
-                  "id": "analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the measurement protocol secret to lookup. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/iosAppDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit",
-                    "https://www.googleapis.com/auth/analytics.readonly"
-                  ]
-                },
-                "list": {
-                  "description": "Returns child MeasurementProtocolSecrets under the specified parent Property.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}/measurementProtocolSecrets",
-                  "httpMethod": "GET",
-                  "id": "analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/iosAppDataStreams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/measurementProtocolSecrets",
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit",
-                    "https://www.googleapis.com/auth/analytics.readonly"
-                  ]
-                },
-                "patch": {
-                  "description": "Updates a measurement protocol secret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "PATCH",
-                  "id": "analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/iosAppDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "The list of fields to be updated. Omitted fields will not be updated.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                }
-              }
-            }
           }
         },
         "userLinks": {
@@ -3016,32 +2886,6 @@
                 "https://www.googleapis.com/auth/analytics.readonly"
               ]
             },
-            "getGlobalSiteTag": {
-              "description": "Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.",
-              "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/globalSiteTag",
-              "httpMethod": "GET",
-              "id": "analyticsadmin.properties.webDataStreams.getGlobalSiteTag",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag Example: \"properties/123/webDataStreams/456/globalSiteTag\"",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+/webDataStreams/[^/]+/globalSiteTag$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+name}",
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaGlobalSiteTag"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.edit",
-                "https://www.googleapis.com/auth/analytics.readonly"
-              ]
-            },
             "list": {
               "description": "Returns child web data streams under the specified parent property. Web data streams will be excluded if the caller does not have access. Returns an empty list if no relevant web data streams are found.",
               "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams",
@@ -3113,168 +2957,12 @@
                 "https://www.googleapis.com/auth/analytics.edit"
               ]
             }
-          },
-          "resources": {
-            "measurementProtocolSecrets": {
-              "methods": {
-                "create": {
-                  "description": "Creates a measurement protocol secret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/measurementProtocolSecrets",
-                  "httpMethod": "POST",
-                  "id": "analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.create",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "parent": {
-                      "description": "Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property}/webDataStreams/{webDataStream}",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/webDataStreams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/measurementProtocolSecrets",
-                  "request": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                },
-                "delete": {
-                  "description": "Deletes target MeasurementProtocolSecret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "DELETE",
-                  "id": "analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.delete",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/webDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleProtobufEmpty"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                },
-                "get": {
-                  "description": "Lookup for a single \"GA4\" MeasurementProtocolSecret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "GET",
-                  "id": "analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. The name of the measurement protocol secret to lookup. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/webDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit",
-                    "https://www.googleapis.com/auth/analytics.readonly"
-                  ]
-                },
-                "list": {
-                  "description": "Returns child MeasurementProtocolSecrets under the specified parent Property.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/measurementProtocolSecrets",
-                  "httpMethod": "GET",
-                  "id": "analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.list",
-                  "parameterOrder": [
-                    "parent"
-                  ],
-                  "parameters": {
-                    "pageSize": {
-                      "description": "The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "parent": {
-                      "description": "Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/webDataStreams/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+parent}/measurementProtocolSecrets",
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit",
-                    "https://www.googleapis.com/auth/analytics.readonly"
-                  ]
-                },
-                "patch": {
-                  "description": "Updates a measurement protocol secret.",
-                  "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}/measurementProtocolSecrets/{measurementProtocolSecretsId}",
-                  "httpMethod": "PATCH",
-                  "id": "analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.patch",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
-                      "location": "path",
-                      "pattern": "^properties/[^/]+/webDataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "updateMask": {
-                      "description": "The list of fields to be updated. Omitted fields will not be updated.",
-                      "format": "google-fieldmask",
-                      "location": "query",
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1alpha/{+name}",
-                  "request": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "response": {
-                    "$ref": "GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/analytics.edit"
-                  ]
-                }
-              }
-            }
           }
         }
       }
     }
   },
-  "revision": "20220107",
+  "revision": "20220203",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -4183,11 +3871,11 @@
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaGlobalSiteTag": {
-      "description": "Read-only resource with the tag for sending data from a website to a WebDataStream.",
+      "description": "Read-only resource with the tag for sending data from a website to a DataStream. Only present for web DataStream resources.",
       "id": "GoogleAnalyticsAdminV1alphaGlobalSiteTag",
       "properties": {
         "name": {
-          "description": "Output only. Resource name for this GlobalSiteTag resource. Format: properties/{propertyId}/globalSiteTag",
+          "description": "Output only. Resource name for this GlobalSiteTag resource. Format: properties/{property_id}/dataStreams/{stream_id}/globalSiteTag Example: \"properties/123/dataStreams/456/globalSiteTag\"",
           "readOnly": true,
           "type": "string"
         },

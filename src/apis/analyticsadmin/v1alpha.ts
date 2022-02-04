@@ -781,11 +781,11 @@ export namespace analyticsadmin_v1alpha {
     project?: string | null;
   }
   /**
-   * Read-only resource with the tag for sending data from a website to a WebDataStream.
+   * Read-only resource with the tag for sending data from a website to a DataStream. Only present for web DataStream resources.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag {
     /**
-     * Output only. Resource name for this GlobalSiteTag resource. Format: properties/{propertyId\}/globalSiteTag
+     * Output only. Resource name for this GlobalSiteTag resource. Format: properties/{property_id\}/dataStreams/{stream_id\}/globalSiteTag Example: "properties/123/dataStreams/456/globalSiteTag"
      */
     name?: string | null;
     /**
@@ -5104,7 +5104,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.list({
-     *     // Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
+     *     // Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account/property) or `ancestor:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | parent:properties/123 | The property with property id: 123. | | ancestor:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
      *     filter: 'placeholder-value',
      *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      *     pageSize: 'placeholder-value',
@@ -5738,7 +5738,7 @@ export namespace analyticsadmin_v1alpha {
   }
   export interface Params$Resource$Properties$List extends StandardParameters {
     /**
-     * Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
+     * Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account/property) or `ancestor:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | parent:properties/123 | The property with property id: 123. | | ancestor:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
      */
     filter?: string;
     /**
@@ -5804,13 +5804,8 @@ export namespace analyticsadmin_v1alpha {
 
   export class Resource$Properties$Androidappdatastreams {
     context: APIRequestContext;
-    measurementProtocolSecrets: Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.measurementProtocolSecrets =
-        new Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets(
-          this.context
-        );
     }
 
     /**
@@ -6433,808 +6428,6 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream;
-  }
-
-  export class Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a measurement protocol secret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.create(
-     *       {
-     *         // Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}
-     *         parent:
-     *           'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "displayName": "my_displayName",
-     *           //   "name": "my_name",
-     *           //   "secretValue": "my_secretValue"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    create(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/measurementProtocolSecrets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes target MeasurementProtocolSecret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.delete(
-     *       {
-     *         // Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     *         name: 'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    delete(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Lookup for a single "GA4" MeasurementProtocolSecret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.get(
-     *       {
-     *         // Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     *         name: 'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    get(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Returns child MeasurementProtocolSecrets under the specified parent Property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.list(
-     *       {
-     *         // The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
-     *         pageSize: 'placeholder-value',
-     *         // A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets
-     *         parent:
-     *           'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "measurementProtocolSecrets": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>;
-    list(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/measurementProtocolSecrets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates a measurement protocol secret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.androidAppDataStreams.measurementProtocolSecrets.patch(
-     *       {
-     *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     *         name: 'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *         // The list of fields to be updated. Omitted fields will not be updated.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "displayName": "my_displayName",
-     *           //   "name": "my_name",
-     *           //   "secretValue": "my_secretValue"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    patch(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      params: Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Create
-    extends StandardParameters {
-    /**
-     * Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
-  }
-  export interface Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Delete
-    extends StandardParameters {
-    /**
-     * Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Get
-    extends StandardParameters {
-    /**
-     * Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$List
-    extends StandardParameters {
-    /**
-     * The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Properties$Androidappdatastreams$Measurementprotocolsecrets$Patch
-    extends StandardParameters {
-    /**
-     * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     */
-    name?: string;
-    /**
-     * The list of fields to be updated. Omitted fields will not be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
   }
 
   export class Resource$Properties$Conversionevents {
@@ -9488,8 +8681,13 @@ export namespace analyticsadmin_v1alpha {
 
   export class Resource$Properties$Datastreams {
     context: APIRequestContext;
+    measurementProtocolSecrets: Resource$Properties$Datastreams$Measurementprotocolsecrets;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.measurementProtocolSecrets =
+        new Resource$Properties$Datastreams$Measurementprotocolsecrets(
+          this.context
+        );
     }
 
     /**
@@ -9928,6 +9126,146 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.dataStreams.getGlobalSiteTag({
+     *     // Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id\}/dataStreams/{stream_id\}/globalSiteTag Example: "properties/123/dataStreams/456/globalSiteTag"
+     *     name: 'properties/my-propertie/dataStreams/my-dataStream/globalSiteTag',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "snippet": "my_snippet"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getGlobalSiteTag(
+      params: Params$Resource$Properties$Datastreams$Getglobalsitetag,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getGlobalSiteTag(
+      params?: Params$Resource$Properties$Datastreams$Getglobalsitetag,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>;
+    getGlobalSiteTag(
+      params: Params$Resource$Properties$Datastreams$Getglobalsitetag,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getGlobalSiteTag(
+      params: Params$Resource$Properties$Datastreams$Getglobalsitetag,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
+    ): void;
+    getGlobalSiteTag(
+      params: Params$Resource$Properties$Datastreams$Getglobalsitetag,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
+    ): void;
+    getGlobalSiteTag(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
+    ): void;
+    getGlobalSiteTag(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Getglobalsitetag
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Getglobalsitetag;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Datastreams$Getglobalsitetag;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Lists DataStreams on a property.
      * @example
      * ```js
@@ -10261,6 +9599,13 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Properties$Datastreams$Getglobalsitetag
+    extends StandardParameters {
+    /**
+     * Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id\}/dataStreams/{stream_id\}/globalSiteTag Example: "properties/123/dataStreams/456/globalSiteTag"
+     */
+    name?: string;
+  }
   export interface Params$Resource$Properties$Datastreams$List
     extends StandardParameters {
     /**
@@ -10291,6 +9636,804 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaDataStream;
+  }
+
+  export class Resource$Properties$Datastreams$Measurementprotocolsecrets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a measurement protocol secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.create(
+     *       {
+     *         // Required. The parent resource where this secret will be created. Format: properties/{property\}/dataStreams/{dataStream\}
+     *         parent: 'properties/my-propertie/dataStreams/my-dataStream',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "displayName": "my_displayName",
+     *           //   "name": "my_name",
+     *           //   "secretValue": "my_secretValue"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "secretValue": "my_secretValue"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
+    create(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    create(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/measurementProtocolSecrets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes target MeasurementProtocolSecret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.delete(
+     *       {
+     *         // Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     *         name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Lookup for a single "GA4" MeasurementProtocolSecret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.get({
+     *       // Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     *       name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "secretValue": "my_secretValue"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
+    get(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    get(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns child MeasurementProtocolSecrets under the specified parent Property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.list(
+     *       {
+     *         // The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The resource name of the parent stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets
+     *         parent: 'properties/my-propertie/dataStreams/my-dataStream',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "measurementProtocolSecrets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>;
+    list(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/measurementProtocolSecrets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a measurement protocol secret.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.patch(
+     *       {
+     *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     *         name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
+     *         // The list of fields to be updated. Omitted fields will not be updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "displayName": "my_displayName",
+     *           //   "name": "my_name",
+     *           //   "secretValue": "my_secretValue"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "secretValue": "my_secretValue"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    patch(
+      params: Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this secret will be created. Format: properties/{property\}/dataStreams/{dataStream\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
+  }
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$List
+    extends StandardParameters {
+    /**
+     * The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the parent stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. Omitted fields will not be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
   }
 
   export class Resource$Properties$Displayvideo360advertiserlinkproposals {
@@ -13192,13 +13335,8 @@ export namespace analyticsadmin_v1alpha {
 
   export class Resource$Properties$Iosappdatastreams {
     context: APIRequestContext;
-    measurementProtocolSecrets: Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.measurementProtocolSecrets =
-        new Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets(
-          this.context
-        );
     }
 
     /**
@@ -13821,806 +13959,6 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream;
-  }
-
-  export class Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a measurement protocol secret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.create(
-     *       {
-     *         // Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}
-     *         parent: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "displayName": "my_displayName",
-     *           //   "name": "my_name",
-     *           //   "secretValue": "my_secretValue"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    create(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/measurementProtocolSecrets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes target MeasurementProtocolSecret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.delete(
-     *       {
-     *         // Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     *         name: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    delete(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Lookup for a single "GA4" MeasurementProtocolSecret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.get(
-     *       {
-     *         // Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     *         name: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    get(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Returns child MeasurementProtocolSecrets under the specified parent Property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.list(
-     *       {
-     *         // The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
-     *         pageSize: 'placeholder-value',
-     *         // A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets
-     *         parent: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "measurementProtocolSecrets": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>;
-    list(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/measurementProtocolSecrets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates a measurement protocol secret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.iosAppDataStreams.measurementProtocolSecrets.patch(
-     *       {
-     *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     *         name: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *         // The list of fields to be updated. Omitted fields will not be updated.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "displayName": "my_displayName",
-     *           //   "name": "my_name",
-     *           //   "secretValue": "my_secretValue"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    patch(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      params: Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Create
-    extends StandardParameters {
-    /**
-     * Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
-  }
-  export interface Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Delete
-    extends StandardParameters {
-    /**
-     * Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Get
-    extends StandardParameters {
-    /**
-     * Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$List
-    extends StandardParameters {
-    /**
-     * The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Properties$Iosappdatastreams$Measurementprotocolsecrets$Patch
-    extends StandardParameters {
-    /**
-     * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     */
-    name?: string;
-    /**
-     * The list of fields to be updated. Omitted fields will not be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
   }
 
   export class Resource$Properties$Userlinks {
@@ -16198,13 +15536,8 @@ export namespace analyticsadmin_v1alpha {
 
   export class Resource$Properties$Webdatastreams {
     context: APIRequestContext;
-    measurementProtocolSecrets: Resource$Properties$Webdatastreams$Measurementprotocolsecrets;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.measurementProtocolSecrets =
-        new Resource$Properties$Webdatastreams$Measurementprotocolsecrets(
-          this.context
-        );
     }
 
     /**
@@ -16640,147 +15973,6 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsadmin.properties.webDataStreams.getGlobalSiteTag({
-     *     // Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id\}/webDataStreams/{stream_id\}/globalSiteTag Example: "properties/123/webDataStreams/456/globalSiteTag"
-     *     name: 'properties/my-propertie/webDataStreams/my-webDataStream/globalSiteTag',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "snippet": "my_snippet"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getGlobalSiteTag(
-      params: Params$Resource$Properties$Webdatastreams$Getglobalsitetag,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getGlobalSiteTag(
-      params?: Params$Resource$Properties$Webdatastreams$Getglobalsitetag,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>;
-    getGlobalSiteTag(
-      params: Params$Resource$Properties$Webdatastreams$Getglobalsitetag,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getGlobalSiteTag(
-      params: Params$Resource$Properties$Webdatastreams$Getglobalsitetag,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
-    ): void;
-    getGlobalSiteTag(
-      params: Params$Resource$Properties$Webdatastreams$Getglobalsitetag,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
-    ): void;
-    getGlobalSiteTag(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
-    ): void;
-    getGlobalSiteTag(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Webdatastreams$Getglobalsitetag
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Webdatastreams$Getglobalsitetag;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Webdatastreams$Getglobalsitetag;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Returns child web data streams under the specified parent property. Web data streams will be excluded if the caller does not have access. Returns an empty list if no relevant web data streams are found.
      * @example
      * ```js
@@ -17112,13 +16304,6 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
   }
-  export interface Params$Resource$Properties$Webdatastreams$Getglobalsitetag
-    extends StandardParameters {
-    /**
-     * Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id\}/webDataStreams/{stream_id\}/globalSiteTag Example: "properties/123/webDataStreams/456/globalSiteTag"
-     */
-    name?: string;
-  }
   export interface Params$Resource$Properties$Webdatastreams$List
     extends StandardParameters {
     /**
@@ -17149,805 +16334,5 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaWebDataStream;
-  }
-
-  export class Resource$Properties$Webdatastreams$Measurementprotocolsecrets {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a measurement protocol secret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.create(
-     *       {
-     *         // Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}
-     *         parent: 'properties/my-propertie/webDataStreams/my-webDataStream',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "displayName": "my_displayName",
-     *           //   "name": "my_name",
-     *           //   "secretValue": "my_secretValue"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    create(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/measurementProtocolSecrets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes target MeasurementProtocolSecret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.delete(
-     *       {
-     *         // Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     *         name: 'properties/my-propertie/webDataStreams/my-webDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    delete(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Lookup for a single "GA4" MeasurementProtocolSecret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.get(
-     *       {
-     *         // Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     *         name: 'properties/my-propertie/webDataStreams/my-webDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    get(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Returns child MeasurementProtocolSecrets under the specified parent Property.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.list(
-     *       {
-     *         // The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
-     *         pageSize: 'placeholder-value',
-     *         // A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
-     *         pageToken: 'placeholder-value',
-     *         // Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets
-     *         parent: 'properties/my-propertie/webDataStreams/my-webDataStream',
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "measurementProtocolSecrets": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>;
-    list(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1alpha/{+parent}/measurementProtocolSecrets'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListMeasurementProtocolSecretsResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates a measurement protocol secret.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsadmin = google.analyticsadmin('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await analyticsadmin.properties.webDataStreams.measurementProtocolSecrets.patch(
-     *       {
-     *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     *         name: 'properties/my-propertie/webDataStreams/my-webDataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
-     *         // The list of fields to be updated. Omitted fields will not be updated.
-     *         updateMask: 'placeholder-value',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "displayName": "my_displayName",
-     *           //   "name": "my_name",
-     *           //   "secretValue": "my_secretValue"
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "secretValue": "my_secretValue"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>;
-    patch(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      params: Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch,
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Create
-    extends StandardParameters {
-    /**
-     * Required. The parent resource where this secret will be created. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
-  }
-  export interface Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Delete
-    extends StandardParameters {
-    /**
-     * Required. The name of the MeasurementProtocolSecret to delete. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Get
-    extends StandardParameters {
-    /**
-     * Required. The name of the measurement protocol secret to lookup. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\} Note: Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$List
-    extends StandardParameters {
-    /**
-     * The maximum number of resources to return. If unspecified, at most 10 resources will be returned. The maximum value is 10. Higher values will be coerced to the maximum.
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous `ListMeasurementProtocolSecrets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMeasurementProtocolSecrets` must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. The resource name of the parent stream. Any type of stream (WebDataStream, IosAppDataStream, AndroidAppDataStream) may be a parent. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Properties$Webdatastreams$Measurementprotocolsecrets$Patch
-    extends StandardParameters {
-    /**
-     * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
-     */
-    name?: string;
-    /**
-     * The list of fields to be updated. Omitted fields will not be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleAnalyticsAdminV1alphaMeasurementProtocolSecret;
   }
 }
