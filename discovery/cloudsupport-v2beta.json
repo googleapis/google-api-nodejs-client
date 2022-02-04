@@ -298,11 +298,6 @@
               "location": "query",
               "type": "string"
             },
-            "orderBy": {
-              "description": "A comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc`",
-              "location": "query",
-              "type": "string"
-            },
             "pageSize": {
               "description": "The maximum number of cases fetched with each request. Defaults to 10.",
               "format": "int32",
@@ -331,7 +326,7 @@
           ]
         },
         "patch": {
-          "description": "Update the specified case. Only a subset of fields (display_name, description, time_zone, subscriber_email_addresses, related_resources, severity, primary_contact, and labels) can be updated.",
+          "description": "Update the specified case. Only a subset of fields (display_name, description, time_zone, subscriber_email_addresses, related_resources, severity, priority, primary_contact, and labels) can be updated.",
           "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}",
           "httpMethod": "PATCH",
           "id": "cloudsupport.cases.patch",
@@ -580,7 +575,7 @@
       }
     }
   },
-  "revision": "20211103",
+  "revision": "20220201",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -710,8 +705,28 @@
           "description": "The resource name for the case.",
           "type": "string"
         },
+        "priority": {
+          "description": "The priority of this case. If this is set, do not set severity.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "P0",
+            "P1",
+            "P2",
+            "P3",
+            "P4"
+          ],
+          "enumDescriptions": [
+            "Severity is undefined or has not been set yet.",
+            "Extreme impact on a production service. Service is hard down.",
+            "Critical impact on a production service. Service is currently unusable.",
+            "Severe impact on a production service. Service is usable but greatly impaired.",
+            "Medium impact on a production service. Service is available, but moderately impaired.",
+            "General questions or minor issues. Production service is fully available."
+          ],
+          "type": "string"
+        },
         "severity": {
-          "description": "The severity of this case.",
+          "description": "The severity of this case. Deprecated. Use priority instead.",
           "enum": [
             "SEVERITY_UNSPECIFIED",
             "S0",
