@@ -213,6 +213,66 @@
           "resources": {
             "ekmConnections": {
               "methods": {
+                "create": {
+                  "description": "Creates a new EkmConnection in a given Project and Location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConnections",
+                  "httpMethod": "POST",
+                  "id": "cloudkms.projects.locations.ekmConnections.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "ekmConnectionId": {
+                      "description": "Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63}`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location associated with the EkmConnection, in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/ekmConnections",
+                  "request": {
+                    "$ref": "EkmConnection"
+                  },
+                  "response": {
+                    "$ref": "EkmConnection"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "get": {
+                  "description": "Returns metadata for a given EkmConnection.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConnections/{ekmConnectionsId}",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.ekmConnections.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EkmConnection to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ekmConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "EkmConnection"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConnections/{ekmConnectionsId}:getIamPolicy",
@@ -239,6 +299,88 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "list": {
+                  "description": "Lists EkmConnections.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConnections",
+                  "httpMethod": "GET",
+                  "id": "cloudkms.projects.locations.ekmConnections.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Optional limit on the number of EkmConnections to include in the response. Further EkmConnections can subsequently be obtained by including the ListEkmConnectionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Optional pagination token, returned earlier via ListEkmConnectionsResponse.next_page_token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the location associated with the EkmConnections to list, in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/ekmConnections",
+                  "response": {
+                    "$ref": "ListEkmConnectionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloudkms"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an EkmConnection's metadata.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/ekmConnections/{ekmConnectionsId}",
+                  "httpMethod": "PATCH",
+                  "id": "cloudkms.projects.locations.ekmConnections.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The resource name for the EkmConnection in the format `projects/*/locations/*/ekmConnections/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/ekmConnections/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. List of fields to be updated in this request.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "EkmConnection"
+                  },
+                  "response": {
+                    "$ref": "EkmConnection"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -1440,7 +1582,7 @@
       }
     }
   },
-  "revision": "20220104",
+  "revision": "20220122",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1480,13 +1622,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         },
@@ -1537,13 +1681,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         },
@@ -1638,6 +1784,63 @@
       },
       "type": "object"
     },
+    "Certificate": {
+      "description": "A Certificate represents an X.509 certificate used to authenticate HTTPS connections to EKM replicas.",
+      "id": "Certificate",
+      "properties": {
+        "issuer": {
+          "description": "Output only. The issuer distinguished name in RFC 2253 format. Only present if parsed is true.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "notAfterTime": {
+          "description": "Output only. The certificate is not valid after this time. Only present if parsed is true.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "notBeforeTime": {
+          "description": "Output only. The certificate is not valid before this time. Only present if parsed is true.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parsed": {
+          "description": "Output only. True if the certificate was parsed successfully.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "rawDer": {
+          "description": "Required. The raw certificate bytes in DER format.",
+          "format": "byte",
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Output only. The certificate serial number as a hex string. Only present if parsed is true.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sha256Fingerprint": {
+          "description": "Output only. The SHA-256 certificate fingerprint as a hex string. Only present if parsed is true.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subject": {
+          "description": "Output only. The subject distinguished name in RFC 2253 format. Only present if parsed is true.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subjectAlternativeDnsNames": {
+          "description": "Output only. The subject Alternative DNS names. Only present if parsed is true.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CertificateChains": {
       "description": "Certificate chains needed to verify the attestation. Certificates in chains are PEM-encoded and are ordered based on https://tools.ietf.org/html/rfc5246#section-7.4.2.",
       "id": "CertificateChains",
@@ -1674,6 +1877,10 @@
           "description": "Output only. The time at which this CryptoKey was created.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "cryptoKeyBackend": {
+          "description": "Immutable. The resource name of the backend environment where the key material for all CryptoKeyVersions associated with this CryptoKey reside and where all related cryptographic operations are performed. Only applicable if CryptoKeyVersions have a ProtectionLevel of EXTERNAL_VPC, with the resource name in the format `projects/*/locations/*/ekmConnections/*`. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.",
           "type": "string"
         },
         "destroyScheduledDuration": {
@@ -1825,7 +2032,7 @@
         },
         "externalProtectionLevelOptions": {
           "$ref": "ExternalProtectionLevelOptions",
-          "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level."
+          "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels."
         },
         "generateTime": {
           "description": "Output only. The time this CryptoKeyVersion's key material was generated.",
@@ -1860,13 +2067,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "readOnly": true,
           "type": "string"
@@ -1971,13 +2180,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         }
@@ -2031,13 +2242,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         },
@@ -2072,6 +2285,35 @@
           "description": "A message digest produced with the SHA-512 algorithm.",
           "format": "byte",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EkmConnection": {
+      "description": "An EkmConnection represents an individual EKM connection. It can be used for creating CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC, as well as performing cryptographic operations using keys created within the EkmConnection.",
+      "id": "EkmConnection",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the EkmConnection was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "etag": {
+          "description": "This checksum is computed by the server based on the value of other fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name for the EkmConnection in the format `projects/*/locations/*/ekmConnections/*`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceResolvers": {
+          "description": "A list of ServiceResolvers where the EKM can be reached. There should be one ServiceResolver per EKM replica. Currently, only a single ServiceResolver is supported.",
+          "items": {
+            "$ref": "ServiceResolver"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2127,13 +2369,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         },
@@ -2172,9 +2416,13 @@
       "type": "object"
     },
     "ExternalProtectionLevelOptions": {
-      "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level.",
+      "description": "ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels.",
       "id": "ExternalProtectionLevelOptions",
       "properties": {
+        "ekmConnectionKeyPath": {
+          "description": "The path to the external key material on the EKM when using EkmConnection e.g., \"v0/my/key\". Set this field instead of external_key_uri when using an EkmConnection.",
+          "type": "string"
+        },
         "externalKeyUri": {
           "description": "The URI for an external resource that this CryptoKeyVersion represents.",
           "type": "string"
@@ -2197,13 +2445,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         }
@@ -2363,13 +2613,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         },
@@ -2489,6 +2741,29 @@
         },
         "totalSize": {
           "description": "The total number of CryptoKeys that matched the query.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ListEkmConnectionsResponse": {
+      "description": "Response message for KeyManagementService.ListEkmConnections.",
+      "id": "ListEkmConnectionsResponse",
+      "properties": {
+        "ekmConnections": {
+          "description": "The list of EkmConnections.",
+          "items": {
+            "$ref": "EkmConnection"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass this value in ListEkmConnectionsRequest.page_token to retrieve the next page of results.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "The total number of EkmConnections that matched the query.",
           "format": "int32",
           "type": "integer"
         }
@@ -2649,13 +2924,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         },
@@ -2707,13 +2984,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         },
@@ -2848,13 +3127,15 @@
             "PROTECTION_LEVEL_UNSPECIFIED",
             "SOFTWARE",
             "HSM",
-            "EXTERNAL"
+            "EXTERNAL",
+            "EXTERNAL_VPC"
           ],
           "enumDescriptions": [
             "Not specified.",
             "Crypto operations are performed in software.",
             "Crypto operations are performed in a Hardware Security Module.",
-            "Crypto operations are performed by an external key manager."
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
         }
@@ -2865,6 +3146,32 @@
       "description": "Request message for KeyManagementService.RestoreCryptoKeyVersion.",
       "id": "RestoreCryptoKeyVersionRequest",
       "properties": {},
+      "type": "object"
+    },
+    "ServiceResolver": {
+      "description": "A ServiceResolver represents an EKM replica that can be reached within an EkmConnection.",
+      "id": "ServiceResolver",
+      "properties": {
+        "endpointFilter": {
+          "description": "Optional. The filter applied to the endpoints of the resolved service. If no filter is specified, all endpoints will be considered. An endpoint will be chosen arbitrarily from the filtered list for each request. For endpoint filter syntax and examples, see https://cloud.google.com/service-directory/docs/reference/rpc/google.cloud.servicedirectory.v1#resolveservicerequest.",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Required. The hostname of the EKM replica used at TLS and HTTP layers.",
+          "type": "string"
+        },
+        "serverCertificates": {
+          "description": "Required. A list of leaf server certificates used to authenticate HTTPS connections to the EKM replica.",
+          "items": {
+            "$ref": "Certificate"
+          },
+          "type": "array"
+        },
+        "serviceDirectoryService": {
+          "description": "Required. The resource name of the Service Directory service pointing to an EKM replica, in the format `projects/*/locations/*/namespaces/*/services/*`.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SetIamPolicyRequest": {

@@ -253,6 +253,47 @@ export namespace cloudkms_v1 {
     role?: string | null;
   }
   /**
+   * A Certificate represents an X.509 certificate used to authenticate HTTPS connections to EKM replicas.
+   */
+  export interface Schema$Certificate {
+    /**
+     * Output only. The issuer distinguished name in RFC 2253 format. Only present if parsed is true.
+     */
+    issuer?: string | null;
+    /**
+     * Output only. The certificate is not valid after this time. Only present if parsed is true.
+     */
+    notAfterTime?: string | null;
+    /**
+     * Output only. The certificate is not valid before this time. Only present if parsed is true.
+     */
+    notBeforeTime?: string | null;
+    /**
+     * Output only. True if the certificate was parsed successfully.
+     */
+    parsed?: boolean | null;
+    /**
+     * Required. The raw certificate bytes in DER format.
+     */
+    rawDer?: string | null;
+    /**
+     * Output only. The certificate serial number as a hex string. Only present if parsed is true.
+     */
+    serialNumber?: string | null;
+    /**
+     * Output only. The SHA-256 certificate fingerprint as a hex string. Only present if parsed is true.
+     */
+    sha256Fingerprint?: string | null;
+    /**
+     * Output only. The subject distinguished name in RFC 2253 format. Only present if parsed is true.
+     */
+    subject?: string | null;
+    /**
+     * Output only. The subject Alternative DNS names. Only present if parsed is true.
+     */
+    subjectAlternativeDnsNames?: string[] | null;
+  }
+  /**
    * Certificate chains needed to verify the attestation. Certificates in chains are PEM-encoded and are ordered based on https://tools.ietf.org/html/rfc5246#section-7.4.2.
    */
   export interface Schema$CertificateChains {
@@ -277,6 +318,10 @@ export namespace cloudkms_v1 {
      * Output only. The time at which this CryptoKey was created.
      */
     createTime?: string | null;
+    /**
+     * Immutable. The resource name of the backend environment where the key material for all CryptoKeyVersions associated with this CryptoKey reside and where all related cryptographic operations are performed. Only applicable if CryptoKeyVersions have a ProtectionLevel of EXTERNAL_VPC, with the resource name in the format `projects/x/locations/x/ekmConnections/x`. Note, this list is non-exhaustive and may apply to additional ProtectionLevels in the future.
+     */
+    cryptoKeyBackend?: string | null;
     /**
      * Immutable. The period of time that versions of this key spend in the DESTROY_SCHEDULED state before transitioning to DESTROYED. If not specified at creation time, the default duration is 24 hours.
      */
@@ -339,7 +384,7 @@ export namespace cloudkms_v1 {
      */
     destroyTime?: string | null;
     /**
-     * ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level.
+     * ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels.
      */
     externalProtectionLevelOptions?: Schema$ExternalProtectionLevelOptions;
     /**
@@ -452,6 +497,27 @@ export namespace cloudkms_v1 {
     sha512?: string | null;
   }
   /**
+   * An EkmConnection represents an individual EKM connection. It can be used for creating CryptoKeys and CryptoKeyVersions with a ProtectionLevel of EXTERNAL_VPC, as well as performing cryptographic operations using keys created within the EkmConnection.
+   */
+  export interface Schema$EkmConnection {
+    /**
+     * Output only. The time at which the EkmConnection was created.
+     */
+    createTime?: string | null;
+    /**
+     * This checksum is computed by the server based on the value of other fields, and may be sent on update requests to ensure the client has an up-to-date value before proceeding.
+     */
+    etag?: string | null;
+    /**
+     * Output only. The resource name for the EkmConnection in the format `projects/x/locations/x/ekmConnections/x`.
+     */
+    name?: string | null;
+    /**
+     * A list of ServiceResolvers where the EKM can be reached. There should be one ServiceResolver per EKM replica. Currently, only a single ServiceResolver is supported.
+     */
+    serviceResolvers?: Schema$ServiceResolver[];
+  }
+  /**
    * Request message for KeyManagementService.Encrypt.
    */
   export interface Schema$EncryptRequest {
@@ -523,9 +589,13 @@ export namespace cloudkms_v1 {
     title?: string | null;
   }
   /**
-   * ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level.
+   * ExternalProtectionLevelOptions stores a group of additional fields for configuring a CryptoKeyVersion that are specific to the EXTERNAL protection level and EXTERNAL_VPC protection levels.
    */
   export interface Schema$ExternalProtectionLevelOptions {
+    /**
+     * The path to the external key material on the EKM when using EkmConnection e.g., "v0/my/key". Set this field instead of external_key_uri when using an EkmConnection.
+     */
+    ekmConnectionKeyPath?: string | null;
     /**
      * The URI for an external resource that this CryptoKeyVersion represents.
      */
@@ -684,6 +754,23 @@ export namespace cloudkms_v1 {
     nextPageToken?: string | null;
     /**
      * The total number of CryptoKeyVersions that matched the query.
+     */
+    totalSize?: number | null;
+  }
+  /**
+   * Response message for KeyManagementService.ListEkmConnections.
+   */
+  export interface Schema$ListEkmConnectionsResponse {
+    /**
+     * The list of EkmConnections.
+     */
+    ekmConnections?: Schema$EkmConnection[];
+    /**
+     * A token to retrieve next page of results. Pass this value in ListEkmConnectionsRequest.page_token to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The total number of EkmConnections that matched the query.
      */
     totalSize?: number | null;
   }
@@ -910,6 +997,27 @@ export namespace cloudkms_v1 {
    * Request message for KeyManagementService.RestoreCryptoKeyVersion.
    */
   export interface Schema$RestoreCryptoKeyVersionRequest {}
+  /**
+   * A ServiceResolver represents an EKM replica that can be reached within an EkmConnection.
+   */
+  export interface Schema$ServiceResolver {
+    /**
+     * Optional. The filter applied to the endpoints of the resolved service. If no filter is specified, all endpoints will be considered. An endpoint will be chosen arbitrarily from the filtered list for each request. For endpoint filter syntax and examples, see https://cloud.google.com/service-directory/docs/reference/rpc/google.cloud.servicedirectory.v1#resolveservicerequest.
+     */
+    endpointFilter?: string | null;
+    /**
+     * Required. The hostname of the EKM replica used at TLS and HTTP layers.
+     */
+    hostname?: string | null;
+    /**
+     * Required. A list of leaf server certificates used to authenticate HTTPS connections to the EKM replica.
+     */
+    serverCertificates?: Schema$Certificate[];
+    /**
+     * Required. The resource name of the Service Directory service pointing to an EKM replica, in the format `projects/x/locations/x/namespaces/x/services/x`.
+     */
+    serviceDirectoryService?: string | null;
+  }
   /**
    * Request message for `SetIamPolicy` method.
    */
@@ -1454,6 +1562,286 @@ export namespace cloudkms_v1 {
     }
 
     /**
+     * Creates a new EkmConnection in a given Project and Location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.ekmConnections.create({
+     *     // Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`.
+     *     ekmConnectionId: 'placeholder-value',
+     *     // Required. The resource name of the location associated with the EkmConnection, in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "serviceResolvers": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "serviceResolvers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Ekmconnections$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EkmConnection>;
+    create(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$EkmConnection>,
+      callback: BodyResponseCallback<Schema$EkmConnection>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Create,
+      callback: BodyResponseCallback<Schema$EkmConnection>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$EkmConnection>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ekmconnections$Create
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EkmConnection> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ekmconnections$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ekmconnections$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/ekmConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EkmConnection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EkmConnection>(parameters);
+      }
+    }
+
+    /**
+     * Returns metadata for a given EkmConnection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.ekmConnections.get({
+     *     // Required. The name of the EkmConnection to get.
+     *     name: 'projects/my-project/locations/my-location/ekmConnections/my-ekmConnection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "serviceResolvers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Ekmconnections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EkmConnection>;
+    get(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$EkmConnection>,
+      callback: BodyResponseCallback<Schema$EkmConnection>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Get,
+      callback: BodyResponseCallback<Schema$EkmConnection>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$EkmConnection>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ekmconnections$Get
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EkmConnection> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ekmconnections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ekmconnections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EkmConnection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EkmConnection>(parameters);
+      }
+    }
+
+    /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * ```js
@@ -1589,6 +1977,300 @@ export namespace cloudkms_v1 {
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Lists EkmConnections.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.ekmConnections.list({
+     *     // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Optional limit on the number of EkmConnections to include in the response. Further EkmConnections can subsequently be obtained by including the ListEkmConnectionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Optional pagination token, returned earlier via ListEkmConnectionsResponse.next_page_token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the location associated with the EkmConnections to list, in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ekmConnections": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Ekmconnections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Ekmconnections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEkmConnectionsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Ekmconnections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ekmconnections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEkmConnectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListEkmConnectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Ekmconnections$List,
+      callback: BodyResponseCallback<Schema$ListEkmConnectionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListEkmConnectionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ekmconnections$List
+        | BodyResponseCallback<Schema$ListEkmConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEkmConnectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEkmConnectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEkmConnectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ekmconnections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ekmconnections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/ekmConnections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEkmConnectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEkmConnectionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an EkmConnection's metadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudkms.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudkms = google.cloudkms('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloudkms',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudkms.projects.locations.ekmConnections.patch({
+     *     // Output only. The resource name for the EkmConnection in the format `projects/x/locations/x/ekmConnections/x`.
+     *     name: 'projects/my-project/locations/my-location/ekmConnections/my-ekmConnection',
+     *     // Required. List of fields to be updated in this request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "serviceResolvers": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "serviceResolvers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Ekmconnections$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EkmConnection>;
+    patch(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$EkmConnection>,
+      callback: BodyResponseCallback<Schema$EkmConnection>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Ekmconnections$Patch,
+      callback: BodyResponseCallback<Schema$EkmConnection>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$EkmConnection>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Ekmconnections$Patch
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EkmConnection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EkmConnection> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Ekmconnections$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Ekmconnections$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudkms.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EkmConnection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EkmConnection>(parameters);
       }
     }
 
@@ -1889,6 +2571,29 @@ export namespace cloudkms_v1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Create
+    extends StandardParameters {
+    /**
+     * Required. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`.
+     */
+    ekmConnectionId?: string;
+    /**
+     * Required. The resource name of the location associated with the EkmConnection, in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EkmConnection;
+  }
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the EkmConnection to get.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Ekmconnections$Getiampolicy
     extends StandardParameters {
     /**
@@ -1899,6 +2604,45 @@ export namespace cloudkms_v1 {
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ekmconnections$List
+    extends StandardParameters {
+    /**
+     * Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    filter?: string;
+    /**
+     * Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     */
+    orderBy?: string;
+    /**
+     * Optional. Optional limit on the number of EkmConnections to include in the response. Further EkmConnections can subsequently be obtained by including the ListEkmConnectionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Optional pagination token, returned earlier via ListEkmConnectionsResponse.next_page_token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the location associated with the EkmConnections to list, in the format `projects/x/locations/x`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Ekmconnections$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name for the EkmConnection in the format `projects/x/locations/x/ekmConnections/x`.
+     */
+    name?: string;
+    /**
+     * Required. List of fields to be updated in this request.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EkmConnection;
   }
   export interface Params$Resource$Projects$Locations$Ekmconnections$Setiampolicy
     extends StandardParameters {
@@ -2925,6 +3669,7 @@ export namespace cloudkms_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *       //   "destroyScheduledDuration": "my_destroyScheduledDuration",
      *       //   "importOnly": false,
      *       //   "labels": {},
@@ -2942,6 +3687,7 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *   //   "destroyScheduledDuration": "my_destroyScheduledDuration",
      *   //   "importOnly": false,
      *   //   "labels": {},
@@ -3380,6 +4126,7 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *   //   "destroyScheduledDuration": "my_destroyScheduledDuration",
      *   //   "importOnly": false,
      *   //   "labels": {},
@@ -3811,6 +4558,7 @@ export namespace cloudkms_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *       //   "destroyScheduledDuration": "my_destroyScheduledDuration",
      *       //   "importOnly": false,
      *       //   "labels": {},
@@ -3828,6 +4576,7 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *   //   "destroyScheduledDuration": "my_destroyScheduledDuration",
      *   //   "importOnly": false,
      *   //   "labels": {},
@@ -4273,6 +5022,7 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "cryptoKeyBackend": "my_cryptoKeyBackend",
      *   //   "destroyScheduledDuration": "my_destroyScheduledDuration",
      *   //   "importOnly": false,
      *   //   "labels": {},
