@@ -349,6 +349,19 @@ export namespace datapipelines_v1 {
     validateOnly?: boolean | null;
   }
   /**
+   * Response message for ListJobs
+   */
+  export interface Schema$GoogleCloudDatapipelinesV1ListJobsResponse {
+    /**
+     * Results that were accessible to the caller. Results are always in descending order of job creation date.
+     */
+    jobs?: Schema$GoogleCloudDatapipelinesV1Job[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ListPipelines.
    */
   export interface Schema$GoogleCloudDatapipelinesV1ListPipelinesResponse {
@@ -748,8 +761,10 @@ export namespace datapipelines_v1 {
 
   export class Resource$Projects$Locations$Pipelines {
     context: APIRequestContext;
+    jobs: Resource$Projects$Locations$Pipelines$Jobs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.jobs = new Resource$Projects$Locations$Pipelines$Jobs(this.context);
     }
 
     /**
@@ -1719,5 +1734,169 @@ export namespace datapipelines_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDatapipelinesV1StopPipelineRequest;
+  }
+
+  export class Resource$Projects$Locations$Pipelines$Jobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists jobs for a given pipeline. Throws a "FORBIDDEN" error if the caller doesn't have permission to access it.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/datapipelines.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const datapipelines = google.datapipelines('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await datapipelines.projects.locations.pipelines.jobs.list({
+     *     // The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit will be determined by the backend implementation.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListJobs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListJobs` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.
+     *     parent: 'projects/my-project/locations/my-location/pipelines/my-pipeline',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Pipelines$Jobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Pipelines$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Pipelines$Jobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Pipelines$Jobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Pipelines$Jobs$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Pipelines$Jobs$List
+        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Pipelines$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Pipelines$Jobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://datapipelines.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/jobs').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDatapipelinesV1ListJobsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Pipelines$Jobs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit will be determined by the backend implementation.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListJobs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListJobs` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.
+     */
+    parent?: string;
   }
 }

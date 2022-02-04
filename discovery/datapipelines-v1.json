@@ -322,6 +322,48 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "jobs": {
+                  "methods": {
+                    "list": {
+                      "description": "Lists jobs for a given pipeline. Throws a \"FORBIDDEN\" error if the caller doesn't have permission to access it.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/pipelines/{pipelinesId}/jobs",
+                      "httpMethod": "GET",
+                      "id": "datapipelines.projects.locations.pipelines.jobs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of entities to return. The service may return fewer than this value, even if there are additional pages. If unspecified, the max limit will be determined by the backend implementation.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous `ListJobs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListJobs` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The pipeline name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/pipelines/PIPELINE_ID`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/pipelines/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/jobs",
+                      "response": {
+                        "$ref": "GoogleCloudDatapipelinesV1ListJobsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             }
           }
@@ -329,7 +371,7 @@
       }
     }
   },
-  "revision": "20211203",
+  "revision": "20220116",
   "rootUrl": "https://datapipelines.googleapis.com/",
   "schemas": {
     "GoogleCloudDatapipelinesV1DataflowJobDetails": {
@@ -636,6 +678,24 @@
         "validateOnly": {
           "description": "If true, the request is validated but not actually executed. Defaults to false.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatapipelinesV1ListJobsResponse": {
+      "description": "Response message for ListJobs",
+      "id": "GoogleCloudDatapipelinesV1ListJobsResponse",
+      "properties": {
+        "jobs": {
+          "description": "Results that were accessible to the caller. Results are always in descending order of job creation date.",
+          "items": {
+            "$ref": "GoogleCloudDatapipelinesV1Job"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
         }
       },
       "type": "object"
