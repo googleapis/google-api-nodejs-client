@@ -629,6 +629,10 @@ export namespace osconfig_v1beta {
      */
     goo?: Schema$GooSettings;
     /**
+     * Allows the patch job to run on Managed instance groups (MIGs).
+     */
+    migInstancesAllowed?: boolean | null;
+    /**
      * The `ExecStep` to run after the patch update.
      */
     postStep?: Schema$ExecStep;

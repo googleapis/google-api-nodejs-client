@@ -689,7 +689,7 @@
       }
     }
   },
-  "revision": "20211203",
+  "revision": "20220122",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptRepository": {
@@ -1439,6 +1439,10 @@
         "goo": {
           "$ref": "GooSettings",
           "description": "Goo update settings. Use this setting to override the default `goo` patch rules."
+        },
+        "migInstancesAllowed": {
+          "description": "Allows the patch job to run on Managed instance groups (MIGs).",
+          "type": "boolean"
         },
         "postStep": {
           "$ref": "ExecStep",
