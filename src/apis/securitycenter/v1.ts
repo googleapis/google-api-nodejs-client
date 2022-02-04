@@ -372,7 +372,7 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
-     * The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved. Must not be set to a value greater than the current timestamp.
+     * The time the finding was first detected. If an existing finding is updated, then this is the time the update occurred. For example, if the finding represents an open firewall, this property captures the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding is later resolved, then this time reflects when the finding was resolved. This must not be set to a value greater than the current timestamp.
      */
     eventTime?: string | null;
     /**
@@ -398,11 +398,11 @@ export namespace securitycenter_v1 {
      */
     mitreAttack?: Schema$MitreAttack;
     /**
-     * Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined).
+     * Indicates the mute state of a finding (either unspecified, muted, unmuted or undefined). Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
     mute?: string | null;
     /**
-     * First known as mute_annotation. Records additional information about the mute operation e.g. mute config that muted the finding, user who muted the finding, etc.
+     * First known as mute_annotation. Records additional information about the mute operation e.g. mute config that muted the finding, user who muted the finding, etc. Unlike other attributes of a finding, a finding provider shouldn't set the value of mute.
      */
     muteInitiator?: string | null;
     /**
@@ -1709,7 +1709,7 @@ export namespace securitycenter_v1 {
      *   const res = await securitycenter.folders.assets.updateSecurityMarks({
      *     // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      *     name: 'folders/my-folder/assets/my-asset/securityMarks',
-     *     // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     *     // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      *     startTime: 'placeholder-value',
      *     // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
      *     updateMask: 'placeholder-value',
@@ -1880,7 +1880,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      */
     startTime?: string;
     /**
@@ -3851,7 +3851,7 @@ export namespace securitycenter_v1 {
      *     {
      *       // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      *       name: 'folders/my-folder/sources/my-source/findings/my-finding/securityMarks',
-     *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      *       startTime: 'placeholder-value',
      *       // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
      *       updateMask: 'placeholder-value',
@@ -4064,7 +4064,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      */
     startTime?: string;
     /**
@@ -5061,7 +5061,7 @@ export namespace securitycenter_v1 {
      *   const res = await securitycenter.organizations.assets.updateSecurityMarks({
      *     // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      *     name: 'organizations/my-organization/assets/my-asset/securityMarks',
-     *     // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     *     // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      *     startTime: 'placeholder-value',
      *     // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
      *     updateMask: 'placeholder-value',
@@ -5244,7 +5244,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      */
     startTime?: string;
     /**
@@ -9652,7 +9652,7 @@ export namespace securitycenter_v1 {
      *     await securitycenter.organizations.sources.findings.updateSecurityMarks({
      *       // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      *       name: 'organizations/my-organization/sources/my-source/findings/my-finding/securityMarks',
-     *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      *       startTime: 'placeholder-value',
      *       // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
      *       updateMask: 'placeholder-value',
@@ -9880,7 +9880,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      */
     startTime?: string;
     /**
@@ -10423,7 +10423,7 @@ export namespace securitycenter_v1 {
      *   const res = await securitycenter.projects.assets.updateSecurityMarks({
      *     // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      *     name: 'projects/my-project/assets/my-asset/securityMarks',
-     *     // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     *     // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      *     startTime: 'placeholder-value',
      *     // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
      *     updateMask: 'placeholder-value',
@@ -10594,7 +10594,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      */
     startTime?: string;
     /**
@@ -12565,7 +12565,7 @@ export namespace securitycenter_v1 {
      *     await securitycenter.projects.sources.findings.updateSecurityMarks({
      *       // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      *       name: 'projects/my-project/sources/my-source/findings/my-finding/securityMarks',
-     *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      *       startTime: 'placeholder-value',
      *       // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
      *       updateMask: 'placeholder-value',
@@ -12777,7 +12777,7 @@ export namespace securitycenter_v1 {
      */
     name?: string;
     /**
-     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
+     * The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time. Must be smaller or equal to the server time.
      */
     startTime?: string;
     /**
