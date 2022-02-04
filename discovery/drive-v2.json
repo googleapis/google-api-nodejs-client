@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/zekGFAotWiyqWap1z25R6ZBrWoo\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/nxVAmwaVO7xvSkfptpY1dgInvmw\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -3527,7 +3527,7 @@
       }
     }
   },
-  "revision": "20211213",
+  "revision": "20220130",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4559,6 +4559,10 @@
             ]
           },
           "description": "The name of this shared drive.",
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "The organizational unit of this shared drive. This field is only populated on drives.list responses when the useDomainAdminAccess parameter is set to true.",
           "type": "string"
         },
         "restrictions": {
@@ -5959,6 +5963,10 @@
             ]
           },
           "description": "The name of this Team Drive.",
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "The organizational unit of this shared drive. This field is only populated on drives.list responses when the useDomainAdminAccess parameter is set to true.",
           "type": "string"
         },
         "restrictions": {
