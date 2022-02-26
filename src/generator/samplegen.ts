@@ -52,7 +52,7 @@ interface SampleData {
 
 /**
  * Given a top level Schema, collect every method on all resource objects.
- * Generate a sample, format it, and and attach to the `method.fragment` field.
+ * Generate a sample, format it, and attach to the `method.fragment` field.
  * @param schema Top level schema for the API.
  */
 export async function addFragments(schema: Schema) {

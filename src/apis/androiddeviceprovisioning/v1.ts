@@ -456,7 +456,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     processingStatus?: string | null;
     /**
-     * The processing progress of the operation. Measured as a number from 0 to 100. A value of 10O doesnt always mean the operation completed—check for the inclusion of a `done` field.
+     * The processing progress of the operation. Measured as a number from 0 to 100. A value of 10O doesn't always mean the operation completed—check for the inclusion of a `done` field.
      */
     progress?: number | null;
   }
