@@ -30,7 +30,7 @@ export function getObjectType(item: SchemaItem): string {
 }
 
 export function isSimpleType(type: string): boolean {
-  return type.indexOf('{') === -1;
+  return !type.includes('{');
 }
 
 export function cleanPropertyName(prop: string) {
