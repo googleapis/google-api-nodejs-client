@@ -184,7 +184,7 @@ export namespace bigqueryreservation_v1 {
      */
     name?: string | null;
     /**
-     * Capacity commitment commitment plan.
+     * Capacity commitment plan.
      */
     plan?: string | null;
     /**
