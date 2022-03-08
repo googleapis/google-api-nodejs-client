@@ -367,6 +367,14 @@ export namespace prod_tt_sasportal_v1alpha1 {
      * ICG. A group of CBSDs that manage their own interference with the group. See CBRSA-TS-2001 V3.0.0 for more details.
      */
     interferenceCoordinationGroup?: string | null;
+    /**
+     * Output only. Whether a CPI has validated to have coordinated with the National Quiet Zone office.
+     */
+    nrqzValidated?: boolean | null;
+    /**
+     * Output only. National Radio Quiet Zone validation info.
+     */
+    nrqzValidation?: Schema$SasPortalNrqzValidation;
   }
   /**
    * Information about the model of the device.
@@ -603,6 +611,27 @@ export namespace prod_tt_sasportal_v1alpha1 {
     sasUserIds?: string[] | null;
   }
   /**
+   * Information about National Radio Quiet Zone validation. The presence of the field indicates the device has been validated.
+   */
+  export interface Schema$SasPortalNrqzValidation {
+    /**
+     * Validation case id.
+     */
+    caseId?: string | null;
+    /**
+     * CPI who signed the validation.
+     */
+    cpiId?: string | null;
+    /**
+     * Device latitude associated with the validation.
+     */
+    latitude?: number | null;
+    /**
+     * Device longitude associated with the validation.
+     */
+    longitude?: number | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$SasPortalOperation {
@@ -750,271 +779,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
       this.deployments = new Resource$Customers$Deployments(this.context);
       this.devices = new Resource$Customers$Devices(this.context);
       this.nodes = new Resource$Customers$Nodes(this.context);
-    }
-
-    /**
-     * Creates a new SAS customer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await prod_tt_sasportal.customers.create({
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name",
-     *       //   "sasUserIds": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name",
-     *   //   "sasUserIds": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Customers$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Customers$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalCustomer>;
-    create(
-      params: Params$Resource$Customers$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Customers$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$SasPortalCustomer>,
-      callback: BodyResponseCallback<Schema$SasPortalCustomer>
-    ): void;
-    create(
-      params: Params$Resource$Customers$Create,
-      callback: BodyResponseCallback<Schema$SasPortalCustomer>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$SasPortalCustomer>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Customers$Create
-        | BodyResponseCallback<Schema$SasPortalCustomer>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SasPortalCustomer>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SasPortalCustomer>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$SasPortalCustomer>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Customers$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/customers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SasPortalCustomer>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SasPortalCustomer>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a customer.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/prod_tt_sasportal.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const prod_tt_sasportal = google.prod_tt_sasportal('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/userinfo.email'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await prod_tt_sasportal.customers.delete({
-     *     // Required. The name of the customer.
-     *     name: 'customers/my-customer',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Customers$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Customers$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$SasPortalEmpty>;
-    delete(
-      params: Params$Resource$Customers$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Customers$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$SasPortalEmpty>,
-      callback: BodyResponseCallback<Schema$SasPortalEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Customers$Delete,
-      callback: BodyResponseCallback<Schema$SasPortalEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$SasPortalEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Customers$Delete
-        | BodyResponseCallback<Schema$SasPortalEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$SasPortalEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$SasPortalEmpty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SasPortalEmpty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Customers$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://prod-tt-sasportal.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$SasPortalEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$SasPortalEmpty>(parameters);
-      }
     }
 
     /**
@@ -1433,18 +1197,6 @@ export namespace prod_tt_sasportal_v1alpha1 {
     }
   }
 
-  export interface Params$Resource$Customers$Create extends StandardParameters {
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$SasPortalCustomer;
-  }
-  export interface Params$Resource$Customers$Delete extends StandardParameters {
-    /**
-     * Required. The name of the customer.
-     */
-    name?: string;
-  }
   export interface Params$Resource$Customers$Get extends StandardParameters {
     /**
      * Required. The name of the customer.
