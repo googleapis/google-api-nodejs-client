@@ -138,7 +138,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     jobType?: string | null;
     /**
-     * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`.
+     * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. For the assignment id, it must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
      */
     name?: string | null;
     /**
@@ -180,7 +180,11 @@ export namespace bigqueryreservation_v1beta1 {
      */
     failureStatus?: Schema$Status;
     /**
-     * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123`
+     * Applicable only for commitments located within one of the BigQuery multi-regions (US or EU). If set to true, this commitment is placed in the organization's secondary region which is designated for disaster recovery purposes. If false, this commitment is placed in the organization's default region.
+     */
+    multiRegionAuxiliary?: boolean | null;
+    /**
+     * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` For the commitment id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string | null;
     /**
@@ -266,6 +270,10 @@ export namespace bigqueryreservation_v1beta1 {
    */
   export interface Schema$Reservation {
     /**
+     * Maximum number of queries that are allowed to run concurrently in this reservation. This is a soft limit due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency will be automatically set based on the reservation size.
+     */
+    concurrency?: string | null;
+    /**
      * Output only. Creation time of the reservation.
      */
     creationTime?: string | null;
@@ -274,7 +282,11 @@ export namespace bigqueryreservation_v1beta1 {
      */
     ignoreIdleSlots?: boolean | null;
     /**
-     * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`.
+     * Applicable only for reservations located within one of the BigQuery multi-regions (US or EU). If set to true, this reservation is placed in the organization's secondary region which is designated for disaster recovery purposes. If false, this reservation is placed in the organization's default region.
+     */
+    multiRegionAuxiliary?: boolean | null;
+    /**
+     * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. For the reservation id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string | null;
     /**
@@ -869,7 +881,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await bigqueryreservation.projects.locations.capacityCommitments.create({
-     *       // The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.
+     *       // The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. The first and last character cannot be a dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.
      *       capacityCommitmentId: 'placeholder-value',
      *       // If true, fail the request if another project in the organization has a capacity commitment.
      *       enforceSingleAdminProjectPerOrg: 'placeholder-value',
@@ -883,6 +895,7 @@ export namespace bigqueryreservation_v1beta1 {
      *         //   "commitmentEndTime": "my_commitmentEndTime",
      *         //   "commitmentStartTime": "my_commitmentStartTime",
      *         //   "failureStatus": {},
+     *         //   "multiRegionAuxiliary": false,
      *         //   "name": "my_name",
      *         //   "plan": "my_plan",
      *         //   "renewalPlan": "my_renewalPlan",
@@ -898,6 +911,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
      *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
+     *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
      *   //   "renewalPlan": "my_renewalPlan",
@@ -1175,6 +1189,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
      *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
+     *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
      *   //   "renewalPlan": "my_renewalPlan",
@@ -1474,6 +1489,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
      *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
+     *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
      *   //   "renewalPlan": "my_renewalPlan",
@@ -1608,7 +1624,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await bigqueryreservation.projects.locations.capacityCommitments.patch({
-     *       // Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123`
+     *       // Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` For the commitment id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      *       name: 'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *       // Standard field mask for the set of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -1620,6 +1636,7 @@ export namespace bigqueryreservation_v1beta1 {
      *         //   "commitmentEndTime": "my_commitmentEndTime",
      *         //   "commitmentStartTime": "my_commitmentStartTime",
      *         //   "failureStatus": {},
+     *         //   "multiRegionAuxiliary": false,
      *         //   "name": "my_name",
      *         //   "plan": "my_plan",
      *         //   "renewalPlan": "my_renewalPlan",
@@ -1635,6 +1652,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   //   "commitmentEndTime": "my_commitmentEndTime",
      *   //   "commitmentStartTime": "my_commitmentStartTime",
      *   //   "failureStatus": {},
+     *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
      *   //   "plan": "my_plan",
      *   //   "renewalPlan": "my_renewalPlan",
@@ -1893,7 +1911,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Create
     extends StandardParameters {
     /**
-     * The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.
+     * The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. The first and last character cannot be a dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.
      */
     capacityCommitmentId?: string;
     /**
@@ -1958,7 +1976,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123`
+     * Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` For the commitment id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string;
     /**
@@ -2025,15 +2043,17 @@ export namespace bigqueryreservation_v1beta1 {
      *   const res = await bigqueryreservation.projects.locations.reservations.create({
      *     // Required. Project, location. E.g., `projects/myproject/locations/US`
      *     parent: 'projects/my-project/locations/my-location',
-     *     // The reservation ID. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
+     *     // The reservation ID. It must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      *     reservationId: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "concurrency": "my_concurrency",
      *       //   "creationTime": "my_creationTime",
      *       //   "ignoreIdleSlots": false,
+     *       //   "multiRegionAuxiliary": false,
      *       //   "name": "my_name",
      *       //   "slotCapacity": "my_slotCapacity",
      *       //   "updateTime": "my_updateTime"
@@ -2044,8 +2064,10 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "concurrency": "my_concurrency",
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
+     *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2309,8 +2331,10 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "concurrency": "my_concurrency",
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
+     *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2581,7 +2605,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.patch({
-     *     // The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`.
+     *     // The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. For the reservation id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      *     name: 'projects/my-project/locations/my-location/reservations/my-reservation',
      *     // Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -2590,8 +2614,10 @@ export namespace bigqueryreservation_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "concurrency": "my_concurrency",
      *       //   "creationTime": "my_creationTime",
      *       //   "ignoreIdleSlots": false,
+     *       //   "multiRegionAuxiliary": false,
      *       //   "name": "my_name",
      *       //   "slotCapacity": "my_slotCapacity",
      *       //   "updateTime": "my_updateTime"
@@ -2602,8 +2628,10 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "concurrency": "my_concurrency",
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
+     *   //   "multiRegionAuxiliary": false,
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2707,7 +2735,7 @@ export namespace bigqueryreservation_v1beta1 {
      */
     parent?: string;
     /**
-     * The reservation ID. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
+     * The reservation ID. It must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     reservationId?: string;
 
@@ -2752,7 +2780,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Reservations$Patch
     extends StandardParameters {
     /**
-     * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`.
+     * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`. For the reservation id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.
      */
     name?: string;
     /**
@@ -2804,7 +2832,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   const res =
      *     await bigqueryreservation.projects.locations.reservations.assignments.create(
      *       {
-     *         // The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
+     *         // The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. Max length is 64 characters.
      *         assignmentId: 'placeholder-value',
      *         // Required. The parent resource name of the assignment E.g. `projects/myproject/locations/US/reservations/team1-prod`
      *         parent:
@@ -3382,7 +3410,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   const res =
      *     await bigqueryreservation.projects.locations.reservations.assignments.patch(
      *       {
-     *         // Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`.
+     *         // Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. For the assignment id, it must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
      *         name: 'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
      *         // Standard field mask for the set of fields to be updated.
      *         updateMask: 'placeholder-value',
@@ -3504,7 +3532,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$Create
     extends StandardParameters {
     /**
-     * The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
+     * The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. Max length is 64 characters.
      */
     assignmentId?: string;
     /**
@@ -3554,7 +3582,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$Patch
     extends StandardParameters {
     /**
-     * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`.
+     * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. For the assignment id, it must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.
      */
     name?: string;
     /**
