@@ -1261,6 +1261,166 @@ export namespace servicecontrol_v1 {
      */
     value?: string | null;
   }
+  /**
+   * A common proto for logging HTTP requests. Only contains semantics defined by the HTTP specification. Product-specific logging information MUST be defined in a separate message.
+   */
+  export interface Schema$V1HttpRequest {
+    /**
+     * The number of HTTP response bytes inserted into cache. Set only when a cache fill was attempted.
+     */
+    cacheFillBytes?: string | null;
+    /**
+     * Whether or not an entity was served from cache (with or without validation).
+     */
+    cacheHit?: boolean | null;
+    /**
+     * Whether or not a cache lookup was attempted.
+     */
+    cacheLookup?: boolean | null;
+    /**
+     * Whether or not the response was validated with the origin server before being served from cache. This field is only meaningful if `cache_hit` is True.
+     */
+    cacheValidatedWithOriginServer?: boolean | null;
+    /**
+     * The request processing latency on the server, from the time the request was received until the response was sent.
+     */
+    latency?: string | null;
+    /**
+     * Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2", "websocket"
+     */
+    protocol?: string | null;
+    /**
+     * The referer URL of the request, as defined in [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
+     */
+    referer?: string | null;
+    /**
+     * The IP address (IPv4 or IPv6) of the client that issued the HTTP request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
+     */
+    remoteIp?: string | null;
+    /**
+     * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
+     */
+    requestMethod?: string | null;
+    /**
+     * The size of the HTTP request message in bytes, including the request headers and the request body.
+     */
+    requestSize?: string | null;
+    /**
+     * The scheme (http, https), the host name, the path, and the query portion of the URL that was requested. Example: `"http://example.com/some/info?color=red"`.
+     */
+    requestUrl?: string | null;
+    /**
+     * The size of the HTTP response message sent back to the client, in bytes, including the response headers and the response body.
+     */
+    responseSize?: string | null;
+    /**
+     * The IP address (IPv4 or IPv6) of the origin server that the request was sent to.
+     */
+    serverIp?: string | null;
+    /**
+     * The response code indicating the status of the response. Examples: 200, 404.
+     */
+    status?: number | null;
+    /**
+     * The user agent sent by the client. Example: `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
+     */
+    userAgent?: string | null;
+  }
+  /**
+   * An individual log entry.
+   */
+  export interface Schema$V1LogEntry {
+    /**
+     * Optional. Information about the HTTP request associated with this log entry, if applicable.
+     */
+    httpRequest?: Schema$V1HttpRequest;
+    /**
+     * A unique ID for the log entry used for deduplication. If omitted, the implementation will generate one based on operation_id.
+     */
+    insertId?: string | null;
+    /**
+     * A set of user-defined (key, value) data that provides additional information about the log entry.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * A set of user-defined (key, value) data that provides additional information about the moniotored resource that the log entry belongs to.
+     */
+    monitoredResourceLabels?: {[key: string]: string} | null;
+    /**
+     * Required. The log to which this log entry belongs. Examples: `"syslog"`, `"book_log"`.
+     */
+    name?: string | null;
+    /**
+     * Optional. Information about an operation associated with the log entry, if applicable.
+     */
+    operation?: Schema$V1LogEntryOperation;
+    /**
+     * The log entry payload, represented as a protocol buffer that is expressed as a JSON object. The only accepted type currently is AuditLog.
+     */
+    protoPayload?: {[key: string]: any} | null;
+    /**
+     * The severity of the log entry. The default value is `LogSeverity.DEFAULT`.
+     */
+    severity?: string | null;
+    /**
+     * Optional. Source code location information associated with the log entry, if any.
+     */
+    sourceLocation?: Schema$V1LogEntrySourceLocation;
+    /**
+     * The log entry payload, represented as a structure that is expressed as a JSON object.
+     */
+    structPayload?: {[key: string]: any} | null;
+    /**
+     * The log entry payload, represented as a Unicode string (UTF-8).
+     */
+    textPayload?: string | null;
+    /**
+     * The time the event described by the log entry occurred. If omitted, defaults to operation start time.
+     */
+    timestamp?: string | null;
+    /**
+     * Optional. Resource name of the trace associated with the log entry, if any. If this field contains a relative resource name, you can assume the name is relative to `//tracing.googleapis.com`. Example: `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
+     */
+    trace?: string | null;
+  }
+  /**
+   * Additional information about a potentially long-running operation with which a log entry is associated.
+   */
+  export interface Schema$V1LogEntryOperation {
+    /**
+     * Optional. Set this to True if this is the first log entry in the operation.
+     */
+    first?: boolean | null;
+    /**
+     * Optional. An arbitrary operation identifier. Log entries with the same identifier are assumed to be part of the same operation.
+     */
+    id?: string | null;
+    /**
+     * Optional. Set this to True if this is the last log entry in the operation.
+     */
+    last?: boolean | null;
+    /**
+     * Optional. An arbitrary producer identifier. The combination of `id` and `producer` must be globally unique. Examples for `producer`: `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
+     */
+    producer?: string | null;
+  }
+  /**
+   * Additional information about the source code location that produced the log entry.
+   */
+  export interface Schema$V1LogEntrySourceLocation {
+    /**
+     * Optional. Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name.
+     */
+    file?: string | null;
+    /**
+     * Optional. Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information may be used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language. For example: `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function` (Python).
+     */
+    function?: string | null;
+    /**
+     * Optional. Line within the source file. 1-based; 0 indicates no line number available.
+     */
+    line?: string | null;
+  }
 
   export class Resource$Services {
     context: APIRequestContext;
