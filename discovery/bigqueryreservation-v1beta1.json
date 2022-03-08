@@ -229,7 +229,7 @@
                   ],
                   "parameters": {
                     "capacityCommitmentId": {
-                      "description": "The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.",
+                      "description": "The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. The first and last character cannot be a dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.",
                       "location": "query",
                       "type": "string"
                     },
@@ -391,7 +391,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123`",
+                      "description": "Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` For the commitment id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/capacityCommitments/[^/]+$",
                       "required": true,
@@ -466,7 +466,7 @@
                       "type": "string"
                     },
                     "reservationId": {
-                      "description": "The reservation ID. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.",
+                      "description": "The reservation ID. It must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -587,7 +587,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`.",
+                      "description": "The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`. For the reservation id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+$",
                       "required": true,
@@ -626,7 +626,7 @@
                       ],
                       "parameters": {
                         "assignmentId": {
-                          "description": "The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.",
+                          "description": "The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dashes. Max length is 64 characters.",
                           "location": "query",
                           "type": "string"
                         },
@@ -752,7 +752,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`.",
+                          "description": "Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. For the assignment id, it must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/reservations/[^/]+/assignments/[^/]+$",
                           "required": true,
@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20211015",
+  "revision": "20220226",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -814,7 +814,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`.",
+          "description": "Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`. For the assignment id, it must only contain lower case alphanumeric characters or dashes and the max length is 64 characters.",
           "readOnly": true,
           "type": "string"
         },
@@ -879,8 +879,12 @@
           "description": "Output only. For FAILED commitment plan, provides the reason of failure.",
           "readOnly": true
         },
+        "multiRegionAuxiliary": {
+          "description": "Applicable only for commitments located within one of the BigQuery multi-regions (US or EU). If set to true, this commitment is placed in the organization's secondary region which is designated for disaster recovery purposes. If false, this commitment is placed in the organization's default region.",
+          "type": "boolean"
+        },
         "name": {
-          "description": "Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123`",
+          "description": "Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123` For the commitment id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
           "readOnly": true,
           "type": "string"
         },
@@ -1034,6 +1038,11 @@
       "description": "A reservation is a mechanism used to guarantee slots to users.",
       "id": "Reservation",
       "properties": {
+        "concurrency": {
+          "description": "Maximum number of queries that are allowed to run concurrently in this reservation. This is a soft limit due to asynchronous nature of the system and various optimizations for small queries. Default value is 0 which means that concurrency will be automatically set based on the reservation size.",
+          "format": "int64",
+          "type": "string"
+        },
         "creationTime": {
           "description": "Output only. Creation time of the reservation.",
           "format": "google-datetime",
@@ -1044,8 +1053,12 @@
           "description": "If false, any query or pipeline job using this reservation will use idle slots from other reservations within the same admin project. If true, a query or pipeline job using this reservation will execute with the slot capacity specified in the slot_capacity field at most.",
           "type": "boolean"
         },
+        "multiRegionAuxiliary": {
+          "description": "Applicable only for reservations located within one of the BigQuery multi-regions (US or EU). If set to true, this reservation is placed in the organization's secondary region which is designated for disaster recovery purposes. If false, this reservation is placed in the organization's default region.",
+          "type": "boolean"
+        },
         "name": {
-          "description": "The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`.",
+          "description": "The resource name of the reservation, e.g., `projects/*/locations/*/reservations/team1-prod`. For the reservation id, it must only contain lower case alphanumeric characters or dashes.It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
           "type": "string"
         },
         "slotCapacity": {
