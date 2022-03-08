@@ -1878,7 +1878,7 @@ export namespace youtube_v3 {
     watchIconImageUrl?: string | null;
   }
   /**
-   * Describes information necessary for ingesting an RTMP or an HTTP stream.
+   * Describes information necessary for ingesting an RTMP, HTTP, or SRT stream.
    */
   export interface Schema$IngestionInfo {
     /**
@@ -1898,7 +1898,7 @@ export namespace youtube_v3 {
      */
     rtmpsIngestionAddress?: string | null;
     /**
-     * The HTTP or RTMP stream name that YouTube assigns to the video stream.
+     * The stream name that YouTube assigns to the video stream.
      */
     streamName?: string | null;
   }
