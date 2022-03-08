@@ -2444,7 +2444,7 @@
       }
     }
   },
-  "revision": "20220122",
+  "revision": "20220224",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2815,6 +2815,10 @@
           "description": "Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging and temp buckets (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a gs://... URI to a Cloud Storage bucket.",
           "type": "string"
         },
+        "dataprocMetricConfig": {
+          "$ref": "DataprocMetricConfig",
+          "description": "Optional. The configuration(s) for a dataproc metric(s)."
+        },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
           "description": "Optional. Encryption settings for the cluster."
@@ -3101,6 +3105,20 @@
         "enableConfidentialCompute": {
           "description": "Optional. Defines whether the instance should have confidential compute enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "DataprocMetricConfig": {
+      "description": "Contains dataproc metric config.",
+      "id": "DataprocMetricConfig",
+      "properties": {
+        "metrics": {
+          "description": "Required. Metrics to be enabled.",
+          "items": {
+            "$ref": "Metric"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4170,6 +4188,42 @@
       "properties": {
         "dataprocMetastoreService": {
           "description": "Required. Resource name of an existing Dataproc Metastore service.Example: projects/[project_id]/locations/[dataproc_region]/services/[service-name]",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Metric": {
+      "description": "Metric source to enable along with any optional metrics for this source that override the dataproc defaults",
+      "id": "Metric",
+      "properties": {
+        "metricOverrides": {
+          "description": "Optional. Optional Metrics to override the dataproc default metrics configured for the metric source",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metricSource": {
+          "description": "Required. MetricSource that should be enabled",
+          "enum": [
+            "METRIC_SOURCE_UNSPECIFIED",
+            "MONITORING_AGENT_DEFAULTS",
+            "HDFS",
+            "SPARK",
+            "YARN",
+            "SPARK_HISTORY_SERVER",
+            "HIVESERVER2"
+          ],
+          "enumDescriptions": [
+            "Required unspecified metric source",
+            "all default monitoring agent metrics that are published with prefix \"agent.googleapis.com\" when we enable a monitoring agent in Compute Engine",
+            "Hdfs metric source",
+            "Spark metric source",
+            "Yarn metric source",
+            "Spark history server metric source",
+            "hiveserver2 metric source"
+          ],
           "type": "string"
         }
       },
