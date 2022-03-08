@@ -356,7 +356,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The Group name.",
+                      "description": "Output only. The Group name.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/groups/[^/]+$",
                       "required": true,
@@ -886,6 +886,34 @@
                       "path": "v1/{+parent}/datacenterConnectors",
                       "response": {
                         "$ref": "ListDatacenterConnectorsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "upgradeAppliance": {
+                      "description": "Upgrades the appliance relate to this DatacenterConnector to the in-place updateable version.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/datacenterConnectors/{datacenterConnectorsId}:upgradeAppliance",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.sources.datacenterConnectors.upgradeAppliance",
+                      "parameterOrder": [
+                        "datacenterConnector"
+                      ],
+                      "parameters": {
+                        "datacenterConnector": {
+                          "description": "Required. The DatacenterConnector name.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/datacenterConnectors/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+datacenterConnector}:upgradeAppliance",
+                      "request": {
+                        "$ref": "UpgradeApplianceRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1822,7 +1850,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the target project.",
+                      "description": "Output only. The name of the target project.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/targetProjects/[^/]+$",
                       "required": true,
@@ -1858,7 +1886,7 @@
       }
     }
   },
-  "revision": "20220120",
+  "revision": "20220225",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -1867,6 +1895,29 @@
       "properties": {
         "migratingVm": {
           "description": "The full path name of the MigratingVm to add.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ApplianceVersion": {
+      "description": "Describes an appliance version.",
+      "id": "ApplianceVersion",
+      "properties": {
+        "critical": {
+          "description": "Determine whether it's critical to upgrade the appliance to this version.",
+          "type": "boolean"
+        },
+        "releaseNotesUri": {
+          "description": "Link to a page that contains the version release notes.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "A link for downloading the version.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The appliance version.",
           "type": "string"
         }
       },
@@ -1895,6 +1946,21 @@
             "The license type is is Bring Your Own License type."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AvailableUpdates": {
+      "description": "Holds informatiom about the available versions for upgrade.",
+      "id": "AvailableUpdates",
+      "properties": {
+        "inPlaceUpdate": {
+          "$ref": "ApplianceVersion",
+          "description": "The latest version for in place update. The current appliance can be updated to this version using the API or m4c CLI."
+        },
+        "newDeployableAppliance": {
+          "$ref": "ApplianceVersion",
+          "description": "The newest deployable version of the appliance. The current appliance can't be updated into this version, and the owner must manually deploy this OVA to a new appliance."
         }
       },
       "type": "object"
@@ -1938,7 +2004,8 @@
           "readOnly": true
         },
         "name": {
-          "description": "The name of the clone.",
+          "description": "Output only. The name of the clone.",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
@@ -2342,6 +2409,21 @@
       "description": "DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.",
       "id": "DatacenterConnector",
       "properties": {
+        "applianceInfrastructureVersion": {
+          "description": "Output only. Appliance OVA version. This is the OVA which is manually installed by the user and contains the infrastructure for the automatically updatable components on the appliance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "applianceSoftwareVersion": {
+          "description": "Output only. Appliance last installed update bundle version. This is the version of the automatically updatable components on the appliance.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "availableVersions": {
+          "$ref": "AvailableUpdates",
+          "description": "Output only. The available versions for updating this appliance.",
+          "readOnly": true
+        },
         "bucket": {
           "description": "Output only. The communication channel between the datacenter connector and GCP.",
           "readOnly": true,
@@ -2402,6 +2484,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "upgradeStatus": {
+          "$ref": "UpgradeStatus",
+          "description": "Output only. The status of the current / last upgradeAppliance operation.",
+          "readOnly": true
+        },
         "version": {
           "description": "The version running in the DatacenterConnector. This is supplied by the OVA connector during the registration process and can not be modified.",
           "type": "string"
@@ -2427,8 +2514,7 @@
         },
         "vmwareVms": {
           "$ref": "VmwareVmsDetails",
-          "description": "Output only. The description of the VMs in a Source of type Vmware.",
-          "readOnly": true
+          "description": "The description of the VMs in a Source of type Vmware."
         }
       },
       "type": "object"
@@ -2458,7 +2544,8 @@
           "type": "string"
         },
         "name": {
-          "description": "The Group name.",
+          "description": "Output only. The Group name.",
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
@@ -3269,7 +3356,8 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the target project.",
+          "description": "Output only. The name of the target project.",
+          "readOnly": true,
           "type": "string"
         },
         "project": {
@@ -3280,6 +3368,57 @@
           "description": "Output only. The last time the target project resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeApplianceRequest": {
+      "description": "Request message for 'UpgradeAppliance' request.",
+      "id": "UpgradeApplianceRequest",
+      "properties": {
+        "requestId": {
+          "description": "A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpgradeStatus": {
+      "description": "UpgradeStatus contains information about upgradeAppliance operation.",
+      "id": "UpgradeStatus",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "Provides details on the state of the upgrade operation in case of an error."
+        },
+        "previousVersion": {
+          "description": "The version from which we upgraded.",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time the operation was started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the upgradeAppliance operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "FAILED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "The state was not sampled by the health checks yet.",
+            "The upgrade has started.",
+            "The upgrade failed.",
+            "The upgrade finished successfully."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "The version to upgrade to.",
           "type": "string"
         }
       },
@@ -3506,7 +3645,7 @@
           "type": "string"
         },
         "guestDescription": {
-          "description": "The VM's OS. See for example https://pubs.vmware.com/vi-sdk/visdk250/ReferenceGuide/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html for types of strings this might hold.",
+          "description": "The VM's OS. See for example https://vdc-repo.vmware.com/vmwb-repository/dcr-public/da47f910-60ac-438b-8b9b-6122f4d14524/16b7274a-bf8b-4b4c-a05e-746f2aa93c8c/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html for types of strings this might hold.",
           "type": "string"
         },
         "memoryMb": {
