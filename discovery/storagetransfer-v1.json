@@ -515,7 +515,7 @@
               "type": "string"
             },
             "name": {
-              "description": "Not used.",
+              "description": "Required. The name of the type being listed; must be `transferOperations`.",
               "location": "path",
               "pattern": "^transferOperations$",
               "required": true,
@@ -600,7 +600,7 @@
       }
     }
   },
-  "revision": "20220127",
+  "revision": "20220223",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AgentPool": {
@@ -730,7 +730,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -979,7 +979,7 @@
       "type": "object"
     },
     "MetadataOptions": {
-      "description": "Specifies the metadata options for running a transfer.",
+      "description": "Specifies the metadata options for running a transfer. These options only apply to transfers involving a POSIX filesystem and are ignored for other transfers.",
       "id": "MetadataOptions",
       "properties": {
         "acl": {
@@ -997,7 +997,7 @@
           "type": "string"
         },
         "gid": {
-          "description": "Specifies how each file's GID attribute should be handled by the transfer. If unspecified, the default behavior is the same as GID_SKIP when the source is a POSIX file system.",
+          "description": "Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer. By default, GID is not preserved.",
           "enum": [
             "GID_UNSPECIFIED",
             "GID_SKIP",
@@ -1005,7 +1005,7 @@
           ],
           "enumDescriptions": [
             "GID behavior is unspecified.",
-            "Skip GID during a transfer job.",
+            "Do not preserve GID during a transfer job.",
             "Preserve GID during a transfer job."
           ],
           "type": "string"
@@ -1025,7 +1025,7 @@
           "type": "string"
         },
         "mode": {
-          "description": "Specifies how each file's mode attribute should be handled by the transfer. If unspecified, the default behavior is the same as MODE_SKIP when the source is a POSIX file system.",
+          "description": "Specifies how each file's mode attribute should be handled by the transfer. By default, mode is not preserved.",
           "enum": [
             "MODE_UNSPECIFIED",
             "MODE_SKIP",
@@ -1033,7 +1033,7 @@
           ],
           "enumDescriptions": [
             "Mode behavior is unspecified.",
-            "Skip mode during a transfer job.",
+            "Do not preserve mode during a transfer job.",
             "Preserve mode during a transfer job."
           ],
           "type": "string"
@@ -1061,15 +1061,15 @@
           "type": "string"
         },
         "symlink": {
-          "description": "Specifies how symlinks should be handled by the transfer. If unspecified, the default behavior is the same as SYMLINK_SKIP when the source is a POSIX file system.",
+          "description": "Specifies how symlinks should be handled by the transfer. By default, symlinks are not preserved.",
           "enum": [
             "SYMLINK_UNSPECIFIED",
             "SYMLINK_SKIP",
             "SYMLINK_PRESERVE"
           ],
           "enumDescriptions": [
-            "Symlink behavior is unspecified. The default behavior is to skip symlinks during a transfer job.",
-            "Skip symlinks during a transfer job.",
+            "Symlink behavior is unspecified.",
+            "Do not preserve symlinks during a transfer job.",
             "Preserve symlinks during a transfer job."
           ],
           "type": "string"
@@ -1088,8 +1088,22 @@
           ],
           "type": "string"
         },
+        "timeCreated": {
+          "description": "Specifies how each object's `timeCreated` metadata is preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as TIME_CREATED_SKIP.",
+          "enum": [
+            "TIME_CREATED_UNSPECIFIED",
+            "TIME_CREATED_SKIP",
+            "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
+          ],
+          "enumDescriptions": [
+            "TimeCreated behavior is unspecified.",
+            "Do not preserve the `timeCreated` metadata from the source object.",
+            "Preserves the source object's `timeCreated` metadata in the `customTime` field in the destination object. Note that any value stored in the source object's `customTime` field will not be propagated to the destination object."
+          ],
+          "type": "string"
+        },
         "uid": {
-          "description": "Specifies how each file's UID attribute should be handled by the transfer. If unspecified, the default behavior is the same as UID_SKIP when the source is a POSIX file system.",
+          "description": "Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved.",
           "enum": [
             "UID_UNSPECIFIED",
             "UID_SKIP",
@@ -1097,7 +1111,7 @@
           ],
           "enumDescriptions": [
             "UID behavior is unspecified.",
-            "Skip UID during a transfer job.",
+            "Do not preserve UID during a transfer job.",
             "Preserve UID during a transfer job."
           ],
           "type": "string"
@@ -1621,7 +1635,7 @@
         },
         "metadataOptions": {
           "$ref": "MetadataOptions",
-          "description": "Represents the selected metadata options for a transfer job."
+          "description": "Represents the selected metadata options for a transfer job. This feature is in Preview."
         },
         "overwriteObjectsAlreadyExistingInSink": {
           "description": "When to overwrite objects that already exist in the sink. The default is that only objects that are different from the source are ovewritten. If true, all objects in the sink whose name matches an object in the source are overwritten with the source object.",
