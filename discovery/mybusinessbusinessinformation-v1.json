@@ -662,7 +662,7 @@
       }
     }
   },
-  "revision": "20220201",
+  "revision": "20220305",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -961,7 +961,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -1191,7 +1191,7 @@
         },
         "profile": {
           "$ref": "Profile",
-          "description": "Required. Describes your business in your own voice and shares with users the unique story of your business and offerings."
+          "description": "Optional. Describes your business in your own voice and shares with users the unique story of your business and offerings. This field is required for all categories except lodging categories (e.g. hotels, motels, inns)."
         },
         "regularHours": {
           "$ref": "BusinessHours",
@@ -1199,8 +1199,7 @@
         },
         "relationshipData": {
           "$ref": "RelationshipData",
-          "description": "Output only. All locations and chain related to this one.",
-          "readOnly": true
+          "description": "Optional. All locations and chain related to this one."
         },
         "serviceArea": {
           "$ref": "ServiceAreaBusiness",
@@ -1287,6 +1286,11 @@
         },
         "hasPendingEdits": {
           "description": "Output only. Indicates whether any of this Location's properties are in the edit pending state.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasVoiceOfMerchant": {
+          "description": "Output only. Indicates if the listing has Voice of Merchant. If this boolean is false, you should call the locations.getVoiceOfMerchantState API to get details as to why they do not have Voice of Merchant.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -1487,7 +1491,7 @@
           "type": "array"
         },
         "regionCode": {
-          "description": "Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: \"CH\" for Switzerland.",
+          "description": "Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: \"CH\" for Switzerland.",
           "type": "string"
         },
         "revision": {
