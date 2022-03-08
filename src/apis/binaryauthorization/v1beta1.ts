@@ -179,6 +179,10 @@ export namespace binaryauthorization_v1beta1 {
      */
     description?: string | null;
     /**
+     * Optional. Used to prevent updating the attestor when another request has updated it since it was retrieved.
+     */
+    etag?: string | null;
+    /**
      * Required. The resource name, in the format: `projects/x/attestors/x`. This field may not be updated.
      */
     name?: string | null;
@@ -323,6 +327,10 @@ export namespace binaryauthorization_v1beta1 {
      * Optional. A descriptive comment.
      */
     description?: string | null;
+    /**
+     * Optional. Used to prevent updating the policy when another request has updated it since it was retrieved.
+     */
+    etag?: string | null;
     /**
      * Optional. Controls the evaluation of a Google-maintained global admission policy for common system-level images. Images not covered by the global policy will be subject to the project admission policy. This setting has no effect when specified inside a global admission policy.
      */
@@ -490,6 +498,7 @@ export namespace binaryauthorization_v1beta1 {
      *   //   "clusterAdmissionRules": {},
      *   //   "defaultAdmissionRule": {},
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
      *   //   "istioServiceIdentityAdmissionRules": {},
      *   //   "kubernetesNamespaceAdmissionRules": {},
@@ -626,6 +635,7 @@ export namespace binaryauthorization_v1beta1 {
      *       //   "clusterAdmissionRules": {},
      *       //   "defaultAdmissionRule": {},
      *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
      *       //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
      *       //   "istioServiceIdentityAdmissionRules": {},
      *       //   "kubernetesNamespaceAdmissionRules": {},
@@ -643,6 +653,7 @@ export namespace binaryauthorization_v1beta1 {
      *   //   "clusterAdmissionRules": {},
      *   //   "defaultAdmissionRule": {},
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
      *   //   "istioServiceIdentityAdmissionRules": {},
      *   //   "kubernetesNamespaceAdmissionRules": {},
@@ -805,6 +816,7 @@ export namespace binaryauthorization_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime",
      *       //   "userOwnedDrydockNote": {}
@@ -816,6 +828,7 @@ export namespace binaryauthorization_v1beta1 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "userOwnedDrydockNote": {}
@@ -1074,6 +1087,7 @@ export namespace binaryauthorization_v1beta1 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "userOwnedDrydockNote": {}
@@ -1763,6 +1777,7 @@ export namespace binaryauthorization_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "etag": "my_etag",
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime",
      *       //   "userOwnedDrydockNote": {}
@@ -1774,6 +1789,7 @@ export namespace binaryauthorization_v1beta1 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "userOwnedDrydockNote": {}
@@ -2632,6 +2648,7 @@ export namespace binaryauthorization_v1beta1 {
      *   //   "clusterAdmissionRules": {},
      *   //   "defaultAdmissionRule": {},
      *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
      *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
      *   //   "istioServiceIdentityAdmissionRules": {},
      *   //   "kubernetesNamespaceAdmissionRules": {},
