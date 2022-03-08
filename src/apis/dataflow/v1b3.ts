@@ -1144,7 +1144,7 @@ export namespace dataflow_v1b3 {
     sum?: Schema$SplitInt64;
   }
   /**
-   * Defines a job to be run by the Cloud Dataflow service. nextID: 26
+   * Defines a job to be run by the Cloud Dataflow service.
    */
   export interface Schema$Job {
     /**
@@ -1599,6 +1599,10 @@ export namespace dataflow_v1b3 {
      * Instantenous memory limit in bytes.
      */
     currentLimitBytes?: string | null;
+    /**
+     * Number of Out of Memory (OOM) events recorded since the previous measurement.
+     */
+    currentOoms?: string | null;
     /**
      * Instantenous memory (RSS) size in bytes.
      */
