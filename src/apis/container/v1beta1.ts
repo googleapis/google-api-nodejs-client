@@ -251,7 +251,7 @@ export namespace container_v1beta1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass "automatic" as field value.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
@@ -560,6 +560,10 @@ export namespace container_v1beta1 {
      */
     nodeIpv4CidrSize?: number | null;
     /**
+     * Node pool configs that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
+     */
+    nodePoolAutoConfig?: Schema$NodePoolAutoConfig;
+    /**
      * Default NodePool settings for the entire cluster. These settings are overridden if specified on the specific NodePool object.
      */
     nodePoolDefaults?: Schema$NodePoolDefaults;
@@ -631,6 +635,10 @@ export namespace container_v1beta1 {
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
+     * Configuration for direct-path (via ALTS) with workload identity.
+     */
+    workloadAltsConfig?: Schema$WorkloadALTSConfig;
     /**
      * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
      */
@@ -775,6 +783,10 @@ export namespace container_v1beta1 {
      */
     desiredMonitoringService?: string | null;
     /**
+     * The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
+     */
+    desiredNodePoolAutoConfigNetworkTags?: Schema$NetworkTags;
+    /**
      * Autoscaler configuration for the node pool specified in desired_node_pool_id. If there is only one pool in the cluster and desired_node_pool_id is not provided then the change applies to that single node pool.
      */
     desiredNodePoolAutoscaling?: Schema$NodePoolAutoscaling;
@@ -826,6 +838,10 @@ export namespace container_v1beta1 {
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
+     * Configuration for direct-path (via ALTS) with workload identity.
+     */
+    desiredWorkloadAltsConfig?: Schema$WorkloadALTSConfig;
     /**
      * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
      */
@@ -956,7 +972,7 @@ export namespace container_v1beta1 {
     state?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -1902,6 +1918,15 @@ export namespace container_v1beta1 {
      * The version of the Kubernetes of this node.
      */
     version?: string | null;
+  }
+  /**
+   * node pool configs that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters
+   */
+  export interface Schema$NodePoolAutoConfig {
+    /**
+     * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035.
+     */
+    networkTags?: Schema$NetworkTags;
   }
   /**
    * NodePoolAutoscaling contains information required by cluster autoscaler to adjust the size of the node pool to the current cluster usage.
@@ -3059,6 +3084,15 @@ export namespace container_v1beta1 {
     windowsVersions?: Schema$WindowsVersion[];
   }
   /**
+   * Configuration for direct-path (via ALTS) with workload identity.
+   */
+  export interface Schema$WorkloadALTSConfig {
+    /**
+     * enable_alts controls whether the alts handshaker should be enabled or not for direct-path. Requires Workload Identity (workload_pool must be non-empty).
+     */
+    enableAlts?: boolean | null;
+  }
+  /**
    * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
    */
   export interface Schema$WorkloadCertificates {
@@ -4158,6 +4192,7 @@ export namespace container_v1beta1 {
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolAutoConfig": {},
      *   //   "nodePoolDefaults": {},
      *   //   "nodePools": [],
      *   //   "notificationConfig": {},
@@ -4176,6 +4211,7 @@ export namespace container_v1beta1 {
      *   //   "tpuConfig": {},
      *   //   "tpuIpv4CidrBlock": "my_tpuIpv4CidrBlock",
      *   //   "verticalPodAutoscaling": {},
+     *   //   "workloadAltsConfig": {},
      *   //   "workloadCertificates": {},
      *   //   "workloadIdentityConfig": {},
      *   //   "zone": "my_zone"
@@ -9702,6 +9738,7 @@ export namespace container_v1beta1 {
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolAutoConfig": {},
      *   //   "nodePoolDefaults": {},
      *   //   "nodePools": [],
      *   //   "notificationConfig": {},
@@ -9720,6 +9757,7 @@ export namespace container_v1beta1 {
      *   //   "tpuConfig": {},
      *   //   "tpuIpv4CidrBlock": "my_tpuIpv4CidrBlock",
      *   //   "verticalPodAutoscaling": {},
+     *   //   "workloadAltsConfig": {},
      *   //   "workloadCertificates": {},
      *   //   "workloadIdentityConfig": {},
      *   //   "zone": "my_zone"

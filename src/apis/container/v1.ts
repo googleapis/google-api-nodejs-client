@@ -239,7 +239,7 @@ export namespace container_v1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass "automatic" as field value.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
@@ -431,6 +431,10 @@ export namespace container_v1 {
      */
     id?: string | null;
     /**
+     * Configuration for Identity Service component.
+     */
+    identityServiceConfig?: Schema$IdentityServiceConfig;
+    /**
      * The initial Kubernetes version for this cluster. Valid versions are those found in validMasterVersions returned by getServerConfig. The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "","-": picks the default Kubernetes version
      */
     initialClusterVersion?: string | null;
@@ -518,6 +522,10 @@ export namespace container_v1 {
      * [Output only] The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range. This field will only be set when cluster is in route-based network mode.
      */
     nodeIpv4CidrSize?: number | null;
+    /**
+     * Node pool configs that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
+     */
+    nodePoolAutoConfig?: Schema$NodePoolAutoConfig;
     /**
      * Default NodePool settings for the entire cluster. These settings are overridden if specified on the specific NodePool object.
      */
@@ -653,6 +661,10 @@ export namespace container_v1 {
      */
     desiredGcfsConfig?: Schema$GcfsConfig;
     /**
+     * The desired Identity Service component configuration.
+     */
+    desiredIdentityServiceConfig?: Schema$IdentityServiceConfig;
+    /**
      * The desired image type for the node pool. NOTE: Set the "desired_node_pool" field as well.
      */
     desiredImageType?: string | null;
@@ -696,6 +708,10 @@ export namespace container_v1 {
      * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     desiredMonitoringService?: string | null;
+    /**
+     * The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
+     */
+    desiredNodePoolAutoConfigNetworkTags?: Schema$NetworkTags;
     /**
      * Autoscaler configuration for the node pool specified in desired_node_pool_id. If there is only one pool in the cluster and desired_node_pool_id is not provided then the change applies to that single node pool.
      */
@@ -1024,6 +1040,15 @@ export namespace container_v1 {
      * Whether the HTTP Load Balancing controller is enabled in the cluster. When enabled, it runs a small pod in the cluster that manages the load balancers.
      */
     disabled?: boolean | null;
+  }
+  /**
+   * IdentityServiceConfig is configuration for Identity Service which allows customers to use external identity providers with the K8S API
+   */
+  export interface Schema$IdentityServiceConfig {
+    /**
+     * Whether to enable the Identity Service component
+     */
+    enabled?: boolean | null;
   }
   /**
    * ILBSubsettingConfig contains the desired config of L4 Internal LoadBalancer subsetting on this cluster.
@@ -1436,6 +1461,15 @@ export namespace container_v1 {
     disabled?: boolean | null;
   }
   /**
+   * Collection of Compute Engine network tags that can be applied to a node's underlying VM instance.
+   */
+  export interface Schema$NetworkTags {
+    /**
+     * List of network tags.
+     */
+    tags?: string[] | null;
+  }
+  /**
    * Parameters that describe the nodes in a cluster.
    */
   export interface Schema$NodeConfig {
@@ -1527,6 +1561,10 @@ export namespace container_v1 {
      * Shielded Instance options.
      */
     shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    /**
+     * Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.
+     */
+    spot?: boolean | null;
     /**
      * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster or node pool creation. Each tag within the list must comply with RFC1035.
      */
@@ -1668,6 +1706,15 @@ export namespace container_v1 {
      * The version of the Kubernetes of this node.
      */
     version?: string | null;
+  }
+  /**
+   * Node pool configs that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.
+   */
+  export interface Schema$NodePoolAutoConfig {
+    /**
+     * The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035.
+     */
+    networkTags?: Schema$NetworkTags;
   }
   /**
    * NodePoolAutoscaling contains information required by cluster autoscaler to adjust the size of the node pool to the current cluster usage.
@@ -3639,6 +3686,7 @@ export namespace container_v1 {
      *   //   "endpoint": "my_endpoint",
      *   //   "expireTime": "my_expireTime",
      *   //   "id": "my_id",
+     *   //   "identityServiceConfig": {},
      *   //   "initialClusterVersion": "my_initialClusterVersion",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
@@ -3661,6 +3709,7 @@ export namespace container_v1 {
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolAutoConfig": {},
      *   //   "nodePoolDefaults": {},
      *   //   "nodePools": [],
      *   //   "notificationConfig": {},
@@ -9163,6 +9212,7 @@ export namespace container_v1 {
      *   //   "endpoint": "my_endpoint",
      *   //   "expireTime": "my_expireTime",
      *   //   "id": "my_id",
+     *   //   "identityServiceConfig": {},
      *   //   "initialClusterVersion": "my_initialClusterVersion",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
@@ -9185,6 +9235,7 @@ export namespace container_v1 {
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolAutoConfig": {},
      *   //   "nodePoolDefaults": {},
      *   //   "nodePools": [],
      *   //   "notificationConfig": {},
