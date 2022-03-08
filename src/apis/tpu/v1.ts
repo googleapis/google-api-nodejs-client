@@ -364,35 +364,35 @@ export namespace tpu_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Represents the metadata of the long-running operation.
+   * Metadata describing an Operation
    */
   export interface Schema$OperationMetadata {
     /**
-     * Output only. API version used to start the operation.
+     * API version.
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Specifies if cancellation was requested for the operation.
      */
     cancelRequested?: boolean | null;
     /**
-     * Output only. The time the operation was created.
+     * The time the operation was created.
      */
     createTime?: string | null;
     /**
-     * Output only. The time the operation finished running.
+     * The time the operation finished running.
      */
     endTime?: string | null;
     /**
-     * Output only. Human-readable status of the operation, if any.
+     * Human-readable status of the operation, if any.
      */
     statusDetail?: string | null;
     /**
-     * Output only. Server-defined resource path for the target of the operation.
+     * Target of the operation - for example projects/project-1/connectivityTests/test-1
      */
     target?: string | null;
     /**
-     * Output only. Name of the verb executed by the operation.
+     * Name of the verb executed by the operation.
      */
     verb?: string | null;
   }
