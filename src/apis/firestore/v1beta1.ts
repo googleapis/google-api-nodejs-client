@@ -934,7 +934,7 @@ export namespace firestore_v1beta1 {
      */
     structuredQuery?: Schema$StructuredQuery;
     /**
-     * Reads documents in a transaction.
+     * Run the query within an already active transaction. The value here is the opaque transaction ID to execute the query in.
      */
     transaction?: string | null;
   }
@@ -943,7 +943,7 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$RunQueryResponse {
     /**
-     * A query result. Not set when reporting partial progress.
+     * A query result, not set when reporting partial progress.
      */
     document?: Schema$Document;
     /**
