@@ -5315,7 +5315,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Required. The mask to control which fields to update.",
+              "description": "Required. The mask to control which fields to update. Updates are only supported for the following fields: * `displayName` * `description` * `membershipDurationDays`",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -7730,7 +7730,7 @@
       }
     }
   },
-  "revision": "20220203",
+  "revision": "20220303",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8072,7 +8072,7 @@
       "id": "AgeRangeAssignedTargetingOptionDetails",
       "properties": {
         "ageRange": {
-          "description": "Output only. The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age.",
+          "description": "The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.",
           "enum": [
             "AGE_RANGE_UNSPECIFIED",
             "AGE_RANGE_18_24",
@@ -8093,7 +8093,6 @@
             "The age range of the audience is 65 and up.",
             "The age range of the audience is unknown."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -8720,7 +8719,7 @@
       "id": "AudioContentTypeAssignedTargetingOptionDetails",
       "properties": {
         "audioContentType": {
-          "description": "Output only. The audio content type.",
+          "description": "The audio content type. Output only in v1. Required in v2.",
           "enum": [
             "AUDIO_CONTENT_TYPE_UNSPECIFIED",
             "AUDIO_CONTENT_TYPE_UNKNOWN",
@@ -8735,7 +8734,6 @@
             "The audio content type is broadcast.",
             "The audio content type is podcast."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -9972,7 +9970,7 @@
           "type": "string"
         },
         "contentInstreamPosition": {
-          "description": "Output only. The content instream position for video or audio ads.",
+          "description": "The content instream position for video or audio ads. Output only in v1. Required in v2.",
           "enum": [
             "CONTENT_INSTREAM_POSITION_UNSPECIFIED",
             "CONTENT_INSTREAM_POSITION_PRE_ROLL",
@@ -9987,7 +9985,6 @@
             "Ads that play at the end of streaming content.",
             "Ads instream position is unknown."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -10045,7 +10042,7 @@
           "type": "string"
         },
         "contentOutstreamPosition": {
-          "description": "Output only. The content outstream position.",
+          "description": "The content outstream position. Output only in v1. Required in v2.",
           "enum": [
             "CONTENT_OUTSTREAM_POSITION_UNSPECIFIED",
             "CONTENT_OUTSTREAM_POSITION_UNKNOWN",
@@ -10062,7 +10059,6 @@
             "Ads that appear in a scrollable stream of content. A feed is typically editorial (e.g. a list of articles or news) or listings (e.g. a list of products or services).",
             "Ads shown before or between content loads."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -10684,7 +10680,7 @@
       "id": "CreativeConfig",
       "properties": {
         "creativeType": {
-          "description": "The type of creative that can be assigned to the inventory source.",
+          "description": "The type of creative that can be assigned to the inventory source. Only the following types are supported: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_VIDEO`",
           "enum": [
             "CREATIVE_TYPE_UNSPECIFIED",
             "CREATIVE_TYPE_STANDARD",
@@ -10950,7 +10946,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -11192,7 +11188,7 @@
       "id": "DeviceTypeAssignedTargetingOptionDetails",
       "properties": {
         "deviceType": {
-          "description": "Output only. The display name of the device type.",
+          "description": "The display name of the device type. Output only in v1. Required in v2.",
           "enum": [
             "DEVICE_TYPE_UNSPECIFIED",
             "DEVICE_TYPE_COMPUTER",
@@ -11207,7 +11203,6 @@
             "The device type is smart phone..",
             "The device type is tablet."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -11709,7 +11704,7 @@
       "id": "EnvironmentAssignedTargetingOptionDetails",
       "properties": {
         "environment": {
-          "description": "Output only. The serving environment.",
+          "description": "The serving environment. Output only in v1. Required in v2.",
           "enum": [
             "ENVIRONMENT_UNSPECIFIED",
             "ENVIRONMENT_WEB_OPTIMIZED",
@@ -11722,7 +11717,6 @@
             "Target inventory displayed in browsers. This includes inventory that was not designed for the device but viewed on it, such as websites optimized for desktop but viewed on a mobile device. ENVIRONMENT_WEB_OPTIMIZED should be targeted prior to the addition of this targeting option.",
             "Target inventory displayed in apps."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -12600,7 +12594,7 @@
       "id": "FrequencyCap",
       "properties": {
         "maxImpressions": {
-          "description": "The maximum number of times a user may be shown with the same ad during this period. Must be greater than 0. Required when unlimited is `false`.",
+          "description": "The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false` and max_views is not set.",
           "format": "int32",
           "type": "integer"
         },
@@ -12643,7 +12637,7 @@
       "id": "GenderAssignedTargetingOptionDetails",
       "properties": {
         "gender": {
-          "description": "Output only. The gender of the audience.",
+          "description": "The gender of the audience. Output only in v1. Required in v2.",
           "enum": [
             "GENDER_UNSPECIFIED",
             "GENDER_MALE",
@@ -12656,7 +12650,6 @@
             "The audience gender is female.",
             "The audience gender is unknown."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -14146,7 +14139,7 @@
         },
         "frequencyCap": {
           "$ref": "FrequencyCap",
-          "description": "Required. The frequency capping setting of the line item."
+          "description": "Required. The impression frequency cap settings of the line item. The max_impressions field in this settings object must be used if assigning a limited cap."
         },
         "insertionOrderId": {
           "description": "Required. Immutable. The unique ID of the insertion order that the line item belongs to.",
@@ -15053,6 +15046,10 @@
             "Viewable impressions."
           ],
           "type": "string"
+        },
+        "raiseBidForDeals": {
+          "description": "Controls whether the strategy takes deal floor prices into account.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -15148,7 +15145,7 @@
       "id": "NativeContentPositionAssignedTargetingOptionDetails",
       "properties": {
         "contentPosition": {
-          "description": "Output only. The content position.",
+          "description": "The content position. Output only in v1. Required in v2.",
           "enum": [
             "NATIVE_CONTENT_POSITION_UNSPECIFIED",
             "NATIVE_CONTENT_POSITION_UNKNOWN",
@@ -15165,7 +15162,6 @@
             "Native content position is peripheral, i.e., ads appear outside of core content on pages, such as the right- or left-hand side of the page.",
             "Native content position is recommendation, i.e., ads appear in sections for recommended content."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -15323,7 +15319,7 @@
       "id": "OmidAssignedTargetingOptionDetails",
       "properties": {
         "omid": {
-          "description": "Output only. The type of Open Measurement enabled inventory.",
+          "description": "The type of Open Measurement enabled inventory. Output only in v1. Required in v2.",
           "enum": [
             "OMID_UNSPECIFIED",
             "OMID_FOR_MOBILE_DISPLAY_ADS"
@@ -15332,7 +15328,6 @@
             "Default value when omid targeting is not specified in this version.",
             "Open Measurement enabled mobile display inventory."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "targetingOptionId": {
@@ -16584,7 +16579,7 @@
           "type": "string"
         },
         "sensitiveCategory": {
-          "description": "Output only. An enum for the DV360 Sensitive category content classifier.",
+          "description": "An enum for the DV360 Sensitive category content classifier. Output only in v1. Required in v2.",
           "enum": [
             "SENSITIVE_CATEGORY_UNSPECIFIED",
             "SENSITIVE_CATEGORY_ADULT",
@@ -16625,7 +16620,6 @@
             "Issues that evoke strong, opposing views and spark debate. These include issues that are controversial in most countries and markets (such as abortion), as well as those that are controversial in specific countries and markets (such as immigration reform in the United States).",
             "Content which may be considered shocking or disturbing, such as violent news stories, stunts, or toilet humor."
           ],
-          "readOnly": true,
           "type": "string"
         }
       },
@@ -17333,7 +17327,7 @@
           "type": "string"
         },
         "videoPlayerSize": {
-          "description": "Output only. The video player size.",
+          "description": "The video player size. Output only in v1. Required in v2.",
           "enum": [
             "VIDEO_PLAYER_SIZE_UNSPECIFIED",
             "VIDEO_PLAYER_SIZE_SMALL",
@@ -17348,7 +17342,6 @@
             "The dimensions of the video player are 1280×720 or greater (desktop), or over 90% of the screen covered (mobile).",
             "The dimensions of the video player are unknown."
           ],
-          "readOnly": true,
           "type": "string"
         }
       },
@@ -17389,7 +17382,7 @@
           "type": "string"
         },
         "viewability": {
-          "description": "Output only. The predicted viewability percentage.",
+          "description": "The predicted viewability percentage. Output only in v1. Required in v2.",
           "enum": [
             "VIEWABILITY_UNSPECIFIED",
             "VIEWABILITY_10_PERCENT_OR_MORE",
@@ -17414,7 +17407,6 @@
             "Bid only on impressions that are at least 80% likely to be viewable.",
             "Bid only on impressions that are at least 90% likely to be viewable."
           ],
-          "readOnly": true,
           "type": "string"
         }
       },
