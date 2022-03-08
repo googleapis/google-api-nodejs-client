@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20220114",
+  "revision": "20220215",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2641,7 +2641,7 @@
           "description": "NodeManagement configuration for this NodePool."
         },
         "minCpuPlatform": {
-          "description": "Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: \"Intel Haswell\"` or `minCpuPlatform: \"Intel Sandy Bridge\"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass \"automatic\" as field value.",
+          "description": "Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass \"automatic\" as field value.",
           "type": "string"
         },
         "oauthScopes": {
@@ -2978,6 +2978,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "nodePoolAutoConfig": {
+          "$ref": "NodePoolAutoConfig",
+          "description": "Node pool configs that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters."
+        },
         "nodePoolDefaults": {
           "$ref": "NodePoolDefaults",
           "description": "Default NodePool settings for the entire cluster. These settings are overridden if specified on the specific NodePool object."
@@ -3073,6 +3077,10 @@
         "verticalPodAutoscaling": {
           "$ref": "VerticalPodAutoscaling",
           "description": "Cluster-level Vertical Pod Autoscaling configuration."
+        },
+        "workloadAltsConfig": {
+          "$ref": "WorkloadALTSConfig",
+          "description": "Configuration for direct-path (via ALTS) with workload identity."
         },
         "workloadCertificates": {
           "$ref": "WorkloadCertificates",
@@ -3264,6 +3272,10 @@
           "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
           "type": "string"
         },
+        "desiredNodePoolAutoConfigNetworkTags": {
+          "$ref": "NetworkTags",
+          "description": "The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters."
+        },
         "desiredNodePoolAutoscaling": {
           "$ref": "NodePoolAutoscaling",
           "description": "Autoscaler configuration for the node pool specified in desired_node_pool_id. If there is only one pool in the cluster and desired_node_pool_id is not provided then the change applies to that single node pool."
@@ -3327,6 +3339,10 @@
         "desiredVerticalPodAutoscaling": {
           "$ref": "VerticalPodAutoscaling",
           "description": "Cluster-level Vertical Pod Autoscaling configuration."
+        },
+        "desiredWorkloadAltsConfig": {
+          "$ref": "WorkloadALTSConfig",
+          "description": "Configuration for direct-path (via ALTS) with workload identity."
         },
         "desiredWorkloadCertificates": {
           "$ref": "WorkloadCertificates",
@@ -3525,7 +3541,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -4775,6 +4791,17 @@
         "version": {
           "description": "The version of the Kubernetes of this node.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodePoolAutoConfig": {
+      "description": "node pool configs that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters",
+      "id": "NodePoolAutoConfig",
+      "properties": {
+        "networkTags": {
+          "$ref": "NetworkTags",
+          "description": "The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035."
         }
       },
       "type": "object"
@@ -6355,6 +6382,17 @@
             "$ref": "WindowsVersion"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "WorkloadALTSConfig": {
+      "description": "Configuration for direct-path (via ALTS) with workload identity.",
+      "id": "WorkloadALTSConfig",
+      "properties": {
+        "enableAlts": {
+          "description": "enable_alts controls whether the alts handshaker should be enabled or not for direct-path. Requires Workload Identity (workload_pool must be non-empty).",
+          "type": "boolean"
         }
       },
       "type": "object"

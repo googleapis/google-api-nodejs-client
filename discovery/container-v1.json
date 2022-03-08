@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20220114",
+  "revision": "20220215",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2604,7 +2604,7 @@
           "description": "Specifies the node management options for NAP created node-pools."
         },
         "minCpuPlatform": {
-          "description": "Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass \"automatic\" as field value.",
+          "description": "Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) This field is deprecated, min_cpu_platform should be specified using cloud.google.com/requested-min-cpu-platform label selector on the pod. To unset the min cpu platform field pass \"automatic\" as field value.",
           "type": "string"
         },
         "oauthScopes": {
@@ -2814,6 +2814,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "identityServiceConfig": {
+          "$ref": "IdentityServiceConfig",
+          "description": "Configuration for Identity Service component."
+        },
         "initialClusterVersion": {
           "description": "The initial Kubernetes version for this cluster. Valid versions are those found in validMasterVersions returned by getServerConfig. The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - \"latest\": picks the highest valid Kubernetes version - \"1.X\": picks the highest valid patch+gke.N patch in the 1.X version - \"1.X.Y\": picks the highest valid gke.N patch in the 1.X.Y version - \"1.X.Y-gke.N\": picks an explicit Kubernetes version - \"\",\"-\": picks the default Kubernetes version",
           "type": "string"
@@ -2909,6 +2913,10 @@
           "description": "[Output only] The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range. This field will only be set when cluster is in route-based network mode.",
           "format": "int32",
           "type": "integer"
+        },
+        "nodePoolAutoConfig": {
+          "$ref": "NodePoolAutoConfig",
+          "description": "Node pool configs that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters."
         },
         "nodePoolDefaults": {
           "$ref": "NodePoolDefaults",
@@ -3098,6 +3106,10 @@
           "$ref": "GcfsConfig",
           "description": "The desired GCFS config for the cluster"
         },
+        "desiredIdentityServiceConfig": {
+          "$ref": "IdentityServiceConfig",
+          "description": "The desired Identity Service component configuration."
+        },
         "desiredImageType": {
           "description": "The desired image type for the node pool. NOTE: Set the \"desired_node_pool\" field as well.",
           "type": "string"
@@ -3144,6 +3156,10 @@
         "desiredMonitoringService": {
           "description": "The monitoring service the cluster should use to write metrics. Currently available options: * \"monitoring.googleapis.com/kubernetes\" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.",
           "type": "string"
+        },
+        "desiredNodePoolAutoConfigNetworkTags": {
+          "$ref": "NetworkTags",
+          "description": "The desired network tags that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters."
         },
         "desiredNodePoolAutoscaling": {
           "$ref": "NodePoolAutoscaling",
@@ -3662,6 +3678,17 @@
       },
       "type": "object"
     },
+    "IdentityServiceConfig": {
+      "description": "IdentityServiceConfig is configuration for Identity Service which allows customers to use external identity providers with the K8S API",
+      "id": "IdentityServiceConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether to enable the Identity Service component",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "IntraNodeVisibilityConfig": {
       "description": "IntraNodeVisibilityConfig contains the desired config of the intra-node visibility on this cluster.",
       "id": "IntraNodeVisibilityConfig",
@@ -4148,6 +4175,20 @@
       },
       "type": "object"
     },
+    "NetworkTags": {
+      "description": "Collection of Compute Engine network tags that can be applied to a node's underlying VM instance.",
+      "id": "NetworkTags",
+      "properties": {
+        "tags": {
+          "description": "List of network tags.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "NodeConfig": {
       "description": "Parameters that describe the nodes in a cluster.",
       "id": "NodeConfig",
@@ -4253,6 +4294,10 @@
         "shieldedInstanceConfig": {
           "$ref": "ShieldedInstanceConfig",
           "description": "Shielded Instance options."
+        },
+        "spot": {
+          "description": "Spot flag for enabling Spot VM, which is a rebrand of the existing preemptible flag.",
+          "type": "boolean"
         },
         "tags": {
           "description": "The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster or node pool creation. Each tag within the list must comply with RFC1035.",
@@ -4439,6 +4484,17 @@
         "version": {
           "description": "The version of the Kubernetes of this node.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodePoolAutoConfig": {
+      "description": "Node pool configs that apply to all auto-provisioned node pools in autopilot clusters and node auto-provisioning enabled clusters.",
+      "id": "NodePoolAutoConfig",
+      "properties": {
+        "networkTags": {
+          "$ref": "NetworkTags",
+          "description": "The list of instance tags applied to all nodes. Tags are used to identify valid sources or targets for network firewalls and are specified by the client during cluster creation. Each tag within the list must comply with RFC1035."
         }
       },
       "type": "object"
