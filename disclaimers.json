@@ -388,6 +388,10 @@
     "package": "@google-cloud/dataflow"
   },
   {
+    "api": "dataplex",
+    "package": "@google-cloud/dataplex"
+  },
+  {
     "api": "metastore",
     "package": "@google-cloud/dataproc-metastore"
   },
@@ -424,8 +428,16 @@
     "package": "@google-cloud/iam-credentials"
   },
   {
+    "api": "ids",
+    "package": "@google-cloud/ids"
+  },
+  {
     "api": "lifesciences",
     "package": "@google-cloud/life-sciences"
+  },
+  {
+    "api": "livestream",
+    "package": "@google-cloud/livestream"
   },
   {
     "api": "mediatranslation",

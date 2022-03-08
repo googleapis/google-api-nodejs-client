@@ -554,6 +554,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/bare-metal",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "baremetalsolution:v2",
+      "name": "baremetalsolution",
+      "version": "v2",
+      "title": "Bare Metal Solution API",
+      "description": "Bare Metal Solution provides hardware to run specialized workloads with low latency on Google Cloud.",
+      "discoveryRestUrl": "https://baremetalsolution.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/bare-metal",
       "preferred": true
     },
     {
@@ -1098,6 +1113,36 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "cloudfunctions:v2alpha",
+      "name": "cloudfunctions",
+      "version": "v2alpha",
+      "title": "Cloud Functions API",
+      "description": "Manages lightweight user-provided functions executed in response to events.",
+      "discoveryRestUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v2alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/functions",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudfunctions:v2beta",
+      "name": "cloudfunctions",
+      "version": "v2beta",
+      "title": "Cloud Functions API",
+      "description": "Manages lightweight user-provided functions executed in response to events.",
+      "discoveryRestUrl": "https://cloudfunctions.googleapis.com/$discovery/rest?version=v2beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/functions",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "cloudfunctions:v1",
       "name": "cloudfunctions",
       "version": "v1",
@@ -1387,7 +1432,7 @@
       "name": "cloudtrace",
       "version": "v2beta1",
       "title": "Cloud Trace API",
-      "description": "Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.",
+      "description": "Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenTelemetry.",
       "discoveryRestUrl": "https://cloudtrace.googleapis.com/$discovery/rest?version=v2beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1402,7 +1447,7 @@
       "name": "cloudtrace",
       "version": "v1",
       "title": "Cloud Trace API",
-      "description": "Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.",
+      "description": "Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenTelemetry.",
       "discoveryRestUrl": "https://cloudtrace.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1417,7 +1462,7 @@
       "name": "cloudtrace",
       "version": "v2",
       "title": "Cloud Trace API",
-      "description": "Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.",
+      "description": "Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenTelemetry.",
       "discoveryRestUrl": "https://cloudtrace.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1791,6 +1836,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "dataplex:v1",
+      "name": "dataplex",
+      "version": "v1",
+      "title": "Cloud Dataplex API",
+      "description": "Dataplex API is used to manage the lifecycle of data lakes.",
+      "discoveryRestUrl": "https://dataplex.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/dataplex/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "dataproc:v1",
       "name": "dataproc",
       "version": "v1",
@@ -2112,6 +2172,21 @@
       "title": "Cloud DNS API",
       "description": "",
       "discoveryRestUrl": "https://dns.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/dns/docs",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dns:v2",
+      "name": "dns",
+      "version": "v2",
+      "title": "Cloud DNS API",
+      "description": "",
+      "discoveryRestUrl": "https://dns.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2759,6 +2834,21 @@
       "title": "GKE Hub API",
       "description": "",
       "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1alpha2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "gkehub:v2alpha",
+      "name": "gkehub",
+      "version": "v2alpha",
+      "title": "GKE Hub API",
+      "description": "",
+      "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v2alpha",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3443,6 +3533,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "mybusinessbusinesscalls:v1",
+      "name": "mybusinessbusinesscalls",
+      "version": "v1",
+      "title": "My Business Business Calls API",
+      "description": "The My Business Business Calls API manages business calls information of a location on Google.",
+      "discoveryRestUrl": "https://mybusinessbusinesscalls.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/my-business/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "mybusinessbusinessinformation:v1",
       "name": "mybusinessbusinessinformation",
       "version": "v1",
@@ -3875,6 +3980,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/android/work/play/custom-app-api/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "playintegrity:v1",
+      "name": "playintegrity",
+      "version": "v1",
+      "title": "Google Play Integrity API",
+      "description": "Play Integrity",
+      "discoveryRestUrl": "https://playintegrity.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developer.android.com/google/play/integrity",
       "preferred": true
     },
     {
@@ -5064,21 +5184,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "transcoder:v1beta1",
-      "name": "transcoder",
-      "version": "v1beta1",
-      "title": "Transcoder API",
-      "description": "This API converts video files into formats suitable for consumer distribution.",
-      "discoveryRestUrl": "https://transcoder.googleapis.com/$discovery/rest?version=v1beta1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/transcoder/docs/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "transcoder:v1",
       "name": "transcoder",
       "version": "v1",
@@ -5142,8 +5247,8 @@
       "id": "vault:v1",
       "name": "vault",
       "version": "v1",
-      "title": "G Suite Vault API",
-      "description": "Archiving and eDiscovery for G Suite.",
+      "title": "Google Vault API",
+      "description": "Retention and eDiscovery for Google Workspace. To work with Vault resources, the account must have the [required Vault privileges](https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege. For example, to download an export, an account needs the **Manage Exports** privilege and the matter shared with them.",
       "discoveryRestUrl": "https://vault.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",

@@ -154,7 +154,7 @@
       }
     }
   },
-  "revision": "20210804",
+  "revision": "20220305",
   "rootUrl": "https://mybusinessnotifications.googleapis.com/",
   "schemas": {
     "NotificationSetting": {
@@ -179,7 +179,8 @@
               "NEW_ANSWER",
               "UPDATED_ANSWER",
               "DUPLICATE_LOCATION",
-              "LOSS_OF_VOICE_OF_MERCHANT"
+              "LOSS_OF_VOICE_OF_MERCHANT",
+              "VOICE_OF_MERCHANT_UPDATED"
             ],
             "enumDescriptions": [
               "No notification type. Will not match any notifications.",
@@ -192,7 +193,8 @@
               "A new answer is added to the location. The notification will provide the resource name of question and answer.",
               "An answer of the location is updated. The notification will provide the resource name of question and answer.",
               "Indicates whether there is a change in location metadata's duplicate location field.",
-              "Indicates whether the location has a loss in voice of merchant status. Call GetVoiceOfMerchantState rpc for more details"
+              "Deprecated: Migrate the existing usages of this value to the more expanded \"VOICE_OF_MERCHANT_UPDATED\".",
+              "Indicates whether the location has an update in voice of merchant status. Call GetVoiceOfMerchantState rpc for more details"
             ],
             "type": "string"
           },

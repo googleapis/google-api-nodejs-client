@@ -960,7 +960,7 @@
               "enumDescriptions": [
                 "Notifications are sent to all guests.",
                 "Notifications are sent to non-Google Calendar guests only.",
-                "No notifications are sent. For calendar migration tasks, consider using the Events.import method instead."
+                "No notifications are sent. Warning: Using the value none can have significant adverse effects, including events not syncing to external calendars or events being lost altogether for some users. For calendar migration tasks, consider using the events.import method instead."
               ],
               "location": "query",
               "type": "string"
@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20211229",
+  "revision": "20220217",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {

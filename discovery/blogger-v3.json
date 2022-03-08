@@ -826,9 +826,11 @@
             "status": {
               "enum": [
                 "LIVE",
-                "DRAFT"
+                "DRAFT",
+                "SOFT_TRASHED"
               ],
               "enumDescriptions": [
+                "",
                 "",
                 ""
               ],
@@ -1105,9 +1107,11 @@
               "enum": [
                 "LIVE",
                 "DRAFT",
-                "SCHEDULED"
+                "SCHEDULED",
+                "SOFT_TRASHED"
               ],
               "enumDescriptions": [
+                "",
                 "",
                 "",
                 ""
@@ -1390,9 +1394,11 @@
               "enum": [
                 "LIVE",
                 "DRAFT",
-                "SCHEDULED"
+                "SCHEDULED",
+                "SOFT_TRASHED"
               ],
               "enumDescriptions": [
+                "",
                 "",
                 "",
                 ""
@@ -1678,7 +1684,7 @@
       }
     }
   },
-  "revision": "20210307",
+  "revision": "20220305",
   "rootUrl": "https://blogger.googleapis.com/",
   "schemas": {
     "Blog": {
@@ -2076,9 +2082,11 @@
           "description": "The status of the page for admin resources (either LIVE or DRAFT).",
           "enum": [
             "LIVE",
-            "DRAFT"
+            "DRAFT",
+            "SOFT_TRASHED"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],
@@ -2319,9 +2327,11 @@
           "enum": [
             "LIVE",
             "DRAFT",
-            "SCHEDULED"
+            "SCHEDULED",
+            "SOFT_TRASHED"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
