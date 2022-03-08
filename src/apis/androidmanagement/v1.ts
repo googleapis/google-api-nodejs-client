@@ -179,13 +179,61 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$Application {
     /**
+     * Whether this app is free, free with in-app purchases, or paid. If the pricing is unspecified, this means the app is not generally available anymore (even though it might still be available to people who own it).
+     */
+    appPricing?: string | null;
+    /**
      * Application tracks visible to the enterprise.
      */
     appTracks?: Schema$AppTrackInfo[];
     /**
+     * Versions currently available for this app.
+     */
+    appVersions?: Schema$AppVersion[];
+    /**
+     * The name of the author of the apps (for example, the app developer).
+     */
+    author?: string | null;
+    /**
+     * The countries which this app is available in as per ISO 3166-1 alpha-2.
+     */
+    availableCountries?: string[] | null;
+    /**
+     * The app category (e.g. RACING, SOCIAL, etc.)
+     */
+    category?: string | null;
+    /**
+     * The content rating for this app.
+     */
+    contentRating?: string | null;
+    /**
+     * The localized promotional description, if available.
+     */
+    description?: string | null;
+    /**
+     * How and to whom the package is made available.
+     */
+    distributionChannel?: string | null;
+    /**
+     * Noteworthy features (if any) of this app.
+     */
+    features?: string[] | null;
+    /**
+     * Full app description, if available.
+     */
+    fullDescription?: string | null;
+    /**
+     * A link to an image that can be used as an icon for the app. This image is suitable for use at up to 512px x 512px
+     */
+    iconUrl?: string | null;
+    /**
      * The set of managed properties available to be pre-configured for the app.
      */
     managedProperties?: Schema$ManagedProperty[];
+    /**
+     * The minimum Android SDK necessary to run the app.
+     */
+    minAndroidSdkVersion?: number | null;
     /**
      * The name of the app in the form enterprises/{enterprise\}/applications/{package_name\}.
      */
@@ -195,9 +243,29 @@ export namespace androidmanagement_v1 {
      */
     permissions?: Schema$ApplicationPermission[];
     /**
+     * A link to the (consumer) Google Play details page for the app.
+     */
+    playStoreUrl?: string | null;
+    /**
+     * A localised description of the recent changes made to the app.
+     */
+    recentChanges?: string | null;
+    /**
+     * A list of screenshot links representing the app.
+     */
+    screenshotUrls?: string[] | null;
+    /**
+     * A link to a smaller image that can be used as an icon for the app. This image is suitable for use at up to 128px x 128px.
+     */
+    smallIconUrl?: string | null;
+    /**
      * The title of the app. Localized.
      */
     title?: string | null;
+    /**
+     * Output only. The approximate time (within 7 days) the app was last published.
+     */
+    updateTime?: string | null;
   }
   /**
    * An app-related event.
@@ -362,6 +430,27 @@ export namespace androidmanagement_v1 {
     trackId?: string | null;
   }
   /**
+   * This represents a single version of the app.
+   */
+  export interface Schema$AppVersion {
+    /**
+     * True if this version is a production track.
+     */
+    production?: boolean | null;
+    /**
+     * Track ids that the app version is published in. This doesn't include the production track (see production instead).
+     */
+    trackIds?: string[] | null;
+    /**
+     * Unique increasing identifier for the app version.
+     */
+    versionCode?: number | null;
+    /**
+     * The string used in the Play store by the app developer to identify the version. The string is not necessarily unique or localized (for example, the string could be "1.4").
+     */
+    versionString?: string | null;
+  }
+  /**
    * An action to block access to apps and data on a fully managed device or in a work profile. This action also triggers a device or work profile to displays a user-facing notification with information (where possible) on how to correct the compliance issue. Note: wipeAction must also be specified.
    */
   export interface Schema$BlockAction {
@@ -522,7 +611,7 @@ export namespace androidmanagement_v1 {
     showWorkContactsInPersonalProfile?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values A month and day value, with a zero year, such as an anniversary A year on its own, with zero month and day values A year and month value, with a zero day, such as a credit card expiration dateRelated types are google.type.TimeOfDay and google.protobuf.Timestamp.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values A month and day, with a zero year (e.g., an anniversary) A year on its own, with a zero month and a zero day A year and month, with a zero day (e.g., a credit card expiration date)Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -1375,6 +1464,10 @@ export namespace androidmanagement_v1 {
      * The length of time after a device or work profile is unlocked using a strong form of authentication (password, PIN, pattern) that it can be unlocked using any other authentication method (e.g. fingerprint, trust agents, face). After the specified time period elapses, only strong forms of authentication can be used to unlock the device or work profile.
      */
     requirePasswordUnlock?: string | null;
+    /**
+     * Controls whether a unified lock is allowed for the device and the work profile, on devices running Android 9 and above with a work profile. This has no effect on other devices. This can be set only if password_scope is set to SCOPE_PROFILE, the policy will be rejected otherwise. If user has not set a separate work lock and this field is set to REQUIRE_SEPARATE_WORK_LOCK, a NonComplianceDetail is reported with nonComplianceReason set to USER_ACTION.
+     */
+    unifiedLockSettings?: string | null;
   }
   /**
    * Configuration for an Android permission and its grant state.
@@ -1513,7 +1606,7 @@ export namespace androidmanagement_v1 {
      */
     cameraAccess?: string | null;
     /**
-     * Whether all cameras on the device are disabled.
+     * If camera_access is set to any value other than CAMERA_ACCESS_UNSPECIFIED, this has no effect. Otherwise this field controls whether cameras are disabled: If true, all cameras are disabled, otherwise they are available. For fully managed devices this field applies for all apps on the device. For work profiles, this field applies only to apps in the work profile, and the camera access of apps outside the work profile is unaffected.
      */
     cameraDisabled?: boolean | null;
     /**
@@ -1665,7 +1758,7 @@ export namespace androidmanagement_v1 {
      */
     passwordPolicies?: Schema$PasswordRequirements[];
     /**
-     * Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use password_policies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here.
+     * Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here. unified_lock_settings cannot be used here
      */
     passwordRequirements?: Schema$PasswordRequirements;
     /**
@@ -1721,7 +1814,7 @@ export namespace androidmanagement_v1 {
      */
     screenCaptureDisabled?: boolean | null;
     /**
-     * Actions to take during the setup process.
+     * Action to take during the setup process. At most one action may be specified.
      */
     setupActions?: Schema$SetupAction[];
     /**
@@ -1773,7 +1866,7 @@ export namespace androidmanagement_v1 {
      */
     uninstallAppsDisabled?: boolean | null;
     /**
-     * Whether the microphone is muted and adjusting microphone volume is disabled.
+     * If microphone_access is set to any value other than MICROPHONE_ACCESS_UNSPECIFIED, this has no effect. Otherwise this field controls whether microphones are disabled: If true, all microphones are disabled, otherwise they are available. This is available only on fully managed devices.
      */
     unmuteMicrophoneDisabled?: boolean | null;
     /**
@@ -1891,7 +1984,7 @@ export namespace androidmanagement_v1 {
      */
     description?: Schema$UserFacingMessage;
     /**
-     * An action to launch an app.
+     * An action to launch an app. The app will be launched with an intent containing an extra with key com.google.android.apps.work.clouddpc.EXTRA_LAUNCHED_AS_SETUP_ACTION set to the boolean value true to indicate that this is a setup action flow.
      */
     launchApp?: Schema$LaunchAppAction;
     /**
@@ -3054,11 +3147,28 @@ export namespace androidmanagement_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "appPricing": "my_appPricing",
      *   //   "appTracks": [],
+     *   //   "appVersions": [],
+     *   //   "author": "my_author",
+     *   //   "availableCountries": [],
+     *   //   "category": "my_category",
+     *   //   "contentRating": "my_contentRating",
+     *   //   "description": "my_description",
+     *   //   "distributionChannel": "my_distributionChannel",
+     *   //   "features": [],
+     *   //   "fullDescription": "my_fullDescription",
+     *   //   "iconUrl": "my_iconUrl",
      *   //   "managedProperties": [],
+     *   //   "minAndroidSdkVersion": 0,
      *   //   "name": "my_name",
      *   //   "permissions": [],
-     *   //   "title": "my_title"
+     *   //   "playStoreUrl": "my_playStoreUrl",
+     *   //   "recentChanges": "my_recentChanges",
+     *   //   "screenshotUrls": [],
+     *   //   "smallIconUrl": "my_smallIconUrl",
+     *   //   "title": "my_title",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -6176,7 +6286,7 @@ export namespace androidmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.webApps.list({
-     *     // The requested page size. The actual page size may be fixed to a min or max value.
+     *     // The requested page size. This is a hint and the actual page size in the response may be different.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results returned by the server.
      *     pageToken: 'placeholder-value',
@@ -6464,7 +6574,7 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Webapps$List
     extends StandardParameters {
     /**
-     * The requested page size. The actual page size may be fixed to a min or max value.
+     * The requested page size. This is a hint and the actual page size in the response may be different.
      */
     pageSize?: number;
     /**
