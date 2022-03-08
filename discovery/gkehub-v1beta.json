@@ -670,9 +670,24 @@
       }
     }
   },
-  "revision": "20220122",
+  "revision": "20220211",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
+    "AnthosObservabilityMembershipSpec": {
+      "description": "**Anthosobservability**: Per-Membership Feature spec.",
+      "id": "AnthosObservabilityMembershipSpec",
+      "properties": {
+        "doNotOptimizeMetrics": {
+          "description": "use full of metrics rather than optimized metrics. See https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/logging-and-monitoring#optimized_metrics_default_metrics",
+          "type": "boolean"
+        },
+        "enableStackdriverOnApplications": {
+          "description": "enable collecting and reporting metrics and logs from user apps See go/onyx-application-metrics-logs-user-guide",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "AppDevExperienceFeatureSpec": {
       "description": "Spec for App Dev Experience Feature.",
       "id": "AppDevExperienceFeatureSpec",
@@ -1759,9 +1774,19 @@
           "description": "ID for OIDC client application.",
           "type": "string"
         },
+        "clientSecret": {
+          "description": "Unencrypted OIDC client secret will be passed to the GKE Hub CLH.",
+          "type": "string"
+        },
         "deployCloudConsoleProxy": {
           "description": "Flag to denote if reverse proxy is used to connect to auth provider. This flag should be set to true when provider is not reachable by Google Cloud Console.",
           "type": "boolean"
+        },
+        "encryptedClientSecret": {
+          "description": "Output only. Encrypted OIDC Client secret",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
         },
         "extraParams": {
           "description": "Comma-separated list of key-value pairs.",
@@ -1890,6 +1915,10 @@
       "description": "MembershipFeatureSpec contains configuration information for a single Membership.",
       "id": "MembershipFeatureSpec",
       "properties": {
+        "anthosobservability": {
+          "$ref": "AnthosObservabilityMembershipSpec",
+          "description": "Anthos Observability-specific spec"
+        },
         "cloudbuild": {
           "$ref": "MembershipSpec",
           "description": "Cloud Build-specific spec"
@@ -1901,6 +1930,10 @@
         "identityservice": {
           "$ref": "IdentityServiceMembershipSpec",
           "description": "Identity Service-specific spec."
+        },
+        "policycontroller": {
+          "$ref": "PolicyControllerMembershipSpec",
+          "description": "Policy Controller spec."
         }
       },
       "type": "object"

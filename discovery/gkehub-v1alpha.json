@@ -1067,7 +1067,7 @@
       }
     }
   },
-  "revision": "20220122",
+  "revision": "20220211",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AnthosObservabilityMembershipSpec": {
@@ -1258,6 +1258,10 @@
         "multiclusteringress": {
           "$ref": "MultiClusterIngressFeatureSpec",
           "description": "Multicluster Ingress-specific spec."
+        },
+        "workloadcertificate": {
+          "$ref": "FeatureSpec",
+          "description": "Workload Certificate spec."
         }
       },
       "type": "object"
@@ -2153,6 +2157,31 @@
       },
       "type": "object"
     },
+    "FeatureSpec": {
+      "description": "**Workload Certificate**: The Hub-wide input for the WorkloadCertificate feature.",
+      "id": "FeatureSpec",
+      "properties": {
+        "defaultConfig": {
+          "$ref": "MembershipSpec",
+          "description": "Specifies default membership spec. Users can override the default in the member_configs for each member."
+        },
+        "provisionGoogleCa": {
+          "description": "Immutable. Specifies CA configuration.",
+          "enum": [
+            "GOOGLE_CA_PROVISIONING_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Disable default Google managed CA.",
+            "Disable default Google managed CA.",
+            "Use default Google managed CA."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FeatureState": {
       "description": "FeatureState describes the high-level state of a Feature. It may be used to describe a Feature's state at the environ-level, or per-membershop, depending on the context.",
       "id": "FeatureState",
@@ -2363,9 +2392,19 @@
           "description": "ID for OIDC client application.",
           "type": "string"
         },
+        "clientSecret": {
+          "description": "Unencrypted OIDC client secret will be passed to the GKE Hub CLH.",
+          "type": "string"
+        },
         "deployCloudConsoleProxy": {
           "description": "Flag to denote if reverse proxy is used to connect to auth provider. This flag should be set to true when provider is not reachable by Google Cloud Console.",
           "type": "boolean"
+        },
+        "encryptedClientSecret": {
+          "description": "Output only. Encrypted OIDC Client secret",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
         },
         "extraParams": {
           "description": "Comma-separated list of key-value pairs.",
@@ -2739,8 +2778,12 @@
           "description": "Anthos Service Mesh-specific spec"
         },
         "policycontroller": {
-          "$ref": "PolicycontrollerMembershipSpec",
+          "$ref": "PolicyControllerMembershipSpec",
           "description": "Policy Controller spec."
+        },
+        "workloadcertificate": {
+          "$ref": "MembershipSpec",
+          "description": "Workload Certificate spec."
         }
       },
       "type": "object"
@@ -2766,7 +2809,7 @@
           "description": "Metering-specific spec."
         },
         "policycontroller": {
-          "$ref": "PolicycontrollerMembershipState",
+          "$ref": "PolicyControllerMembershipState",
           "description": "Policycontroller-specific state."
         },
         "servicemesh": {
@@ -2776,6 +2819,27 @@
         "state": {
           "$ref": "FeatureState",
           "description": "The high-level state of this Feature for a single membership."
+        }
+      },
+      "type": "object"
+    },
+    "MembershipSpec": {
+      "description": "**Workload Certificate**: The membership-specific input for WorkloadCertificate feature.",
+      "id": "MembershipSpec",
+      "properties": {
+        "certificateManagement": {
+          "description": "Specifies workload certificate management.",
+          "enum": [
+            "CERTIFICATE_MANAGEMENT_UNSPECIFIED",
+            "DISABLED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "Disable workload certificate feature.",
+            "Disable workload certificate feature.",
+            "Enable workload certificate feature."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2996,12 +3060,12 @@
       },
       "type": "object"
     },
-    "PolicycontrollerMembershipSpec": {
+    "PolicyControllerMembershipSpec": {
       "description": "**Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.",
-      "id": "PolicycontrollerMembershipSpec",
+      "id": "PolicyControllerMembershipSpec",
       "properties": {
         "policyControllerHubConfig": {
-          "$ref": "PolicycontrollerPolicyControllerHubConfig",
+          "$ref": "PolicyControllerPolicyControllerHubConfig",
           "description": "Policy Controller configuration for the cluster."
         },
         "version": {
@@ -3011,20 +3075,20 @@
       },
       "type": "object"
     },
-    "PolicycontrollerMembershipState": {
+    "PolicyControllerMembershipState": {
       "description": "**Policy Controller**: State for a single cluster.",
-      "id": "PolicycontrollerMembershipState",
+      "id": "PolicyControllerMembershipState",
       "properties": {
         "clusterName": {
           "description": "The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.",
           "type": "string"
         },
         "membershipSpec": {
-          "$ref": "PolicycontrollerMembershipSpec",
+          "$ref": "PolicyControllerMembershipSpec",
           "description": "Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state"
         },
         "policyControllerHubState": {
-          "$ref": "PolicycontrollerPolicyControllerHubState",
+          "$ref": "PolicyControllerPolicyControllerHubState",
           "description": "Policy Controller state observed by the Policy Controller Hub"
         },
         "state": {
@@ -3054,9 +3118,9 @@
       },
       "type": "object"
     },
-    "PolicycontrollerPolicyControllerHubConfig": {
+    "PolicyControllerPolicyControllerHubConfig": {
       "description": "Configuration for Policy Controller",
-      "id": "PolicycontrollerPolicyControllerHubConfig",
+      "id": "PolicyControllerPolicyControllerHubConfig",
       "properties": {
         "auditIntervalSeconds": {
           "description": "Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.",
@@ -3099,15 +3163,15 @@
           "type": "boolean"
         },
         "templateLibraryConfig": {
-          "$ref": "PolicycontrollerTemplateLibraryConfig",
+          "$ref": "PolicyControllerTemplateLibraryConfig",
           "description": "Configures the library templates to install along with Policy Controller."
         }
       },
       "type": "object"
     },
-    "PolicycontrollerPolicyControllerHubState": {
+    "PolicyControllerPolicyControllerHubState": {
       "description": "State of the Policy Controller.",
-      "id": "PolicycontrollerPolicyControllerHubState",
+      "id": "PolicyControllerPolicyControllerHubState",
       "properties": {
         "deploymentStates": {
           "additionalProperties": {
@@ -3129,15 +3193,15 @@
           "type": "object"
         },
         "version": {
-          "$ref": "PolicycontrollerPolicyControllerHubVersion",
+          "$ref": "PolicyControllerPolicyControllerHubVersion",
           "description": "The version of Gatekeeper Policy Controller deployed."
         }
       },
       "type": "object"
     },
-    "PolicycontrollerPolicyControllerHubVersion": {
+    "PolicyControllerPolicyControllerHubVersion": {
       "description": "The build version of Gatekeeper that Policy Controller is using.",
-      "id": "PolicycontrollerPolicyControllerHubVersion",
+      "id": "PolicyControllerPolicyControllerHubVersion",
       "properties": {
         "version": {
           "description": "The gatekeeper image tag that is composed of ACM version, git tag, build number.",
@@ -3146,9 +3210,9 @@
       },
       "type": "object"
     },
-    "PolicycontrollerTemplateLibraryConfig": {
+    "PolicyControllerTemplateLibraryConfig": {
       "description": "The config specifying which default library templates to install.",
-      "id": "PolicycontrollerTemplateLibraryConfig",
+      "id": "PolicyControllerTemplateLibraryConfig",
       "properties": {
         "included": {
           "description": "Whether the standard template library should be installed or not.",
@@ -3272,7 +3336,8 @@
             "PROVISIONING",
             "ACTIVE",
             "STALLED",
-            "NEEDS_ATTENTION"
+            "NEEDS_ATTENTION",
+            "DEGRADED"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -3281,7 +3346,8 @@
             "PROVISIONING means that provisioning is in progress.",
             "ACTIVE means that the component is ready for use.",
             "STALLED means that provisioning could not be done.",
-            "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)"
+            "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)",
+            "DEGRADED means that the component is ready, but operating in a degraded state."
           ],
           "type": "string"
         }
