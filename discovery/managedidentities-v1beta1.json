@@ -786,7 +786,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Optional. Filter specifying constraints of a list operation. For example, `backup.location =\"us-west1-a\"`.",
+                              "description": "Optional. Filter specifying constraints of a list operation.",
                               "location": "query",
                               "type": "string"
                             },
@@ -1375,7 +1375,7 @@
       }
     }
   },
-  "revision": "20211108",
+  "revision": "20220216",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1535,7 +1535,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -1587,7 +1587,7 @@
       "type": "object"
     },
     "Domain": {
-      "description": "If the domain is being changed, it will be placed into the UPDATING state, which indicates that the resource is being reconciled. At this point, Get will reflect an intermediate state. Represents a managed Microsoft Active Directory domain.",
+      "description": "Represents a managed Microsoft Active Directory domain. If the domain is being changed, it will be placed into the UPDATING state, which indicates that the resource is being reconciled. At this point, Get will reflect an intermediate state.",
       "id": "Domain",
       "properties": {
         "admin": {
@@ -1845,6 +1845,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "instanceType": {
+          "description": "Optional. The instance_type of this instance of format: projects/{project_id}/locations/{location_id}/instanceTypes/{instance_type_id}. Instance Type represents a high-level tier or SKU of the service that this instance belong to. When enabled(eg: Maintenance Rollout), Rollout uses 'instance_type' along with 'software_versions' to determine whether instance needs an update or not.",
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1873,6 +1877,13 @@
         "name": {
           "description": "Unique name of the resource. It uses the form: `projects/{project_id|project_number}/locations/{location_id}/instances/{instance_id}` Note: Either project_id or project_number can be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)",
           "type": "string"
+        },
+        "notificationParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. notification_parameters are information that service producers may like to include that is not relevant to Rollout. This parameter will only be passed to Gamma and Cloud Logging for notification/logging purpose.",
+          "type": "object"
         },
         "producerMetadata": {
           "additionalProperties": {
