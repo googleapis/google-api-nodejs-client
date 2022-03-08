@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v2.5.0...storagetransfer-v2.6.0) (2022-03-08)
+
+
+### Features
+
+* **storagetransfer:** update the API ([2661b09](https://github.com/googleapis/google-api-nodejs-client/commit/2661b098d0cc71d89cddc022b6bd8ad673bd54cd))
+
 ## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v2.4.0...storagetransfer-v2.5.0) (2022-02-04)
 
 

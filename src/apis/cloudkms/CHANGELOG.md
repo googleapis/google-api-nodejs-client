@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v3.3.0...cloudkms-v3.3.1) (2022-03-08)
+
+
+### Bug Fixes
+
+* **cloudkms:** update the API ([c3cd26e](https://github.com/googleapis/google-api-nodejs-client/commit/c3cd26ea0b48e57a8b2e1f2f17a70a8f3c877a0a))
+
 ## [3.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudkms-v3.2.1...cloudkms-v3.3.0) (2022-02-04)
 
 
