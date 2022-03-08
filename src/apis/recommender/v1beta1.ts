@@ -160,6 +160,10 @@ export namespace recommender_v1beta1 {
      * Use with CategoryType.SECURITY
      */
     securityProjection?: Schema$GoogleCloudRecommenderV1beta1SecurityProjection;
+    /**
+     * Use with CategoryType.SUSTAINABILITY
+     */
+    sustainabilityProjection?: Schema$GoogleCloudRecommenderV1beta1SustainabilityProjection;
   }
   /**
    * An insight along with the information used to derive the insight. The insight may have associated recomendations as well.
@@ -550,6 +554,19 @@ export namespace recommender_v1beta1 {
      * This field can be used by the recommender to define details specific to security impact.
      */
     details?: {[key: string]: any} | null;
+  }
+  /**
+   * Contains metadata about how much sustainability a recommendation can save or incur.
+   */
+  export interface Schema$GoogleCloudRecommenderV1beta1SustainabilityProjection {
+    /**
+     * Duration for which this sustanability applies.
+     */
+    duration?: string | null;
+    /**
+     * Carbon Footprint generated in kg of CO2 equivalent. Chose kg_c_o2e so that the name renders correctly in camelCase (kgCO2e).
+     */
+    kgCO2e?: number | null;
   }
   /**
    * Contains various matching options for values for a GCP resource field.
