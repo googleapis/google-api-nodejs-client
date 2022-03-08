@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20211101",
+  "revision": "20220222",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -2106,6 +2106,10 @@
         },
         "showConfidentialModeContent": {
           "description": "To export confidential mode content, set to **true**.",
+          "type": "boolean"
+        },
+        "useNewExport": {
+          "description": "To use the new export system, set to **true**.",
           "type": "boolean"
         }
       },
