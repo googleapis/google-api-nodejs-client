@@ -133,7 +133,6 @@ export namespace gameservices_v1 {
      * The configuration for logging of each type of permission.
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
-    exemptedMembers?: string[] | null;
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
@@ -323,7 +322,7 @@ export namespace gameservices_v1 {
     deployedFleet?: Schema$DeployedFleet;
   }
   /**
-   * DeployedFleetStatus has details about the Agones fleets such as how many are running, how many allocated, and so on.
+   * DeployedFleetStatus has details about the Agones fleets, such as how many are running, how many are allocated, and so on.
    */
   export interface Schema$DeployedFleetStatus {
     /**
@@ -390,7 +389,7 @@ export namespace gameservices_v1 {
    */
   export interface Schema$FleetConfig {
     /**
-     * Agones fleet spec. Example spec: `https://agones.dev/site/docs/reference/fleet/`.
+     * Agones fleet spec (see [example spec](https://agones.dev/site/docs/reference/fleet/)).
      */
     fleetSpec?: string | null;
     /**
@@ -403,7 +402,7 @@ export namespace gameservices_v1 {
    */
   export interface Schema$GameServerCluster {
     /**
-     * Output only. The state of the Kubernetes cluster, this will be available if 'view' is set to `FULL` in the relevant List/Get/Preview request.
+     * Output only. The state of the Kubernetes cluster in preview. This will be available if view is set to FULL in the relevant list/get/preview request.
      */
     clusterState?: Schema$KubernetesClusterState;
     /**
@@ -419,7 +418,7 @@ export namespace gameservices_v1 {
      */
     description?: string | null;
     /**
-     * ETag of the resource.
+     * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
     /**
@@ -427,7 +426,7 @@ export namespace gameservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}/gameServerClusters/{gameServerClusterId\}`. For example, `projects/my-project/locations/global/realms/zanzibar/gameServerClusters/my-gke-cluster`.
      */
     name?: string | null;
     /**
@@ -469,7 +468,7 @@ export namespace gameservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the game server config, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
+     * The resource name of the game server config, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/configs/{configId\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
     name?: string | null;
     /**
@@ -503,11 +502,11 @@ export namespace gameservices_v1 {
      */
     createTime?: string | null;
     /**
-     * Human readable description of the game server delpoyment.
+     * Human readable description of the game server deployment.
      */
     description?: string | null;
     /**
-     * ETag of the resource.
+     * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
     /**
@@ -515,7 +514,7 @@ export namespace gameservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     * The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      */
     name?: string | null;
     /**
@@ -544,7 +543,7 @@ export namespace gameservices_v1 {
      */
     gameServerConfigOverrides?: Schema$GameServerConfigOverride[];
     /**
-     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string | null;
     /**
@@ -557,7 +556,7 @@ export namespace gameservices_v1 {
    */
   export interface Schema$GkeClusterReference {
     /**
-     * The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project\}/locations/{location\}/clusters/{cluster\}` * `locations/{location\}/clusters/{cluster\}` * `{cluster\}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.
+     * The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project\}/locations/{locationId\}/clusters/{cluster\}` * `locations/{locationId\}/clusters/{cluster\}` * `{cluster\}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.
      */
     cluster?: string | null;
   }
@@ -582,7 +581,7 @@ export namespace gameservices_v1 {
      */
     kubernetesVersionInstalled?: string | null;
     /**
-     * Output only. The cloud provider type reported by the first node's providerID in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the provider type will be empty.
+     * Output only. The cloud provider type reported by the first node's `providerID` in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the provider type will be empty.
      */
     provider?: string | null;
     /**
@@ -845,7 +844,7 @@ export namespace gameservices_v1 {
    */
   export interface Schema$PreviewCreateGameServerClusterResponse {
     /**
-     * Output only. The state of the Kubernetes cluster in preview, this will be available if 'view' is set to `FULL` in the relevant List/Get/Preview request.
+     * Output only. The state of the Kubernetes cluster in preview. This will be available if view is set to FULL in the relevant list/get/preview request.
      */
     clusterState?: Schema$KubernetesClusterState;
     /**
@@ -926,7 +925,7 @@ export namespace gameservices_v1 {
      */
     description?: string | null;
     /**
-     * ETag of the resource.
+     * Used to perform consistent read-modify-write updates. If not set, a blind "overwrite" update happens.
      */
     etag?: string | null;
     /**
@@ -934,11 +933,11 @@ export namespace gameservices_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`. For example, `projects/my-project/locations/global/realms/my-realm`.
      */
     name?: string | null;
     /**
-     * Required. Time zone where all policies targeting this realm are evaluated. The value of this field must be from the IANA time zone database: https://www.iana.org/time-zones.
+     * Required. Time zone where all policies targeting this realm are evaluated. The value of this field must be from the [IANA time zone database](https://www.iana.org/time-zones).
      */
     timeZone?: string | null;
     /**
@@ -993,15 +992,15 @@ export namespace gameservices_v1 {
    */
   export interface Schema$ScalingConfig {
     /**
-     * Required. Agones fleet autoscaler spec. Example spec: https://agones.dev/site/docs/reference/fleetautoscaler/
+     * Required. Agones fleet autoscaler spec (see [example spec](https://agones.dev/site/docs/reference/fleetautoscaler/)).
      */
     fleetAutoscalerSpec?: string | null;
     /**
-     * Required. The name of the Scaling Config
+     * Required. The name of the scaling config.
      */
     name?: string | null;
     /**
-     * The schedules to which this Scaling Config applies.
+     * The schedules to which this scaling config applies.
      */
     schedules?: Schema$Schedule[];
     /**
@@ -1010,7 +1009,7 @@ export namespace gameservices_v1 {
     selectors?: Schema$LabelSelector[];
   }
   /**
-   * The schedule of a recurring or one time event. The event's time span is specified by start_time and end_time. If the scheduled event's timespan is larger than the cron_spec + cron_job_duration, the event will be recurring. If only cron_spec + cron_job_duration are specified, the event is effective starting at the local time specified by cron_spec, and is recurring. ``` start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time cron job: cron spec start time + duration ```
+   * The schedule of a recurring or one time event. The event's time span is specified by start_time and end_time. If the scheduled event's timespan is larger than cron_spec added with cron_job_duration, the event is recurring. If only cron_spec and cron_job_duration are specified, the event starts at the local time specified by cron_spec, and is recurring. ``` start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time cron job: cron spec start time + duration ```
    */
   export interface Schema$Schedule {
     /**
@@ -1018,7 +1017,7 @@ export namespace gameservices_v1 {
      */
     cronJobDuration?: string | null;
     /**
-     * The cron definition of the scheduled event. See https://en.wikipedia.org/wiki/Cron. Cron spec specifies the local time as defined by the realm.
+     * The cron definition of the scheduled event. See https://en.wikipedia.org/wiki/Cron. The cron spec specifies the local time as defined by the realm.
      */
     cronSpec?: string | null;
     /**
@@ -1048,11 +1047,11 @@ export namespace gameservices_v1 {
    */
   export interface Schema$SpecSource {
     /**
-     * The game server config resource. Uses the form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment_id\}/configs/{config_id\}`.
+     * The game server config resource. Uses the form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/configs/{configId\}`.
      */
     gameServerConfigName?: string | null;
     /**
-     * The name of the Agones leet config or Agones scaling config used to derive the Agones fleet or Agones autoscaler spec.
+     * The name of the Agones fleet config or Agones scaling config used to derive the Agones fleet or Agones autoscaler spec.
      */
     name?: string | null;
   }
@@ -1082,11 +1081,11 @@ export namespace gameservices_v1 {
      */
     fleetDetails?: Schema$TargetFleetDetails[];
     /**
-     * The game server cluster name. Uses the form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`.
+     * The game server cluster name. Uses the form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}/gameServerClusters/{gameServerClusterId\}`.
      */
     gameServerClusterName?: string | null;
     /**
-     * The game server deployment name. Uses the form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment_id\}`.
+     * The game server deployment name. Uses the form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`.
      */
     gameServerDeploymentName?: string | null;
   }
@@ -1525,9 +1524,9 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.create({
-     *       // Required. The ID of the game server delpoyment resource to be created.
+     *       // Required. The ID of the game server deployment resource to create.
      *       deploymentId: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}`.
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -1675,7 +1674,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.delete({
-     *       // Required. The name of the game server delpoyment to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
+     *       // Required. The name of the game server deployment to delete, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`.
      *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     });
      *   console.log(res.data);
@@ -1808,7 +1807,7 @@ export namespace gameservices_v1 {
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.fetchDeploymentState(
      *       {
-     *         // Required. The name of the game server delpoyment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
+     *         // Required. The name of the game server deployment, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`.
      *         name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
      *         // Request body metadata
@@ -1955,7 +1954,7 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.get({
-     *     // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
+     *     // Required. The name of the game server deployment to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`.
      *     name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *   });
      *   console.log(res.data);
@@ -2204,7 +2203,7 @@ export namespace gameservices_v1 {
     }
 
     /**
-     * Gets details a single game server deployment rollout.
+     * Gets details of a single game server deployment rollout.
      * @example
      * ```js
      * // Before running the sample:
@@ -2231,7 +2230,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.getRollout({
-     *       // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`.
+     *       // Required. The name of the game server deployment rollout to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/rollout`.
      *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     });
      *   console.log(res.data);
@@ -2373,15 +2372,15 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.list({
-     *     // Optional. The filter to apply to list results.
+     *     // Optional. The filter to apply to list results (see [Filtering](https://google.aip.dev/160)).
      *     filter: 'placeholder-value',
-     *     // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *     // Optional. Specifies the ordering of results following [Cloud API syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
+     *     // Optional. The maximum number of items to return. If unspecified, the server picks an appropriate default. The server may return fewer items than requested. A caller should only rely on the response's next_page_token to determine if there are more GameServerDeployments left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The next_page_token value returned from a previous List request, if any.
+     *     // Optional. The next_page_token value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2523,9 +2522,9 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.patch(
      *     {
-     *       // The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     *       // The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       // Required. The update mask to apply to the resource. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2671,11 +2670,11 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.previewRollout({
-     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
      *       previewTime: 'placeholder-value',
-     *       // Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       // Optional. The update mask to apply to the resource. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -3097,7 +3096,7 @@ export namespace gameservices_v1 {
     }
 
     /**
-     * Patches a single game server deployment rollout. The method will not return an error if the update does not affect any existing realms. For example - if the default_game_server_config is changed but all existing realms use the override, that is valid. Similarly, if a non existing realm is explicitly called out in game_server_config_overrides field, that will also not result in an error.
+     * Patches a single game server deployment rollout. The method will not return an error if the update does not affect any existing realms. For example, the following cases will not return an error: * The default_game_server_config is changed but all existing realms use the override. * A non-existing realm is explicitly called out in the game_server_config_overrides field.
      * @example
      * ```js
      * // Before running the sample:
@@ -3124,9 +3123,9 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.updateRollout({
-     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       // Required. The update mask to apply to the resource. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -3250,11 +3249,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Create
     extends StandardParameters {
     /**
-     * Required. The ID of the game server delpoyment resource to be created.
+     * Required. The ID of the game server deployment resource to create.
      */
     deploymentId?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}`.
      */
     parent?: string;
 
@@ -3266,14 +3265,14 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
+     * Required. The name of the game server deployment to delete, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
+     * Required. The name of the game server deployment, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`.
      */
     name?: string;
 
@@ -3285,7 +3284,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
+     * Required. The name of the game server deployment to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`.
      */
     name?: string;
   }
@@ -3303,41 +3302,41 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`.
+     * Required. The name of the game server deployment rollout to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/rollout`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$List
     extends StandardParameters {
     /**
-     * Optional. The filter to apply to list results.
+     * Optional. The filter to apply to list results (see [Filtering](https://google.aip.dev/160)).
      */
     filter?: string;
     /**
-     * Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     * Optional. Specifies the ordering of results following [Cloud API syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
+     * Optional. The maximum number of items to return. If unspecified, the server picks an appropriate default. The server may return fewer items than requested. A caller should only rely on the response's next_page_token to determine if there are more GameServerDeployments left to be queried.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous List request, if any.
+     * Optional. The next_page_token value returned from a previous list request, if any.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Patch
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     * The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask to apply to the resource. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      */
     updateMask?: string;
 
@@ -3349,7 +3348,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string;
     /**
@@ -3357,7 +3356,7 @@ export namespace gameservices_v1 {
      */
     previewTime?: string;
     /**
-     * Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Optional. The update mask to apply to the resource. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      */
     updateMask?: string;
 
@@ -3393,11 +3392,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask to apply to the resource. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      */
     updateMask?: string;
 
@@ -3441,9 +3440,9 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.configs.create({
-     *       // Required. The ID of the game server config resource to be created.
+     *       // Required. The ID of the game server config resource to create.
      *       configId: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -3566,7 +3565,7 @@ export namespace gameservices_v1 {
     }
 
     /**
-     * Deletes a single game server config. The deletion will fail if the game server config is referenced in a game server deployment rollout.
+     * Deletes a single game server config. The deletion fails if the game server config is referenced in a game server deployment rollout.
      * @example
      * ```js
      * // Before running the sample:
@@ -3593,7 +3592,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.configs.delete({
-     *       // Required. The name of the game server config to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
+     *       // Required. The name of the game server config to delete, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/configs/{configId\}`.
      *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
      *     });
      *   console.log(res.data);
@@ -3725,7 +3724,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.configs.get({
-     *       // Required. The name of the game server config to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
+     *       // Required. The name of the game server config to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/configs/{configId\}`.
      *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
      *     });
      *   console.log(res.data);
@@ -3859,15 +3858,15 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.gameServerDeployments.configs.list({
-     *       // Optional. The filter to apply to list results.
+     *       // Optional. The filter to apply to list results (see [Filtering](https://google.aip.dev/160)).
      *       filter: 'placeholder-value',
-     *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *       // Optional. Specifies the ordering of results following [Cloud API syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      *       orderBy: 'placeholder-value',
-     *       // Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
+     *       // Optional. The maximum number of items to return. If unspecified, the server picks an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/x`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/configs/x`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     });
@@ -3986,11 +3985,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create
     extends StandardParameters {
     /**
-     * Required. The ID of the game server config resource to be created.
+     * Required. The ID of the game server config resource to create.
      */
     configId?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/`.
      */
     parent?: string;
 
@@ -4002,29 +4001,29 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server config to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
+     * Required. The name of the game server config to delete, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/configs/{configId\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server config to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
+     * Required. The name of the game server config to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/configs/{configId\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List
     extends StandardParameters {
     /**
-     * Optional. The filter to apply to list results.
+     * Optional. The filter to apply to list results (see [Filtering](https://google.aip.dev/160)).
      */
     filter?: string;
     /**
-     * Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     * Optional. Specifies the ordering of results following [Cloud API syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
+     * Optional. The maximum number of items to return. If unspecified, the server picks an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
      */
     pageSize?: number;
     /**
@@ -4032,7 +4031,7 @@ export namespace gameservices_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/x`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/gameServerDeployments/{deploymentId\}/configs/x`.
      */
     parent?: string;
   }
@@ -4651,9 +4650,9 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.create({
-     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}`.
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Required. The ID of the realm resource to be created.
+     *     // Required. The ID of the realm resource to create.
      *     realmId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4800,7 +4799,7 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.delete({
-     *     // Required. The name of the realm to delete, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
+     *     // Required. The name of the realm to delete, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *   });
      *   console.log(res.data);
@@ -4930,7 +4929,7 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.get({
-     *     // Required. The name of the realm to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
+     *     // Required. The name of the realm to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *   });
      *   console.log(res.data);
@@ -5062,15 +5061,15 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.list({
-     *     // Optional. The filter to apply to list results.
+     *     // Optional. The filter to apply to list results (see [Filtering](https://google.aip.dev/160)).
      *     filter: 'placeholder-value',
-     *     // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *     // Optional. Specifies the ordering of results following [Cloud API syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      *     orderBy: 'placeholder-value',
-     *     // Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
+     *     // Optional. The maximum number of items to return. If unspecified, the server picks an appropriate default. The server may return fewer items than requested. A caller should only rely on the response's next_page_token to determine if there are more realms left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // Optional. The next_page_token value returned from a previous List request, if any.
+     *     // Optional. The next_page_token value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5204,9 +5203,9 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.patch({
-     *     // The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
+     *     // The resource name of the realm, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`. For example, `projects/my-project/locations/global/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
-     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // Required. The update mask to apply to the resource. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5350,11 +5349,11 @@ export namespace gameservices_v1 {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.previewUpdate({
-     *     // The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
+     *     // The resource name of the realm, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`. For example, `projects/my-project/locations/global/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Optional. The target timestamp to compute the preview.
      *     previewTime: 'placeholder-value',
-     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     // Required. The update mask to apply to the resource. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5482,11 +5481,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}`.
      */
     parent?: string;
     /**
-     * Required. The ID of the realm resource to be created.
+     * Required. The ID of the realm resource to create.
      */
     realmId?: string;
 
@@ -5498,48 +5497,48 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the realm to delete, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
+     * Required. The name of the realm to delete, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Get
     extends StandardParameters {
     /**
-     * Required. The name of the realm to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
+     * Required. The name of the realm to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$List
     extends StandardParameters {
     /**
-     * Optional. The filter to apply to list results.
+     * Optional. The filter to apply to list results (see [Filtering](https://google.aip.dev/160)).
      */
     filter?: string;
     /**
-     * Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     * Optional. Specifies the ordering of results following [Cloud API syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
+     * Optional. The maximum number of items to return. If unspecified, the server picks an appropriate default. The server may return fewer items than requested. A caller should only rely on the response's next_page_token to determine if there are more realms left to be queried.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous List request, if any.
+     * Optional. The next_page_token value returned from a previous list request, if any.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Patch
     extends StandardParameters {
     /**
-     * The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`. For example, `projects/my-project/locations/global/realms/my-realm`.
      */
     name?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask to apply to the resource. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      */
     updateMask?: string;
 
@@ -5551,7 +5550,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Previewupdate
     extends StandardParameters {
     /**
-     * The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`. For example, `projects/my-project/locations/global/realms/my-realm`.
      */
     name?: string;
     /**
@@ -5559,7 +5558,7 @@ export namespace gameservices_v1 {
      */
     previewTime?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask to apply to the resource. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      */
     updateMask?: string;
 
@@ -5603,9 +5602,9 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.realms.gameServerClusters.create({
-     *       // Required. The ID of the game server cluster resource to be created.
+     *       // Required. The ID of the game server cluster resource to create.
      *       gameServerClusterId: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *
      *       // Request body metadata
@@ -5755,7 +5754,7 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.realms.gameServerClusters.delete({
-     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
+     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{locationId\}/gameServerClusters/{gameServerClusterId\}`.
      *       name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *     });
      *   console.log(res.data);
@@ -5887,9 +5886,9 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.realms.gameServerClusters.get({
-     *       // Required. The name of the game server cluster to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}/gameServerClusters/{cluster\}`.
+     *       // Required. The name of the game server cluster to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}/gameServerClusters/{gameServerClusterId\}`.
      *       name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
-     *       // Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does not return the `cluster_state` field.
+     *       // Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is `GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED`, the same as `BASIC`, which does not return the `cluster_state` field.
      *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -6027,17 +6026,17 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.realms.gameServerClusters.list({
-     *       // Optional. The filter to apply to list results.
+     *       // Optional. The filter to apply to list results (see [Filtering](https://google.aip.dev/160)).
      *       filter: 'placeholder-value',
-     *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *       // Optional. Specifies the ordering of results following [Cloud API syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      *       orderBy: 'placeholder-value',
-     *       // Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
+     *       // Optional. The maximum number of items to return. If unspecified, the server picks an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
      *       pageSize: 'placeholder-value',
-     *       // Optional. The next_page_token value returned from a previous List request, if any.
+     *       // Optional. The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: "projects/{project\}/locations/{location\}/realms/{realm\}".
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
-     *       // Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does not return the `cluster_state` field.
+     *       // Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is `GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED`, the same as `BASIC`, which does not return the `cluster_state` field.
      *       view: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -6179,9 +6178,9 @@ export namespace gameservices_v1 {
      *   // Do the magic
      *   const res =
      *     await gameservices.projects.locations.realms.gameServerClusters.patch({
-     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}/gameServerClusters/{gameServerClusterId\}`. For example, `projects/my-project/locations/global/realms/zanzibar/gameServerClusters/my-gke-cluster`.
      *       name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *       // Required. The update mask to apply to the resource. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -6329,13 +6328,13 @@ export namespace gameservices_v1 {
      *   const res =
      *     await gameservices.projects.locations.realms.gameServerClusters.previewCreate(
      *       {
-     *         // Required. The ID of the game server cluster resource to be created.
+     *         // Required. The ID of the game server cluster resource to create.
      *         gameServerClusterId: 'placeholder-value',
-     *         // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
+     *         // Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      *         parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *         // Optional. The target timestamp to compute the preview.
      *         previewTime: 'placeholder-value',
-     *         // Optional. This field is deprecated, preview will always return KubernetesClusterState.
+     *         // Optional. This field is deprecated. Preview will always return KubernetesClusterState.
      *         view: 'placeholder-value',
      *
      *         // Request body metadata
@@ -6493,7 +6492,7 @@ export namespace gameservices_v1 {
      *   const res =
      *     await gameservices.projects.locations.realms.gameServerClusters.previewDelete(
      *       {
-     *         // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
+     *         // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{locationId\}/gameServerClusters/{gameServerClusterId\}`.
      *         name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *         // Optional. The target timestamp to compute the preview.
      *         previewTime: 'placeholder-value',
@@ -6638,11 +6637,11 @@ export namespace gameservices_v1 {
      *   const res =
      *     await gameservices.projects.locations.realms.gameServerClusters.previewUpdate(
      *       {
-     *         // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *         // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}/gameServerClusters/{gameServerClusterId\}`. For example, `projects/my-project/locations/global/realms/zanzibar/gameServerClusters/my-gke-cluster`.
      *         name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *         // Optional. The target timestamp to compute the preview.
      *         previewTime: 'placeholder-value',
-     *         // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *         // Required. Mask of fields to update. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      *         updateMask: 'placeholder-value',
      *
      *         // Request body metadata
@@ -6775,11 +6774,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create
     extends StandardParameters {
     /**
-     * Required. The ID of the game server cluster resource to be created.
+     * Required. The ID of the game server cluster resource to create.
      */
     gameServerClusterId?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      */
     parent?: string;
 
@@ -6791,56 +6790,56 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
+     * Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{locationId\}/gameServerClusters/{gameServerClusterId\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}/gameServerClusters/{cluster\}`.
+     * Required. The name of the game server cluster to retrieve, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}/gameServerClusters/{gameServerClusterId\}`.
      */
     name?: string;
     /**
-     * Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does not return the `cluster_state` field.
+     * Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is `GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED`, the same as `BASIC`, which does not return the `cluster_state` field.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$List
     extends StandardParameters {
     /**
-     * Optional. The filter to apply to list results.
+     * Optional. The filter to apply to list results (see [Filtering](https://google.aip.dev/160)).
      */
     filter?: string;
     /**
-     * Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     * Optional. Specifies the ordering of results following [Cloud API syntax](https://cloud.google.com/apis/design/design_patterns#sorting_order).
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
+     * Optional. The maximum number of items to return. If unspecified, the server picks an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
      */
     pageSize?: number;
     /**
-     * Optional. The next_page_token value returned from a previous List request, if any.
+     * Optional. The next_page_token value returned from a previous list request, if any.
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, in the following form: "projects/{project\}/locations/{location\}/realms/{realm\}".
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      */
     parent?: string;
     /**
-     * Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does not return the `cluster_state` field.
+     * Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is `GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED`, the same as `BASIC`, which does not return the `cluster_state` field.
      */
     view?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch
     extends StandardParameters {
     /**
-     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}/gameServerClusters/{gameServerClusterId\}`. For example, `projects/my-project/locations/global/realms/zanzibar/gameServerClusters/my-gke-cluster`.
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. The update mask to apply to the resource. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      */
     updateMask?: string;
 
@@ -6852,11 +6851,11 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate
     extends StandardParameters {
     /**
-     * Required. The ID of the game server cluster resource to be created.
+     * Required. The ID of the game server cluster resource to create.
      */
     gameServerClusterId?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}`.
      */
     parent?: string;
     /**
@@ -6864,7 +6863,7 @@ export namespace gameservices_v1 {
      */
     previewTime?: string;
     /**
-     * Optional. This field is deprecated, preview will always return KubernetesClusterState.
+     * Optional. This field is deprecated. Preview will always return KubernetesClusterState.
      */
     view?: string;
 
@@ -6876,7 +6875,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
+     * Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{locationId\}/gameServerClusters/{gameServerClusterId\}`.
      */
     name?: string;
     /**
@@ -6887,7 +6886,7 @@ export namespace gameservices_v1 {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate
     extends StandardParameters {
     /**
-     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{locationId\}/realms/{realmId\}/gameServerClusters/{gameServerClusterId\}`. For example, `projects/my-project/locations/global/realms/zanzibar/gameServerClusters/my-gke-cluster`.
      */
     name?: string;
     /**
@@ -6895,7 +6894,7 @@ export namespace gameservices_v1 {
      */
     previewTime?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For more information, see the [`FieldMask` definition](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask).
      */
     updateMask?: string;
 
