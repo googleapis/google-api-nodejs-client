@@ -364,6 +364,40 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3ImportDocumentsResponse {}
   /**
+   * The metadata proto of ResyncDataset method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * Returns the newly added document Cloud Storage prefix if the documents are founded in Cloud Storage while not in Document Service storage.
+     */
+    newlyAddedDocuments?: Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument[];
+  }
+  /**
+   * The proto for updated document in resync pipeline.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetMetadataUpdatedDocument {
+    /**
+     * The prefix of cloud storage, identifies the destination document which should be updated by resync pipeline.
+     */
+    destinationPrefix?: string | null;
+    /**
+     * The prefix of cloud storage, identifies the original document which should be updated by resync pipeline.
+     */
+    sourcePrefix?: string | null;
+    /**
+     * The final status of the documents which should be updated by resync pipeline.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * The response proto of ResyncDataset method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3ResyncDatasetResponse {}
+  /**
    * The revision reference specifies which revision on the document to read.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3RevisionReference {
@@ -626,7 +660,7 @@ export namespace documentai_v1 {
      */
     entities?: Schema$GoogleCloudDocumentaiV1beta1DocumentEntity[];
     /**
-     * Relationship among Document.entities.
+     * Placeholder. Relationship among Document.entities.
      */
     entityRelations?: Schema$GoogleCloudDocumentaiV1beta1DocumentEntityRelation[];
     /**
@@ -642,7 +676,7 @@ export namespace documentai_v1 {
      */
     pages?: Schema$GoogleCloudDocumentaiV1beta1DocumentPage[];
     /**
-     * Revision history of this document.
+     * Placeholder. Revision history of this document.
      */
     revisions?: Schema$GoogleCloudDocumentaiV1beta1DocumentRevision[];
     /**
@@ -654,11 +688,11 @@ export namespace documentai_v1 {
      */
     text?: string | null;
     /**
-     * A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
+     * Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
      */
     textChanges?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextChange[];
     /**
-     * Styles for the Document.text.
+     * Placeholder. Styles for the Document.text.
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta1DocumentStyle[];
     /**
@@ -814,6 +848,10 @@ export namespace documentai_v1 {
      */
     provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
     /**
+     * A list of visually detected symbols on the page.
+     */
+    symbols?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageSymbol[];
+    /**
      * A list of visually detected tables on the page.
      */
     tables?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageTable[];
@@ -890,7 +928,7 @@ export namespace documentai_v1 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -1044,6 +1082,19 @@ export namespace documentai_v1 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
+  }
+  /**
+   * A detected symbol.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentPageSymbol {
+    /**
+     * A list of detected languages together with confidence.
+     */
+    detectedLanguages?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage[];
+    /**
+     * Layout for Symbol.
+     */
+    layout?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageLayout;
   }
   /**
    * A table representation similar to HTML table structure.
@@ -1295,7 +1346,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor {
     /**
-     * Contains the content of the text span so that users do not have to look it up in the text_segments.
+     * Contains the content of the text span so that users do not have to look it up in the text_segments. It is always populated for formFields.
      */
     content?: string | null;
     /**
@@ -1466,7 +1517,7 @@ export namespace documentai_v1 {
      */
     entities?: Schema$GoogleCloudDocumentaiV1beta2DocumentEntity[];
     /**
-     * Relationship among Document.entities.
+     * Placeholder. Relationship among Document.entities.
      */
     entityRelations?: Schema$GoogleCloudDocumentaiV1beta2DocumentEntityRelation[];
     /**
@@ -1486,7 +1537,7 @@ export namespace documentai_v1 {
      */
     pages?: Schema$GoogleCloudDocumentaiV1beta2DocumentPage[];
     /**
-     * Revision history of this document.
+     * Placeholder. Revision history of this document.
      */
     revisions?: Schema$GoogleCloudDocumentaiV1beta2DocumentRevision[];
     /**
@@ -1498,11 +1549,11 @@ export namespace documentai_v1 {
      */
     text?: string | null;
     /**
-     * A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
+     * Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
      */
     textChanges?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextChange[];
     /**
-     * Styles for the Document.text.
+     * Placeholder. Styles for the Document.text.
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta2DocumentStyle[];
     /**
@@ -1675,6 +1726,10 @@ export namespace documentai_v1 {
      */
     provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
     /**
+     * A list of visually detected symbols on the page.
+     */
+    symbols?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageSymbol[];
+    /**
      * A list of visually detected tables on the page.
      */
     tables?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageTable[];
@@ -1751,7 +1806,7 @@ export namespace documentai_v1 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -1905,6 +1960,19 @@ export namespace documentai_v1 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
+  }
+  /**
+   * A detected symbol.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentPageSymbol {
+    /**
+     * A list of detected languages together with confidence.
+     */
+    detectedLanguages?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage[];
+    /**
+     * Layout for Symbol.
+     */
+    layout?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageLayout;
   }
   /**
    * A table representation similar to HTML table structure.
@@ -2156,7 +2224,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor {
     /**
-     * Contains the content of the text span so that users do not have to look it up in the text_segments.
+     * Contains the content of the text span so that users do not have to look it up in the text_segments. It is always populated for formFields.
      */
     content?: string | null;
     /**
@@ -2616,7 +2684,7 @@ export namespace documentai_v1 {
      */
     entities?: Schema$GoogleCloudDocumentaiV1DocumentEntity[];
     /**
-     * Relationship among Document.entities.
+     * Placeholder. Relationship among Document.entities.
      */
     entityRelations?: Schema$GoogleCloudDocumentaiV1DocumentEntityRelation[];
     /**
@@ -2632,7 +2700,7 @@ export namespace documentai_v1 {
      */
     pages?: Schema$GoogleCloudDocumentaiV1DocumentPage[];
     /**
-     * Revision history of this document.
+     * Placeholder. Revision history of this document.
      */
     revisions?: Schema$GoogleCloudDocumentaiV1DocumentRevision[];
     /**
@@ -2644,11 +2712,11 @@ export namespace documentai_v1 {
      */
     text?: string | null;
     /**
-     * A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
+     * Placeholder. A list of text corrections made to [Document.text]. This is usually used for annotating corrections to OCR mistakes. Text changes for a given revision may not overlap with each other.
      */
     textChanges?: Schema$GoogleCloudDocumentaiV1DocumentTextChange[];
     /**
-     * Styles for the Document.text.
+     * Placeholder. Styles for the Document.text.
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1DocumentStyle[];
     /**
@@ -2822,6 +2890,10 @@ export namespace documentai_v1 {
      */
     provenance?: Schema$GoogleCloudDocumentaiV1DocumentProvenance;
     /**
+     * A list of visually detected symbols on the page.
+     */
+    symbols?: Schema$GoogleCloudDocumentaiV1DocumentPageSymbol[];
+    /**
      * A list of visually detected tables on the page.
      */
     tables?: Schema$GoogleCloudDocumentaiV1DocumentPageTable[];
@@ -2898,7 +2970,7 @@ export namespace documentai_v1 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -3052,6 +3124,19 @@ export namespace documentai_v1 {
      * The history of this annotation.
      */
     provenance?: Schema$GoogleCloudDocumentaiV1DocumentProvenance;
+  }
+  /**
+   * A detected symbol.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentPageSymbol {
+    /**
+     * A list of detected languages together with confidence.
+     */
+    detectedLanguages?: Schema$GoogleCloudDocumentaiV1DocumentPageDetectedLanguage[];
+    /**
+     * Layout for Symbol.
+     */
+    layout?: Schema$GoogleCloudDocumentaiV1DocumentPageLayout;
   }
   /**
    * A table representation similar to HTML table structure.
@@ -3303,7 +3388,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1DocumentTextAnchor {
     /**
-     * Contains the content of the text span so that users do not have to look it up in the text_segments.
+     * Contains the content of the text span so that users do not have to look it up in the text_segments. It is always populated for formFields.
      */
     content?: string | null;
     /**
@@ -3487,7 +3572,7 @@ export namespace documentai_v1 {
      */
     state?: string | null;
     /**
-     * The processor type, e.g., INVOICE_PARSING, W2_PARSING, etc.
+     * The processor type, e.g., OCR_PROCESSOR, INVOICE_PROCESSOR, etc. To get a list of processors types, see FetchProcessorTypes.
      */
     type?: string | null;
   }
@@ -3541,6 +3626,14 @@ export namespace documentai_v1 {
      * The display name of the processor version.
      */
     displayName?: string | null;
+    /**
+     * The KMS key name used for encryption.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * The KMS key version with which data is encrypted.
+     */
+    kmsKeyVersionName?: string | null;
     /**
      * The resource name of the processor version. Format: `projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processor_version\}`
      */
@@ -3802,6 +3895,9 @@ export namespace documentai_v1 {
      */
     red?: number | null;
   }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   */
   export interface Schema$GoogleTypeDate {
     /**
      * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
@@ -3907,7 +4003,7 @@ export namespace documentai_v1 {
      */
     recipients?: string[] | null;
     /**
-     * Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland.
+     * Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland.
      */
     regionCode?: string | null;
     /**
@@ -7102,6 +7198,8 @@ export namespace documentai_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
      *   //   "state": "my_state"
      *   // }
