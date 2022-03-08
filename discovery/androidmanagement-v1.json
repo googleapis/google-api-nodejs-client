@@ -877,7 +877,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The requested page size. The actual page size may be fixed to a min or max value.",
+                  "description": "The requested page size. This is a hint and the actual page size in the response may be different.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20220104",
+  "revision": "20220302",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1121,10 +1121,53 @@
       },
       "type": "object"
     },
+    "AppVersion": {
+      "description": "This represents a single version of the app.",
+      "id": "AppVersion",
+      "properties": {
+        "production": {
+          "description": "True if this version is a production track.",
+          "type": "boolean"
+        },
+        "trackIds": {
+          "description": "Track ids that the app version is published in. This doesn't include the production track (see production instead).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "versionCode": {
+          "description": "Unique increasing identifier for the app version.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "versionString": {
+          "description": "The string used in the Play store by the app developer to identify the version. The string is not necessarily unique or localized (for example, the string could be \"1.4\").",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Application": {
       "description": "Information about an app.",
       "id": "Application",
       "properties": {
+        "appPricing": {
+          "description": "Whether this app is free, free with in-app purchases, or paid. If the pricing is unspecified, this means the app is not generally available anymore (even though it might still be available to people who own it).",
+          "enum": [
+            "APP_PRICING_UNSPECIFIED",
+            "FREE",
+            "FREE_WITH_IN_APP_PURCHASE",
+            "PAID"
+          ],
+          "enumDescriptions": [
+            "Unknown pricing, used to denote an approved app that is not generally available.",
+            "The app is free.",
+            "The app is free, but offers in-app purchases.",
+            "The app is paid."
+          ],
+          "type": "string"
+        },
         "appTracks": {
           "description": "Application tracks visible to the enterprise.",
           "items": {
@@ -1132,12 +1175,102 @@
           },
           "type": "array"
         },
+        "appVersions": {
+          "description": "Versions currently available for this app.",
+          "items": {
+            "$ref": "AppVersion"
+          },
+          "type": "array"
+        },
+        "author": {
+          "description": "The name of the author of the apps (for example, the app developer).",
+          "type": "string"
+        },
+        "availableCountries": {
+          "description": "The countries which this app is available in as per ISO 3166-1 alpha-2.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "category": {
+          "description": "The app category (e.g. RACING, SOCIAL, etc.)",
+          "type": "string"
+        },
+        "contentRating": {
+          "description": "The content rating for this app.",
+          "enum": [
+            "CONTENT_RATING_UNSPECIFIED",
+            "THREE_YEARS",
+            "SEVEN_YEARS",
+            "TWELVE_YEARS",
+            "SIXTEEN_YEARS",
+            "EIGHTEEN_YEARS"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Content suitable for ages 3 and above only.",
+            "Content suitable for ages 7 and above only.",
+            "Content suitable for ages 12 and above only.",
+            "Content suitable for ages 16 and above only.",
+            "Content suitable for ages 18 and above only."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "The localized promotional description, if available.",
+          "type": "string"
+        },
+        "distributionChannel": {
+          "description": "How and to whom the package is made available.",
+          "enum": [
+            "DISTRIBUTION_CHANNEL_UNSPECIFIED",
+            "PUBLIC_GOOGLE_HOSTED",
+            "PRIVATE_GOOGLE_HOSTED",
+            "PRIVATE_SELF_HOSTED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Package is available through the Play store and not restricted to a specific enterprise.",
+            "Package is a private app (restricted to an enterprise) but hosted by Google.",
+            "Private app (restricted to an enterprise) and is privately hosted."
+          ],
+          "type": "string"
+        },
+        "features": {
+          "description": "Noteworthy features (if any) of this app.",
+          "items": {
+            "enum": [
+              "APP_FEATURE_UNSPECIFIED",
+              "VPN_APP"
+            ],
+            "enumDescriptions": [
+              "Unspecified.",
+              "The app is a VPN."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fullDescription": {
+          "description": "Full app description, if available.",
+          "type": "string"
+        },
+        "iconUrl": {
+          "description": "A link to an image that can be used as an icon for the app. This image is suitable for use at up to 512px x 512px",
+          "type": "string"
+        },
         "managedProperties": {
           "description": "The set of managed properties available to be pre-configured for the app.",
           "items": {
             "$ref": "ManagedProperty"
           },
           "type": "array"
+        },
+        "minAndroidSdkVersion": {
+          "description": "The minimum Android SDK necessary to run the app.",
+          "format": "int32",
+          "type": "integer"
         },
         "name": {
           "description": "The name of the app in the form enterprises/{enterprise}/applications/{package_name}.",
@@ -1150,8 +1283,33 @@
           },
           "type": "array"
         },
+        "playStoreUrl": {
+          "description": "A link to the (consumer) Google Play details page for the app.",
+          "type": "string"
+        },
+        "recentChanges": {
+          "description": "A localised description of the recent changes made to the app.",
+          "type": "string"
+        },
+        "screenshotUrls": {
+          "description": "A list of screenshot links representing the app.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "smallIconUrl": {
+          "description": "A link to a smaller image that can be used as an icon for the app. This image is suitable for use at up to 128px x 128px.",
+          "type": "string"
+        },
         "title": {
           "description": "The title of the app. Localized.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The approximate time (within 7 days) the app was last published.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1741,7 +1899,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values A month and day value, with a zero year, such as an anniversary A year on its own, with zero month and day values A year and month value, with a zero day, such as a credit card expiration dateRelated types are google.type.TimeOfDay and google.protobuf.Timestamp.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values A month and day, with a zero year (e.g., an anniversary) A year on its own, with a zero month and a zero day A year and month, with a zero day (e.g., a credit card expiration date)Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -3158,6 +3316,20 @@
             "The timeout period is set to 24 hours."
           ],
           "type": "string"
+        },
+        "unifiedLockSettings": {
+          "description": "Controls whether a unified lock is allowed for the device and the work profile, on devices running Android 9 and above with a work profile. This has no effect on other devices. This can be set only if password_scope is set to SCOPE_PROFILE, the policy will be rejected otherwise. If user has not set a separate work lock and this field is set to REQUIRE_SEPARATE_WORK_LOCK, a NonComplianceDetail is reported with nonComplianceReason set to USER_ACTION.",
+          "enum": [
+            "UNIFIED_LOCK_SETTINGS_UNSPECIFIED",
+            "ALLOW_UNIFIED_WORK_AND_PERSONAL_LOCK",
+            "REQUIRE_SEPARATE_WORK_LOCK"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to ALLOW_UNIFIED_WORK_AND_PERSONAL_LOCK.",
+            "A common lock for the device and the work profile is allowed.",
+            "A separate lock for the work profile is required."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3402,14 +3574,14 @@
           ],
           "enumDescriptions": [
             "If camera_disabled is true, this is equivalent to CAMERA_ACCESS_DISABLED. Otherwise, this is equivalent to CAMERA_ACCESS_USER_CHOICE.",
-            "The field camera_disabled(google.android.devicemanagement.v1.Policy.camera_disabled] is ignored. This is the default device behaviour: all cameras on the device are available. On Android 12 and above, the user can use the camera access toggle.",
-            "The field camera_disabled(google.android.devicemanagement.v1.Policy.camera_disabled] is ignored. All cameras on the device are disabled (for fully managed devices, this applies device-wide and for work profiles this applies only to the work profile).There are no explicit restrictions placed on the camera access toggle on Android 12 and above: on fully managed devices, the camera access toggle has no effect as all cameras are disabled. On devices with a work profile, this toggle has no effect on apps in the work profile, but it affects apps outside the work profile.",
-            "The field camera_disabled(google.android.devicemanagement.v1.Policy.camera_disabled] is ignored. All cameras on the device are available. On fully managed devices running Android 12 and above, the user is unable to use the camera access toggle. On devices which are not fully managed or which run Android 11 or below, this is equivalent to CAMERA_ACCESS_USER_CHOICE."
+            "The field camera_disabled is ignored. This is the default device behaviour: all cameras on the device are available. On Android 12 and above, the user can use the camera access toggle.",
+            "The field camera_disabled is ignored. All cameras on the device are disabled (for fully managed devices, this applies device-wide and for work profiles this applies only to the work profile).There are no explicit restrictions placed on the camera access toggle on Android 12 and above: on fully managed devices, the camera access toggle has no effect as all cameras are disabled. On devices with a work profile, this toggle has no effect on apps in the work profile, but it affects apps outside the work profile.",
+            "The field camera_disabled is ignored. All cameras on the device are available. On fully managed devices running Android 12 and above, the user is unable to use the camera access toggle. On devices which are not fully managed or which run Android 11 or below, this is equivalent to CAMERA_ACCESS_USER_CHOICE."
           ],
           "type": "string"
         },
         "cameraDisabled": {
-          "description": "Whether all cameras on the device are disabled.",
+          "description": "If camera_access is set to any value other than CAMERA_ACCESS_UNSPECIFIED, this has no effect. Otherwise this field controls whether cameras are disabled: If true, all cameras are disabled, otherwise they are available. For fully managed devices this field applies for all apps on the device. For work profiles, this field applies only to apps in the work profile, and the camera access of apps outside the work profile is unaffected.",
           "type": "boolean"
         },
         "cellBroadcastsConfigDisabled": {
@@ -3538,7 +3710,7 @@
               "Disable unredacted notifications on secure keyguard screens.",
               "Ignore trust agent state on secure keyguard screens.",
               "Disable fingerprint sensor on secure keyguard screens.",
-              "Disable text entry into notifications on secure keyguard screens.",
+              "On devices running Android 6 and below, disables text entry into notifications on secure keyguard screens. Has no effect on Android 7 and above.",
               "Disable face authentication on secure keyguard screens.",
               "Disable iris authentication on secure keyguard screens.",
               "Disable all biometric authentication on secure keyguard screens.",
@@ -3599,9 +3771,9 @@
           ],
           "enumDescriptions": [
             "If unmute_microphone_disabled is true, this is equivalent to MICROPHONE_ACCESS_DISABLED. Otherwise, this is equivalent to MICROPHONE_ACCESS_USER_CHOICE.",
-            "The field unmute_microphone_disabled(google.android.devicemanagement.v1.Policy.unmute_microphone_disabled] is ignored. This is the default device behaviour: the microphone on the device is available. On Android 12 and above, the user can use the microphone access toggle.",
-            "The field unmute_microphone_disabled(google.android.devicemanagement.v1.Policy.unmute_microphone_disabled] is ignored. The microphone on the device is disabled (for fully managed devices, this applies device-wide).The microphone access toggle has no effect as the microphone is disabled.",
-            "The field unmute_microphone_disabled(google.android.devicemanagement.v1.Policy.unmute_microphone_disabled] is ignored. The microphone on the device is available. On devices running Android 12 and above, the user is unable to use the microphone access toggle. On devices which run Android 11 or below, this is equivalent to MICROPHONE_ACCESS_USER_CHOICE."
+            "The field unmute_microphone_disabled is ignored. This is the default device behaviour: the microphone on the device is available. On Android 12 and above, the user can use the microphone access toggle.",
+            "The field unmute_microphone_disabled is ignored. The microphone on the device is disabled (for fully managed devices, this applies device-wide).The microphone access toggle has no effect as the microphone is disabled.",
+            "The field unmute_microphone_disabled is ignored. The microphone on the device is available. On devices running Android 12 and above, the user is unable to use the microphone access toggle. On devices which run Android 11 or below, this is equivalent to MICROPHONE_ACCESS_USER_CHOICE."
           ],
           "type": "string"
         },
@@ -3666,7 +3838,7 @@
         },
         "passwordRequirements": {
           "$ref": "PasswordRequirements",
-          "description": "Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use password_policies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here."
+          "description": "Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here. unified_lock_settings cannot be used here"
         },
         "permissionGrants": {
           "description": "Explicit permission or group grants or denials for all apps. These values override the default_permission_policy.",
@@ -3758,7 +3930,7 @@
           "type": "boolean"
         },
         "setupActions": {
-          "description": "Actions to take during the setup process.",
+          "description": "Action to take during the setup process. At most one action may be specified.",
           "items": {
             "$ref": "SetupAction"
           },
@@ -3820,7 +3992,7 @@
           "type": "boolean"
         },
         "unmuteMicrophoneDisabled": {
-          "description": "Whether the microphone is muted and adjusting microphone volume is disabled.",
+          "description": "If microphone_access is set to any value other than MICROPHONE_ACCESS_UNSPECIFIED, this has no effect. Otherwise this field controls whether microphones are disabled: If true, all microphones are disabled, otherwise they are available. This is available only on fully managed devices.",
           "type": "boolean"
         },
         "usbFileTransferDisabled": {
@@ -4006,7 +4178,7 @@
         },
         "launchApp": {
           "$ref": "LaunchAppAction",
-          "description": "An action to launch an app."
+          "description": "An action to launch an app. The app will be launched with an intent containing an extra with key com.google.android.apps.work.clouddpc.EXTRA_LAUNCHED_AS_SETUP_ACTION set to the boolean value true to indicate that this is a setup action flow."
         },
         "title": {
           "$ref": "UserFacingMessage",
