@@ -624,7 +624,7 @@
       }
     }
   },
-  "revision": "20220125",
+  "revision": "20220301",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -768,7 +768,7 @@
       "type": "object"
     },
     "Instance": {
-      "description": "A Google Cloud Redis instance.",
+      "description": "A Memorystore for Redis instance.",
       "id": "Instance",
       "properties": {
         "alternativeLocationId": {
@@ -881,7 +881,7 @@
           "type": "integer"
         },
         "readReplicasMode": {
-          "description": "Optional. Read replica mode. Can only be specified when trying to create the instance.",
+          "description": "Optional. Read replicas mode for the instance. Defaults to READ_REPLICAS_DISABLED.",
           "enum": [
             "READ_REPLICAS_MODE_UNSPECIFIED",
             "READ_REPLICAS_DISABLED",
@@ -915,7 +915,7 @@
           "type": "string"
         },
         "secondaryIpRange": {
-          "description": "Optional. Additional ip ranges for node placement, beyond those specified in reserved_ip_range. At most 1 secondary IP range is supported. The mask value must not exceed /28. Not supported for BASIC tier. Updates can only add new ranges, once added ranges cannot be changed or deleted. Values in this list cannot overlap with the reserved_ip_range. Not supported during instance creation.",
+          "description": "Optional. Additional IP range for node placement. Required when enabling read replicas on an existing instance. For DIRECT_PEERING mode value must be a CIDR range of size /28, or \"auto\". For PRIVATE_SERVICE_ACCESS mode value must be the name of an allocated address range associated with the private service access connection, or \"auto\".",
           "type": "string"
         },
         "serverCaCerts": {
