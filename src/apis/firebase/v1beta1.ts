@@ -198,6 +198,10 @@ export namespace firebase_v1beta1 {
    */
   export interface Schema$AndroidApp {
     /**
+     * The key_id of the GCP ApiKey associated with this App. If set must have no restrictions, or only have restrictions that are valid for the associated Firebase App. Cannot be set in create requests, instead an existing valid API Key will be chosen, or if no valid API Keys exist, one will be provisioned for you. Cannot be set to an empty value in update requests.
+     */
+    apiKeyId?: string | null;
+    /**
      * Immutable. The globally unique, Firebase-assigned identifier for the `AndroidApp`. This identifier should be treated as an opaque token, as the data format is not specified.
      */
     appId?: string | null;
@@ -320,6 +324,10 @@ export namespace firebase_v1beta1 {
    * Details of a Firebase App for iOS.
    */
   export interface Schema$IosApp {
+    /**
+     * The key_id of the GCP ApiKey associated with this App. If set must have no restrictions, or only have restrictions that are valid for the associated Firebase App. Cannot be set in create requests, instead an existing valid API Key will be chosen, or if no valid API Keys exist, one will be provisioned for you. Cannot be set to an empty value in update requests.
+     */
+    apiKeyId?: string | null;
     /**
      * Immutable. The globally unique, Firebase-assigned identifier for the `IosApp`. This identifier should be treated as an opaque token, as the data format is not specified.
      */
@@ -587,6 +595,10 @@ export namespace firebase_v1beta1 {
    * Details of a Firebase App for the web.
    */
   export interface Schema$WebApp {
+    /**
+     * The key_id of the GCP ApiKey associated with this App. If set must have no restrictions, or only have restrictions that are valid for the associated Firebase App. Cannot be set in create requests, instead an existing valid API Key will be chosen, or if no valid API Keys exist, one will be provisioned for you. Cannot be set to an empty value in update requests.
+     */
+    apiKeyId?: string | null;
     /**
      * Immutable. The globally unique, Firebase-assigned identifier for the `WebApp`. This identifier should be treated as an opaque token, as the data format is not specified.
      */
@@ -2404,6 +2416,7 @@ export namespace firebase_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "apiKeyId": "my_apiKeyId",
      *       //   "appId": "my_appId",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
@@ -2554,6 +2567,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiKeyId": "my_apiKeyId",
      *   //   "appId": "my_appId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
@@ -2965,6 +2979,7 @@ export namespace firebase_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "apiKeyId": "my_apiKeyId",
      *       //   "appId": "my_appId",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
@@ -2977,6 +2992,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiKeyId": "my_apiKeyId",
      *   //   "appId": "my_appId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
@@ -3955,6 +3971,7 @@ export namespace firebase_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "apiKeyId": "my_apiKeyId",
      *       //   "appId": "my_appId",
      *       //   "appStoreId": "my_appStoreId",
      *       //   "bundleId": "my_bundleId",
@@ -4107,6 +4124,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiKeyId": "my_apiKeyId",
      *   //   "appId": "my_appId",
      *   //   "appStoreId": "my_appStoreId",
      *   //   "bundleId": "my_bundleId",
@@ -4518,6 +4536,7 @@ export namespace firebase_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "apiKeyId": "my_apiKeyId",
      *       //   "appId": "my_appId",
      *       //   "appStoreId": "my_appStoreId",
      *       //   "bundleId": "my_bundleId",
@@ -4532,6 +4551,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiKeyId": "my_apiKeyId",
      *   //   "appId": "my_appId",
      *   //   "appStoreId": "my_appStoreId",
      *   //   "bundleId": "my_bundleId",
@@ -4732,6 +4752,7 @@ export namespace firebase_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "apiKeyId": "my_apiKeyId",
      *       //   "appId": "my_appId",
      *       //   "appUrls": [],
      *       //   "displayName": "my_displayName",
@@ -4883,6 +4904,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiKeyId": "my_apiKeyId",
      *   //   "appId": "my_appId",
      *   //   "appUrls": [],
      *   //   "displayName": "my_displayName",
@@ -5300,6 +5322,7 @@ export namespace firebase_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "apiKeyId": "my_apiKeyId",
      *       //   "appId": "my_appId",
      *       //   "appUrls": [],
      *       //   "displayName": "my_displayName",
@@ -5313,6 +5336,7 @@ export namespace firebase_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "apiKeyId": "my_apiKeyId",
      *   //   "appId": "my_appId",
      *   //   "appUrls": [],
      *   //   "displayName": "my_displayName",
