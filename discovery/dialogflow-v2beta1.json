@@ -2710,6 +2710,35 @@
         },
         "conversationProfiles": {
           "methods": {
+            "clearSuggestionFeatureConfig": {
+              "description": "Clears a suggestion feature from a conversation profile for the given participant role. This method is a [long-running operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations). The returned `Operation` type has the following method-specific fields: - `metadata`: ClearSuggestionFeatureConfigOperationMetadata - `response`: ConversationProfile",
+              "flatPath": "v2beta1/projects/{projectsId}/conversationProfiles/{conversationProfilesId}:clearSuggestionFeatureConfig",
+              "httpMethod": "POST",
+              "id": "dialogflow.projects.conversationProfiles.clearSuggestionFeatureConfig",
+              "parameterOrder": [
+                "conversationProfile"
+              ],
+              "parameters": {
+                "conversationProfile": {
+                  "description": "Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/conversationProfiles/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+conversationProfile}:clearSuggestionFeatureConfig",
+              "request": {
+                "$ref": "GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            },
             "create": {
               "description": "Creates a conversation profile in the specified project. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.",
               "flatPath": "v2beta1/projects/{projectsId}/conversationProfiles",
@@ -2857,6 +2886,35 @@
               },
               "response": {
                 "$ref": "GoogleCloudDialogflowV2beta1ConversationProfile"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/dialogflow"
+              ]
+            },
+            "setSuggestionFeatureConfig": {
+              "description": "Adds or updates a suggestion feature in a conversation profile. If the conversation profile contains the type of suggestion feature for the participant role, it will update it. Otherwise it will insert the suggestion feature. This method is a [long-running operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations). The returned `Operation` type has the following method-specific fields: - `metadata`: SetSuggestionFeatureConfigOperationMetadata - `response`: ConversationProfile If a long running operation to add or update suggestion feature config for the same conversation profile, participant role and suggestion feature type exists, please cancel the existing long running operation before sending such request, otherwise the request will be rejected.",
+              "flatPath": "v2beta1/projects/{projectsId}/conversationProfiles/{conversationProfilesId}:setSuggestionFeatureConfig",
+              "httpMethod": "POST",
+              "id": "dialogflow.projects.conversationProfiles.setSuggestionFeatureConfig",
+              "parameterOrder": [
+                "conversationProfile"
+              ],
+              "parameters": {
+                "conversationProfile": {
+                  "description": "Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/conversationProfiles/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/{+conversationProfile}:setSuggestionFeatureConfig",
+              "request": {
+                "$ref": "GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -6100,6 +6158,35 @@
             },
             "conversationProfiles": {
               "methods": {
+                "clearSuggestionFeatureConfig": {
+                  "description": "Clears a suggestion feature from a conversation profile for the given participant role. This method is a [long-running operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations). The returned `Operation` type has the following method-specific fields: - `metadata`: ClearSuggestionFeatureConfigOperationMetadata - `response`: ConversationProfile",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/conversationProfiles/{conversationProfilesId}:clearSuggestionFeatureConfig",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.locations.conversationProfiles.clearSuggestionFeatureConfig",
+                  "parameterOrder": [
+                    "conversationProfile"
+                  ],
+                  "parameters": {
+                    "conversationProfile": {
+                      "description": "Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/conversationProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+conversationProfile}:clearSuggestionFeatureConfig",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
                 "create": {
                   "description": "Creates a conversation profile in the specified project. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.",
                   "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/conversationProfiles",
@@ -6247,6 +6334,35 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudDialogflowV2beta1ConversationProfile"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "setSuggestionFeatureConfig": {
+                  "description": "Adds or updates a suggestion feature in a conversation profile. If the conversation profile contains the type of suggestion feature for the participant role, it will update it. Otherwise it will insert the suggestion feature. This method is a [long-running operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations). The returned `Operation` type has the following method-specific fields: - `metadata`: SetSuggestionFeatureConfigOperationMetadata - `response`: ConversationProfile If a long running operation to add or update suggestion feature config for the same conversation profile, participant role and suggestion feature type exists, please cancel the existing long running operation before sending such request, otherwise the request will be rejected.",
+                  "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/conversationProfiles/{conversationProfilesId}:setSuggestionFeatureConfig",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.locations.conversationProfiles.setSuggestionFeatureConfig",
+                  "parameterOrder": [
+                    "conversationProfile"
+                  ],
+                  "parameters": {
+                    "conversationProfile": {
+                      "description": "Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/conversationProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2beta1/{+conversationProfile}:setSuggestionFeatureConfig",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform",
@@ -7315,7 +7431,7 @@
       }
     }
   },
-  "revision": "20220128",
+  "revision": "20220228",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -10751,6 +10867,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ArticleSuggestionModelMetadata": {
+      "description": "Metadata for article suggestion models.",
+      "id": "GoogleCloudDialogflowV2ArticleSuggestionModelMetadata",
+      "properties": {
+        "trainingModelType": {
+          "description": "Optional. Type of the article suggestion model. If not provided, model_type is used.",
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "SMART_REPLY_DUAL_ENCODER_MODEL",
+            "SMART_REPLY_BERT_MODEL"
+          ],
+          "enumDescriptions": [
+            "ModelType unspecified.",
+            "ModelType smart reply dual encoder model.",
+            "ModelType smart reply bert model."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse": {
       "description": "The response message for EntityTypes.BatchUpdateEntityTypes.",
       "id": "GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse",
@@ -10775,6 +10912,54 @@
             "$ref": "GoogleCloudDialogflowV2Intent"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata": {
+      "description": "Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.",
+      "id": "GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata",
+      "properties": {
+        "conversationProfile": {
+          "description": "The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp whe the request was created. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "participantRole": {
+          "description": "Required. The participant role to remove the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER"
+          ],
+          "enumDescriptions": [
+            "Participant role not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent, such as a Dialogflow agent.",
+            "Participant is an end user that has called or chatted with Dialogflow services."
+          ],
+          "type": "string"
+        },
+        "suggestionFeatureType": {
+          "description": "Required. The type of the suggestion feature to remove.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ARTICLE_SUGGESTION",
+            "FAQ",
+            "SMART_REPLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature type.",
+            "Run article suggestion model.",
+            "Run FAQ model.",
+            "Run smart reply model."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -10837,6 +11022,195 @@
             "An existing conversation has received a new message, either from API or telephony. It is configured in ConversationProfile.new_message_event_notification_config",
             "Unrecoverable error during a telephone call. In general non-recoverable errors only occur if something was misconfigured in the ConversationProfile corresponding to the call. After a non-recoverable error, Dialogflow may stop responding. We don't fire this event: * in an API call because we can directly return the error, or, * when we can recover from an error."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ConversationModel": {
+      "description": "Represents a conversation model.",
+      "id": "GoogleCloudDialogflowV2ConversationModel",
+      "properties": {
+        "articleSuggestionModelMetadata": {
+          "$ref": "GoogleCloudDialogflowV2ArticleSuggestionModelMetadata",
+          "description": "Metadata for article suggestion models."
+        },
+        "createTime": {
+          "description": "Output only. Creation time of this model.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "datasets": {
+          "description": "Required. Datasets used to create model.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2InputDataset"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Required. The display name of the model. At most 64 bytes long.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Language code for the conversation model. If not specified, the language is en-US. Language at ConversationModel should be set for all non en-us languages. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: \"en-US\".",
+          "type": "string"
+        },
+        "name": {
+          "description": "ConversationModel resource name. Format: `projects//conversationModels/`",
+          "type": "string"
+        },
+        "smartReplyModelMetadata": {
+          "$ref": "GoogleCloudDialogflowV2SmartReplyModelMetadata",
+          "description": "Metadata for smart reply models."
+        },
+        "state": {
+          "description": "Output only. State of the model. A model can only serve prediction requests after it gets deployed.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "UNDEPLOYED",
+            "DEPLOYING",
+            "DEPLOYED",
+            "UNDEPLOYING",
+            "DELETING",
+            "FAILED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Should not be used, an un-set enum has this value by default.",
+            "Model being created.",
+            "Model is not deployed but ready to deploy.",
+            "Model is deploying.",
+            "Model is deployed and ready to use.",
+            "Model is undeploying.",
+            "Model is deleting.",
+            "Model is in error state. Not ready to deploy and use.",
+            "Model is being created but the training has not started, The model may remain in this state until there is enough capacity to start training."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata": {
+      "description": "Metadata for ConversationDatasets.",
+      "id": "GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata": {
+      "description": "Metadata for a ConversationModels.CreateConversationModelEvaluation operation.",
+      "id": "GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata",
+      "properties": {
+        "conversationModel": {
+          "description": "The resource name of the conversation model. Format: `projects//locations//conversationModels/`",
+          "type": "string"
+        },
+        "conversationModelEvaluation": {
+          "description": "The resource name of the conversation model. Format: `projects//locations//conversationModels//evaluations/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp when the request to create conversation model was submitted. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "State of CreateConversationModel operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "RUNNING",
+            "CANCELLED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Operation status not specified.",
+            "The operation is being prepared.",
+            "The operation is running.",
+            "The operation is cancelled.",
+            "The operation has succeeded.",
+            "The operation has failed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2CreateConversationModelOperationMetadata": {
+      "description": "Metadata for a ConversationModels.CreateConversationModel operation.",
+      "id": "GoogleCloudDialogflowV2CreateConversationModelOperationMetadata",
+      "properties": {
+        "conversationModel": {
+          "description": "The resource name of the conversation model. Format: `projects//conversationModels/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp when the request to create conversation model is submitted. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "State of CreateConversationModel operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED",
+            "CANCELLING",
+            "TRAINING"
+          ],
+          "enumDescriptions": [
+            "Invalid.",
+            "Request is submitted, but training has not started yet. The model may remain in this state until there is enough capacity to start training.",
+            "The training has succeeded.",
+            "The training has succeeded.",
+            "The training has been cancelled.",
+            "The training is in cancelling state.",
+            "Custom model is training."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata": {
+      "description": "Metadata for ConversationDatasets.",
+      "id": "GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2DeleteConversationModelOperationMetadata": {
+      "description": "Metadata for a ConversationModels.DeleteConversationModel operation.",
+      "id": "GoogleCloudDialogflowV2DeleteConversationModelOperationMetadata",
+      "properties": {
+        "conversationModel": {
+          "description": "The resource name of the conversation model. Format: `projects//conversationModels/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp when delete conversation model request was created. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2DeployConversationModelOperationMetadata": {
+      "description": "Metadata for a ConversationModels.DeployConversationModel operation.",
+      "id": "GoogleCloudDialogflowV2DeployConversationModelOperationMetadata",
+      "properties": {
+        "conversationModel": {
+          "description": "The resource name of the conversation model. Format: `projects//conversationModels/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp when request to deploy conversation model was submitted. The time is measured on server side.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -10953,6 +11327,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ExportOperationMetadata": {
+      "description": "Metadata related to the Export Data Operations (e.g. ExportDocument).",
+      "id": "GoogleCloudDialogflowV2ExportOperationMetadata",
+      "properties": {
+        "exportedGcsDestination": {
+          "$ref": "GoogleCloudDialogflowV2GcsDestination",
+          "description": "Cloud Storage file path of the exported data."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2FaqAnswer": {
       "description": "Represents answer from \"frequently asked questions\".",
       "id": "GoogleCloudDialogflowV2FaqAnswer",
@@ -10988,6 +11373,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2GcsDestination": {
+      "description": "Google Cloud Storage location for the output.",
+      "id": "GoogleCloudDialogflowV2GcsDestination",
+      "properties": {
+        "uri": {
+          "description": "The Google Cloud Storage URIs for the output. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case. The requesting user must have \"write-permission\" to the bucket.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2HumanAgentAssistantEvent": {
       "description": "Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.",
       "id": "GoogleCloudDialogflowV2HumanAgentAssistantEvent",
@@ -11010,6 +11406,45 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ImportConversationDataOperationMetadata": {
+      "description": "Metadata for a ConversationDatasets.ImportConversationData operation.",
+      "id": "GoogleCloudDialogflowV2ImportConversationDataOperationMetadata",
+      "properties": {
+        "conversationDataset": {
+          "description": "The resource name of the imported conversation dataset. Format: `projects//locations//conversationDatasets/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp when import conversation data request was created. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "partialFailures": {
+          "description": "Partial failures are failures that don't fail the whole long running operation, e.g. single files that couldn't be read.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ImportConversationDataOperationResponse": {
+      "description": "Response used for ConversationDatasets.ImportConversationData long running operation.",
+      "id": "GoogleCloudDialogflowV2ImportConversationDataOperationResponse",
+      "properties": {
+        "conversationDataset": {
+          "description": "The resource name of the imported conversation dataset. Format: `projects//locations//conversationDatasets/`",
+          "type": "string"
+        },
+        "importCount": {
+          "description": "Number of conversations imported successfully.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2ImportDocumentsResponse": {
       "description": "Response message for Documents.ImportDocuments.",
       "id": "GoogleCloudDialogflowV2ImportDocumentsResponse",
@@ -11020,6 +11455,17 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2InputDataset": {
+      "description": "InputDataset used to create model or do evaluation. NextID:5",
+      "id": "GoogleCloudDialogflowV2InputDataset",
+      "properties": {
+        "dataset": {
+          "description": "Required. ConversationDataset resource name. Format: `projects//locations//conversationDatasets/`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11938,6 +12384,10 @@
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2KnowledgeOperationMetadata",
       "properties": {
+        "exportOperationMetadata": {
+          "$ref": "GoogleCloudDialogflowV2ExportOperationMetadata",
+          "description": "Metadata for the Export Data Operation such as the destination of export."
+        },
         "knowledgeBase": {
           "description": "The name of the knowledge base interacted with during the operation.",
           "type": "string"
@@ -12216,6 +12666,54 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata": {
+      "description": "Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.",
+      "id": "GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata",
+      "properties": {
+        "conversationProfile": {
+          "description": "The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp whe the request was created. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "participantRole": {
+          "description": "Required. The participant role to add or update the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER"
+          ],
+          "enumDescriptions": [
+            "Participant role not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent, such as a Dialogflow agent.",
+            "Participant is an end user that has called or chatted with Dialogflow services."
+          ],
+          "type": "string"
+        },
+        "suggestionFeatureType": {
+          "description": "Required. The type of the suggestion feature to add or update.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ARTICLE_SUGGESTION",
+            "FAQ",
+            "SMART_REPLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature type.",
+            "Run article suggestion model.",
+            "Run FAQ model.",
+            "Run smart reply model."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2SmartReplyAnswer": {
       "description": "Represents a smart reply answer.",
       "id": "GoogleCloudDialogflowV2SmartReplyAnswer",
@@ -12231,6 +12729,27 @@
         },
         "reply": {
           "description": "The content of the reply.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SmartReplyModelMetadata": {
+      "description": "Metadata for smart reply models.",
+      "id": "GoogleCloudDialogflowV2SmartReplyModelMetadata",
+      "properties": {
+        "trainingModelType": {
+          "description": "Optional. Type of the smart reply model. If not provided, model_type is used.",
+          "enum": [
+            "MODEL_TYPE_UNSPECIFIED",
+            "SMART_REPLY_DUAL_ENCODER_MODEL",
+            "SMART_REPLY_BERT_MODEL"
+          ],
+          "enumDescriptions": [
+            "ModelType unspecified.",
+            "ModelType smart reply dual encoder model.",
+            "ModelType smart reply bert model."
+          ],
           "type": "string"
         }
       },
@@ -12325,6 +12844,22 @@
         "suggestSmartRepliesResponse": {
           "$ref": "GoogleCloudDialogflowV2SuggestSmartRepliesResponse",
           "description": "SuggestSmartRepliesResponse if request is for SMART_REPLY."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata": {
+      "description": "Metadata for a ConversationModels.UndeployConversationModel operation.",
+      "id": "GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata",
+      "properties": {
+        "conversationModel": {
+          "description": "The resource name of the conversation model. Format: `projects//conversationModels/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp when the request to undeploy conversation model was submitted. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13070,6 +13605,93 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata": {
+      "description": "Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.",
+      "id": "GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata",
+      "properties": {
+        "conversationProfile": {
+          "description": "The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp whe the request was created. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "participantRole": {
+          "description": "Required. The participant role to remove the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER"
+          ],
+          "enumDescriptions": [
+            "Participant role not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent, such as a Dialogflow agent.",
+            "Participant is an end user that has called or chatted with Dialogflow services."
+          ],
+          "type": "string"
+        },
+        "suggestionFeatureType": {
+          "description": "Required. The type of the suggestion feature to remove.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ARTICLE_SUGGESTION",
+            "FAQ",
+            "SMART_REPLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature type.",
+            "Run article suggestion model.",
+            "Run FAQ model.",
+            "Run smart reply model."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest": {
+      "description": "The request message for ConversationProfiles.ClearFeature.",
+      "id": "GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest",
+      "properties": {
+        "participantRole": {
+          "description": "Required. The participant role to remove the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER"
+          ],
+          "enumDescriptions": [
+            "Participant role not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent, such as a Dialogflow agent.",
+            "Participant is an end user that has called or chatted with Dialogflow services."
+          ],
+          "type": "string"
+        },
+        "suggestionFeatureType": {
+          "description": "Required. The type of the suggestion feature to remove.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ARTICLE_SUGGESTION",
+            "FAQ",
+            "SMART_REPLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature type.",
+            "Run article suggestion model.",
+            "Run FAQ model.",
+            "Run smart reply model."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1CompileSuggestionRequest": {
       "description": "The request message for Participants.CompileSuggestion.",
       "id": "GoogleCloudDialogflowV2beta1CompileSuggestionRequest",
@@ -13410,7 +14032,7 @@
           "type": "string"
         },
         "enableAutoReload": {
-          "description": "Optional. If true, we try to automatically reload the document every day (at a time picked by the system). If false or unspecified, we don't try to automatically reload the document. Currently you can only enable automatic reload for documents sourced from a public url, see `source` field for the source types. Reload status can be tracked in `latest_reload_status`. If a reload fails, we will keep the document unchanged. If a reload fails with internal errors, the system will try to reload the document on the next day. If a reload fails with non-retriable errors (e.g. PERMISION_DENIED), the system will not try to reload the document anymore. You need to manually reload the document successfully by calling `ReloadDocument` and clear the errors.",
+          "description": "Optional. If true, we try to automatically reload the document every day (at a time picked by the system). If false or unspecified, we don't try to automatically reload the document. Currently you can only enable automatic reload for documents sourced from a public url, see `source` field for the source types. Reload status can be tracked in `latest_reload_status`. If a reload fails, we will keep the document unchanged. If a reload fails with internal errors, the system will try to reload the document on the next day. If a reload fails with non-retriable errors (e.g. PERMISSION_DENIED), the system will not try to reload the document anymore. You need to manually reload the document successfully by calling `ReloadDocument` and clear the errors.",
           "type": "boolean"
         },
         "knowledgeTypes": {
@@ -13421,6 +14043,7 @@
               "FAQ",
               "EXTRACTIVE_QA",
               "ARTICLE_SUGGESTION",
+              "AGENT_FACING_SMART_REPLY",
               "SMART_REPLY"
             ],
             "enumDescriptions": [
@@ -13428,6 +14051,7 @@
               "The document content contains question and answer pairs as either HTML or CSV. Typical FAQ HTML formats are parsed accurately, but unusual formats may fail to be parsed. CSV must have questions in the first column and answers in the second, with no header. Because of this explicit format, they are always parsed accurately.",
               "Documents for which unstructured text is extracted and used for question answering.",
               "The entire document content as a whole can be used for query results. Only for Contact Center Solutions on Dialogflow.",
+              "The document contains agent-facing Smart Reply entries.",
               "The legacy enum for agent-facing smart reply feature."
             ],
             "type": "string"
@@ -13457,6 +14081,27 @@
         "rawContent": {
           "description": "The raw content of the document. This field is only permitted for EXTRACTIVE_QA and FAQ knowledge types.",
           "format": "byte",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the document.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "UPDATING",
+            "RELOADING",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The document state is unspecified.",
+            "The document creation is in progress.",
+            "The document is active and ready to use.",
+            "The document updation is in progress.",
+            "The document is reloading.",
+            "The document deletion is in progress."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -13721,6 +14366,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2beta1ExportOperationMetadata": {
+      "description": "Metadata related to the Export Data Operations (e.g. ExportDocument).",
+      "id": "GoogleCloudDialogflowV2beta1ExportOperationMetadata",
+      "properties": {
+        "exportedGcsDestination": {
+          "$ref": "GoogleCloudDialogflowV2beta1GcsDestination",
+          "description": "Cloud Storage file path of the exported data."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2beta1FaqAnswer": {
       "description": "Represents answer from \"frequently asked questions\".",
       "id": "GoogleCloudDialogflowV2beta1FaqAnswer",
@@ -13830,6 +14486,17 @@
         },
         "username": {
           "description": "The user name for HTTP Basic authentication.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1GcsDestination": {
+      "description": "Google Cloud Storage location for the output.",
+      "id": "GoogleCloudDialogflowV2beta1GcsDestination",
+      "properties": {
+        "uri": {
+          "description": "Required. The Google Cloud Storage URIs for the output. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case. The requesting user must have \"write-permission\" to the bucket.",
           "type": "string"
         }
       },
@@ -14175,6 +14842,7 @@
               "FAQ",
               "EXTRACTIVE_QA",
               "ARTICLE_SUGGESTION",
+              "AGENT_FACING_SMART_REPLY",
               "SMART_REPLY"
             ],
             "enumDescriptions": [
@@ -14182,6 +14850,7 @@
               "The document content contains question and answer pairs as either HTML or CSV. Typical FAQ HTML formats are parsed accurately, but unusual formats may fail to be parsed. CSV must have questions in the first column and answers in the second, with no header. Because of this explicit format, they are always parsed accurately.",
               "Documents for which unstructured text is extracted and used for question answering.",
               "The entire document content as a whole can be used for query results. Only for Contact Center Solutions on Dialogflow.",
+              "The document contains agent-facing Smart Reply entries.",
               "The legacy enum for agent-facing smart reply feature."
             ],
             "type": "string"
@@ -15618,6 +16287,10 @@
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata",
       "properties": {
+        "exportOperationMetadata": {
+          "$ref": "GoogleCloudDialogflowV2beta1ExportOperationMetadata",
+          "description": "Metadata for the Export Data Operation such as the destination of export."
+        },
         "knowledgeBase": {
           "description": "The name of the knowledge base interacted with during the operation.",
           "type": "string"
@@ -16004,7 +16677,7 @@
           "type": "string"
         },
         "topic": {
-          "description": "Name of the Pub/Sub topic to publish conversation events like CONVERSATION_STARTED as serialized ConversationEvent protos. Notification works for phone calls, if this topic either is in the same project as the conversation or you grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service Agent` role in the topic project. Format: `projects//locations//topics/`.",
+          "description": "Name of the Pub/Sub topic to publish conversation events like CONVERSATION_STARTED as serialized ConversationEvent protos. For telephony integration to receive notification, make sure either this topic is in the same project as the conversation or you grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service Agent` role in the topic project. For chat integration to receive notification, make sure API caller has been granted the `Dialogflow Service Agent` role for the topic. Format: `projects//locations//topics/`.",
           "type": "string"
         }
       },
@@ -16504,6 +17177,81 @@
         "name": {
           "description": "Required. The unique identifier of this session entity type. Supported formats: - `projects//agent/sessions//entityTypes/` - `projects//locations//agent/sessions//entityTypes/` - `projects//agent/environments//users//sessions//entityTypes/` - `projects//locations//agent/environments/ /users//sessions//entityTypes/` If `Location ID` is not specified we assume default 'us' location. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigOperationMetadata": {
+      "description": "Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.",
+      "id": "GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigOperationMetadata",
+      "properties": {
+        "conversationProfile": {
+          "description": "The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Timestamp whe the request was created. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "participantRole": {
+          "description": "Required. The participant role to add or update the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER"
+          ],
+          "enumDescriptions": [
+            "Participant role not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent, such as a Dialogflow agent.",
+            "Participant is an end user that has called or chatted with Dialogflow services."
+          ],
+          "type": "string"
+        },
+        "suggestionFeatureType": {
+          "description": "Required. The type of the suggestion feature to add or update.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "ARTICLE_SUGGESTION",
+            "FAQ",
+            "SMART_REPLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified feature type.",
+            "Run article suggestion model.",
+            "Run FAQ model.",
+            "Run smart reply model."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest": {
+      "description": "The request message for ConversationProfiles.SetSuggestionFeature.",
+      "id": "GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest",
+      "properties": {
+        "participantRole": {
+          "description": "Required. The participant role to add or update the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.",
+          "enum": [
+            "ROLE_UNSPECIFIED",
+            "HUMAN_AGENT",
+            "AUTOMATED_AGENT",
+            "END_USER"
+          ],
+          "enumDescriptions": [
+            "Participant role not set.",
+            "Participant is a human agent.",
+            "Participant is an automated agent, such as a Dialogflow agent.",
+            "Participant is an end user that has called or chatted with Dialogflow services."
+          ],
+          "type": "string"
+        },
+        "suggestionFeatureConfig": {
+          "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig",
+          "description": "Required. The suggestion feature config to add or update."
         }
       },
       "type": "object"
