@@ -1035,7 +1035,7 @@ export namespace healthcare_v1beta1 {
      */
     notificationConfig?: Schema$NotificationConfig;
     /**
-     * Configuration for how FHIR resource can be searched.
+     * Configuration for how FHIR resources can be searched.
      */
     searchConfig?: Schema$SearchConfig;
     /**
