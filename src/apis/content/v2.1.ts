@@ -196,7 +196,7 @@ export namespace content_v2_1 {
   }
 
   /**
-   * Account data. After the creation of a new account it may take a few minutes before it is fully operational. The methods delete, insert, and update require the admin role.
+   * Account data. After the creation of a new account it may take a few minutes before it's fully operational. The methods delete, insert, and update require the admin role.
    */
   export interface Schema$Account {
     /**
@@ -266,15 +266,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountAddress {
     /**
-     * CLDR country code (e.g. "US"). All MCA sub-accounts inherit the country of their parent MCA by default, however the country can be updated for individual sub-accounts.
+     * CLDR country code (for example, "US"). All MCA sub-accounts inherit the country of their parent MCA by default, however the country can be updated for individual sub-accounts.
      */
     country?: string | null;
     /**
-     * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     * City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).
      */
     locality?: string | null;
     /**
-     * Postal code or ZIP (e.g. "94043").
+     * Postal code or ZIP (for example, "94043").
      */
     postalCode?: string | null;
     /**
@@ -425,6 +425,10 @@ export namespace content_v2_1 {
      */
     effectiveAllowAvailabilityUpdates?: boolean | null;
     /**
+     * Output only. The effective value of allow_condition_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.
+     */
+    effectiveAllowConditionUpdates?: boolean | null;
+    /**
      * Output only. The effective value of allow_price_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.
      */
     effectiveAllowPriceUpdates?: boolean | null;
@@ -441,6 +445,10 @@ export namespace content_v2_1 {
      * If availability updates are enabled, any previous availability values get overwritten if Google finds an out-of-stock annotation on the offer's page. If additionally `allow_availability_updates` field is set to true, values get overwritten if Google finds an in-stock annotation on the offer’s page.
      */
     allowAvailabilityUpdates?: boolean | null;
+    /**
+     * If condition updates are enabled, Google always updates item condition with the condition detected from the details of your product.
+     */
+    allowConditionUpdates?: boolean | null;
     /**
      * If price updates are enabled, Google always updates the active price with the crawled information.
      */
@@ -679,7 +687,7 @@ export namespace content_v2_1 {
     resources?: Schema$Account[];
   }
   /**
-   * The status of an account, i.e., information about its products, which is computed offline and not returned immediately at insertion time.
+   * The status of an account, that is, information about its products, which is computed offline and not returned immediately at insertion time.
    */
   export interface Schema$AccountStatus {
     /**
@@ -905,7 +913,7 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * Tax rules. Updating the tax rules will enable US taxes (not reversible). Defining no rules is equivalent to not charging tax at all.
+     * Tax rules. Updating the tax rules will enable "US" taxes (not reversible). Defining no rules is equivalent to not charging tax at all.
      */
     rules?: Schema$AccountTaxTaxRule[];
   }
@@ -983,7 +991,7 @@ export namespace content_v2_1 {
     resources?: Schema$AccountTax[];
   }
   /**
-   * Tax calculation rule to apply in a state or province (USA only).
+   * Tax calculation rule to apply in a state or province (US only).
    */
   export interface Schema$AccountTaxTaxRule {
     /**
@@ -1049,15 +1057,15 @@ export namespace content_v2_1 {
      */
     administrativeArea?: string | null;
     /**
-     * Required. City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     * Required. City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).
      */
     city?: string | null;
     /**
-     * Required. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. "US").
+     * Required. [CLDR country code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml) (for example, "US").
      */
     country?: string | null;
     /**
-     * Required. Postal code or ZIP (e.g. "94043").
+     * Required. Postal code or ZIP (for example, "94043").
      */
     postalCode?: string | null;
     /**
@@ -1137,11 +1145,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$CarrierRate {
     /**
-     * Carrier service, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved via the `getSupportedCarriers` method. Required.
+     * Carrier service, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved through the `getSupportedCarriers` method. Required.
      */
     carrierName?: string | null;
     /**
-     * Carrier service, such as `"ground"` or `"2 days"`. The list of supported services for a carrier can be retrieved via the `getSupportedCarriers` method. Required.
+     * Carrier service, such as `"ground"` or `"2 days"`. The list of supported services for a carrier can be retrieved through the `getSupportedCarriers` method. Required.
      */
     carrierService?: string | null;
     /**
@@ -1163,7 +1171,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$CarriersCarrier {
     /**
-     * The CLDR country code of the carrier (e.g., "US"). Always present.
+     * The CLDR country code of the carrier (for example, "US"). Always present.
      */
     country?: string | null;
     /**
@@ -1171,11 +1179,11 @@ export namespace content_v2_1 {
      */
     eddServices?: string[] | null;
     /**
-     * The name of the carrier (e.g., `"UPS"`). Always present.
+     * The name of the carrier (for example, `"UPS"`). Always present.
      */
     name?: string | null;
     /**
-     * A list of supported services (e.g., `"ground"`) for that carrier. Contains at least one service. This is the list of valid values for CarrierRate.carrierService.
+     * A list of supported services (for example, `"ground"`) for that carrier. Contains at least one service. This is the list of valid values for CarrierRate.carrierService.
      */
     services?: string[] | null;
   }
@@ -1391,7 +1399,7 @@ export namespace content_v2_1 {
      */
     minute?: number | null;
     /**
-     * Timezone identifier for the cutoff time. A list of identifiers can be found in the AdWords API documentation. E.g. "Europe/Zurich". Required.
+     * Timezone identifier for the cutoff time (for example, "Europe/Zurich"). List of identifiers. Required.
      */
     timezone?: string | null;
   }
@@ -1465,7 +1473,7 @@ export namespace content_v2_1 {
      */
     paused?: boolean | null;
     /**
-     * Time zone used for schedule. UTC by default. E.g., "America/Los_Angeles".
+     * Time zone used for schedule. UTC by default. For example, "America/Los_Angeles".
      */
     timeZone?: string | null;
     /**
@@ -1567,7 +1575,7 @@ export namespace content_v2_1 {
     resources?: Schema$Datafeed[];
   }
   /**
-   * The status of a datafeed, i.e., the result of the last retrieval of the datafeed computed asynchronously when the feed processing is finished.
+   * The status of a datafeed, that is, the result of the last retrieval of the datafeed computed asynchronously when the feed processing is finished.
    */
   export interface Schema$DatafeedStatus {
     /**
@@ -1616,7 +1624,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$DatafeedStatusError {
     /**
-     * The code of the error, e.g., "validation/invalid_value".
+     * The code of the error, for example, "validation/invalid_value".
      */
     code?: string | null;
     /**
@@ -1628,7 +1636,7 @@ export namespace content_v2_1 {
      */
     examples?: Schema$DatafeedStatusExample[];
     /**
-     * The error message, e.g., "Invalid price".
+     * The error message, for example, "Invalid price".
      */
     message?: string | null;
   }
@@ -1728,7 +1736,7 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).
+     * The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center).
      */
     excludedDestinations?: string[] | null;
     /**
@@ -1741,7 +1749,7 @@ export namespace content_v2_1 {
     language?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -1816,7 +1824,7 @@ export namespace content_v2_1 {
      */
     maxHandlingTimeInDays?: number | null;
     /**
-     * Maximum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to `minTransitTimeInDays`.
+     * Maximum number of business days that are spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to `minTransitTimeInDays`.
      */
     maxTransitTimeInDays?: number | null;
     /**
@@ -1824,7 +1832,7 @@ export namespace content_v2_1 {
      */
     minHandlingTimeInDays?: number | null;
     /**
-     * Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Either `{min,max\}TransitTimeInDays` or `transitTimeTable` must be set, but not both.
+     * Minimum number of business days that are spent in transit. 0 means same day delivery, 1 means next day delivery. Either `{min,max\}TransitTimeInDays` or `transitTimeTable` must be set, but not both.
      */
     minTransitTimeInDays?: number | null;
     /**
@@ -1888,20 +1896,20 @@ export namespace content_v2_1 {
    */
   export interface Schema$FreeListingsProgramStatus {
     /**
+     * State of the program, It is set to enabled if there are offers for at least one region.
+     */
+    globalState?: string | null;
+    /**
      * Status of the program in each region. Regions with the same status and review eligibility are grouped together in `regionCodes`.
      */
     regionStatuses?: Schema$FreeListingsProgramStatusRegionStatus[];
-    /**
-     * If program is successfully onboarded for at least one region.
-     */
-    state?: string | null;
   }
   /**
    * Status of program and region.
    */
   export interface Schema$FreeListingsProgramStatusRegionStatus {
     /**
-     * Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format i.e. YYYY-MM-DD
+     * Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format: YYYY-MM-DD
      */
     disapprovalDate?: string | null;
     /**
@@ -1909,13 +1917,9 @@ export namespace content_v2_1 {
      */
     eligibilityStatus?: string | null;
     /**
-     * Eligibility status of the enhanced free listing program.
+     * These issues must be fixed to become eligible for the review.
      */
-    enhancedEligibilityStatus?: string | null;
-    /**
-     * Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.
-     */
-    ineligibilityReason?: string | null;
+    onboardingIssues?: string[] | null;
     /**
      * The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes for all the regions with the same `eligibilityStatus` and `reviewEligibility`.
      */
@@ -1925,9 +1929,30 @@ export namespace content_v2_1 {
      */
     reviewEligibilityStatus?: string | null;
     /**
+     * Review ineligibility reason if account is not eligible for review.
+     */
+    reviewIneligibilityReason?: string | null;
+    /**
+     * Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.
+     */
+    reviewIneligibilityReasonDescription?: string | null;
+    /**
+     * This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period.
+     */
+    reviewIneligibilityReasonDetails?: Schema$FreeListingsProgramStatusReviewIneligibilityReasonDetails;
+    /**
      * These issues will be evaluated in review process. Fix all the issues before requesting the review.
      */
     reviewIssues?: string[] | null;
+  }
+  /**
+   * Additional details for review ineligibility reasons.
+   */
+  export interface Schema$FreeListingsProgramStatusReviewIneligibilityReasonDetails {
+    /**
+     * This timestamp represents end of cooldown period for review ineligbility reason `IN_COOLDOWN_PERIOD`.
+     */
+    cooldownTime?: string | null;
   }
   export interface Schema$GmbAccounts {
     /**
@@ -1984,7 +2009,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$HolidayCutoff {
     /**
-     * Date of the order deadline, in ISO 8601 format. E.g. "2016-11-29" for 29th November 2016. Required.
+     * Date of the order deadline, in ISO 8601 format. For example, "2016-11-29" for 29th November 2016. Required.
      */
     deadlineDate?: string | null;
     /**
@@ -1992,7 +2017,7 @@ export namespace content_v2_1 {
      */
     deadlineHour?: number | null;
     /**
-     * Timezone identifier for the deadline hour. A list of identifiers can be found in the AdWords API documentation. E.g. "Europe/Zurich". Required.
+     * Timezone identifier for the deadline hour (for example, "Europe/Zurich"). List of identifiers. Required.
      */
     deadlineTimezone?: string | null;
     /**
@@ -2000,21 +2025,21 @@ export namespace content_v2_1 {
      */
     holidayId?: string | null;
     /**
-     * Date on which the deadline will become visible to consumers in ISO 8601 format. E.g. "2016-10-31" for 31st October 2016. Required.
+     * Date on which the deadline will become visible to consumers in ISO 8601 format. For example, "2016-10-31" for 31st October 2016. Required.
      */
     visibleFromDate?: string | null;
   }
   export interface Schema$HolidaysHoliday {
     /**
-     * The CLDR territory code of the country in which the holiday is available. E.g. "US", "DE", "GB". A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.
+     * The CLDR territory code of the country in which the holiday is available. For example, "US", "DE", "GB". A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.
      */
     countryCode?: string | null;
     /**
-     * Date of the holiday, in ISO 8601 format. E.g. "2016-12-25" for Christmas 2016. Always present.
+     * Date of the holiday, in ISO 8601 format. For example, "2016-12-25" for Christmas 2016. Always present.
      */
     date?: string | null;
     /**
-     * Date on which the order has to arrive at the customer's, in ISO 8601 format. E.g. "2016-12-24" for 24th December 2016. Always present.
+     * Date on which the order has to arrive at the customer's, in ISO 8601 format. For example, "2016-12-24" for 24th December 2016. Always present.
      */
     deliveryGuaranteeDate?: string | null;
     /**
@@ -2098,7 +2123,7 @@ export namespace content_v2_1 {
      */
     about?: Schema$LiaAboutPageSettings;
     /**
-     * Required. CLDR country code (e.g. "US").
+     * Required. CLDR country code (for example, "US").
      */
     country?: string | null;
     /**
@@ -2571,7 +2596,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$LocationIdSet {
     /**
-     * A non-empty list of location IDs. They must all be of the same location type (e.g., state).
+     * A non-empty list of location IDs. They must all be of the same location type (for example, state).
      */
     locationIds?: string[] | null;
   }
@@ -2781,11 +2806,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$MonetaryAmount {
     /**
-     * The pre-tax or post-tax price depends on the location of the order. - For countries (e.g. US) where price attribute excludes tax, this field corresponds to the pre-tax value. - For coutries (e.g. France) where price attribute includes tax, this field corresponds to the post-tax value .
+     * The pre-tax or post-tax price depends on the location of the order. - For countries (for example, "US". where price attribute excludes tax, this field corresponds to the pre-tax value. - For coutries (for example, "France") where price attribute includes tax, this field corresponds to the post-tax value .
      */
     priceAmount?: Schema$Price;
     /**
-     * Tax value, present only for countries where price attribute excludes tax (e.g. US). No tax is referenced as 0 value with the corresponding `currency`.
+     * Tax value, present only for countries where price attribute excludes tax (for example, "US". No tax is referenced as 0 value with the corresponding `currency`.
      */
     taxAmount?: Schema$Price;
   }
@@ -2890,7 +2915,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderAddress {
     /**
-     * CLDR country code (e.g. "US").
+     * CLDR country code (for example, "US").
      */
     country?: string | null;
     /**
@@ -2902,11 +2927,11 @@ export namespace content_v2_1 {
      */
     isPostOfficeBox?: boolean | null;
     /**
-     * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     * City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).
      */
     locality?: string | null;
     /**
-     * Postal Code or ZIP (e.g. "94043").
+     * Postal Code or ZIP (for example, "94043").
      */
     postalCode?: string | null;
     /**
@@ -2936,7 +2961,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Buy on Google until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - "`autoPostInternal`" - "`autoPostInvalidBillingAddress`" - "`autoPostNoInventory`" - "`autoPostPriceError`" - "`autoPostUndeliverableShippingAddress`" - "`couponAbuse`" - "`customerCanceled`" - "`customerInitiatedCancel`" - "`customerSupportRequested`" - "`failToPushOrderGoogleError`" - "`failToPushOrderMerchantError`" - "`failToPushOrderMerchantFulfillmentError`" - "`failToPushOrderToMerchant`" - "`failToPushOrderToMerchantOutOfStock`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`merchantDidNotShipOnTime`" - "`noInventory`" - "`orderTimeout`" - "`other`" - "`paymentAbuse`" - "`paymentDeclined`" - "`priceError`" - "`returnRefundAbuse`" - "`shippingPriceError`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`failedToCaptureFunds`"
+     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Buy on Google until you make an update to that product. This won't affect your Shopping ads. Acceptable values are: - "`autoPostInternal`" - "`autoPostInvalidBillingAddress`" - "`autoPostNoInventory`" - "`autoPostPriceError`" - "`autoPostUndeliverableShippingAddress`" - "`couponAbuse`" - "`customerCanceled`" - "`customerInitiatedCancel`" - "`customerSupportRequested`" - "`failToPushOrderGoogleError`" - "`failToPushOrderMerchantError`" - "`failToPushOrderMerchantFulfillmentError`" - "`failToPushOrderToMerchant`" - "`failToPushOrderToMerchantOutOfStock`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`merchantDidNotShipOnTime`" - "`noInventory`" - "`orderTimeout`" - "`other`" - "`paymentAbuse`" - "`paymentDeclined`" - "`priceError`" - "`returnRefundAbuse`" - "`shippingPriceError`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`failedToCaptureFunds`"
      */
     reason?: string | null;
     /**
@@ -3102,7 +3127,7 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * Product data as seen by customer from the time of the order placement. Note that certain attributes values (e.g. title or gtin) might be reformatted and no longer match values submitted via product feed.
+     * Product data as seen by customer from the time of the order placement. Note that certain attributes values (for example, title or gtin) might be reformatted and no longer match values submitted through product feed.
      */
     product?: Schema$OrderLineItemProduct;
     /**
@@ -3218,7 +3243,7 @@ export namespace content_v2_1 {
      */
     shownImage?: string | null;
     /**
-     * The CLDR territory // code of the target country of the product.
+     * The CLDR territory code of the target country of the product.
      */
     targetCountry?: string | null;
     /**
@@ -3362,7 +3387,7 @@ export namespace content_v2_1 {
      */
     appliedItems?: Schema$OrderPromotionItem[];
     /**
-     * Promotion end time in ISO 8601 format. Date, time, and offset required, e.g., "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z".
+     * Promotion end time in ISO 8601 format. Date, time, and offset required, for example, "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z".
      */
     endTime?: string | null;
     /**
@@ -3382,7 +3407,7 @@ export namespace content_v2_1 {
      */
     shortTitle?: string | null;
     /**
-     * Promotion start time in ISO 8601 format. Date, time, and offset required, e.g., "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z".
+     * Promotion start time in ISO 8601 format. Date, time, and offset required, for example, "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z".
      */
     startTime?: string | null;
     /**
@@ -3668,7 +3693,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsRefundOperation {
     /**
-     * If true, the item will be fully refunded. Allowed only when payment_type is FOP. Merchant can choose this refund option to indicate the full remaining amount of corresponding object to be refunded to the customer via FOP.
+     * If true, the item will be fully refunded. Allowed only when payment_type is FOP. Merchant can choose this refund option to indicate the full remaining amount of corresponding object to be refunded to the customer through FOP.
      */
     fullRefund?: boolean | null;
     /**
@@ -3808,7 +3833,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCreateTestOrderRequest {
     /**
-     * The CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created via `template_name`, or the addresses of orders created via `test_order`. Acceptable values are: - "`US`" - "`FR`" Defaults to `US`.
+     * The CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created through `template_name`, or the addresses of orders created through `test_order`. Acceptable values are: - "`US`" - "`FR`" Defaults to "`US`".
      */
     country?: string | null;
     /**
@@ -3858,11 +3883,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCustomBatchRequestEntryRefundItemItem {
     /**
-     * The total amount that is refunded. (e.g. refunding $5 each for 2 products should be done by setting quantity to 2 and amount to 10$) In case of multiple refunds, this should be the amount you currently want to refund to the customer.
+     * The total amount that is refunded. (for example, refunding $5 each for 2 products should be done by setting quantity to 2 and amount to 10$) In case of multiple refunds, this should be the amount you currently want to refund to the customer.
      */
     amount?: Schema$MonetaryAmount;
     /**
-     * If true, the full item will be refunded. If this is true, amount should not be provided and will be ignored.
+     * If true, the full item will be refunded. If this is true, amount shouldn't be provided and will be ignored.
      */
     fullRefund?: boolean | null;
     /**
@@ -3884,7 +3909,7 @@ export namespace content_v2_1 {
      */
     amount?: Schema$Price;
     /**
-     * If set to true, all shipping costs for the order will be refunded. If this is true, amount should not be provided and will be ignored. If set to false, submit the amount of the partial shipping refund, excluding the shipping tax. The shipping tax is calculated and handled on Google's side.
+     * If set to true, all shipping costs for the order will be refunded. If this is true, amount shouldn't be provided and will be ignored. If set to false, submit the amount of the partial shipping refund, excluding the shipping tax. The shipping tax is calculated and handled on Google's side.
      */
     fullRefund?: boolean | null;
   }
@@ -3937,7 +3962,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for US are: - "`ups`" (United Parcel Service) *automatic status updates* - "`usps`" (United States Postal Service) *automatic status updates* - "`fedex`" (FedEx) *automatic status updates * - "`dhl`" (DHL eCommerce) *automatic status updates* (US only) - "`ontrac`" (OnTrac) *automatic status updates * - "`dhl express`" (DHL Express) - "`deliv`" (Deliv) - "`dynamex`" (TForce) - "`lasership`" (LaserShip) - "`mpx`" (Military Parcel Xpress) - "`uds`" (United Delivery Service) - "`efw`" (Estes Forwarding Worldwide) - "`jd logistics`" (JD Logistics) - "`yunexpress`" (YunExpress) - "`china post`" (China Post) - "`china ems`" (China Post Express Mail Service) - "`singapore post`" (Singapore Post) - "`pos malaysia`" (Pos Malaysia) - "`postnl`" (PostNL) - "`ptt`" (PTT Turkish Post) - "`eub`" (ePacket) - "`chukou1`" (Chukou1 Logistics) - "`bestex`" (Best Express) - "`canada post`" (Canada Post) - "`purolator`" (Purolator) - "`canpar`" (Canpar) - "`india post`" (India Post) - "`blue dart`" (Blue Dart) - "`delhivery`" (Delhivery) - "`dtdc`" (DTDC) - "`tpc india`" (TPC India) - "`lso`" (Lone Star Overnight) - "`tww`" (Team Worldwide) Supported carriers for FR are: - "`la poste`" (La Poste) *automatic status updates * - "`colissimo`" (Colissimo by La Poste) *automatic status updates* - "`ups`" (United Parcel Service) *automatic status updates * - "`chronopost`" (Chronopost by La Poste) - "`gls`" (General Logistics Systems France) - "`dpd`" (DPD Group by GeoPost) - "`bpost`" (Belgian Post Group) - "`colis prive`" (Colis Privé) - "`boxtal`" (Boxtal) - "`geodis`" (GEODIS) - "`tnt`" (TNT) - "`db schenker`" (DB Schenker) - "`aramex`" (Aramex)
+     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers won't include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for "US" are: - "`ups`" (United Parcel Service) *automatic status updates* - "`usps`" (United States Postal Service) *automatic status updates* - "`fedex`" (FedEx) *automatic status updates * - "`dhl`" (DHL eCommerce) *automatic status updates* (US only) - "`ontrac`" (OnTrac) *automatic status updates * - "`dhl express`" (DHL Express) - "`deliv`" (Deliv) - "`dynamex`" (TForce) - "`lasership`" (LaserShip) - "`mpx`" (Military Parcel Xpress) - "`uds`" (United Delivery Service) - "`efw`" (Estes Forwarding Worldwide) - "`jd logistics`" (JD Logistics) - "`yunexpress`" (YunExpress) - "`china post`" (China Post) - "`china ems`" (China Post Express Mail Service) - "`singapore post`" (Singapore Post) - "`pos malaysia`" (Pos Malaysia) - "`postnl`" (PostNL) - "`ptt`" (PTT Turkish Post) - "`eub`" (ePacket) - "`chukou1`" (Chukou1 Logistics) - "`bestex`" (Best Express) - "`canada post`" (Canada Post) - "`purolator`" (Purolator) - "`canpar`" (Canpar) - "`india post`" (India Post) - "`blue dart`" (Blue Dart) - "`delhivery`" (Delhivery) - "`dtdc`" (DTDC) - "`tpc india`" (TPC India) - "`lso`" (Lone Star Overnight) - "`tww`" (Team Worldwide) Supported carriers for FR are: - "`la poste`" (La Poste) *automatic status updates * - "`colissimo`" (Colissimo by La Poste) *automatic status updates* - "`ups`" (United Parcel Service) *automatic status updates * - "`chronopost`" (Chronopost by La Poste) - "`gls`" (General Logistics Systems France) - "`dpd`" (DPD Group by GeoPost) - "`bpost`" (Belgian Post Group) - "`colis prive`" (Colis Privé) - "`boxtal`" (Boxtal) - "`geodis`" (GEODIS) - "`tnt`" (TNT) - "`db schenker`" (DB Schenker) - "`aramex`" (Aramex)
      */
     carrier?: string | null;
     /**
@@ -3989,7 +4014,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipmentScheduledDeliveryDetails {
     /**
-     * The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (e.g., "+41 44 668 1800").
+     * The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (for example, "+41 44 668 1800").
      */
     carrierPhoneNumber?: string | null;
     /**
@@ -4090,7 +4115,7 @@ export namespace content_v2_1 {
      */
     amount?: Schema$MonetaryAmount;
     /**
-     * If true, the full order will be refunded, including shipping. If this is true, amount should not be provided and will be ignored.
+     * If true, the full order will be refunded, including shipping. If this is true, amount shouldn't be provided and will be ignored.
      */
     fullRefund?: boolean | null;
     /**
@@ -4251,7 +4276,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateLineItemShippingDetailsRequest {
     /**
-     * Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated. Provided date should be within 1 year timeframe and can not be a date in the past.
+     * Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated. Provided date should be within 1 year timeframe and can't be a date in the past.
      */
     deliverByDate?: string | null;
     /**
@@ -4267,7 +4292,7 @@ export namespace content_v2_1 {
      */
     productId?: string | null;
     /**
-     * Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated. Provided date should be within 1 year timeframe and can not be a date in the past.
+     * Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated. Provided date should be within 1 year timeframe and can't be a date in the past.
      */
     shipByDate?: string | null;
   }
@@ -4528,25 +4553,25 @@ export namespace content_v2_1 {
   }
   export interface Schema$PickupCarrierService {
     /**
-     * The name of the pickup carrier (e.g., `"UPS"`). Required.
+     * The name of the pickup carrier (for example, `"UPS"`). Required.
      */
     carrierName?: string | null;
     /**
-     * The name of the pickup service (e.g., `"Access point"`). Required.
+     * The name of the pickup service (for example, `"Access point"`). Required.
      */
     serviceName?: string | null;
   }
   export interface Schema$PickupServicesPickupService {
     /**
-     * The name of the carrier (e.g., `"UPS"`). Always present.
+     * The name of the carrier (for example, `"UPS"`). Always present.
      */
     carrierName?: string | null;
     /**
-     * The CLDR country code of the carrier (e.g., "US"). Always present.
+     * The CLDR country code of the carrier (for example, "US"). Always present.
      */
     country?: string | null;
     /**
-     * The name of the pickup service (e.g., `"Access point"`). Always present.
+     * The name of the pickup service (for example, `"Access point"`). Always present.
      */
     serviceName?: string | null;
   }
@@ -4679,7 +4704,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4713,7 +4738,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4751,7 +4776,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4803,7 +4828,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4841,7 +4866,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -4883,7 +4908,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.
      */
     storeCode?: string | null;
     /**
@@ -5048,7 +5073,7 @@ export namespace content_v2_1 {
      */
     costOfGoodsSold?: Schema$Price;
     /**
-     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google (formerly known as Shopping Actions).
+     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (for example, `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google (formerly known as Shopping Actions).
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
@@ -5100,7 +5125,7 @@ export namespace content_v2_1 {
      */
     energyEfficiencyClass?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).
+     * The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center).
      */
     excludedDestinations?: string[] | null;
     /**
@@ -5204,7 +5229,7 @@ export namespace content_v2_1 {
      */
     offerId?: string | null;
     /**
-     * The item's pattern (e.g. polka dots).
+     * The item's pattern (for example, polka dots).
      */
     pattern?: string | null;
     /**
@@ -5304,7 +5329,7 @@ export namespace content_v2_1 {
      */
     sizeType?: string | null;
     /**
-     * The source of the offer, i.e., how the offer was created. Acceptable values are: - "`api`" - "`crawl`" - "`feed`"
+     * The source of the offer, that is, how the offer was created. Acceptable values are: - "`api`" - "`crawl`" - "`feed`"
      */
     source?: string | null;
     /**
@@ -5462,19 +5487,19 @@ export namespace content_v2_1 {
      */
     locationId?: string | null;
     /**
-     * Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.
+     * Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it's received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.
      */
     maxHandlingTime?: string | null;
     /**
-     * Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.
+     * Maximum transit time (inclusive) between when the order has shipped and when it's delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.
      */
     maxTransitTime?: string | null;
     /**
-     * Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present.
+     * Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it's received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it's not required if maxHandlingTime is present.
      */
     minHandlingTime?: string | null;
     /**
-     * Minimum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. minTransitTime can only be present together with maxTransitTime; but it is not required if maxTransitTime is present.
+     * Minimum transit time (inclusive) between when the order has shipped and when it's delivered in business days. 0 means that the order is delivered on the same day as it ships. minTransitTime can only be present together with maxTransitTime; but it's not required if maxTransitTime is present.
      */
     minTransitTime?: string | null;
     /**
@@ -5526,7 +5551,7 @@ export namespace content_v2_1 {
     resources?: Schema$Product[];
   }
   /**
-   * The status of a product, i.e., information about a product computed asynchronously.
+   * The status of a product, that is, information about a product computed asynchronously.
    */
   export interface Schema$ProductStatus {
     /**
@@ -5771,7 +5796,7 @@ export namespace content_v2_1 {
     value?: number | null;
   }
   /**
-   *  The Promotions feature is currently in alpha and is not yet publicly available via Content API for Shopping. This documentation is provided for reference only may be subject to change. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)
+   *  The Promotions feature is currently in alpha and is not yet publicly available in Content API for Shopping. This documentation is provided for reference only may be subject to change. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)
    */
   export interface Schema$Promotion {
     /**
@@ -5887,7 +5912,7 @@ export namespace content_v2_1 {
      */
     promotionDestinationIds?: string[] | null;
     /**
-     * String representation of the promotion display dates.
+     * String representation of the promotion display dates (deprecated: Use promotion_display_time_period instead).
      */
     promotionDisplayDates?: string | null;
     /**
@@ -5895,7 +5920,7 @@ export namespace content_v2_1 {
      */
     promotionDisplayTimePeriod?: Schema$TimePeriod;
     /**
-     * Required. String representation of the promotion effective dates.
+     * String representation of the promotion effective dates (deprecated: Use promotion_effective_time_period instead).
      */
     promotionEffectiveDates?: string | null;
     /**
@@ -5954,7 +5979,7 @@ export namespace content_v2_1 {
      */
     name?: string | null;
     /**
-     * The value of the rate group (e.g. flat rate $10). Can only be set if `mainTable` and `subtables` are not set.
+     * The value of the rate group (for example, flat rate $10). Can only be set if `mainTable` and `subtables` are not set.
      */
     singleValue?: Schema$Value;
     /**
@@ -6493,15 +6518,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$ReturnAddressAddress {
     /**
-     * CLDR country code (e.g. "US").
+     * CLDR country code (for example, "US").
      */
     country?: string | null;
     /**
-     * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     * City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).
      */
     locality?: string | null;
     /**
-     * Postal code or ZIP (e.g. "94043").
+     * Postal code or ZIP (for example, "94043").
      */
     postalCode?: string | null;
     /**
@@ -7053,7 +7078,7 @@ export namespace content_v2_1 {
      */
     name?: string | null;
     /**
-     * The carrier-service pair delivering items to collection points. The list of supported pickup services can be retrieved via the `getSupportedPickupServices` method. Required if and only if the service delivery type is `pickup`.
+     * The carrier-service pair delivering items to collection points. The list of supported pickup services can be retrieved through the `getSupportedPickupServices` method. Required if and only if the service delivery type is `pickup`.
      */
     pickupService?: Schema$PickupCarrierService;
     /**
@@ -7098,7 +7123,7 @@ export namespace content_v2_1 {
      */
     transferDate?: string | null;
     /**
-     * The list of bank identifiers used for the transfer. e.g. Trace ID for Federal Automated Clearing House (ACH). This may also be known as the Wire ID.
+     * The list of bank identifiers used for the transfer. For example, Trace ID for Federal Automated Clearing House (ACH). This may also be known as the Wire ID.
      */
     transferIds?: string[] | null;
   }
@@ -7161,7 +7186,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$SettlementTransactionIdentifiers {
     /**
-     * The identifier of the adjustments, if it is available.
+     * The identifier of the adjustments, if it's available.
      */
     adjustmentId?: string | null;
     /**
@@ -7377,20 +7402,20 @@ export namespace content_v2_1 {
    */
   export interface Schema$ShoppingAdsProgramStatus {
     /**
+     * State of the program, It is set to enabled if there are offers for at least one region.
+     */
+    globalState?: string | null;
+    /**
      * Status of the program in each region. Regions with the same status and review eligibility are grouped together in `regionCodes`.
      */
     regionStatuses?: Schema$ShoppingAdsProgramStatusRegionStatus[];
-    /**
-     * If program is successfully onboarded for at least one region.
-     */
-    state?: string | null;
   }
   /**
    * Status of program and region.
    */
   export interface Schema$ShoppingAdsProgramStatusRegionStatus {
     /**
-     * Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format i.e. YYYY-MM-DD
+     * Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: YYYY-MM-DD
      */
     disapprovalDate?: string | null;
     /**
@@ -7398,9 +7423,9 @@ export namespace content_v2_1 {
      */
     eligibilityStatus?: string | null;
     /**
-     * Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.
+     * These issues must be fixed to become eligible for the review.
      */
-    ineligibilityReason?: string | null;
+    onboardingIssues?: string[] | null;
     /**
      * The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes for all the regions with the same `eligibilityStatus` and `reviewEligibility`.
      */
@@ -7410,9 +7435,30 @@ export namespace content_v2_1 {
      */
     reviewEligibilityStatus?: string | null;
     /**
+     * Review ineligibility reason if account is not eligible for review.
+     */
+    reviewIneligibilityReason?: string | null;
+    /**
+     * Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.
+     */
+    reviewIneligibilityReasonDescription?: string | null;
+    /**
+     * This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period.
+     */
+    reviewIneligibilityReasonDetails?: Schema$ShoppingAdsProgramStatusReviewIneligibilityReasonDetails;
+    /**
      * These issues will be evaluated in review process. Fix all the issues before requesting the review.
      */
     reviewIssues?: string[] | null;
+  }
+  /**
+   * Additional details for review ineligibility reasons.
+   */
+  export interface Schema$ShoppingAdsProgramStatusReviewIneligibilityReasonDetails {
+    /**
+     * This timestamp represents end of cooldown period for review ineligbility reason `IN_COOLDOWN_PERIOD`.
+     */
+    cooldownTime?: string | null;
   }
   export interface Schema$Table {
     /**
@@ -7488,7 +7534,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$TestOrderAddress {
     /**
-     * CLDR country code (e.g. "US").
+     * CLDR country code (for example, "US").
      */
     country?: string | null;
     /**
@@ -7500,11 +7546,11 @@ export namespace content_v2_1 {
      */
     isPostOfficeBox?: boolean | null;
     /**
-     * City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).
+     * City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).
      */
     locality?: string | null;
     /**
-     * Postal Code or ZIP (e.g. "94043").
+     * Postal Code or ZIP (for example, "94043").
      */
     postalCode?: string | null;
     /**
@@ -7594,7 +7640,7 @@ export namespace content_v2_1 {
      */
     price?: Schema$Price;
     /**
-     * Required. The CLDR territory // code of the target country of the product.
+     * Required. The CLDR territory code of the target country of the product.
      */
     targetCountry?: string | null;
     /**
@@ -7686,7 +7732,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$UnitInvoice {
     /**
-     * Additional charges for a unit, e.g. shipping costs.
+     * Additional charges for a unit, for example, shipping costs.
      */
     additionalCharges?: Schema$UnitInvoiceAdditionalCharge[];
     /**
@@ -7739,11 +7785,11 @@ export namespace content_v2_1 {
      */
     noShipping?: boolean | null;
     /**
-     * A percentage of the price represented as a number in decimal notation (e.g., `"5.4"`). Can only be set if all other fields are not set.
+     * A percentage of the price represented as a number in decimal notation (for example, `"5.4"`). Can only be set if all other fields are not set.
      */
     pricePercentage?: string | null;
     /**
-     * The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.
+     * The name of a subtable. Can only be set in table cells (not for single values), and only if all other fields are not set.
      */
     subtableName?: string | null;
   }
@@ -7800,11 +7846,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$WarehouseBasedDeliveryTime {
     /**
-     * Required. Carrier, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved via the `listSupportedCarriers` method.
+     * Required. Carrier, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved through the `listSupportedCarriers` method.
      */
     carrier?: string | null;
     /**
-     * Required. Carrier service, such as `"ground"` or `"2 days"`. The list of supported services for a carrier can be retrieved via the `listSupportedCarriers` method. The name of the service must be in the eddSupportedServices list.
+     * Required. Carrier service, such as `"ground"` or `"2 days"`. The list of supported services for a carrier can be retrieved through the `listSupportedCarriers` method. The name of the service must be in the eddSupportedServices list.
      */
     carrierService?: string | null;
     /**
@@ -7816,7 +7862,7 @@ export namespace content_v2_1 {
      */
     originCity?: string | null;
     /**
-     * Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).
+     * Shipping origin's country represented as a [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).
      */
     originCountry?: string | null;
     /**
@@ -8031,7 +8077,7 @@ export namespace content_v2_1 {
      *     accountId: 'placeholder-value',
      *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      *     merchantId: 'placeholder-value',
-     *     // Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this flag removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
+     *     // Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
      *     overwrite: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8315,7 +8361,7 @@ export namespace content_v2_1 {
      *   const res = await content.accounts.delete({
      *     // The ID of the account.
      *     accountId: 'placeholder-value',
-     *     // Flag to delete sub-accounts with products. The default value is false.
+     *     // Option to delete sub-accounts with products. The default value is false.
      *     force: 'placeholder-value',
      *     // The ID of the managing account. This must be a multi-client account, and accountId must be the ID of a sub-account of this account.
      *     merchantId: 'placeholder-value',
@@ -9796,7 +9842,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this flag removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
+     * Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.
      */
     overwrite?: boolean;
   }
@@ -9813,7 +9859,7 @@ export namespace content_v2_1 {
      */
     accountId?: string;
     /**
-     * Flag to delete sub-accounts with products. The default value is false.
+     * Option to delete sub-accounts with products. The default value is false.
      */
     force?: boolean;
     /**
@@ -16406,8 +16452,8 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
-     *   //   "regionStatuses": [],
-     *   //   "state": "my_state"
+     *   //   "globalState": "my_globalState",
+     *   //   "regionStatuses": []
      *   // }
      * }
      *
@@ -21821,7 +21867,7 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.orders.gettestordertemplate({
-     *     // The country of the template to retrieve. Defaults to `US`.
+     *     // The country of the template to retrieve. Defaults to "`US`".
      *     country: 'placeholder-value',
      *     // The ID of the account that should manage the order. This cannot be a multi-client account.
      *     merchantId: 'placeholder-value',
@@ -21939,7 +21985,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
+     * Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (for example, cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding through Google then through an in-store return.
      * @example
      * ```js
      * // Before running the sample:
@@ -22136,7 +22182,7 @@ export namespace content_v2_1 {
      *     placedDateEnd: 'placeholder-value',
      *     // Obtains orders placed after this date (inclusively), in ISO 8601 format.
      *     placedDateStart: 'placeholder-value',
-     *     // Obtains orders that match any of the specified statuses. Please note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.
+     *     // Obtains orders that match any of the specified statuses. Note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.
      *     statuses: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -22702,7 +22748,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.
+     * Returns and refunds a line item. Note that this method can only be called on fully shipped orders. The Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.
      * @example
      * ```js
      * // Before running the sample:
@@ -22859,7 +22905,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided via other methods. Submitted key-value pairs can be retrieved as part of the orders resource.
+     * Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided through other methods. Submitted key-value pairs can be retrieved as part of the orders resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -23769,7 +23815,7 @@ export namespace content_v2_1 {
   export interface Params$Resource$Orders$Gettestordertemplate
     extends StandardParameters {
     /**
-     * The country of the template to retrieve. Defaults to `US`.
+     * The country of the template to retrieve. Defaults to "`US`".
      */
     country?: string;
     /**
@@ -23827,7 +23873,7 @@ export namespace content_v2_1 {
      */
     placedDateStart?: string;
     /**
-     * Obtains orders that match any of the specified statuses. Please note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.
+     * Obtains orders that match any of the specified statuses. Note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.
      */
     statuses?: string[];
   }
@@ -27826,7 +27872,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Register a Merchant Center account for pubsub notifications. Note that cloud topic name should not be provided as part of the request.
+     * Register a Merchant Center account for pubsub notifications. Note that cloud topic name shouldn't be provided as part of the request.
      * @example
      * ```js
      * // Before running the sample:
@@ -34193,8 +34239,8 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
-     *   //   "regionStatuses": [],
-     *   //   "state": "my_state"
+     *   //   "globalState": "my_globalState",
+     *   //   "regionStatuses": []
      *   // }
      * }
      *
