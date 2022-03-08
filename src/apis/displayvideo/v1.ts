@@ -338,7 +338,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AgeRangeAssignedTargetingOptionDetails {
     /**
-     * Output only. The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age.
+     * The age range of an audience. We only support targeting a continuous age range of an audience. Thus, the age range represented in this field can be 1) targeted solely, or, 2) part of a larger continuous age range. The reach of a continuous age range targeting can be expanded by also targeting an audience of an unknown age. Output only in v1. Required in v2.
      */
     ageRange?: string | null;
     /**
@@ -706,7 +706,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AudioContentTypeAssignedTargetingOptionDetails {
     /**
-     * Output only. The audio content type.
+     * The audio content type. Output only in v1. Required in v2.
      */
     audioContentType?: string | null;
     /**
@@ -1482,7 +1482,7 @@ export namespace displayvideo_v1 {
      */
     adType?: string | null;
     /**
-     * Output only. The content instream position for video or audio ads.
+     * The content instream position for video or audio ads. Output only in v1. Required in v2.
      */
     contentInstreamPosition?: string | null;
     /**
@@ -1508,7 +1508,7 @@ export namespace displayvideo_v1 {
      */
     adType?: string | null;
     /**
-     * Output only. The content outstream position.
+     * The content outstream position. Output only in v1. Required in v2.
      */
     contentOutstreamPosition?: string | null;
     /**
@@ -1809,7 +1809,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$CreativeConfig {
     /**
-     * The type of creative that can be assigned to the inventory source.
+     * The type of creative that can be assigned to the inventory source. Only the following types are supported: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_VIDEO`
      */
     creativeType?: string | null;
     /**
@@ -1944,7 +1944,7 @@ export namespace displayvideo_v1 {
     customListId?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -2042,7 +2042,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$DeviceTypeAssignedTargetingOptionDetails {
     /**
-     * Output only. The display name of the device type.
+     * The display name of the device type. Output only in v1. Required in v2.
      */
     deviceType?: string | null;
     /**
@@ -2235,7 +2235,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$EnvironmentAssignedTargetingOptionDetails {
     /**
-     * Output only. The serving environment.
+     * The serving environment. Output only in v1. Required in v2.
      */
     environment?: string | null;
     /**
@@ -2480,7 +2480,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FrequencyCap {
     /**
-     * The maximum number of times a user may be shown with the same ad during this period. Must be greater than 0. Required when unlimited is `false`.
+     * The maximum number of times a user may be shown the same ad during this period. Must be greater than 0. Required when unlimited is `false` and max_views is not set.
      */
     maxImpressions?: number | null;
     /**
@@ -2501,7 +2501,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$GenderAssignedTargetingOptionDetails {
     /**
-     * Output only. The gender of the audience.
+     * The gender of the audience. Output only in v1. Required in v2.
      */
     gender?: string | null;
     /**
@@ -3179,7 +3179,7 @@ export namespace displayvideo_v1 {
      */
     flight?: Schema$LineItemFlight;
     /**
-     * Required. The frequency capping setting of the line item.
+     * Required. The impression frequency cap settings of the line item. The max_impressions field in this settings object must be used if assigning a limited cap.
      */
     frequencyCap?: Schema$FrequencyCap;
     /**
@@ -3699,6 +3699,10 @@ export namespace displayvideo_v1 {
      * Required. The type of the performance goal that the bidding strategy tries to minimize while spending the full budget. `BIDDING_STRATEGY_PERFORMANCE_GOAL_TYPE_VIEWABLE_CPM` is not supported for this strategy.
      */
     performanceGoalType?: string | null;
+    /**
+     * Controls whether the strategy takes deal floor prices into account.
+     */
+    raiseBidForDeals?: boolean | null;
   }
   /**
    * Measurement settings of a partner.
@@ -3765,7 +3769,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$NativeContentPositionAssignedTargetingOptionDetails {
     /**
-     * Output only. The content position.
+     * The content position. Output only in v1. Required in v2.
      */
     contentPosition?: string | null;
     /**
@@ -3871,7 +3875,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$OmidAssignedTargetingOptionDetails {
     /**
-     * Output only. The type of Open Measurement enabled inventory.
+     * The type of Open Measurement enabled inventory. Output only in v1. Required in v2.
      */
     omid?: string | null;
     /**
@@ -4506,7 +4510,7 @@ export namespace displayvideo_v1 {
      */
     excludedTargetingOptionId?: string | null;
     /**
-     * Output only. An enum for the DV360 Sensitive category content classifier.
+     * An enum for the DV360 Sensitive category content classifier. Output only in v1. Required in v2.
      */
     sensitiveCategory?: string | null;
   }
@@ -4922,7 +4926,7 @@ export namespace displayvideo_v1 {
      */
     targetingOptionId?: string | null;
     /**
-     * Output only. The video player size.
+     * The video player size. Output only in v1. Required in v2.
      */
     videoPlayerSize?: string | null;
   }
@@ -4944,7 +4948,7 @@ export namespace displayvideo_v1 {
      */
     targetingOptionId?: string | null;
     /**
-     * Output only. The predicted viewability percentage.
+     * The predicted viewability percentage. Output only in v1. Required in v2.
      */
     viewability?: string | null;
   }
@@ -21844,7 +21848,7 @@ export namespace displayvideo_v1 {
      *     advertiserId: 'placeholder-value',
      *     // Output only. The unique ID of the first and third party audience. Assigned by the system.
      *     firstAndThirdPartyAudienceId: '[^/]+',
-     *     // Required. The mask to control which fields to update.
+     *     // Required. The mask to control which fields to update. Updates are only supported for the following fields: * `displayName` * `description` * `membershipDurationDays`
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -22073,7 +22077,7 @@ export namespace displayvideo_v1 {
      */
     firstAndThirdPartyAudienceId?: string;
     /**
-     * Required. The mask to control which fields to update.
+     * Required. The mask to control which fields to update. Updates are only supported for the following fields: * `displayName` * `description` * `membershipDurationDays`
      */
     updateMask?: string;
 
