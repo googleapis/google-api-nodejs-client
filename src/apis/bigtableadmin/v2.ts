@@ -7351,7 +7351,7 @@ export namespace bigtableadmin_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The unique name of the instance for which tables should be listed. Values are of the form `projects/{project\}/instances/{instance\}`.
      *     parent: 'projects/my-project/instances/my-instance',
-     *     // The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
+     *     // The view to be applied to the returned tables' fields. Only NAME_ONLY view (default), REPLICATION_VIEW and ENCRYPTION_VIEW are supported.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8151,7 +8151,7 @@ export namespace bigtableadmin_v2 {
      */
     parent?: string;
     /**
-     * The view to be applied to the returned tables' fields. Only NAME_ONLY view (default) and REPLICATION_VIEW are supported.
+     * The view to be applied to the returned tables' fields. Only NAME_ONLY view (default), REPLICATION_VIEW and ENCRYPTION_VIEW are supported.
      */
     view?: string;
   }
