@@ -103,7 +103,7 @@ export namespace run_v2 {
   /**
    * Cloud Run Admin API
    *
-   * Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API follows the Knative Serving API specification.
+   * Deploy and manage user provided container images that scale automatically based on incoming requests. The Cloud Run Admin API v1 follows the Knative Serving API specification, while v2 is aligned with Google Cloud AIP-based API standards, as described in https://google.aip.dev/.
    *
    * @example
    * ```js
@@ -364,7 +364,7 @@ export namespace run_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Set the launch stage to a preview stage on write to allow use of preview features in that stage. On read, describes whether the resource uses preview features. Launch Stages are defined at [Google Cloud Platform Launch Stages](http://cloud.google.com/terms/launch-stages).
+     * Set the launch stage to a preview stage on write to allow use of preview features in that stage. On read, describes whether the resource uses preview features. Launch Stages are defined at [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages).
      */
     launchStage?: string | null;
     /**
@@ -521,7 +521,7 @@ export namespace run_v2 {
    */
   export interface Schema$GoogleCloudRunOpV2Service {
     /**
-     * Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run will populate some annotations using 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: http://kubernetes.io/docs/user-guide/annotations
+     * Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run will populate some annotations using 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: https://kubernetes.io/docs/user-guide/annotations
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -553,7 +553,7 @@ export namespace run_v2 {
      */
     deleteTime?: string | null;
     /**
-     * User-provided description of the Service.
+     * User-provided description of the Service. This field currently has a 512-character limit.
      */
     description?: string | null;
     /**
@@ -589,7 +589,7 @@ export namespace run_v2 {
      */
     latestReadyRevision?: string | null;
     /**
-     * The launch stage as defined by [Google Cloud Platform Launch Stages](http://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed.
+     * The launch stage as defined by [Google Cloud Platform Launch Stages](https://cloud.google.com/terms/launch-stages). Cloud Run supports `ALPHA`, `BETA`, and `GA`. If no value is specified, GA is assumed.
      */
     launchStage?: string | null;
     /**
@@ -1234,13 +1234,13 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.operations.list({
-     *     // The standard list filter.
+     *     // Optional. A filter for matching the completed or in-progress operations. The supported formats of *filter* are: To query for only completed operations: done:true To query for only ongoing operations: done:false Must be empty to query for all of the latest operations for the given parent project.
      *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
+     *     // Required. To query for all of the operations for a project.
      *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
+     *     // The maximum number of records that should be returned. Requested page size cannot exceed 100. If not set or set to less than or equal to 0, the default page size is 100. .
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // Token identifying which result to start with, which is returned by a previous list call.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1370,19 +1370,19 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Operations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * Optional. A filter for matching the completed or in-progress operations. The supported formats of *filter* are: To query for only completed operations: done:true To query for only ongoing operations: done:false Must be empty to query for all of the latest operations for the given parent project.
      */
     filter?: string;
     /**
-     * The name of the operation's parent resource.
+     * Required. To query for all of the operations for a project.
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of records that should be returned. Requested page size cannot exceed 100. If not set or set to less than or equal to 0, the default page size is 100. .
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * Token identifying which result to start with, which is returned by a previous list call.
      */
     pageToken?: string;
   }
@@ -2045,7 +2045,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // A page token received from a previous call to ListServices. All other parameters must match.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location and project to list resources on. Format: projects/{projectnumber\}/locations/{location\}
+     *     // Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the "-" wildcard. Format: projects/{projectnumber\}/locations/{location\}
      *     parent: 'projects/my-project/locations/my-location',
      *     // If true, returns deleted (but unexpired) resources along with active ones.
      *     showDeleted: 'placeholder-value',
@@ -2695,7 +2695,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The location and project to list resources on. Format: projects/{projectnumber\}/locations/{location\}
+     * Required. The location and project to list resources on. Location must be a valid GCP region, and may not be the "-" wildcard. Format: projects/{projectnumber\}/locations/{location\}
      */
     parent?: string;
     /**
