@@ -126,6 +126,19 @@ export namespace gkehub_v1beta {
   }
 
   /**
+   * **Anthosobservability**: Per-Membership Feature spec.
+   */
+  export interface Schema$AnthosObservabilityMembershipSpec {
+    /**
+     * use full of metrics rather than optimized metrics. See https://cloud.google.com/anthos/clusters/docs/on-prem/1.8/concepts/logging-and-monitoring#optimized_metrics_default_metrics
+     */
+    doNotOptimizeMetrics?: boolean | null;
+    /**
+     * enable collecting and reporting metrics and logs from user apps See go/onyx-application-metrics-logs-user-guide
+     */
+    enableStackdriverOnApplications?: boolean | null;
+  }
+  /**
    * Spec for App Dev Experience Feature.
    */
   export interface Schema$AppDevExperienceFeatureSpec {}
@@ -848,9 +861,17 @@ export namespace gkehub_v1beta {
      */
     clientId?: string | null;
     /**
+     * Unencrypted OIDC client secret will be passed to the GKE Hub CLH.
+     */
+    clientSecret?: string | null;
+    /**
      * Flag to denote if reverse proxy is used to connect to auth provider. This flag should be set to true when provider is not reachable by Google Cloud Console.
      */
     deployCloudConsoleProxy?: boolean | null;
+    /**
+     * Output only. Encrypted OIDC Client secret
+     */
+    encryptedClientSecret?: string | null;
     /**
      * Comma-separated list of key-value pairs.
      */
@@ -953,6 +974,10 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$MembershipFeatureSpec {
     /**
+     * Anthos Observability-specific spec
+     */
+    anthosobservability?: Schema$AnthosObservabilityMembershipSpec;
+    /**
      * Cloud Build-specific spec
      */
     cloudbuild?: Schema$MembershipSpec;
@@ -964,6 +989,10 @@ export namespace gkehub_v1beta {
      * Identity Service-specific spec.
      */
     identityservice?: Schema$IdentityServiceMembershipSpec;
+    /**
+     * Policy Controller spec.
+     */
+    policycontroller?: Schema$PolicyControllerMembershipSpec;
   }
   /**
    * MembershipFeatureState contains Feature status information for a single Membership.

@@ -257,6 +257,10 @@ export namespace gkehub_v1alpha {
      * Multicluster Ingress-specific spec.
      */
     multiclusteringress?: Schema$MultiClusterIngressFeatureSpec;
+    /**
+     * Workload Certificate spec.
+     */
+    workloadcertificate?: Schema$FeatureSpec;
   }
   /**
    * CommonFeatureState contains Hub-wide Feature status information.
@@ -849,6 +853,19 @@ export namespace gkehub_v1alpha {
     state?: string | null;
   }
   /**
+   * **Workload Certificate**: The Hub-wide input for the WorkloadCertificate feature.
+   */
+  export interface Schema$FeatureSpec {
+    /**
+     * Specifies default membership spec. Users can override the default in the member_configs for each member.
+     */
+    defaultConfig?: Schema$MembershipSpec;
+    /**
+     * Immutable. Specifies CA configuration.
+     */
+    provisionGoogleCa?: string | null;
+  }
+  /**
    * FeatureState describes the high-level state of a Feature. It may be used to describe a Feature's state at the environ-level, or per-membershop, depending on the context.
    */
   export interface Schema$FeatureState {
@@ -997,9 +1014,17 @@ export namespace gkehub_v1alpha {
      */
     clientId?: string | null;
     /**
+     * Unencrypted OIDC client secret will be passed to the GKE Hub CLH.
+     */
+    clientSecret?: string | null;
+    /**
      * Flag to denote if reverse proxy is used to connect to auth provider. This flag should be set to true when provider is not reachable by Google Cloud Console.
      */
     deployCloudConsoleProxy?: boolean | null;
+    /**
+     * Output only. Encrypted OIDC Client secret
+     */
+    encryptedClientSecret?: string | null;
     /**
      * Comma-separated list of key-value pairs.
      */
@@ -1290,7 +1315,11 @@ export namespace gkehub_v1alpha {
     /**
      * Policy Controller spec.
      */
-    policycontroller?: Schema$PolicycontrollerMembershipSpec;
+    policycontroller?: Schema$PolicyControllerMembershipSpec;
+    /**
+     * Workload Certificate spec.
+     */
+    workloadcertificate?: Schema$MembershipSpec;
   }
   /**
    * MembershipFeatureState contains Feature status information for a single Membership.
@@ -1315,7 +1344,7 @@ export namespace gkehub_v1alpha {
     /**
      * Policycontroller-specific state.
      */
-    policycontroller?: Schema$PolicycontrollerMembershipState;
+    policycontroller?: Schema$PolicyControllerMembershipState;
     /**
      * Service Mesh-specific state.
      */
@@ -1324,6 +1353,15 @@ export namespace gkehub_v1alpha {
      * The high-level state of this Feature for a single membership.
      */
     state?: Schema$FeatureState;
+  }
+  /**
+   * **Workload Certificate**: The membership-specific input for WorkloadCertificate feature.
+   */
+  export interface Schema$MembershipSpec {
+    /**
+     * Specifies workload certificate management.
+     */
+    certificateManagement?: string | null;
   }
   /**
    * MembershipState describes the state of a Membership resource.
@@ -1472,11 +1510,11 @@ export namespace gkehub_v1alpha {
   /**
    * **Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.
    */
-  export interface Schema$PolicycontrollerMembershipSpec {
+  export interface Schema$PolicyControllerMembershipSpec {
     /**
      * Policy Controller configuration for the cluster.
      */
-    policyControllerHubConfig?: Schema$PolicycontrollerPolicyControllerHubConfig;
+    policyControllerHubConfig?: Schema$PolicyControllerPolicyControllerHubConfig;
     /**
      * Version of Policy Controller installed.
      */
@@ -1485,7 +1523,7 @@ export namespace gkehub_v1alpha {
   /**
    * **Policy Controller**: State for a single cluster.
    */
-  export interface Schema$PolicycontrollerMembershipState {
+  export interface Schema$PolicyControllerMembershipState {
     /**
      * The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.
      */
@@ -1493,11 +1531,11 @@ export namespace gkehub_v1alpha {
     /**
      * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
      */
-    membershipSpec?: Schema$PolicycontrollerMembershipSpec;
+    membershipSpec?: Schema$PolicyControllerMembershipSpec;
     /**
      * Policy Controller state observed by the Policy Controller Hub
      */
-    policyControllerHubState?: Schema$PolicycontrollerPolicyControllerHubState;
+    policyControllerHubState?: Schema$PolicyControllerPolicyControllerHubState;
     /**
      * The lifecycle state Policy Controller is in.
      */
@@ -1506,7 +1544,7 @@ export namespace gkehub_v1alpha {
   /**
    * Configuration for Policy Controller
    */
-  export interface Schema$PolicycontrollerPolicyControllerHubConfig {
+  export interface Schema$PolicyControllerPolicyControllerHubConfig {
     /**
      * Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.
      */
@@ -1534,12 +1572,12 @@ export namespace gkehub_v1alpha {
     /**
      * Configures the library templates to install along with Policy Controller.
      */
-    templateLibraryConfig?: Schema$PolicycontrollerTemplateLibraryConfig;
+    templateLibraryConfig?: Schema$PolicyControllerTemplateLibraryConfig;
   }
   /**
    * State of the Policy Controller.
    */
-  export interface Schema$PolicycontrollerPolicyControllerHubState {
+  export interface Schema$PolicyControllerPolicyControllerHubState {
     /**
      * Map from deployment name to deployment state. Example deployments are gatekeeper-controller-manager, gatekeeper-audit deployment, and gatekeeper-mutation.
      */
@@ -1547,12 +1585,12 @@ export namespace gkehub_v1alpha {
     /**
      * The version of Gatekeeper Policy Controller deployed.
      */
-    version?: Schema$PolicycontrollerPolicyControllerHubVersion;
+    version?: Schema$PolicyControllerPolicyControllerHubVersion;
   }
   /**
    * The build version of Gatekeeper that Policy Controller is using.
    */
-  export interface Schema$PolicycontrollerPolicyControllerHubVersion {
+  export interface Schema$PolicyControllerPolicyControllerHubVersion {
     /**
      * The gatekeeper image tag that is composed of ACM version, git tag, build number.
      */
@@ -1561,7 +1599,7 @@ export namespace gkehub_v1alpha {
   /**
    * The config specifying which default library templates to install.
    */
-  export interface Schema$PolicycontrollerTemplateLibraryConfig {
+  export interface Schema$PolicyControllerTemplateLibraryConfig {
     /**
      * Whether the standard template library should be installed or not.
      */
