@@ -114,6 +114,7 @@ export namespace cloudasset_v1 {
   export class Cloudasset {
     context: APIRequestContext;
     assets: Resource$Assets;
+    effectiveIamPolicies: Resource$Effectiveiampolicies;
     feeds: Resource$Feeds;
     operations: Resource$Operations;
     savedQueries: Resource$Savedqueries;
@@ -126,6 +127,9 @@ export namespace cloudasset_v1 {
       };
 
       this.assets = new Resource$Assets(this.context);
+      this.effectiveIamPolicies = new Resource$Effectiveiampolicies(
+        this.context
+      );
       this.feeds = new Resource$Feeds(this.context);
       this.operations = new Resource$Operations(this.context);
       this.savedQueries = new Resource$Savedqueries(this.context);
@@ -304,11 +308,20 @@ export namespace cloudasset_v1 {
     assets?: Schema$TemporalAsset[];
   }
   /**
+   * A response message for AssetService.BatchGetEffectiveIamPolicies.
+   */
+  export interface Schema$BatchGetEffectiveIamPoliciesResponse {
+    /**
+     * The effective policies for a batch of resources. Note that the results order is the same as the order of BatchGetEffectiveIamPoliciesRequest.names. When a resource does not have any effective IAM policies, its corresponding policy_result will contain empty EffectiveIamPolicy.policies.
+     */
+    policyResults?: Schema$EffectiveIamPolicy[];
+  }
+  /**
    * A BigQuery destination for exporting assets to.
    */
   export interface Schema$BigQueryDestination {
     /**
-     * Required. The BigQuery dataset in format "projects/projectId/datasets/datasetId", to which the snapshot result should be exported. If this dataset does not exist, the export call returns an INVALID_ARGUMENT error.
+     * Required. The BigQuery dataset in format "projects/projectId/datasets/datasetId", to which the snapshot result should be exported. If this dataset does not exist, the export call returns an INVALID_ARGUMENT error. Setting the `contentType` for `exportAssets` determines the [schema](/asset-inventory/docs/exporting-to-bigquery#bigquery-schema) of the BigQuery table. Setting `separateTablesPerAssetType` to `TRUE` also influences the schema.
      */
     dataset?: string | null;
     /**
@@ -392,6 +405,19 @@ export namespace cloudasset_v1 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
+  }
+  /**
+   * The effective IAM policies on one resource.
+   */
+  export interface Schema$EffectiveIamPolicy {
+    /**
+     * The [full_resource_name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) for which the policies are computed. This is one of the BatchGetEffectiveIamPoliciesRequest.names the caller provides in the request.
+     */
+    fullResourceName?: string | null;
+    /**
+     * The effective policies for the full_resource_name. These policies include the policy set on the full_resource_name and those set on its parents and ancestors up to the BatchGetEffectiveIamPoliciesRequest.scope. Note that these policies are not filtered according to the resource type of the full_resource_name. These policies are hierarchically ordered by PolicyInfo.attached_resource starting from full_resource_name itself to its parents and ancestors, such that policies[i]'s PolicyInfo.attached_resource is the child of policies[i+1]'s PolicyInfo.attached_resource, if policies[i+1] exists.
+     */
+    policies?: Schema$PolicyInfo[];
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
@@ -1590,6 +1616,19 @@ export namespace cloudasset_v1 {
     version?: number | null;
   }
   /**
+   * The IAM policy and its attached resource.
+   */
+  export interface Schema$PolicyInfo {
+    /**
+     * The full resource name the policy is directly attached to.
+     */
+    attachedResource?: string | null;
+    /**
+     * The IAM policy that's directly attached to the attached_resource.
+     */
+    policy?: Schema$Policy;
+  }
+  /**
    * A Pub/Sub destination.
    */
   export interface Schema$PubsubDestination {
@@ -2312,6 +2351,164 @@ export namespace cloudasset_v1 {
      * A list of relationship types to output, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. * If specified: it snapshots specified relationships. It returns an error if any of the [relationship_types] doesn't belong to the supported relationship types of the [asset_types] or if any of the [asset_types] doesn't belong to the source types of the [relationship_types]. * Otherwise: it snapshots the supported relationships for all [asset_types] or returns an error if any of the [asset_types] has no relationship support. An unspecified asset types field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.
      */
     relationshipTypes?: string[];
+  }
+
+  export class Resource$Effectiveiampolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets effective IAM policies for a batch of resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.effectiveIamPolicies.batchGet({
+     *     // Required. The names refer to the [full_resource_names] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types). A maximum of 20 resources' effective policies can be retrieved in a batch.
+     *     names: 'placeholder-value',
+     *     // Required. Only IAM policies on or below the scope will be returned. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "policyResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Effectiveiampolicies$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Effectiveiampolicies$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetEffectiveIamPoliciesResponse>;
+    batchGet(
+      params: Params$Resource$Effectiveiampolicies$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Effectiveiampolicies$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetEffectiveIamPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetEffectiveIamPoliciesResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Effectiveiampolicies$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetEffectiveIamPoliciesResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$BatchGetEffectiveIamPoliciesResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Effectiveiampolicies$Batchget
+        | BodyResponseCallback<Schema$BatchGetEffectiveIamPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetEffectiveIamPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetEffectiveIamPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetEffectiveIamPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Effectiveiampolicies$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Effectiveiampolicies$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+scope}/effectiveIamPolicies:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetEffectiveIamPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetEffectiveIamPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Effectiveiampolicies$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The names refer to the [full_resource_names] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types). A maximum of 20 resources' effective policies can be retrieved in a batch.
+     */
+    names?: string[];
+    /**
+     * Required. Only IAM policies on or below the scope will be returned. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     */
+    scope?: string;
   }
 
   export class Resource$Feeds {
