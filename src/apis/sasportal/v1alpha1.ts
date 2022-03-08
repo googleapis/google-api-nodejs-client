@@ -367,6 +367,14 @@ export namespace sasportal_v1alpha1 {
      * ICG. A group of CBSDs that manage their own interference with the group. See CBRSA-TS-2001 V3.0.0 for more details.
      */
     interferenceCoordinationGroup?: string | null;
+    /**
+     * Output only. Whether a CPI has validated to have coordinated with the National Quiet Zone office.
+     */
+    nrqzValidated?: boolean | null;
+    /**
+     * Output only. National Radio Quiet Zone validation info.
+     */
+    nrqzValidation?: Schema$SasPortalNrqzValidation;
   }
   /**
    * Information about the model of the device.
@@ -601,6 +609,27 @@ export namespace sasportal_v1alpha1 {
      * User ids used by the devices belonging to this node.
      */
     sasUserIds?: string[] | null;
+  }
+  /**
+   * Information about National Radio Quiet Zone validation. The presence of the field indicates the device has been validated.
+   */
+  export interface Schema$SasPortalNrqzValidation {
+    /**
+     * Validation case id.
+     */
+    caseId?: string | null;
+    /**
+     * CPI who signed the validation.
+     */
+    cpiId?: string | null;
+    /**
+     * Device latitude associated with the validation.
+     */
+    latitude?: number | null;
+    /**
+     * Device longitude associated with the validation.
+     */
+    longitude?: number | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
