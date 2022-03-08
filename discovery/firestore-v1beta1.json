@@ -849,7 +849,7 @@
       }
     }
   },
-  "revision": "20220119",
+  "revision": "20220221",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -2029,7 +2029,7 @@
           "description": "A structured query."
         },
         "transaction": {
-          "description": "Reads documents in a transaction.",
+          "description": "Run the query within an already active transaction. The value here is the opaque transaction ID to execute the query in.",
           "format": "byte",
           "type": "string"
         }
@@ -2042,7 +2042,7 @@
       "properties": {
         "document": {
           "$ref": "Document",
-          "description": "A query result. Not set when reporting partial progress."
+          "description": "A query result, not set when reporting partial progress."
         },
         "readTime": {
           "description": "The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.",
