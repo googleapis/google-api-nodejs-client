@@ -682,6 +682,19 @@ export namespace metastore_v1alpha {
     version?: number | null;
   }
   /**
+   * Request message for DataprocMetastore.RemoveIamPolicy.
+   */
+  export interface Schema$RemoveIamPolicyRequest {}
+  /**
+   * Response message for DataprocMetastore.RemoveIamPolicy.
+   */
+  export interface Schema$RemoveIamPolicyResponse {
+    /**
+     * whether related policies are removed
+     */
+    success?: boolean | null;
+  }
+  /**
    * The details of a metadata restore operation.
    */
   export interface Schema$Restore {
@@ -2668,6 +2681,150 @@ export namespace metastore_v1alpha {
     }
 
     /**
+     * Removes the attached IAM policies for a resource
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.removeIamPolicy({
+     *     // Required. The relative resource name of the dataplane resource to remove IAM policy, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\} or projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\}/tables/{table_id\}.
+     *     resource:
+     *       'projects/my-project/locations/my-location/services/my-service/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "success": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeIamPolicy(
+      params?: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RemoveIamPolicyResponse>;
+    removeIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>,
+      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+    ): void;
+    removeIamPolicy(
+      params: Params$Resource$Projects$Locations$Services$Removeiampolicy,
+      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+    ): void;
+    removeIamPolicy(
+      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+    ): void;
+    removeIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Removeiampolicy
+        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RemoveIamPolicyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Removeiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Removeiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+resource}:removeIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoveIamPolicyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemoveIamPolicyResponse>(parameters);
+      }
+    }
+
+    /**
      * Restores a service from a backup.
      * @example
      * ```js
@@ -3200,6 +3357,18 @@ export namespace metastore_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$Service;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Removeiampolicy
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the dataplane resource to remove IAM policy, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\} or projects/{project_id\}/locations/{location_id\}/services/{service_id\}/databases/{database_id\}/tables/{table_id\}.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveIamPolicyRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Restore
     extends StandardParameters {
