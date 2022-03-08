@@ -1307,7 +1307,7 @@
       }
     }
   },
-  "revision": "20211014",
+  "revision": "20220307",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -1577,6 +1577,21 @@
       "description": "Message captures data about the creatives in the deal.",
       "id": "CreativeRequirements",
       "properties": {
+        "creativeFormat": {
+          "description": "Output only. The format of the creative, only applicable for programmatic guaranteed and preferred deals.",
+          "enum": [
+            "CREATIVE_FORMAT_UNSPECIFIED",
+            "DISPLAY",
+            "VIDEO"
+          ],
+          "enumDescriptions": [
+            "A placeholder for an unspecified creative format.",
+            "Banner creatives such as image or HTML5 assets.",
+            "Video creatives that can be played in a video player."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "creativePreApprovalPolicy": {
           "description": "Output only. Specifies the creative pre-approval policy.",
           "enum": [
@@ -1607,6 +1622,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "maxAdDurationMs": {
+          "description": "Output only. The max duration of the video creative in milliseconds. only applicable for deals with video creatives.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "programmaticCreativeSource": {
           "description": "Output only. Specifies the creative source for programmatic deals. PUBLISHER means creative is provided by seller and ADVERTISER means creative is provided by the buyer.",
           "enum": [
@@ -1618,6 +1639,25 @@
             "A placeholder for an undefined programmatic creative source.",
             "The advertiser provides the creatives.",
             "The publisher provides the creatives to be served."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "skippableAdType": {
+          "description": "Output only. Skippable video ads allow viewers to skip ads after 5 seconds. Only applicable for deals with video creatives.",
+          "enum": [
+            "SKIPPABLE_AD_TYPE_UNSPECIFIED",
+            "SKIPPABLE",
+            "INSTREAM_SELECT",
+            "NOT_SKIPPABLE",
+            "ANY"
+          ],
+          "enumDescriptions": [
+            "A placeholder for an unspecified skippable ad type.",
+            "Video ad that can be skipped after 5 seconds. This value will appear in RTB bid requests as SkippableBidRequestType::REQUIRE_SKIPPABLE.",
+            "Video ad that can be skipped after 5 seconds, and is counted as engaged view after 30 seconds. The creative is hosted on YouTube only, and viewcount of the YouTube video increments after the engaged view. This value will appear in RTB bid requests as SkippableBidRequestType::REQUIRE_SKIPPABLE.",
+            "This video ad is not skippable. This value will appear in RTB bid requests as SkippableBidRequestType::BLOCK_SKIPPABLE.",
+            "This video ad can be skipped after 5 seconds or not-skippable. This value will appear in RTB bid requests as SkippableBidRequestType::ALLOW_SKIPPABLE."
           ],
           "readOnly": true,
           "type": "string"

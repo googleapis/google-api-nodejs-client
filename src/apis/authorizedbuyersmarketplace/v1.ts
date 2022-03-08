@@ -298,6 +298,10 @@ export namespace authorizedbuyersmarketplace_v1 {
    */
   export interface Schema$CreativeRequirements {
     /**
+     * Output only. The format of the creative, only applicable for programmatic guaranteed and preferred deals.
+     */
+    creativeFormat?: string | null;
+    /**
      * Output only. Specifies the creative pre-approval policy.
      */
     creativePreApprovalPolicy?: string | null;
@@ -306,9 +310,17 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     creativeSafeFrameCompatibility?: string | null;
     /**
+     * Output only. The max duration of the video creative in milliseconds. only applicable for deals with video creatives.
+     */
+    maxAdDurationMs?: string | null;
+    /**
      * Output only. Specifies the creative source for programmatic deals. PUBLISHER means creative is provided by seller and ADVERTISER means creative is provided by the buyer.
      */
     programmaticCreativeSource?: string | null;
+    /**
+     * Output only. Skippable video ads allow viewers to skip ads after 5 seconds. Only applicable for deals with video creatives.
+     */
+    skippableAdType?: string | null;
   }
   /**
    * Generic targeting used for targeting dimensions that contains a list of included and excluded numeric IDs. This cannot be filtered using list filter syntax.
