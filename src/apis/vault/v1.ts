@@ -766,6 +766,10 @@ export namespace vault_v1 {
      * To export confidential mode content, set to **true**.
      */
     showConfidentialModeContent?: boolean | null;
+    /**
+     * To use the new export system, set to **true**.
+     */
+    useNewExport?: boolean | null;
   }
   /**
    * Additional options for Gmail search
