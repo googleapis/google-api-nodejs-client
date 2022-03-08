@@ -1442,7 +1442,7 @@
       }
     }
   },
-  "revision": "20220131",
+  "revision": "20220228",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1492,6 +1492,10 @@
         "securityProjection": {
           "$ref": "GoogleCloudRecommenderV1beta1SecurityProjection",
           "description": "Use with CategoryType.SECURITY"
+        },
+        "sustainabilityProjection": {
+          "$ref": "GoogleCloudRecommenderV1beta1SustainabilityProjection",
+          "description": "Use with CategoryType.SUSTAINABILITY"
         }
       },
       "type": "object"
@@ -2071,6 +2075,23 @@
           },
           "description": "This field can be used by the recommender to define details specific to security impact.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1beta1SustainabilityProjection": {
+      "description": "Contains metadata about how much sustainability a recommendation can save or incur.",
+      "id": "GoogleCloudRecommenderV1beta1SustainabilityProjection",
+      "properties": {
+        "duration": {
+          "description": "Duration for which this sustanability applies.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "kgCO2e": {
+          "description": "Carbon Footprint generated in kg of CO2 equivalent. Chose kg_c_o2e so that the name renders correctly in camelCase (kgCO2e).",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
