@@ -182,6 +182,15 @@ export namespace monitoring_v1 {
     mode?: string | null;
   }
   /**
+   * A widget that groups the other widgets. All widgets that are within the area spanned by the grouping widget are considered member widgets.
+   */
+  export interface Schema$CollapsibleGroup {
+    /**
+     * The collapsed state of the widget on first page load.
+     */
+    collapsed?: boolean | null;
+  }
+  /**
    * Defines the layout properties and content for a column.
    */
   export interface Schema$Column {
@@ -906,6 +915,10 @@ export namespace monitoring_v1 {
      * A blank space.
      */
     blank?: Schema$Empty;
+    /**
+     * A widget that groups the other widgets. All widgets that are within the area spanned by the grouping widget are considered member widgets.
+     */
+    collapsibleGroup?: Schema$CollapsibleGroup;
     /**
      * A widget that shows a stream of logs.
      */
