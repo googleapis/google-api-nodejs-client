@@ -356,7 +356,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The parent of the collection of `Builds`. Format: `projects/{project}/locations/location`",
+                  "description": "The parent of the collection of `Builds`. Format: `projects/{project}/locations/{location}`",
                   "location": "query",
                   "type": "string"
                 },
@@ -1028,7 +1028,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "The parent of the collection of `Builds`. Format: `projects/{project}/locations/location`",
+                      "description": "The parent of the collection of `Builds`. Format: `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2039,7 +2039,7 @@
       }
     }
   },
-  "revision": "20211230",
+  "revision": "20220301",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AddBitbucketServerConnectedRepositoryRequest": {
@@ -3307,6 +3307,14 @@
       "description": "GitFileSource describes a file within a (possibly remote) code repository.",
       "id": "GitFileSource",
       "properties": {
+        "bitbucketServerConfig": {
+          "description": "The full resource name of the bitbucket server config. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{id}`.",
+          "type": "string"
+        },
+        "githubEnterpriseConfig": {
+          "description": "The full resource name of the github enterprise config. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`. `projects/{project}/githubEnterpriseConfigs/{id}`.",
+          "type": "string"
+        },
         "path": {
           "description": "The path of the file, with the repo root as the root of the path.",
           "type": "string"
@@ -3316,12 +3324,14 @@
           "enum": [
             "UNKNOWN",
             "CLOUD_SOURCE_REPOSITORIES",
-            "GITHUB"
+            "GITHUB",
+            "BITBUCKET_SERVER"
           ],
           "enumDescriptions": [
             "The default, unknown repo type.",
             "A Google Cloud Source Repositories-hosted repo.",
-            "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise)."
+            "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise).",
+            "A Bitbucket Server-hosted repo."
           ],
           "type": "string"
         },
@@ -3457,6 +3467,14 @@
       "description": "GitRepoSource describes a repo and ref of a code repository.",
       "id": "GitRepoSource",
       "properties": {
+        "bitbucketServerConfig": {
+          "description": "The full resource name of the bitbucket server config. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{id}`.",
+          "type": "string"
+        },
+        "githubEnterpriseConfig": {
+          "description": "The full resource name of the github enterprise config. Format: `projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}`. `projects/{project}/githubEnterpriseConfigs/{id}`.",
+          "type": "string"
+        },
         "ref": {
           "description": "The branch or tag to use. Must start with \"refs/\" (required).",
           "type": "string"
@@ -3466,12 +3484,14 @@
           "enum": [
             "UNKNOWN",
             "CLOUD_SOURCE_REPOSITORIES",
-            "GITHUB"
+            "GITHUB",
+            "BITBUCKET_SERVER"
           ],
           "enumDescriptions": [
             "The default, unknown repo type.",
             "A Google Cloud Source Repositories-hosted repo.",
-            "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise)."
+            "A GitHub-hosted repo not necessarily on \"github.com\" (i.e. GitHub Enterprise).",
+            "A Bitbucket Server-hosted repo."
           ],
           "type": "string"
         },
@@ -4197,6 +4217,50 @@
         },
         "triggerId": {
           "description": "Required. ID of the trigger.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RunWorkflowCustomOperationMetadata": {
+      "description": "Represents the custom metadata of the RunWorkflow long-running operation.",
+      "id": "RunWorkflowCustomOperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pipelineRunId": {
+          "description": "Output only. ID of the pipeline run created by RunWorkflow.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
           "type": "string"
         }
       },

@@ -1008,6 +1008,14 @@ export namespace cloudbuild_v1 {
    */
   export interface Schema$GitFileSource {
     /**
+     * The full resource name of the bitbucket server config. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{id\}`.
+     */
+    bitbucketServerConfig?: string | null;
+    /**
+     * The full resource name of the github enterprise config. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`. `projects/{project\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
+    /**
      * The path of the file, with the repo root as the root of the path.
      */
     path?: string | null;
@@ -1135,6 +1143,14 @@ export namespace cloudbuild_v1 {
    * GitRepoSource describes a repo and ref of a code repository.
    */
   export interface Schema$GitRepoSource {
+    /**
+     * The full resource name of the bitbucket server config. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{id\}`.
+     */
+    bitbucketServerConfig?: string | null;
+    /**
+     * The full resource name of the github enterprise config. Format: `projects/{project\}/locations/{location\}/githubEnterpriseConfigs/{id\}`. `projects/{project\}/githubEnterpriseConfigs/{id\}`.
+     */
+    githubEnterpriseConfig?: string | null;
     /**
      * The branch or tag to use. Must start with "refs/" (required).
      */
@@ -1678,6 +1694,39 @@ export namespace cloudbuild_v1 {
      * Required. ID of the trigger.
      */
     triggerId?: string | null;
+  }
+  /**
+   * Represents the custom metadata of the RunWorkflow long-running operation.
+   */
+  export interface Schema$RunWorkflowCustomOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. ID of the pipeline run created by RunWorkflow.
+     */
+    pipelineRunId?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
   }
   /**
    * Pairs a set of secret environment variables containing encrypted values with the Cloud KMS key to use to decrypt the value. Note: Use `kmsKeyName` with `available_secrets` instead of using `kmsKeyName` with `secret`. For instructions see: https://cloud.google.com/cloud-build/docs/securing-builds/use-encrypted-credentials.
@@ -3168,7 +3217,7 @@ export namespace cloudbuild_v1 {
      *     pageSize: 'placeholder-value',
      *     // The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
      *     pageToken: 'placeholder-value',
-     *     // The parent of the collection of `Builds`. Format: `projects/{project\}/locations/location`
+     *     // The parent of the collection of `Builds`. Format: `projects/{project\}/locations/{location\}`
      *     parent: 'placeholder-value',
      *     // Required. ID of the project.
      *     projectId: 'placeholder-value',
@@ -3495,7 +3544,7 @@ export namespace cloudbuild_v1 {
      */
     pageToken?: string;
     /**
-     * The parent of the collection of `Builds`. Format: `projects/{project\}/locations/location`
+     * The parent of the collection of `Builds`. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
     /**
@@ -6472,7 +6521,7 @@ export namespace cloudbuild_v1 {
      *     pageSize: 'placeholder-value',
      *     // The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
      *     pageToken: 'placeholder-value',
-     *     // The parent of the collection of `Builds`. Format: `projects/{project\}/locations/location`
+     *     // The parent of the collection of `Builds`. Format: `projects/{project\}/locations/{location\}`
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. ID of the project.
      *     projectId: 'placeholder-value',
@@ -6791,7 +6840,7 @@ export namespace cloudbuild_v1 {
      */
     pageToken?: string;
     /**
-     * The parent of the collection of `Builds`. Format: `projects/{project\}/locations/location`
+     * The parent of the collection of `Builds`. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
     /**
