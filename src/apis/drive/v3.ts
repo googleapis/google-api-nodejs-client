@@ -5799,7 +5799,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Subscribes to changes to a file
+     * Subscribes to changes to a file. While you can establish a channel forchanges to a file on a shared drive, a change to a shared drive file won't create a notification.
      * @example
      * ```js
      * // Before running the sample:

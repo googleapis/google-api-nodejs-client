@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/7e1FsQv8W8PFOxtkf5qHyimEcXU\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/-mhqfu_gCvSknSoZ4b0_9VmlIiM\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -1308,7 +1308,7 @@
           "supportsMediaUpload": true
         },
         "watch": {
-          "description": "Subscribes to changes to a file",
+          "description": "Subscribes to changes to a file. While you can establish a channel forchanges to a file on a shared drive, a change to a shared drive file won't create a notification.",
           "httpMethod": "POST",
           "id": "drive.files.watch",
           "parameterOrder": [
@@ -2191,7 +2191,7 @@
       }
     }
   },
-  "revision": "20220130",
+  "revision": "20220225",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2725,6 +2725,11 @@
           "type": "string"
         },
         "name": {
+          "annotations": {
+            "required": [
+              "drive.drives.create"
+            ]
+          },
           "description": "The name of this shared drive.",
           "type": "string"
         },
@@ -3900,6 +3905,11 @@
           "type": "string"
         },
         "name": {
+          "annotations": {
+            "required": [
+              "drive.teamdrives.create"
+            ]
+          },
           "description": "The name of this Team Drive.",
           "type": "string"
         },
