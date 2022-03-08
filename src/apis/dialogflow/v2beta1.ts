@@ -2692,6 +2692,15 @@ export namespace dialogflow_v2beta1 {
     uri?: string | null;
   }
   /**
+   * Metadata for article suggestion models.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ArticleSuggestionModelMetadata {
+    /**
+     * Optional. Type of the article suggestion model. If not provided, model_type is used.
+     */
+    trainingModelType?: string | null;
+  }
+  /**
    * The response message for EntityTypes.BatchUpdateEntityTypes.
    */
   export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse {
@@ -3170,6 +3179,40 @@ export namespace dialogflow_v2beta1 {
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
   }
   /**
+   * Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata {
+    /**
+     * The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`
+     */
+    conversationProfile?: string | null;
+    /**
+     * Timestamp whe the request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The participant role to remove the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to remove.
+     */
+    suggestionFeatureType?: string | null;
+  }
+  /**
+   * The request message for ConversationProfiles.ClearFeature.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest {
+    /**
+     * Required. The participant role to remove the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to remove.
+     */
+    suggestionFeatureType?: string | null;
+  }
+  /**
    * The request message for Participants.CompileSuggestion.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1CompileSuggestionRequest {
@@ -3428,7 +3471,7 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string | null;
     /**
-     * Optional. If true, we try to automatically reload the document every day (at a time picked by the system). If false or unspecified, we don't try to automatically reload the document. Currently you can only enable automatic reload for documents sourced from a public url, see `source` field for the source types. Reload status can be tracked in `latest_reload_status`. If a reload fails, we will keep the document unchanged. If a reload fails with internal errors, the system will try to reload the document on the next day. If a reload fails with non-retriable errors (e.g. PERMISION_DENIED), the system will not try to reload the document anymore. You need to manually reload the document successfully by calling `ReloadDocument` and clear the errors.
+     * Optional. If true, we try to automatically reload the document every day (at a time picked by the system). If false or unspecified, we don't try to automatically reload the document. Currently you can only enable automatic reload for documents sourced from a public url, see `source` field for the source types. Reload status can be tracked in `latest_reload_status`. If a reload fails, we will keep the document unchanged. If a reload fails with internal errors, the system will try to reload the document on the next day. If a reload fails with non-retriable errors (e.g. PERMISSION_DENIED), the system will not try to reload the document anymore. You need to manually reload the document successfully by calling `ReloadDocument` and clear the errors.
      */
     enableAutoReload?: boolean | null;
     /**
@@ -3455,6 +3498,10 @@ export namespace dialogflow_v2beta1 {
      * The raw content of the document. This field is only permitted for EXTRACTIVE_QA and FAQ knowledge types.
      */
     rawContent?: string | null;
+    /**
+     * Output only. The current state of the document.
+     */
+    state?: string | null;
   }
   /**
    * The status of a reload attempt.
@@ -3636,6 +3683,15 @@ export namespace dialogflow_v2beta1 {
     agentUri?: string | null;
   }
   /**
+   * Metadata related to the Export Data Operations (e.g. ExportDocument).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ExportOperationMetadata {
+    /**
+     * Cloud Storage file path of the exported data.
+     */
+    exportedGcsDestination?: Schema$GoogleCloudDialogflowV2beta1GcsDestination;
+  }
+  /**
    * Represents answer from "frequently asked questions".
    */
   export interface Schema$GoogleCloudDialogflowV2beta1FaqAnswer {
@@ -3722,6 +3778,15 @@ export namespace dialogflow_v2beta1 {
      * The user name for HTTP Basic authentication.
      */
     username?: string | null;
+  }
+  /**
+   * Google Cloud Storage location for the output.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GcsDestination {
+    /**
+     * Required. The Google Cloud Storage URIs for the output. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
+     */
+    uri?: string | null;
   }
   /**
    * Google Cloud Storage location for single input.
@@ -5009,6 +5074,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
     /**
+     * Metadata for the Export Data Operation such as the destination of export.
+     */
+    exportOperationMetadata?: Schema$GoogleCloudDialogflowV2beta1ExportOperationMetadata;
+    /**
      * The name of the knowledge base interacted with during the operation.
      */
     knowledgeBase?: string | null;
@@ -5271,7 +5340,7 @@ export namespace dialogflow_v2beta1 {
      */
     messageFormat?: string | null;
     /**
-     * Name of the Pub/Sub topic to publish conversation events like CONVERSATION_STARTED as serialized ConversationEvent protos. Notification works for phone calls, if this topic either is in the same project as the conversation or you grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service Agent` role in the topic project. Format: `projects//locations//topics/`.
+     * Name of the Pub/Sub topic to publish conversation events like CONVERSATION_STARTED as serialized ConversationEvent protos. For telephony integration to receive notification, make sure either this topic is in the same project as the conversation or you grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service Agent` role in the topic project. For chat integration to receive notification, make sure API caller has been granted the `Dialogflow Service Agent` role for the topic. Format: `projects//locations//topics/`.
      */
     topic?: string | null;
   }
@@ -5628,6 +5697,40 @@ export namespace dialogflow_v2beta1 {
      * Required. The unique identifier of this session entity type. Supported formats: - `projects//agent/sessions//entityTypes/` - `projects//locations//agent/sessions//entityTypes/` - `projects//agent/environments//users//sessions//entityTypes/` - `projects//locations//agent/environments/ /users//sessions//entityTypes/` If `Location ID` is not specified we assume default 'us' location. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string | null;
+  }
+  /**
+   * Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigOperationMetadata {
+    /**
+     * The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`
+     */
+    conversationProfile?: string | null;
+    /**
+     * Timestamp whe the request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The participant role to add or update the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to add or update.
+     */
+    suggestionFeatureType?: string | null;
+  }
+  /**
+   * The request message for ConversationProfiles.SetSuggestionFeature.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest {
+    /**
+     * Required. The participant role to add or update the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The suggestion feature config to add or update.
+     */
+    suggestionFeatureConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig;
   }
   /**
    * Represents a smart reply answer.
@@ -6097,6 +6200,27 @@ export namespace dialogflow_v2beta1 {
     source?: string | null;
   }
   /**
+   * Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata {
+    /**
+     * The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`
+     */
+    conversationProfile?: string | null;
+    /**
+     * Timestamp whe the request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The participant role to remove the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to remove.
+     */
+    suggestionFeatureType?: string | null;
+  }
+  /**
    * Dialogflow contexts are similar to natural language context. If a person says to you "they are orange", you need context in order to understand what "they" is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Context {
@@ -6133,6 +6257,115 @@ export namespace dialogflow_v2beta1 {
      * The type of the event that this notification refers to.
      */
     type?: string | null;
+  }
+  /**
+   * Represents a conversation model.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ConversationModel {
+    /**
+     * Metadata for article suggestion models.
+     */
+    articleSuggestionModelMetadata?: Schema$GoogleCloudDialogflowV2ArticleSuggestionModelMetadata;
+    /**
+     * Output only. Creation time of this model.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Datasets used to create model.
+     */
+    datasets?: Schema$GoogleCloudDialogflowV2InputDataset[];
+    /**
+     * Required. The display name of the model. At most 64 bytes long.
+     */
+    displayName?: string | null;
+    /**
+     * Language code for the conversation model. If not specified, the language is en-US. Language at ConversationModel should be set for all non en-us languages. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * ConversationModel resource name. Format: `projects//conversationModels/`
+     */
+    name?: string | null;
+    /**
+     * Metadata for smart reply models.
+     */
+    smartReplyModelMetadata?: Schema$GoogleCloudDialogflowV2SmartReplyModelMetadata;
+    /**
+     * Output only. State of the model. A model can only serve prediction requests after it gets deployed.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata for ConversationDatasets.
+   */
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {}
+  /**
+   * Metadata for a ConversationModels.CreateConversationModelEvaluation operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//locations//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * The resource name of the conversation model. Format: `projects//locations//conversationModels//evaluations/`
+     */
+    conversationModelEvaluation?: string | null;
+    /**
+     * Timestamp when the request to create conversation model was submitted. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * State of CreateConversationModel operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata for a ConversationModels.CreateConversationModel operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationModelOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * Timestamp when the request to create conversation model is submitted. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * State of CreateConversationModel operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata for ConversationDatasets.
+   */
+  export interface Schema$GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata {}
+  /**
+   * Metadata for a ConversationModels.DeleteConversationModel operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2DeleteConversationModelOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * Timestamp when delete conversation model request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+  }
+  /**
+   * Metadata for a ConversationModels.DeployConversationModel operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2DeployConversationModelOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * Timestamp when request to deploy conversation model was submitted. The time is measured on server side.
+     */
+    createTime?: string | null;
   }
   /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
@@ -6207,6 +6440,15 @@ export namespace dialogflow_v2beta1 {
     agentUri?: string | null;
   }
   /**
+   * Metadata related to the Export Data Operations (e.g. ExportDocument).
+   */
+  export interface Schema$GoogleCloudDialogflowV2ExportOperationMetadata {
+    /**
+     * Cloud Storage file path of the exported data.
+     */
+    exportedGcsDestination?: Schema$GoogleCloudDialogflowV2GcsDestination;
+  }
+  /**
    * Represents answer from "frequently asked questions".
    */
   export interface Schema$GoogleCloudDialogflowV2FaqAnswer {
@@ -6236,6 +6478,15 @@ export namespace dialogflow_v2beta1 {
     source?: string | null;
   }
   /**
+   * Google Cloud Storage location for the output.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GcsDestination {
+    /**
+     * The Google Cloud Storage URIs for the output. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
+     */
+    uri?: string | null;
+  }
+  /**
    * Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.
    */
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantEvent {
@@ -6253,6 +6504,36 @@ export namespace dialogflow_v2beta1 {
     suggestionResults?: Schema$GoogleCloudDialogflowV2SuggestionResult[];
   }
   /**
+   * Metadata for a ConversationDatasets.ImportConversationData operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ImportConversationDataOperationMetadata {
+    /**
+     * The resource name of the imported conversation dataset. Format: `projects//locations//conversationDatasets/`
+     */
+    conversationDataset?: string | null;
+    /**
+     * Timestamp when import conversation data request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Partial failures are failures that don't fail the whole long running operation, e.g. single files that couldn't be read.
+     */
+    partialFailures?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Response used for ConversationDatasets.ImportConversationData long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ImportConversationDataOperationResponse {
+    /**
+     * The resource name of the imported conversation dataset. Format: `projects//locations//conversationDatasets/`
+     */
+    conversationDataset?: string | null;
+    /**
+     * Number of conversations imported successfully.
+     */
+    importCount?: number | null;
+  }
+  /**
    * Response message for Documents.ImportDocuments.
    */
   export interface Schema$GoogleCloudDialogflowV2ImportDocumentsResponse {
@@ -6260,6 +6541,15 @@ export namespace dialogflow_v2beta1 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * InputDataset used to create model or do evaluation. NextID:5
+   */
+  export interface Schema$GoogleCloudDialogflowV2InputDataset {
+    /**
+     * Required. ConversationDataset resource name. Format: `projects//locations//conversationDatasets/`
+     */
+    dataset?: string | null;
   }
   /**
    * An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
@@ -6915,6 +7205,10 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeOperationMetadata {
     /**
+     * Metadata for the Export Data Operation such as the destination of export.
+     */
+    exportOperationMetadata?: Schema$GoogleCloudDialogflowV2ExportOperationMetadata;
+    /**
      * The name of the knowledge base interacted with during the operation.
      */
     knowledgeBase?: string | null;
@@ -7103,6 +7397,27 @@ export namespace dialogflow_v2beta1 {
     name?: string | null;
   }
   /**
+   * Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata {
+    /**
+     * The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`
+     */
+    conversationProfile?: string | null;
+    /**
+     * Timestamp whe the request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The participant role to add or update the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to add or update.
+     */
+    suggestionFeatureType?: string | null;
+  }
+  /**
    * Represents a smart reply answer.
    */
   export interface Schema$GoogleCloudDialogflowV2SmartReplyAnswer {
@@ -7118,6 +7433,15 @@ export namespace dialogflow_v2beta1 {
      * The content of the reply.
      */
     reply?: string | null;
+  }
+  /**
+   * Metadata for smart reply models.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SmartReplyModelMetadata {
+    /**
+     * Optional. Type of the smart reply model. If not provided, model_type is used.
+     */
+    trainingModelType?: string | null;
   }
   /**
    * The response message for Participants.SuggestArticles.
@@ -7190,6 +7514,19 @@ export namespace dialogflow_v2beta1 {
      * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
      */
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2SmartReplyAnswer[];
+  }
+  /**
+   * Metadata for a ConversationModels.UndeployConversationModel operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * Timestamp when the request to undeploy conversation model was submitted. The time is measured on server side.
+     */
+    createTime?: string | null;
   }
   /**
    * The request message for a webhook call.
@@ -16138,7 +16475,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "metadata": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
-     *       //   "rawContent": "my_rawContent"
+     *       //   "rawContent": "my_rawContent",
+     *       //   "state": "my_state"
      *       // }
      *     },
      *   });
@@ -16440,7 +16778,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "metadata": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
-     *   //   "rawContent": "my_rawContent"
+     *   //   "rawContent": "my_rawContent",
+     *   //   "state": "my_state"
      *   // }
      * }
      *
@@ -16739,7 +17078,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "metadata": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
-     *       //   "rawContent": "my_rawContent"
+     *       //   "rawContent": "my_rawContent",
+     *       //   "state": "my_state"
      *       // }
      *     },
      *   });
@@ -20273,6 +20613,163 @@ export namespace dialogflow_v2beta1 {
     }
 
     /**
+     * Clears a suggestion feature from a conversation profile for the given participant role. This method is a [long-running operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations). The returned `Operation` type has the following method-specific fields: - `metadata`: ClearSuggestionFeatureConfigOperationMetadata - `response`: ConversationProfile
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.conversationProfiles.clearSuggestionFeatureConfig(
+     *       {
+     *         // Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
+     *         conversationProfile:
+     *           'projects/my-project/conversationProfiles/my-conversationProfile',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "participantRole": "my_participantRole",
+     *           //   "suggestionFeatureType": "my_suggestionFeatureType"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    clearSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    clearSuggestionFeatureConfig(
+      params?: Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    clearSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    clearSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clearSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clearSuggestionFeatureConfig(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clearSuggestionFeatureConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/{+conversationProfile}:clearSuggestionFeatureConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversationProfile'],
+        pathParams: ['conversationProfile'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Creates a conversation profile in the specified project. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
      * @example
      * ```js
@@ -21047,8 +21544,175 @@ export namespace dialogflow_v2beta1 {
         );
       }
     }
+
+    /**
+     * Adds or updates a suggestion feature in a conversation profile. If the conversation profile contains the type of suggestion feature for the participant role, it will update it. Otherwise it will insert the suggestion feature. This method is a [long-running operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations). The returned `Operation` type has the following method-specific fields: - `metadata`: SetSuggestionFeatureConfigOperationMetadata - `response`: ConversationProfile If a long running operation to add or update suggestion feature config for the same conversation profile, participant role and suggestion feature type exists, please cancel the existing long running operation before sending such request, otherwise the request will be rejected.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.conversationProfiles.setSuggestionFeatureConfig({
+     *       // Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
+     *       conversationProfile:
+     *         'projects/my-project/conversationProfiles/my-conversationProfile',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "participantRole": "my_participantRole",
+     *         //   "suggestionFeatureConfig": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setSuggestionFeatureConfig(
+      params?: Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    setSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setSuggestionFeatureConfig(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setSuggestionFeatureConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/{+conversationProfile}:setSuggestionFeatureConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversationProfile'],
+        pathParams: ['conversationProfile'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Conversationprofiles$Clearsuggestionfeatureconfig
+    extends StandardParameters {
+    /**
+     * Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
+     */
+    conversationProfile?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest;
+  }
   export interface Params$Resource$Projects$Conversationprofiles$Create
     extends StandardParameters {
     /**
@@ -21105,6 +21769,18 @@ export namespace dialogflow_v2beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
+  }
+  export interface Params$Resource$Projects$Conversationprofiles$Setsuggestionfeatureconfig
+    extends StandardParameters {
+    /**
+     * Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
+     */
+    conversationProfile?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest;
   }
 
   export class Resource$Projects$Conversations {
@@ -24667,7 +25343,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "metadata": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
-     *       //   "rawContent": "my_rawContent"
+     *       //   "rawContent": "my_rawContent",
+     *       //   "state": "my_state"
      *       // }
      *     },
      *   });
@@ -24967,7 +25644,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "metadata": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
-     *   //   "rawContent": "my_rawContent"
+     *   //   "rawContent": "my_rawContent",
+     *   //   "state": "my_state"
      *   // }
      * }
      *
@@ -25417,7 +26095,8 @@ export namespace dialogflow_v2beta1 {
      *       //   "metadata": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
-     *       //   "rawContent": "my_rawContent"
+     *       //   "rawContent": "my_rawContent",
+     *       //   "state": "my_state"
      *       // }
      *     },
      *   });
@@ -37220,6 +37899,163 @@ export namespace dialogflow_v2beta1 {
     }
 
     /**
+     * Clears a suggestion feature from a conversation profile for the given participant role. This method is a [long-running operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations). The returned `Operation` type has the following method-specific fields: - `metadata`: ClearSuggestionFeatureConfigOperationMetadata - `response`: ConversationProfile
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.conversationProfiles.clearSuggestionFeatureConfig(
+     *       {
+     *         // Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
+     *         conversationProfile:
+     *           'projects/my-project/locations/my-location/conversationProfiles/my-conversationProfile',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "participantRole": "my_participantRole",
+     *           //   "suggestionFeatureType": "my_suggestionFeatureType"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    clearSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    clearSuggestionFeatureConfig(
+      params?: Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    clearSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    clearSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clearSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clearSuggestionFeatureConfig(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clearSuggestionFeatureConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/{+conversationProfile}:clearSuggestionFeatureConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversationProfile'],
+        pathParams: ['conversationProfile'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Creates a conversation profile in the specified project. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
      * @example
      * ```js
@@ -37999,8 +38835,177 @@ export namespace dialogflow_v2beta1 {
         );
       }
     }
+
+    /**
+     * Adds or updates a suggestion feature in a conversation profile. If the conversation profile contains the type of suggestion feature for the participant role, it will update it. Otherwise it will insert the suggestion feature. This method is a [long-running operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations). The returned `Operation` type has the following method-specific fields: - `metadata`: SetSuggestionFeatureConfigOperationMetadata - `response`: ConversationProfile If a long running operation to add or update suggestion feature config for the same conversation profile, participant role and suggestion feature type exists, please cancel the existing long running operation before sending such request, otherwise the request will be rejected.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.conversationProfiles.setSuggestionFeatureConfig(
+     *       {
+     *         // Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
+     *         conversationProfile:
+     *           'projects/my-project/locations/my-location/conversationProfiles/my-conversationProfile',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "participantRole": "my_participantRole",
+     *           //   "suggestionFeatureConfig": {}
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setSuggestionFeatureConfig(
+      params?: Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    setSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setSuggestionFeatureConfig(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setSuggestionFeatureConfig(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    setSuggestionFeatureConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/{+conversationProfile}:setSuggestionFeatureConfig'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['conversationProfile'],
+        pathParams: ['conversationProfile'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Clearsuggestionfeatureconfig
+    extends StandardParameters {
+    /**
+     * Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
+     */
+    conversationProfile?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigRequest;
+  }
   export interface Params$Resource$Projects$Locations$Conversationprofiles$Create
     extends StandardParameters {
     /**
@@ -38057,6 +39062,18 @@ export namespace dialogflow_v2beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
+  }
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Setsuggestionfeatureconfig
+    extends StandardParameters {
+    /**
+     * Required. The Conversation Profile to add or update the suggestion feature config. Format: `projects//locations//conversationProfiles/`.
+     */
+    conversationProfile?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigRequest;
   }
 
   export class Resource$Projects$Locations$Conversations {
@@ -41300,7 +42317,8 @@ export namespace dialogflow_v2beta1 {
      *         //   "metadata": {},
      *         //   "mimeType": "my_mimeType",
      *         //   "name": "my_name",
-     *         //   "rawContent": "my_rawContent"
+     *         //   "rawContent": "my_rawContent",
+     *         //   "state": "my_state"
      *         // }
      *       },
      *     });
@@ -41603,7 +42621,8 @@ export namespace dialogflow_v2beta1 {
      *   //   "metadata": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
-     *   //   "rawContent": "my_rawContent"
+     *   //   "rawContent": "my_rawContent",
+     *   //   "state": "my_state"
      *   // }
      * }
      *
@@ -42062,7 +43081,8 @@ export namespace dialogflow_v2beta1 {
      *         //   "metadata": {},
      *         //   "mimeType": "my_mimeType",
      *         //   "name": "my_name",
-     *         //   "rawContent": "my_rawContent"
+     *         //   "rawContent": "my_rawContent",
+     *         //   "state": "my_state"
      *         // }
      *       },
      *     });

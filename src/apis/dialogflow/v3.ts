@@ -4375,6 +4375,15 @@ export namespace dialogflow_v3 {
     uri?: string | null;
   }
   /**
+   * Metadata for article suggestion models.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ArticleSuggestionModelMetadata {
+    /**
+     * Optional. Type of the article suggestion model. If not provided, model_type is used.
+     */
+    trainingModelType?: string | null;
+  }
+  /**
    * The response message for EntityTypes.BatchUpdateEntityTypes.
    */
   export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse {
@@ -4451,6 +4460,27 @@ export namespace dialogflow_v3 {
      * The collection of updated or created intents.
      */
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
+  }
+  /**
+   * Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ClearSuggestionFeatureConfigOperationMetadata {
+    /**
+     * The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`
+     */
+    conversationProfile?: string | null;
+    /**
+     * Timestamp whe the request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The participant role to remove the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to remove.
+     */
+    suggestionFeatureType?: string | null;
   }
   /**
    * Dialogflow contexts are similar to natural language context. If a person says to you "they are orange", you need context in order to understand what "they" is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
@@ -4563,6 +4593,15 @@ export namespace dialogflow_v3 {
     agentUri?: string | null;
   }
   /**
+   * Metadata related to the Export Data Operations (e.g. ExportDocument).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ExportOperationMetadata {
+    /**
+     * Cloud Storage file path of the exported data.
+     */
+    exportedGcsDestination?: Schema$GoogleCloudDialogflowV2beta1GcsDestination;
+  }
+  /**
    * Represents answer from "frequently asked questions".
    */
   export interface Schema$GoogleCloudDialogflowV2beta1FaqAnswer {
@@ -4590,6 +4629,15 @@ export namespace dialogflow_v3 {
      * Indicates which Knowledge Document this answer was extracted from. Format: `projects//locations//agent/knowledgeBases//documents/`.
      */
     source?: string | null;
+  }
+  /**
+   * Google Cloud Storage location for the output.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GcsDestination {
+    /**
+     * Required. The Google Cloud Storage URIs for the output. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
+     */
+    uri?: string | null;
   }
   /**
    * Output only. Represents a notification sent to Pub/Sub subscribers for agent assistant events in a specific conversation.
@@ -5518,6 +5566,10 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata {
     /**
+     * Metadata for the Export Data Operation such as the destination of export.
+     */
+    exportOperationMetadata?: Schema$GoogleCloudDialogflowV2beta1ExportOperationMetadata;
+    /**
      * The name of the knowledge base interacted with during the operation.
      */
     knowledgeBase?: string | null;
@@ -5710,6 +5762,27 @@ export namespace dialogflow_v3 {
     name?: string | null;
   }
   /**
+   * Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SetSuggestionFeatureConfigOperationMetadata {
+    /**
+     * The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`
+     */
+    conversationProfile?: string | null;
+    /**
+     * Timestamp whe the request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The participant role to add or update the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to add or update.
+     */
+    suggestionFeatureType?: string | null;
+  }
+  /**
    * Represents a smart reply answer.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer {
@@ -5865,6 +5938,27 @@ export namespace dialogflow_v3 {
     source?: string | null;
   }
   /**
+   * Metadata for a ConversationProfile.ClearSuggestionFeatureConfig operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ClearSuggestionFeatureConfigOperationMetadata {
+    /**
+     * The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`
+     */
+    conversationProfile?: string | null;
+    /**
+     * Timestamp whe the request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The participant role to remove the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to remove.
+     */
+    suggestionFeatureType?: string | null;
+  }
+  /**
    * Dialogflow contexts are similar to natural language context. If a person says to you "they are orange", you need context in order to understand what "they" is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Context {
@@ -5901,6 +5995,115 @@ export namespace dialogflow_v3 {
      * The type of the event that this notification refers to.
      */
     type?: string | null;
+  }
+  /**
+   * Represents a conversation model.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ConversationModel {
+    /**
+     * Metadata for article suggestion models.
+     */
+    articleSuggestionModelMetadata?: Schema$GoogleCloudDialogflowV2ArticleSuggestionModelMetadata;
+    /**
+     * Output only. Creation time of this model.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Datasets used to create model.
+     */
+    datasets?: Schema$GoogleCloudDialogflowV2InputDataset[];
+    /**
+     * Required. The display name of the model. At most 64 bytes long.
+     */
+    displayName?: string | null;
+    /**
+     * Language code for the conversation model. If not specified, the language is en-US. Language at ConversationModel should be set for all non en-us languages. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * ConversationModel resource name. Format: `projects//conversationModels/`
+     */
+    name?: string | null;
+    /**
+     * Metadata for smart reply models.
+     */
+    smartReplyModelMetadata?: Schema$GoogleCloudDialogflowV2SmartReplyModelMetadata;
+    /**
+     * Output only. State of the model. A model can only serve prediction requests after it gets deployed.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata for ConversationDatasets.
+   */
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationDatasetOperationMetadata {}
+  /**
+   * Metadata for a ConversationModels.CreateConversationModelEvaluation operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationModelEvaluationOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//locations//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * The resource name of the conversation model. Format: `projects//locations//conversationModels//evaluations/`
+     */
+    conversationModelEvaluation?: string | null;
+    /**
+     * Timestamp when the request to create conversation model was submitted. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * State of CreateConversationModel operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata for a ConversationModels.CreateConversationModel operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2CreateConversationModelOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * Timestamp when the request to create conversation model is submitted. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * State of CreateConversationModel operation.
+     */
+    state?: string | null;
+  }
+  /**
+   * Metadata for ConversationDatasets.
+   */
+  export interface Schema$GoogleCloudDialogflowV2DeleteConversationDatasetOperationMetadata {}
+  /**
+   * Metadata for a ConversationModels.DeleteConversationModel operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2DeleteConversationModelOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * Timestamp when delete conversation model request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+  }
+  /**
+   * Metadata for a ConversationModels.DeployConversationModel operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2DeployConversationModelOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * Timestamp when request to deploy conversation model was submitted. The time is measured on server side.
+     */
+    createTime?: string | null;
   }
   /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
@@ -5975,6 +6178,15 @@ export namespace dialogflow_v3 {
     agentUri?: string | null;
   }
   /**
+   * Metadata related to the Export Data Operations (e.g. ExportDocument).
+   */
+  export interface Schema$GoogleCloudDialogflowV2ExportOperationMetadata {
+    /**
+     * Cloud Storage file path of the exported data.
+     */
+    exportedGcsDestination?: Schema$GoogleCloudDialogflowV2GcsDestination;
+  }
+  /**
    * Represents answer from "frequently asked questions".
    */
   export interface Schema$GoogleCloudDialogflowV2FaqAnswer {
@@ -6004,6 +6216,15 @@ export namespace dialogflow_v3 {
     source?: string | null;
   }
   /**
+   * Google Cloud Storage location for the output.
+   */
+  export interface Schema$GoogleCloudDialogflowV2GcsDestination {
+    /**
+     * The Google Cloud Storage URIs for the output. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case. The requesting user must have "write-permission" to the bucket.
+     */
+    uri?: string | null;
+  }
+  /**
    * Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.
    */
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantEvent {
@@ -6021,6 +6242,36 @@ export namespace dialogflow_v3 {
     suggestionResults?: Schema$GoogleCloudDialogflowV2SuggestionResult[];
   }
   /**
+   * Metadata for a ConversationDatasets.ImportConversationData operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ImportConversationDataOperationMetadata {
+    /**
+     * The resource name of the imported conversation dataset. Format: `projects//locations//conversationDatasets/`
+     */
+    conversationDataset?: string | null;
+    /**
+     * Timestamp when import conversation data request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Partial failures are failures that don't fail the whole long running operation, e.g. single files that couldn't be read.
+     */
+    partialFailures?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * Response used for ConversationDatasets.ImportConversationData long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ImportConversationDataOperationResponse {
+    /**
+     * The resource name of the imported conversation dataset. Format: `projects//locations//conversationDatasets/`
+     */
+    conversationDataset?: string | null;
+    /**
+     * Number of conversations imported successfully.
+     */
+    importCount?: number | null;
+  }
+  /**
    * Response message for Documents.ImportDocuments.
    */
   export interface Schema$GoogleCloudDialogflowV2ImportDocumentsResponse {
@@ -6028,6 +6279,15 @@ export namespace dialogflow_v3 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * InputDataset used to create model or do evaluation. NextID:5
+   */
+  export interface Schema$GoogleCloudDialogflowV2InputDataset {
+    /**
+     * Required. ConversationDataset resource name. Format: `projects//locations//conversationDatasets/`
+     */
+    dataset?: string | null;
   }
   /**
    * An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
@@ -6683,6 +6943,10 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowV2KnowledgeOperationMetadata {
     /**
+     * Metadata for the Export Data Operation such as the destination of export.
+     */
+    exportOperationMetadata?: Schema$GoogleCloudDialogflowV2ExportOperationMetadata;
+    /**
      * The name of the knowledge base interacted with during the operation.
      */
     knowledgeBase?: string | null;
@@ -6871,6 +7135,27 @@ export namespace dialogflow_v3 {
     name?: string | null;
   }
   /**
+   * Metadata for a ConversationProfile.SetSuggestionFeatureConfig operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SetSuggestionFeatureConfigOperationMetadata {
+    /**
+     * The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`
+     */
+    conversationProfile?: string | null;
+    /**
+     * Timestamp whe the request was created. The time is measured on server side.
+     */
+    createTime?: string | null;
+    /**
+     * Required. The participant role to add or update the suggestion feature config. Only HUMAN_AGENT or END_USER can be used.
+     */
+    participantRole?: string | null;
+    /**
+     * Required. The type of the suggestion feature to add or update.
+     */
+    suggestionFeatureType?: string | null;
+  }
+  /**
    * Represents a smart reply answer.
    */
   export interface Schema$GoogleCloudDialogflowV2SmartReplyAnswer {
@@ -6886,6 +7171,15 @@ export namespace dialogflow_v3 {
      * The content of the reply.
      */
     reply?: string | null;
+  }
+  /**
+   * Metadata for smart reply models.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SmartReplyModelMetadata {
+    /**
+     * Optional. Type of the smart reply model. If not provided, model_type is used.
+     */
+    trainingModelType?: string | null;
   }
   /**
    * The response message for Participants.SuggestArticles.
@@ -6958,6 +7252,19 @@ export namespace dialogflow_v3 {
      * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
      */
     smartReplyAnswers?: Schema$GoogleCloudDialogflowV2SmartReplyAnswer[];
+  }
+  /**
+   * Metadata for a ConversationModels.UndeployConversationModel operation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2UndeployConversationModelOperationMetadata {
+    /**
+     * The resource name of the conversation model. Format: `projects//conversationModels/`
+     */
+    conversationModel?: string | null;
+    /**
+     * Timestamp when the request to undeploy conversation model was submitted. The time is measured on server side.
+     */
+    createTime?: string | null;
   }
   /**
    * The request message for a webhook call.
