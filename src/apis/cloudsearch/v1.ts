@@ -140,6 +140,40 @@ export namespace cloudsearch_v1 {
   }
 
   /**
+   * Next tag: 4
+   */
+  export interface Schema$AclInfo {
+    /**
+     * Number of groups which have at least read access to the document.
+     */
+    groupsCount?: number | null;
+    /**
+     * The scope to which the content was shared.
+     */
+    scope?: string | null;
+    /**
+     * Number of users which have at least read access to the document.
+     */
+    usersCount?: number | null;
+  }
+  /**
+   * Identifier of an App.
+   */
+  export interface Schema$AppId {
+    /**
+     * Enum indicating the type of App this is.
+     */
+    appType?: string | null;
+    /**
+     * Enum indicating which 1P App this is when app_type is GSUITE_APP. Determined & set by the 1P API as a convenience for all users of this identifier(Eg. clients, chime, backend etc.) to map to 1P properties.
+     */
+    gsuiteAppType?: string | null;
+    /**
+     * Numeric identifier of the App. Set to Project number for 1/3P Apps. For Webhook, this is WebhookId. Determined & set by the 1P API from App credentials on the side channel.
+     */
+    id?: string | null;
+  }
+  /**
    * Represents the settings for Cloud audit logging
    */
   export interface Schema$AuditLoggingSettings {
@@ -159,6 +193,9 @@ export namespace cloudsearch_v1 {
      * The resource name of the GCP Project to store audit logs. Cloud audit logging will be enabled after project_name has been updated through CustomerService. Format: projects/{project_id\}
      */
     project?: string | null;
+  }
+  export interface Schema$AvatarInfo {
+    emoji?: Schema$Emoji;
   }
   /**
    * Used to provide a search operator for boolean properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
@@ -206,6 +243,50 @@ export namespace cloudsearch_v1 {
      * Text values of the attribute. The maximum number of elements is 10. The maximum length of an element in the array is 32 characters. The value will be normalized (lower-cased) before being matched.
      */
     values?: string[] | null;
+  }
+  /**
+   * Proto representation of a custom emoji. May be used in both APIs and in Spanner, but certain fields should be restricted to one or the other. See the per-field documentation for details. NEXT_TAG: 11
+   */
+  export interface Schema$CustomEmoji {
+    /**
+     * ID for the underlying image data in Blobstore. This field should *only* be present in Spanner or within the server, but should not be exposed in public APIs.
+     */
+    blobId?: string | null;
+    /**
+     * Time when the Emoji was created, in microseconds. This field may be present in Spanner, within the server, or in public APIs.
+     */
+    createTimeMicros?: string | null;
+    /**
+     * This field should *never* be persisted to Spanner.
+     */
+    creatorUserId?: Schema$UserId;
+    /**
+     * This field should *never* be persisted to Spanner.
+     */
+    ownerCustomerId?: Schema$CustomerId;
+    /**
+     * Opaque token that clients use to construct the URL for accessing the custom emoji’s image data. This field is intended for API consumption, and should *never* be persisted to Spanner.
+     */
+    readToken?: string | null;
+    /**
+     * User-provided, human-readable ID for the custom emoji. Users are expected to observe this field in the UI instead of the UUID. This shortcode should be unique within an organization, but has no global uniqueness guarantees, unlike the UUID. This field should *never* be persisted to Spanner.
+     */
+    shortcode?: string | null;
+    /**
+     * Snapshot of the current state of the emoji, which may differ from the source-of-truth in the CustomEmojis table. This field should *never* be persisted to Spanner.
+     */
+    state?: string | null;
+    updateTimeMicros?: string | null;
+    /**
+     * Unique key for a custom emoji resource. Required. This field is *always* populated.
+     */
+    uuid?: string | null;
+  }
+  /**
+   * Represents a GSuite customer ID. Obfuscated with CustomerIdObfuscator.
+   */
+  export interface Schema$CustomerId {
+    customerId?: string | null;
   }
   /**
    * Aggregation of items by status code as of the specified date.
@@ -429,6 +510,12 @@ export namespace cloudsearch_v1 {
      */
     propertyName?: string | null;
   }
+  export interface Schema$DmId {
+    /**
+     * Unique server assigned Id, per Direct Message Space.
+     */
+    dmId?: string | null;
+  }
   /**
    * Used to provide a search operator for double properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
    */
@@ -478,6 +565,16 @@ export namespace cloudsearch_v1 {
     type?: string | null;
   }
   /**
+   * This is the proto for holding space level scoring information. This data is used for logging in query-api server and for testing purposes.
+   */
+  export interface Schema$DynamiteSpacesScoringInfo {
+    finalScore?: number | null;
+    freshnessScore?: number | null;
+    messageScore?: number | null;
+    spaceAgeInDays?: number | null;
+    topicalityScore?: number | null;
+  }
+  /**
    * A person's email address.
    */
   export interface Schema$EmailAddress {
@@ -485,6 +582,16 @@ export namespace cloudsearch_v1 {
      * The email address.
      */
     emailAddress?: string | null;
+  }
+  export interface Schema$Emoji {
+    /**
+     * A custom emoji.
+     */
+    customEmoji?: Schema$CustomEmoji;
+    /**
+     * A basic emoji represented by a unicode string.
+     */
+    unicode?: string | null;
   }
   /**
    * Used to provide a search operator for enum properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched. For example, if you provide no operator for a *priority* enum property with possible values *p0* and *p1*, a query that contains the term *p0* returns items that have *p0* as the value of the *priority* property, as well as any items that contain the string *p0* in other fields. If you provide an operator name for the enum, such as *priority*, then search users can use that operator to refine results to only items that have *p0* as this property's value, with the query *priority:p0*.
@@ -711,6 +818,77 @@ export namespace cloudsearch_v1 {
   export interface Schema$GetSearchApplicationUserStatsResponse {
     stats?: Schema$SearchApplicationUserStats[];
   }
+  /**
+   * The corpus specific metadata for office-type documents, from Google Docs and other sources. This message is passed to the scorer and beyond. Next tag: 7
+   */
+  export interface Schema$GoogleDocsMetadata {
+    /**
+     * Contains number of users and groups which can access the document.
+     */
+    aclInfo?: Schema$AclInfo;
+    /**
+     * The conceptual type (presentation, document, etc.) of this document.
+     */
+    documentType?: string | null;
+    /**
+     * The file extension of the document. NOTE: As of October 2018 this field is not backfilled for old documents.
+     */
+    fileExtension?: string | null;
+    /**
+     * The last time this document was modified, in seconds since epoch. Only counts content modifications.
+     */
+    lastContentModifiedTimestamp?: string | null;
+    /**
+     * Additional per-result information, akin to Gmail's SingleThreadResponse. Note: GWS no longer seems to use this field, but there's still one reference to it for Scribe, so we can't remove it.
+     */
+    resultInfo?: Schema$GoogleDocsResultInfo;
+    /**
+     * Contains additional information about the document depending on its type.
+     */
+    typeInfo?: Schema$TypeInfo;
+  }
+  /**
+   * A message containing information about a specific result. This information is passed to the scorer and beyond; in particular, GWS relies on it to format the result in the UI. Split from GoogleDocsMetadata in case we later want to reuse the message.
+   */
+  export interface Schema$GoogleDocsResultInfo {
+    /**
+     * The SHA1 hash of the object in Drive, if any.
+     */
+    attachmentSha1?: string | null;
+    /**
+     * The storage identifier for the object in Cosmo. This field is intended to used by Stratus/Moonshine integration only. It should not be exposed externally (please refer to encrypted_id for that purpose).
+     */
+    cosmoId?: Schema$Id;
+    /**
+     * For Cosmo objects, the Cosmo namespace the object was in. This allows downstream clients to identify whether a document was created in Writely or Kix, Presently or Punch, or whether it was uploaded from GDrive. See storage_cosmo.Id.NAME_SPACE for a list of all Cosmo name spaces.
+     */
+    cosmoNameSpace?: number | null;
+    /**
+     * The encrypted (user-visible) id of this object. Knowing the id is sufficient to create a canonical URL for this document.
+     */
+    encryptedId?: string | null;
+    /**
+     * The mimetype of the document.
+     */
+    mimeType?: string | null;
+    /**
+     * The visibility indicator in the UI will be based upon this.
+     */
+    shareScope?: Schema$ShareScope;
+  }
+  /**
+   * Id representing a group that could be a space, a chat, or a direct message space. Which ID is set here will determine which group
+   */
+  export interface Schema$GroupId {
+    /**
+     * Unique, immutable ID of the Direct Message Space
+     */
+    dmId?: Schema$DmId;
+    /**
+     * Unique, immutable ID of the Space
+     */
+    spaceId?: Schema$SpaceId;
+  }
   export interface Schema$GSuitePrincipal {
     /**
      * This principal represents all users of the G Suite domain of the customer.
@@ -755,6 +933,23 @@ export namespace cloudsearch_v1 {
      * The maximum allowable length for html values is 2048 characters.
      */
     values?: string[] | null;
+  }
+  /**
+   * Identifies a particular object, including both Users and DirEntries. This Id is unique across the entire server instance, such as the production or qa instance.
+   */
+  export interface Schema$Id {
+    /**
+     * The User account in which the DirEntry was originally created. If name_space==GAIA, then it's the gaia_id of the user this id is referring to.
+     */
+    creatorUserId?: string | null;
+    /**
+     * The local identifier for the DirEntry (local to the creator's account). local_id + app_name is guaranteed to be unique within the creator account, but not across all User accounts. The string is case sensitive. Ignore if name_space==GAIA. NB For name_space==COSMO, all local_id's should be defined in google3/java/com/google/storage/cosmo/server/api/SpecialObjectIds.java as they have a special predefined meaning. See cosmo.client.CosmoIdFactory.createObjectId(long,String) for IMPORTANT recommendations when generating IDs.
+     */
+    localId?: string | null;
+    /**
+     * The name space in which this id is unique (typically the application that created it). Values should be drawn from the above enum, but for experimentation, use values greater than 1000.
+     */
+    nameSpace?: number | null;
   }
   export interface Schema$IndexItemOptions {
     /**
@@ -884,7 +1079,7 @@ export namespace cloudsearch_v1 {
      */
     structuredData?: Schema$ItemStructuredData;
     /**
-     * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. See [this guide](https://developers.devsite.corp.google.com/cloud-search/docs/guides/operations) to understand how item version affects reindexing after delete item.
+     * Required. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't index or delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/cloud-search/docs/guides/operations).
      */
     version?: string | null;
   }
@@ -1898,7 +2093,7 @@ export namespace cloudsearch_v1 {
      */
     pageSize?: number | null;
     /**
-     * The raw query string. See supported search operators in the [Cloud search Cheat Sheet](https://support.google.com/a/users/answer/9299929)
+     * The raw query string. See supported search operators in the [Narrow your search with operators](https://support.google.com/cloudsearch/answer/6172299)
      */
     query?: string | null;
     /**
@@ -1996,6 +2191,16 @@ export namespace cloudsearch_v1 {
      */
     url?: string | null;
   }
+  export interface Schema$ShareScope {
+    /**
+     * If scope is DOMAIN, this field contains the dasher domain, for example "google.com".
+     */
+    domain?: string | null;
+    /**
+     * The scope to which the content was shared.
+     */
+    scope?: string | null;
+  }
   /**
    * Snippet of the search result, which summarizes the content of the resulting page.
    */
@@ -2091,6 +2296,34 @@ export namespace cloudsearch_v1 {
      * Importance of the source.
      */
     sourceImportance?: string | null;
+  }
+  /**
+   * Primary key for Space resource.
+   */
+  export interface Schema$SpaceId {
+    /**
+     * Unique, immutable ID of the Space
+     */
+    spaceId?: string | null;
+  }
+  /**
+   * Defines the representation of a single matching space.
+   */
+  export interface Schema$SpaceInfo {
+    avatarInfo?: Schema$AvatarInfo;
+    avatarUrl?: string | null;
+    description?: string | null;
+    groupId?: Schema$GroupId;
+    /**
+     * Whether this is an external space outside of user's organization
+     */
+    isExternal?: boolean | null;
+    name?: string | null;
+    numMembers?: number | null;
+    /**
+     * searching user's membership state in this space
+     */
+    userMembershipState?: string | null;
   }
   export interface Schema$SpellResult {
     /**
@@ -2260,6 +2493,15 @@ export namespace cloudsearch_v1 {
   export interface Schema$TimestampValues {
     values?: string[] | null;
   }
+  /**
+   * Next tag: 2
+   */
+  export interface Schema$TypeInfo {
+    /**
+     * Contains additional video information only if document_type is VIDEO.
+     */
+    videoInfo?: Schema$VideoInfo;
+  }
   export interface Schema$UnmappedIdentity {
     /**
      * The resource name for an external user.
@@ -2315,6 +2557,23 @@ export namespace cloudsearch_v1 {
     name?: string | null;
   }
   /**
+   * Primary key for User resource.
+   */
+  export interface Schema$UserId {
+    /**
+     * Opaque, server-assigned ID of the User.
+     */
+    id?: string | null;
+    /**
+     * Optional. Identifier of the App involved (directly or on behalf of a human creator) in creating this message. This is not set if the user posted a message directly, but is used in the case of, for example, a message being generated by a 1P integration based on a user action (creating an event, creating a task etc). This should only be used on the BE. For clients, please use the field in the FE message proto instead (google3/apps/dynamite/v1/frontend/api/message.proto?q=origin_app_id).
+     */
+    originAppId?: Schema$AppId;
+    /**
+     * Clients do not need to send UserType to Backend, but Backend will always send this field to clients per the following rule: 1. For HUMAN Ids, the field is empty but by default .getType() will return HUMAN. 2. For BOT Ids, the field is ALWAYS set to BOT.
+     */
+    type?: string | null;
+  }
+  /**
    * Definition of a single value with generic type.
    */
   export interface Schema$Value {
@@ -2334,6 +2593,15 @@ export namespace cloudsearch_v1 {
      * The value to be compared with.
      */
     value?: Schema$Value;
+  }
+  /**
+   * Next tag: 2
+   */
+  export interface Schema$VideoInfo {
+    /**
+     * Duration of the video in milliseconds. This field can be absent for recently uploaded video or inaccurate sometimes.
+     */
+    duration?: number | null;
   }
   export interface Schema$VPCSettings {
     /**
@@ -3779,7 +4047,7 @@ export namespace cloudsearch_v1 {
      *     mode: 'placeholder-value',
      *     // Required. Name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
      *     name: 'datasources/my-datasource/items/my-item',
-     *     // Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. See [this guide](https://developers.devsite.corp.google.com/cloud-search/docs/guides/operations) to understand how item version affects reindexing after delete item.
+     *     // Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/cloud-search/docs/guides/operations).
      *     version: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5075,7 +5343,7 @@ export namespace cloudsearch_v1 {
      */
     name?: string;
     /**
-     * Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. See [this guide](https://developers.devsite.corp.google.com/cloud-search/docs/guides/operations) to understand how item version affects reindexing after delete item.
+     * Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/cloud-search/docs/guides/operations).
      */
     version?: string;
   }
@@ -6957,7 +7225,7 @@ export namespace cloudsearch_v1 {
      *   const res = await cloudsearch.settings.datasources.list({
      *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *     'debugOptions.enableDebugging': 'placeholder-value',
-     *     // Maximum number of datasources to fetch in a request. The max value is 100. The default value is 10
+     *     // Maximum number of datasources to fetch in a request. The max value is 1000. The default value is 1000.
      *     pageSize: 'placeholder-value',
      *     // Starting index of the results.
      *     pageToken: 'placeholder-value',
@@ -7250,7 +7518,7 @@ export namespace cloudsearch_v1 {
      */
     'debugOptions.enableDebugging'?: boolean;
     /**
-     * Maximum number of datasources to fetch in a request. The max value is 100. The default value is 10
+     * Maximum number of datasources to fetch in a request. The max value is 1000. The default value is 1000.
      */
     pageSize?: number;
     /**
