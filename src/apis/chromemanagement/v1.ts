@@ -974,7 +974,7 @@ export namespace chromemanagement_v1 {
     message?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$GoogleTypeDate {
     /**
@@ -2302,7 +2302,7 @@ export namespace chromemanagement_v1 {
      *   const res = await chromemanagement.customers.telemetry.devices.list({
      *     // Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number
      *     filter: 'placeholder-value',
-     *     // Maximum number of results to return. Maximum and default are 100.
+     *     // Maximum number of results to return. Default value is 100. Maximum value is 200.
      *     pageSize: 'placeholder-value',
      *     // Token to specify next page in the list.
      *     pageToken: 'placeholder-value',
@@ -2429,7 +2429,7 @@ export namespace chromemanagement_v1 {
      */
     filter?: string;
     /**
-     * Maximum number of results to return. Maximum and default are 100.
+     * Maximum number of results to return. Default value is 100. Maximum value is 200.
      */
     pageSize?: number;
     /**
