@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20220119",
+  "revision": "20220216",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1221,7 +1221,8 @@
             "POSTGRES_10",
             "MYSQL_8_0",
             "POSTGRES_12",
-            "POSTGRES_13"
+            "POSTGRES_13",
+            "POSTGRES_14"
           ],
           "enumDescriptions": [
             "Unspecified version.",
@@ -1232,7 +1233,8 @@
             "PostgreSQL 10.",
             "MySQL 8.0.",
             "PostgreSQL 12.",
-            "PostgreSQL 13."
+            "PostgreSQL 13.",
+            "PostgreSQL 14."
           ],
           "type": "string"
         },
@@ -1400,6 +1402,35 @@
             "Amazon Aurora."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DumpFlag": {
+      "description": "Dump flag definition.",
+      "id": "DumpFlag",
+      "properties": {
+        "name": {
+          "description": "The name of the flag",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value of the flag.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DumpFlags": {
+      "description": "Dump flags definition.",
+      "id": "DumpFlags",
+      "properties": {
+        "dumpFlags": {
+          "description": "The flags for the initial dump.",
+          "items": {
+            "$ref": "DumpFlag"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1643,8 +1674,12 @@
           "description": "The migration job display name.",
           "type": "string"
         },
+        "dumpFlags": {
+          "$ref": "DumpFlags",
+          "description": "The initial dump flags. This field and the \"dump_path\" field are mutually exclusive."
+        },
         "dumpPath": {
-          "description": "The path to the dump file in Google Cloud Storage, in the format: (gs://[BUCKET_NAME]/[OBJECT_NAME]).",
+          "description": "The path to the dump file in Google Cloud Storage, in the format: (gs://[BUCKET_NAME]/[OBJECT_NAME]). This field and the \"dump_flags\" field are mutually exclusive.",
           "type": "string"
         },
         "duration": {

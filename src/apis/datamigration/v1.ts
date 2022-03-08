@@ -325,6 +325,28 @@ export namespace datamigration_v1 {
     provider?: string | null;
   }
   /**
+   * Dump flag definition.
+   */
+  export interface Schema$DumpFlag {
+    /**
+     * The name of the flag
+     */
+    name?: string | null;
+    /**
+     * The value of the flag.
+     */
+    value?: string | null;
+  }
+  /**
+   * Dump flags definition.
+   */
+  export interface Schema$DumpFlags {
+    /**
+     * The flags for the initial dump.
+     */
+    dumpFlags?: Schema$DumpFlag[];
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -509,7 +531,11 @@ export namespace datamigration_v1 {
      */
     displayName?: string | null;
     /**
-     * The path to the dump file in Google Cloud Storage, in the format: (gs://[BUCKET_NAME]/[OBJECT_NAME]).
+     * The initial dump flags. This field and the "dump_path" field are mutually exclusive.
+     */
+    dumpFlags?: Schema$DumpFlags;
+    /**
+     * The path to the dump file in Google Cloud Storage, in the format: (gs://[BUCKET_NAME]/[OBJECT_NAME]). This field and the "dump_flags" field are mutually exclusive.
      */
     dumpPath?: string | null;
     /**
@@ -2577,6 +2603,7 @@ export namespace datamigration_v1 {
      *       //   "destination": "my_destination",
      *       //   "destinationDatabase": {},
      *       //   "displayName": "my_displayName",
+     *       //   "dumpFlags": {},
      *       //   "dumpPath": "my_dumpPath",
      *       //   "duration": "my_duration",
      *       //   "endTime": "my_endTime",
@@ -3016,6 +3043,7 @@ export namespace datamigration_v1 {
      *   //   "destination": "my_destination",
      *   //   "destinationDatabase": {},
      *   //   "displayName": "my_displayName",
+     *   //   "dumpFlags": {},
      *   //   "dumpPath": "my_dumpPath",
      *   //   "duration": "my_duration",
      *   //   "endTime": "my_endTime",
@@ -3451,6 +3479,7 @@ export namespace datamigration_v1 {
      *       //   "destination": "my_destination",
      *       //   "destinationDatabase": {},
      *       //   "displayName": "my_displayName",
+     *       //   "dumpFlags": {},
      *       //   "dumpPath": "my_dumpPath",
      *       //   "duration": "my_duration",
      *       //   "endTime": "my_endTime",
