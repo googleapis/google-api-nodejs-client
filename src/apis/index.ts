@@ -208,6 +208,7 @@ import {
   VERSIONS as datapipelinesVersions,
   datapipelines,
 } from './datapipelines';
+import {VERSIONS as dataplexVersions, dataplex} from './dataplex';
 import {VERSIONS as dataprocVersions, dataproc} from './dataproc';
 import {VERSIONS as datastoreVersions, datastore} from './datastore';
 import {VERSIONS as datastreamVersions, datastream} from './datastream';
@@ -350,6 +351,10 @@ import {
   mybusinessaccountmanagement,
 } from './mybusinessaccountmanagement';
 import {
+  VERSIONS as mybusinessbusinesscallsVersions,
+  mybusinessbusinesscalls,
+} from './mybusinessbusinesscalls';
+import {
   VERSIONS as mybusinessbusinessinformationVersions,
   mybusinessbusinessinformation,
 } from './mybusinessbusinessinformation';
@@ -415,6 +420,10 @@ import {
   VERSIONS as playcustomappVersions,
   playcustomapp,
 } from './playcustomapp';
+import {
+  VERSIONS as playintegrityVersions,
+  playintegrity,
+} from './playintegrity';
 import {VERSIONS as plusVersions, plus} from './plus';
 import {
   VERSIONS as policyanalyzerVersions,
@@ -661,6 +670,7 @@ export const APIS: APIList = {
   datalabeling: datalabelingVersions,
   datamigration: datamigrationVersions,
   datapipelines: datapipelinesVersions,
+  dataplex: dataplexVersions,
   dataproc: dataprocVersions,
   datastore: datastoreVersions,
   datastream: datastreamVersions,
@@ -730,6 +740,7 @@ export const APIS: APIList = {
   ml: mlVersions,
   monitoring: monitoringVersions,
   mybusinessaccountmanagement: mybusinessaccountmanagementVersions,
+  mybusinessbusinesscalls: mybusinessbusinesscallsVersions,
   mybusinessbusinessinformation: mybusinessbusinessinformationVersions,
   mybusinesslodging: mybusinesslodgingVersions,
   mybusinessnotifications: mybusinessnotificationsVersions,
@@ -751,6 +762,7 @@ export const APIS: APIList = {
   people: peopleVersions,
   playablelocations: playablelocationsVersions,
   playcustomapp: playcustomappVersions,
+  playintegrity: playintegrityVersions,
   plus: plusVersions,
   policyanalyzer: policyanalyzerVersions,
   policysimulator: policysimulatorVersions,
@@ -903,6 +915,7 @@ export class GeneratedAPIs {
   datalabeling = datalabeling;
   datamigration = datamigration;
   datapipelines = datapipelines;
+  dataplex = dataplex;
   dataproc = dataproc;
   datastore = datastore;
   datastream = datastream;
@@ -972,6 +985,7 @@ export class GeneratedAPIs {
   ml = ml;
   monitoring = monitoring;
   mybusinessaccountmanagement = mybusinessaccountmanagement;
+  mybusinessbusinesscalls = mybusinessbusinesscalls;
   mybusinessbusinessinformation = mybusinessbusinessinformation;
   mybusinesslodging = mybusinesslodging;
   mybusinessnotifications = mybusinessnotifications;
@@ -993,6 +1007,7 @@ export class GeneratedAPIs {
   people = people;
   playablelocations = playablelocations;
   playcustomapp = playcustomapp;
+  playintegrity = playintegrity;
   plus = plus;
   policyanalyzer = policyanalyzer;
   policysimulator = policysimulator;

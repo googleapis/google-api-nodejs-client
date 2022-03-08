@@ -988,7 +988,7 @@
       }
     }
   },
-  "revision": "20211021",
+  "revision": "20220303",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1414,7 +1414,7 @@
           "type": "string"
         },
         "kind": {
-          "default": "deploymentmanager#operation",
+          "default": "compute#operation",
           "description": "[Output Only] Type of the resource. Always `compute#operation` for Operation resources.",
           "type": "string"
         },

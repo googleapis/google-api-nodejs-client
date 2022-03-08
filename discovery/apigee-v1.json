@@ -2486,7 +2486,7 @@
                       ],
                       "parameters": {
                         "action": {
-                          "description": "Approve or revoke the consumer key by setting this value to `approve` or `revoke`, respectively.",
+                          "description": "Approve or revoke the consumer key by setting this value to `approve` or `revoke`, respectively. The `Content-Type` header must be set to `application/octet-stream`.",
                           "location": "query",
                           "type": "string"
                         },
@@ -2893,6 +2893,129 @@
                   ]
                 }
               }
+            }
+          }
+        },
+        "endpointAttachments": {
+          "methods": {
+            "create": {
+              "description": "Creates an endpoint attachment. **Note:** Not supported for Apigee hybrid.",
+              "flatPath": "v1/organizations/{organizationsId}/endpointAttachments",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.endpointAttachments.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "endpointAttachmentId": {
+                  "description": "ID to use for the endpoint attachment. The ID can contain lowercase letters and numbers, must start with a letter, and must be 1-20 characters in length.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Organization the endpoint attachment will be created in.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/endpointAttachments",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1EndpointAttachment"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an endpoint attachment.",
+              "flatPath": "v1/organizations/{organizationsId}/endpointAttachments/{endpointAttachmentsId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.endpointAttachments.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the endpoint attachment. Use the following structure in your request: `organizations/{org}/endpointAttachments/{endpoint_attachment}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/endpointAttachments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets the endpoint attachment.",
+              "flatPath": "v1/organizations/{organizationsId}/endpointAttachments/{endpointAttachmentsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.endpointAttachments.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the endpoint attachment. Use the following structure in your request: `organizations/{org}/endpointAttachments/{endpoint_attachment}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/endpointAttachments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1EndpointAttachment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists the endpoint attachments in an organization.",
+              "flatPath": "v1/organizations/{organizationsId}/endpointAttachments",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.endpointAttachments.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. Maximum number of endpoint attachments to return. If unspecified, at most 25 attachments will be returned.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. Page token, returned from a previous `ListEndpointAttachments` call, that you can use to retrieve the next page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the organization for which to list endpoint attachments. Use the following structure in your request: `organizations/{org}`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/endpointAttachments",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListEndpointAttachmentsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
             }
           }
         },
@@ -3784,7 +3907,7 @@
                           "type": "boolean"
                         },
                         "sequencedRollout": {
-                          "description": "Flag that specifies whether to enable sequenced rollout. If set to `true`, a best-effort attempt will be made to roll out the routing rules corresponding to this deployment and the environment changes to add this deployment in a safe order. This reduces the risk of downtime that could be caused by changing the environment group's routing before the new destination for the affected traffic is ready to receive it. This should only be necessary if the new deployment will be capturing traffic from another environment under a shared environment group or if traffic will be rerouted to a different environment due to a base path removal. The [GenerateDeployChangeReport API](GenerateDeployChangeReport) may be used to examine routing changes before issuing the deployment request, and its response will indicate if a sequenced rollout is recommended for the deployment.",
+                          "description": "Flag that specifies whether to enable sequenced rollout. If set to `true`, the routing rules for this deployment and the environment changes to add the deployment will be rolled out in a safe order. This reduces the risk of downtime that could be caused by changing the environment group's routing before the new destination for the affected traffic is ready to receive it. This should only be necessary if the new deployment will be capturing traffic from another environment under a shared environment group or if traffic will be rerouted to a different environment due to a base path removal. The [GenerateDeployChangeReport API](GenerateDeployChangeReport) may be used to examine routing changes before issuing the deployment request, and its response will indicate if a sequenced rollout is recommended for the deployment.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -3844,7 +3967,7 @@
                           "type": "string"
                         },
                         "sequencedRollout": {
-                          "description": "Flag that specifies whether to enable sequenced rollout. If set to `true`, a best-effort attempt will be made to remove the environment group routing rules corresponding to this deployment before removing the deployment from the runtime. This is likely to be a rare use case; it is only needed when the intended effect of undeploying this proxy is to cause the traffic it currently handles to be rerouted to some other existing proxy in the environment group. The [GenerateUndeployChangeReport API](GenerateUndeployChangeReport) may be used to examine routing changes before issuing the undeployment request, and its response will indicate if a sequenced rollout is recommended for the undeployment.",
+                          "description": "Flag that specifies whether to enable sequenced rollout. If set to `true`, the environment group routing rules corresponding to this deployment will be removed before removing the deployment from the runtime. This is likely to be a rare use case; it is only needed when the intended effect of undeploying this proxy is to cause the traffic it currently handles to be rerouted to some other existing proxy in the environment group. The [GenerateUndeployChangeReport API](GenerateUndeployChangeReport) may be used to examine routing changes before issuing the undeployment request, and its response will indicate if a sequenced rollout is recommended for the undeployment.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -4955,6 +5078,31 @@
                   "path": "v1/{+name}",
                   "response": {
                     "$ref": "GoogleApiHttpBody"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getResulturl": {
+                  "description": "After the query is completed, use this API to retrieve the results. If the request succeeds, and there is a non-zero result set, the result is sent to the client as a list of urls to JSON files.",
+                  "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/queries/{queriesId}/resulturl",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.environments.queries.getResulturl",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the asynchronous query result to get. Must be of the form `organizations/{org}/environments/{env}/queries/{queryId}/resulturl`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/environments/[^/]+/queries/[^/]+/resulturl$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1GetAsyncQueryResultUrlResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -7440,7 +7588,7 @@
       }
     }
   },
-  "revision": "20220127",
+  "revision": "20220303",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -7818,6 +7966,21 @@
       "description": "Metadata describing the API proxy",
       "id": "GoogleCloudApigeeV1ApiProxy",
       "properties": {
+        "apiProxyType": {
+          "description": "Output only. The type of the API proxy.",
+          "enum": [
+            "API_PROXY_TYPE_UNSPECIFIED",
+            "PROGRAMMABLE",
+            "CONFIGURABLE"
+          ],
+          "enumDescriptions": [
+            "API proxy type not specified.",
+            "Programmable API Proxies enable you to develop APIs with highly flexible behavior using bundled policy configuration and one or more programming languages to describe complex sequential and/or conditional flows of logic.",
+            "Configurable API Proxies enable you to develop efficient APIs using simple configuration while complex execution control flow logic is handled by Apigee. This type only works with the ARCHIVE deployment type and cannot be combined with the PROXY deployment type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -7840,6 +8003,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "readOnly": {
+          "description": "Output only. Whether this proxy is read-only. A read-only proxy cannot have new revisions created through calls to CreateApiProxyRevision. A proxy is read-only if it was generated by an archive.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "revision": {
           "description": "Output only. List of revisons defined for the API proxy.",
           "items": {
@@ -7855,6 +8023,11 @@
       "description": "API proxy revision.",
       "id": "GoogleCloudApigeeV1ApiProxyRevision",
       "properties": {
+        "archive": {
+          "description": "Output only. The archive that generated this proxy revision. This field is only present on proxy revisions that were generated by an archive. Proxies generated by archives cannot be updated, deleted, or deployed to other environments. Format: `organizations/*/environments/*/archiveDeployments/*`",
+          "readOnly": true,
+          "type": "string"
+        },
         "basepaths": {
           "description": "Base URL of the API proxy.",
           "items": {
@@ -9476,6 +9649,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1EndpointAttachment": {
+      "description": "Apigee endpoint attachment. For more information, see Southbound networking patterns.",
+      "id": "GoogleCloudApigeeV1EndpointAttachment",
+      "properties": {
+        "host": {
+          "description": "Output only. Host that can be used in either the HTTP target endpoint directly or as the host in target server.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "location": {
+          "description": "Required. Location of the endpoint attachment.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the endpoint attachment. Use the following structure in your request: `organizations/{org}/endpointAttachments/{endpoint_attachment}`",
+          "type": "string"
+        },
+        "serviceAttachment": {
+          "description": "Format: projects/*/regions/*/serviceAttachments/*",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1EntityMetadata": {
       "description": "Metadata common to many entities in this API.",
       "id": "GoogleCloudApigeeV1EntityMetadata",
@@ -9952,6 +10149,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1GetAsyncQueryResultUrlResponse": {
+      "description": "The response for GetAsyncQueryResultUrl",
+      "id": "GoogleCloudApigeeV1GetAsyncQueryResultUrlResponse",
+      "properties": {
+        "urls": {
+          "description": "The list of Signed URLs generated by the CreateAsyncQuery request",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1GetAsyncQueryResultUrlResponseURLInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GetAsyncQueryResultUrlResponseURLInfo": {
+      "description": "A Signed URL and the relevant metadata associated with it.",
+      "id": "GoogleCloudApigeeV1GetAsyncQueryResultUrlResponseURLInfo",
+      "properties": {
+        "md5": {
+          "description": "The MD5 Hash of the JSON data",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "The size of the returned file in bytes",
+          "format": "int64",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The signed URL of the JSON data. Will be of the form `https://storage.googleapis.com/example-bucket/cat.jpeg?X-Goog-Algorithm= GOOG4-RSA-SHA256&X-Goog-Credential=example%40example-project.iam.gserviceaccount .com%2F20181026%2Fus-central1%2Fstorage%2Fgoog4_request&X-Goog-Date=20181026T18 1309Z&X-Goog-Expires=900&X-Goog-SignedHeaders=host&X-Goog-Signature=247a2aa45f16 9edf4d187d54e7cc46e4731b1e6273242c4f4c39a1d2507a0e58706e25e3a85a7dbb891d62afa849 6def8e260c1db863d9ace85ff0a184b894b117fe46d1225c82f2aa19efd52cf21d3e2022b3b868dc c1aca2741951ed5bf3bb25a34f5e9316a2841e8ff4c530b22ceaa1c5ce09c7cbb5732631510c2058 0e61723f5594de3aea497f195456a2ff2bdd0d13bad47289d8611b6f9cfeef0c46c91a455b94e90a 66924f722292d21e24d31dcfb38ce0c0f353ffa5a9756fc2a9f2b40bc2113206a81e324fc4fd6823 a29163fa845c8ae7eca1fcf6e5bb48b3200983c56c5ca81fffb151cca7402beddfc4a76b13344703 2ea7abedc098d2eb14a7`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1GetSyncAuthorizationRequest": {
       "description": "Request for GetSyncAuthorization.",
       "id": "GoogleCloudApigeeV1GetSyncAuthorizationRequest",
@@ -10058,6 +10289,13 @@
       "description": "Apigee runtime instance.",
       "id": "GoogleCloudApigeeV1Instance",
       "properties": {
+        "consumerAcceptList": {
+          "description": "Optional. Customer accept list represents the list of projects (id/number) on customer side that can privately connect to the service attachment. It is an optional field which the customers can provide during the instance creation. By default, the customer project associated with the Apigee organization will be included to the list.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "createdAt": {
           "description": "Output only. Time the instance was created in milliseconds since epoch.",
           "format": "int64",
@@ -10130,6 +10368,11 @@
         },
         "runtimeVersion": {
           "description": "Output only. Version of the runtime system running in the instance. The runtime system is the set of components that serve the API Proxy traffic in your Environments.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serviceAttachment": {
+          "description": "Output only. Resource name of the service attachment created for the instance in the format: `projects/*/regions/*/serviceAttachments/*` Apigee customers can privately forward traffic to this service attachment using the PSC endpoints.",
           "readOnly": true,
           "type": "string"
         },
@@ -10518,6 +10761,24 @@
         },
         "nextStartKey": {
           "description": "Value that can be sent as `startKey` to retrieve the next page of content. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ListEndpointAttachmentsResponse": {
+      "description": "Response for ListEndpointAttachments method.",
+      "id": "GoogleCloudApigeeV1ListEndpointAttachmentsResponse",
+      "properties": {
+        "endpointAttachments": {
+          "description": "Endpoint attachments in the specified organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1EndpointAttachment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in an `ListEndpointAttachments` request to retrieve the next page. If omitted, no subsequent pages exist.",
           "type": "string"
         }
       },
@@ -11021,7 +11282,7 @@
           "description": "Addon configurations of the Apigee organization."
         },
         "analyticsRegion": {
-          "description": "Required. Primary GCP region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
+          "description": "Required. DEPRECATED: This field will be deprecated once Apigee supports DRZ. Primary GCP region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
           "type": "string"
         },
         "attributes": {
@@ -12461,7 +12722,7 @@
       "id": "GoogleCloudApigeeV1TlsInfo",
       "properties": {
         "ciphers": {
-          "description": "The SSL/TLS cipher suites to be used. Must be one of the cipher suite names listed in: http://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html#ciphersuites",
+          "description": "The SSL/TLS cipher suites to be used. For programmable proxies, it must be one of the cipher suite names listed in: http://docs.oracle.com/javase/8/docs/technotes/guides/security/StandardNames.html#ciphersuites. For configurable proxies, it must follow the configuration specified in: https://commondatastorage.googleapis.com/chromium-boringssl-docs/ssl.h.html#Cipher-suite-configuration. This setting has no effect for configurable proxies when negotiating TLS 1.3.",
           "items": {
             "type": "string"
           },

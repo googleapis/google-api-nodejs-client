@@ -3040,7 +3040,7 @@
       }
     }
   },
-  "revision": "20220202",
+  "revision": "20220307",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -4198,9 +4198,13 @@
             "TAX_TIER_UNSPECIFIED",
             "TAX_TIER_BOOKS_1",
             "TAX_TIER_NEWS_1",
-            "TAX_TIER_NEWS_2"
+            "TAX_TIER_NEWS_2",
+            "TAX_TIER_MUSIC_OR_AUDIO_1",
+            "TAX_TIER_LIVE_OR_BROADCAST_1"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",

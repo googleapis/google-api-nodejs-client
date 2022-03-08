@@ -1037,7 +1037,7 @@
       }
     }
   },
-  "revision": "20220105",
+  "revision": "20220223",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AuthorizationPolicy": {
@@ -1648,7 +1648,7 @@
       "type": "object"
     },
     "ServerTlsPolicy": {
-      "description": "ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target https proxy or endpoint config selector resource. ",
+      "description": "ServerTlsPolicy is a resource that specifies how a server should authenticate incoming requests. This resource itself does not affect configuration unless it is attached to a target https proxy or endpoint config selector resource.",
       "id": "ServerTlsPolicy",
       "properties": {
         "allowOpen": {
