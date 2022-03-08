@@ -157,6 +157,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getServiceAccount": {
+          "description": "Retrieves the service account that is used by Access Approval to access KMS keys for signing approved approval requests.",
+          "flatPath": "v1/folders/{foldersId}/serviceAccount",
+          "httpMethod": "GET",
+          "id": "accessapproval.folders.getServiceAccount",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Name of the AccessApprovalServiceAccount to retrieve.",
+              "location": "path",
+              "pattern": "^folders/[^/]+/serviceAccount$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "AccessApprovalServiceAccount"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "updateAccessApprovalSettings": {
           "description": "Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.",
           "flatPath": "v1/folders/{foldersId}/accessApprovalSettings",
@@ -368,6 +393,31 @@
           "path": "v1/{+name}",
           "response": {
             "$ref": "AccessApprovalSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "getServiceAccount": {
+          "description": "Retrieves the service account that is used by Access Approval to access KMS keys for signing approved approval requests.",
+          "flatPath": "v1/organizations/{organizationsId}/serviceAccount",
+          "httpMethod": "GET",
+          "id": "accessapproval.organizations.getServiceAccount",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Name of the AccessApprovalServiceAccount to retrieve.",
+              "location": "path",
+              "pattern": "^organizations/[^/]+/serviceAccount$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "AccessApprovalServiceAccount"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -589,6 +639,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "getServiceAccount": {
+          "description": "Retrieves the service account that is used by Access Approval to access KMS keys for signing approved approval requests.",
+          "flatPath": "v1/projects/{projectsId}/serviceAccount",
+          "httpMethod": "GET",
+          "id": "accessapproval.projects.getServiceAccount",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Name of the AccessApprovalServiceAccount to retrieve.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/serviceAccount$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "AccessApprovalServiceAccount"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "updateAccessApprovalSettings": {
           "description": "Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.",
           "flatPath": "v1/projects/{projectsId}/accessApprovalSettings",
@@ -754,13 +829,37 @@
       }
     }
   },
-  "revision": "20211213",
+  "revision": "20220304",
   "rootUrl": "https://accessapproval.googleapis.com/",
   "schemas": {
+    "AccessApprovalServiceAccount": {
+      "description": "Access Approval service account related to a project/folder/organization.",
+      "id": "AccessApprovalServiceAccount",
+      "properties": {
+        "accountEmail": {
+          "description": "Email address of the service account.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the Access Approval service account. Format is one of: * \"projects/{project}/serviceAccount\" * \"folders/{folder}/serviceAccount\" * \"organizations/{organization}/serviceAccount\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AccessApprovalSettings": {
       "description": "Settings on a Project/Folder/Organization related to Access Approval.",
       "id": "AccessApprovalSettings",
       "properties": {
+        "activeKeyVersion": {
+          "description": "The asymmetric crypto key version to use for signing approval requests. Empty active_key_version indicates that a Google-managed key should be used for signing. This property will be ignored if set by an ancestor of this resource, and new non-empty values may not be set.",
+          "type": "string"
+        },
+        "ancestorHasActiveKeyVersion": {
+          "description": "Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that an ancestor of this Project or Folder has set active_key_version (this field will always be unset for the organization since organizations do not have ancestors).",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "enrolledAncestor": {
           "description": "Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project or Folder (this field will always be unset for the organization since organizations do not have ancestors).",
           "readOnly": true,
@@ -772,6 +871,11 @@
             "$ref": "EnrolledService"
           },
           "type": "array"
+        },
+        "invalidKeyVersion": {
+          "description": "Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that there is some configuration issue with the active_key_version configured at this level in the resource hierarchy (e.g. it doesn't exist or the Access Approval service account doesn't have the correct permissions on it, etc.) This key version is not necessarily the effective key version at this level, as key versions are inherited top-down.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "name": {
           "description": "The resource name of the settings. Format is one of: * \"projects/{project}/accessApprovalSettings\" * \"folders/{folder}/accessApprovalSettings\" * \"organizations/{organization}/accessApprovalSettings\"",
@@ -815,13 +919,15 @@
             "TYPE_UNSPECIFIED",
             "CUSTOMER_INITIATED_SUPPORT",
             "GOOGLE_INITIATED_SERVICE",
-            "GOOGLE_INITIATED_REVIEW"
+            "GOOGLE_INITIATED_REVIEW",
+            "THIRD_PARTY_DATA_REQUEST"
           ],
           "enumDescriptions": [
             "Default value for proto, shouldn't be used.",
             "Customer made a request or raised an issue that required the principal to access customer data. `detail` is of the form (\"#####\" is the issue ID): * \"Feedback Report: #####\" * \"Case Number: #####\" * \"Case ID: #####\" * \"E-PIN Reference: #####\" * \"Google-#####\" * \"T-#####\"",
             "The principal accessed customer data in order to diagnose or resolve a suspected issue in services or a known outage. Often this access is used to confirm that customers are not affected by a suspected service issue or to remediate a reversible system issue.",
-            "Google initiated service for security, fraud, abuse, or compliance purposes."
+            "Google initiated service for security, fraud, abuse, or compliance purposes.",
+            "The principal was compelled to access customer data in order to respond to a legal third party data request or process, including legal processes from customers themselves."
           ],
           "type": "string"
         }
@@ -894,10 +1000,18 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "autoApproved": {
+          "description": "True when the request has been auto-approved.",
+          "type": "boolean"
+        },
         "expireTime": {
           "description": "The time at which the approval expires.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "signatureInfo": {
+          "$ref": "SignatureInfo",
+          "description": "The signature for the ApprovalRequest and details on how it was signed."
         }
       },
       "type": "object"
@@ -918,7 +1032,7 @@
           "type": "string"
         },
         "implicit": {
-          "description": "This field will be true if the ApprovalRequest was implcitly dismissed due to inaction by the access approval approvers (the request is not acted on by the approvers before the exiration time).",
+          "description": "This field will be true if the ApprovalRequest was implicitly dismissed due to inaction by the access approval approvers (the request is not acted on by the approvers before the exiration time).",
           "type": "boolean"
         }
       },
@@ -978,6 +1092,26 @@
         "excludesDescendants": {
           "description": "Whether an approval will exclude the descendants of the resource being requested.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SignatureInfo": {
+      "description": "Information about the digital signature of the resource.",
+      "id": "SignatureInfo",
+      "properties": {
+        "customerKmsKeyVersion": {
+          "description": "The resource name of the customer CryptoKeyVersion used for signing.",
+          "type": "string"
+        },
+        "googlePublicKeyPem": {
+          "description": "The public key for the Google default signing, encoded in PEM format. The signature was created using a private key which may be verified using this public key.",
+          "type": "string"
+        },
+        "signature": {
+          "description": "The digital signature.",
+          "format": "byte",
+          "type": "string"
         }
       },
       "type": "object"

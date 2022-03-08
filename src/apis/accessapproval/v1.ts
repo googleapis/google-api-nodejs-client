@@ -130,9 +130,30 @@ export namespace accessapproval_v1 {
   }
 
   /**
+   * Access Approval service account related to a project/folder/organization.
+   */
+  export interface Schema$AccessApprovalServiceAccount {
+    /**
+     * Email address of the service account.
+     */
+    accountEmail?: string | null;
+    /**
+     * The resource name of the Access Approval service account. Format is one of: * "projects/{project\}/serviceAccount" * "folders/{folder\}/serviceAccount" * "organizations/{organization\}/serviceAccount"
+     */
+    name?: string | null;
+  }
+  /**
    * Settings on a Project/Folder/Organization related to Access Approval.
    */
   export interface Schema$AccessApprovalSettings {
+    /**
+     * The asymmetric crypto key version to use for signing approval requests. Empty active_key_version indicates that a Google-managed key should be used for signing. This property will be ignored if set by an ancestor of this resource, and new non-empty values may not be set.
+     */
+    activeKeyVersion?: string | null;
+    /**
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that an ancestor of this Project or Folder has set active_key_version (this field will always be unset for the organization since organizations do not have ancestors).
+     */
+    ancestorHasActiveKeyVersion?: boolean | null;
     /**
      * Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that at least one service is enrolled for Access Approval in one or more ancestors of the Project or Folder (this field will always be unset for the organization since organizations do not have ancestors).
      */
@@ -141,6 +162,10 @@ export namespace accessapproval_v1 {
      * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. If name refers to an organization, enrollment can be done for individual services. If name refers to a folder or project, enrollment can only be done on an all or nothing basis. If a cloud_product is repeated in this list, the first entry will be honored and all following entries will be discarded. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded.
      */
     enrolledServices?: Schema$EnrolledService[];
+    /**
+     * Output only. This field is read only (not settable via UpdateAccessApprovalSettings method). If the field is true, that indicates that there is some configuration issue with the active_key_version configured at this level in the resource hierarchy (e.g. it doesn't exist or the Access Approval service account doesn't have the correct permissions on it, etc.) This key version is not necessarily the effective key version at this level, as key versions are inherited top-down.
+     */
+    invalidKeyVersion?: boolean | null;
     /**
      * The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      */
@@ -232,9 +257,17 @@ export namespace accessapproval_v1 {
      */
     approveTime?: string | null;
     /**
+     * True when the request has been auto-approved.
+     */
+    autoApproved?: boolean | null;
+    /**
      * The time at which the approval expires.
      */
     expireTime?: string | null;
+    /**
+     * The signature for the ApprovalRequest and details on how it was signed.
+     */
+    signatureInfo?: Schema$SignatureInfo;
   }
   /**
    * Request to dismiss an approval request.
@@ -249,7 +282,7 @@ export namespace accessapproval_v1 {
      */
     dismissTime?: string | null;
     /**
-     * This field will be true if the ApprovalRequest was implcitly dismissed due to inaction by the access approval approvers (the request is not acted on by the approvers before the exiration time).
+     * This field will be true if the ApprovalRequest was implicitly dismissed due to inaction by the access approval approvers (the request is not acted on by the approvers before the exiration time).
      */
     implicit?: boolean | null;
   }
@@ -291,6 +324,23 @@ export namespace accessapproval_v1 {
      * Whether an approval will exclude the descendants of the resource being requested.
      */
     excludesDescendants?: boolean | null;
+  }
+  /**
+   * Information about the digital signature of the resource.
+   */
+  export interface Schema$SignatureInfo {
+    /**
+     * The resource name of the customer CryptoKeyVersion used for signing.
+     */
+    customerKmsKeyVersion?: string | null;
+    /**
+     * The public key for the Google default signing, encoded in PEM format. The signature was created using a private key which may be verified using this public key.
+     */
+    googlePublicKeyPem?: string | null;
+    /**
+     * The digital signature.
+     */
+    signature?: string | null;
   }
 
   export class Resource$Folders {
@@ -464,8 +514,11 @@ export namespace accessapproval_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeKeyVersion": "my_activeKeyVersion",
+     *   //   "ancestorHasActiveKeyVersion": false,
      *   //   "enrolledAncestor": false,
      *   //   "enrolledServices": [],
+     *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
      *   //   "notificationEmails": []
      *   // }
@@ -568,6 +621,143 @@ export namespace accessapproval_v1 {
     }
 
     /**
+     * Retrieves the service account that is used by Access Approval to access KMS keys for signing approved approval requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.folders.getServiceAccount({
+     *     // Name of the AccessApprovalServiceAccount to retrieve.
+     *     name: 'folders/my-folder/serviceAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountEmail": "my_accountEmail",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getServiceAccount(
+      params: Params$Resource$Folders$Getserviceaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getServiceAccount(
+      params?: Params$Resource$Folders$Getserviceaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalServiceAccount>;
+    getServiceAccount(
+      params: Params$Resource$Folders$Getserviceaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getServiceAccount(
+      params: Params$Resource$Folders$Getserviceaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>,
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      params: Params$Resource$Folders$Getserviceaccount,
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getserviceaccount
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalServiceAccount>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getserviceaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Getserviceaccount;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessApprovalServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessApprovalServiceAccount>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @example
      * ```js
@@ -603,8 +793,11 @@ export namespace accessapproval_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeKeyVersion": "my_activeKeyVersion",
+     *       //   "ancestorHasActiveKeyVersion": false,
      *       //   "enrolledAncestor": false,
      *       //   "enrolledServices": [],
+     *       //   "invalidKeyVersion": false,
      *       //   "name": "my_name",
      *       //   "notificationEmails": []
      *       // }
@@ -614,8 +807,11 @@ export namespace accessapproval_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeKeyVersion": "my_activeKeyVersion",
+     *   //   "ancestorHasActiveKeyVersion": false,
      *   //   "enrolledAncestor": false,
      *   //   "enrolledServices": [],
+     *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
      *   //   "notificationEmails": []
      *   // }
@@ -729,6 +925,13 @@ export namespace accessapproval_v1 {
     extends StandardParameters {
     /**
      * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Getserviceaccount
+    extends StandardParameters {
+    /**
+     * Name of the AccessApprovalServiceAccount to retrieve.
      */
     name?: string;
   }
@@ -1550,8 +1753,11 @@ export namespace accessapproval_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeKeyVersion": "my_activeKeyVersion",
+     *   //   "ancestorHasActiveKeyVersion": false,
      *   //   "enrolledAncestor": false,
      *   //   "enrolledServices": [],
+     *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
      *   //   "notificationEmails": []
      *   // }
@@ -1654,6 +1860,143 @@ export namespace accessapproval_v1 {
     }
 
     /**
+     * Retrieves the service account that is used by Access Approval to access KMS keys for signing approved approval requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.organizations.getServiceAccount({
+     *     // Name of the AccessApprovalServiceAccount to retrieve.
+     *     name: 'organizations/my-organization/serviceAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountEmail": "my_accountEmail",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getServiceAccount(
+      params: Params$Resource$Organizations$Getserviceaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getServiceAccount(
+      params?: Params$Resource$Organizations$Getserviceaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalServiceAccount>;
+    getServiceAccount(
+      params: Params$Resource$Organizations$Getserviceaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getServiceAccount(
+      params: Params$Resource$Organizations$Getserviceaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>,
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      params: Params$Resource$Organizations$Getserviceaccount,
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getserviceaccount
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalServiceAccount>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getserviceaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Getserviceaccount;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessApprovalServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessApprovalServiceAccount>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @example
      * ```js
@@ -1689,8 +2032,11 @@ export namespace accessapproval_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeKeyVersion": "my_activeKeyVersion",
+     *       //   "ancestorHasActiveKeyVersion": false,
      *       //   "enrolledAncestor": false,
      *       //   "enrolledServices": [],
+     *       //   "invalidKeyVersion": false,
      *       //   "name": "my_name",
      *       //   "notificationEmails": []
      *       // }
@@ -1700,8 +2046,11 @@ export namespace accessapproval_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeKeyVersion": "my_activeKeyVersion",
+     *   //   "ancestorHasActiveKeyVersion": false,
      *   //   "enrolledAncestor": false,
      *   //   "enrolledServices": [],
+     *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
      *   //   "notificationEmails": []
      *   // }
@@ -1816,6 +2165,13 @@ export namespace accessapproval_v1 {
     extends StandardParameters {
     /**
      * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Getserviceaccount
+    extends StandardParameters {
+    /**
+     * Name of the AccessApprovalServiceAccount to retrieve.
      */
     name?: string;
   }
@@ -2636,8 +2992,11 @@ export namespace accessapproval_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeKeyVersion": "my_activeKeyVersion",
+     *   //   "ancestorHasActiveKeyVersion": false,
      *   //   "enrolledAncestor": false,
      *   //   "enrolledServices": [],
+     *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
      *   //   "notificationEmails": []
      *   // }
@@ -2740,6 +3099,143 @@ export namespace accessapproval_v1 {
     }
 
     /**
+     * Retrieves the service account that is used by Access Approval to access KMS keys for signing approved approval requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const accessapproval = google.accessapproval('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await accessapproval.projects.getServiceAccount({
+     *     // Name of the AccessApprovalServiceAccount to retrieve.
+     *     name: 'projects/my-project/serviceAccount',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountEmail": "my_accountEmail",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getServiceAccount(
+      params: Params$Resource$Projects$Getserviceaccount,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getServiceAccount(
+      params?: Params$Resource$Projects$Getserviceaccount,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccessApprovalServiceAccount>;
+    getServiceAccount(
+      params: Params$Resource$Projects$Getserviceaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getServiceAccount(
+      params: Params$Resource$Projects$Getserviceaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>,
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      params: Params$Resource$Projects$Getserviceaccount,
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      callback: BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+    ): void;
+    getServiceAccount(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getserviceaccount
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccessApprovalServiceAccount>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccessApprovalServiceAccount>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getserviceaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getserviceaccount;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://accessapproval.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccessApprovalServiceAccount>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccessApprovalServiceAccount>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @example
      * ```js
@@ -2775,8 +3271,11 @@ export namespace accessapproval_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeKeyVersion": "my_activeKeyVersion",
+     *       //   "ancestorHasActiveKeyVersion": false,
      *       //   "enrolledAncestor": false,
      *       //   "enrolledServices": [],
+     *       //   "invalidKeyVersion": false,
      *       //   "name": "my_name",
      *       //   "notificationEmails": []
      *       // }
@@ -2786,8 +3285,11 @@ export namespace accessapproval_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeKeyVersion": "my_activeKeyVersion",
+     *   //   "ancestorHasActiveKeyVersion": false,
      *   //   "enrolledAncestor": false,
      *   //   "enrolledServices": [],
+     *   //   "invalidKeyVersion": false,
      *   //   "name": "my_name",
      *   //   "notificationEmails": []
      *   // }
@@ -2901,6 +3403,13 @@ export namespace accessapproval_v1 {
     extends StandardParameters {
     /**
      * The name of the AccessApprovalSettings to retrieve. Format: "{projects|folders|organizations\}/{id\}/accessApprovalSettings"
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Getserviceaccount
+    extends StandardParameters {
+    /**
+     * Name of the AccessApprovalServiceAccount to retrieve.
      */
     name?: string;
   }
