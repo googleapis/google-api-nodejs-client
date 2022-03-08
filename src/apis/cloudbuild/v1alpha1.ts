@@ -1049,6 +1049,39 @@ export namespace cloudbuild_v1alpha1 {
     numArtifacts?: string | null;
   }
   /**
+   * Represents the custom metadata of the RunWorkflow long-running operation.
+   */
+  export interface Schema$RunWorkflowCustomOperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. ID of the pipeline run created by RunWorkflow.
+     */
+    pipelineRunId?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
    * Pairs a set of secret environment variables containing encrypted values with the Cloud KMS key to use to decrypt the value. Note: Use `kmsKeyName` with `available_secrets` instead of using `kmsKeyName` with `secret`. For instructions see: https://cloud.google.com/cloud-build/docs/securing-builds/use-encrypted-credentials.
    */
   export interface Schema$Secret {
