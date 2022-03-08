@@ -5881,6 +5881,8 @@ export namespace admin_directory_v1 {
      *   const res = await admin.customers.chrome.printers.list({
      *     // Search query. Search syntax is shared between this api and Admin Console printers pages.
      *     filter: 'placeholder-value',
+     *     // The order to sort results by. Must be one of display_name, description, make_and_model, or create_time. Default order is ascending, but descending order can be returned by appending "desc" to the order_by field. For instance, "description desc" will return the printers sorted by description in descending order.
+     *     orderBy: 'placeholder-value',
      *     // Organization Unit that we want to list the printers for. When org_unit is not present in the request then all printers of the customer are returned (or filtered). When org_unit is present in the request then only printers available to this OU will be returned (owned or inherited). You may see if printer is owned or inherited for this OU by looking at Printer.org_unit_id.
      *     orgUnitId: 'placeholder-value',
      *     // The maximum number of objects to return. The service may return fewer than this value.
@@ -6357,6 +6359,10 @@ export namespace admin_directory_v1 {
      * Search query. Search syntax is shared between this api and Admin Console printers pages.
      */
     filter?: string;
+    /**
+     * The order to sort results by. Must be one of display_name, description, make_and_model, or create_time. Default order is ascending, but descending order can be returned by appending "desc" to the order_by field. For instance, "description desc" will return the printers sorted by description in descending order.
+     */
+    orderBy?: string;
     /**
      * Organization Unit that we want to list the printers for. When org_unit is not present in the request then all printers of the customer are returned (or filtered). When org_unit is present in the request then only printers available to this OU will be returned (owned or inherited). You may see if printer is owned or inherited for this OU by looking at Printer.org_unit_id.
      */
