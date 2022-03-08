@@ -272,7 +272,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     configuration?: string | null;
     /**
-     * Required. The device the configuration is applied to.
+     * Required. The device the configuration is applied to. There are custom validations in ApplyConfigurationRequestValidator
      */
     device?: Schema$DeviceReference;
   }
@@ -325,7 +325,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$CustomerRemoveConfigurationRequest {
     /**
-     * Required. The device to remove the configuration from.
+     * Required. The device to remove the configuration from. There are custom validations in RemoveConfigurationRequestValidator
      */
     device?: Schema$DeviceReference;
   }
@@ -334,7 +334,7 @@ export namespace androiddeviceprovisioning_v1 {
    */
   export interface Schema$CustomerUnclaimDeviceRequest {
     /**
-     * Required. The device to unclaim.
+     * Required. The device to unclaim. There are custom validations in UnclaimDeviceRequestValidator.
      */
     device?: Schema$DeviceReference;
   }
@@ -456,7 +456,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     processingStatus?: string | null;
     /**
-     * The processing progress of the operation. Measured as a number from 0 to 100. A value of 10O doesn't always mean the operation completed—check for the inclusion of a `done` field.
+     * The processing progress of the operation. Measured as a number from 0 to 100. A value of 10O doesnt always mean the operation completed—check for the inclusion of a `done` field.
      */
     progress?: number | null;
   }
@@ -858,7 +858,7 @@ export namespace androiddeviceprovisioning_v1 {
      *   const res = await androiddeviceprovisioning.customers.list({
      *     // The maximum number of customers to show in a page of results. A number between 1 and 100 (inclusive).
      *     pageSize: 'placeholder-value',
-     *     // A token specifying which result page to return.
+     *     // A token specifying which result page to return. This field has custom validations in ListCustomersRequestValidator
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -974,7 +974,7 @@ export namespace androiddeviceprovisioning_v1 {
      */
     pageSize?: number;
     /**
-     * A token specifying which result page to return.
+     * A token specifying which result page to return. This field has custom validations in ListCustomersRequestValidator
      */
     pageToken?: string;
   }
@@ -1012,7 +1012,7 @@ export namespace androiddeviceprovisioning_v1 {
      *
      *   // Do the magic
      *   const res = await androiddeviceprovisioning.customers.configurations.create({
-     *     // Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`.
+     *     // Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`. This field has custom validation in CreateConfigurationRequestValidator
      *     parent: 'customers/my-customer',
      *
      *     // Request body metadata
@@ -1700,7 +1700,7 @@ export namespace androiddeviceprovisioning_v1 {
   export interface Params$Resource$Customers$Configurations$Create
     extends StandardParameters {
     /**
-     * Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`.
+     * Required. The customer that manages the configuration. An API resource name in the format `customers/[CUSTOMER_ID]`. This field has custom validation in CreateConfigurationRequestValidator
      */
     parent?: string;
 
