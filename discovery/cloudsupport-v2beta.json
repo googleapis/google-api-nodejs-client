@@ -294,7 +294,7 @@
           ],
           "parameters": {
             "filter": {
-              "description": "An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out. Filter strings can use the following fields: - status (Accepted values: OPEN or CLOSED) - severity (Accepted values: S0, S1, S2, S3, or S4) - creator.email with the operators equals (=) and AND. Additionally, a global restriction (with no operator) can be used to search across displayName, description, and comments (e.g. \"my search\").",
+              "description": "An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out. Filter strings can use the following fields: - state (Accepted values: OPEN or CLOSED) - severity (Accepted values: S0, S1, S2, S3, or S4) - creator.email with the operators equals (=) and AND. Additionally, a global restriction (with no operator) can be used to search across displayName, description, and comments (e.g. \"my search\").",
               "location": "query",
               "type": "string"
             },
@@ -575,7 +575,7 @@
       }
     }
   },
-  "revision": "20220201",
+  "revision": "20220305",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -594,11 +594,6 @@
           "description": "Output only. Whether the actor is a Google support actor.",
           "readOnly": true,
           "type": "boolean"
-        },
-        "principalId": {
-          "description": "Output only. An ID representing the user that was authenticated when the corresponding action was taken. This will be an email address, if one is available, or some other unique ID. See https://cloud.google.com/docs/authentication for more information on types of authentication.",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -1073,24 +1068,8 @@
       "description": "An escalation of a support case.",
       "id": "Escalation",
       "properties": {
-        "actor": {
-          "$ref": "Actor",
-          "description": "Output only. The user or Google Support agent initiated this escalation.",
-          "readOnly": true
-        },
-        "createTime": {
-          "description": "Output only. The time when this escalation event was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
         "justification": {
           "description": "Required. A free text description to accompany the `reason` field above. Provides additional context on why the case is being escalated.",
-          "type": "string"
-        },
-        "name": {
-          "description": "Output only. The resource name for the escalation event.",
-          "readOnly": true,
           "type": "string"
         },
         "reason": {

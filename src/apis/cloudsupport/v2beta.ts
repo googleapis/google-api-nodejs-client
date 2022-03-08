@@ -147,10 +147,6 @@ export namespace cloudsupport_v2beta {
      * Output only. Whether the actor is a Google support actor.
      */
     googleSupport?: boolean | null;
-    /**
-     * Output only. An ID representing the user that was authenticated when the corresponding action was taken. This will be an email address, if one is available, or some other unique ID. See https://cloud.google.com/docs/authentication for more information on types of authentication.
-     */
-    principalId?: string | null;
   }
   /**
    * Represents a file attached to a support case.
@@ -496,21 +492,9 @@ export namespace cloudsupport_v2beta {
    */
   export interface Schema$Escalation {
     /**
-     * Output only. The user or Google Support agent initiated this escalation.
-     */
-    actor?: Schema$Actor;
-    /**
-     * Output only. The time when this escalation event was created.
-     */
-    createTime?: string | null;
-    /**
      * Required. A free text description to accompany the `reason` field above. Provides additional context on why the case is being escalated.
      */
     justification?: string | null;
-    /**
-     * Output only. The resource name for the escalation event.
-     */
-    name?: string | null;
     /**
      * Required. The reason why the Case is being escalated.
      */
@@ -1702,7 +1686,7 @@ export namespace cloudsupport_v2beta {
      *
      *   // Do the magic
      *   const res = await cloudsupport.cases.list({
-     *     // An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out. Filter strings can use the following fields: - status (Accepted values: OPEN or CLOSED) - severity (Accepted values: S0, S1, S2, S3, or S4) - creator.email with the operators equals (=) and AND. Additionally, a global restriction (with no operator) can be used to search across displayName, description, and comments (e.g. "my search").
+     *     // An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out. Filter strings can use the following fields: - state (Accepted values: OPEN or CLOSED) - severity (Accepted values: S0, S1, S2, S3, or S4) - creator.email with the operators equals (=) and AND. Additionally, a global restriction (with no operator) can be used to search across displayName, description, and comments (e.g. "my search").
      *     filter: 'placeholder-value',
      *     // The maximum number of cases fetched with each request. Defaults to 10.
      *     pageSize: 'placeholder-value',
@@ -2152,7 +2136,7 @@ export namespace cloudsupport_v2beta {
   }
   export interface Params$Resource$Cases$List extends StandardParameters {
     /**
-     * An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out. Filter strings can use the following fields: - status (Accepted values: OPEN or CLOSED) - severity (Accepted values: S0, S1, S2, S3, or S4) - creator.email with the operators equals (=) and AND. Additionally, a global restriction (with no operator) can be used to search across displayName, description, and comments (e.g. "my search").
+     * An expression written in the Cloud filter language. If non-empty, then only cases whose fields match the filter are returned. If empty, then no messages are filtered out. Filter strings can use the following fields: - state (Accepted values: OPEN or CLOSED) - severity (Accepted values: S0, S1, S2, S3, or S4) - creator.email with the operators equals (=) and AND. Additionally, a global restriction (with no operator) can be used to search across displayName, description, and comments (e.g. "my search").
      */
     filter?: string;
     /**
