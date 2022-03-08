@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20220114",
+  "revision": "20220227",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -1842,6 +1842,217 @@
         },
         "value": {
           "description": "The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "V1HttpRequest": {
+      "description": "A common proto for logging HTTP requests. Only contains semantics defined by the HTTP specification. Product-specific logging information MUST be defined in a separate message.",
+      "id": "V1HttpRequest",
+      "properties": {
+        "cacheFillBytes": {
+          "description": "The number of HTTP response bytes inserted into cache. Set only when a cache fill was attempted.",
+          "format": "int64",
+          "type": "string"
+        },
+        "cacheHit": {
+          "description": "Whether or not an entity was served from cache (with or without validation).",
+          "type": "boolean"
+        },
+        "cacheLookup": {
+          "description": "Whether or not a cache lookup was attempted.",
+          "type": "boolean"
+        },
+        "cacheValidatedWithOriginServer": {
+          "description": "Whether or not the response was validated with the origin server before being served from cache. This field is only meaningful if `cache_hit` is True.",
+          "type": "boolean"
+        },
+        "latency": {
+          "description": "The request processing latency on the server, from the time the request was received until the response was sent.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "protocol": {
+          "description": "Protocol used for the request. Examples: \"HTTP/1.1\", \"HTTP/2\", \"websocket\"",
+          "type": "string"
+        },
+        "referer": {
+          "description": "The referer URL of the request, as defined in [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).",
+          "type": "string"
+        },
+        "remoteIp": {
+          "description": "The IP address (IPv4 or IPv6) of the client that issued the HTTP request. Examples: `\"192.168.1.1\"`, `\"FE80::0202:B3FF:FE1E:8329\"`.",
+          "type": "string"
+        },
+        "requestMethod": {
+          "description": "The request method. Examples: `\"GET\"`, `\"HEAD\"`, `\"PUT\"`, `\"POST\"`.",
+          "type": "string"
+        },
+        "requestSize": {
+          "description": "The size of the HTTP request message in bytes, including the request headers and the request body.",
+          "format": "int64",
+          "type": "string"
+        },
+        "requestUrl": {
+          "description": "The scheme (http, https), the host name, the path, and the query portion of the URL that was requested. Example: `\"http://example.com/some/info?color=red\"`.",
+          "type": "string"
+        },
+        "responseSize": {
+          "description": "The size of the HTTP response message sent back to the client, in bytes, including the response headers and the response body.",
+          "format": "int64",
+          "type": "string"
+        },
+        "serverIp": {
+          "description": "The IP address (IPv4 or IPv6) of the origin server that the request was sent to.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The response code indicating the status of the response. Examples: 200, 404.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "userAgent": {
+          "description": "The user agent sent by the client. Example: `\"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)\"`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "V1LogEntry": {
+      "description": "An individual log entry.",
+      "id": "V1LogEntry",
+      "properties": {
+        "httpRequest": {
+          "$ref": "V1HttpRequest",
+          "description": "Optional. Information about the HTTP request associated with this log entry, if applicable."
+        },
+        "insertId": {
+          "description": "A unique ID for the log entry used for deduplication. If omitted, the implementation will generate one based on operation_id.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A set of user-defined (key, value) data that provides additional information about the log entry.",
+          "type": "object"
+        },
+        "monitoredResourceLabels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A set of user-defined (key, value) data that provides additional information about the moniotored resource that the log entry belongs to.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. The log to which this log entry belongs. Examples: `\"syslog\"`, `\"book_log\"`.",
+          "type": "string"
+        },
+        "operation": {
+          "$ref": "V1LogEntryOperation",
+          "description": "Optional. Information about an operation associated with the log entry, if applicable."
+        },
+        "protoPayload": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The log entry payload, represented as a protocol buffer that is expressed as a JSON object. The only accepted type currently is AuditLog.",
+          "type": "object"
+        },
+        "severity": {
+          "description": "The severity of the log entry. The default value is `LogSeverity.DEFAULT`.",
+          "enum": [
+            "DEFAULT",
+            "DEBUG",
+            "INFO",
+            "NOTICE",
+            "WARNING",
+            "ERROR",
+            "CRITICAL",
+            "ALERT",
+            "EMERGENCY"
+          ],
+          "enumDescriptions": [
+            "(0) The log entry has no assigned severity level.",
+            "(100) Debug or trace information.",
+            "(200) Routine information, such as ongoing status or performance.",
+            "(300) Normal but significant events, such as start up, shut down, or a configuration change.",
+            "(400) Warning events might cause problems.",
+            "(500) Error events are likely to cause problems.",
+            "(600) Critical events cause more severe problems or outages.",
+            "(700) A person must take an action immediately.",
+            "(800) One or more systems are unusable."
+          ],
+          "type": "string"
+        },
+        "sourceLocation": {
+          "$ref": "V1LogEntrySourceLocation",
+          "description": "Optional. Source code location information associated with the log entry, if any."
+        },
+        "structPayload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The log entry payload, represented as a structure that is expressed as a JSON object.",
+          "type": "object"
+        },
+        "textPayload": {
+          "description": "The log entry payload, represented as a Unicode string (UTF-8).",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "The time the event described by the log entry occurred. If omitted, defaults to operation start time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "trace": {
+          "description": "Optional. Resource name of the trace associated with the log entry, if any. If this field contains a relative resource name, you can assume the name is relative to `//tracing.googleapis.com`. Example: `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "V1LogEntryOperation": {
+      "description": "Additional information about a potentially long-running operation with which a log entry is associated.",
+      "id": "V1LogEntryOperation",
+      "properties": {
+        "first": {
+          "description": "Optional. Set this to True if this is the first log entry in the operation.",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "Optional. An arbitrary operation identifier. Log entries with the same identifier are assumed to be part of the same operation.",
+          "type": "string"
+        },
+        "last": {
+          "description": "Optional. Set this to True if this is the last log entry in the operation.",
+          "type": "boolean"
+        },
+        "producer": {
+          "description": "Optional. An arbitrary producer identifier. The combination of `id` and `producer` must be globally unique. Examples for `producer`: `\"MyDivision.MyBigCompany.com\"`, `\"github.com/MyProject/MyApplication\"`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "V1LogEntrySourceLocation": {
+      "description": "Additional information about the source code location that produced the log entry.",
+      "id": "V1LogEntrySourceLocation",
+      "properties": {
+        "file": {
+          "description": "Optional. Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name.",
+          "type": "string"
+        },
+        "function": {
+          "description": "Optional. Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information may be used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language. For example: `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function` (Python).",
+          "type": "string"
+        },
+        "line": {
+          "description": "Optional. Line within the source file. 1-based; 0 indicates no line number available.",
+          "format": "int64",
           "type": "string"
         }
       },
