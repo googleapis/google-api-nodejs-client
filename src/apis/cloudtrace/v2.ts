@@ -103,7 +103,7 @@ export namespace cloudtrace_v2 {
   /**
    * Cloud Trace API
    *
-   * Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.
+   * Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenTelemetry.
    *
    * @example
    * ```js
@@ -139,11 +139,11 @@ export namespace cloudtrace_v2 {
     description?: Schema$TruncatableString;
   }
   /**
-   * A set of attributes, each in the format `[KEY]:[VALUE]`.
+   * A set of attributes as key-value pairs.
    */
   export interface Schema$Attributes {
     /**
-     * The set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: "/instance_id": { "string_value": { "value": "my-instance" \} \} "/http/request_bytes": { "int_value": 300 \} "abc.com/myattribute": { "bool_value": false \}
+     * A set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the boolean values `true` or `false`. For example: "/instance_id": { "string_value": { "value": "my-instance" \} \} "/http/request_bytes": { "int_value": 300 \} "abc.com/myattribute": { "bool_value": false \}
      */
     attributeMap?: {[key: string]: Schema$AttributeValue} | null;
     /**
@@ -152,7 +152,7 @@ export namespace cloudtrace_v2 {
     droppedAttributesCount?: number | null;
   }
   /**
-   * The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute.
+   * The allowed types for `[VALUE]` in a `[KEY]:[VALUE]` attribute.
    */
   export interface Schema$AttributeValue {
     /**
@@ -173,7 +173,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$BatchWriteSpansRequest {
     /**
-     * Required. A list of new spans. The span names must not match existing spans, or the results are undefined.
+     * Required. A list of new spans. The span names must not match existing spans, otherwise the results are undefined.
      */
     spans?: Schema$Span[];
   }
@@ -186,15 +186,15 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$Link {
     /**
-     * A set of attributes on the link. You have have up to 32 attributes per link.
+     * A set of attributes on the link. Up to 32 attributes can be specified per link.
      */
     attributes?: Schema$Attributes;
     /**
-     * The [SPAN_ID] for a span within a trace.
+     * The `[SPAN_ID]` for a span within a trace.
      */
     spanId?: string | null;
     /**
-     * The [TRACE_ID] for a trace within a project.
+     * The `[TRACE_ID]` for a trace within a project.
      */
     traceId?: string | null;
     /**
@@ -220,11 +220,11 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$MessageEvent {
     /**
-     * The number of compressed bytes sent or received. If missing assumed to be the same size as uncompressed.
+     * The number of compressed bytes sent or received. If missing, the compressed size is assumed to be the same size as the uncompressed size.
      */
     compressedSizeBytes?: string | null;
     /**
-     * An identifier for the MessageEvent's message that can be used to match SENT and RECEIVED MessageEvents. It is recommended to be unique within a Span.
+     * An identifier for the MessageEvent's message that can be used to match `SENT` and `RECEIVED` MessageEvents.
      */
     id?: string | null;
     /**
@@ -250,7 +250,7 @@ export namespace cloudtrace_v2 {
     module?: Schema$TruncatableString;
   }
   /**
-   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous—there may be gaps or overlaps between spans in a trace.
+   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous—there might be gaps or overlaps between spans in a trace.
    */
   export interface Schema$Span {
     /**
@@ -262,7 +262,7 @@ export namespace cloudtrace_v2 {
      */
     childSpanCount?: number | null;
     /**
-     * Required. A description of the span's operation (up to 128 bytes). Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
+     * Required. A description of the span's operation (up to 128 bytes). Cloud Trace displays the description in the Cloud Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
      */
     displayName?: Schema$TruncatableString;
     /**
@@ -274,11 +274,11 @@ export namespace cloudtrace_v2 {
      */
     links?: Schema$Links;
     /**
-     * Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
+     * Required. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. .
      */
     name?: string | null;
     /**
-     * The [SPAN_ID] of this span's parent span. If this is a root span, then this field must be empty.
+     * The `[SPAN_ID]` of this span's parent span. If this is a root span, then this field must be empty.
      */
     parentSpanId?: string | null;
     /**
@@ -286,7 +286,7 @@ export namespace cloudtrace_v2 {
      */
     sameProcessAsParentSpan?: boolean | null;
     /**
-     * Required. The [SPAN_ID] portion of the span's resource name.
+     * Required. The `[SPAN_ID]` portion of the span's resource name.
      */
     spanId?: string | null;
     /**
@@ -452,7 +452,7 @@ export namespace cloudtrace_v2 {
     }
 
     /**
-     * Sends new spans to new or existing traces. You cannot update existing spans.
+     * Batch writes new spans to new or existing traces. You cannot update existing spans.
      * @example
      * ```js
      * // Before running the sample:
@@ -639,7 +639,7 @@ export namespace cloudtrace_v2 {
      *
      *   // Do the magic
      *   const res = await cloudtrace.projects.traces.spans.createSpan({
-     *     // Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
+     *     // Required. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. .
      *     name: 'projects/my-project/traces/my-trace/spans/my-span',
      *
      *     // Request body metadata
@@ -776,7 +776,7 @@ export namespace cloudtrace_v2 {
   export interface Params$Resource$Projects$Traces$Spans$Createspan
     extends StandardParameters {
     /**
-     * Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
+     * Required. The resource name of the span in the following format: * `projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/[SPAN_ID]` `[TRACE_ID]` is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. It should not be zero. `[SPAN_ID]` is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero. .
      */
     name?: string;
 
