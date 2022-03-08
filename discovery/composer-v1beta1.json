@@ -462,7 +462,7 @@
       }
     }
   },
-  "revision": "20211208",
+  "revision": "20220224",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -561,7 +561,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -856,9 +856,9 @@
       },
       "type": "object"
     },
-    "LoadEnvironmentStateResponse": {
-      "description": "Load environment state response.",
-      "id": "LoadEnvironmentStateResponse",
+    "LoadSnapshotResponse": {
+      "description": "Response to LoadSnapshotRequest.",
+      "id": "LoadSnapshotResponse",
       "properties": {},
       "type": "object"
     },
@@ -1017,8 +1017,8 @@
             "DELETE",
             "UPDATE",
             "CHECK",
-            "STORE_STATE",
-            "LOAD_STATE"
+            "SAVE_SNAPSHOT",
+            "LOAD_SNAPSHOT"
           ],
           "enumDescriptions": [
             "Unused.",
@@ -1026,8 +1026,8 @@
             "A resource deletion operation.",
             "A resource update operation.",
             "A resource check operation.",
-            "Stores the state of the resource operation.",
-            "Loads the state of the resource operation."
+            "Saves snapshot of the resource operation.",
+            "Loads snapshot of the resource operation."
           ],
           "type": "string"
         },
@@ -1131,6 +1131,17 @@
       "properties": {},
       "type": "object"
     },
+    "SaveSnapshotResponse": {
+      "description": "Response to SaveSnapshotRequest.",
+      "id": "SaveSnapshotResponse",
+      "properties": {
+        "snapshotPath": {
+          "description": "The fully-resolved Cloud Storage path of the created snapshot, e.g.: \"gs://my-bucket/snapshots/project_location_environment_timestamp\". This field is populated only if the snapshot creation was successful.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SchedulerResource": {
       "description": "Configuration for resources used by Airflow schedulers.",
       "id": "SchedulerResource",
@@ -1221,17 +1232,6 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "StoreEnvironmentStateResponse": {
-      "description": "Store environment state response.",
-      "id": "StoreEnvironmentStateResponse",
-      "properties": {
-        "snapshotLocation": {
-          "description": "The fully-resolved Cloud Storage location of the created snapshot, e.g.: \"gs://my-bucket/snapshots/project_id/location/environment_uuid/timestamp\". This field is populated only if the snapshot creation was successful.",
           "type": "string"
         }
       },
