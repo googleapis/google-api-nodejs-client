@@ -107,49 +107,6 @@
   "resources": {
     "customers": {
       "methods": {
-        "create": {
-          "description": "Creates a new SAS customer.",
-          "flatPath": "v1alpha1/customers",
-          "httpMethod": "POST",
-          "id": "prod_tt_sasportal.customers.create",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha1/customers",
-          "request": {
-            "$ref": "SasPortalCustomer"
-          },
-          "response": {
-            "$ref": "SasPortalCustomer"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/userinfo.email"
-          ]
-        },
-        "delete": {
-          "description": "Deletes a customer.",
-          "flatPath": "v1alpha1/customers/{customersId}",
-          "httpMethod": "DELETE",
-          "id": "prod_tt_sasportal.customers.delete",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The name of the customer.",
-              "location": "path",
-              "pattern": "^customers/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1alpha1/{+name}",
-          "response": {
-            "$ref": "SasPortalEmpty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/userinfo.email"
-          ]
-        },
         "get": {
           "description": "Returns a requested customer.",
           "flatPath": "v1alpha1/customers/{customersId}",
@@ -2527,7 +2484,7 @@
       }
     }
   },
-  "revision": "20220105",
+  "revision": "20220303",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2911,6 +2868,16 @@
         "interferenceCoordinationGroup": {
           "description": "ICG. A group of CBSDs that manage their own interference with the group. See CBRSA-TS-2001 V3.0.0 for more details.",
           "type": "string"
+        },
+        "nrqzValidated": {
+          "description": "Output only. Whether a CPI has validated to have coordinated with the National Quiet Zone office.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "nrqzValidation": {
+          "$ref": "SasPortalNrqzValidation",
+          "description": "Output only. National Radio Quiet Zone validation info.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3214,6 +3181,31 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalNrqzValidation": {
+      "description": "Information about National Radio Quiet Zone validation. The presence of the field indicates the device has been validated.",
+      "id": "SasPortalNrqzValidation",
+      "properties": {
+        "caseId": {
+          "description": "Validation case id.",
+          "type": "string"
+        },
+        "cpiId": {
+          "description": "CPI who signed the validation.",
+          "type": "string"
+        },
+        "latitude": {
+          "description": "Device latitude associated with the validation.",
+          "format": "double",
+          "type": "number"
+        },
+        "longitude": {
+          "description": "Device longitude associated with the validation.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
