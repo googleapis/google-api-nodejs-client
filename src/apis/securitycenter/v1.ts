@@ -284,6 +284,10 @@ export namespace securitycenter_v1 {
      * Additional information about the CVE. e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
      */
     references?: Schema$Reference[];
+    /**
+     * Whether upstream fix is available for the CVE.
+     */
+    upstreamFixAvailable?: boolean | null;
   }
   /**
    * Common Vulnerability Scoring System version 3.
@@ -496,6 +500,43 @@ export namespace securitycenter_v1 {
     state?: string | null;
   }
   /**
+   * Configures how to deliver Findings to BigQuery Instance.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1BigQueryExport {
+    /**
+     * Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.
+     */
+    createTime?: string | null;
+    /**
+     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
+     */
+    dataset?: string | null;
+    /**
+     * The description of the export (max of 1024 characters).
+     */
+    description?: string | null;
+    /**
+     * Expression that defines the filter to apply across create/update events of findings. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource. The supported operators are: * `=` for all value types. * `\>`, `<`, `\>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes. Please see the proto documentation in the finding (https://source.corp.google.com/piper///depot/google3/google/cloud/securitycenter/v1/finding.proto) and in the ListFindingsRequest for valid filter syntax. (https://source.corp.google.com/piper///depot/google3/google/cloud/securitycenter/v1/securitycenter_service.proto).
+     */
+    filter?: string | null;
+    /**
+     * Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.
+     */
+    mostRecentEditor?: string | null;
+    /**
+     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
+     */
+    name?: string | null;
+    /**
+     * Output only. The service account that needs permission to create table, upload data to the big query dataset.
+     */
+    principal?: string | null;
+    /**
+     * Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
@@ -516,7 +557,7 @@ export namespace securitycenter_v1 {
      */
     externalUid?: string | null;
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      */
     name?: string | null;
     /**
@@ -682,7 +723,7 @@ export namespace securitycenter_v1 {
      */
     project?: string | null;
     /**
-     * The human readable name of project that the resource belongs to.
+     * The project id that the resource belongs to.
      */
     projectDisplayName?: string | null;
   }
@@ -745,7 +786,7 @@ export namespace securitycenter_v1 {
      */
     project?: string | null;
     /**
-     * The human readable name of project that the resource belongs to.
+     * The project id that the resource belongs to.
      */
     projectDisplayName?: string | null;
     /**
@@ -936,6 +977,19 @@ export namespace securitycenter_v1 {
     stateChange?: string | null;
   }
   /**
+   * Response message for listing BigQuery exports.
+   */
+  export interface Schema$ListBigQueryExportsResponse {
+    /**
+     * The BigQuery exports from the specified parent.
+     */
+    bigQueryExports?: Schema$GoogleCloudSecuritycenterV1BigQueryExport[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for listing findings.
    */
   export interface Schema$ListFindingsResponse {
@@ -1042,7 +1096,7 @@ export namespace securitycenter_v1 {
      */
     primaryTactic?: string | null;
     /**
-     * The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. SCANNING_IP_BLOCKS), both the sub-technique and its parent technique(s) will be listed (e.g. SCANNING_IP_BLOCKS, ACTIVE_SCANNING).
+     * The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. `SCANNING_IP_BLOCKS`), both the sub-technique and its parent technique(s) will be listed (e.g. `SCANNING_IP_BLOCKS`, `ACTIVE_SCANNING`).
      */
     primaryTechniques?: string[] | null;
     /**
@@ -1176,7 +1230,7 @@ export namespace securitycenter_v1 {
      */
     parentName?: string | null;
     /**
-     * The human readable name of project that the resource belongs to.
+     * The project id that the resource belongs to.
      */
     projectDisplayName?: string | null;
     /**
@@ -1363,12 +1417,14 @@ export namespace securitycenter_v1 {
   export class Resource$Folders {
     context: APIRequestContext;
     assets: Resource$Folders$Assets;
+    bigQueryExports: Resource$Folders$Bigqueryexports;
     findings: Resource$Folders$Findings;
     muteConfigs: Resource$Folders$Muteconfigs;
     sources: Resource$Folders$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Folders$Assets(this.context);
+      this.bigQueryExports = new Resource$Folders$Bigqueryexports(this.context);
       this.findings = new Resource$Folders$Findings(this.context);
       this.muteConfigs = new Resource$Folders$Muteconfigs(this.context);
       this.sources = new Resource$Folders$Sources(this.context);
@@ -1892,6 +1948,808 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityMarks;
+  }
+
+  export class Resource$Folders$Bigqueryexports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.bigQueryExports.create({
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     bigQueryExportId: 'placeholder-value',
+     *     // Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'folders/my-folder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataset": "my_dataset",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "principal": "my_principal",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Folders$Bigqueryexports$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Folders$Bigqueryexports$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    create(
+      params: Params$Resource$Folders$Bigqueryexports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Bigqueryexports$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      params: Params$Resource$Folders$Bigqueryexports$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Bigqueryexports$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Bigqueryexports$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Bigqueryexports$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bigQueryExports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an existing big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.bigQueryExports.delete({
+     *     // Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     name: 'folders/my-folder/bigQueryExports/my-bigQueryExport',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Folders$Bigqueryexports$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Folders$Bigqueryexports$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Folders$Bigqueryexports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Bigqueryexports$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Folders$Bigqueryexports$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Bigqueryexports$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Bigqueryexports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Bigqueryexports$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.bigQueryExports.get({
+     *     // Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     name: 'folders/my-folder/bigQueryExports/my-bigQueryExport',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Folders$Bigqueryexports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Folders$Bigqueryexports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    get(
+      params: Params$Resource$Folders$Bigqueryexports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Bigqueryexports$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      params: Params$Resource$Folders$Bigqueryexports$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Bigqueryexports$Get
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Bigqueryexports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Bigqueryexports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists BigQuery exports. Note that when requesting BigQuery exports at a given level all exports under that level are also returned e.g. if requesting BigQuery exports under a folder, then all BigQuery exports immediately under the folder plus the ones created under the projects within the folder are returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.bigQueryExports.list({
+     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'folders/my-folder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigQueryExports": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Bigqueryexports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Bigqueryexports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBigQueryExportsResponse>;
+    list(
+      params: Params$Resource$Folders$Bigqueryexports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Bigqueryexports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>,
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Bigqueryexports$List,
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Bigqueryexports$List
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBigQueryExportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Bigqueryexports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Bigqueryexports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bigQueryExports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBigQueryExportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBigQueryExportsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a BigQuery export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.bigQueryExports.patch({
+     *     // The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
+     *     name: 'folders/my-folder/bigQueryExports/my-bigQueryExport',
+     *     // The list of fields to be updated. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataset": "my_dataset",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "principal": "my_principal",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Folders$Bigqueryexports$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Folders$Bigqueryexports$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    patch(
+      params: Params$Resource$Folders$Bigqueryexports$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Bigqueryexports$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      params: Params$Resource$Folders$Bigqueryexports$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Bigqueryexports$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Bigqueryexports$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Bigqueryexports$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Bigqueryexports$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    bigQueryExportId?: string;
+    /**
+     * Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
+  }
+  export interface Params$Resource$Folders$Bigqueryexports$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Bigqueryexports$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Bigqueryexports$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Folders$Bigqueryexports$Patch
+    extends StandardParameters {
+    /**
+     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
   }
 
   export class Resource$Folders$Findings {
@@ -4112,7 +4970,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res =
      *     await securitycenter.folders.sources.findings.externalSystems.patch({
-     *       // External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     *       // External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      *       name: 'folders/my-folder/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
      *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
      *       updateMask: 'placeholder-value',
@@ -4244,7 +5102,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Folders$Sources$Findings$Externalsystems$Patch
     extends StandardParameters {
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      */
     name?: string;
     /**
@@ -4261,6 +5119,7 @@ export namespace securitycenter_v1 {
   export class Resource$Organizations {
     context: APIRequestContext;
     assets: Resource$Organizations$Assets;
+    bigQueryExports: Resource$Organizations$Bigqueryexports;
     findings: Resource$Organizations$Findings;
     muteConfigs: Resource$Organizations$Muteconfigs;
     notificationConfigs: Resource$Organizations$Notificationconfigs;
@@ -4269,6 +5128,9 @@ export namespace securitycenter_v1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Organizations$Assets(this.context);
+      this.bigQueryExports = new Resource$Organizations$Bigqueryexports(
+        this.context
+      );
       this.findings = new Resource$Organizations$Findings(this.context);
       this.muteConfigs = new Resource$Organizations$Muteconfigs(this.context);
       this.notificationConfigs = new Resource$Organizations$Notificationconfigs(
@@ -5256,6 +6118,808 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityMarks;
+  }
+
+  export class Resource$Organizations$Bigqueryexports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.bigQueryExports.create({
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     bigQueryExportId: 'placeholder-value',
+     *     // Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'organizations/my-organization',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataset": "my_dataset",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "principal": "my_principal",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Bigqueryexports$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Organizations$Bigqueryexports$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    create(
+      params: Params$Resource$Organizations$Bigqueryexports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Bigqueryexports$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Bigqueryexports$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Bigqueryexports$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Bigqueryexports$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Bigqueryexports$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bigQueryExports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an existing big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.bigQueryExports.delete({
+     *     // Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     name: 'organizations/my-organization/bigQueryExports/my-bigQueryExport',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Bigqueryexports$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Organizations$Bigqueryexports$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Organizations$Bigqueryexports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Bigqueryexports$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Bigqueryexports$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Bigqueryexports$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Bigqueryexports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Bigqueryexports$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.bigQueryExports.get({
+     *     // Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     name: 'organizations/my-organization/bigQueryExports/my-bigQueryExport',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Bigqueryexports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Organizations$Bigqueryexports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    get(
+      params: Params$Resource$Organizations$Bigqueryexports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Bigqueryexports$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Bigqueryexports$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Bigqueryexports$Get
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Bigqueryexports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Bigqueryexports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists BigQuery exports. Note that when requesting BigQuery exports at a given level all exports under that level are also returned e.g. if requesting BigQuery exports under a folder, then all BigQuery exports immediately under the folder plus the ones created under the projects within the folder are returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.bigQueryExports.list({
+     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'organizations/my-organization',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigQueryExports": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Bigqueryexports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Bigqueryexports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBigQueryExportsResponse>;
+    list(
+      params: Params$Resource$Organizations$Bigqueryexports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Bigqueryexports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>,
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Bigqueryexports$List,
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Bigqueryexports$List
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBigQueryExportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Bigqueryexports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Bigqueryexports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bigQueryExports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBigQueryExportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBigQueryExportsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a BigQuery export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.bigQueryExports.patch({
+     *     // The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
+     *     name: 'organizations/my-organization/bigQueryExports/my-bigQueryExport',
+     *     // The list of fields to be updated. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataset": "my_dataset",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "principal": "my_principal",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Bigqueryexports$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Organizations$Bigqueryexports$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    patch(
+      params: Params$Resource$Organizations$Bigqueryexports$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Bigqueryexports$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Bigqueryexports$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Bigqueryexports$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Bigqueryexports$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Bigqueryexports$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Bigqueryexports$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    bigQueryExportId?: string;
+    /**
+     * Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
+  }
+  export interface Params$Resource$Organizations$Bigqueryexports$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Bigqueryexports$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Bigqueryexports$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Bigqueryexports$Patch
+    extends StandardParameters {
+    /**
+     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
   }
 
   export class Resource$Organizations$Findings {
@@ -9928,7 +11592,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res =
      *     await securitycenter.organizations.sources.findings.externalSystems.patch({
-     *       // External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     *       // External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      *       name: 'organizations/my-organization/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
      *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
      *       updateMask: 'placeholder-value',
@@ -10060,7 +11724,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Organizations$Sources$Findings$Externalsystems$Patch
     extends StandardParameters {
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      */
     name?: string;
     /**
@@ -10077,12 +11741,16 @@ export namespace securitycenter_v1 {
   export class Resource$Projects {
     context: APIRequestContext;
     assets: Resource$Projects$Assets;
+    bigQueryExports: Resource$Projects$Bigqueryexports;
     findings: Resource$Projects$Findings;
     muteConfigs: Resource$Projects$Muteconfigs;
     sources: Resource$Projects$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.assets = new Resource$Projects$Assets(this.context);
+      this.bigQueryExports = new Resource$Projects$Bigqueryexports(
+        this.context
+      );
       this.findings = new Resource$Projects$Findings(this.context);
       this.muteConfigs = new Resource$Projects$Muteconfigs(this.context);
       this.sources = new Resource$Projects$Sources(this.context);
@@ -10606,6 +12274,808 @@ export namespace securitycenter_v1 {
      * Request body metadata
      */
     requestBody?: Schema$SecurityMarks;
+  }
+
+  export class Resource$Projects$Bigqueryexports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.bigQueryExports.create({
+     *     // Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     *     bigQueryExportId: 'placeholder-value',
+     *     // Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataset": "my_dataset",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "principal": "my_principal",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Bigqueryexports$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Bigqueryexports$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    create(
+      params: Params$Resource$Projects$Bigqueryexports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Bigqueryexports$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Bigqueryexports$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Bigqueryexports$Create
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Bigqueryexports$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Bigqueryexports$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bigQueryExports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an existing big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.bigQueryExports.delete({
+     *     // Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     name: 'projects/my-project/bigQueryExports/my-bigQueryExport',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Bigqueryexports$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Bigqueryexports$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Bigqueryexports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Bigqueryexports$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Bigqueryexports$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Bigqueryexports$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Bigqueryexports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Bigqueryexports$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a big query export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.bigQueryExports.get({
+     *     // Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     *     name: 'projects/my-project/bigQueryExports/my-bigQueryExport',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Bigqueryexports$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Bigqueryexports$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    get(
+      params: Params$Resource$Projects$Bigqueryexports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Bigqueryexports$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Bigqueryexports$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Bigqueryexports$Get
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Bigqueryexports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Bigqueryexports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists BigQuery exports. Note that when requesting BigQuery exports at a given level all exports under that level are also returned e.g. if requesting BigQuery exports under a folder, then all BigQuery exports immediately under the folder plus the ones created under the projects within the folder are returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.bigQueryExports.list({
+     *     // The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bigQueryExports": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Bigqueryexports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Bigqueryexports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBigQueryExportsResponse>;
+    list(
+      params: Params$Resource$Projects$Bigqueryexports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Bigqueryexports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>,
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Bigqueryexports$List,
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Bigqueryexports$List
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBigQueryExportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBigQueryExportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Bigqueryexports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Bigqueryexports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/bigQueryExports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBigQueryExportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBigQueryExportsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a BigQuery export.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.bigQueryExports.patch({
+     *     // The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
+     *     name: 'projects/my-project/bigQueryExports/my-bigQueryExport',
+     *     // The list of fields to be updated. If empty all mutable fields will be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataset": "my_dataset",
+     *       //   "description": "my_description",
+     *       //   "filter": "my_filter",
+     *       //   "mostRecentEditor": "my_mostRecentEditor",
+     *       //   "name": "my_name",
+     *       //   "principal": "my_principal",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataset": "my_dataset",
+     *   //   "description": "my_description",
+     *   //   "filter": "my_filter",
+     *   //   "mostRecentEditor": "my_mostRecentEditor",
+     *   //   "name": "my_name",
+     *   //   "principal": "my_principal",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Bigqueryexports$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Bigqueryexports$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>;
+    patch(
+      params: Params$Resource$Projects$Bigqueryexports$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Bigqueryexports$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Bigqueryexports$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Bigqueryexports$Patch
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudSecuritycenterV1BigQueryExport>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Bigqueryexports$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Bigqueryexports$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1BigQueryExport>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Bigqueryexports$Create
+    extends StandardParameters {
+    /**
+     * Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.
+     */
+    bigQueryExportId?: string;
+    /**
+     * Required. Resource name of the new big query export's parent. Its format is "organizations/[organization_id]", "folders/[folder_id]", or "projects/[project_id]".
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
+  }
+  export interface Params$Resource$Projects$Bigqueryexports$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the big query export to delete. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Bigqueryexports$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the big query export to retrieve. Its format is organizations/{organization\}/bigQueryExports/{export_id\}, folders/{folder\}/bigQueryExports/{export_id\}, or projects/{project\}/bigQueryExports/{export_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Bigqueryexports$List
+    extends StandardParameters {
+    /**
+     * The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns the collection of BigQuery exports. Its format is "organizations/[organization_id]", "folders/[folder_id]", "projects/[project_id]".
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Bigqueryexports$Patch
+    extends StandardParameters {
+    /**
+     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated. If empty all mutable fields will be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudSecuritycenterV1BigQueryExport;
   }
 
   export class Resource$Projects$Findings {
@@ -12825,7 +15295,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res =
      *     await securitycenter.projects.sources.findings.externalSystems.patch({
-     *       // External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     *       // External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      *       name: 'projects/my-project/sources/my-source/findings/my-finding/externalSystems/my-externalSystem',
      *       // The FieldMask to use when updating the external system resource. If empty all mutable fields will be updated.
      *       updateMask: 'placeholder-value',
@@ -12957,7 +15427,7 @@ export namespace securitycenter_v1 {
   export interface Params$Resource$Projects$Sources$Findings$Externalsystems$Patch
     extends StandardParameters {
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      */
     name?: string;
     /**
