@@ -190,7 +190,7 @@ export namespace eventarc_v1 {
    */
   export interface Schema$Destination {
     /**
-     * The Cloud Function resource name. Only Cloud Functions V2 is supported. Format: projects/{project\}/locations/{location\}/functions/{function\}
+     * The Cloud Function resource name. Only Cloud Functions V2 is supported. Format: `projects/{project\}/locations/{location\}/functions/{function\}`
      */
     cloudFunction?: string | null;
     /**
@@ -215,6 +215,10 @@ export namespace eventarc_v1 {
      */
     attribute?: string | null;
     /**
+     * Optional. The operator used for matching the events with the value of the filter. If not specified, only events that have an exact key-value pair specified in the filter are matched. The only allowed value is `match-path-pattern`.
+     */
+    operator?: string | null;
+    /**
      * Required. The value for the attribute.
      */
     value?: string | null;
@@ -236,7 +240,7 @@ export namespace eventarc_v1 {
      */
     filteringAttributes?: Schema$FilteringAttribute[];
     /**
-     * Output only. The full name of the event type (for example, "google.cloud.storage.object.v1.finalized"). In the form of {provider-id\}.{resource\}.{version\}.{verb\}. Types MUST be versioned and event schemas are guaranteed to remain backward compatible within one version. Note that event type versions and API versions do not need to match.
+     * Output only. The full name of the event type (for example, "google.cloud.storage.object.v1.finalized"). In the form of {provider-specific-prefix\}.{resource\}.{version\}.{verb\}. Types MUST be versioned and event schemas are guaranteed to remain backward compatible within one version. Note that event type versions and API versions do not need to match.
      */
     type?: string | null;
   }
@@ -505,7 +509,7 @@ export namespace eventarc_v1 {
      */
     eventTypes?: Schema$EventType[];
     /**
-     * Output only. In `projects/{project\}/locations/{location\}/providers/{provider-id\}` format.
+     * Output only. In `projects/{project\}/locations/{location\}/providers/{provider_id\}` format.
      */
     name?: string | null;
   }
@@ -3376,6 +3380,8 @@ export namespace eventarc_v1 {
      *
      *   // Do the magic
      *   const res = await eventarc.projects.locations.triggers.list({
+     *     // Filter field. Used to filter the Triggers to be listed. Possible filters are described in https://google.aip.dev/160. For example, using "?filter=destination:gke" would list only Triggers with a gke destination.
+     *     filter: 'placeholder-value',
      *     // The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting order is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, trigger_id`.
      *     orderBy: 'placeholder-value',
      *     // The maximum number of triggers to return on each page. Note: The service may send fewer.
@@ -3997,6 +4003,10 @@ export namespace eventarc_v1 {
   }
   export interface Params$Resource$Projects$Locations$Triggers$List
     extends StandardParameters {
+    /**
+     * Filter field. Used to filter the Triggers to be listed. Possible filters are described in https://google.aip.dev/160. For example, using "?filter=destination:gke" would list only Triggers with a gke destination.
+     */
+    filter?: string;
     /**
      * The sorting order of the resources returned. Value should be a comma-separated list of fields. The default sorting order is ascending. To specify descending order for a field, append a `desc` suffix; for example: `name desc, trigger_id`.
      */
