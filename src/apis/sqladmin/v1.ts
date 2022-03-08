@@ -581,7 +581,7 @@ export namespace sqladmin_v1 {
      */
     scheduledMaintenance?: Schema$SqlScheduledMaintenance;
     /**
-     * The Compute Engine zone that the failover instance is currently serving from for a regional instance. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary/failover zone. Reserved for future use.
+     * The Compute Engine zone that the failover instance is currently serving from for a regional instance. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary/failover zone.
      */
     secondaryGceZone?: string | null;
     /**
@@ -1126,7 +1126,7 @@ export namespace sqladmin_v1 {
      */
     kind?: string | null;
     /**
-     * The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.). Reserved for future use.
+     * The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.).
      */
     secondaryZone?: string | null;
     /**
