@@ -1010,7 +1010,7 @@ export namespace cloudkms_v1 {
      */
     hostname?: string | null;
     /**
-     * Required. A list of leaf server certificates used to authenticate HTTPS connections to the EKM replica.
+     * Required. A list of leaf server certificates used to authenticate HTTPS connections to the EKM replica. Currently, a maximum of 10 Certificate is supported.
      */
     serverCertificates?: Schema$Certificate[];
     /**

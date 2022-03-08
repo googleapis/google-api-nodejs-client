@@ -1582,7 +1582,7 @@
       }
     }
   },
-  "revision": "20220122",
+  "revision": "20220218",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2674,7 +2674,7 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Cavium HSM attestation compressed with gzip. Note that this format is defined by Cavium and subject to change at any time.",
+            "Cavium HSM attestation compressed with gzip. Note that this format is defined by Cavium and subject to change at any time. See https://www.marvell.com/products/security-solutions/nitrox-hs-adapters/software-key-attestation.html.",
             "Cavium HSM attestation V2 compressed with gzip. This is a new format introduced in Cavium's version 3.2-08."
           ],
           "readOnly": true,
@@ -3161,7 +3161,7 @@
           "type": "string"
         },
         "serverCertificates": {
-          "description": "Required. A list of leaf server certificates used to authenticate HTTPS connections to the EKM replica.",
+          "description": "Required. A list of leaf server certificates used to authenticate HTTPS connections to the EKM replica. Currently, a maximum of 10 Certificate is supported.",
           "items": {
             "$ref": "Certificate"
           },
