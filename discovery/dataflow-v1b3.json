@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20210910",
+  "revision": "20220218",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3666,7 +3666,7 @@
       "type": "object"
     },
     "Job": {
-      "description": "Defines a job to be run by the Cloud Dataflow service. nextID: 26",
+      "description": "Defines a job to be run by the Cloud Dataflow service.",
       "id": "Job",
       "properties": {
         "clientRequestId": {
@@ -4348,6 +4348,11 @@
         "currentLimitBytes": {
           "description": "Instantenous memory limit in bytes.",
           "format": "uint64",
+          "type": "string"
+        },
+        "currentOoms": {
+          "description": "Number of Out of Memory (OOM) events recorded since the previous measurement.",
+          "format": "int64",
           "type": "string"
         },
         "currentRssBytes": {
