@@ -147,7 +147,7 @@
               "type": "string"
             },
             "overwrite": {
-              "description": "Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this flag removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.",
+              "description": "Only available to selected merchants, for example multi-client accounts (MCAs) and their sub-accounts. When set to `True`, this option removes any existing claim on the requested website and replaces it with a claim from the account that makes the request.",
               "location": "query",
               "type": "boolean"
             }
@@ -197,7 +197,7 @@
             },
             "force": {
               "default": "false",
-              "description": "Flag to delete sub-accounts with products. The default value is false.",
+              "description": "Option to delete sub-accounts with products. The default value is false.",
               "location": "query",
               "type": "boolean"
             },
@@ -3239,7 +3239,7 @@
           ],
           "parameters": {
             "country": {
-              "description": "The country of the template to retrieve. Defaults to `US`.",
+              "description": "The country of the template to retrieve. Defaults to \"`US`\".",
               "location": "query",
               "type": "string"
             },
@@ -3282,7 +3282,7 @@
           ]
         },
         "instorerefundlineitem": {
-          "description": "Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.",
+          "description": "Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (for example, cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding through Google then through an in-store return.",
           "flatPath": "{merchantId}/orders/{orderId}/inStoreRefundLineItem",
           "httpMethod": "POST",
           "id": "content.orders.instorerefundlineitem",
@@ -3364,7 +3364,7 @@
               "type": "string"
             },
             "statuses": {
-              "description": "Obtains orders that match any of the specified statuses. Please note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.",
+              "description": "Obtains orders that match any of the specified statuses. Note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.",
               "enum": [
                 "ACTIVE",
                 "COMPLETED",
@@ -3510,7 +3510,7 @@
           ]
         },
         "returnrefundlineitem": {
-          "description": "Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.",
+          "description": "Returns and refunds a line item. Note that this method can only be called on fully shipped orders. The Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.",
           "flatPath": "{merchantId}/orders/{orderId}/returnRefundLineItem",
           "httpMethod": "POST",
           "id": "content.orders.returnrefundlineitem",
@@ -3545,7 +3545,7 @@
           ]
         },
         "setlineitemmetadata": {
-          "description": "Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided via other methods. Submitted key-value pairs can be retrieved as part of the orders resource.",
+          "description": "Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided through other methods. Submitted key-value pairs can be retrieved as part of the orders resource.",
           "flatPath": "{merchantId}/orders/{orderId}/setLineItemMetadata",
           "httpMethod": "POST",
           "id": "content.orders.setlineitemmetadata",
@@ -4451,7 +4451,7 @@
           ]
         },
         "update": {
-          "description": "Register a Merchant Center account for pubsub notifications. Note that cloud topic name should not be provided as part of the request.",
+          "description": "Register a Merchant Center account for pubsub notifications. Note that cloud topic name shouldn't be provided as part of the request.",
           "flatPath": "{merchantId}/pubsubnotificationsettings",
           "httpMethod": "PUT",
           "id": "content.pubsubnotificationsettings.update",
@@ -5815,11 +5815,11 @@
       }
     }
   },
-  "revision": "20220126",
+  "revision": "20220303",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
-      "description": "Account data. After the creation of a new account it may take a few minutes before it is fully operational. The methods delete, insert, and update require the admin role.",
+      "description": "Account data. After the creation of a new account it may take a few minutes before it's fully operational. The methods delete, insert, and update require the admin role.",
       "id": "Account",
       "properties": {
         "accountManagement": {
@@ -5913,15 +5913,15 @@
       "id": "AccountAddress",
       "properties": {
         "country": {
-          "description": "CLDR country code (e.g. \"US\"). All MCA sub-accounts inherit the country of their parent MCA by default, however the country can be updated for individual sub-accounts.",
+          "description": "CLDR country code (for example, \"US\"). All MCA sub-accounts inherit the country of their parent MCA by default, however the country can be updated for individual sub-accounts.",
           "type": "string"
         },
         "locality": {
-          "description": "City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).",
+          "description": "City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).",
           "type": "string"
         },
         "postalCode": {
-          "description": "Postal code or ZIP (e.g. \"94043\").",
+          "description": "Postal code or ZIP (for example, \"94043\").",
           "type": "string"
         },
         "region": {
@@ -6117,6 +6117,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "effectiveAllowConditionUpdates": {
+          "description": "Output only. The effective value of allow_condition_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "effectiveAllowPriceUpdates": {
           "description": "Output only. The effective value of allow_price_updates. If account_item_updates_settings is present, then this value is the same. Otherwise, it represents the inherited value of the parent account. Read-only.",
           "readOnly": true,
@@ -6136,6 +6141,10 @@
       "properties": {
         "allowAvailabilityUpdates": {
           "description": "If availability updates are enabled, any previous availability values get overwritten if Google finds an out-of-stock annotation on the offer's page. If additionally `allow_availability_updates` field is set to true, values get overwritten if Google finds an in-stock annotation on the offer’s page.",
+          "type": "boolean"
+        },
+        "allowConditionUpdates": {
+          "description": "If condition updates are enabled, Google always updates item condition with the condition detected from the details of your product.",
           "type": "boolean"
         },
         "allowPriceUpdates": {
@@ -6237,7 +6246,7 @@
       "type": "object"
     },
     "AccountStatus": {
-      "description": "The status of an account, i.e., information about its products, which is computed offline and not returned immediately at insertion time.",
+      "description": "The status of an account, that is, information about its products, which is computed offline and not returned immediately at insertion time.",
       "id": "AccountStatus",
       "properties": {
         "accountId": {
@@ -6415,7 +6424,7 @@
           "type": "string"
         },
         "rules": {
-          "description": "Tax rules. Updating the tax rules will enable US taxes (not reversible). Defining no rules is equivalent to not charging tax at all.",
+          "description": "Tax rules. Updating the tax rules will enable \"US\" taxes (not reversible). Defining no rules is equivalent to not charging tax at all.",
           "items": {
             "$ref": "AccountTaxTaxRule"
           },
@@ -6425,7 +6434,7 @@
       "type": "object"
     },
     "AccountTaxTaxRule": {
-      "description": "Tax calculation rule to apply in a state or province (USA only).",
+      "description": "Tax calculation rule to apply in a state or province (US only).",
       "id": "AccountTaxTaxRule",
       "properties": {
         "country": {
@@ -6981,15 +6990,15 @@
           "type": "string"
         },
         "city": {
-          "description": "Required. City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).",
+          "description": "Required. City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).",
           "type": "string"
         },
         "country": {
-          "description": "Required. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. \"US\").",
+          "description": "Required. [CLDR country code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml) (for example, \"US\").",
           "type": "string"
         },
         "postalCode": {
-          "description": "Required. Postal code or ZIP (e.g. \"94043\").",
+          "description": "Required. Postal code or ZIP (for example, \"94043\").",
           "type": "string"
         },
         "streetAddress": {
@@ -7153,11 +7162,11 @@
       "id": "CarrierRate",
       "properties": {
         "carrierName": {
-          "description": "Carrier service, such as `\"UPS\"` or `\"Fedex\"`. The list of supported carriers can be retrieved via the `getSupportedCarriers` method. Required.",
+          "description": "Carrier service, such as `\"UPS\"` or `\"Fedex\"`. The list of supported carriers can be retrieved through the `getSupportedCarriers` method. Required.",
           "type": "string"
         },
         "carrierService": {
-          "description": "Carrier service, such as `\"ground\"` or `\"2 days\"`. The list of supported services for a carrier can be retrieved via the `getSupportedCarriers` method. Required.",
+          "description": "Carrier service, such as `\"ground\"` or `\"2 days\"`. The list of supported services for a carrier can be retrieved through the `getSupportedCarriers` method. Required.",
           "type": "string"
         },
         "flatAdjustment": {
@@ -7183,7 +7192,7 @@
       "id": "CarriersCarrier",
       "properties": {
         "country": {
-          "description": "The CLDR country code of the carrier (e.g., \"US\"). Always present.",
+          "description": "The CLDR country code of the carrier (for example, \"US\"). Always present.",
           "type": "string"
         },
         "eddServices": {
@@ -7194,11 +7203,11 @@
           "type": "array"
         },
         "name": {
-          "description": "The name of the carrier (e.g., `\"UPS\"`). Always present.",
+          "description": "The name of the carrier (for example, `\"UPS\"`). Always present.",
           "type": "string"
         },
         "services": {
-          "description": "A list of supported services (e.g., `\"ground\"`) for that carrier. Contains at least one service. This is the list of valid values for CarrierRate.carrierService.",
+          "description": "A list of supported services (for example, `\"ground\"`) for that carrier. Contains at least one service. This is the list of valid values for CarrierRate.carrierService.",
           "items": {
             "type": "string"
           },
@@ -7474,7 +7483,7 @@
           "type": "integer"
         },
         "timezone": {
-          "description": "Timezone identifier for the cutoff time. A list of identifiers can be found in the AdWords API documentation. E.g. \"Europe/Zurich\". Required.",
+          "description": "Timezone identifier for the cutoff time (for example, \"Europe/Zurich\"). List of identifiers. Required.",
           "type": "string"
         }
       },
@@ -7559,7 +7568,7 @@
           "type": "boolean"
         },
         "timeZone": {
-          "description": "Time zone used for schedule. UTC by default. E.g., \"America/Los_Angeles\".",
+          "description": "Time zone used for schedule. UTC by default. For example, \"America/Los_Angeles\".",
           "type": "string"
         },
         "username": {
@@ -7592,7 +7601,7 @@
       "type": "object"
     },
     "DatafeedStatus": {
-      "description": "The status of a datafeed, i.e., the result of the last retrieval of the datafeed computed asynchronously when the feed processing is finished.",
+      "description": "The status of a datafeed, that is, the result of the last retrieval of the datafeed computed asynchronously when the feed processing is finished.",
       "id": "DatafeedStatus",
       "properties": {
         "country": {
@@ -7652,7 +7661,7 @@
       "id": "DatafeedStatusError",
       "properties": {
         "code": {
-          "description": "The code of the error, e.g., \"validation/invalid_value\".",
+          "description": "The code of the error, for example, \"validation/invalid_value\".",
           "type": "string"
         },
         "count": {
@@ -7668,7 +7677,7 @@
           "type": "array"
         },
         "message": {
-          "description": "The error message, e.g., \"Invalid price\".",
+          "description": "The error message, for example, \"Invalid price\".",
           "type": "string"
         }
       },
@@ -7702,7 +7711,7 @@
           "type": "string"
         },
         "excludedDestinations": {
-          "description": "The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).",
+          "description": "The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center).",
           "items": {
             "type": "string"
           },
@@ -7937,7 +7946,7 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
       "properties": {
         "day": {
@@ -8033,7 +8042,7 @@
           "type": "integer"
         },
         "maxTransitTimeInDays": {
-          "description": "Maximum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to `minTransitTimeInDays`.",
+          "description": "Maximum number of business days that are spent in transit. 0 means same day delivery, 1 means next day delivery. Must be greater than or equal to `minTransitTimeInDays`.",
           "format": "uint32",
           "type": "integer"
         },
@@ -8043,7 +8052,7 @@
           "type": "integer"
         },
         "minTransitTimeInDays": {
-          "description": "Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Either `{min,max}TransitTimeInDays` or `transitTimeTable` must be set, but not both.",
+          "description": "Minimum number of business days that are spent in transit. 0 means same day delivery, 1 means next day delivery. Either `{min,max}TransitTimeInDays` or `transitTimeTable` must be set, but not both.",
           "format": "uint32",
           "type": "integer"
         },
@@ -8122,26 +8131,28 @@
       "description": "Response message for GetFreeListingsProgramStatus.",
       "id": "FreeListingsProgramStatus",
       "properties": {
+        "globalState": {
+          "description": "State of the program, It is set to enabled if there are offers for at least one region.",
+          "enum": [
+            "PROGRAM_STATE_UNSPECIFIED",
+            "NOT_ENABLED",
+            "NO_OFFERS_UPLOADED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "State is not known.",
+            "Program is not enabled for any country.",
+            "Offers are not uploaded targeting even a single country for this program.",
+            "Program is enabled and offers are uploaded for at least one country."
+          ],
+          "type": "string"
+        },
         "regionStatuses": {
           "description": "Status of the program in each region. Regions with the same status and review eligibility are grouped together in `regionCodes`.",
           "items": {
             "$ref": "FreeListingsProgramStatusRegionStatus"
           },
           "type": "array"
-        },
-        "state": {
-          "description": "If program is successfully onboarded for at least one region.",
-          "enum": [
-            "PROGRAM_STATE_UNSPECIFIED",
-            "ONBOARDED",
-            "NOT_ONBOARDED"
-          ],
-          "enumDescriptions": [
-            "State is not known.",
-            "Program is onboarded for at least one country.",
-            "Program is not onboarded for any country."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -8151,7 +8162,7 @@
       "id": "FreeListingsProgramStatusRegionStatus",
       "properties": {
         "disapprovalDate": {
-          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format i.e. YYYY-MM-DD",
+          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format: YYYY-MM-DD",
           "type": "string"
         },
         "eligibilityStatus": {
@@ -8170,37 +8181,18 @@
             "If the account has no issues and review is completed successfully.",
             "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
             "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
-            "Account is under review.",
+            "Account is under review. Deprecated: This state is not created.",
             "Account is waiting for review to start.",
-            "Program is currently onboarding."
+            "Program is currently onboarding. Upload valid offers to complete onboarding."
           ],
           "type": "string"
         },
-        "enhancedEligibilityStatus": {
-          "description": "Eligibility status of the enhanced free listing program.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "APPROVED",
-            "DISAPPROVED",
-            "WARNING",
-            "UNDER_REVIEW",
-            "PENDING_REVIEW",
-            "ONBOARDING"
-          ],
-          "enumDescriptions": [
-            "State is not known.",
-            "If the account has no issues and review is completed successfully.",
-            "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
-            "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
-            "Account is under review.",
-            "Account is waiting for review to start.",
-            "Program is currently onboarding."
-          ],
-          "type": "string"
-        },
-        "ineligibilityReason": {
-          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
-          "type": "string"
+        "onboardingIssues": {
+          "description": "These issues must be fixed to become eligible for the review.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "regionCodes": {
           "description": "The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes for all the regions with the same `eligibilityStatus` and `reviewEligibility`.",
@@ -8217,11 +8209,39 @@
             "INELIGIBLE"
           ],
           "enumDescriptions": [
-            "Review eligibility state is unknown.",
-            "Account for a region code is eligible for review.",
-            "Account for a region code is not eligible for review."
+            "Review eligibility reason state is unknown.",
+            "Account is eligible for review for a specified region code.",
+            "Account is not eligible for review for a specified region code."
           ],
           "type": "string"
+        },
+        "reviewIneligibilityReason": {
+          "description": "Review ineligibility reason if account is not eligible for review.",
+          "enum": [
+            "REVIEW_INELIGIBILITY_REASON_UNSPECIFIED",
+            "ONBOARDING_ISSUES",
+            "NOT_ENOUGH_OFFERS",
+            "IN_COOLDOWN_PERIOD",
+            "ALREADY_UNDER_REVIEW",
+            "NO_REVIEW_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Requesting a review from Google is not possible.",
+            "All onboarding issues needs to be fixed.",
+            "Not enough offers uploaded for this country.",
+            "Cooldown period applies. Wait until cooldown period ends.",
+            "Account is already under review.",
+            "No issues available to review."
+          ],
+          "type": "string"
+        },
+        "reviewIneligibilityReasonDescription": {
+          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
+          "type": "string"
+        },
+        "reviewIneligibilityReasonDetails": {
+          "$ref": "FreeListingsProgramStatusReviewIneligibilityReasonDetails",
+          "description": "This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period."
         },
         "reviewIssues": {
           "description": "These issues will be evaluated in review process. Fix all the issues before requesting the review.",
@@ -8229,6 +8249,18 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FreeListingsProgramStatusReviewIneligibilityReasonDetails": {
+      "description": "Additional details for review ineligibility reasons.",
+      "id": "FreeListingsProgramStatusReviewIneligibilityReasonDetails",
+      "properties": {
+        "cooldownTime": {
+          "description": "This timestamp represents end of cooldown period for review ineligbility reason `IN_COOLDOWN_PERIOD`.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8320,7 +8352,7 @@
       "id": "HolidayCutoff",
       "properties": {
         "deadlineDate": {
-          "description": "Date of the order deadline, in ISO 8601 format. E.g. \"2016-11-29\" for 29th November 2016. Required.",
+          "description": "Date of the order deadline, in ISO 8601 format. For example, \"2016-11-29\" for 29th November 2016. Required.",
           "type": "string"
         },
         "deadlineHour": {
@@ -8329,7 +8361,7 @@
           "type": "integer"
         },
         "deadlineTimezone": {
-          "description": "Timezone identifier for the deadline hour. A list of identifiers can be found in the AdWords API documentation. E.g. \"Europe/Zurich\". Required.",
+          "description": "Timezone identifier for the deadline hour (for example, \"Europe/Zurich\"). List of identifiers. Required.",
           "type": "string"
         },
         "holidayId": {
@@ -8337,7 +8369,7 @@
           "type": "string"
         },
         "visibleFromDate": {
-          "description": "Date on which the deadline will become visible to consumers in ISO 8601 format. E.g. \"2016-10-31\" for 31st October 2016. Required.",
+          "description": "Date on which the deadline will become visible to consumers in ISO 8601 format. For example, \"2016-10-31\" for 31st October 2016. Required.",
           "type": "string"
         }
       },
@@ -8347,15 +8379,15 @@
       "id": "HolidaysHoliday",
       "properties": {
         "countryCode": {
-          "description": "The CLDR territory code of the country in which the holiday is available. E.g. \"US\", \"DE\", \"GB\". A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.",
+          "description": "The CLDR territory code of the country in which the holiday is available. For example, \"US\", \"DE\", \"GB\". A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.",
           "type": "string"
         },
         "date": {
-          "description": "Date of the holiday, in ISO 8601 format. E.g. \"2016-12-25\" for Christmas 2016. Always present.",
+          "description": "Date of the holiday, in ISO 8601 format. For example, \"2016-12-25\" for Christmas 2016. Always present.",
           "type": "string"
         },
         "deliveryGuaranteeDate": {
-          "description": "Date on which the order has to arrive at the customer's, in ISO 8601 format. E.g. \"2016-12-24\" for 24th December 2016. Always present.",
+          "description": "Date on which the order has to arrive at the customer's, in ISO 8601 format. For example, \"2016-12-24\" for 24th December 2016. Always present.",
           "type": "string"
         },
         "deliveryGuaranteeHour": {
@@ -8495,7 +8527,7 @@
           "description": "The settings for the About page."
         },
         "country": {
-          "description": "Required. CLDR country code (e.g. \"US\").",
+          "description": "Required. CLDR country code (for example, \"US\").",
           "type": "string"
         },
         "hostedLocalStorefrontActive": {
@@ -9146,7 +9178,7 @@
       "id": "LocationIdSet",
       "properties": {
         "locationIds": {
-          "description": "A non-empty list of location IDs. They must all be of the same location type (e.g., state).",
+          "description": "A non-empty list of location IDs. They must all be of the same location type (for example, state).",
           "items": {
             "type": "string"
           },
@@ -9425,11 +9457,11 @@
       "properties": {
         "priceAmount": {
           "$ref": "Price",
-          "description": "The pre-tax or post-tax price depends on the location of the order. - For countries (e.g. US) where price attribute excludes tax, this field corresponds to the pre-tax value. - For coutries (e.g. France) where price attribute includes tax, this field corresponds to the post-tax value ."
+          "description": "The pre-tax or post-tax price depends on the location of the order. - For countries (for example, \"US\". where price attribute excludes tax, this field corresponds to the pre-tax value. - For coutries (for example, \"France\") where price attribute includes tax, this field corresponds to the post-tax value ."
         },
         "taxAmount": {
           "$ref": "Price",
-          "description": "Tax value, present only for countries where price attribute excludes tax (e.g. US). No tax is referenced as 0 value with the corresponding `currency`."
+          "description": "Tax value, present only for countries where price attribute excludes tax (for example, \"US\". No tax is referenced as 0 value with the corresponding `currency`."
         }
       },
       "type": "object"
@@ -9559,7 +9591,7 @@
       "id": "OrderAddress",
       "properties": {
         "country": {
-          "description": "CLDR country code (e.g. \"US\").",
+          "description": "CLDR country code (for example, \"US\").",
           "type": "string"
         },
         "fullAddress": {
@@ -9574,11 +9606,11 @@
           "type": "boolean"
         },
         "locality": {
-          "description": "City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).",
+          "description": "City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).",
           "type": "string"
         },
         "postalCode": {
-          "description": "Postal Code or ZIP (e.g. \"94043\").",
+          "description": "Postal Code or ZIP (for example, \"94043\").",
           "type": "string"
         },
         "recipientName": {
@@ -9616,7 +9648,7 @@
           "type": "integer"
         },
         "reason": {
-          "description": "The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Buy on Google until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - \"`autoPostInternal`\" - \"`autoPostInvalidBillingAddress`\" - \"`autoPostNoInventory`\" - \"`autoPostPriceError`\" - \"`autoPostUndeliverableShippingAddress`\" - \"`couponAbuse`\" - \"`customerCanceled`\" - \"`customerInitiatedCancel`\" - \"`customerSupportRequested`\" - \"`failToPushOrderGoogleError`\" - \"`failToPushOrderMerchantError`\" - \"`failToPushOrderMerchantFulfillmentError`\" - \"`failToPushOrderToMerchant`\" - \"`failToPushOrderToMerchantOutOfStock`\" - \"`invalidCoupon`\" - \"`malformedShippingAddress`\" - \"`merchantDidNotShipOnTime`\" - \"`noInventory`\" - \"`orderTimeout`\" - \"`other`\" - \"`paymentAbuse`\" - \"`paymentDeclined`\" - \"`priceError`\" - \"`returnRefundAbuse`\" - \"`shippingPriceError`\" - \"`taxError`\" - \"`undeliverableShippingAddress`\" - \"`unsupportedPoBoxAddress`\" - \"`failedToCaptureFunds`\" ",
+          "description": "The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Buy on Google until you make an update to that product. This won't affect your Shopping ads. Acceptable values are: - \"`autoPostInternal`\" - \"`autoPostInvalidBillingAddress`\" - \"`autoPostNoInventory`\" - \"`autoPostPriceError`\" - \"`autoPostUndeliverableShippingAddress`\" - \"`couponAbuse`\" - \"`customerCanceled`\" - \"`customerInitiatedCancel`\" - \"`customerSupportRequested`\" - \"`failToPushOrderGoogleError`\" - \"`failToPushOrderMerchantError`\" - \"`failToPushOrderMerchantFulfillmentError`\" - \"`failToPushOrderToMerchant`\" - \"`failToPushOrderToMerchantOutOfStock`\" - \"`invalidCoupon`\" - \"`malformedShippingAddress`\" - \"`merchantDidNotShipOnTime`\" - \"`noInventory`\" - \"`orderTimeout`\" - \"`other`\" - \"`paymentAbuse`\" - \"`paymentDeclined`\" - \"`priceError`\" - \"`returnRefundAbuse`\" - \"`shippingPriceError`\" - \"`taxError`\" - \"`undeliverableShippingAddress`\" - \"`unsupportedPoBoxAddress`\" - \"`failedToCaptureFunds`\" ",
           "type": "string"
         },
         "reasonText": {
@@ -9728,7 +9760,7 @@
         },
         "product": {
           "$ref": "OrderLineItemProduct",
-          "description": "Product data as seen by customer from the time of the order placement. Note that certain attributes values (e.g. title or gtin) might be reformatted and no longer match values submitted via product feed."
+          "description": "Product data as seen by customer from the time of the order placement. Note that certain attributes values (for example, title or gtin) might be reformatted and no longer match values submitted through product feed."
         },
         "quantityCanceled": {
           "description": "Number of items canceled.",
@@ -9865,7 +9897,7 @@
           "type": "string"
         },
         "targetCountry": {
-          "description": "The CLDR territory // code of the target country of the product.",
+          "description": "The CLDR territory code of the target country of the product.",
           "type": "string"
         },
         "title": {
@@ -10065,7 +10097,7 @@
           "type": "array"
         },
         "endTime": {
-          "description": "Promotion end time in ISO 8601 format. Date, time, and offset required, e.g., \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\".",
+          "description": "Promotion end time in ISO 8601 format. Date, time, and offset required, for example, \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\".",
           "type": "string"
         },
         "funder": {
@@ -10085,7 +10117,7 @@
           "type": "string"
         },
         "startTime": {
-          "description": "Promotion start time in ISO 8601 format. Date, time, and offset required, e.g., \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\".",
+          "description": "Promotion start time in ISO 8601 format. Date, time, and offset required, for example, \"2020-01-02T09:00:00+01:00\" or \"2020-01-02T09:00:00Z\".",
           "type": "string"
         },
         "subtype": {
@@ -10258,7 +10290,7 @@
       "id": "OrderShipment",
       "properties": {
         "carrier": {
-          "description": "The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for US are: - \"`ups`\" (United Parcel Service) *automatic status updates* - \"`usps`\" (United States Postal Service) *automatic status updates* - \"`fedex`\" (FedEx) *automatic status updates * - \"`dhl`\" (DHL eCommerce) *automatic status updates* (US only) - \"`ontrac`\" (OnTrac) *automatic status updates * - \"`dhl express`\" (DHL Express) - \"`deliv`\" (Deliv) - \"`dynamex`\" (TForce) - \"`lasership`\" (LaserShip) - \"`mpx`\" (Military Parcel Xpress) - \"`uds`\" (United Delivery Service) - \"`efw`\" (Estes Forwarding Worldwide) - \"`jd logistics`\" (JD Logistics) - \"`yunexpress`\" (YunExpress) - \"`china post`\" (China Post) - \"`china ems`\" (China Post Express Mail Service) - \"`singapore post`\" (Singapore Post) - \"`pos malaysia`\" (Pos Malaysia) - \"`postnl`\" (PostNL) - \"`ptt`\" (PTT Turkish Post) - \"`eub`\" (ePacket) - \"`chukou1`\" (Chukou1 Logistics) - \"`bestex`\" (Best Express) - \"`canada post`\" (Canada Post) - \"`purolator`\" (Purolator) - \"`canpar`\" (Canpar) - \"`india post`\" (India Post) - \"`blue dart`\" (Blue Dart) - \"`delhivery`\" (Delhivery) - \"`dtdc`\" (DTDC) - \"`tpc india`\" (TPC India) - \"`lso`\" (Lone Star Overnight) - \"`tww`\" (Team Worldwide) Supported carriers for FR are: - \"`la poste`\" (La Poste) *automatic status updates * - \"`colissimo`\" (Colissimo by La Poste) *automatic status updates* - \"`ups`\" (United Parcel Service) *automatic status updates * - \"`chronopost`\" (Chronopost by La Poste) - \"`gls`\" (General Logistics Systems France) - \"`dpd`\" (DPD Group by GeoPost) - \"`bpost`\" (Belgian Post Group) - \"`colis prive`\" (Colis Privé) - \"`boxtal`\" (Boxtal) - \"`geodis`\" (GEODIS) - \"`tnt`\" (TNT) - \"`db schenker`\" (DB Schenker) - \"`aramex`\" (Aramex) ",
+          "description": "The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers won't include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for \"US\" are: - \"`ups`\" (United Parcel Service) *automatic status updates* - \"`usps`\" (United States Postal Service) *automatic status updates* - \"`fedex`\" (FedEx) *automatic status updates * - \"`dhl`\" (DHL eCommerce) *automatic status updates* (US only) - \"`ontrac`\" (OnTrac) *automatic status updates * - \"`dhl express`\" (DHL Express) - \"`deliv`\" (Deliv) - \"`dynamex`\" (TForce) - \"`lasership`\" (LaserShip) - \"`mpx`\" (Military Parcel Xpress) - \"`uds`\" (United Delivery Service) - \"`efw`\" (Estes Forwarding Worldwide) - \"`jd logistics`\" (JD Logistics) - \"`yunexpress`\" (YunExpress) - \"`china post`\" (China Post) - \"`china ems`\" (China Post Express Mail Service) - \"`singapore post`\" (Singapore Post) - \"`pos malaysia`\" (Pos Malaysia) - \"`postnl`\" (PostNL) - \"`ptt`\" (PTT Turkish Post) - \"`eub`\" (ePacket) - \"`chukou1`\" (Chukou1 Logistics) - \"`bestex`\" (Best Express) - \"`canada post`\" (Canada Post) - \"`purolator`\" (Purolator) - \"`canpar`\" (Canpar) - \"`india post`\" (India Post) - \"`blue dart`\" (Blue Dart) - \"`delhivery`\" (Delhivery) - \"`dtdc`\" (DTDC) - \"`tpc india`\" (TPC India) - \"`lso`\" (Lone Star Overnight) - \"`tww`\" (Team Worldwide) Supported carriers for FR are: - \"`la poste`\" (La Poste) *automatic status updates * - \"`colissimo`\" (Colissimo by La Poste) *automatic status updates* - \"`ups`\" (United Parcel Service) *automatic status updates * - \"`chronopost`\" (Chronopost by La Poste) - \"`gls`\" (General Logistics Systems France) - \"`dpd`\" (DPD Group by GeoPost) - \"`bpost`\" (Belgian Post Group) - \"`colis prive`\" (Colis Privé) - \"`boxtal`\" (Boxtal) - \"`geodis`\" (GEODIS) - \"`tnt`\" (TNT) - \"`db schenker`\" (DB Schenker) - \"`aramex`\" (Aramex) ",
           "type": "string"
         },
         "creationDate": {
@@ -10322,7 +10354,7 @@
       "id": "OrderShipmentScheduledDeliveryDetails",
       "properties": {
         "carrierPhoneNumber": {
-          "description": "The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (e.g., \"+41 44 668 1800\").",
+          "description": "The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (for example, \"+41 44 668 1800\").",
           "type": "string"
         },
         "scheduledDate": {
@@ -10839,7 +10871,7 @@
       "id": "OrderreturnsRefundOperation",
       "properties": {
         "fullRefund": {
-          "description": "If true, the item will be fully refunded. Allowed only when payment_type is FOP. Merchant can choose this refund option to indicate the full remaining amount of corresponding object to be refunded to the customer via FOP.",
+          "description": "If true, the item will be fully refunded. Allowed only when payment_type is FOP. Merchant can choose this refund option to indicate the full remaining amount of corresponding object to be refunded to the customer through FOP.",
           "type": "boolean"
         },
         "partialRefund": {
@@ -11028,7 +11060,7 @@
       "id": "OrdersCreateTestOrderRequest",
       "properties": {
         "country": {
-          "description": "The CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created via `template_name`, or the addresses of orders created via `test_order`. Acceptable values are: - \"`US`\" - \"`FR`\" Defaults to `US`.",
+          "description": "The CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created through `template_name`, or the addresses of orders created through `test_order`. Acceptable values are: - \"`US`\" - \"`FR`\" Defaults to \"`US`\".",
           "type": "string"
         },
         "templateName": {
@@ -11103,10 +11135,10 @@
       "properties": {
         "amount": {
           "$ref": "MonetaryAmount",
-          "description": "The total amount that is refunded. (e.g. refunding $5 each for 2 products should be done by setting quantity to 2 and amount to 10$) In case of multiple refunds, this should be the amount you currently want to refund to the customer."
+          "description": "The total amount that is refunded. (for example, refunding $5 each for 2 products should be done by setting quantity to 2 and amount to 10$) In case of multiple refunds, this should be the amount you currently want to refund to the customer."
         },
         "fullRefund": {
-          "description": "If true, the full item will be refunded. If this is true, amount should not be provided and will be ignored.",
+          "description": "If true, the full item will be refunded. If this is true, amount shouldn't be provided and will be ignored.",
           "type": "boolean"
         },
         "lineItemId": {
@@ -11133,7 +11165,7 @@
           "description": "The amount that is refunded. If this is not the first refund for the shipment, this should be the newly refunded amount."
         },
         "fullRefund": {
-          "description": "If set to true, all shipping costs for the order will be refunded. If this is true, amount should not be provided and will be ignored. If set to false, submit the amount of the partial shipping refund, excluding the shipping tax. The shipping tax is calculated and handled on Google's side.",
+          "description": "If set to true, all shipping costs for the order will be refunded. If this is true, amount shouldn't be provided and will be ignored. If set to false, submit the amount of the partial shipping refund, excluding the shipping tax. The shipping tax is calculated and handled on Google's side.",
           "type": "boolean"
         }
       },
@@ -11324,7 +11356,7 @@
           "description": "The amount that is refunded. If this is not the first refund for the order, this should be the newly refunded amount."
         },
         "fullRefund": {
-          "description": "If true, the full order will be refunded, including shipping. If this is true, amount should not be provided and will be ignored.",
+          "description": "If true, the full order will be refunded, including shipping. If this is true, amount shouldn't be provided and will be ignored.",
           "type": "boolean"
         },
         "operationId": {
@@ -11538,7 +11570,7 @@
       "id": "OrdersUpdateLineItemShippingDetailsRequest",
       "properties": {
         "deliverByDate": {
-          "description": "Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated. Provided date should be within 1 year timeframe and can not be a date in the past.",
+          "description": "Updated delivery by date, in ISO 8601 format. If not specified only ship by date is updated. Provided date should be within 1 year timeframe and can't be a date in the past.",
           "type": "string"
         },
         "lineItemId": {
@@ -11554,7 +11586,7 @@
           "type": "string"
         },
         "shipByDate": {
-          "description": "Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated. Provided date should be within 1 year timeframe and can not be a date in the past.",
+          "description": "Updated ship by date, in ISO 8601 format. If not specified only deliver by date is updated. Provided date should be within 1 year timeframe and can't be a date in the past.",
           "type": "string"
         }
       },
@@ -11687,11 +11719,11 @@
       "id": "PickupCarrierService",
       "properties": {
         "carrierName": {
-          "description": "The name of the pickup carrier (e.g., `\"UPS\"`). Required.",
+          "description": "The name of the pickup carrier (for example, `\"UPS\"`). Required.",
           "type": "string"
         },
         "serviceName": {
-          "description": "The name of the pickup service (e.g., `\"Access point\"`). Required.",
+          "description": "The name of the pickup service (for example, `\"Access point\"`). Required.",
           "type": "string"
         }
       },
@@ -11701,15 +11733,15 @@
       "id": "PickupServicesPickupService",
       "properties": {
         "carrierName": {
-          "description": "The name of the carrier (e.g., `\"UPS\"`). Always present.",
+          "description": "The name of the carrier (for example, `\"UPS\"`). Always present.",
           "type": "string"
         },
         "country": {
-          "description": "The CLDR country code of the carrier (e.g., \"US\"). Always present.",
+          "description": "The CLDR country code of the carrier (for example, \"US\"). Always present.",
           "type": "string"
         },
         "serviceName": {
-          "description": "The name of the pickup service (e.g., `\"Access point\"`). Always present.",
+          "description": "The name of the pickup service (for example, `\"Access point\"`). Always present.",
           "type": "string"
         }
       },
@@ -11883,7 +11915,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -11922,7 +11954,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -11965,7 +11997,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -12029,7 +12061,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -12072,7 +12104,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -12119,7 +12151,7 @@
           "type": "string"
         },
         "storeCode": {
-          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in a Business Profile.",
+          "description": "Required. The identifier of the merchant's store. Either a `storeCode` inserted through the API or the code of the store in a Business Profile.",
           "type": "string"
         },
         "targetCountry": {
@@ -12314,7 +12346,7 @@
           "description": "Cost of goods sold. Used for gross profit reporting."
         },
         "customAttributes": {
-          "description": "A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google (formerly known as Shopping Actions).",
+          "description": "A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google (formerly known as Shopping Actions).",
           "items": {
             "$ref": "CustomAttribute"
           },
@@ -12373,7 +12405,7 @@
           "type": "string"
         },
         "excludedDestinations": {
-          "description": "The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).",
+          "description": "The list of destinations to exclude for this target (corresponds to cleared check boxes in Merchant Center).",
           "items": {
             "type": "string"
           },
@@ -12486,7 +12518,7 @@
           "type": "string"
         },
         "pattern": {
-          "description": "The item's pattern (e.g. polka dots).",
+          "description": "The item's pattern (for example, polka dots).",
           "type": "string"
         },
         "pickupMethod": {
@@ -12608,7 +12640,7 @@
           "type": "array"
         },
         "source": {
-          "description": "The source of the offer, i.e., how the offer was created. Acceptable values are: - \"`api`\" - \"`crawl`\" - \"`feed`\" ",
+          "description": "The source of the offer, that is, how the offer was created. Acceptable values are: - \"`api`\" - \"`crawl`\" - \"`feed`\" ",
           "type": "string"
         },
         "subscriptionCost": {
@@ -12717,22 +12749,22 @@
           "type": "string"
         },
         "maxHandlingTime": {
-          "description": "Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.",
+          "description": "Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it's received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.",
           "format": "int64",
           "type": "string"
         },
         "maxTransitTime": {
-          "description": "Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.",
+          "description": "Maximum transit time (inclusive) between when the order has shipped and when it's delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.",
           "format": "int64",
           "type": "string"
         },
         "minHandlingTime": {
-          "description": "Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present.",
+          "description": "Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it's received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it's not required if maxHandlingTime is present.",
           "format": "int64",
           "type": "string"
         },
         "minTransitTime": {
-          "description": "Minimum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. minTransitTime can only be present together with maxTransitTime; but it is not required if maxTransitTime is present.",
+          "description": "Minimum transit time (inclusive) between when the order has shipped and when it's delivered in business days. 0 means that the order is delivered on the same day as it ships. minTransitTime can only be present together with maxTransitTime; but it's not required if maxTransitTime is present.",
           "format": "int64",
           "type": "string"
         },
@@ -12786,7 +12818,7 @@
       "type": "object"
     },
     "ProductStatus": {
-      "description": "The status of a product, i.e., information about a product computed asynchronously.",
+      "description": "The status of a product, that is, information about a product computed asynchronously.",
       "id": "ProductStatus",
       "properties": {
         "creationDate": {
@@ -13233,7 +13265,7 @@
       "type": "object"
     },
     "Promotion": {
-      "description": " The Promotions feature is currently in alpha and is not yet publicly available via Content API for Shopping. This documentation is provided for reference only may be subject to change. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
+      "description": " The Promotions feature is currently in alpha and is not yet publicly available in Content API for Shopping. This documentation is provided for reference only may be subject to change. Represents a promotion. See the following articles for more details. * [Promotions feed specification](https://support.google.com/merchants/answer/2906014) * [Local promotions feed specification](https://support.google.com/merchants/answer/10146130) * [Promotions on Buy on Google product data specification](https://support.google.com/merchants/answer/9173673)",
       "id": "Promotion",
       "properties": {
         "brand": {
@@ -13432,7 +13464,7 @@
           "type": "array"
         },
         "promotionDisplayDates": {
-          "description": "String representation of the promotion display dates.",
+          "description": "String representation of the promotion display dates (deprecated: Use promotion_display_time_period instead).",
           "type": "string"
         },
         "promotionDisplayTimePeriod": {
@@ -13440,7 +13472,7 @@
           "description": "TimePeriod representation of the promotion display dates."
         },
         "promotionEffectiveDates": {
-          "description": "Required. String representation of the promotion effective dates.",
+          "description": "String representation of the promotion effective dates (deprecated: Use promotion_effective_time_period instead).",
           "type": "string"
         },
         "promotionEffectiveTimePeriod": {
@@ -13531,7 +13563,7 @@
         },
         "singleValue": {
           "$ref": "Value",
-          "description": "The value of the rate group (e.g. flat rate $10). Can only be set if `mainTable` and `subtables` are not set."
+          "description": "The value of the rate group (for example, flat rate $10). Can only be set if `mainTable` and `subtables` are not set."
         },
         "subtables": {
           "description": "A list of subtables referred to by `mainTable`. Can only be set if `mainTable` is set.",
@@ -14266,15 +14298,15 @@
       "id": "ReturnAddressAddress",
       "properties": {
         "country": {
-          "description": "CLDR country code (e.g. \"US\").",
+          "description": "CLDR country code (for example, \"US\").",
           "type": "string"
         },
         "locality": {
-          "description": "City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).",
+          "description": "City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).",
           "type": "string"
         },
         "postalCode": {
-          "description": "Postal code or ZIP (e.g. \"94043\").",
+          "description": "Postal code or ZIP (for example, \"94043\").",
           "type": "string"
         },
         "recipientName": {
@@ -15054,7 +15086,7 @@
         },
         "pickupService": {
           "$ref": "PickupCarrierService",
-          "description": "The carrier-service pair delivering items to collection points. The list of supported pickup services can be retrieved via the `getSupportedPickupServices` method. Required if and only if the service delivery type is `pickup`."
+          "description": "The carrier-service pair delivering items to collection points. The list of supported pickup services can be retrieved through the `getSupportedPickupServices` method. Required if and only if the service delivery type is `pickup`."
         },
         "rateGroups": {
           "description": "Shipping rate group definitions. Only the last one is allowed to have an empty `applicableShippingLabels`, which means \"everything else\". The other `applicableShippingLabels` must not overlap.",
@@ -15103,7 +15135,7 @@
           "type": "string"
         },
         "transferIds": {
-          "description": "The list of bank identifiers used for the transfer. e.g. Trace ID for Federal Automated Clearing House (ACH). This may also be known as the Wire ID.",
+          "description": "The list of bank identifiers used for the transfer. For example, Trace ID for Federal Automated Clearing House (ACH). This may also be known as the Wire ID.",
           "items": {
             "type": "string"
           },
@@ -15174,7 +15206,7 @@
       "id": "SettlementTransactionIdentifiers",
       "properties": {
         "adjustmentId": {
-          "description": "The identifier of the adjustments, if it is available.",
+          "description": "The identifier of the adjustments, if it's available.",
           "type": "string"
         },
         "merchantOrderId": {
@@ -15509,26 +15541,28 @@
       "description": "Response message for GetShoppingAdsProgramStatus.",
       "id": "ShoppingAdsProgramStatus",
       "properties": {
+        "globalState": {
+          "description": "State of the program, It is set to enabled if there are offers for at least one region.",
+          "enum": [
+            "PROGRAM_STATE_UNSPECIFIED",
+            "NOT_ENABLED",
+            "NO_OFFERS_UPLOADED",
+            "ENABLED"
+          ],
+          "enumDescriptions": [
+            "State is not known.",
+            "Program is not enabled for any country.",
+            "Offers are not uploaded targeting even a single country for this program.",
+            "Program is enabled and offers are uploaded for at least one country."
+          ],
+          "type": "string"
+        },
         "regionStatuses": {
           "description": "Status of the program in each region. Regions with the same status and review eligibility are grouped together in `regionCodes`.",
           "items": {
             "$ref": "ShoppingAdsProgramStatusRegionStatus"
           },
           "type": "array"
-        },
-        "state": {
-          "description": "If program is successfully onboarded for at least one region.",
-          "enum": [
-            "PROGRAM_STATE_UNSPECIFIED",
-            "ONBOARDED",
-            "NOT_ONBOARDED"
-          ],
-          "enumDescriptions": [
-            "State is not known.",
-            "Program is onboarded for at least one country.",
-            "Program is not onboarded for any country."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -15538,7 +15572,7 @@
       "id": "ShoppingAdsProgramStatusRegionStatus",
       "properties": {
         "disapprovalDate": {
-          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format i.e. YYYY-MM-DD",
+          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: YYYY-MM-DD",
           "type": "string"
         },
         "eligibilityStatus": {
@@ -15557,15 +15591,18 @@
             "If the account has no issues and review is completed successfully.",
             "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
             "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
-            "Account is under review.",
+            "Account is under review. Deprecated: This state is not created.",
             "Account is waiting for review to start.",
-            "Program is currently onboarding."
+            "Program is currently onboarding. Upload valid offers to complete onboarding."
           ],
           "type": "string"
         },
-        "ineligibilityReason": {
-          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
-          "type": "string"
+        "onboardingIssues": {
+          "description": "These issues must be fixed to become eligible for the review.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "regionCodes": {
           "description": "The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) codes for all the regions with the same `eligibilityStatus` and `reviewEligibility`.",
@@ -15582,11 +15619,39 @@
             "INELIGIBLE"
           ],
           "enumDescriptions": [
-            "Review eligibility state is unknown.",
-            "Account for a region code is eligible for review.",
-            "Account for a region code is not eligible for review."
+            "Review eligibility reason state is unknown.",
+            "Account is eligible for review for a specified region code.",
+            "Account is not eligible for review for a specified region code."
           ],
           "type": "string"
+        },
+        "reviewIneligibilityReason": {
+          "description": "Review ineligibility reason if account is not eligible for review.",
+          "enum": [
+            "REVIEW_INELIGIBILITY_REASON_UNSPECIFIED",
+            "ONBOARDING_ISSUES",
+            "NOT_ENOUGH_OFFERS",
+            "IN_COOLDOWN_PERIOD",
+            "ALREADY_UNDER_REVIEW",
+            "NO_REVIEW_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Requesting a review from Google is not possible.",
+            "All onboarding issues needs to be fixed.",
+            "Not enough offers uploaded for this country.",
+            "Cooldown period applies. Wait until cooldown period ends.",
+            "Account is already under review.",
+            "No issues available to review."
+          ],
+          "type": "string"
+        },
+        "reviewIneligibilityReasonDescription": {
+          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
+          "type": "string"
+        },
+        "reviewIneligibilityReasonDetails": {
+          "$ref": "ShoppingAdsProgramStatusReviewIneligibilityReasonDetails",
+          "description": "This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period."
         },
         "reviewIssues": {
           "description": "These issues will be evaluated in review process. Fix all the issues before requesting the review.",
@@ -15594,6 +15659,18 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ShoppingAdsProgramStatusReviewIneligibilityReasonDetails": {
+      "description": "Additional details for review ineligibility reasons.",
+      "id": "ShoppingAdsProgramStatusReviewIneligibilityReasonDetails",
+      "properties": {
+        "cooldownTime": {
+          "description": "This timestamp represents end of cooldown period for review ineligbility reason `IN_COOLDOWN_PERIOD`.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -15691,7 +15768,7 @@
       "id": "TestOrderAddress",
       "properties": {
         "country": {
-          "description": "CLDR country code (e.g. \"US\").",
+          "description": "CLDR country code (for example, \"US\").",
           "type": "string"
         },
         "fullAddress": {
@@ -15706,11 +15783,11 @@
           "type": "boolean"
         },
         "locality": {
-          "description": "City, town or commune. May also include dependent localities or sublocalities (e.g. neighborhoods or suburbs).",
+          "description": "City, town or commune. May also include dependent localities or sublocalities (for example, neighborhoods or suburbs).",
           "type": "string"
         },
         "postalCode": {
-          "description": "Postal Code or ZIP (e.g. \"94043\").",
+          "description": "Postal Code or ZIP (for example, \"94043\").",
           "type": "string"
         },
         "recipientName": {
@@ -15819,7 +15896,7 @@
           "description": "Required. The price for the product. Tax is automatically calculated for orders where marketplace facilitator tax laws are applicable. Otherwise, tax settings from Merchant Center are applied."
         },
         "targetCountry": {
-          "description": "Required. The CLDR territory // code of the target country of the product.",
+          "description": "Required. The CLDR territory code of the target country of the product.",
           "type": "string"
         },
         "title": {
@@ -15965,7 +16042,7 @@
       "id": "UnitInvoice",
       "properties": {
         "additionalCharges": {
-          "description": "Additional charges for a unit, e.g. shipping costs.",
+          "description": "Additional charges for a unit, for example, shipping costs.",
           "items": {
             "$ref": "UnitInvoiceAdditionalCharge"
           },
@@ -16034,11 +16111,11 @@
           "type": "boolean"
         },
         "pricePercentage": {
-          "description": "A percentage of the price represented as a number in decimal notation (e.g., `\"5.4\"`). Can only be set if all other fields are not set.",
+          "description": "A percentage of the price represented as a number in decimal notation (for example, `\"5.4\"`). Can only be set if all other fields are not set.",
           "type": "string"
         },
         "subtableName": {
-          "description": "The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.",
+          "description": "The name of a subtable. Can only be set in table cells (not for single values), and only if all other fields are not set.",
           "type": "string"
         }
       },
@@ -16116,11 +16193,11 @@
       "id": "WarehouseBasedDeliveryTime",
       "properties": {
         "carrier": {
-          "description": "Required. Carrier, such as `\"UPS\"` or `\"Fedex\"`. The list of supported carriers can be retrieved via the `listSupportedCarriers` method.",
+          "description": "Required. Carrier, such as `\"UPS\"` or `\"Fedex\"`. The list of supported carriers can be retrieved through the `listSupportedCarriers` method.",
           "type": "string"
         },
         "carrierService": {
-          "description": "Required. Carrier service, such as `\"ground\"` or `\"2 days\"`. The list of supported services for a carrier can be retrieved via the `listSupportedCarriers` method. The name of the service must be in the eddSupportedServices list.",
+          "description": "Required. Carrier service, such as `\"ground\"` or `\"2 days\"`. The list of supported services for a carrier can be retrieved through the `listSupportedCarriers` method. The name of the service must be in the eddSupportedServices list.",
           "type": "string"
         },
         "originAdministrativeArea": {
@@ -16132,7 +16209,7 @@
           "type": "string"
         },
         "originCountry": {
-          "description": "Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).",
+          "description": "Shipping origin's country represented as a [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).",
           "type": "string"
         },
         "originPostalCode": {
