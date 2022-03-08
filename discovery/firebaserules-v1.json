@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20220104",
+  "revision": "20220127",
   "rootUrl": "https://firebaserules.googleapis.com/",
   "schemas": {
     "Arg": {
@@ -732,11 +732,11 @@
           "type": "string"
         },
         "name": {
-          "description": "Format: `projects/{project_id}/releases/{release_id}`",
+          "description": "Required. Format: `projects/{project_id}/releases/{release_id}`",
           "type": "string"
         },
         "rulesetName": {
-          "description": "Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist the `Release` to be created.",
+          "description": "Required. Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist the `Release` to be created.",
           "type": "string"
         },
         "updateTime": {
@@ -1010,7 +1010,7 @@
       "properties": {
         "release": {
           "$ref": "Release",
-          "description": "`Release` to update."
+          "description": "Required. `Release` to update."
         },
         "updateMask": {
           "description": "Specifies which fields to update.",

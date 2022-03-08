@@ -296,11 +296,11 @@ export namespace firebaserules_v1 {
      */
     createTime?: string | null;
     /**
-     * Format: `projects/{project_id\}/releases/{release_id\}`
+     * Required. Format: `projects/{project_id\}/releases/{release_id\}`
      */
     name?: string | null;
     /**
-     * Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist the `Release` to be created.
+     * Required. Name of the `Ruleset` referred to by this `Release`. The `Ruleset` must exist the `Release` to be created.
      */
     rulesetName?: string | null;
     /**
@@ -474,7 +474,7 @@ export namespace firebaserules_v1 {
    */
   export interface Schema$UpdateReleaseRequest {
     /**
-     * `Release` to update.
+     * Required. `Release` to update.
      */
     release?: Schema$Release;
     /**
