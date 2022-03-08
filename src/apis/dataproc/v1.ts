@@ -396,6 +396,10 @@ export namespace dataproc_v1 {
      */
     configBucket?: string | null;
     /**
+     * Optional. The configuration(s) for a dataproc metric(s).
+     */
+    dataprocMetricConfig?: Schema$DataprocMetricConfig;
+    /**
      * Optional. Encryption settings for the cluster.
      */
     encryptionConfig?: Schema$EncryptionConfig;
@@ -578,6 +582,15 @@ export namespace dataproc_v1 {
      * Optional. Defines whether the instance should have confidential compute enabled.
      */
     enableConfidentialCompute?: boolean | null;
+  }
+  /**
+   * Contains dataproc metric config.
+   */
+  export interface Schema$DataprocMetricConfig {
+    /**
+     * Required. Metrics to be enabled.
+     */
+    metrics?: Schema$Metric[];
   }
   /**
    * A request to collect cluster diagnostic information.
@@ -1351,6 +1364,19 @@ export namespace dataproc_v1 {
      * Required. Resource name of an existing Dataproc Metastore service.Example: projects/[project_id]/locations/[dataproc_region]/services/[service-name]
      */
     dataprocMetastoreService?: string | null;
+  }
+  /**
+   * Metric source to enable along with any optional metrics for this source that override the dataproc defaults
+   */
+  export interface Schema$Metric {
+    /**
+     * Optional. Optional Metrics to override the dataproc default metrics configured for the metric source
+     */
+    metricOverrides?: string[] | null;
+    /**
+     * Required. MetricSource that should be enabled
+     */
+    metricSource?: string | null;
   }
   /**
    * A full, namespace-isolated deployment target for an existing GKE cluster.
