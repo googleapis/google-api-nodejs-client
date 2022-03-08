@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20211213",
+  "revision": "20220303",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -491,7 +491,7 @@
         },
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1WorkloadKMSSettings",
-          "description": "Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes."
+          "description": "Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field."
         },
         "labels": {
           "additionalProperties": {
@@ -587,7 +587,7 @@
           "type": "string"
         },
         "resourceId": {
-          "description": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.",
+          "description": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail. For KeyRing, this represents the keyring_id. For a folder, don't set this value as folder_id is assigned by Google.",
           "type": "string"
         },
         "resourceType": {
@@ -718,7 +718,7 @@
         },
         "cjisSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings",
-          "description": "Required. Input only. Immutable. Settings specific to resources needed for CJIS."
+          "description": "Input only. Immutable. Settings specific to resources needed for CJIS."
         },
         "complianceRegime": {
           "description": "Required. Immutable. Compliance Regime associated with this workload.",
@@ -768,15 +768,15 @@
         },
         "fedrampHighSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampHighSettings",
-          "description": "Required. Input only. Immutable. Settings specific to resources needed for FedRAMP High."
+          "description": "Input only. Immutable. Settings specific to resources needed for FedRAMP High."
         },
         "fedrampModerateSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings",
-          "description": "Required. Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate."
+          "description": "Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate."
         },
         "il4Settings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings",
-          "description": "Required. Input only. Immutable. Settings specific to resources needed for IL4."
+          "description": "Input only. Immutable. Settings specific to resources needed for IL4."
         },
         "kajEnrollmentState": {
           "description": "Output only. Represents the KAJ enrollment state of the given workload.",
@@ -795,7 +795,7 @@
         },
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
-          "description": "Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes."
+          "description": "Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field."
         },
         "labels": {
           "additionalProperties": {
@@ -841,7 +841,7 @@
       "properties": {
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
-          "description": "Required. Input only. Immutable. Settings used to create a CMEK crypto key."
+          "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
         }
       },
       "type": "object"
@@ -852,7 +852,7 @@
       "properties": {
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
-          "description": "Required. Input only. Immutable. Settings used to create a CMEK crypto key."
+          "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
         }
       },
       "type": "object"
@@ -863,7 +863,7 @@
       "properties": {
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
-          "description": "Required. Input only. Immutable. Settings used to create a CMEK crypto key."
+          "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
         }
       },
       "type": "object"
@@ -874,7 +874,7 @@
       "properties": {
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings",
-          "description": "Required. Input only. Immutable. Settings used to create a CMEK crypto key."
+          "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
         }
       },
       "type": "object"
@@ -935,7 +935,7 @@
           "type": "string"
         },
         "resourceId": {
-          "description": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.",
+          "description": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail. For KeyRing, this represents the keyring_id. For a folder, don't set this value as folder_id is assigned by Google.",
           "type": "string"
         },
         "resourceType": {
@@ -1143,7 +1143,7 @@
         },
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings",
-          "description": "Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes."
+          "description": "Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field."
         },
         "labels": {
           "additionalProperties": {
@@ -1189,7 +1189,7 @@
       "properties": {
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings",
-          "description": "Required. Input only. Immutable. Settings used to create a CMEK crypto key."
+          "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
         }
       },
       "type": "object"
@@ -1200,7 +1200,7 @@
       "properties": {
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings",
-          "description": "Required. Input only. Immutable. Settings used to create a CMEK crypto key."
+          "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
         }
       },
       "type": "object"
@@ -1211,7 +1211,7 @@
       "properties": {
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings",
-          "description": "Required. Input only. Immutable. Settings used to create a CMEK crypto key."
+          "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
         }
       },
       "type": "object"
@@ -1222,7 +1222,7 @@
       "properties": {
         "kmsSettings": {
           "$ref": "GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings",
-          "description": "Required. Input only. Immutable. Settings used to create a CMEK crypto key."
+          "description": "Input only. Immutable. Settings used to create a CMEK crypto key."
         }
       },
       "type": "object"
@@ -1283,7 +1283,7 @@
           "type": "string"
         },
         "resourceId": {
-          "description": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.",
+          "description": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail. For KeyRing, this represents the keyring_id. For a folder, don't set this value as folder_id is assigned by Google.",
           "type": "string"
         },
         "resourceType": {

@@ -159,7 +159,7 @@ export namespace assuredworkloads_v1 {
      */
     billingAccount?: string | null;
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed for CJIS.
+     * Input only. Immutable. Settings specific to resources needed for CJIS.
      */
     cjisSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings;
     /**
@@ -183,15 +183,15 @@ export namespace assuredworkloads_v1 {
      */
     etag?: string | null;
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed for FedRAMP High.
+     * Input only. Immutable. Settings specific to resources needed for FedRAMP High.
      */
     fedrampHighSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampHighSettings;
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate.
+     * Input only. Immutable. Settings specific to resources needed for FedRAMP Moderate.
      */
     fedrampModerateSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings;
     /**
-     * Required. Input only. Immutable. Settings specific to resources needed for IL4.
+     * Input only. Immutable. Settings specific to resources needed for IL4.
      */
     il4Settings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings;
     /**
@@ -199,7 +199,7 @@ export namespace assuredworkloads_v1 {
      */
     kajEnrollmentState?: string | null;
     /**
-     * Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes.
+     * Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings;
     /**
@@ -232,7 +232,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadCJISSettings {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings;
   }
@@ -241,7 +241,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampHighSettings {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings;
   }
@@ -250,7 +250,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadFedrampModerateSettings {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings;
   }
@@ -259,7 +259,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadIL4Settings {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadKMSSettings;
   }
@@ -298,7 +298,7 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
-     * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.
+     * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail. For KeyRing, this represents the keyring_id. For a folder, don't set this value as folder_id is assigned by Google.
      */
     resourceId?: string | null;
     /**
@@ -386,7 +386,7 @@ export namespace assuredworkloads_v1 {
      */
     kajEnrollmentState?: string | null;
     /**
-     * Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes.
+     * Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsV1WorkloadKMSSettings;
     /**
@@ -449,7 +449,7 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
-     * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.
+     * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail. For KeyRing, this represents the keyring_id. For a folder, don't set this value as folder_id is assigned by Google.
      */
     resourceId?: string | null;
     /**
@@ -544,7 +544,7 @@ export namespace assuredworkloads_v1 {
      */
     kajEnrollmentState?: string | null;
     /**
-     * Input only. Settings used to create a CMEK crypto key. When set a project with a KMS CMEK key is provisioned. This field is mandatory for a subset of Compliance Regimes.
+     * Input only. Settings used to create a CMEK crypto key. When set, a project with a KMS CMEK key is provisioned. This field is deprecated as of Feb 28, 2022. In order to create a Keyring, callers should specify, ENCRYPTION_KEYS_PROJECT or KEYRING in ResourceSettings.resource_type field.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
     /**
@@ -577,7 +577,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadCJISSettings {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
   }
@@ -586,7 +586,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampHighSettings {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
   }
@@ -595,7 +595,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadFedrampModerateSettings {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
   }
@@ -604,7 +604,7 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadIL4Settings {
     /**
-     * Required. Input only. Immutable. Settings used to create a CMEK crypto key.
+     * Input only. Immutable. Settings used to create a CMEK crypto key.
      */
     kmsSettings?: Schema$GoogleCloudAssuredworkloadsVersioningV1mainWorkloadKMSSettings;
   }
@@ -643,7 +643,7 @@ export namespace assuredworkloads_v1 {
      */
     displayName?: string | null;
     /**
-     * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.
+     * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail. For KeyRing, this represents the keyring_id. For a folder, don't set this value as folder_id is assigned by Google.
      */
     resourceId?: string | null;
     /**
