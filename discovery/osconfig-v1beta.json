@@ -689,7 +689,7 @@
       }
     }
   },
-  "revision": "20220122",
+  "revision": "20220301",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptRepository": {
@@ -962,13 +962,15 @@
           "description": "The script interpreter to use to run the script. If no interpreter is specified the script will be executed directly, which will likely only succeed for scripts with [shebang lines] (https://en.wikipedia.org/wiki/Shebang_\\(Unix\\)).",
           "enum": [
             "INTERPRETER_UNSPECIFIED",
+            "NONE",
             "SHELL",
             "POWERSHELL"
           ],
           "enumDescriptions": [
-            "Invalid for a Windows ExecStepConfig. For a Linux ExecStepConfig, the interpreter will be parsed from the shebang line of the script if unspecified.",
-            "Indicates that the script is run with `/bin/sh` on Linux and `cmd` on Windows.",
-            "Indicates that the file is run with PowerShell flags `-NonInteractive`, `-NoProfile`, and `-ExecutionPolicy Bypass`."
+            "If the interpreter is not specified, the value defaults to `NONE`.",
+            "Indicates that the file is run as follows on each operating system: + For Linux VMs, the file is ran as an executable and the interpreter might be parsed from the [shebang line](https://wikipedia.org/wiki/Shebang_(Unix)) of the file. + For Windows VM, this value is not supported.",
+            "Indicates that the file is run with `/bin/sh` on Linux and `cmd` on Windows.",
+            "Indicates that the file is run with PowerShell."
           ],
           "type": "string"
         },
