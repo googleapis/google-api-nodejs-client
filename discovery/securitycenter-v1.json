@@ -243,6 +243,163 @@
             }
           }
         },
+        "bigQueryExports": {
+          "methods": {
+            "create": {
+              "description": "Creates a big query export.",
+              "flatPath": "v1/folders/{foldersId}/bigQueryExports",
+              "httpMethod": "POST",
+              "id": "securitycenter.folders.bigQueryExports.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "bigQueryExportId": {
+                  "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the new big query export's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/bigQueryExports",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an existing big query export.",
+              "flatPath": "v1/folders/{foldersId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "DELETE",
+              "id": "securitycenter.folders.bigQueryExports.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the big query export to delete. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a big query export.",
+              "flatPath": "v1/folders/{foldersId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "GET",
+              "id": "securitycenter.folders.bigQueryExports.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the big query export to retrieve. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists BigQuery exports. Note that when requesting BigQuery exports at a given level all exports under that level are also returned e.g. if requesting BigQuery exports under a folder, then all BigQuery exports immediately under the folder plus the ones created under the projects within the folder are returned.",
+              "flatPath": "v1/folders/{foldersId}/bigQueryExports",
+              "httpMethod": "GET",
+              "id": "securitycenter.folders.bigQueryExports.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/bigQueryExports",
+              "response": {
+                "$ref": "ListBigQueryExportsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a BigQuery export.",
+              "flatPath": "v1/folders/{foldersId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "PATCH",
+              "id": "securitycenter.folders.bigQueryExports.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: \"organizations/{organization_id}/bigQueryExports/{export_id}\" Example format: \"folders/{folder_id}/bigQueryExports/{export_id}\" Example format: \"projects/{project_id}/bigQueryExports/{export_id}\" This field is provided in responses, and is ignored when provided in create requests.",
+                  "location": "path",
+                  "pattern": "^folders/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "findings": {
           "methods": {
             "bulkMute": {
@@ -710,7 +867,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+                          "description": "External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`",
                           "location": "path",
                           "pattern": "^folders/[^/]+/sources/[^/]+/findings/[^/]+/externalSystems/[^/]+$",
                           "required": true,
@@ -962,6 +1119,163 @@
               },
               "response": {
                 "$ref": "SecurityMarks"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "bigQueryExports": {
+          "methods": {
+            "create": {
+              "description": "Creates a big query export.",
+              "flatPath": "v1/organizations/{organizationsId}/bigQueryExports",
+              "httpMethod": "POST",
+              "id": "securitycenter.organizations.bigQueryExports.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "bigQueryExportId": {
+                  "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the new big query export's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/bigQueryExports",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an existing big query export.",
+              "flatPath": "v1/organizations/{organizationsId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "DELETE",
+              "id": "securitycenter.organizations.bigQueryExports.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the big query export to delete. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a big query export.",
+              "flatPath": "v1/organizations/{organizationsId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "GET",
+              "id": "securitycenter.organizations.bigQueryExports.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the big query export to retrieve. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists BigQuery exports. Note that when requesting BigQuery exports at a given level all exports under that level are also returned e.g. if requesting BigQuery exports under a folder, then all BigQuery exports immediately under the folder plus the ones created under the projects within the folder are returned.",
+              "flatPath": "v1/organizations/{organizationsId}/bigQueryExports",
+              "httpMethod": "GET",
+              "id": "securitycenter.organizations.bigQueryExports.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/bigQueryExports",
+              "response": {
+                "$ref": "ListBigQueryExportsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a BigQuery export.",
+              "flatPath": "v1/organizations/{organizationsId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "PATCH",
+              "id": "securitycenter.organizations.bigQueryExports.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: \"organizations/{organization_id}/bigQueryExports/{export_id}\" Example format: \"folders/{folder_id}/bigQueryExports/{export_id}\" Example format: \"projects/{project_id}/bigQueryExports/{export_id}\" This field is provided in responses, and is ignored when provided in create requests.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -1917,7 +2231,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+                          "description": "External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/sources/[^/]+/findings/[^/]+/externalSystems/[^/]+$",
                           "required": true,
@@ -2080,6 +2394,163 @@
               },
               "response": {
                 "$ref": "SecurityMarks"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "bigQueryExports": {
+          "methods": {
+            "create": {
+              "description": "Creates a big query export.",
+              "flatPath": "v1/projects/{projectsId}/bigQueryExports",
+              "httpMethod": "POST",
+              "id": "securitycenter.projects.bigQueryExports.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "bigQueryExportId": {
+                  "description": "Required. Unique identifier provided by the client within the parent scope. It must consist of lower case letters, numbers, and hyphen, with the first character a letter, the last a letter or a number, and a 63 character maximum.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the new big query export's parent. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", or \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/bigQueryExports",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an existing big query export.",
+              "flatPath": "v1/projects/{projectsId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "DELETE",
+              "id": "securitycenter.projects.bigQueryExports.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the big query export to delete. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a big query export.",
+              "flatPath": "v1/projects/{projectsId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "GET",
+              "id": "securitycenter.projects.bigQueryExports.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the big query export to retrieve. Its format is organizations/{organization}/bigQueryExports/{export_id}, folders/{folder}/bigQueryExports/{export_id}, or projects/{project}/bigQueryExports/{export_id}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists BigQuery exports. Note that when requesting BigQuery exports at a given level all exports under that level are also returned e.g. if requesting BigQuery exports under a folder, then all BigQuery exports immediately under the folder plus the ones created under the projects within the folder are returned.",
+              "flatPath": "v1/projects/{projectsId}/bigQueryExports",
+              "httpMethod": "GET",
+              "id": "securitycenter.projects.bigQueryExports.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of configs to return. The service may return fewer than this value. If unspecified, at most 10 configs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListBigQueryExports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBigQueryExports` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns the collection of BigQuery exports. Its format is \"organizations/[organization_id]\", \"folders/[folder_id]\", \"projects/[project_id]\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/bigQueryExports",
+              "response": {
+                "$ref": "ListBigQueryExportsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a BigQuery export.",
+              "flatPath": "v1/projects/{projectsId}/bigQueryExports/{bigQueryExportsId}",
+              "httpMethod": "PATCH",
+              "id": "securitycenter.projects.bigQueryExports.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: \"organizations/{organization_id}/bigQueryExports/{export_id}\" Example format: \"folders/{folder_id}/bigQueryExports/{export_id}\" Example format: \"projects/{project_id}/bigQueryExports/{export_id}\" This field is provided in responses, and is ignored when provided in create requests.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/bigQueryExports/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "The list of fields to be updated. If empty all mutable fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+              },
+              "response": {
+                "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -2554,7 +3025,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+                          "description": "External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/sources/[^/]+/findings/[^/]+/externalSystems/[^/]+$",
                           "required": true,
@@ -2587,7 +3058,7 @@
       }
     }
   },
-  "revision": "20220127",
+  "revision": "20220303",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2803,6 +3274,10 @@
             "$ref": "Reference"
           },
           "type": "array"
+        },
+        "upstreamFixAvailable": {
+          "description": "Whether upstream fix is available for the CVE.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3176,6 +3651,51 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV1BigQueryExport": {
+      "description": "Configures how to deliver Findings to BigQuery Instance.",
+      "id": "GoogleCloudSecuritycenterV1BigQueryExport",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataset": {
+          "description": "The dataset to write findings' updates to. Its format is \"projects/[project_id]/datasets/[bigquery_dataset_id]\". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).",
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the export (max of 1024 characters).",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Expression that defines the filter to apply across create/update events of findings. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource. The supported operators are: * `=` for all value types. * `>`, `<`, `>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes. Please see the proto documentation in the finding (https://source.corp.google.com/piper///depot/google3/google/cloud/securitycenter/v1/finding.proto) and in the ListFindingsRequest for valid filter syntax. (https://source.corp.google.com/piper///depot/google3/google/cloud/securitycenter/v1/securitycenter_service.proto).",
+          "type": "string"
+        },
+        "mostRecentEditor": {
+          "description": "Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: \"organizations/{organization_id}/bigQueryExports/{export_id}\" Example format: \"folders/{folder_id}/bigQueryExports/{export_id}\" Example format: \"projects/{project_id}/bigQueryExports/{export_id}\" This field is provided in responses, and is ignored when provided in create requests.",
+          "type": "string"
+        },
+        "principal": {
+          "description": "Output only. The service account that needs permission to create table, upload data to the big query dataset.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV1BulkMuteFindingsResponse": {
       "description": "The response to a BulkMute request. Contains the LRO information.",
       "id": "GoogleCloudSecuritycenterV1BulkMuteFindingsResponse",
@@ -3203,7 +3723,7 @@
           "type": "string"
         },
         "name": {
-          "description": "External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira",
+          "description": "External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`",
           "type": "string"
         },
         "status": {
@@ -3305,7 +3825,7 @@
           "type": "string"
         },
         "projectDisplayName": {
-          "description": "The human readable name of project that the resource belongs to.",
+          "description": "The project id that the resource belongs to.",
           "type": "string"
         },
         "type": {
@@ -3519,7 +4039,7 @@
           "type": "string"
         },
         "projectDisplayName": {
-          "description": "The human readable name of project that the resource belongs to.",
+          "description": "The project id that the resource belongs to.",
           "type": "string"
         }
       },
@@ -3805,6 +4325,24 @@
       },
       "type": "object"
     },
+    "ListBigQueryExportsResponse": {
+      "description": "Response message for listing BigQuery exports.",
+      "id": "ListBigQueryExportsResponse",
+      "properties": {
+        "bigQueryExports": {
+          "description": "The BigQuery exports from the specified parent.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1BigQueryExport"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListFindingsResponse": {
       "description": "Response message for listing findings.",
       "id": "ListFindingsResponse",
@@ -4015,7 +4553,8 @@
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
               "STEAL_WEB_SESSION_COOKIE",
               "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
-              "EXPLOIT_PUBLIC_FACING_APPLICATION"
+              "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "MODIFY_AUTHENTICATION_PROCESS"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -4045,7 +4584,8 @@
               "T1543",
               "T1539",
               "T1578",
-              "T1190"
+              "T1190",
+              "T1556"
             ],
             "type": "string"
           },
@@ -4090,7 +4630,7 @@
           "type": "string"
         },
         "primaryTechniques": {
-          "description": "The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. SCANNING_IP_BLOCKS), both the sub-technique and its parent technique(s) will be listed (e.g. SCANNING_IP_BLOCKS, ACTIVE_SCANNING).",
+          "description": "The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. `SCANNING_IP_BLOCKS`), both the sub-technique and its parent technique(s) will be listed (e.g. `SCANNING_IP_BLOCKS`, `ACTIVE_SCANNING`).",
           "items": {
             "enum": [
               "TECHNIQUE_UNSPECIFIED",
@@ -4120,7 +4660,8 @@
               "CREATE_OR_MODIFY_SYSTEM_PROCESS",
               "STEAL_WEB_SESSION_COOKIE",
               "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
-              "EXPLOIT_PUBLIC_FACING_APPLICATION"
+              "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "MODIFY_AUTHENTICATION_PROCESS"
             ],
             "enumDescriptions": [
               "Unspecified value.",
@@ -4150,7 +4691,8 @@
               "T1543",
               "T1539",
               "T1578",
-              "T1190"
+              "T1190",
+              "T1556"
             ],
             "type": "string"
           },
@@ -4319,7 +4861,7 @@
           "type": "string"
         },
         "projectDisplayName": {
-          "description": "The human readable name of project that the resource belongs to.",
+          "description": "The project id that the resource belongs to.",
           "type": "string"
         },
         "projectName": {

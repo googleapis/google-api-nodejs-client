@@ -259,6 +259,10 @@ export namespace securitycenter_v1beta1 {
      * Additional information about the CVE. e.g. https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-34527
      */
     references?: Schema$Reference[];
+    /**
+     * Whether upstream fix is available for the CVE.
+     */
+    upstreamFixAvailable?: boolean | null;
   }
   /**
    * Common Vulnerability Scoring System version 3.
@@ -529,6 +533,43 @@ export namespace securitycenter_v1beta1 {
     name?: string | null;
   }
   /**
+   * Configures how to deliver Findings to BigQuery Instance.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1BigQueryExport {
+    /**
+     * Output only. The time at which the big query export was created. This field is set by the server and will be ignored if provided on export on creation.
+     */
+    createTime?: string | null;
+    /**
+     * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery Dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
+     */
+    dataset?: string | null;
+    /**
+     * The description of the export (max of 1024 characters).
+     */
+    description?: string | null;
+    /**
+     * Expression that defines the filter to apply across create/update events of findings. The expression is a list of zero or more restrictions combined via logical operators `AND` and `OR`. Parentheses are supported, and `OR` has higher precedence than `AND`. Restrictions have the form ` ` and may have a `-` character in front of them to indicate negation. The fields map to those defined in the corresponding resource. The supported operators are: * `=` for all value types. * `\>`, `<`, `\>=`, `<=` for integer values. * `:`, meaning substring matching, for strings. The supported value types are: * string literals in quotes. * integer literals without quotes. * boolean literals `true` and `false` without quotes. Please see the proto documentation in the finding (https://source.corp.google.com/piper///depot/google3/google/cloud/securitycenter/v1/finding.proto) and in the ListFindingsRequest for valid filter syntax. (https://source.corp.google.com/piper///depot/google3/google/cloud/securitycenter/v1/securitycenter_service.proto).
+     */
+    filter?: string | null;
+    /**
+     * Output only. Email address of the user who last edited the big query export. This field is set by the server and will be ignored if provided on export creation or update.
+     */
+    mostRecentEditor?: string | null;
+    /**
+     * The relative resource name of this export. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name. Example format: "organizations/{organization_id\}/bigQueryExports/{export_id\}" Example format: "folders/{folder_id\}/bigQueryExports/{export_id\}" Example format: "projects/{project_id\}/bigQueryExports/{export_id\}" This field is provided in responses, and is ignored when provided in create requests.
+     */
+    name?: string | null;
+    /**
+     * Output only. The service account that needs permission to create table, upload data to the big query dataset.
+     */
+    principal?: string | null;
+    /**
+     * Output only. The most recent time at which the big export was updated. This field is set by the server and will be ignored if provided on export creation or update.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The response to a BulkMute request. Contains the LRO information.
    */
   export interface Schema$GoogleCloudSecuritycenterV1BulkMuteFindingsResponse {}
@@ -549,7 +590,7 @@ export namespace securitycenter_v1beta1 {
      */
     externalUid?: string | null;
     /**
-     * External System Name e.g. jira, demisto, etc. e.g.: organizations/1234/sources/5678/findings/123456/externalSystems/jira folders/1234/sources/5678/findings/123456/externalSystems/jira projects/1234/sources/5678/findings/123456/externalSystems/jira
+     * External System Name e.g. jira, demisto, etc. e.g.: `organizations/1234/sources/5678/findings/123456/externalSystems/jira` `folders/1234/sources/5678/findings/123456/externalSystems/jira` `projects/1234/sources/5678/findings/123456/externalSystems/jira`
      */
     name?: string | null;
     /**
@@ -715,7 +756,7 @@ export namespace securitycenter_v1beta1 {
      */
     project?: string | null;
     /**
-     * The human readable name of project that the resource belongs to.
+     * The project id that the resource belongs to.
      */
     projectDisplayName?: string | null;
   }
@@ -778,7 +819,7 @@ export namespace securitycenter_v1beta1 {
      */
     project?: string | null;
     /**
-     * The human readable name of project that the resource belongs to.
+     * The project id that the resource belongs to.
      */
     projectDisplayName?: string | null;
     /**
@@ -1011,7 +1052,7 @@ export namespace securitycenter_v1beta1 {
      */
     primaryTactic?: string | null;
     /**
-     * The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. SCANNING_IP_BLOCKS), both the sub-technique and its parent technique(s) will be listed (e.g. SCANNING_IP_BLOCKS, ACTIVE_SCANNING).
+     * The MITRE ATT&CK technique most closely represented by this finding, if any. primary_techniques is a repeated field because there are multiple levels of MITRE ATT&CK techniques. If the technique most closely represented by this finding is a sub-technique (e.g. `SCANNING_IP_BLOCKS`), both the sub-technique and its parent technique(s) will be listed (e.g. `SCANNING_IP_BLOCKS`, `ACTIVE_SCANNING`).
      */
     primaryTechniques?: string[] | null;
     /**
