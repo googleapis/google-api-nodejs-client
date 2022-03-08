@@ -135,6 +135,27 @@ export namespace vmmigration_v1alpha1 {
     migratingVm?: string | null;
   }
   /**
+   * Describes an appliance version.
+   */
+  export interface Schema$ApplianceVersion {
+    /**
+     * Determine whether it's critical to upgrade the appliance to this version.
+     */
+    critical?: boolean | null;
+    /**
+     * Link to a page that contains the version release notes.
+     */
+    releaseNotesUri?: string | null;
+    /**
+     * A link for downloading the version.
+     */
+    uri?: string | null;
+    /**
+     * The appliance version.
+     */
+    version?: string | null;
+  }
+  /**
    * AppliedLicense holds the license data returned by adaptation module report.
    */
   export interface Schema$AppliedLicense {
@@ -146,6 +167,19 @@ export namespace vmmigration_v1alpha1 {
      * The license type that was used in OS adaptation.
      */
     type?: string | null;
+  }
+  /**
+   * Holds informatiom about the available versions for upgrade.
+   */
+  export interface Schema$AvailableUpdates {
+    /**
+     * The latest version for in place update. The current appliance can be updated to this version using the API or m4c CLI.
+     */
+    inPlaceUpdate?: Schema$ApplianceVersion;
+    /**
+     * The newest deployable version of the appliance. The current appliance can't be updated into this version, and the owner must manually deploy this OVA to a new appliance.
+     */
+    newDeployableAppliance?: Schema$ApplianceVersion;
   }
   /**
    * Request message for 'CancelCloneJob' request.
@@ -180,7 +214,7 @@ export namespace vmmigration_v1alpha1 {
      */
     error?: Schema$Status;
     /**
-     * The name of the clone.
+     * Output only. The name of the clone.
      */
     name?: string | null;
     /**
@@ -414,34 +448,21 @@ export namespace vmmigration_v1alpha1 {
     targetDetails?: Schema$TargetVMDetails;
   }
   /**
-   * CycleStep hold information about a step progress.
-   */
-  export interface Schema$CycleStep {
-    /**
-     * The time the cycle step has ended.
-     */
-    endTime?: string | null;
-    /**
-     * Initializing replication step.
-     */
-    initializingReplication?: Schema$InitializingReplicationStep;
-    /**
-     * Post processing step.
-     */
-    postProcessing?: Schema$PostProcessingStep;
-    /**
-     * Replicating step.
-     */
-    replicating?: Schema$ReplicatingStep;
-    /**
-     * The time the cycle step has started.
-     */
-    startTime?: string | null;
-  }
-  /**
    * DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.
    */
   export interface Schema$DatacenterConnector {
+    /**
+     * Output only. Appliance OVA version. This is the OVA which is manually installed by the user and contains the infrastructure for the automatically updatable components on the appliance.
+     */
+    applianceInfrastructureVersion?: string | null;
+    /**
+     * Output only. Appliance last installed update bundle version. This is the version of the automatically updatable components on the appliance.
+     */
+    applianceSoftwareVersion?: string | null;
+    /**
+     * Output only. The available versions for updating this appliance.
+     */
+    availableVersions?: Schema$AvailableUpdates;
     /**
      * Output only. The communication channel between the datacenter connector and GCP.
      */
@@ -479,6 +500,10 @@ export namespace vmmigration_v1alpha1 {
      */
     updateTime?: string | null;
     /**
+     * Output only. The status of the current / last upgradeAppliance operation.
+     */
+    upgradeStatus?: Schema$UpgradeStatus;
+    /**
      * The version running in the DatacenterConnector. This is supplied by the OVA connector during the registration process and can not be modified.
      */
     version?: string | null;
@@ -496,7 +521,7 @@ export namespace vmmigration_v1alpha1 {
      */
     updateTime?: string | null;
     /**
-     * Output only. The description of the VMs in a Source of type Vmware.
+     * The description of the VMs in a Source of type Vmware.
      */
     vmwareVms?: Schema$VmwareVmsDetails;
   }
@@ -521,7 +546,7 @@ export namespace vmmigration_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * The Group name.
+     * Output only. The Group name.
      */
     name?: string | null;
     /**
@@ -529,10 +554,6 @@ export namespace vmmigration_v1alpha1 {
      */
     updateTime?: string | null;
   }
-  /**
-   * InitializingReplicationStep contains specific step details.
-   */
-  export interface Schema$InitializingReplicationStep {}
   /**
    * Describes a URL link.
    */
@@ -936,10 +957,6 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$PauseMigrationRequest {}
   /**
-   * PostProcessingStep contains specific step details.
-   */
-  export interface Schema$PostProcessingStep {}
-  /**
    * Request message for 'RemoveMigration' request.
    */
   export interface Schema$RemoveGroupMigrationRequest {
@@ -949,34 +966,9 @@ export namespace vmmigration_v1alpha1 {
     migratingVm?: string | null;
   }
   /**
-   * ReplicatingStep contains specific step details.
-   */
-  export interface Schema$ReplicatingStep {
-    /**
-     * The source disks replication rate for the last 30 minutes in bytes per second.
-     */
-    lastThirtyMinutesAverageBytesPerSecond?: string | null;
-    /**
-     * The source disks replication rate for the last 2 minutes in bytes per second.
-     */
-    lastTwoMinutesAverageBytesPerSecond?: string | null;
-    /**
-     * Replicated bytes in the step.
-     */
-    replicatedBytes?: string | null;
-    /**
-     * Total bytes to be handled in the step.
-     */
-    totalBytes?: string | null;
-  }
-  /**
    * ReplicationCycle contains information about the current replication cycle status.
    */
   export interface Schema$ReplicationCycle {
-    /**
-     * The time the replication cycle has ended.
-     */
-    endTime?: string | null;
     /**
      * The current progress in percentage of this cycle.
      */
@@ -989,10 +981,6 @@ export namespace vmmigration_v1alpha1 {
      * The time the replication cycle has started.
      */
     startTime?: string | null;
-    /**
-     * The cycle's steps list reflecting its progress.
-     */
-    steps?: Schema$CycleStep[];
     /**
      * The accumulated duration the replication cycle was paused.
      */
@@ -1108,7 +1096,7 @@ export namespace vmmigration_v1alpha1 {
      */
     description?: string | null;
     /**
-     * The name of the target project.
+     * Output only. The name of the target project.
      */
     name?: string | null;
     /**
@@ -1208,6 +1196,40 @@ export namespace vmmigration_v1alpha1 {
      * The zone in which to create the VM.
      */
     zone?: string | null;
+  }
+  /**
+   * Request message for 'UpgradeAppliance' request.
+   */
+  export interface Schema$UpgradeApplianceRequest {
+    /**
+     * A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
+   * UpgradeStatus contains information about upgradeAppliance operation.
+   */
+  export interface Schema$UpgradeStatus {
+    /**
+     * Provides details on the state of the upgrade operation in case of an error.
+     */
+    error?: Schema$Status;
+    /**
+     * The version from which we upgraded.
+     */
+    previousVersion?: string | null;
+    /**
+     * The time the operation was started.
+     */
+    startTime?: string | null;
+    /**
+     * The state of the upgradeAppliance operation.
+     */
+    state?: string | null;
+    /**
+     * The version to upgrade to.
+     */
+    version?: string | null;
   }
   /**
    * Utilization report details the utilization (CPU, memory, etc.) of selected source VMs.
@@ -1402,7 +1424,7 @@ export namespace vmmigration_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * The VM's OS. See for example https://pubs.vmware.com/vi-sdk/visdk250/ReferenceGuide/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html for types of strings this might hold.
+     * The VM's OS. See for example https://vdc-repo.vmware.com/vmwb-repository/dcr-public/da47f910-60ac-438b-8b9b-6122f4d14524/16b7274a-bf8b-4b4c-a05e-746f2aa93c8c/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html for types of strings this might hold.
      */
     guestDescription?: string | null;
     /**
@@ -2486,7 +2508,7 @@ export namespace vmmigration_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await vmmigration.projects.locations.groups.patch({
-     *     // The Group name.
+     *     // Output only. The Group name.
      *     name: 'projects/my-project/locations/my-location/groups/my-group',
      *     // A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -2826,7 +2848,7 @@ export namespace vmmigration_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Groups$Patch
     extends StandardParameters {
     /**
-     * The Group name.
+     * Output only. The Group name.
      */
     name?: string;
     /**
@@ -4441,6 +4463,9 @@ export namespace vmmigration_v1alpha1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "applianceInfrastructureVersion": "my_applianceInfrastructureVersion",
+     *         //   "applianceSoftwareVersion": "my_applianceSoftwareVersion",
+     *         //   "availableVersions": {},
      *         //   "bucket": "my_bucket",
      *         //   "createTime": "my_createTime",
      *         //   "error": {},
@@ -4450,6 +4475,7 @@ export namespace vmmigration_v1alpha1 {
      *         //   "state": "my_state",
      *         //   "stateTime": "my_stateTime",
      *         //   "updateTime": "my_updateTime",
+     *         //   "upgradeStatus": {},
      *         //   "version": "my_version"
      *         // }
      *       },
@@ -4727,6 +4753,9 @@ export namespace vmmigration_v1alpha1 {
      *
      *   // Example response
      *   // {
+     *   //   "applianceInfrastructureVersion": "my_applianceInfrastructureVersion",
+     *   //   "applianceSoftwareVersion": "my_applianceSoftwareVersion",
+     *   //   "availableVersions": {},
      *   //   "bucket": "my_bucket",
      *   //   "createTime": "my_createTime",
      *   //   "error": {},
@@ -4736,6 +4765,7 @@ export namespace vmmigration_v1alpha1 {
      *   //   "state": "my_state",
      *   //   "stateTime": "my_stateTime",
      *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeStatus": {},
      *   //   "version": "my_version"
      *   // }
      * }
@@ -4981,6 +5011,151 @@ export namespace vmmigration_v1alpha1 {
         );
       }
     }
+
+    /**
+     * Upgrades the appliance relate to this DatacenterConnector to the in-place updateable version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.datacenterConnectors.upgradeAppliance(
+     *       {
+     *         // Required. The DatacenterConnector name.
+     *         datacenterConnector:
+     *           'projects/my-project/locations/my-location/sources/my-source/datacenterConnectors/my-datacenterConnector',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requestId": "my_requestId"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upgradeAppliance(
+      params: Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upgradeAppliance(
+      params?: Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    upgradeAppliance(
+      params: Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upgradeAppliance(
+      params: Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgradeAppliance(
+      params: Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    upgradeAppliance(callback: BodyResponseCallback<Schema$Operation>): void;
+    upgradeAppliance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha1/{+datacenterConnector}:upgradeAppliance'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['datacenterConnector'],
+        pathParams: ['datacenterConnector'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Create
@@ -5043,6 +5218,18 @@ export namespace vmmigration_v1alpha1 {
      * Required. The parent, which owns this collection of connectors.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Datacenterconnectors$Upgradeappliance
+    extends StandardParameters {
+    /**
+     * Required. The DatacenterConnector name.
+     */
+    datacenterConnector?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpgradeApplianceRequest;
   }
 
   export class Resource$Projects$Locations$Sources$Migratingvms {
@@ -9074,7 +9261,7 @@ export namespace vmmigration_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await vmmigration.projects.locations.targetProjects.patch({
-     *     // The name of the target project.
+     *     // Output only. The name of the target project.
      *     name: 'projects/my-project/locations/my-location/targetProjects/my-targetProject',
      *     // A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
@@ -9258,7 +9445,7 @@ export namespace vmmigration_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Targetprojects$Patch
     extends StandardParameters {
     /**
-     * The name of the target project.
+     * Output only. The name of the target project.
      */
     name?: string;
     /**
