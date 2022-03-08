@@ -4865,7 +4865,7 @@
       }
     }
   },
-  "revision": "20220115",
+  "revision": "20220223",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -6120,7 +6120,7 @@
         },
         "searchConfig": {
           "$ref": "SearchConfig",
-          "description": "Configuration for how FHIR resource can be searched."
+          "description": "Configuration for how FHIR resources can be searched."
         },
         "streamConfigs": {
           "description": "A list of streaming configs that configure the destinations of streaming export for every resource mutation in this FHIR store. Each store is allowed to have up to 10 streaming configs. After a new config is added, the next resource mutation is streamed to the new location in addition to the existing ones. When a location is removed from the list, the server stops streaming to that location. Before adding a new config, you must add the required [`bigquery.dataEditor`](https://cloud.google.com/bigquery/docs/access-control#bigquery.dataEditor) role to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/iam/docs/service-accounts). Some lag (typically on the order of dozens of seconds) is expected before the results show up in the streaming destination.",
@@ -7609,12 +7609,14 @@
           "enum": [
             "SCHEMA_TYPE_UNSPECIFIED",
             "LOSSLESS",
-            "ANALYTICS"
+            "ANALYTICS",
+            "ANALYTICS_V2"
           ],
           "enumDescriptions": [
             "No schema type specified. This type is unsupported.",
             "A data-driven schema generated from the fields present in the FHIR data being exported, with no additional simplification.",
-            "Analytics schema defined by the FHIR community. See https://github.com/FHIR/sql-on-fhir/blob/master/sql-on-fhir.md. BigQuery only allows a maximum of 10,000 columns per table. Due to this limitation, the server will not generate schemas for fields of type `Resource`, which can hold any resource type. The affected fields are `Parameters.parameter.resource`, `Bundle.entry.resource`, and `Bundle.entry.response.outcome`."
+            "Analytics schema defined by the FHIR community. See https://github.com/FHIR/sql-on-fhir/blob/master/sql-on-fhir.md. BigQuery only allows a maximum of 10,000 columns per table. Due to this limitation, the server will not generate schemas for fields of type `Resource`, which can hold any resource type. The affected fields are `Parameters.parameter.resource`, `Bundle.entry.resource`, and `Bundle.entry.response.outcome`.",
+            "Analytics V2, similar to schema defined by the FHIR community, with added support for extensions with one or more occurrences and contained resources in stringified JSON."
           ],
           "type": "string"
         }
