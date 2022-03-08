@@ -344,9 +344,81 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1DatabaseTableSpec {
     /**
+     * Fields specific to a Dataplex table and present only in the Dataplex table entries.
+     */
+    dataplexTable?: Schema$GoogleCloudDatacatalogV1DataplexTableSpec;
+    /**
      * Type of this table.
      */
     type?: string | null;
+  }
+  /**
+   * External table registered by Dataplex. Dataplex publishes data discovered from an asset into multiple other systems (BigQuery, DPMS) in form of tables. We call them "external tables". External tables are also synced into the Data Catalog. This message contains pointers to those external tables (fully qualified name, resource name et cetera) within the Data Catalog.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataplexExternalTable {
+    /**
+     * Name of the Data Catalog entry representing the external table.
+     */
+    dataCatalogEntry?: string | null;
+    /**
+     * Fully qualified name (FQN) of the external table.
+     */
+    fullyQualifiedName?: string | null;
+    /**
+     * Google Cloud resource name of the external table.
+     */
+    googleCloudResource?: string | null;
+    /**
+     * Service in which the external table is registered.
+     */
+    system?: string | null;
+  }
+  /**
+   * Entry specyfication for a Dataplex fileset.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataplexFilesetSpec {
+    /**
+     * Common Dataplex fields.
+     */
+    dataplexSpec?: Schema$GoogleCloudDatacatalogV1DataplexSpec;
+  }
+  /**
+   * Common Dataplex fields.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataplexSpec {
+    /**
+     * Fully qualified resource name of an asset in Dataplex, to which the underlying data source (Cloud Storage bucket or BigQuery dataset) of the entity is attached.
+     */
+    asset?: string | null;
+    /**
+     * Compression format of the data, e.g., zip, gzip etc.
+     */
+    compressionFormat?: string | null;
+    /**
+     * Format of the data.
+     */
+    dataFormat?: Schema$GoogleCloudDatacatalogV1PhysicalSchema;
+    /**
+     * Project ID of the underlying Cloud Storage or BigQuery data. Note that this may not be the same project as the correspondingly Dataplex lake / zone / asset.
+     */
+    projectId?: string | null;
+  }
+  /**
+   * Entry specification for a Dataplex table.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1DataplexTableSpec {
+    /**
+     * Common Dataplex fields.
+     */
+    dataplexSpec?: Schema$GoogleCloudDatacatalogV1DataplexSpec;
+    /**
+     * List of external tables registered by Dataplex in other systems based on the same underlying data. External tables allow to query this data in those systems.
+     */
+    externalTables?: Schema$GoogleCloudDatacatalogV1DataplexExternalTable[];
+    /**
+     * Indicates if the table schema is managed by the user or not.
+     */
+    userManaged?: boolean | null;
   }
   /**
    * Physical location of an entry.
@@ -360,6 +432,14 @@ export namespace datacatalog_v1 {
      * Service that physically stores the data.
      */
     service?: string | null;
+    /**
+     * Output only. Data Catalog entry name, if applicable.
+     */
+    sourceEntry?: string | null;
+    /**
+     * Detailed properties of the underlying storage.
+     */
+    storageProperties?: Schema$GoogleCloudDatacatalogV1StorageProperties;
   }
   /**
    * Specification that applies to a data source connection. Valid only for entries with the `DATA_SOURCE_CONNECTION` type.
@@ -383,7 +463,7 @@ export namespace datacatalog_v1 {
      */
     bigqueryTableSpec?: Schema$GoogleCloudDatacatalogV1BigQueryTableSpec;
     /**
-     * Business Context of the entry.
+     * Business Context of the entry. Not supported for BigQuery datasets
      */
     businessContext?: Schema$GoogleCloudDatacatalogV1BusinessContext;
     /**
@@ -406,6 +486,10 @@ export namespace datacatalog_v1 {
      * Display name of an entry. The name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), and can't start or end with spaces. The maximum size is 200 bytes when encoded in UTF-8. Default value is an empty string.
      */
     displayName?: string | null;
+    /**
+     * Specification that applies to a fileset resource. Valid only for entries with the `FILESET` type.
+     */
+    filesetSpec?: Schema$GoogleCloudDatacatalogV1FilesetSpec;
     /**
      * Fully qualified name (FQN) of the resource. Set automatically for entries representing resources from synced systems. Settable only during creation and read-only afterwards. Can be used for search and lookup of the entries. FQNs take two forms: * For non-regionalized resources: `{SYSTEM\}:{PROJECT\}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS\}` * For regionalized resources: `{SYSTEM\}:{PROJECT\}.{LOCATION_ID\}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS\}` Example for a DPMS table: `dataproc_metastore:{PROJECT_ID\}.{LOCATION_ID\}.{INSTANCE_ID\}.{DATABASE_ID\}.{TABLE_ID\}`
      */
@@ -523,6 +607,15 @@ export namespace datacatalog_v1 {
      * Required. The display name of the enum value. Must not be an empty string. The name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), and can't start or end with spaces. The maximum length is 200 characters.
      */
     displayName?: string | null;
+  }
+  /**
+   * Specification that applies to a fileset. Valid only for entries with the 'FILESET' type.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1FilesetSpec {
+    /**
+     * Fields specific to a Dataplex fileset and present only in the Dataplex fileset entries.
+     */
+    dataplexFileset?: Schema$GoogleCloudDatacatalogV1DataplexFilesetSpec;
   }
   /**
    * Describes a Cloud Storage fileset entry.
@@ -682,6 +775,74 @@ export namespace datacatalog_v1 {
     starTime?: string | null;
   }
   /**
+   * Native schema used by a resource represented as an entry. Used by query engines for deserializing and parsing source data.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchema {
+    /**
+     * Schema in Avro JSON format.
+     */
+    avro?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema;
+    /**
+     * Marks a CSV-encoded data source.
+     */
+    csv?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema;
+    /**
+     * Marks an ORC-encoded data source.
+     */
+    orc?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema;
+    /**
+     * Marks a Parquet-encoded data source.
+     */
+    parquet?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema;
+    /**
+     * Schema in protocol buffer format.
+     */
+    protobuf?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema;
+    /**
+     * Schema in Thrift format.
+     */
+    thrift?: Schema$GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema;
+  }
+  /**
+   * Schema in Avro JSON format.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema {
+    /**
+     * JSON source of the Avro schema.
+     */
+    text?: string | null;
+  }
+  /**
+   * Marks a CSV-encoded data source.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema {}
+  /**
+   * Marks an ORC-encoded data source.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema {}
+  /**
+   * Marks a Parquet-encoded data source.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema {}
+  /**
+   * Schema in protocol buffer format.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema {
+    /**
+     * Protocol buffer source of the schema.
+     */
+    text?: string | null;
+  }
+  /**
+   * Schema in Thrift format.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema {
+    /**
+     * Thrift IDL source of the schema.
+     */
+    text?: string | null;
+  }
+  /**
    * Denotes one policy tag in a taxonomy, for example, SSN. Policy tags can be defined in a hierarchy. For example: ``` + Geolocation + LatLong + City + ZipCode ``` Where the "Geolocation" policy tag contains three children.
    */
   export interface Schema$GoogleCloudDatacatalogV1PolicyTag {
@@ -830,7 +991,7 @@ export namespace datacatalog_v1 {
      */
     includeProjectIds?: string[] | null;
     /**
-     * Optional. If `true`, include public tag templates in the search results. By default, they are included only if you have explicit permissions on them to view them. For example, if you are the owner. Other scope fields, for example, `include_org_ids`, still restrict the returned public tag templates and at least one of them is required.
+     * Optional. This field is deprecated. The search mechanism for public and private tag templates is the same.
      */
     includePublicTagTemplates?: boolean | null;
     /**
@@ -955,6 +1116,19 @@ export namespace datacatalog_v1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1StarEntryResponse {}
   /**
+   * Details the properties of the underlying storage.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1StorageProperties {
+    /**
+     * Patterns to identify a set of files for this fileset. Examples of a valid `file_pattern`: * `gs://bucket_name/dir/x`: matches all files in the `bucket_name/dir` directory * `gs://bucket_name/dir/x*`: matches all files in the `bucket_name/dir` and all subdirectories recursively * `gs://bucket_name/file*`: matches files prefixed by `file` in `bucket_name` * `gs://bucket_name/??.txt`: matches files with two characters followed by `.txt` in `bucket_name` * `gs://bucket_name/[aeiou].txt`: matches files that contain a single vowel character followed by `.txt` in `bucket_name` * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ... or `m` followed by `.txt` in `bucket_name` * `gs://bucket_name/a/x/b`: matches all files in `bucket_name` that match the `a/x/b` pattern, such as `a/c/b`, `a/d/b` * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`
+     */
+    filePattern?: string[] | null;
+    /**
+     * File type in MIME format, for example, `text/plain`.
+     */
+    fileType?: string | null;
+  }
+  /**
    * Timestamps associated with this resource in a particular system.
    */
   export interface Schema$GoogleCloudDatacatalogV1SystemTimestamps {
@@ -1066,7 +1240,7 @@ export namespace datacatalog_v1 {
       [key: string]: Schema$GoogleCloudDatacatalogV1TagTemplateField;
     } | null;
     /**
-     * Indicates whether this is a public tag template. Every user has view access to a *public* tag template by default. This means that: * Every user can use this tag template to tag an entry. * If an entry is tagged using the tag template, the tag is always shown in the response to ``ListTags`` called on the entry. * To get the template using the GetTagTemplate method, you need view access either on the project or the organization the tag template resides in but no other permission is needed. * Operations on the tag template other than viewing (for example, editing IAM policies) follow standard IAM structures. Tags created with a public tag template are referred to as public tags. You can search for a public tag by value with a simple search query instead of using a ``tag:`` predicate. Public tag templates may not appear in search results depending on scope, see: include_public_tag_templates Note: If an [IAM domain restriction](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) is configured in the tag template's location, the public access will not be enabled but the simple search for tag values will still work.
+     * Indicates whether tags created with this template are public. Public tags do not require tag template access to appear in ListTags API response. Additionally, you can search for a public tag by value with a simple search query in addition to using a ``tag:`` predicate.
      */
     isPubliclyReadable?: boolean | null;
     /**
@@ -1441,6 +1615,7 @@ export namespace datacatalog_v1 {
      *   //   "databaseTableSpec": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "filesetSpec": {},
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
@@ -2917,6 +3092,7 @@ export namespace datacatalog_v1 {
      *       //   "databaseTableSpec": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "filesetSpec": {},
      *       //   "fullyQualifiedName": "my_fullyQualifiedName",
      *       //   "gcsFilesetSpec": {},
      *       //   "integratedSystem": "my_integratedSystem",
@@ -2946,6 +3122,7 @@ export namespace datacatalog_v1 {
      *   //   "databaseTableSpec": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "filesetSpec": {},
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
@@ -3231,6 +3408,7 @@ export namespace datacatalog_v1 {
      *   //   "databaseTableSpec": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "filesetSpec": {},
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
@@ -3979,6 +4157,7 @@ export namespace datacatalog_v1 {
      *       //   "databaseTableSpec": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "filesetSpec": {},
      *       //   "fullyQualifiedName": "my_fullyQualifiedName",
      *       //   "gcsFilesetSpec": {},
      *       //   "integratedSystem": "my_integratedSystem",
@@ -4008,6 +4187,7 @@ export namespace datacatalog_v1 {
      *   //   "databaseTableSpec": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "filesetSpec": {},
      *   //   "fullyQualifiedName": "my_fullyQualifiedName",
      *   //   "gcsFilesetSpec": {},
      *   //   "integratedSystem": "my_integratedSystem",
@@ -6548,7 +6728,7 @@ export namespace datacatalog_v1 {
      *   const res = await datacatalog.projects.locations.tagTemplates.patch({
      *     // The resource name of the tag template in URL format. Note: The tag template itself and its child resources might not be stored in the location specified in its name.
      *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
-     *     // Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results. Additionally, it also requires the `tagTemplates.getIamPolicy` and `tagTemplates.setIamPolicy` permissions.
+     *     // Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7012,7 +7192,7 @@ export namespace datacatalog_v1 {
      */
     name?: string;
     /**
-     * Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results. Additionally, it also requires the `tagTemplates.getIamPolicy` and `tagTemplates.setIamPolicy` permissions.
+     * Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results.
      */
     updateMask?: string;
 

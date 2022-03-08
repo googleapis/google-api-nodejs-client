@@ -1142,7 +1142,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results. Additionally, it also requires the `tagTemplates.getIamPolicy` and `tagTemplates.setIamPolicy` permissions.",
+                      "description": "Names of fields whose values to overwrite on a tag template. Currently, only `display_name` and `is_publicly_readable` can be overwritten. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. Note: Updating the `is_publicly_readable` field may require up to 12 hours to take effect in search results.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1953,7 +1953,7 @@
       }
     }
   },
-  "revision": "20211230",
+  "revision": "20220224",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2266,6 +2266,15 @@
             "BigQuery service."
           ],
           "type": "string"
+        },
+        "sourceEntry": {
+          "description": "Output only. Data Catalog entry name, if applicable.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "storageProperties": {
+          "$ref": "GoogleCloudDatacatalogV1StorageProperties",
+          "description": "Detailed properties of the underlying storage."
         }
       },
       "type": "object"
@@ -2285,6 +2294,10 @@
       "description": "Specification that applies to a table resource. Valid only for entries with the `TABLE` type.",
       "id": "GoogleCloudDatacatalogV1DatabaseTableSpec",
       "properties": {
+        "dataplexTable": {
+          "$ref": "GoogleCloudDatacatalogV1DataplexTableSpec",
+          "description": "Fields specific to a Dataplex table and present only in the Dataplex table entries."
+        },
         "type": {
           "description": "Type of this table.",
           "enum": [
@@ -2298,6 +2311,99 @@
             "External table."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1DataplexExternalTable": {
+      "description": "External table registered by Dataplex. Dataplex publishes data discovered from an asset into multiple other systems (BigQuery, DPMS) in form of tables. We call them \"external tables\". External tables are also synced into the Data Catalog. This message contains pointers to those external tables (fully qualified name, resource name et cetera) within the Data Catalog.",
+      "id": "GoogleCloudDatacatalogV1DataplexExternalTable",
+      "properties": {
+        "dataCatalogEntry": {
+          "description": "Name of the Data Catalog entry representing the external table.",
+          "type": "string"
+        },
+        "fullyQualifiedName": {
+          "description": "Fully qualified name (FQN) of the external table.",
+          "type": "string"
+        },
+        "googleCloudResource": {
+          "description": "Google Cloud resource name of the external table.",
+          "type": "string"
+        },
+        "system": {
+          "description": "Service in which the external table is registered.",
+          "enum": [
+            "INTEGRATED_SYSTEM_UNSPECIFIED",
+            "BIGQUERY",
+            "CLOUD_PUBSUB",
+            "DATAPROC_METASTORE",
+            "DATAPLEX"
+          ],
+          "enumDescriptions": [
+            "Default unknown system.",
+            "BigQuery.",
+            "Cloud Pub/Sub.",
+            "Dataproc Metastore.",
+            "Dataplex."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1DataplexFilesetSpec": {
+      "description": "Entry specyfication for a Dataplex fileset.",
+      "id": "GoogleCloudDatacatalogV1DataplexFilesetSpec",
+      "properties": {
+        "dataplexSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DataplexSpec",
+          "description": "Common Dataplex fields."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1DataplexSpec": {
+      "description": "Common Dataplex fields.",
+      "id": "GoogleCloudDatacatalogV1DataplexSpec",
+      "properties": {
+        "asset": {
+          "description": "Fully qualified resource name of an asset in Dataplex, to which the underlying data source (Cloud Storage bucket or BigQuery dataset) of the entity is attached.",
+          "type": "string"
+        },
+        "compressionFormat": {
+          "description": "Compression format of the data, e.g., zip, gzip etc.",
+          "type": "string"
+        },
+        "dataFormat": {
+          "$ref": "GoogleCloudDatacatalogV1PhysicalSchema",
+          "description": "Format of the data."
+        },
+        "projectId": {
+          "description": "Project ID of the underlying Cloud Storage or BigQuery data. Note that this may not be the same project as the correspondingly Dataplex lake / zone / asset.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1DataplexTableSpec": {
+      "description": "Entry specification for a Dataplex table.",
+      "id": "GoogleCloudDatacatalogV1DataplexTableSpec",
+      "properties": {
+        "dataplexSpec": {
+          "$ref": "GoogleCloudDatacatalogV1DataplexSpec",
+          "description": "Common Dataplex fields."
+        },
+        "externalTables": {
+          "description": "List of external tables registered by Dataplex in other systems based on the same underlying data. External tables allow to query this data in those systems.",
+          "items": {
+            "$ref": "GoogleCloudDatacatalogV1DataplexExternalTable"
+          },
+          "type": "array"
+        },
+        "userManaged": {
+          "description": "Indicates if the table schema is managed by the user or not.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2316,7 +2422,7 @@
         },
         "businessContext": {
           "$ref": "GoogleCloudDatacatalogV1BusinessContext",
-          "description": "Business Context of the entry."
+          "description": "Business Context of the entry. Not supported for BigQuery datasets"
         },
         "dataSource": {
           "$ref": "GoogleCloudDatacatalogV1DataSource",
@@ -2339,6 +2445,10 @@
           "description": "Display name of an entry. The name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), and can't start or end with spaces. The maximum size is 200 bytes when encoded in UTF-8. Default value is an empty string.",
           "type": "string"
         },
+        "filesetSpec": {
+          "$ref": "GoogleCloudDatacatalogV1FilesetSpec",
+          "description": "Specification that applies to a fileset resource. Valid only for entries with the `FILESET` type."
+        },
         "fullyQualifiedName": {
           "description": "Fully qualified name (FQN) of the resource. Set automatically for entries representing resources from synced systems. Settable only during creation and read-only afterwards. Can be used for search and lookup of the entries. FQNs take two forms: * For non-regionalized resources: `{SYSTEM}:{PROJECT}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}` * For regionalized resources: `{SYSTEM}:{PROJECT}.{LOCATION_ID}.{PATH_TO_RESOURCE_SEPARATED_WITH_DOTS}` Example for a DPMS table: `dataproc_metastore:{PROJECT_ID}.{LOCATION_ID}.{INSTANCE_ID}.{DATABASE_ID}.{TABLE_ID}`",
           "type": "string"
@@ -2353,13 +2463,15 @@
             "INTEGRATED_SYSTEM_UNSPECIFIED",
             "BIGQUERY",
             "CLOUD_PUBSUB",
-            "DATAPROC_METASTORE"
+            "DATAPROC_METASTORE",
+            "DATAPLEX"
           ],
           "enumDescriptions": [
             "Default unknown system.",
             "BigQuery.",
             "Cloud Pub/Sub.",
-            "Dataproc Metastore."
+            "Dataproc Metastore.",
+            "Dataplex."
           ],
           "readOnly": true,
           "type": "string"
@@ -2409,6 +2521,8 @@
             "DATABASE",
             "DATA_SOURCE_CONNECTION",
             "ROUTINE",
+            "LAKE",
+            "ZONE",
             "SERVICE"
           ],
           "enumDescriptions": [
@@ -2421,6 +2535,8 @@
             "A database.",
             "Output only. Connection to a data source. For example, a BigQuery connection.",
             "Output only. Routine, for example, a BigQuery routine.",
+            "A Dataplex lake.",
+            "A Dataplex zone.",
             "A service, for example, a Dataproc Metastore service."
           ],
           "type": "string"
@@ -2539,6 +2655,17 @@
         "displayName": {
           "description": "Required. The display name of the enum value. Must not be an empty string. The name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), and can't start or end with spaces. The maximum length is 200 characters.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1FilesetSpec": {
+      "description": "Specification that applies to a fileset. Valid only for entries with the 'FILESET' type.",
+      "id": "GoogleCloudDatacatalogV1FilesetSpec",
+      "properties": {
+        "dataplexFileset": {
+          "$ref": "GoogleCloudDatacatalogV1DataplexFilesetSpec",
+          "description": "Fields specific to a Dataplex fileset and present only in the Dataplex fileset entries."
         }
       },
       "type": "object"
@@ -2758,6 +2885,88 @@
       },
       "type": "object"
     },
+    "GoogleCloudDatacatalogV1PhysicalSchema": {
+      "description": "Native schema used by a resource represented as an entry. Used by query engines for deserializing and parsing source data.",
+      "id": "GoogleCloudDatacatalogV1PhysicalSchema",
+      "properties": {
+        "avro": {
+          "$ref": "GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema",
+          "description": "Schema in Avro JSON format."
+        },
+        "csv": {
+          "$ref": "GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema",
+          "description": "Marks a CSV-encoded data source."
+        },
+        "orc": {
+          "$ref": "GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema",
+          "description": "Marks an ORC-encoded data source."
+        },
+        "parquet": {
+          "$ref": "GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema",
+          "description": "Marks a Parquet-encoded data source."
+        },
+        "protobuf": {
+          "$ref": "GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema",
+          "description": "Schema in protocol buffer format."
+        },
+        "thrift": {
+          "$ref": "GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema",
+          "description": "Schema in Thrift format."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema": {
+      "description": "Schema in Avro JSON format.",
+      "id": "GoogleCloudDatacatalogV1PhysicalSchemaAvroSchema",
+      "properties": {
+        "text": {
+          "description": "JSON source of the Avro schema.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema": {
+      "description": "Marks a CSV-encoded data source.",
+      "id": "GoogleCloudDatacatalogV1PhysicalSchemaCsvSchema",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema": {
+      "description": "Marks an ORC-encoded data source.",
+      "id": "GoogleCloudDatacatalogV1PhysicalSchemaOrcSchema",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema": {
+      "description": "Marks a Parquet-encoded data source.",
+      "id": "GoogleCloudDatacatalogV1PhysicalSchemaParquetSchema",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema": {
+      "description": "Schema in protocol buffer format.",
+      "id": "GoogleCloudDatacatalogV1PhysicalSchemaProtobufSchema",
+      "properties": {
+        "text": {
+          "description": "Protocol buffer source of the schema.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema": {
+      "description": "Schema in Thrift format.",
+      "id": "GoogleCloudDatacatalogV1PhysicalSchemaThriftSchema",
+      "properties": {
+        "text": {
+          "description": "Thrift IDL source of the schema.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDatacatalogV1PolicyTag": {
       "description": "Denotes one policy tag in a taxonomy, for example, SSN. Policy tags can be defined in a hierarchy. For example: ``` + Geolocation + LatLong + City + ZipCode ``` Where the \"Geolocation\" policy tag contains three children.",
       "id": "GoogleCloudDatacatalogV1PolicyTag",
@@ -2963,7 +3172,7 @@
           "type": "array"
         },
         "includePublicTagTemplates": {
-          "description": "Optional. If `true`, include public tag templates in the search results. By default, they are included only if you have explicit permissions on them to view them. For example, if you are the owner. Other scope fields, for example, `include_org_ids`, still restrict the returned public tag templates and at least one of them is required.",
+          "description": "Optional. This field is deprecated. The search mechanism for public and private tag templates is the same.",
           "type": "boolean"
         },
         "restrictedLocations": {
@@ -3027,13 +3236,15 @@
             "INTEGRATED_SYSTEM_UNSPECIFIED",
             "BIGQUERY",
             "CLOUD_PUBSUB",
-            "DATAPROC_METASTORE"
+            "DATAPROC_METASTORE",
+            "DATAPLEX"
           ],
           "enumDescriptions": [
             "Default unknown system.",
             "BigQuery.",
             "Cloud Pub/Sub.",
-            "Dataproc Metastore."
+            "Dataproc Metastore.",
+            "Dataplex."
           ],
           "readOnly": true,
           "type": "string"
@@ -3151,6 +3362,24 @@
       "description": "Response message for StarEntry. Empty for now",
       "id": "GoogleCloudDatacatalogV1StarEntryResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1StorageProperties": {
+      "description": "Details the properties of the underlying storage.",
+      "id": "GoogleCloudDatacatalogV1StorageProperties",
+      "properties": {
+        "filePattern": {
+          "description": "Patterns to identify a set of files for this fileset. Examples of a valid `file_pattern`: * `gs://bucket_name/dir/*`: matches all files in the `bucket_name/dir` directory * `gs://bucket_name/dir/**`: matches all files in the `bucket_name/dir` and all subdirectories recursively * `gs://bucket_name/file*`: matches files prefixed by `file` in `bucket_name` * `gs://bucket_name/??.txt`: matches files with two characters followed by `.txt` in `bucket_name` * `gs://bucket_name/[aeiou].txt`: matches files that contain a single vowel character followed by `.txt` in `bucket_name` * `gs://bucket_name/[a-m].txt`: matches files that contain `a`, `b`, ... or `m` followed by `.txt` in `bucket_name` * `gs://bucket_name/a/*/b`: matches all files in `bucket_name` that match the `a/*/b` pattern, such as `a/c/b`, `a/d/b` * `gs://another_bucket/a.txt`: matches `gs://another_bucket/a.txt`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fileType": {
+          "description": "File type in MIME format, for example, `text/plain`.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDatacatalogV1SystemTimestamps": {
@@ -3290,7 +3519,7 @@
           "type": "object"
         },
         "isPubliclyReadable": {
-          "description": "Indicates whether this is a public tag template. Every user has view access to a *public* tag template by default. This means that: * Every user can use this tag template to tag an entry. * If an entry is tagged using the tag template, the tag is always shown in the response to ``ListTags`` called on the entry. * To get the template using the GetTagTemplate method, you need view access either on the project or the organization the tag template resides in but no other permission is needed. * Operations on the tag template other than viewing (for example, editing IAM policies) follow standard IAM structures. Tags created with a public tag template are referred to as public tags. You can search for a public tag by value with a simple search query instead of using a ``tag:`` predicate. Public tag templates may not appear in search results depending on scope, see: include_public_tag_templates Note: If an [IAM domain restriction](https://cloud.google.com/resource-manager/docs/organization-policy/restricting-domains) is configured in the tag template's location, the public access will not be enabled but the simple search for tag values will still work.",
+          "description": "Indicates whether tags created with this template are public. Public tags do not require tag template access to appear in ListTags API response. Additionally, you can search for a public tag by value with a simple search query in addition to using a ``tag:`` predicate.",
           "type": "boolean"
         },
         "name": {
