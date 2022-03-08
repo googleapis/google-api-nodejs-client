@@ -1062,6 +1062,29 @@ export namespace containeranalysis_v1alpha1 {
     operationId?: string | null;
   }
   /**
+   * Common Vulnerability Scoring System.
+   */
+  export interface Schema$CVSS {
+    attackComplexity?: string | null;
+    /**
+     * Base Metrics Represents the intrinsic characteristics of a vulnerability that are constant over time and across user environments.
+     */
+    attackVector?: string | null;
+    authentication?: string | null;
+    availabilityImpact?: string | null;
+    /**
+     * The base score is a function of the base metric scores.
+     */
+    baseScore?: number | null;
+    confidentialityImpact?: string | null;
+    exploitabilityScore?: number | null;
+    impactScore?: number | null;
+    integrityImpact?: string | null;
+    privilegesRequired?: string | null;
+    scope?: string | null;
+    userInteraction?: string | null;
+  }
+  /**
    * An artifact that can be deployed in some runtime.
    */
   export interface Schema$Deployable {
@@ -1186,6 +1209,10 @@ export namespace containeranalysis_v1alpha1 {
      */
     analysisStatusError?: Schema$Status;
     /**
+     * The time occurrences related to this discovery occurrence were archived.
+     */
+    archiveTime?: string | null;
+    /**
      * Whether the resource is continuously analyzed.
      */
     continuousAnalysis?: string | null;
@@ -1193,6 +1220,10 @@ export namespace containeranalysis_v1alpha1 {
      * The CPE of the resource being scanned.
      */
     cpe?: string | null;
+    /**
+     * The last time this resource was scanned.
+     */
+    lastScanTime?: string | null;
     /**
      * Output only. An operation that indicates the status of the current scan. This field is deprecated, do not use.
      */
@@ -2692,6 +2723,10 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. The CVSS score of this vulnerability. CVSS score is on a scale of 0-10 where 0 indicates low severity and 10 indicates high severity.
      */
     cvssScore?: number | null;
+    /**
+     * The CVSS v3 score of this vulnerability.
+     */
+    cvssV3?: Schema$CVSS;
     /**
      * The distro assigned severity for this vulnerability when that is available and note provider assigned severity when distro has not yet assigned a severity for this vulnerability. When there are multiple package issues for this vulnerability, they can have different effective severities because some might come from the distro and some might come from installed language packs (e.g. Maven JARs or Go binaries). For this reason, it is advised to use the effective severity on the PackageIssue level, as this field may eventually be deprecated. In the case where multiple PackageIssues have different effective severities, the one set here will be the highest severity of any of the PackageIssues.
      */

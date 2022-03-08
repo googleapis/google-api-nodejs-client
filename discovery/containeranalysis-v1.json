@@ -755,7 +755,7 @@
       }
     }
   },
-  "revision": "20211203",
+  "revision": "20220225",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2714,6 +2714,12 @@
           "$ref": "Status",
           "description": "When an error is encountered this will contain a LocalizedMessage under details to show to the user. The LocalizedMessage is output only and populated by the API."
         },
+        "archiveTime": {
+          "description": "Output only. The time occurrences related to this discovery occurrence were archived.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "continuousAnalysis": {
           "description": "Whether the resource is continuously analyzed.",
           "enum": [
@@ -3112,11 +3118,11 @@
       "id": "InTotoStatement",
       "properties": {
         "_type": {
-          "description": "Always \"https://in-toto.io/Statement/v0.1\".",
+          "description": "Always `https://in-toto.io/Statement/v0.1`.",
           "type": "string"
         },
         "predicateType": {
-          "description": "\"https://slsa.dev/provenance/v0.1\" for SlsaProvenance.",
+          "description": "`https://slsa.dev/provenance/v0.1` for SlsaProvenance.",
           "type": "string"
         },
         "provenance": {
@@ -3291,7 +3297,7 @@
       "type": "object"
     },
     "NonCompliantFile": {
-      "description": "Details about files that caused a compliance check to fail.",
+      "description": "Details about files that caused a compliance check to fail. display_command is a single command that can be used to display a list of non compliant files. When there is no such command, we can also iterate a list of non compliant file using 'path'.",
       "id": "NonCompliantFile",
       "properties": {
         "displayCommand": {
@@ -3299,7 +3305,7 @@
           "type": "string"
         },
         "path": {
-          "description": "display_command is a single command that can be used to display a list of non compliant files. When there is no such command, we can also iterate a list of non compliant file using 'path'. Empty if `display_command` is set.",
+          "description": "Empty if `display_command` is set.",
           "type": "string"
         },
         "reason": {
@@ -3974,7 +3980,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "\"\": \"\" Algorithms can be e.g. sha256, sha512 See https://github.com/in-toto/attestation/blob/main/spec/field_types.md#DigestSet",
+          "description": "`\"\": \"\"` Algorithms can be e.g. sha256, sha512 See https://github.com/in-toto/attestation/blob/main/spec/field_types.md#DigestSet",
           "type": "object"
         },
         "name": {
