@@ -828,7 +828,7 @@ export namespace bigquery_v2 {
      * [Required] The dataset this entry applies to.
      */
     dataset?: Schema$DatasetReference;
-    target_types?: string[] | null;
+    targetTypes?: string[] | null;
   }
   export interface Schema$DatasetList {
     /**
@@ -1521,6 +1521,10 @@ export namespace bigquery_v2 {
      * [Optional] Options to configure parquet support.
      */
     parquetOptions?: Schema$ParquetOptions;
+    /**
+     * [Optional] Preserves the embedded ASCII control characters (the first 32 characters in the ASCII-table, from '\x00' to '\x1F') when loading from CSV. Only applicable to CSV, ignored for other formats.
+     */
+    preserveAsciiControlCharacters?: boolean | null;
     /**
      * If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup. Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties. If any named property isn't found in the Cloud Datastore backup, an invalid error is returned in the job result.
      */
