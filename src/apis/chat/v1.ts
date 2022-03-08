@@ -149,7 +149,7 @@ export namespace chat_v1 {
    */
   export interface Schema$ActionResponse {
     /**
-     * This response is for Dialog related events and must be accompanied by ResponseType.Dialog
+     * A response to an event related to a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs). Must be accompanied by `ResponseType.Dialog`.
      */
     dialogAction?: Schema$DialogAction;
     /**
@@ -162,7 +162,7 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
-   * ActionStatus represents status of a request from the bot developer's side. In specific, for each request a bot gets, the bot developer will set both fields below in relation to what the response status and message related to status should be.
+   * Represents the status of a request.
    */
   export interface Schema$ActionStatus {
     /**
@@ -170,7 +170,7 @@ export namespace chat_v1 {
      */
     statusCode?: string | null;
     /**
-     * This message will be the corresponding string to the above status_code. If unset, an appropriate generic message based on the status_code will be shown to the user. If this field is set then the message will be surfaced to the user for both successes and errors.
+     * The message to send users about the status of their request. If unset, a generic message based on the `status_code` is sent.
      */
     userFacingMessage?: string | null;
   }
@@ -332,47 +332,62 @@ export namespace chat_v1 {
     red?: number | null;
   }
   /**
-   * Next available ID = 8
+   * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes data submitted by users interacting with cards, like data entered in [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs).
    */
   export interface Schema$CommonEventObject {
     /**
-     * The keys are the string IDs associated with the widget and the values are inputs with a widget in the card.
+     * A map containing the current values of the widgets in a card. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. Depending on the input data type, a different object represents each input: For single-value widgets, `StringInput`. For multi-value widgets, an array of `StringInput` objects. For a date-time picker, a `DateTimeInput`. For a date-only picker, a `DateInput`. For a time-only picker, a `TimeInput`. Corresponds with the data entered by a user on a card in a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs).
      */
     formInputs?: {[key: string]: Schema$Inputs} | null;
     /**
-     * The hostApp enum which indicates the app the add-on is invoked from
+     * The hostApp enum which indicates the app the add-on is invoked from. Always `CHAT` for Chat apps.
      */
     hostApp?: string | null;
     /**
-     * Name of the invoked function associated with the widget. This field is currently only set for chat.
+     * Name of the invoked function associated with the widget. Only set for Chat apps.
      */
     invokedFunction?: string | null;
     /**
-     * Any additional parameters.
+     * Custom [parameters](/chat/api/reference/rest/v1/cards#ActionParameter) passed to the invoked function. Both keys and values must be strings.
      */
     parameters?: {[key: string]: string} | null;
     /**
-     * The platform enum which indicates the platform where the add-on is running.
+     * The platform enum which indicates the platform where the event originates (`WEB`, `IOS`, or `ANDROID`). Not supported by Chat apps.
      */
     platform?: string | null;
+    /**
+     * The timezone ID and offset from Coordinated Universal Time (UTC).
+     */
     timeZone?: Schema$TimeZone;
     /**
-     * The full locale.displayName in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as "en-US"
+     * The full `locale.displayName` in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as "en-US". Not supported by Chat apps.
      */
     userLocale?: string | null;
   }
   /**
-   * Input Parameter for Date Picker widget.
+   * Date input values. Not supported by Chat apps.
    */
   export interface Schema$DateInput {
+    /**
+     * Time since epoch time, in milliseconds.
+     */
     msSinceEpoch?: string | null;
   }
   /**
-   * Input Parameter for Date and Time Picker widget.
+   * Date and time input values. Not supported by Chat apps.
    */
   export interface Schema$DateTimeInput {
+    /**
+     * Whether the `datetime` input includes a calendar date.
+     */
     hasDate?: boolean | null;
+    /**
+     * Whether the `datetime` input includes a timestamp.
+     */
     hasTime?: boolean | null;
+    /**
+     * Time since epoch time, in milliseconds.
+     */
     msSinceEpoch?: string | null;
   }
   /**
@@ -384,7 +399,7 @@ export namespace chat_v1 {
      */
     action?: Schema$FormAction;
     /**
-     * This will include form information for dialogs such as form inputs, action parameters.
+     * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs), like data entered on a card.
      */
     common?: Schema$CommonEventObject;
     /**
@@ -392,7 +407,7 @@ export namespace chat_v1 {
      */
     configCompleteRedirectUrl?: string | null;
     /**
-     * The type of dialog event we have received.
+     * The type of [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) event received.
      */
     dialogEventType?: string | null;
     /**
@@ -400,7 +415,7 @@ export namespace chat_v1 {
      */
     eventTime?: string | null;
     /**
-     * Whether or not this event is related to dialogs request, submit or cancel. This will be set to true when we want a request/submit/cancel event.
+     * True when the event is related to [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs).
      */
     isDialogEvent?: boolean | null;
     /**
@@ -433,20 +448,20 @@ export namespace chat_v1 {
    */
   export interface Schema$Dialog {
     /**
-     * Body of the dialog, which will be rendered in a modal. NOTE: The following fields within the objects are not supported: google.apps.card.v1.Widget.date_time_picker google.apps.card.v1.DecoratedText.SwitchControl.on_change_action google.apps.card.v1.TextInput.on_change_action google.apps.card.v1.SelectionInput.on_change_action google.apps.card.v1.DateTimePicker.on_change_action Setting the fields above will have no effect on the dialog.
+     * Body of the dialog, which is rendered in a modal. Google Chat apps do not support the following card entities: `DateTimePicker`, `OnChangeAction`.
      */
     body?: Schema$GoogleAppsCardV1Card;
   }
   /**
-   * Contains dialog if present as well as the ActionStatus for the request sent from user.
+   * Contains a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) and request status code.
    */
   export interface Schema$DialogAction {
     /**
-     * Status for either invoke dialog or submit dialog requests. This will be used to display a status and message to user if needed. For example in case of an error or success.
+     * Status for a request to either invoke or submit a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs). Displays a status and message to users, if necessary. For example, in case of an error or success.
      */
     actionStatus?: Schema$ActionStatus;
     /**
-     * Dialog for the request.
+     * [Dialog](https://developers.google.com/chat/how-tos/bot-dialogs) for the request.
      */
     dialog?: Schema$Dialog;
   }
@@ -501,6 +516,9 @@ export namespace chat_v1 {
      * Apps Script function to invoke when the containing element is clicked/activated.
      */
     function?: string | null;
+    /**
+     * Specifies the loading indicator that the action displays while making the call to the action.
+     */
     loadIndicator?: string | null;
     /**
      * List of action parameters.
@@ -554,7 +572,7 @@ export namespace chat_v1 {
      */
     color?: Schema$Color;
     /**
-     * If true, the button is displayed in a disabled state and doesn't respond to user actions.
+     * If `true`, the button is displayed in a disabled state and doesn't respond to user actions.
      */
     disabled?: boolean | null;
     /**
@@ -574,18 +592,21 @@ export namespace chat_v1 {
    * A list of buttons layed out horizontally.
    */
   export interface Schema$GoogleAppsCardV1ButtonList {
+    /**
+     * An array of buttons.
+     */
     buttons?: Schema$GoogleAppsCardV1Button[];
   }
   /**
-   * A card is a UI element that can contain UI widgets such as text and images. For more information, see Cards . For example, the following JSON creates a card that has a header with the name, position, icons, and link for a contact, followed by a section with contact information like email and phone number. ``` { "header": { "title": "Heba Salam", "subtitle": "Software Engineer", "imageStyle": "ImageStyle.AVATAR", "imageUrl": "https://example.com/heba_salam.png", "imageAltText": "Avatar for Heba Salam" \}, "sections" : [ { "header": "Contact Info", "widgets": [ { "decorated_text": { "icon": { "knownIcon": "EMAIL" \}, "content": "heba.salam@example.com" \} \}, { "decoratedText": { "icon": { "knownIcon": "PERSON" \}, "content": "Online" \} \}, { "decoratedText": { "icon": { "knownIcon": "PHONE" \}, "content": "+1 (555) 555-1234" \} \}, { "buttons": [ { "textButton": { "text": "Share", \}, "onClick": { "openLink": { "url": "https://example.com/share" \} \} \}, { "textButton": { "text": "Edit", \}, "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \} ] \} ], "collapsible": true, "uncollapsibleWidgetsCount": 3 \} ], "cardActions": [ { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ], "name": "contact-card-K3wB6arF2H9L" \} ```
+   * A card is a UI element that can contain UI widgets such as text and images. For more information, see Cards . For example, the following JSON creates a card that has a header with the name, position, icons, and link for a contact, followed by a section with contact information like email and phone number. ``` { "header": { "title": "Sasha", "subtitle": "Software Engineer", "imageStyle": "ImageStyle.AVATAR", "imageUrl": "https://example.com/sasha.png", "imageAltText": "Avatar for Sasha" \}, "sections" : [ { "header": "Contact Info", "widgets": [ { "decorated_text": { "icon": { "knownIcon": "EMAIL" \}, "content": "sasha@example.com" \} \}, { "decoratedText": { "icon": { "knownIcon": "PERSON" \}, "content": "Online" \} \}, { "decoratedText": { "icon": { "knownIcon": "PHONE" \}, "content": "+1 (555) 555-1234" \} \}, { "buttons": [ { "textButton": { "text": "Share", \}, "onClick": { "openLink": { "url": "https://example.com/share" \} \} \}, { "textButton": { "text": "Edit", \}, "onClick": { "action": { "function": "goToView", "parameters": [ { "key": "viewType", "value": "EDIT" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \} ] \} ], "collapsible": true, "uncollapsibleWidgetsCount": 3 \} ], "cardActions": [ { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ], "name": "contact-card-K3wB6arF2H9L" \} ```
    */
   export interface Schema$GoogleAppsCardV1Card {
     /**
-     * The actions of this card. They are added to a card's generated toolbar menu. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Setting", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
+     * The card's actions. Actions are added to the card's generated toolbar menu. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` "card_actions": [ { "actionLabel": "Settings", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key": "viewType", "value": "SETTING" \} ], "loadIndicator": "LoadIndicator.SPINNER" \} \} \}, { "actionLabel": "Send Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" \} \} \} ] ```
      */
     cardActions?: Schema$GoogleAppsCardV1CardAction[];
     /**
-     * The display style for peekCardHeader.
+     * The display style for `peekCardHeader`.
      */
     displayStyle?: string | null;
     /**
@@ -597,7 +618,7 @@ export namespace chat_v1 {
      */
     header?: Schema$GoogleAppsCardV1CardHeader;
     /**
-     * Name of the card, which is used as a identifier for the card in card navigation.
+     * Name of the card. Used as a card identifier in card navigation.
      */
     name?: string | null;
     /**
@@ -618,7 +639,7 @@ export namespace chat_v1 {
      */
     actionLabel?: string | null;
     /**
-     * The onclick action for this action item.
+     * The `onClick` action for this action item.
      */
     onClick?: Schema$GoogleAppsCardV1OnClick;
   }
@@ -635,6 +656,9 @@ export namespace chat_v1 {
      */
     secondaryButton?: Schema$GoogleAppsCardV1Button;
   }
+  /**
+   * Represents a card header.
+   */
   export interface Schema$GoogleAppsCardV1CardHeader {
     /**
      * The alternative text of this image which is used for accessibility.
@@ -653,12 +677,12 @@ export namespace chat_v1 {
      */
     subtitle?: string | null;
     /**
-     * The title of the card header. The title must be specified. The header has a fixed height: if both a title and subtitle are specified, each takes up one line. If only the title is specified, it takes up both lines.
+     * Required. The title of the card header. The header has a fixed height: if both a title and subtitle are specified, each takes up one line. If only the title is specified, it takes up both lines.
      */
     title?: string | null;
   }
   /**
-   * The widget that lets users to specify a date and time.
+   * The widget that lets users to specify a date and time. Not supported by Google Chat apps.
    */
   export interface Schema$GoogleAppsCardV1DateTimePicker {
     /**
@@ -666,7 +690,7 @@ export namespace chat_v1 {
      */
     label?: string | null;
     /**
-     * The name of the text input that's used in formInput, and uniquely identifies this input.
+     * The name of the text input that's used in `formInput`, and uniquely identifies this input.
      */
     name?: string | null;
     /**
@@ -803,12 +827,12 @@ export namespace chat_v1 {
      */
     imageType?: string | null;
     /**
-     * The icon specified by the string name of a list of known icons
+     * The icon specified by the string name of a list of known icons.
      */
     knownIcon?: string | null;
   }
   /**
-   * An image that is specified by a URL and can have an onClick action.
+   * An image that is specified by a URL and can have an `onClick` action.
    */
   export interface Schema$GoogleAppsCardV1Image {
     /**
@@ -819,8 +843,14 @@ export namespace chat_v1 {
      * An image URL.
      */
     imageUrl?: string | null;
+    /**
+     * The action triggered by an `onClick` event.
+     */
     onClick?: Schema$GoogleAppsCardV1OnClick;
   }
+  /**
+   * Represents an image.
+   */
   export interface Schema$GoogleAppsCardV1ImageComponent {
     /**
      * The accessibility label for the image.
@@ -852,9 +882,12 @@ export namespace chat_v1 {
      */
     type?: string | null;
   }
+  /**
+   * Represents the response to an `onClick` event.
+   */
   export interface Schema$GoogleAppsCardV1OnClick {
     /**
-     * If specified, an action is triggered by this onClick.
+     * If specified, an action is triggered by this `onClick`.
      */
     action?: Schema$GoogleAppsCardV1Action;
     /**
@@ -862,16 +895,25 @@ export namespace chat_v1 {
      */
     card?: Schema$GoogleAppsCardV1Card;
     /**
-     * An add-on triggers this action when the action needs to open a link. This differs from the open_link above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back.
+     * An add-on triggers this action when the action needs to open a link. This differs from the `open_link` above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back.
      */
     openDynamicLinkAction?: Schema$GoogleAppsCardV1Action;
     /**
-     * If specified, this onClick triggers an open link action.
+     * If specified, this `onClick` triggers an open link action.
      */
     openLink?: Schema$GoogleAppsCardV1OpenLink;
   }
+  /**
+   * Represents an `onClick` event that opens a hyperlink.
+   */
   export interface Schema$GoogleAppsCardV1OpenLink {
+    /**
+     * Whether the client forgets about a link after opening it, or observes it until the window closes. Not supported by Chat apps.
+     */
     onClose?: string | null;
+    /**
+     * How to open a link. Not supported by Chat apps.
+     */
     openAs?: string | null;
     /**
      * The URL to open.
@@ -891,7 +933,7 @@ export namespace chat_v1 {
      */
     header?: string | null;
     /**
-     * The number of uncollapsible widgets. For example, when a section contains five widgets and the `numUncollapsibleWidget` is set to `2`, the first two widgets are always shown and the last three are collapsed as default. The `numUncollapsibleWidget` is taken into account only when collapsible is set to `true`.
+     * The number of uncollapsible widgets. For example, when a section contains five widgets and the `uncollapsibleWidgetsCount` is set to `2`, the first two widgets are always shown and the last three are collapsed as default. The `uncollapsibleWidgetsCount` is taken into account only when `collapsible` is `true`.
      */
     uncollapsibleWidgetsCount?: number | null;
     /**
@@ -900,26 +942,32 @@ export namespace chat_v1 {
     widgets?: Schema$GoogleAppsCardV1Widget[];
   }
   /**
-   * A widget that creates a UI item (for example, a drop-down list) with options for users to select.
+   * A widget that creates a UI item with options for users to select. For example, a dropdown menu.
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
+    /**
+     * An array of the selected items.
+     */
     items?: Schema$GoogleAppsCardV1SelectionItem[];
     /**
      * The label displayed ahead of the switch control.
      */
     label?: string | null;
     /**
-     * The name of the text input which is used in formInput.
+     * The name of the text input which is used in `formInput`.
      */
     name?: string | null;
     /**
      * If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button.
      */
     onChangeAction?: Schema$GoogleAppsCardV1Action;
+    /**
+     * The type of the selection.
+     */
     type?: string | null;
   }
   /**
-   * The item in the switch control. A radio button, at most one of the items is selected.
+   * A selectable item in the switch control.
    */
   export interface Schema$GoogleAppsCardV1SelectionItem {
     /**
@@ -936,9 +984,12 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * A suggestion item. Only supports text for now.
+   * A suggestion item.
    */
   export interface Schema$GoogleAppsCardV1SuggestionItem {
+    /**
+     * The suggested autocomplete result.
+     */
     text?: string | null;
   }
   /**
@@ -946,17 +997,20 @@ export namespace chat_v1 {
    */
   export interface Schema$GoogleAppsCardV1Suggestions {
     /**
-     * A list of suggestions items which will be used in are used in autocomplete.
+     * A list of suggestions used for autocomplete recommendations.
      */
     items?: Schema$GoogleAppsCardV1SuggestionItem[];
   }
+  /**
+   * Either a toggle-style switch or a checkbox.
+   */
   export interface Schema$GoogleAppsCardV1SwitchControl {
     /**
      * The control type, either switch or checkbox.
      */
     controlType?: string | null;
     /**
-     * The name of the switch widget that's used in formInput.
+     * The name of the switch widget that's used in `formInput`.
      */
     name?: string | null;
     /**
@@ -993,7 +1047,7 @@ export namespace chat_v1 {
      */
     label?: string | null;
     /**
-     * The name of the text input which is used in formInput.
+     * The name of the text input which is used in `formInput`.
      */
     name?: string | null;
     /**
@@ -1031,7 +1085,7 @@ export namespace chat_v1 {
      */
     dateTimePicker?: Schema$GoogleAppsCardV1DateTimePicker;
     /**
-     * Displays a decorated text item in this widget. For example, the following JSON creates a decorated text widget showing email address: ``` "decoratedText": { "icon": { "knownIcon": "EMAIL" \}, "topLabel": "Email Address", "content": "heba.salam@example.com", "bottomLabel": "This is a new Email address!", "switchWidget": { "name": "has_send_welcome_email_to_heba_salam", "selected": false, "controlType": "ControlType.CHECKBOX" \} \} ```
+     * Displays a decorated text item in this widget. For example, the following JSON creates a decorated text widget showing email address: ``` "decoratedText": { "icon": { "knownIcon": "EMAIL" \}, "topLabel": "Email Address", "content": "sasha@example.com", "bottomLabel": "This is a new Email address!", "switchWidget": { "name": "has_send_welcome_email_to_sasha", "selected": false, "controlType": "ControlType.CHECKBOX" \} \} ```
      */
     decoratedText?: Schema$GoogleAppsCardV1DecoratedText;
     /**
@@ -1047,7 +1101,7 @@ export namespace chat_v1 {
      */
     horizontalAlignment?: string | null;
     /**
-     * Displays an image in this widget. For example, the following JSON creates an image with alternative text: ``` "image": { "imageUrl": "https://example.com/heba_salam.png" "altText": "Avatar for Heba Salam" \} ```
+     * Displays an image in this widget. For example, the following JSON creates an image with alternative text: ``` "image": { "imageUrl": "https://example.com/sasha.png" "altText": "Avatar for Sasha" \} ```
      */
     image?: Schema$GoogleAppsCardV1Image;
     /**
@@ -1102,12 +1156,24 @@ export namespace chat_v1 {
     onClick?: Schema$OnClick;
   }
   /**
-   * The inputs with widgets.
+   * Types of data inputs for widgets. Users enter data with these inputs.
    */
   export interface Schema$Inputs {
+    /**
+     * Date input values. Not supported by Chat apps.
+     */
     dateInput?: Schema$DateInput;
+    /**
+     * Date and time input values. Not supported by Chat apps.
+     */
     dateTimeInput?: Schema$DateTimeInput;
+    /**
+     * Input parameter for regular widgets. For single-valued widgets, it is a single value list. For multi-valued widgets, such as checkbox, all the values are presented.
+     */
     stringInputs?: Schema$StringInputs;
+    /**
+     * Time input values. Not supported by Chat apps.
+     */
     timeInput?: Schema$TimeInput;
   }
   /**
@@ -1194,7 +1260,7 @@ export namespace chat_v1 {
      */
     createTime?: string | null;
     /**
-     * A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API. Format: `users/{person\}`
+     * A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Format: `users/{user\}`
      */
     member?: Schema$User;
     name?: string | null;
@@ -1308,7 +1374,7 @@ export namespace chat_v1 {
     widgets?: Schema$WidgetMarkup[];
   }
   /**
-   * A Slash Command in Chat.
+   * A [slash command](https://developers.google.com/chat/how-tos/slash-commands) in Google Chat.
    */
   export interface Schema$SlashCommand {
     /**
@@ -1384,9 +1450,12 @@ export namespace chat_v1 {
     message?: string | null;
   }
   /**
-   * Input parameter for regular widgets. For single-valued widgets, it will be a single value list; for multi-valued widgets, such as checkbox, all the values are presented.
+   * Input parameter for regular widgets. For single-valued widgets, it is a single value list. For multi-valued widgets, such as checkbox, all the values are presented.
    */
   export interface Schema$StringInputs {
+    /**
+     * An array of strings entered by the user.
+     */
     value?: string[] | null;
   }
   /**
@@ -1418,17 +1487,29 @@ export namespace chat_v1 {
     name?: string | null;
   }
   /**
-   * Input Parameter for Time Picker widget.
+   * Time input values. Not supported by Chat apps.
    */
   export interface Schema$TimeInput {
+    /**
+     * The hour on a 24-hour clock.
+     */
     hours?: number | null;
+    /**
+     * The number of minutes past the hour. Valid values are 0 to 59.
+     */
     minutes?: number | null;
   }
   /**
-   * The timezone id and offset. The id is the tz database time zones such as "America/Toronto". The user timezone offset, in milliseconds, from Coordinated Universal Time (UTC).
+   * The timezone ID and offset from Coordinated Universal Time (UTC). Not supported by Chat apps.
    */
   export interface Schema$TimeZone {
+    /**
+     * The [IANA TZ](https://www.iana.org/time-zones) time zone database code, such as "America/Toronto".
+     */
     id?: string | null;
+    /**
+     * The user timezone offset, in milliseconds, from Coordinated Universal Time (UTC).
+     */
     offset?: number | null;
   }
   /**
@@ -1448,7 +1529,7 @@ export namespace chat_v1 {
      */
     isAnonymous?: boolean | null;
     /**
-     * Resource name for a Google Chat user. Formatted as `users/AAAAAAAAAAA`. Represents a [person](https://developers.google.com/people/api/rest/v1/people#Person) in the People API.
+     * Resource name for a Google Chat user. Represents a [person](https://developers.google.com/people/api/rest/v1/people#Person) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Formatted as: `users/{user\}`
      */
     name?: string | null;
     /**
@@ -1528,7 +1609,7 @@ export namespace chat_v1 {
      *   const res = await chat.dms.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'dms/my-dm',
-     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
@@ -1698,7 +1779,7 @@ export namespace chat_v1 {
      *   const res = await chat.dms.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'dms/my-dm',
-     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
@@ -1846,7 +1927,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      */
     requestId?: string;
     /**
@@ -1865,7 +1946,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      */
     requestId?: string;
     /**
@@ -1914,7 +1995,7 @@ export namespace chat_v1 {
      *   const res = await chat.dms.conversations.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'dms/my-dm/conversations/my-conversation',
-     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
@@ -2064,7 +2145,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      */
     requestId?: string;
     /**
@@ -2257,7 +2338,7 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'rooms/my-room',
-     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
@@ -2427,7 +2508,7 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'rooms/my-room',
-     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
@@ -2575,7 +2656,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      */
     requestId?: string;
     /**
@@ -2594,7 +2675,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      */
     requestId?: string;
     /**
@@ -2643,7 +2724,7 @@ export namespace chat_v1 {
      *   const res = await chat.rooms.conversations.messages({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'rooms/my-room/conversations/my-conversation',
-     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
@@ -2793,7 +2874,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      */
     requestId?: string;
     /**
@@ -3106,7 +3187,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.webhooks({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'spaces/my-space',
-     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
@@ -3270,7 +3351,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      */
     requestId?: string;
     /**
@@ -3619,7 +3700,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.messages.create({
      *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAAAAAAAA
      *     parent: 'spaces/my-space',
-     *     // Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     *     // Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      *     requestId: 'placeholder-value',
      *     // Optional. Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Google Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
      *     threadKey: 'placeholder-value',
@@ -4055,7 +4136,7 @@ export namespace chat_v1 {
      *   const res = await chat.spaces.messages.update({
      *     // Resource name in the form `spaces/x/messages/x`. Example: `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`
      *     name: 'spaces/my-space/messages/my-message',
-     *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * gsuite_message_integration_render_data * attachment
+     *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * attachment
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4200,7 +4281,7 @@ export namespace chat_v1 {
      */
     parent?: string;
     /**
-     * Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.
+     * Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.
      */
     requestId?: string;
     /**
@@ -4234,7 +4315,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * gsuite_message_integration_render_data * attachment
+     * Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * attachment
      */
     updateMask?: string;
 

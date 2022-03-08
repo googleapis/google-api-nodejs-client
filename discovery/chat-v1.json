@@ -115,7 +115,7 @@
               "type": "string"
             },
             "requestId": {
-              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "description": "Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.",
               "location": "query",
               "type": "string"
             },
@@ -150,7 +150,7 @@
               "type": "string"
             },
             "requestId": {
-              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "description": "Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.",
               "location": "query",
               "type": "string"
             },
@@ -189,7 +189,7 @@
                   "type": "string"
                 },
                 "requestId": {
-                  "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+                  "description": "Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.",
                   "location": "query",
                   "type": "string"
                 },
@@ -257,7 +257,7 @@
               "type": "string"
             },
             "requestId": {
-              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "description": "Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.",
               "location": "query",
               "type": "string"
             },
@@ -292,7 +292,7 @@
               "type": "string"
             },
             "requestId": {
-              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "description": "Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.",
               "location": "query",
               "type": "string"
             },
@@ -331,7 +331,7 @@
                   "type": "string"
                 },
                 "requestId": {
-                  "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+                  "description": "Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.",
                   "location": "query",
                   "type": "string"
                 },
@@ -418,7 +418,7 @@
               "type": "string"
             },
             "requestId": {
-              "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+              "description": "Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.",
               "location": "query",
               "type": "string"
             },
@@ -516,7 +516,7 @@
                   "type": "string"
                 },
                 "requestId": {
-                  "description": "Optional. A unique request ID for this message. If a message has already been created in the space with this request ID, the subsequent request will return the existing message and no new message will be created.",
+                  "description": "Optional. A unique request ID for this message. Specifying an existing request ID returns the message created with that ID instead of creating a new message.",
                   "location": "query",
                   "type": "string"
                 },
@@ -595,7 +595,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * gsuite_message_integration_render_data * attachment",
+                  "description": "Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards * attachment",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20220126",
+  "revision": "20220302",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -666,7 +666,7 @@
       "properties": {
         "dialogAction": {
           "$ref": "DialogAction",
-          "description": "This response is for Dialog related events and must be accompanied by ResponseType.Dialog"
+          "description": "A response to an event related to a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs). Must be accompanied by `ResponseType.Dialog`."
         },
         "type": {
           "description": "The type of bot response.",
@@ -675,14 +675,16 @@
             "NEW_MESSAGE",
             "UPDATE_MESSAGE",
             "UPDATE_USER_MESSAGE_CARDS",
-            "REQUEST_CONFIG"
+            "REQUEST_CONFIG",
+            "DIALOG"
           ],
           "enumDescriptions": [
             "Default type; will be handled as NEW_MESSAGE.",
             "Post as a new message in the topic.",
             "Update the bot's message. This is only permitted on a CARD_CLICKED event where the message sender type is BOT.",
             "Update the cards on a user's message. This is only permitted as a response to a MESSAGE event with a matched url, or a CARD_CLICKED event where the message sender type is HUMAN. Text will be ignored.",
-            "Privately ask the user for additional auth or config."
+            "Privately ask the user for additional auth or config.",
+            "Presents a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs)."
           ],
           "type": "string"
         },
@@ -694,7 +696,7 @@
       "type": "object"
     },
     "ActionStatus": {
-      "description": "ActionStatus represents status of a request from the bot developer's side. In specific, for each request a bot gets, the bot developer will set both fields below in relation to what the response status and message related to status should be.",
+      "description": "Represents the status of a request.",
       "id": "ActionStatus",
       "properties": {
         "statusCode": {
@@ -740,7 +742,7 @@
           "type": "string"
         },
         "userFacingMessage": {
-          "description": "This message will be the corresponding string to the above status_code. If unset, an appropriate generic message based on the status_code will be shown to the user. If this field is set then the message will be surfaced to the user for both successes and errors.",
+          "description": "The message to send users about the status of their request. If unset, a generic message based on the `status_code` is sent.",
           "type": "string"
         }
       },
@@ -964,18 +966,18 @@
       "type": "object"
     },
     "CommonEventObject": {
-      "description": "Next available ID = 8",
+      "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes data submitted by users interacting with cards, like data entered in [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs).",
       "id": "CommonEventObject",
       "properties": {
         "formInputs": {
           "additionalProperties": {
             "$ref": "Inputs"
           },
-          "description": "The keys are the string IDs associated with the widget and the values are inputs with a widget in the card.",
+          "description": "A map containing the current values of the widgets in a card. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. Depending on the input data type, a different object represents each input: For single-value widgets, `StringInput`. For multi-value widgets, an array of `StringInput` objects. For a date-time picker, a `DateTimeInput`. For a date-only picker, a `DateInput`. For a time-only picker, a `TimeInput`. Corresponds with the data entered by a user on a card in a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs).",
           "type": "object"
         },
         "hostApp": {
-          "description": "The hostApp enum which indicates the app the add-on is invoked from",
+          "description": "The hostApp enum which indicates the app the add-on is invoked from. Always `CHAT` for Chat apps.",
           "enum": [
             "UNSPECIFIED_HOST_APP",
             "GMAIL",
@@ -986,37 +988,35 @@
             "SHEETS",
             "SLIDES",
             "DRAWINGS",
-            "CHAT",
-            "ALL_HOST_APPS"
+            "CHAT"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "This is only used for aggregating logs on the server. Clients should never send these values directly."
+            "Google can't identify a host app.",
+            "The add-on launches from Gmail.",
+            "The add-on launches from Google Calendar.",
+            "The add-on launches from Google Drive.",
+            "Not used.",
+            "The add-on launches from Google Docs.",
+            "The add-on launches from Google Sheets.",
+            "The add-on launches from Google Slides.",
+            "The add-on launches from Google Drawings.",
+            "A Google Chat app. Not used for Google Workspace Add-ons."
           ],
           "type": "string"
         },
         "invokedFunction": {
-          "description": "Name of the invoked function associated with the widget. This field is currently only set for chat.",
+          "description": "Name of the invoked function associated with the widget. Only set for Chat apps.",
           "type": "string"
         },
         "parameters": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Any additional parameters.",
+          "description": "Custom [parameters](/chat/api/reference/rest/v1/cards#ActionParameter) passed to the invoked function. Both keys and values must be strings.",
           "type": "object"
         },
         "platform": {
-          "description": "The platform enum which indicates the platform where the add-on is running.",
+          "description": "The platform enum which indicates the platform where the event originates (`WEB`, `IOS`, or `ANDROID`). Not supported by Chat apps.",
           "enum": [
             "UNKNOWN_PLATFORM",
             "WEB",
@@ -1032,20 +1032,22 @@
           "type": "string"
         },
         "timeZone": {
-          "$ref": "TimeZone"
+          "$ref": "TimeZone",
+          "description": "The timezone ID and offset from Coordinated Universal Time (UTC)."
         },
         "userLocale": {
-          "description": "The full locale.displayName in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as \"en-US\"",
+          "description": "The full `locale.displayName` in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as \"en-US\". Not supported by Chat apps.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "DateInput": {
-      "description": "Input Parameter for Date Picker widget.",
+      "description": "Date input values. Not supported by Chat apps.",
       "id": "DateInput",
       "properties": {
         "msSinceEpoch": {
+          "description": "Time since epoch time, in milliseconds.",
           "format": "int64",
           "type": "string"
         }
@@ -1053,16 +1055,19 @@
       "type": "object"
     },
     "DateTimeInput": {
-      "description": "Input Parameter for Date and Time Picker widget.",
+      "description": "Date and time input values. Not supported by Chat apps.",
       "id": "DateTimeInput",
       "properties": {
         "hasDate": {
+          "description": "Whether the `datetime` input includes a calendar date.",
           "type": "boolean"
         },
         "hasTime": {
+          "description": "Whether the `datetime` input includes a timestamp.",
           "type": "boolean"
         },
         "msSinceEpoch": {
+          "description": "Time since epoch time, in milliseconds.",
           "format": "int64",
           "type": "string"
         }
@@ -1079,14 +1084,14 @@
         },
         "common": {
           "$ref": "CommonEventObject",
-          "description": "This will include form information for dialogs such as form inputs, action parameters."
+          "description": "Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes information submitted by users interacting with [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs), like data entered on a card."
         },
         "configCompleteRedirectUrl": {
           "description": "The URL the bot should redirect the user to after they have completed an authorization or configuration flow outside of Google Chat. See the [Authorizing access to 3p services guide](/chat/how-tos/auth-3p) for more information.",
           "type": "string"
         },
         "dialogEventType": {
-          "description": "The type of dialog event we have received.",
+          "description": "The type of [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) event received.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "REQUEST_DIALOG",
@@ -1095,9 +1100,9 @@
           ],
           "enumDescriptions": [
             "This could be used when the corresponding event is not dialog related. For example an @mention.",
-            "For any user action that would result in a dialog opening.",
-            "For card click events from any dialog.",
-            "For native cancellation button."
+            "Any user action that opens a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs).",
+            "A card click event from a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs).",
+            "The [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) was cancelled."
           ],
           "type": "string"
         },
@@ -1107,7 +1112,7 @@
           "type": "string"
         },
         "isDialogEvent": {
-          "description": "Whether or not this event is related to dialogs request, submit or cancel. This will be set to true when we want a request/submit/cancel event.",
+          "description": "True when the event is related to [dialogs](https://developers.google.com/chat/how-tos/bot-dialogs).",
           "type": "boolean"
         },
         "message": {
@@ -1157,22 +1162,22 @@
       "properties": {
         "body": {
           "$ref": "GoogleAppsCardV1Card",
-          "description": "Body of the dialog, which will be rendered in a modal. NOTE: The following fields within the objects are not supported: google.apps.card.v1.Widget.date_time_picker google.apps.card.v1.DecoratedText.SwitchControl.on_change_action google.apps.card.v1.TextInput.on_change_action google.apps.card.v1.SelectionInput.on_change_action google.apps.card.v1.DateTimePicker.on_change_action Setting the fields above will have no effect on the dialog."
+          "description": "Body of the dialog, which is rendered in a modal. Google Chat apps do not support the following card entities: `DateTimePicker`, `OnChangeAction`."
         }
       },
       "type": "object"
     },
     "DialogAction": {
-      "description": "Contains dialog if present as well as the ActionStatus for the request sent from user.",
+      "description": "Contains a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs) and request status code.",
       "id": "DialogAction",
       "properties": {
         "actionStatus": {
           "$ref": "ActionStatus",
-          "description": "Status for either invoke dialog or submit dialog requests. This will be used to display a status and message to user if needed. For example in case of an error or success."
+          "description": "Status for a request to either invoke or submit a [dialog](https://developers.google.com/chat/how-tos/bot-dialogs). Displays a status and message to users, if necessary. For example, in case of an error or success."
         },
         "dialog": {
           "$ref": "Dialog",
-          "description": "Dialog for the request."
+          "description": "[Dialog](https://developers.google.com/chat/how-tos/bot-dialogs) for the request."
         }
       },
       "type": "object"
@@ -1240,6 +1245,7 @@
           "type": "string"
         },
         "loadIndicator": {
+          "description": "Specifies the loading indicator that the action displays while making the call to the action.",
           "enum": [
             "SPINNER",
             "NONE"
@@ -1322,7 +1328,7 @@
           "description": "If set, the button is filled with a solid background."
         },
         "disabled": {
-          "description": "If true, the button is displayed in a disabled state and doesn't respond to user actions.",
+          "description": "If `true`, the button is displayed in a disabled state and doesn't respond to user actions.",
           "type": "boolean"
         },
         "icon": {
@@ -1345,6 +1351,7 @@
       "id": "GoogleAppsCardV1ButtonList",
       "properties": {
         "buttons": {
+          "description": "An array of buttons.",
           "items": {
             "$ref": "GoogleAppsCardV1Button"
           },
@@ -1354,25 +1361,25 @@
       "type": "object"
     },
     "GoogleAppsCardV1Card": {
-      "description": "A card is a UI element that can contain UI widgets such as text and images. For more information, see Cards . For example, the following JSON creates a card that has a header with the name, position, icons, and link for a contact, followed by a section with contact information like email and phone number. ``` { \"header\": { \"title\": \"Heba Salam\", \"subtitle\": \"Software Engineer\", \"imageStyle\": \"ImageStyle.AVATAR\", \"imageUrl\": \"https://example.com/heba_salam.png\", \"imageAltText\": \"Avatar for Heba Salam\" }, \"sections\" : [ { \"header\": \"Contact Info\", \"widgets\": [ { \"decorated_text\": { \"icon\": { \"knownIcon\": \"EMAIL\" }, \"content\": \"heba.salam@example.com\" } }, { \"decoratedText\": { \"icon\": { \"knownIcon\": \"PERSON\" }, \"content\": \"Online\" } }, { \"decoratedText\": { \"icon\": { \"knownIcon\": \"PHONE\" }, \"content\": \"+1 (555) 555-1234\" } }, { \"buttons\": [ { \"textButton\": { \"text\": \"Share\", }, \"onClick\": { \"openLink\": { \"url\": \"https://example.com/share\" } } }, { \"textButton\": { \"text\": \"Edit\", }, \"onClick\": { \"action\": { \"function\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"EDIT\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } } ] } ], \"collapsible\": true, \"uncollapsibleWidgetsCount\": 3 } ], \"cardActions\": [ { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ], \"name\": \"contact-card-K3wB6arF2H9L\" } ```",
+      "description": "A card is a UI element that can contain UI widgets such as text and images. For more information, see Cards . For example, the following JSON creates a card that has a header with the name, position, icons, and link for a contact, followed by a section with contact information like email and phone number. ``` { \"header\": { \"title\": \"Sasha\", \"subtitle\": \"Software Engineer\", \"imageStyle\": \"ImageStyle.AVATAR\", \"imageUrl\": \"https://example.com/sasha.png\", \"imageAltText\": \"Avatar for Sasha\" }, \"sections\" : [ { \"header\": \"Contact Info\", \"widgets\": [ { \"decorated_text\": { \"icon\": { \"knownIcon\": \"EMAIL\" }, \"content\": \"sasha@example.com\" } }, { \"decoratedText\": { \"icon\": { \"knownIcon\": \"PERSON\" }, \"content\": \"Online\" } }, { \"decoratedText\": { \"icon\": { \"knownIcon\": \"PHONE\" }, \"content\": \"+1 (555) 555-1234\" } }, { \"buttons\": [ { \"textButton\": { \"text\": \"Share\", }, \"onClick\": { \"openLink\": { \"url\": \"https://example.com/share\" } } }, { \"textButton\": { \"text\": \"Edit\", }, \"onClick\": { \"action\": { \"function\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"EDIT\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } } ] } ], \"collapsible\": true, \"uncollapsibleWidgetsCount\": 3 } ], \"cardActions\": [ { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ], \"name\": \"contact-card-K3wB6arF2H9L\" } ```",
       "id": "GoogleAppsCardV1Card",
       "properties": {
         "cardActions": {
-          "description": "The actions of this card. They are added to a card's generated toolbar menu. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` \"card_actions\": [ { \"actionLabel\": \"Setting\", \"onClick\": { \"action\": { \"functionName\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"SETTING\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } }, { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ] ```",
+          "description": "The card's actions. Actions are added to the card's generated toolbar menu. For example, the following JSON constructs a card action menu with Settings and Send Feedback options: ``` \"card_actions\": [ { \"actionLabel\": \"Settings\", \"onClick\": { \"action\": { \"functionName\": \"goToView\", \"parameters\": [ { \"key\": \"viewType\", \"value\": \"SETTING\" } ], \"loadIndicator\": \"LoadIndicator.SPINNER\" } } }, { \"actionLabel\": \"Send Feedback\", \"onClick\": { \"openLink\": { \"url\": \"https://example.com/feedback\" } } } ] ```",
           "items": {
             "$ref": "GoogleAppsCardV1CardAction"
           },
           "type": "array"
         },
         "displayStyle": {
-          "description": "The display style for peekCardHeader.",
+          "description": "The display style for `peekCardHeader`.",
           "enum": [
             "DISPLAY_STYLE_UNSPECIFIED",
             "PEEK",
             "REPLACE"
           ],
           "enumDescriptions": [
-            "",
+            "Default value. Do not use.",
             "The header of the card appears at the bottom of the sidebar, partially covering the current top card of the stack. Clicking the header pops the card into the card stack. If the card has no header, a generated header is used instead.",
             "The card is shown by replacing the view of the top card in the card stack."
           ],
@@ -1387,7 +1394,7 @@
           "description": "The header of the card. A header usually contains a title and an image."
         },
         "name": {
-          "description": "Name of the card, which is used as a identifier for the card in card navigation.",
+          "description": "Name of the card. Used as a card identifier in card navigation.",
           "type": "string"
         },
         "peekCardHeader": {
@@ -1414,7 +1421,7 @@
         },
         "onClick": {
           "$ref": "GoogleAppsCardV1OnClick",
-          "description": "The onclick action for this action item."
+          "description": "The `onClick` action for this action item."
         }
       },
       "type": "object"
@@ -1435,6 +1442,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1CardHeader": {
+      "description": "Represents a card header.",
       "id": "GoogleAppsCardV1CardHeader",
       "properties": {
         "imageAltText": {
@@ -1462,14 +1470,14 @@
           "type": "string"
         },
         "title": {
-          "description": "The title of the card header. The title must be specified. The header has a fixed height: if both a title and subtitle are specified, each takes up one line. If only the title is specified, it takes up both lines.",
+          "description": "Required. The title of the card header. The header has a fixed height: if both a title and subtitle are specified, each takes up one line. If only the title is specified, it takes up both lines.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleAppsCardV1DateTimePicker": {
-      "description": "The widget that lets users to specify a date and time.",
+      "description": "The widget that lets users to specify a date and time. Not supported by Google Chat apps.",
       "id": "GoogleAppsCardV1DateTimePicker",
       "properties": {
         "label": {
@@ -1477,7 +1485,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the text input that's used in formInput, and uniquely identifies this input.",
+          "description": "The name of the text input that's used in `formInput`, and uniquely identifies this input.",
           "type": "string"
         },
         "onChangeAction": {
@@ -1672,14 +1680,14 @@
           "type": "string"
         },
         "knownIcon": {
-          "description": "The icon specified by the string name of a list of known icons",
+          "description": "The icon specified by the string name of a list of known icons.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleAppsCardV1Image": {
-      "description": "An image that is specified by a URL and can have an onClick action.",
+      "description": "An image that is specified by a URL and can have an `onClick` action.",
       "id": "GoogleAppsCardV1Image",
       "properties": {
         "altText": {
@@ -1691,12 +1699,14 @@
           "type": "string"
         },
         "onClick": {
-          "$ref": "GoogleAppsCardV1OnClick"
+          "$ref": "GoogleAppsCardV1OnClick",
+          "description": "The action triggered by an `onClick` event."
         }
       },
       "type": "object"
     },
     "GoogleAppsCardV1ImageComponent": {
+      "description": "Represents an image.",
       "id": "GoogleAppsCardV1ImageComponent",
       "properties": {
         "altText": {
@@ -1749,11 +1759,12 @@
       "type": "object"
     },
     "GoogleAppsCardV1OnClick": {
+      "description": "Represents the response to an `onClick` event.",
       "id": "GoogleAppsCardV1OnClick",
       "properties": {
         "action": {
           "$ref": "GoogleAppsCardV1Action",
-          "description": "If specified, an action is triggered by this onClick."
+          "description": "If specified, an action is triggered by this `onClick`."
         },
         "card": {
           "$ref": "GoogleAppsCardV1Card",
@@ -1761,30 +1772,33 @@
         },
         "openDynamicLinkAction": {
           "$ref": "GoogleAppsCardV1Action",
-          "description": "An add-on triggers this action when the action needs to open a link. This differs from the open_link above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back."
+          "description": "An add-on triggers this action when the action needs to open a link. This differs from the `open_link` above in that this needs to talk to server to get the link. Thus some preparation work is required for web client to do before the open link action response comes back."
         },
         "openLink": {
           "$ref": "GoogleAppsCardV1OpenLink",
-          "description": "If specified, this onClick triggers an open link action."
+          "description": "If specified, this `onClick` triggers an open link action."
         }
       },
       "type": "object"
     },
     "GoogleAppsCardV1OpenLink": {
+      "description": "Represents an `onClick` event that opens a hyperlink.",
       "id": "GoogleAppsCardV1OpenLink",
       "properties": {
         "onClose": {
+          "description": "Whether the client forgets about a link after opening it, or observes it until the window closes. Not supported by Chat apps.",
           "enum": [
             "NOTHING",
             "RELOAD"
           ],
           "enumDescriptions": [
-            "Doesn’t reload the card after the child window closes. Reloads the card after the child window closes. If used in conjunction with [OpenAs.OVERLAY](/workspace/add-ons/reference/rpc/google.apps.card.v1#openas), the child window acts as a modal dialog and the main card is blocked until the child window closes.",
-            ""
+            "Doesn’t reload the card after the child window closes.",
+            "Reloads the card after the child window closes. If used in conjunction with [OpenAs.OVERLAY](/workspace/add-ons/reference/rpc/google.apps.card.v1#openas), the child window acts as a modal dialog and the main card is blocked until the child window closes."
           ],
           "type": "string"
         },
         "openAs": {
+          "description": "How to open a link. Not supported by Chat apps.",
           "enum": [
             "FULL_SIZE",
             "OVERLAY"
@@ -1815,7 +1829,7 @@
           "type": "string"
         },
         "uncollapsibleWidgetsCount": {
-          "description": "The number of uncollapsible widgets. For example, when a section contains five widgets and the `numUncollapsibleWidget` is set to `2`, the first two widgets are always shown and the last three are collapsed as default. The `numUncollapsibleWidget` is taken into account only when collapsible is set to `true`.",
+          "description": "The number of uncollapsible widgets. For example, when a section contains five widgets and the `uncollapsibleWidgetsCount` is set to `2`, the first two widgets are always shown and the last three are collapsed as default. The `uncollapsibleWidgetsCount` is taken into account only when `collapsible` is `true`.",
           "format": "int32",
           "type": "integer"
         },
@@ -1830,10 +1844,11 @@
       "type": "object"
     },
     "GoogleAppsCardV1SelectionInput": {
-      "description": "A widget that creates a UI item (for example, a drop-down list) with options for users to select.",
+      "description": "A widget that creates a UI item with options for users to select. For example, a dropdown menu.",
       "id": "GoogleAppsCardV1SelectionInput",
       "properties": {
         "items": {
+          "description": "An array of the selected items.",
           "items": {
             "$ref": "GoogleAppsCardV1SelectionItem"
           },
@@ -1844,7 +1859,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the text input which is used in formInput.",
+          "description": "The name of the text input which is used in `formInput`.",
           "type": "string"
         },
         "onChangeAction": {
@@ -1852,6 +1867,7 @@
           "description": "If specified, the form is submitted when the selection changes. If not specified, you must specify a separate button."
         },
         "type": {
+          "description": "The type of the selection.",
           "enum": [
             "CHECK_BOX",
             "RADIO_BUTTON",
@@ -1859,10 +1875,10 @@
             "DROPDOWN"
           ],
           "enumDescriptions": [
-            "The selection type is a checkbox.",
-            "The selection type is a radio button.",
-            "The selection type is a switch.",
-            "The selection type is a dropdown."
+            "A checkbox.",
+            "A radio button.",
+            "A switch.",
+            "A dropdown menu."
           ],
           "type": "string"
         }
@@ -1870,7 +1886,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1SelectionItem": {
-      "description": "The item in the switch control. A radio button, at most one of the items is selected.",
+      "description": "A selectable item in the switch control.",
       "id": "GoogleAppsCardV1SelectionItem",
       "properties": {
         "selected": {
@@ -1889,10 +1905,11 @@
       "type": "object"
     },
     "GoogleAppsCardV1SuggestionItem": {
-      "description": "A suggestion item. Only supports text for now.",
+      "description": "A suggestion item.",
       "id": "GoogleAppsCardV1SuggestionItem",
       "properties": {
         "text": {
+          "description": "The suggested autocomplete result.",
           "type": "string"
         }
       },
@@ -1903,7 +1920,7 @@
       "id": "GoogleAppsCardV1Suggestions",
       "properties": {
         "items": {
-          "description": "A list of suggestions items which will be used in are used in autocomplete.",
+          "description": "A list of suggestions used for autocomplete recommendations.",
           "items": {
             "$ref": "GoogleAppsCardV1SuggestionItem"
           },
@@ -1913,6 +1930,7 @@
       "type": "object"
     },
     "GoogleAppsCardV1SwitchControl": {
+      "description": "Either a toggle-style switch or a checkbox.",
       "id": "GoogleAppsCardV1SwitchControl",
       "properties": {
         "controlType": {
@@ -1923,14 +1941,14 @@
             "CHECK_BOX"
           ],
           "enumDescriptions": [
-            "",
+            "A toggle-style switch.",
             "Deprecated in favor of `CHECK_BOX`.",
-            ""
+            "A checkbox."
           ],
           "type": "string"
         },
         "name": {
-          "description": "The name of the switch widget that's used in formInput.",
+          "description": "The name of the switch widget that's used in `formInput`.",
           "type": "string"
         },
         "onChangeAction": {
@@ -1969,7 +1987,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the text input which is used in formInput.",
+          "description": "The name of the text input which is used in `formInput`.",
           "type": "string"
         },
         "onChangeAction": {
@@ -2020,7 +2038,7 @@
         },
         "decoratedText": {
           "$ref": "GoogleAppsCardV1DecoratedText",
-          "description": "Displays a decorated text item in this widget. For example, the following JSON creates a decorated text widget showing email address: ``` \"decoratedText\": { \"icon\": { \"knownIcon\": \"EMAIL\" }, \"topLabel\": \"Email Address\", \"content\": \"heba.salam@example.com\", \"bottomLabel\": \"This is a new Email address!\", \"switchWidget\": { \"name\": \"has_send_welcome_email_to_heba_salam\", \"selected\": false, \"controlType\": \"ControlType.CHECKBOX\" } } ```"
+          "description": "Displays a decorated text item in this widget. For example, the following JSON creates a decorated text widget showing email address: ``` \"decoratedText\": { \"icon\": { \"knownIcon\": \"EMAIL\" }, \"topLabel\": \"Email Address\", \"content\": \"sasha@example.com\", \"bottomLabel\": \"This is a new Email address!\", \"switchWidget\": { \"name\": \"has_send_welcome_email_to_sasha\", \"selected\": false, \"controlType\": \"ControlType.CHECKBOX\" } } ```"
         },
         "divider": {
           "$ref": "GoogleAppsCardV1Divider",
@@ -2048,7 +2066,7 @@
         },
         "image": {
           "$ref": "GoogleAppsCardV1Image",
-          "description": "Displays an image in this widget. For example, the following JSON creates an image with alternative text: ``` \"image\": { \"imageUrl\": \"https://example.com/heba_salam.png\" \"altText\": \"Avatar for Heba Salam\" } ```"
+          "description": "Displays an image in this widget. For example, the following JSON creates an image with alternative text: ``` \"image\": { \"imageUrl\": \"https://example.com/sasha.png\" \"altText\": \"Avatar for Sasha\" } ```"
         },
         "selectionInput": {
           "$ref": "GoogleAppsCardV1SelectionInput",
@@ -2175,20 +2193,24 @@
       "type": "object"
     },
     "Inputs": {
-      "description": "The inputs with widgets.",
+      "description": "Types of data inputs for widgets. Users enter data with these inputs.",
       "id": "Inputs",
       "properties": {
         "dateInput": {
-          "$ref": "DateInput"
+          "$ref": "DateInput",
+          "description": "Date input values. Not supported by Chat apps."
         },
         "dateTimeInput": {
-          "$ref": "DateTimeInput"
+          "$ref": "DateTimeInput",
+          "description": "Date and time input values. Not supported by Chat apps."
         },
         "stringInputs": {
-          "$ref": "StringInputs"
+          "$ref": "StringInputs",
+          "description": "Input parameter for regular widgets. For single-valued widgets, it is a single value list. For multi-valued widgets, such as checkbox, all the values are presented."
         },
         "timeInput": {
-          "$ref": "TimeInput"
+          "$ref": "TimeInput",
+          "description": "Time input values. Not supported by Chat apps."
         }
       },
       "type": "object"
@@ -2366,7 +2388,7 @@
         },
         "member": {
           "$ref": "User",
-          "description": "A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API. Format: `users/{person}`"
+          "description": "A user in Google Chat. Represents a [person](https://developers.google.com/people/api/rest/v1/people) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Format: `users/{user}`"
         },
         "name": {
           "type": "string"
@@ -2520,7 +2542,7 @@
       "type": "object"
     },
     "SlashCommand": {
-      "description": "A Slash Command in Chat.",
+      "description": "A [slash command](https://developers.google.com/chat/how-tos/slash-commands) in Google Chat.",
       "id": "SlashCommand",
       "properties": {
         "commandId": {
@@ -2636,10 +2658,11 @@
       "type": "object"
     },
     "StringInputs": {
-      "description": "Input parameter for regular widgets. For single-valued widgets, it will be a single value list; for multi-valued widgets, such as checkbox, all the values are presented.",
+      "description": "Input parameter for regular widgets. For single-valued widgets, it is a single value list. For multi-valued widgets, such as checkbox, all the values are presented.",
       "id": "StringInputs",
       "properties": {
         "value": {
+          "description": "An array of strings entered by the user.",
           "items": {
             "type": "string"
           },
@@ -2685,14 +2708,16 @@
       "type": "object"
     },
     "TimeInput": {
-      "description": "Input Parameter for Time Picker widget.",
+      "description": "Time input values. Not supported by Chat apps.",
       "id": "TimeInput",
       "properties": {
         "hours": {
+          "description": "The hour on a 24-hour clock.",
           "format": "int32",
           "type": "integer"
         },
         "minutes": {
+          "description": "The number of minutes past the hour. Valid values are 0 to 59.",
           "format": "int32",
           "type": "integer"
         }
@@ -2700,13 +2725,15 @@
       "type": "object"
     },
     "TimeZone": {
-      "description": "The timezone id and offset. The id is the tz database time zones such as \"America/Toronto\". The user timezone offset, in milliseconds, from Coordinated Universal Time (UTC).",
+      "description": "The timezone ID and offset from Coordinated Universal Time (UTC). Not supported by Chat apps.",
       "id": "TimeZone",
       "properties": {
         "id": {
+          "description": "The [IANA TZ](https://www.iana.org/time-zones) time zone database code, such as \"America/Toronto\".",
           "type": "string"
         },
         "offset": {
+          "description": "The user timezone offset, in milliseconds, from Coordinated Universal Time (UTC).",
           "format": "int32",
           "type": "integer"
         }
@@ -2730,7 +2757,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Resource name for a Google Chat user. Formatted as `users/AAAAAAAAAAA`. Represents a [person](https://developers.google.com/people/api/rest/v1/people#Person) in the People API.",
+          "description": "Resource name for a Google Chat user. Represents a [person](https://developers.google.com/people/api/rest/v1/people#Person) in the People API or a [user](https://developers.google.com/admin-sdk/directory/reference/rest/v1/users) in the Admin SDK Directory API. Formatted as: `users/{user}`",
           "type": "string"
         },
         "type": {
