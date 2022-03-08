@@ -2,8 +2,14 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/cloud-identity.devices": {
+          "description": "Private Service: https://www.googleapis.com/auth/cloud-identity.devices"
+        },
         "https://www.googleapis.com/auth/cloud-identity.devices.lookup": {
           "description": "See your device details"
+        },
+        "https://www.googleapis.com/auth/cloud-identity.devices.readonly": {
+          "description": "Private Service: https://www.googleapis.com/auth/cloud-identity.devices.readonly"
         },
         "https://www.googleapis.com/auth/cloud-identity.groups": {
           "description": "See, change, create, and delete any of the Cloud Identity Groups that you can access, including the members of each group"
@@ -284,7 +290,10 @@
           },
           "response": {
             "$ref": "Operation"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.devices"
+          ]
         },
         "create": {
           "description": "Creates a device. Only company-owned device may be created. **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium",
@@ -299,7 +308,10 @@
           },
           "response": {
             "$ref": "Operation"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.devices"
+          ]
         },
         "delete": {
           "description": "Deletes the specified device.",
@@ -321,7 +333,10 @@
           "path": "v1beta1/{+name}",
           "response": {
             "$ref": "Operation"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.devices"
+          ]
         },
         "get": {
           "description": "Retrieves the specified device.",
@@ -343,7 +358,11 @@
           "path": "v1beta1/{+name}",
           "response": {
             "$ref": "Device"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.devices",
+            "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
+          ]
         },
         "list": {
           "description": "Lists/Searches devices.",
@@ -392,7 +411,11 @@
           "path": "v1beta1/devices",
           "response": {
             "$ref": "ListDevicesResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.devices",
+            "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
+          ]
         },
         "wipe": {
           "description": "Wipes all data on the specified device.",
@@ -417,7 +440,10 @@
           },
           "response": {
             "$ref": "Operation"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-identity.devices"
+          ]
         }
       },
       "resources": {
@@ -446,7 +472,10 @@
               },
               "response": {
                 "$ref": "Operation"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.devices"
+              ]
             },
             "block": {
               "description": "Blocks device from accessing user data",
@@ -471,7 +500,10 @@
               },
               "response": {
                 "$ref": "Operation"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.devices"
+              ]
             },
             "cancelWipe": {
               "description": "Cancels an unfinished user account wipe. This operation can be used to cancel device wipe in the gap between the wipe operation returning success and the device being wiped.",
@@ -496,7 +528,10 @@
               },
               "response": {
                 "$ref": "Operation"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.devices"
+              ]
             },
             "delete": {
               "description": "Deletes the specified DeviceUser. This also revokes the user's access to device data.",
@@ -518,7 +553,10 @@
               "path": "v1beta1/{+name}",
               "response": {
                 "$ref": "Operation"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.devices"
+              ]
             },
             "get": {
               "description": "Retrieves the specified DeviceUser",
@@ -540,7 +578,11 @@
               "path": "v1beta1/{+name}",
               "response": {
                 "$ref": "DeviceUser"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.devices",
+                "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
+              ]
             },
             "list": {
               "description": "Lists/Searches DeviceUsers.",
@@ -583,7 +625,11 @@
               "path": "v1beta1/{+parent}/deviceUsers",
               "response": {
                 "$ref": "ListDeviceUsersResponse"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.devices",
+                "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
+              ]
             },
             "lookup": {
               "description": "Looks up resource names of the DeviceUsers associated with the caller's credentials, as well as the properties provided in the request. This method must be called with end-user credentials with the scope: https://www.googleapis.com/auth/cloud-identity.devices.lookup If multiple properties are provided, only DeviceUsers having all of these properties are considered as matches - i.e. the query behaves like an AND. Different platforms require different amounts of information from the caller to ensure that the DeviceUser is uniquely identified. - iOS: No properties need to be passed, the caller's credentials are sufficient to identify the corresponding DeviceUser. - Android: Specifying the 'android_id' field is required. - Desktop: Specifying the 'raw_resource_id' field is required.",
@@ -659,7 +705,10 @@
               },
               "response": {
                 "$ref": "Operation"
-              }
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-identity.devices"
+              ]
             }
           },
           "resources": {
@@ -690,7 +739,11 @@
                   "path": "v1beta1/{+name}",
                   "response": {
                     "$ref": "ClientState"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-identity.devices",
+                    "https://www.googleapis.com/auth/cloud-identity.devices.readonly"
+                  ]
                 },
                 "patch": {
                   "description": "Updates the client state for the device user **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium",
@@ -726,7 +779,10 @@
                   },
                   "response": {
                     "$ref": "Operation"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-identity.devices"
+                  ]
                 }
               }
             }
@@ -1460,7 +1516,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Immutable. The [resource name](https://cloud.google.com/apis/design/resource_names) of the OrgMembership. Format: orgUnits/{$orgUnitId}/memberships/{$membership} The `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits), The `$membership` shall be of the form `{$entityType};{$memberId}`, where `$entityType` is the enum value of OrgMembership.EntityType, and `memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource) for OrgMembership.EntityType.SHARED_DRIVE.",
+                  "description": "Required. Immutable. The [resource name](https://cloud.google.com/apis/design/resource_names) of the OrgMembership. Format: orgUnits/{$orgUnitId}/memberships/{$membership} The `$orgUnitId` is the `orgUnitId` from the [Admin SDK `OrgUnit` resource](https://developers.google.com/admin-sdk/directory/reference/rest/v1/orgunits). To manage a Membership without specifying source `orgUnitId`, this API also supports the wildcard character '-' for `$orgUnitId` per https://google.aip.dev/159. The `$membership` shall be of the form `{$entityType};{$memberId}`, where `$entityType` is the enum value of OrgMembership.EntityType, and `memberId` is the `id` from [Drive API (V3) `Drive` resource](https://developers.google.com/drive/api/v3/reference/drives#resource) for OrgMembership.EntityType.SHARED_DRIVE.",
                   "location": "path",
                   "pattern": "^orgUnits/[^/]+/memberships/[^/]+$",
                   "required": true,
@@ -1480,7 +1536,7 @@
       }
     }
   },
-  "revision": "20220201",
+  "revision": "20220301",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
