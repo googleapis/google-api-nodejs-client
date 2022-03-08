@@ -553,6 +553,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of customers to return. The service may return fewer than this value. If unspecified, returns at most 10 customers. The maximum value is 50.",
                       "format": "int32",
@@ -735,6 +740,11 @@
                 "parent"
               ],
               "parameters": {
+                "filter": {
+                  "description": "Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "Optional. The maximum number of customers to return. The service may return fewer than this value. If unspecified, returns at most 10 customers. The maximum value is 50.",
                   "format": "int32",
@@ -1589,7 +1599,7 @@
       }
     }
   },
-  "revision": "20220203",
+  "revision": "20220303",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -3032,7 +3042,7 @@
           "type": "string"
         },
         "provisioningId": {
-          "description": "Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the underlying Subscription ID. For Google Cloud Platform, this would be the Billing Account ID of the billing subaccount.\"",
+          "description": "Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount.\"",
           "readOnly": true,
           "type": "string"
         },
@@ -3158,16 +3168,16 @@
       "type": "object"
     },
     "GoogleCloudChannelV1SubscriberEvent": {
-      "description": "Represents information which resellers will get as part of notification from Cloud Pub/Sub.",
+      "description": "Represents information which resellers will get as part of notification from Pub/Sub.",
       "id": "GoogleCloudChannelV1SubscriberEvent",
       "properties": {
         "customerEvent": {
           "$ref": "GoogleCloudChannelV1CustomerEvent",
-          "description": "Customer event send as part of Pub/Sub event to partners."
+          "description": "Customer event sent as part of Pub/Sub event to partners."
         },
         "entitlementEvent": {
           "$ref": "GoogleCloudChannelV1EntitlementEvent",
-          "description": "Entitlement event send as part of Pub/Sub event to partners."
+          "description": "Entitlement event sent as part of Pub/Sub event to partners."
         }
       },
       "type": "object"
@@ -3713,7 +3723,7 @@
           "type": "string"
         },
         "provisioningId": {
-          "description": "Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the underlying Subscription ID. For Google Cloud Platform, this would be the Billing Account ID of the billing subaccount.\"",
+          "description": "Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount.\"",
           "readOnly": true,
           "type": "string"
         },
@@ -3783,16 +3793,16 @@
       "type": "object"
     },
     "GoogleCloudChannelV1alpha1SubscriberEvent": {
-      "description": "Represents information which resellers will get as part of notification from Cloud Pub/Sub.",
+      "description": "Represents information which resellers will get as part of notification from Pub/Sub.",
       "id": "GoogleCloudChannelV1alpha1SubscriberEvent",
       "properties": {
         "customerEvent": {
           "$ref": "GoogleCloudChannelV1alpha1CustomerEvent",
-          "description": "Customer event send as part of Pub/Sub event to partners."
+          "description": "Customer event sent as part of Pub/Sub event to partners."
         },
         "entitlementEvent": {
           "$ref": "GoogleCloudChannelV1alpha1EntitlementEvent",
-          "description": "Entitlement event send as part of Pub/Sub event to partners."
+          "description": "Entitlement event sent as part of Pub/Sub event to partners."
         }
       },
       "type": "object"
@@ -4012,7 +4022,7 @@
           "type": "array"
         },
         "regionCode": {
-          "description": "Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: \"CH\" for Switzerland.",
+          "description": "Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: \"CH\" for Switzerland.",
           "type": "string"
         },
         "revision": {

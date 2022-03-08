@@ -324,7 +324,7 @@ export namespace cloudchannel_v1 {
      */
     productId?: string | null;
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the underlying Subscription ID. For Google Cloud Platform, this would be the Billing Account ID of the billing subaccount."
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount."
      */
     provisioningId?: string | null;
     /**
@@ -362,15 +362,15 @@ export namespace cloudchannel_v1 {
     resizeUnitCount?: boolean | null;
   }
   /**
-   * Represents information which resellers will get as part of notification from Cloud Pub/Sub.
+   * Represents information which resellers will get as part of notification from Pub/Sub.
    */
   export interface Schema$GoogleCloudChannelV1alpha1SubscriberEvent {
     /**
-     * Customer event send as part of Pub/Sub event to partners.
+     * Customer event sent as part of Pub/Sub event to partners.
      */
     customerEvent?: Schema$GoogleCloudChannelV1alpha1CustomerEvent;
     /**
-     * Entitlement event send as part of Pub/Sub event to partners.
+     * Entitlement event sent as part of Pub/Sub event to partners.
      */
     entitlementEvent?: Schema$GoogleCloudChannelV1alpha1EntitlementEvent;
   }
@@ -1358,7 +1358,7 @@ export namespace cloudchannel_v1 {
      */
     productId?: string | null;
     /**
-     * Output only. Provisioning ID of the entitlement. For Google Workspace, this would be the underlying Subscription ID. For Google Cloud Platform, this would be the Billing Account ID of the billing subaccount."
+     * Output only. Provisioning ID of the entitlement. For Google Workspace, this is the underlying Subscription ID. For Google Cloud Platform, this is the Billing Account ID of the billing subaccount."
      */
     provisioningId?: string | null;
     /**
@@ -1450,15 +1450,15 @@ export namespace cloudchannel_v1 {
     requestId?: string | null;
   }
   /**
-   * Represents information which resellers will get as part of notification from Cloud Pub/Sub.
+   * Represents information which resellers will get as part of notification from Pub/Sub.
    */
   export interface Schema$GoogleCloudChannelV1SubscriberEvent {
     /**
-     * Customer event send as part of Pub/Sub event to partners.
+     * Customer event sent as part of Pub/Sub event to partners.
      */
     customerEvent?: Schema$GoogleCloudChannelV1CustomerEvent;
     /**
-     * Entitlement event send as part of Pub/Sub event to partners.
+     * Entitlement event sent as part of Pub/Sub event to partners.
      */
     entitlementEvent?: Schema$GoogleCloudChannelV1EntitlementEvent;
   }
@@ -1735,7 +1735,7 @@ export namespace cloudchannel_v1 {
      */
     recipients?: string[] | null;
     /**
-     * Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See http://cldr.unicode.org/ and http://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland.
+     * Required. CLDR region code of the country/region of the address. This is never inferred and it is up to the user to ensure the value is correct. See https://cldr.unicode.org/ and https://www.unicode.org/cldr/charts/30/supplemental/territory_information.html for details. Example: "CH" for Switzerland.
      */
     regionCode?: string | null;
     /**
@@ -4034,6 +4034,8 @@ export namespace cloudchannel_v1 {
      *
      *   // Do the magic
      *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.list({
+     *     // Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.
+     *     filter: 'placeholder-value',
      *     // Optional. The maximum number of customers to return. The service may return fewer than this value. If unspecified, returns at most 10 customers. The maximum value is 50.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results other than the first page. Obtained through ListCustomersResponse.next_page_token of the previous CloudChannelService.ListCustomers call.
@@ -4360,6 +4362,10 @@ export namespace cloudchannel_v1 {
   }
   export interface Params$Resource$Accounts$Channelpartnerlinks$Customers$List
     extends StandardParameters {
+    /**
+     * Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.
+     */
+    filter?: string;
     /**
      * Optional. The maximum number of customers to return. The service may return fewer than this value. If unspecified, returns at most 10 customers. The maximum value is 50.
      */
@@ -5030,6 +5036,8 @@ export namespace cloudchannel_v1 {
      *
      *   // Do the magic
      *   const res = await cloudchannel.accounts.customers.list({
+     *     // Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.
+     *     filter: 'placeholder-value',
      *     // Optional. The maximum number of customers to return. The service may return fewer than this value. If unspecified, returns at most 10 customers. The maximum value is 50.
      *     pageSize: 'placeholder-value',
      *     // Optional. A token identifying a page of results other than the first page. Obtained through ListCustomersResponse.next_page_token of the previous CloudChannelService.ListCustomers call.
@@ -6107,6 +6115,10 @@ export namespace cloudchannel_v1 {
   }
   export interface Params$Resource$Accounts$Customers$List
     extends StandardParameters {
+    /**
+     * Optional. Filters applied to the [CloudChannelService.ListCustomers] results. See https://cloud.google.com/channel/docs/concepts/google-cloud/filter-customers for more information.
+     */
+    filter?: string;
     /**
      * Optional. The maximum number of customers to return. The service may return fewer than this value. If unspecified, returns at most 10 customers. The maximum value is 50.
      */
