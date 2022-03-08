@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v3.1.0...firebase-v3.2.0) (2022-03-08)
+
+
+### Features
+
+* **firebase:** update the API ([2f4d79d](https://github.com/googleapis/google-api-nodejs-client/commit/2f4d79d5e3e0f4db322765c2be7433e9647af7cd))
+
 ## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebase-v3.0.0...firebase-v3.1.0) (2021-10-18)
 
 
