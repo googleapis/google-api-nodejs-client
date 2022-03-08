@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20220105",
+  "revision": "20220223",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -640,6 +640,29 @@
         },
         "resourceUri": {
           "description": "URI of the resource that caused the abort.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppEngineVersionInfo": {
+      "description": "For display only. Metadata associated with an App Engine version.",
+      "id": "AppEngineVersionInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of an App Engine version.",
+          "type": "string"
+        },
+        "environment": {
+          "description": "App Engine execution environment for a version.",
+          "type": "string"
+        },
+        "runtime": {
+          "description": "Runtime of the App Engine version.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of an App Engine version.",
           "type": "string"
         }
       },
@@ -727,6 +750,30 @@
       "properties": {
         "uri": {
           "description": "A [Cloud function](https://cloud.google.com/functions) name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudFunctionInfo": {
+      "description": "For display only. Metadata associated with a Cloud function.",
+      "id": "CloudFunctionInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a Cloud function.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location in which the Cloud function is deployed.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a Cloud function.",
+          "type": "string"
+        },
+        "versionId": {
+          "description": "Latest successfully deployed version id of the Cloud function.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -847,7 +894,10 @@
             "INTERNET",
             "GOOGLE_API",
             "GKE_MASTER",
-            "CLOUD_SQL_INSTANCE"
+            "CLOUD_SQL_INSTANCE",
+            "PSC_PUBLISHED_SERVICE",
+            "PSC_GOOGLE_API",
+            "PSC_VPC_SC"
           ],
           "enumDescriptions": [
             "Target not specified.",
@@ -855,7 +905,10 @@
             "Target is the internet.",
             "Target is a Google API.",
             "Target is a Google Kubernetes Engine cluster master.",
-            "Target is a Cloud SQL instance."
+            "Target is a Cloud SQL instance.",
+            "Target is a published service using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-services).",
+            "Target is all Google APIs using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis).",
+            "Target is VPC-SC using [Private Service Connect](https://cloud.google.com/vpc/docs/configure-private-service-connect-apis)."
           ],
           "type": "string"
         }
@@ -890,7 +943,12 @@
             "DROPPED_INSIDE_GKE_SERVICE",
             "DROPPED_INSIDE_CLOUD_SQL_SERVICE",
             "GOOGLE_MANAGED_SERVICE_NO_PEERING",
-            "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS"
+            "CLOUD_SQL_INSTANCE_NO_IP_ADDRESS",
+            "CLOUD_FUNCTION_NOT_ACTIVE",
+            "VPC_CONNECTOR_NOT_SET",
+            "VPC_CONNECTOR_NOT_RUNNING",
+            "FORWARDING_RULE_REGION_MISMATCH",
+            "PSC_CONNECTION_NOT_ACCEPTED"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -914,7 +972,12 @@
             "Packet was dropped inside Google Kubernetes Engine Service.",
             "Packet was dropped inside Cloud SQL Service.",
             "Packet was dropped because there is no peering between the originating network and the Google Managed Services Network.",
-            "Packet was dropped because the Cloud SQL instance has neither a private nor a public IP address."
+            "Packet was dropped because the Cloud SQL instance has neither a private nor a public IP address.",
+            "Packet could be dropped because the Cloud function is not in an active status.",
+            "Packet could be dropped because no VPC connector is set.",
+            "Packet could be dropped because the VPC connector is not in a running state.",
+            "Packet could be dropped because it was sent from a different region to a regional forwarding without global access.",
+            "Privte Service Connect (PSC) connection is not in accepted state."
           ],
           "type": "string"
         },
@@ -1852,9 +1915,17 @@
           "$ref": "AbortInfo",
           "description": "Display information of the final state \"abort\" and reason."
         },
+        "appEngineVersionInfo": {
+          "$ref": "AppEngineVersionInfo",
+          "description": "Display information of an App Engine service version."
+        },
         "causesDrop": {
           "description": "This is a step that leads to the final state Drop.",
           "type": "boolean"
+        },
+        "cloudFunction": {
+          "$ref": "CloudFunctionInfo",
+          "description": "Display information of a Cloud function."
         },
         "cloudSqlInstance": {
           "$ref": "CloudSQLInstanceInfo",
@@ -1921,6 +1992,8 @@
             "START_FROM_PRIVATE_NETWORK",
             "START_FROM_GKE_MASTER",
             "START_FROM_CLOUD_SQL_INSTANCE",
+            "START_FROM_CLOUD_FUNCTION",
+            "START_FROM_APP_ENGINE_VERSION",
             "APPLY_INGRESS_FIREWALL_RULE",
             "APPLY_EGRESS_FIREWALL_RULE",
             "APPLY_ROUTE",
@@ -1931,6 +2004,7 @@
             "ARRIVE_AT_EXTERNAL_LOAD_BALANCER",
             "ARRIVE_AT_VPN_GATEWAY",
             "ARRIVE_AT_VPN_TUNNEL",
+            "ARRIVE_AT_VPC_CONNECTOR",
             "NAT",
             "PROXY_CONNECTION",
             "DELIVER",
@@ -1946,6 +2020,8 @@
             "Initial state: packet originating from a VPC or on-premises network with internal source IP. If the source is a VPC network visible to the user, a NetworkInfo is populated with details of the network.",
             "Initial state: packet originating from a Google Kubernetes Engine cluster master. A GKEMasterInfo is populated with starting instance information.",
             "Initial state: packet originating from a Cloud SQL instance. A CloudSQLInstanceInfo is populated with starting instance information.",
+            "Initial state: packet originating from a Cloud function. A CloudFunctionInfo is populated with starting function information.",
+            "Initial state: packet originating from an App Engine service version. An AppEngineVersionInfo is populated with starting version information.",
             "Config checking state: verify ingress firewall rule.",
             "Config checking state: verify egress firewall rule.",
             "Config checking state: verify route.",
@@ -1956,6 +2032,7 @@
             "Forwarding state: arriving at a Compute Engine external load balancer.",
             "Forwarding state: arriving at a Cloud VPN gateway.",
             "Forwarding state: arriving at a Cloud VPN tunnel.",
+            "Forwarding state: arriving at a VPC connector.",
             "Transition state: packet header translated.",
             "Transition state: original connection is terminated and a new proxied connection is initiated.",
             "Final state: packet could be delivered.",
@@ -1965,6 +2042,10 @@
             "Special state: viewer of the test result does not have permission to see the configuration in this step."
           ],
           "type": "string"
+        },
+        "vpcConnector": {
+          "$ref": "VpcConnectorInfo",
+          "description": "Display information of a VPC connector."
         },
         "vpnGateway": {
           "$ref": "VpnGatewayInfo",
@@ -2019,6 +2100,25 @@
             "$ref": "Step"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VpcConnectorInfo": {
+      "description": "For display only. Metadata associated with a VPC connector.",
+      "id": "VpcConnectorInfo",
+      "properties": {
+        "displayName": {
+          "description": "Name of a VPC connector.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Location in which the VPC connector is deployed.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of a VPC connector.",
+          "type": "string"
         }
       },
       "type": "object"

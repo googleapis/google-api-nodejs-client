@@ -139,6 +139,27 @@ export namespace networkmanagement_v1beta1 {
     resourceUri?: string | null;
   }
   /**
+   * For display only. Metadata associated with an App Engine version.
+   */
+  export interface Schema$AppEngineVersionInfo {
+    /**
+     * Name of an App Engine version.
+     */
+    displayName?: string | null;
+    /**
+     * App Engine execution environment for a version.
+     */
+    environment?: string | null;
+    /**
+     * Runtime of the App Engine version.
+     */
+    runtime?: string | null;
+    /**
+     * URI of an App Engine version.
+     */
+    uri?: string | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -193,6 +214,27 @@ export namespace networkmanagement_v1beta1 {
      * A [Cloud function](https://cloud.google.com/functions) name.
      */
     uri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with a Cloud function.
+   */
+  export interface Schema$CloudFunctionInfo {
+    /**
+     * Name of a Cloud function.
+     */
+    displayName?: string | null;
+    /**
+     * Location in which the Cloud function is deployed.
+     */
+    location?: string | null;
+    /**
+     * URI of a Cloud function.
+     */
+    uri?: string | null;
+    /**
+     * Latest successfully deployed version id of the Cloud function.
+     */
+    versionId?: string | null;
   }
   /**
    * For display only. Metadata associated with a Cloud SQL instance.
@@ -932,9 +974,17 @@ export namespace networkmanagement_v1beta1 {
      */
     abort?: Schema$AbortInfo;
     /**
+     * Display information of an App Engine service version.
+     */
+    appEngineVersionInfo?: Schema$AppEngineVersionInfo;
+    /**
      * This is a step that leads to the final state Drop.
      */
     causesDrop?: boolean | null;
+    /**
+     * Display information of a Cloud function.
+     */
+    cloudFunction?: Schema$CloudFunctionInfo;
     /**
      * Display information of a Cloud SQL instance.
      */
@@ -996,6 +1046,10 @@ export namespace networkmanagement_v1beta1 {
      */
     state?: string | null;
     /**
+     * Display information of a VPC connector.
+     */
+    vpcConnector?: Schema$VpcConnectorInfo;
+    /**
      * Display information of a Compute Engine VPN gateway.
      */
     vpnGateway?: Schema$VpnGatewayInfo;
@@ -1034,6 +1088,23 @@ export namespace networkmanagement_v1beta1 {
      * A trace of a test contains multiple steps from the initial state to the final state (delivered, dropped, forwarded, or aborted). The steps are ordered by the processing sequence within the simulated network state machine. It is critical to preserve the order of the steps and avoid reordering or sorting them.
      */
     steps?: Schema$Step[];
+  }
+  /**
+   * For display only. Metadata associated with a VPC connector.
+   */
+  export interface Schema$VpcConnectorInfo {
+    /**
+     * Name of a VPC connector.
+     */
+    displayName?: string | null;
+    /**
+     * Location in which the VPC connector is deployed.
+     */
+    location?: string | null;
+    /**
+     * URI of a VPC connector.
+     */
+    uri?: string | null;
   }
   /**
    * For display only. Metadata associated with a Compute Engine VPN gateway.
