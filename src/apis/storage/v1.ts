@@ -79,6 +79,10 @@ export namespace storage_v1 {
      */
     quotaUser?: string;
     /**
+     * Upload protocol for media (e.g. "media", "multipart", "resumable").
+     */
+    uploadType?: string;
+    /**
      * Deprecated. Please use quotaUser instead.
      */
     userIp?: string;
