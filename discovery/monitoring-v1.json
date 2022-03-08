@@ -679,7 +679,7 @@
       }
     }
   },
-  "revision": "20220124",
+  "revision": "20220218",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -838,6 +838,17 @@
             "The chart displays statistics such as average, median, 95th percentile, and more."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CollapsibleGroup": {
+      "description": "A widget that groups the other widgets. All widgets that are within the area spanned by the grouping widget are considered member widgets.",
+      "id": "CollapsibleGroup",
+      "properties": {
+        "collapsed": {
+          "description": "The collapsed state of the widget on first page load.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1946,6 +1957,10 @@
         "blank": {
           "$ref": "Empty",
           "description": "A blank space."
+        },
+        "collapsibleGroup": {
+          "$ref": "CollapsibleGroup",
+          "description": "A widget that groups the other widgets. All widgets that are within the area spanned by the grouping widget are considered member widgets."
         },
         "logsPanel": {
           "$ref": "LogsPanel",

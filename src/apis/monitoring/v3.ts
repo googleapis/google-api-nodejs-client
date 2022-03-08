@@ -436,7 +436,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$ContentMatcher {
     /**
-     * String or regex content to match. Maximum 1024 bytes. An empty content string indicates no content matching is to be performed.
+     * String, regex or JSON content to match. Maximum 1024 bytes. An empty content string indicates no content matching is to be performed.
      */
     content?: string | null;
     /**
@@ -555,7 +555,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$Documentation {
     /**
-     * The text of the documentation, interpreted according to mime_type. The content may not exceed 8,192 Unicode characters and may not exceed more than 10,240 bytes when encoded in UTF-8 format, whichever is smaller.
+     * The text of the documentation, interpreted according to mime_type. The content may not exceed 8,192 Unicode characters and may not exceed more than 10,240 bytes when encoded in UTF-8 format, whichever is smaller. This text can be templatized by using variables (https://cloud.google.com/monitoring/alerts/doc-variables).
      */
     content?: string | null;
     /**
@@ -1236,6 +1236,10 @@ export namespace monitoring_v3 {
      */
     duration?: string | null;
     /**
+     * A condition control that determines how metric-threshold conditions are evaluated when data stops arriving.
+     */
+    evaluationMissingData?: string | null;
+    /**
      * Required. A filter (https://cloud.google.com/monitoring/api/v3/filters) that identifies which time series should be compared with the threshold.The filter is similar to the one that is specified in the ListTimeSeries request (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list) (that call is useful to verify the time series that will be retrieved / processed). The filter must specify the metric type and the resource type. Optionally, it can specify resource labels and metric labels. This field must not exceed 2048 Unicode characters in length.
      */
     filter?: string | null;
@@ -1311,6 +1315,10 @@ export namespace monitoring_v3 {
      * The amount of time that a time series must violate the threshold to be considered failing. Currently, only values that are a multiple of a minute--e.g., 0, 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. When choosing a duration, it is useful to keep in mind the frequency of the underlying time series data (which may also be affected by any alignments specified in the aggregations field); a good duration is long enough so that a single outlier does not generate spurious alerts, but short enough that unhealthy states are detected and alerted on quickly.
      */
     duration?: string | null;
+    /**
+     * A condition control that determines how metric-threshold conditions are evaluated when data stops arriving.
+     */
+    evaluationMissingData?: string | null;
     /**
      * Monitoring Query Language (https://cloud.google.com/monitoring/mql) query that outputs a boolean stream.
      */
@@ -1907,7 +1915,7 @@ export namespace monitoring_v3 {
      */
     isInternal?: boolean | null;
     /**
-     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer k8s_service
+     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer k8s_service servicedirectory_service
      */
     monitoredResource?: Schema$MonitoredResource;
     /**
@@ -2024,7 +2032,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a Workspace.
+     * Lists time series that match a filter.
      * @example
      * ```js
      * // Before running the sample:
@@ -2279,7 +2287,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a Workspace.
+     * Lists time series that match a filter.
      * @example
      * ```js
      * // Before running the sample:
@@ -4808,7 +4816,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Gets a single metric descriptor. This method does not require a Workspace.
+     * Gets a single metric descriptor.
      * @example
      * ```js
      * // Before running the sample:
@@ -4949,7 +4957,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Lists metric descriptors that match a filter. This method does not require a Workspace.
+     * Lists metric descriptors that match a filter.
      * @example
      * ```js
      * // Before running the sample:
@@ -5152,7 +5160,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Gets a single monitored resource descriptor. This method does not require a Workspace.
+     * Gets a single monitored resource descriptor.
      * @example
      * ```js
      * // Before running the sample:
@@ -5296,7 +5304,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Lists monitored resource descriptors that match a filter. This method does not require a Workspace.
+     * Lists monitored resource descriptors that match a filter.
      * @example
      * ```js
      * // Before running the sample:
@@ -7378,7 +7386,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Lists time series that match a filter. This method does not require a Workspace.
+     * Lists time series that match a filter.
      * @example
      * ```js
      * // Before running the sample:
@@ -7549,7 +7557,7 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * Queries time series using Monitoring Query Language. This method does not require a Workspace.
+     * Queries time series using Monitoring Query Language.
      * @example
      * ```js
      * // Before running the sample:
