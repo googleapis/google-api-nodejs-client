@@ -448,6 +448,31 @@ export namespace vmmigration_v1alpha1 {
     targetDetails?: Schema$TargetVMDetails;
   }
   /**
+   * CycleStep hold information about a step progress.
+   */
+  export interface Schema$CycleStep {
+    /**
+     * The time the cycle step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Initializing replication step.
+     */
+    initializingReplication?: Schema$InitializingReplicationStep;
+    /**
+     * Post processing step.
+     */
+    postProcessing?: Schema$PostProcessingStep;
+    /**
+     * Replicating step.
+     */
+    replicating?: Schema$ReplicatingStep;
+    /**
+     * The time the cycle step has started.
+     */
+    startTime?: string | null;
+  }
+  /**
    * DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.
    */
   export interface Schema$DatacenterConnector {
@@ -554,6 +579,10 @@ export namespace vmmigration_v1alpha1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * InitializingReplicationStep contains specific step details.
+   */
+  export interface Schema$InitializingReplicationStep {}
   /**
    * Describes a URL link.
    */
@@ -957,6 +986,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$PauseMigrationRequest {}
   /**
+   * PostProcessingStep contains specific step details.
+   */
+  export interface Schema$PostProcessingStep {}
+  /**
    * Request message for 'RemoveMigration' request.
    */
   export interface Schema$RemoveGroupMigrationRequest {
@@ -964,6 +997,27 @@ export namespace vmmigration_v1alpha1 {
      * The MigratingVm to remove.
      */
     migratingVm?: string | null;
+  }
+  /**
+   * ReplicatingStep contains specific step details.
+   */
+  export interface Schema$ReplicatingStep {
+    /**
+     * The source disks replication rate for the last 30 minutes in bytes per second.
+     */
+    lastThirtyMinutesAverageBytesPerSecond?: string | null;
+    /**
+     * The source disks replication rate for the last 2 minutes in bytes per second.
+     */
+    lastTwoMinutesAverageBytesPerSecond?: string | null;
+    /**
+     * Replicated bytes in the step.
+     */
+    replicatedBytes?: string | null;
+    /**
+     * Total bytes to be handled in the step.
+     */
+    totalBytes?: string | null;
   }
   /**
    * ReplicationCycle contains information about the current replication cycle status.
@@ -981,6 +1035,10 @@ export namespace vmmigration_v1alpha1 {
      * The time the replication cycle has started.
      */
     startTime?: string | null;
+    /**
+     * The cycle's steps list reflecting its progress.
+     */
+    steps?: Schema$CycleStep[];
     /**
      * The accumulated duration the replication cycle was paused.
      */

@@ -1886,7 +1886,7 @@
       }
     }
   },
-  "revision": "20220225",
+  "revision": "20220306",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AddGroupMigrationRequest": {
@@ -2434,6 +2434,35 @@
       },
       "type": "object"
     },
+    "CycleStep": {
+      "description": "CycleStep hold information about a step progress.",
+      "id": "CycleStep",
+      "properties": {
+        "endTime": {
+          "description": "The time the cycle step has ended.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "initializingReplication": {
+          "$ref": "InitializingReplicationStep",
+          "description": "Initializing replication step."
+        },
+        "postProcessing": {
+          "$ref": "PostProcessingStep",
+          "description": "Post processing step."
+        },
+        "replicating": {
+          "$ref": "ReplicatingStep",
+          "description": "Replicating step."
+        },
+        "startTime": {
+          "description": "The time the cycle step has started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DatacenterConnector": {
       "description": "DatacenterConnector message describes a connector between the Source and GCP, which is installed on a vmware datacenter (an OVA vm installed by the user) to connect the Datacenter to GCP and support vm migration data transfer.",
       "id": "DatacenterConnector",
@@ -2584,6 +2613,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "InitializingReplicationStep": {
+      "description": "InitializingReplicationStep contains specific step details.",
+      "id": "InitializingReplicationStep",
+      "properties": {},
       "type": "object"
     },
     "Link": {
@@ -3212,12 +3247,45 @@
       "properties": {},
       "type": "object"
     },
+    "PostProcessingStep": {
+      "description": "PostProcessingStep contains specific step details.",
+      "id": "PostProcessingStep",
+      "properties": {},
+      "type": "object"
+    },
     "RemoveGroupMigrationRequest": {
       "description": "Request message for 'RemoveMigration' request.",
       "id": "RemoveGroupMigrationRequest",
       "properties": {
         "migratingVm": {
           "description": "The MigratingVm to remove.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReplicatingStep": {
+      "description": "ReplicatingStep contains specific step details.",
+      "id": "ReplicatingStep",
+      "properties": {
+        "lastThirtyMinutesAverageBytesPerSecond": {
+          "description": "The source disks replication rate for the last 30 minutes in bytes per second.",
+          "format": "int64",
+          "type": "string"
+        },
+        "lastTwoMinutesAverageBytesPerSecond": {
+          "description": "The source disks replication rate for the last 2 minutes in bytes per second.",
+          "format": "int64",
+          "type": "string"
+        },
+        "replicatedBytes": {
+          "description": "Replicated bytes in the step.",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalBytes": {
+          "description": "Total bytes to be handled in the step.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -3241,6 +3309,13 @@
           "description": "The time the replication cycle has started.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "steps": {
+          "description": "The cycle's steps list reflecting its progress.",
+          "items": {
+            "$ref": "CycleStep"
+          },
+          "type": "array"
         },
         "totalPauseDuration": {
           "description": "The accumulated duration the replication cycle was paused.",
