@@ -1712,6 +1712,14 @@ export namespace sqladmin_v1 {
      * This is always sql#sqlServerAuditConfig
      */
     kind?: string | null;
+    /**
+     * How long to keep generated audit files.
+     */
+    retentionInterval?: string | null;
+    /**
+     * How often to upload generated audit files.
+     */
+    uploadInterval?: string | null;
   }
   /**
    * Represents a Sql Server database on the Cloud SQL instance.
