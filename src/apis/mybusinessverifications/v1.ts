@@ -163,9 +163,14 @@ export namespace mybusinessverifications_v1 {
     verification?: Schema$Verification;
   }
   /**
-   * Indicates that the location fails to comply with our [guidelines](https://support.google.com/business/answer/3038177). To fix this issue, consult the [Help Center Article](https://support.google.com/business/answer/4569145).
+   * Indicates that the location fails to comply with our [guidelines](https://support.google.com/business/answer/3038177).
    */
-  export interface Schema$ComplyWithGuidelines {}
+  export interface Schema$ComplyWithGuidelines {
+    /**
+     * The reason why the location is being recommended to comply with guidelines.
+     */
+    recommendationReason?: string | null;
+  }
   /**
    * Display data for verifications through email.
    */
