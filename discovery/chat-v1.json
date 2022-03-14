@@ -3,7 +3,7 @@
   "baseUrl": "https://chat.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Hangouts Chat",
-  "description": "Enables bots to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.",
+  "description": "Enables apps to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/hangouts/chat",
   "fullyEncodeReservedExpansion": true,
@@ -623,7 +623,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Resource name of the attachment, in the form \"spaces/*/messages/*/attachments/*\".",
+                      "description": "Required. Resource name of the attachment, in the form \"spaces/*/messages/*/attachments/*\".",
                       "location": "path",
                       "pattern": "^spaces/[^/]+/messages/[^/]+/attachments/[^/]+$",
                       "required": true,
@@ -642,7 +642,7 @@
       }
     }
   },
-  "revision": "20220302",
+  "revision": "20220309",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -2600,7 +2600,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the space, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAAA",
+          "description": "Optional. Resource name of the space, in the form \"spaces/*\". Example: spaces/AAAAAAAAAAAA",
           "type": "string"
         },
         "singleUserBotDm": {
