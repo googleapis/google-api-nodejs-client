@@ -1245,6 +1245,11 @@
                       "required": true,
                       "type": "string"
                     },
+                    "requestId": {
+                      "description": "Idempotent request UUID.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "runtimeId": {
                       "description": "Required. User-defined unique ID of this Runtime.",
                       "location": "query",
@@ -1276,6 +1281,11 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/runtimes/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Idempotent request UUID.",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -1743,7 +1753,7 @@
       }
     }
   },
-  "revision": "20220224",
+  "revision": "20220303",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3033,7 +3043,12 @@
     "ResetRuntimeRequest": {
       "description": "Request for resetting a Managed Notebook Runtime.",
       "id": "ResetRuntimeRequest",
-      "properties": {},
+      "properties": {
+        "requestId": {
+          "description": "Idempotent request UUID.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RollbackInstanceRequest": {
@@ -3521,7 +3536,12 @@
     "StartRuntimeRequest": {
       "description": "Request for starting a Managed Notebook Runtime.",
       "id": "StartRuntimeRequest",
-      "properties": {},
+      "properties": {
+        "requestId": {
+          "description": "Idempotent request UUID.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Status": {
@@ -3560,7 +3580,12 @@
     "StopRuntimeRequest": {
       "description": "Request for stopping a Managed Notebook Runtime.",
       "id": "StopRuntimeRequest",
-      "properties": {},
+      "properties": {
+        "requestId": {
+          "description": "Idempotent request UUID.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "SwitchRuntimeRequest": {
@@ -3573,6 +3598,10 @@
         },
         "machineType": {
           "description": "machine type.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Idempotent request UUID.",
           "type": "string"
         }
       },
