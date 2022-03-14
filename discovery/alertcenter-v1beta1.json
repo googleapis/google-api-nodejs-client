@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20220221",
+  "revision": "20220307",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountSuspensionDetails": {
@@ -1270,6 +1270,21 @@
         },
         "fromHeader": {
           "description": "The sender email address.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MandatoryServiceAnnouncement": {
+      "description": "Alert Created by the MSA team for communications necessary for continued use of Google Workspace Products.",
+      "id": "MandatoryServiceAnnouncement",
+      "properties": {
+        "description": {
+          "description": "Detailed, freeform text describing the announcement",
+          "type": "string"
+        },
+        "title": {
+          "description": "One line summary of the announcement",
           "type": "string"
         }
       },
