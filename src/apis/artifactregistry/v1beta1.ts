@@ -2404,7 +2404,7 @@ export namespace artifactregistry_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // The name of the parent resource whose files will be listed.
+     *       // The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
      *     }
@@ -2537,7 +2537,7 @@ export namespace artifactregistry_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The name of the parent resource whose files will be listed.
+     * The name of the repository whose files will be listed. For example: "projects/p1/locations/us-central1/repositories/repo1
      */
     parent?: string;
   }

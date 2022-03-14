@@ -650,7 +650,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "The name of the parent resource whose files will be listed.",
+                          "description": "The name of the repository whose files will be listed. For example: \"projects/p1/locations/us-central1/repositories/repo1",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
                           "required": true,
@@ -665,82 +665,6 @@
                         "https://www.googleapis.com/auth/cloud-platform",
                         "https://www.googleapis.com/auth/cloud-platform.read-only"
                       ]
-                    }
-                  }
-                },
-                "gooGetArtifacts": {
-                  "methods": {
-                    "import": {
-                      "description": "Imports GooGet artifacts. The returned Operation will complete once the resources are imported. Package, Version, and File resources are created based on the imported artifacts. Imported artifacts that conflict with existing resources are ignored.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/gooGetArtifacts:import",
-                      "httpMethod": "POST",
-                      "id": "artifactregistry.projects.locations.repositories.gooGetArtifacts.import",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "The name of the parent resource where the artifacts will be imported.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}/gooGetArtifacts:import",
-                      "request": {
-                        "$ref": "ImportGooGetArtifactsRequest"
-                      },
-                      "response": {
-                        "$ref": "Operation"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
-                },
-                "googetArtifacts": {
-                  "methods": {
-                    "upload": {
-                      "description": "Directly uploads a GooGet artifact. The returned Operation will complete once the resources are uploaded. Package, Version, and File resources are created based on the imported artifact. Imported artifacts that conflict with existing resources are ignored.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}/googetArtifacts:create",
-                      "httpMethod": "POST",
-                      "id": "artifactregistry.projects.locations.repositories.googetArtifacts.upload",
-                      "mediaUpload": {
-                        "accept": [
-                          "*/*"
-                        ],
-                        "protocols": {
-                          "simple": {
-                            "multipart": true,
-                            "path": "/upload/v1/{+parent}/googetArtifacts:create"
-                          }
-                        }
-                      },
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "The name of the parent resource where the artifacts will be uploaded.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+parent}/googetArtifacts:create",
-                      "request": {
-                        "$ref": "UploadGooGetArtifactRequest"
-                      },
-                      "response": {
-                        "$ref": "UploadGooGetArtifactMediaResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ],
-                      "supportsMediaUpload": true
                     }
                   }
                 },
@@ -1213,7 +1137,7 @@
       }
     }
   },
-  "revision": "20220225",
+  "revision": "20220307",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1395,35 +1319,6 @@
       "properties": {
         "gcsSource": {
           "$ref": "ImportAptArtifactsGcsSource",
-          "description": "Google Cloud Storage location where input content is located."
-        }
-      },
-      "type": "object"
-    },
-    "ImportGooGetArtifactsGcsSource": {
-      "description": "Google Cloud Storage location where the artifacts currently reside.",
-      "id": "ImportGooGetArtifactsGcsSource",
-      "properties": {
-        "uris": {
-          "description": "Cloud Storage paths URI (e.g., gs://my_bucket/my_object).",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useWildcards": {
-          "description": "Supports URI wildcards for matching multiple objects from a single URI.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "ImportGooGetArtifactsRequest": {
-      "description": "The request to import new googet artifacts.",
-      "id": "ImportGooGetArtifactsRequest",
-      "properties": {
-        "gcsSource": {
-          "$ref": "ImportGooGetArtifactsGcsSource",
           "description": "Google Cloud Storage location where input content is located."
         }
       },
@@ -1859,23 +1754,6 @@
     "UploadAptArtifactRequest": {
       "description": "The request to upload an artifact.",
       "id": "UploadAptArtifactRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "UploadGooGetArtifactMediaResponse": {
-      "description": "The response to upload an artifact.",
-      "id": "UploadGooGetArtifactMediaResponse",
-      "properties": {
-        "operation": {
-          "$ref": "Operation",
-          "description": "Operation to be returned to the user."
-        }
-      },
-      "type": "object"
-    },
-    "UploadGooGetArtifactRequest": {
-      "description": "The request to upload an artifact.",
-      "id": "UploadGooGetArtifactRequest",
       "properties": {},
       "type": "object"
     },
