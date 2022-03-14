@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20220223",
+  "revision": "20220228",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -983,6 +983,17 @@
         },
         "resourceUri": {
           "description": "URI of the resource that caused the drop.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EdgeLocation": {
+      "description": "Representation of a network edge location as per https://cloud.google.com/vpc/docs/edge-locations.",
+      "id": "EdgeLocation",
+      "properties": {
+        "metropolitanArea": {
+          "description": "Name of the metropolitan area.",
           "type": "string"
         }
       },
@@ -1675,6 +1686,10 @@
             "No valid source endpoint could be derived from the request."
           ],
           "type": "string"
+        },
+        "destinationEgressLocation": {
+          "$ref": "EdgeLocation",
+          "description": "The EdgeLocation from which a packet destined for/originating from the internet will egress/ingress the Google network. This will only be populated for a connectivity test which has an internet destination/source address. The absence of this field *must not* be used as an indication that the destination/source is part of the Google network."
         },
         "endpointInfo": {
           "$ref": "EndpointInfo",
