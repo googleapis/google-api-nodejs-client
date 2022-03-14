@@ -647,11 +647,36 @@
           "resources": {
             "insightTypes": {
               "methods": {
-                "config": {
+                "getConfig": {
+                  "description": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/insightTypes/{insightTypesId}/config",
+                  "httpMethod": "GET",
+                  "id": "recommender.organizations.locations.insightTypes.getConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudRecommenderV1beta1InsightTypeConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateConfig": {
                   "description": "Updates an InsightTypeConfig change. This will create a new revision of the config.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/insightTypes/{insightTypesId}/config",
-                  "httpMethod": "POST",
-                  "id": "recommender.organizations.locations.insightTypes.config",
+                  "httpMethod": "PATCH",
+                  "id": "recommender.organizations.locations.insightTypes.updateConfig",
                   "parameterOrder": [
                     "name"
                   ],
@@ -679,31 +704,6 @@
                   "request": {
                     "$ref": "GoogleCloudRecommenderV1beta1InsightTypeConfig"
                   },
-                  "response": {
-                    "$ref": "GoogleCloudRecommenderV1beta1InsightTypeConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "getConfig": {
-                  "description": "Gets the requested InsightTypeConfig. There is only one instance of the config for each InsightType.",
-                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/insightTypes/{insightTypesId}/config",
-                  "httpMethod": "GET",
-                  "id": "recommender.organizations.locations.insightTypes.getConfig",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the InsightTypeConfig to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `projects/[PROJECT_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/global/recommenders/[INSIGHT_TYPE_ID]/config`",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/locations/[^/]+/insightTypes/[^/]+/config$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+name}",
                   "response": {
                     "$ref": "GoogleCloudRecommenderV1beta1InsightTypeConfig"
                   },
@@ -815,11 +815,36 @@
             },
             "recommenders": {
               "methods": {
-                "config": {
+                "getConfig": {
+                  "description": "Gets the requested Recommender Config. There is only one instance of the config for each Recommender.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/recommenders/{recommendersId}/config",
+                  "httpMethod": "GET",
+                  "id": "recommender.organizations.locations.recommenders.getConfig",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudRecommenderV1beta1RecommenderConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "updateConfig": {
                   "description": "Updates a Recommender Config. This will create a new revision of the config.",
                   "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/recommenders/{recommendersId}/config",
-                  "httpMethod": "POST",
-                  "id": "recommender.organizations.locations.recommenders.config",
+                  "httpMethod": "PATCH",
+                  "id": "recommender.organizations.locations.recommenders.updateConfig",
                   "parameterOrder": [
                     "name"
                   ],
@@ -847,31 +872,6 @@
                   "request": {
                     "$ref": "GoogleCloudRecommenderV1beta1RecommenderConfig"
                   },
-                  "response": {
-                    "$ref": "GoogleCloudRecommenderV1beta1RecommenderConfig"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "getConfig": {
-                  "description": "Gets the requested Recommender Config. There is only one instance of the config for each Recommender.",
-                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/recommenders/{recommendersId}/config",
-                  "httpMethod": "GET",
-                  "id": "recommender.organizations.locations.recommenders.getConfig",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the Recommendation Config to get. Acceptable formats: * `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `projects/[PROJECT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config` * `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]/config`",
-                      "location": "path",
-                      "pattern": "^organizations/[^/]+/locations/[^/]+/recommenders/[^/]+/config$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta1/{+name}",
                   "response": {
                     "$ref": "GoogleCloudRecommenderV1beta1RecommenderConfig"
                   },
@@ -1442,7 +1442,7 @@
       }
     }
   },
-  "revision": "20220228",
+  "revision": "20220307",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
