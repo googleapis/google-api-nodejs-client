@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20210802",
+  "revision": "20220307",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -229,6 +229,10 @@
         "bodyLocKey": {
           "description": "The key to the body string in the app's string resources to use to localize the body text to the user's current localization. See [String Resources](https://goo.gl/NdFZGI) for more information.",
           "type": "string"
+        },
+        "bypassProxyNotification": {
+          "description": "If set, display notifications delivered to the device will be handled by the app instead of the proxy.",
+          "type": "boolean"
         },
         "channelId": {
           "description": "The [notification's channel id](https://developer.android.com/guide/topics/ui/notifiers/notifications#ManageChannels) (new in Android O). The app must create a channel with this channel ID before any notification with this channel ID is received. If you don't send this channel ID in the request, or if the channel ID provided has not yet been created by the app, FCM uses the channel ID specified in the app manifest.",
