@@ -586,6 +586,10 @@ export namespace run_v1 {
    */
   export interface Schema$ExecutionStatus {
     /**
+     * Optional. The number of tasks which reached phase Cancelled. +optional
+     */
+    cancelledCount?: number | null;
+    /**
      * Optional. Represents time when the execution was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. +optional
      */
     completionTime?: string | null;
@@ -605,6 +609,10 @@ export namespace run_v1 {
      * Optional. The 'generation' of the execution that was last processed by the controller.
      */
     observedGeneration?: number | null;
+    /**
+     * Optional. The number of tasks which have retried at least once. +optional
+     */
+    retriedCount?: number | null;
     /**
      * Optional. The number of actively running tasks. +optional
      */

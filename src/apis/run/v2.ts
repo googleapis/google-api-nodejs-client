@@ -128,7 +128,7 @@ export namespace run_v2 {
   /**
    * Settings for Binary Authorization feature.
    */
-  export interface Schema$GoogleCloudRunOpV2BinaryAuthorization {
+  export interface Schema$GoogleCloudRunV2BinaryAuthorization {
     /**
      * If present, indicates to use Breakglass using this justification. If use_default is False, then it must be empty. For more information on breakglass, see https://cloud.google.com/binary-authorization/docs/using-breakglass
      */
@@ -141,7 +141,7 @@ export namespace run_v2 {
   /**
    * Represents a specific Cloud SQL instance.
    */
-  export interface Schema$GoogleCloudRunOpV2CloudSqlInstance {
+  export interface Schema$GoogleCloudRunV2CloudSqlInstance {
     /**
      * The Cloud SQL instance connection names, as can be found in https://console.cloud.google.com/sql/instances. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run. Format: {project\}:{location\}:{instance\}
      */
@@ -150,7 +150,7 @@ export namespace run_v2 {
   /**
    * Defines a status condition for a resource.
    */
-  export interface Schema$GoogleCloudRunOpV2Condition {
+  export interface Schema$GoogleCloudRunV2Condition {
     /**
      * A reason for the domain mapping condition.
      */
@@ -195,7 +195,7 @@ export namespace run_v2 {
   /**
    * A single application container. This specifies both the container to run, the command to run in the container and the arguments to supply to it. Note that additional arguments may be supplied by the system to the container at runtime.
    */
-  export interface Schema$GoogleCloudRunOpV2Container {
+  export interface Schema$GoogleCloudRunV2Container {
     /**
      * Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      */
@@ -207,7 +207,7 @@ export namespace run_v2 {
     /**
      * List of environment variables to set in the container.
      */
-    env?: Schema$GoogleCloudRunOpV2EnvVar[];
+    env?: Schema$GoogleCloudRunV2EnvVar[];
     /**
      * Required. URL of the Container image in Google Container Registry or Docker More info: https://kubernetes.io/docs/concepts/containers/images
      */
@@ -219,20 +219,20 @@ export namespace run_v2 {
     /**
      * List of ports to expose from the container. Only a single port can be specified. The specified ports must be listening on all interfaces (0.0.0.0) within the container to be accessible. If omitted, a port number will be chosen and passed to the container through the PORT environment variable for the container to listen on.
      */
-    ports?: Schema$GoogleCloudRunOpV2ContainerPort[];
+    ports?: Schema$GoogleCloudRunV2ContainerPort[];
     /**
      * Compute Resource requirements by this container. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#resources
      */
-    resources?: Schema$GoogleCloudRunOpV2ResourceRequirements;
+    resources?: Schema$GoogleCloudRunV2ResourceRequirements;
     /**
      * Volume to mount into the container's filesystem.
      */
-    volumeMounts?: Schema$GoogleCloudRunOpV2VolumeMount[];
+    volumeMounts?: Schema$GoogleCloudRunV2VolumeMount[];
   }
   /**
    * ContainerPort represents a network port in a single container.
    */
-  export interface Schema$GoogleCloudRunOpV2ContainerPort {
+  export interface Schema$GoogleCloudRunV2ContainerPort {
     /**
      * Port number the container listens on. This must be a valid TCP port number, 0 < container_port < 65536.
      */
@@ -245,7 +245,7 @@ export namespace run_v2 {
   /**
    * EnvVar represents an environment variable present in a Container.
    */
-  export interface Schema$GoogleCloudRunOpV2EnvVar {
+  export interface Schema$GoogleCloudRunV2EnvVar {
     /**
      * Required. Name of the environment variable. Must be a C_IDENTIFIER, and mnay not exceed 32768 characters.
      */
@@ -257,21 +257,21 @@ export namespace run_v2 {
     /**
      * Source for the environment variable's value.
      */
-    valueSource?: Schema$GoogleCloudRunOpV2EnvVarSource;
+    valueSource?: Schema$GoogleCloudRunV2EnvVarSource;
   }
   /**
    * EnvVarSource represents a source for the value of an EnvVar.
    */
-  export interface Schema$GoogleCloudRunOpV2EnvVarSource {
+  export interface Schema$GoogleCloudRunV2EnvVarSource {
     /**
      * Selects a secret and a specific version from Cloud Secret Manager.
      */
-    secretKeyRef?: Schema$GoogleCloudRunOpV2SecretKeySelector;
+    secretKeyRef?: Schema$GoogleCloudRunV2SecretKeySelector;
   }
   /**
    * Response message containing a list of Revisions.
    */
-  export interface Schema$GoogleCloudRunOpV2ListRevisionsResponse {
+  export interface Schema$GoogleCloudRunV2ListRevisionsResponse {
     /**
      * A token indicating there are more items than page_size. Use it in the next ListRevisions request to continue.
      */
@@ -279,12 +279,12 @@ export namespace run_v2 {
     /**
      * The resulting list of Revisions.
      */
-    revisions?: Schema$GoogleCloudRunOpV2Revision[];
+    revisions?: Schema$GoogleCloudRunV2Revision[];
   }
   /**
    * Response message containing a list of Services.
    */
-  export interface Schema$GoogleCloudRunOpV2ListServicesResponse {
+  export interface Schema$GoogleCloudRunV2ListServicesResponse {
     /**
      * A token indicating there are more items than page_size. Use it in the next ListServices request to continue.
      */
@@ -292,12 +292,12 @@ export namespace run_v2 {
     /**
      * The resulting list of Services.
      */
-    services?: Schema$GoogleCloudRunOpV2Service[];
+    services?: Schema$GoogleCloudRunV2Service[];
   }
   /**
    * ResourceRequirements describes the compute resource requirements.
    */
-  export interface Schema$GoogleCloudRunOpV2ResourceRequirements {
+  export interface Schema$GoogleCloudRunV2ResourceRequirements {
     /**
      * Determines whether CPU should be throttled or not outside of requests.
      */
@@ -310,7 +310,7 @@ export namespace run_v2 {
   /**
    * A Revision is an immutable snapshot of code and configuration. A Revision references a container image. Revisions are only created by updates to its parent Service.
    */
-  export interface Schema$GoogleCloudRunOpV2Revision {
+  export interface Schema$GoogleCloudRunV2Revision {
     /**
      * KRM-style annotations for the resource.
      */
@@ -318,7 +318,7 @@ export namespace run_v2 {
     /**
      * Output only. The Condition of this Revision, containing its readiness status, and detailed error information in case it did not reach a serving state.
      */
-    conditions?: Schema$GoogleCloudRunOpV2Condition[];
+    conditions?: Schema$GoogleCloudRunV2Condition[];
     /**
      * Indicates whether Confidential Cloud Run is enabled in this Revision.
      */
@@ -330,7 +330,7 @@ export namespace run_v2 {
     /**
      * Holds the single container that defines the unit of execution for this Revision.
      */
-    containers?: Schema$GoogleCloudRunOpV2Container[];
+    containers?: Schema$GoogleCloudRunV2Container[];
     /**
      * Output only. The creation time.
      */
@@ -386,7 +386,7 @@ export namespace run_v2 {
     /**
      * Scaling settings for this revision.
      */
-    scaling?: Schema$GoogleCloudRunOpV2RevisionScaling;
+    scaling?: Schema$GoogleCloudRunV2RevisionScaling;
     /**
      * Output only. The name of the parent service.
      */
@@ -410,16 +410,16 @@ export namespace run_v2 {
     /**
      * A list of Volumes to make available to containers.
      */
-    volumes?: Schema$GoogleCloudRunOpV2Volume[];
+    volumes?: Schema$GoogleCloudRunV2Volume[];
     /**
      * VPC Access configuration for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      */
-    vpcAccess?: Schema$GoogleCloudRunOpV2VpcAccess;
+    vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
   }
   /**
    * Settings for revision-level scaling settings.
    */
-  export interface Schema$GoogleCloudRunOpV2RevisionScaling {
+  export interface Schema$GoogleCloudRunV2RevisionScaling {
     /**
      * Maximum number of serving instances that this resource should have.
      */
@@ -432,7 +432,7 @@ export namespace run_v2 {
   /**
    * RevisionTemplate describes the data a revision should have when created from a template.
    */
-  export interface Schema$GoogleCloudRunOpV2RevisionTemplate {
+  export interface Schema$GoogleCloudRunV2RevisionTemplate {
     /**
      * KRM-style annotations for the resource.
      */
@@ -448,7 +448,7 @@ export namespace run_v2 {
     /**
      * Holds the single container that defines the unit of execution for this Revision.
      */
-    containers?: Schema$GoogleCloudRunOpV2Container[];
+    containers?: Schema$GoogleCloudRunV2Container[];
     /**
      * A reference to a customer managed encryption key (CMEK) to use to encrypt this container image. For more information, go to https://cloud.google.com/run/docs/securing/using-cmek
      */
@@ -468,7 +468,7 @@ export namespace run_v2 {
     /**
      * Scaling settings for this Revision.
      */
-    scaling?: Schema$GoogleCloudRunOpV2RevisionScaling;
+    scaling?: Schema$GoogleCloudRunV2RevisionScaling;
     /**
      * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
      */
@@ -480,16 +480,16 @@ export namespace run_v2 {
     /**
      * A list of Volumes to make available to containers.
      */
-    volumes?: Schema$GoogleCloudRunOpV2Volume[];
+    volumes?: Schema$GoogleCloudRunV2Volume[];
     /**
      * VPC Access configuration to use for this Revision. For more information, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
      */
-    vpcAccess?: Schema$GoogleCloudRunOpV2VpcAccess;
+    vpcAccess?: Schema$GoogleCloudRunV2VpcAccess;
   }
   /**
    * SecretEnvVarSource represents a source for the value of an EnvVar.
    */
-  export interface Schema$GoogleCloudRunOpV2SecretKeySelector {
+  export interface Schema$GoogleCloudRunV2SecretKeySelector {
     /**
      * Required. The name of the secret in Cloud Secret Manager. Format: {secret_name\} if the secret is in the same project. projects/{project\}/secrets/{secret_name\} if the secret is in a different project.
      */
@@ -502,7 +502,7 @@ export namespace run_v2 {
   /**
    * The secret's value will be presented as the content of a file whose name is defined in the item path. If no items are defined, the name of the file is the secret.
    */
-  export interface Schema$GoogleCloudRunOpV2SecretVolumeSource {
+  export interface Schema$GoogleCloudRunV2SecretVolumeSource {
     /**
      * Integer representation of mode bits to use on created files by default. Must be a value between 0000 and 0777 (octal), defaulting to 0644. Directories within the path are not affected by this setting. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 777 (a=rwx), set to 0777 (octal) or 511 (base-10). For chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. This might be in conflict with other options that affect the file mode, like fsGroup, and as a result, other mode bits could be set.
      */
@@ -510,7 +510,7 @@ export namespace run_v2 {
     /**
      * If unspecified, the volume will expose a file whose name is the secret, relative to VolumeMount.mount_path. If specified, the key will be used as the version to fetch from Cloud Secret Manager and the path will be the name of the file exposed in the volume. When items are defined, they must specify a path and a version.
      */
-    items?: Schema$GoogleCloudRunOpV2VersionToPath[];
+    items?: Schema$GoogleCloudRunV2VersionToPath[];
     /**
      * Required. The name of the secret in Cloud Secret Manager. Format: {secret\} if the secret is in the same project. projects/{project\}/secrets/{secret\} if the secret is in a different project.
      */
@@ -519,7 +519,7 @@ export namespace run_v2 {
   /**
    * Service acts as a top-level container that manages a set of configurations and revision templates which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership.
    */
-  export interface Schema$GoogleCloudRunOpV2Service {
+  export interface Schema$GoogleCloudRunV2Service {
     /**
      * Unstructured key value map that may be set by external tools to store and arbitrary metadata. They are not queryable and should be preserved when modifying objects. Cloud Run will populate some annotations using 'run.googleapis.com' or 'serving.knative.dev' namespaces. This field follows Kubernetes annotations' namespacing, limits, and rules. More info: https://kubernetes.io/docs/user-guide/annotations
      */
@@ -527,7 +527,7 @@ export namespace run_v2 {
     /**
      * Settings for the Binary Authorization feature.
      */
-    binaryAuthorization?: Schema$GoogleCloudRunOpV2BinaryAuthorization;
+    binaryAuthorization?: Schema$GoogleCloudRunV2BinaryAuthorization;
     /**
      * Arbitrary identifier for the API client.
      */
@@ -539,7 +539,7 @@ export namespace run_v2 {
     /**
      * Output only. The Conditions of all other associated sub-resources. They contain additional diagnostics information in case the Service does not reach its Serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
-    conditions?: Schema$GoogleCloudRunOpV2Condition[];
+    conditions?: Schema$GoogleCloudRunV2Condition[];
     /**
      * Output only. The creation time.
      */
@@ -607,19 +607,19 @@ export namespace run_v2 {
     /**
      * Required. The template used to create revisions for this Service.
      */
-    template?: Schema$GoogleCloudRunOpV2RevisionTemplate;
+    template?: Schema$GoogleCloudRunV2RevisionTemplate;
     /**
      * Output only. The Condition of this Service, containing its readiness status, and detailed error information in case it did not reach a serving state. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
-    terminalCondition?: Schema$GoogleCloudRunOpV2Condition;
+    terminalCondition?: Schema$GoogleCloudRunV2Condition;
     /**
      * Specifies how to distribute traffic over a collection of Revisions belonging to the Service. If traffic is empty or not provided, defaults to 100% traffic to the latest `Ready` Revision.
      */
-    traffic?: Schema$GoogleCloudRunOpV2TrafficTarget[];
+    traffic?: Schema$GoogleCloudRunV2TrafficTarget[];
     /**
      * Output only. Detailed status information for corresponding traffic targets. See comments in `reconciling` for additional information on reconciliation process in Cloud Run.
      */
-    trafficStatuses?: Schema$GoogleCloudRunOpV2TrafficTargetStatus[];
+    trafficStatuses?: Schema$GoogleCloudRunV2TrafficTargetStatus[];
     /**
      * Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.
      */
@@ -636,7 +636,7 @@ export namespace run_v2 {
   /**
    * Holds a single traffic routing entry for the Service. Allocations can be done to a specific Revision name, or pointing to the latest Ready Revision.
    */
-  export interface Schema$GoogleCloudRunOpV2TrafficTarget {
+  export interface Schema$GoogleCloudRunV2TrafficTarget {
     /**
      * Specifies percent of the traffic to this Revision. This defaults to zero if unspecified.
      */
@@ -657,7 +657,7 @@ export namespace run_v2 {
   /**
    * Represents the observed state of a single `TrafficTarget` entry.
    */
-  export interface Schema$GoogleCloudRunOpV2TrafficTargetStatus {
+  export interface Schema$GoogleCloudRunV2TrafficTargetStatus {
     /**
      * Specifies percent of the traffic to this Revision.
      */
@@ -682,7 +682,7 @@ export namespace run_v2 {
   /**
    * VersionToPath maps a specific version of a secret to a relative file to mount to, relative to VolumeMount's mount_path.
    */
-  export interface Schema$GoogleCloudRunOpV2VersionToPath {
+  export interface Schema$GoogleCloudRunV2VersionToPath {
     /**
      * Integer octal mode bits to use on this file, must be a value between 01 and 0777 (octal). If 0 or not set, the Volume's default mode will be used. Notes * Internally, a umask of 0222 will be applied to any non-zero value. * This is an integer representation of the mode bits. So, the octal integer value should look exactly as the chmod numeric notation with a leading zero. Some examples: for chmod 777 (a=rwx), set to 0777 (octal) or 511 (base-10). For chmod 640 (u=rw,g=r), set to 0640 (octal) or 416 (base-10). For chmod 755 (u=rwx,g=rx,o=rx), set to 0755 (octal) or 493 (base-10). * This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set.
      */
@@ -699,11 +699,11 @@ export namespace run_v2 {
   /**
    * Volume represents a named volume in a container.
    */
-  export interface Schema$GoogleCloudRunOpV2Volume {
+  export interface Schema$GoogleCloudRunV2Volume {
     /**
      * For Cloud SQL volumes, contains the specific instances that should be mounted. Visit https://cloud.google.com/sql/docs/mysql/connect-run for more information on how to connect Cloud SQL and Cloud Run.
      */
-    cloudSqlInstance?: Schema$GoogleCloudRunOpV2CloudSqlInstance;
+    cloudSqlInstance?: Schema$GoogleCloudRunV2CloudSqlInstance;
     /**
      * Required. Volume's name.
      */
@@ -711,12 +711,12 @@ export namespace run_v2 {
     /**
      * Secret represents a secret that should populate this volume. More info: https://kubernetes.io/docs/concepts/storage/volumes#secret
      */
-    secret?: Schema$GoogleCloudRunOpV2SecretVolumeSource;
+    secret?: Schema$GoogleCloudRunV2SecretVolumeSource;
   }
   /**
    * VolumeMount describes a mounting of a Volume within a container.
    */
-  export interface Schema$GoogleCloudRunOpV2VolumeMount {
+  export interface Schema$GoogleCloudRunV2VolumeMount {
     /**
      * Required. Path within the container at which the volume should be mounted. Must not contain ':'. For Cloud SQL volumes, it can be left empty, or must otherwise be `/cloudsql`. All instances defined in the Volume will be available as `/cloudsql/[instance]`. For more information on Cloud SQL volumes, visit https://cloud.google.com/sql/docs/mysql/connect-run
      */
@@ -729,7 +729,7 @@ export namespace run_v2 {
   /**
    * VPC Access settings. For more information on creating a VPC Connector, visit https://cloud.google.com/vpc/docs/configure-serverless-vpc-access For information on how to configure Cloud Run with an existing VPC Connector, visit https://cloud.google.com/run/docs/configuring/connecting-vpc
    */
-  export interface Schema$GoogleCloudRunOpV2VpcAccess {
+  export interface Schema$GoogleCloudRunV2VpcAccess {
     /**
      * VPC Access connector name. Format: projects/{project\}/locations/{location\}/connectors/{connector\}
      */
@@ -1801,7 +1801,7 @@ export namespace run_v2 {
     get(
       params?: Params$Resource$Projects$Locations$Services$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRunOpV2Service>;
+    ): GaxiosPromise<Schema$GoogleCloudRunV2Service>;
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1811,30 +1811,30 @@ export namespace run_v2 {
       params: Params$Resource$Projects$Locations$Services$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2Service>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2Service>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Service>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Service>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2Service>
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Service>
     ): void;
-    get(callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2Service>): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudRunV2Service>): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Services$Get
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2Service>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Service>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2Service>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Service>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2Service>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Service>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRunOpV2Service>
+      | GaxiosPromise<Schema$GoogleCloudRunV2Service>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Get;
@@ -1866,12 +1866,12 @@ export namespace run_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudRunOpV2Service>(
+        createAPIRequest<Schema$GoogleCloudRunV2Service>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudRunOpV2Service>(parameters);
+        return createAPIRequest<Schema$GoogleCloudRunV2Service>(parameters);
       }
     }
 
@@ -2078,7 +2078,7 @@ export namespace run_v2 {
     list(
       params?: Params$Resource$Projects$Locations$Services$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRunOpV2ListServicesResponse>;
+    ): GaxiosPromise<Schema$GoogleCloudRunV2ListServicesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2088,32 +2088,32 @@ export namespace run_v2 {
       params: Params$Resource$Projects$Locations$Services$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2ListServicesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2ListServicesResponse>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListServicesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListServicesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Services$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2ListServicesResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListServicesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2ListServicesResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListServicesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Services$List
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2ListServicesResponse>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListServicesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2ListServicesResponse>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListServicesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2ListServicesResponse>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListServicesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRunOpV2ListServicesResponse>
+      | GaxiosPromise<Schema$GoogleCloudRunV2ListServicesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$List;
@@ -2148,12 +2148,12 @@ export namespace run_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudRunOpV2ListServicesResponse>(
+        createAPIRequest<Schema$GoogleCloudRunV2ListServicesResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudRunOpV2ListServicesResponse>(
+        return createAPIRequest<Schema$GoogleCloudRunV2ListServicesResponse>(
           parameters
         );
       }
@@ -2649,7 +2649,7 @@ export namespace run_v2 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudRunOpV2Service;
+    requestBody?: Schema$GoogleCloudRunV2Service;
   }
   export interface Params$Resource$Projects$Locations$Services$Delete
     extends StandardParameters {
@@ -2725,7 +2725,7 @@ export namespace run_v2 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudRunOpV2Service;
+    requestBody?: Schema$GoogleCloudRunV2Service;
   }
   export interface Params$Resource$Projects$Locations$Services$Setiampolicy
     extends StandardParameters {
@@ -2982,7 +2982,7 @@ export namespace run_v2 {
     get(
       params?: Params$Resource$Projects$Locations$Services$Revisions$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRunOpV2Revision>;
+    ): GaxiosPromise<Schema$GoogleCloudRunV2Revision>;
     get(
       params: Params$Resource$Projects$Locations$Services$Revisions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2992,32 +2992,30 @@ export namespace run_v2 {
       params: Params$Resource$Projects$Locations$Services$Revisions$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2Revision>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2Revision>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Services$Revisions$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2Revision>
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
     ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2Revision>
-    ): void;
+    get(callback: BodyResponseCallback<Schema$GoogleCloudRunV2Revision>): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Services$Revisions$Get
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2Revision>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2Revision>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2Revision>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2Revision>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRunOpV2Revision>
+      | GaxiosPromise<Schema$GoogleCloudRunV2Revision>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Revisions$Get;
@@ -3050,12 +3048,12 @@ export namespace run_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudRunOpV2Revision>(
+        createAPIRequest<Schema$GoogleCloudRunV2Revision>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudRunOpV2Revision>(parameters);
+        return createAPIRequest<Schema$GoogleCloudRunV2Revision>(parameters);
       }
     }
 
@@ -3123,7 +3121,7 @@ export namespace run_v2 {
     list(
       params?: Params$Resource$Projects$Locations$Services$Revisions$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRunOpV2ListRevisionsResponse>;
+    ): GaxiosPromise<Schema$GoogleCloudRunV2ListRevisionsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Services$Revisions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3133,32 +3131,32 @@ export namespace run_v2 {
       params: Params$Resource$Projects$Locations$Services$Revisions$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2ListRevisionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2ListRevisionsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Services$Revisions$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2ListRevisionsResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudRunOpV2ListRevisionsResponse>
+      callback: BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Services$Revisions$List
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2ListRevisionsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2ListRevisionsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRunOpV2ListRevisionsResponse>
+        | BodyResponseCallback<Schema$GoogleCloudRunV2ListRevisionsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRunOpV2ListRevisionsResponse>
+      | GaxiosPromise<Schema$GoogleCloudRunV2ListRevisionsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Services$Revisions$List;
@@ -3194,12 +3192,12 @@ export namespace run_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudRunOpV2ListRevisionsResponse>(
+        createAPIRequest<Schema$GoogleCloudRunV2ListRevisionsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudRunOpV2ListRevisionsResponse>(
+        return createAPIRequest<Schema$GoogleCloudRunV2ListRevisionsResponse>(
           parameters
         );
       }
