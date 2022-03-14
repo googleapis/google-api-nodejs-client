@@ -6082,9 +6082,9 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.tagBindings.list({
-     *     // Optional. The maximum number of TagBindings to return in the response. The server allows a maximum of 300 TagBindings to return. If unspecified, the server will use 100 as the default.
+     *     // Optional. The maximum number of TagBindings to return in the response. The server allows a maximum of 300 TagBindings to return. If unspecified, the server will use 100 as the default. Currently this api returns unpaginated response and `page_size` is ignored.
      *     pageSize: 'placeholder-value',
-     *     // Optional. A pagination token returned from a previous call to `ListTagBindings` that indicates where this listing should continue from.
+     *     // Optional. A pagination token returned from a previous call to `ListTagBindings` that indicates where this listing should continue from. Currently this api returns unpaginated response and `page_token` is ignored.
      *     pageToken: 'placeholder-value',
      *     // Required. The full resource name of a resource for which you want to list existing TagBindings. E.g. "//cloudresourcemanager.googleapis.com/projects/123"
      *     parent: 'placeholder-value',
@@ -6213,11 +6213,11 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Tagbindings$List extends StandardParameters {
     /**
-     * Optional. The maximum number of TagBindings to return in the response. The server allows a maximum of 300 TagBindings to return. If unspecified, the server will use 100 as the default.
+     * Optional. The maximum number of TagBindings to return in the response. The server allows a maximum of 300 TagBindings to return. If unspecified, the server will use 100 as the default. Currently this api returns unpaginated response and `page_size` is ignored.
      */
     pageSize?: number;
     /**
-     * Optional. A pagination token returned from a previous call to `ListTagBindings` that indicates where this listing should continue from.
+     * Optional. A pagination token returned from a previous call to `ListTagBindings` that indicates where this listing should continue from. Currently this api returns unpaginated response and `page_token` is ignored.
      */
     pageToken?: string;
     /**
