@@ -283,6 +283,7 @@ import {
 } from './firebasestorage';
 import {VERSIONS as firestoreVersions, firestore} from './firestore';
 import {VERSIONS as fitnessVersions, fitness} from './fitness';
+import {VERSIONS as formsVersions, forms} from './forms';
 import {VERSIONS as gamesVersions, games} from './games';
 import {
   VERSIONS as gamesConfigurationVersions,
@@ -420,6 +421,10 @@ import {
   VERSIONS as playcustomappVersions,
   playcustomapp,
 } from './playcustomapp';
+import {
+  VERSIONS as playdeveloperreportingVersions,
+  playdeveloperreporting,
+} from './playdeveloperreporting';
 import {
   VERSIONS as playintegrityVersions,
   playintegrity,
@@ -706,6 +711,7 @@ export const APIS: APIList = {
   firebasestorage: firebasestorageVersions,
   firestore: firestoreVersions,
   fitness: fitnessVersions,
+  forms: formsVersions,
   games: gamesVersions,
   gamesConfiguration: gamesConfigurationVersions,
   gamesManagement: gamesManagementVersions,
@@ -762,6 +768,7 @@ export const APIS: APIList = {
   people: peopleVersions,
   playablelocations: playablelocationsVersions,
   playcustomapp: playcustomappVersions,
+  playdeveloperreporting: playdeveloperreportingVersions,
   playintegrity: playintegrityVersions,
   plus: plusVersions,
   policyanalyzer: policyanalyzerVersions,
@@ -951,6 +958,7 @@ export class GeneratedAPIs {
   firebasestorage = firebasestorage;
   firestore = firestore;
   fitness = fitness;
+  forms = forms;
   games = games;
   gamesConfiguration = gamesConfiguration;
   gamesManagement = gamesManagement;
@@ -1007,6 +1015,7 @@ export class GeneratedAPIs {
   people = people;
   playablelocations = playablelocations;
   playcustomapp = playcustomapp;
+  playdeveloperreporting = playdeveloperreporting;
   playintegrity = playintegrity;
   plus = plus;
   policyanalyzer = policyanalyzer;

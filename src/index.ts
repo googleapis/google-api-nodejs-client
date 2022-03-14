@@ -219,6 +219,7 @@ export {firestore_v1} from './apis/firestore/v1';
 export {firestore_v1beta1} from './apis/firestore/v1beta1';
 export {firestore_v1beta2} from './apis/firestore/v1beta2';
 export {fitness_v1} from './apis/fitness/v1';
+export {forms_v1} from './apis/forms/v1';
 export {games_v1} from './apis/games/v1';
 export {gamesConfiguration_v1configuration} from './apis/gamesConfiguration/v1configuration';
 export {gamesManagement_v1management} from './apis/gamesManagement/v1management';
@@ -306,6 +307,8 @@ export {paymentsresellersubscription_v1} from './apis/paymentsresellersubscripti
 export {people_v1} from './apis/people/v1';
 export {playablelocations_v3} from './apis/playablelocations/v3';
 export {playcustomapp_v1} from './apis/playcustomapp/v1';
+export {playdeveloperreporting_v1alpha1} from './apis/playdeveloperreporting/v1alpha1';
+export {playdeveloperreporting_v1beta1} from './apis/playdeveloperreporting/v1beta1';
 export {playintegrity_v1} from './apis/playintegrity/v1';
 export {plus_v1} from './apis/plus/v1';
 export {policyanalyzer_v1} from './apis/policyanalyzer/v1';
