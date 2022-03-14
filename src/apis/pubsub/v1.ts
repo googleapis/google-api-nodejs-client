@@ -333,7 +333,7 @@ export namespace pubsub_v1 {
      */
     audience?: string | null;
     /**
-     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating the OIDC token. The caller (for CreateSubscription, UpdateSubscription, and ModifyPushConfig RPCs) must have the iam.serviceAccounts.actAs permission for the service account.
+     * [Service account email](https://cloud.google.com/iam/docs/service-accounts) to be used for generating the OIDC token. See [Setting up push authentication](/pubsub/docs/push#setting_up_for_push_authentication) for more details.
      */
     serviceAccountEmail?: string | null;
   }
@@ -478,6 +478,14 @@ export namespace pubsub_v1 {
      * Required. Name of the schema. Format is `projects/{project\}/schemas/{schema\}`.
      */
     name?: string | null;
+    /**
+     * Output only. The timestamp that the revision was created.
+     */
+    revisionCreateTime?: string | null;
+    /**
+     * Output only. Immutable. The revision ID of the schema.
+     */
+    revisionId?: string | null;
     /**
      * The type of the schema definition.
      */
@@ -803,6 +811,8 @@ export namespace pubsub_v1 {
      *       // {
      *       //   "definition": "my_definition",
      *       //   "name": "my_name",
+     *       //   "revisionCreateTime": "my_revisionCreateTime",
+     *       //   "revisionId": "my_revisionId",
      *       //   "type": "my_type"
      *       // }
      *     },
@@ -813,6 +823,8 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "definition": "my_definition",
      *   //   "name": "my_name",
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
      *   //   "type": "my_type"
      *   // }
      * }
@@ -1076,6 +1088,8 @@ export namespace pubsub_v1 {
      *   // {
      *   //   "definition": "my_definition",
      *   //   "name": "my_name",
+     *   //   "revisionCreateTime": "my_revisionCreateTime",
+     *   //   "revisionId": "my_revisionId",
      *   //   "type": "my_type"
      *   // }
      * }
