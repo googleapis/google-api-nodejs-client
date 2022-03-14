@@ -4053,7 +4053,7 @@
       }
     }
   },
-  "revision": "20220115",
+  "revision": "20220224",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4950,6 +4950,14 @@
       "description": "Request to export resources.",
       "id": "ExportResourcesRequest",
       "properties": {
+        "_since": {
+          "description": "If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.",
+          "type": "string"
+        },
+        "_type": {
+          "description": "String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.",
+          "type": "string"
+        },
         "bigqueryDestination": {
           "$ref": "GoogleCloudHealthcareV1FhirBigQueryDestination",
           "description": "The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type. Unlike when setting `BigQueryDestination` for `StreamConfig`, `ExportResources` does not create BigQuery views."

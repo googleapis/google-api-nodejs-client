@@ -610,6 +610,10 @@ export namespace healthcare_v1beta1 {
      */
     image?: Schema$ImageConfig;
     /**
+     * Details about the work the de-identify operation performed.
+     */
+    operationMetadata?: Schema$DeidentifyOperationMetadata;
+    /**
      * Configures de-identification of text wherever it is found in the source_dataset.
      */
     text?: Schema$TextConfig;
@@ -660,6 +664,15 @@ export namespace healthcare_v1beta1 {
      * A filter specifying the resources to include in the output. If not specified, all resources are included in the output.
      */
     resourceFilter?: Schema$FhirFilter;
+  }
+  /**
+   * Details about the work the de-identify operation performed.
+   */
+  export interface Schema$DeidentifyOperationMetadata {
+    /**
+     * Details about the FHIR store to write the output to.
+     */
+    fhirOutput?: Schema$FhirOutput;
   }
   /**
    * Contains a detailed summary of the Deidentify operation.
@@ -1001,6 +1014,15 @@ export namespace healthcare_v1beta1 {
      * List of resources to include in the output. If this list is empty or not specified, all resources are included in the output.
      */
     resources?: Schema$Resources;
+  }
+  /**
+   * Details about the FHIR store to write the output to.
+   */
+  export interface Schema$FhirOutput {
+    /**
+     * Name of the output FHIR store, which must already exist. You must grant the healthcare.fhirResources.update permission on the destination store to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/healthcare/docs/how-tos/permissions-healthcare-api-gcp-products#the_cloud_healthcare_service_agent). The destination store must set `enable_update_create` to true. The destination store must use FHIR version R4. Writing these resources will consume FHIR operations quota from the project containing the source data. De-identify operation metadata is only generated for DICOM de-identification operations.
+     */
+    fhirStore?: string | null;
   }
   /**
    * Represents a FHIR store.

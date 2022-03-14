@@ -760,6 +760,14 @@ export namespace healthcare_v1 {
      * The Cloud Storage output destination. The Healthcare Service Agent account requires the `roles/storage.objectAdmin` role on the Cloud Storage location. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1FhirGcsDestination;
+    /**
+     * If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     */
+    _since?: string | null;
+    /**
+     * String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.
+     */
+    _type?: string | null;
   }
   /**
    * Response when all resources export successfully. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
@@ -14583,6 +14591,8 @@ export namespace healthcare_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "_since": "my__since",
+     *       //   "_type": "my__type",
      *       //   "bigqueryDestination": {},
      *       //   "gcsDestination": {}
      *       // }
