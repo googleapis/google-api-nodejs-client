@@ -2192,6 +2192,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$SdkHarnessContainerImage {
     /**
+     * The set of capabilities enumerated in the above Environment proto. See also https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto
+     */
+    capabilities?: string[] | null;
+    /**
      * A docker container image that resides in Google Container Registry.
      */
     containerImage?: string | null;
@@ -2235,7 +2239,7 @@ export namespace dataflow_v1b3 {
     versionDisplayName?: string | null;
   }
   /**
-   * Request to send encoded debug information.
+   * Request to send encoded debug information. Next ID: 8
    */
   export interface Schema$SendDebugCaptureRequest {
     /**
@@ -2246,6 +2250,10 @@ export namespace dataflow_v1b3 {
      * The encoded debug information.
      */
     data?: string | null;
+    /**
+     * Format for the data field above (id=5).
+     */
+    dataFormat?: string | null;
     /**
      * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
      */
@@ -5442,6 +5450,7 @@ export namespace dataflow_v1b3 {
      *       // {
      *       //   "componentId": "my_componentId",
      *       //   "data": "my_data",
+     *       //   "dataFormat": "my_dataFormat",
      *       //   "location": "my_location",
      *       //   "workerId": "my_workerId"
      *       // }
@@ -8028,6 +8037,7 @@ export namespace dataflow_v1b3 {
      *       // {
      *       //   "componentId": "my_componentId",
      *       //   "data": "my_data",
+     *       //   "dataFormat": "my_dataFormat",
      *       //   "location": "my_location",
      *       //   "workerId": "my_workerId"
      *       // }

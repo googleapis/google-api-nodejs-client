@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20220218",
+  "revision": "20220301",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -5189,6 +5189,13 @@
       "description": "Defines a SDK harness container for executing Dataflow pipelines.",
       "id": "SdkHarnessContainerImage",
       "properties": {
+        "capabilities": {
+          "description": "The set of capabilities enumerated in the above Environment proto. See also https://github.com/apache/beam/blob/master/model/pipeline/src/main/proto/beam_runner_api.proto",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "containerImage": {
           "description": "A docker container image that resides in Google Container Registry.",
           "type": "string"
@@ -5238,7 +5245,7 @@
       "type": "object"
     },
     "SendDebugCaptureRequest": {
-      "description": "Request to send encoded debug information.",
+      "description": "Request to send encoded debug information. Next ID: 8",
       "id": "SendDebugCaptureRequest",
       "properties": {
         "componentId": {
@@ -5247,6 +5254,24 @@
         },
         "data": {
           "description": "The encoded debug information.",
+          "type": "string"
+        },
+        "dataFormat": {
+          "description": "Format for the data field above (id=5).",
+          "enum": [
+            "DATA_FORMAT_UNSPECIFIED",
+            "RAW",
+            "JSON",
+            "ZLIB",
+            "BROTLI"
+          ],
+          "enumDescriptions": [
+            "Format unspecified, parsing is determined based upon page type and legacy encoding. (go/protodosdonts#do-include-an-unspecified-value-in-an-enum)",
+            "Raw HTML string.",
+            "JSON-encoded string.",
+            "Websafe encoded zlib-compressed string.",
+            "Websafe encoded brotli-compressed string."
+          ],
           "type": "string"
         },
         "location": {
