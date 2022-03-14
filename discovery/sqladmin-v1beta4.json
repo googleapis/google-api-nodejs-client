@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "revision": "20220226",
+  "revision": "20220310",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -4183,7 +4183,8 @@
             "SQLSERVER_SERVERNAME_MISMATCH",
             "PRIMARY_ALREADY_SETUP",
             "UNSUPPORTED_BINLOG_FORMAT",
-            "BINLOG_RETENTION_SETTING"
+            "BINLOG_RETENTION_SETTING",
+            "UNSUPPORTED_STORAGE_ENGINE"
           ],
           "enumDescriptions": [
             "",
@@ -4211,7 +4212,8 @@
             "SQL Server @@SERVERNAME does not match actual host name",
             "The primary instance has been setup and will fail the setup.",
             "The primary instance has unsupported binary log format.",
-            "The primary instance's binary log retention setting."
+            "The primary instance's binary log retention setting.",
+            "The primary instance has tables with unsupported storage engine."
           ],
           "type": "string"
         }
@@ -4374,6 +4376,16 @@
         },
         "kind": {
           "description": "This is always sql#sqlServerAuditConfig",
+          "type": "string"
+        },
+        "retentionInterval": {
+          "description": "How long to keep generated audit files.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "uploadInterval": {
+          "description": "How often to upload generated audit files.",
+          "format": "google-duration",
           "type": "string"
         }
       },
