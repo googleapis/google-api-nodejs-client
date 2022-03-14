@@ -113,6 +113,7 @@ export namespace gkehub_v1alpha {
    */
   export class Gkehub {
     context: APIRequestContext;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -121,10 +122,20 @@ export namespace gkehub_v1alpha {
         google,
       };
 
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
 
+  /**
+   * **Anthos Observability**: Spec
+   */
+  export interface Schema$AnthosObservabilityFeatureSpec {
+    /**
+     * default membership spec for unconfigured memberships
+     */
+    defaultMembershipSpec?: Schema$AnthosObservabilityMembershipSpec;
+  }
   /**
    * **Anthosobservability**: Per-Membership Feature spec.
    */
@@ -137,6 +148,10 @@ export namespace gkehub_v1alpha {
      * enable collecting and reporting metrics and logs from user apps See go/onyx-application-metrics-logs-user-guide
      */
     enableStackdriverOnApplications?: boolean | null;
+    /**
+     * the version of stackdriver operator used by this feature
+     */
+    version?: string | null;
   }
   /**
    * Spec for App Dev Experience Feature.
@@ -245,6 +260,10 @@ export namespace gkehub_v1alpha {
    * CommonFeatureSpec contains Hub-wide configuration information
    */
   export interface Schema$CommonFeatureSpec {
+    /**
+     * Anthos Observability spec
+     */
+    anthosobservability?: Schema$AnthosObservabilityFeatureSpec;
     /**
      * Appdevexperience specific spec.
      */
@@ -1139,6 +1158,19 @@ export namespace gkehub_v1alpha {
     resources?: Schema$Feature[];
   }
   /**
+   * Response message for the `GkeHub.ListFleetsResponse` method.
+   */
+  export interface Schema$ListFleetsResponse {
+    /**
+     * The list of matching fleets.
+     */
+    fleets?: Schema$Fleet[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$ListLocationsResponse {
@@ -1508,43 +1540,9 @@ export namespace gkehub_v1alpha {
     version?: number | null;
   }
   /**
-   * **Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.
-   */
-  export interface Schema$PolicyControllerMembershipSpec {
-    /**
-     * Policy Controller configuration for the cluster.
-     */
-    policyControllerHubConfig?: Schema$PolicyControllerPolicyControllerHubConfig;
-    /**
-     * Version of Policy Controller installed.
-     */
-    version?: string | null;
-  }
-  /**
-   * **Policy Controller**: State for a single cluster.
-   */
-  export interface Schema$PolicyControllerMembershipState {
-    /**
-     * The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.
-     */
-    clusterName?: string | null;
-    /**
-     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
-     */
-    membershipSpec?: Schema$PolicyControllerMembershipSpec;
-    /**
-     * Policy Controller state observed by the Policy Controller Hub
-     */
-    policyControllerHubState?: Schema$PolicyControllerPolicyControllerHubState;
-    /**
-     * The lifecycle state Policy Controller is in.
-     */
-    state?: string | null;
-  }
-  /**
    * Configuration for Policy Controller
    */
-  export interface Schema$PolicyControllerPolicyControllerHubConfig {
+  export interface Schema$PolicyControllerHubConfig {
     /**
      * Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.
      */
@@ -1577,7 +1575,7 @@ export namespace gkehub_v1alpha {
   /**
    * State of the Policy Controller.
    */
-  export interface Schema$PolicyControllerPolicyControllerHubState {
+  export interface Schema$PolicyControllerHubState {
     /**
      * Map from deployment name to deployment state. Example deployments are gatekeeper-controller-manager, gatekeeper-audit deployment, and gatekeeper-mutation.
      */
@@ -1585,16 +1583,50 @@ export namespace gkehub_v1alpha {
     /**
      * The version of Gatekeeper Policy Controller deployed.
      */
-    version?: Schema$PolicyControllerPolicyControllerHubVersion;
+    version?: Schema$PolicyControllerHubVersion;
   }
   /**
    * The build version of Gatekeeper that Policy Controller is using.
    */
-  export interface Schema$PolicyControllerPolicyControllerHubVersion {
+  export interface Schema$PolicyControllerHubVersion {
     /**
      * The gatekeeper image tag that is composed of ACM version, git tag, build number.
      */
     version?: string | null;
+  }
+  /**
+   * **Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.
+   */
+  export interface Schema$PolicyControllerMembershipSpec {
+    /**
+     * Policy Controller configuration for the cluster.
+     */
+    policyControllerHubConfig?: Schema$PolicyControllerHubConfig;
+    /**
+     * Version of Policy Controller installed.
+     */
+    version?: string | null;
+  }
+  /**
+   * **Policy Controller**: State for a single cluster.
+   */
+  export interface Schema$PolicyControllerMembershipState {
+    /**
+     * The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.
+     */
+    clusterName?: string | null;
+    /**
+     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
+     */
+    membershipSpec?: Schema$PolicyControllerMembershipSpec;
+    /**
+     * Policy Controller state observed by the Policy Controller Hub
+     */
+    policyControllerHubState?: Schema$PolicyControllerHubState;
+    /**
+     * The lifecycle state Policy Controller is in.
+     */
+    state?: string | null;
   }
   /**
    * The config specifying which default library templates to install.
@@ -1799,6 +1831,178 @@ export namespace gkehub_v1alpha {
      * Kind of the resource (e.g. Deployment).
      */
     kind?: string | null;
+  }
+
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    locations: Resource$Organizations$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Organizations$Locations(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    fleets: Resource$Organizations$Locations$Fleets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.fleets = new Resource$Organizations$Locations$Fleets(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations$Fleets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Returns all fleets within an organization or a project that the caller has access to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.organizations.locations.fleets.list({
+     *     // A page token, received from a previous `ListFleets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFleets` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The organization or project to list for Fleets under, in the format `organizations/x/locations/x` or `projects/x/locations/x`.
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fleets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Fleets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Fleets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFleetsResponse>;
+    list(
+      params: Params$Resource$Organizations$Locations$Fleets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Fleets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListFleetsResponse>,
+      callback: BodyResponseCallback<Schema$ListFleetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Fleets$List,
+      callback: BodyResponseCallback<Schema$ListFleetsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFleetsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Fleets$List
+        | BodyResponseCallback<Schema$ListFleetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFleetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFleetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFleetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Fleets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Fleets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/fleets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFleetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFleetsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Fleets$List
+    extends StandardParameters {
+    /**
+     * A page token, received from a previous `ListFleets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFleets` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The organization or project to list for Fleets under, in the format `organizations/x/locations/x` or `projects/x/locations/x`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects {
@@ -3804,6 +4008,141 @@ export namespace gkehub_v1alpha {
     }
 
     /**
+     * Returns all fleets within an organization or a project that the caller has access to.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.fleets.list({
+     *     // A page token, received from a previous `ListFleets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFleets` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The organization or project to list for Fleets under, in the format `organizations/x/locations/x` or `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fleets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Fleets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Fleets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFleetsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Fleets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Fleets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListFleetsResponse>,
+      callback: BodyResponseCallback<Schema$ListFleetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Fleets$List,
+      callback: BodyResponseCallback<Schema$ListFleetsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFleetsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Fleets$List
+        | BodyResponseCallback<Schema$ListFleetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFleetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFleetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFleetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Fleets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Fleets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/fleets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFleetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFleetsResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates a fleet.
      * @example
      * ```js
@@ -3977,6 +4316,17 @@ export namespace gkehub_v1alpha {
      * Required. The Fleet resource name in the format `projects/x/locations/x/fleets/x`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Fleets$List
+    extends StandardParameters {
+    /**
+     * A page token, received from a previous `ListFleets` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFleets` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The organization or project to list for Fleets under, in the format `organizations/x/locations/x` or `projects/x/locations/x`.
+     */
+    parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Fleets$Patch
     extends StandardParameters {

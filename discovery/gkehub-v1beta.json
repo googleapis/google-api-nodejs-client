@@ -670,9 +670,20 @@
       }
     }
   },
-  "revision": "20220211",
+  "revision": "20220303",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
+    "AnthosObservabilityFeatureSpec": {
+      "description": "**Anthos Observability**: Spec",
+      "id": "AnthosObservabilityFeatureSpec",
+      "properties": {
+        "defaultMembershipSpec": {
+          "$ref": "AnthosObservabilityMembershipSpec",
+          "description": "default membership spec for unconfigured memberships"
+        }
+      },
+      "type": "object"
+    },
     "AnthosObservabilityMembershipSpec": {
       "description": "**Anthosobservability**: Per-Membership Feature spec.",
       "id": "AnthosObservabilityMembershipSpec",
@@ -684,6 +695,10 @@
         "enableStackdriverOnApplications": {
           "description": "enable collecting and reporting metrics and logs from user apps See go/onyx-application-metrics-logs-user-guide",
           "type": "boolean"
+        },
+        "version": {
+          "description": "the version of stackdriver operator used by this feature",
+          "type": "string"
         }
       },
       "type": "object"
@@ -785,6 +800,10 @@
       "description": "CommonFeatureSpec contains Hub-wide configuration information",
       "id": "CommonFeatureSpec",
       "properties": {
+        "anthosobservability": {
+          "$ref": "AnthosObservabilityFeatureSpec",
+          "description": "Anthos Observability spec"
+        },
         "appdevexperience": {
           "$ref": "AppDevExperienceFeatureSpec",
           "description": "Appdevexperience specific spec."
@@ -2146,67 +2165,9 @@
       },
       "type": "object"
     },
-    "PolicyControllerMembershipSpec": {
-      "description": "**Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.",
-      "id": "PolicyControllerMembershipSpec",
-      "properties": {
-        "policyControllerHubConfig": {
-          "$ref": "PolicyControllerPolicyControllerHubConfig",
-          "description": "Policy Controller configuration for the cluster."
-        },
-        "version": {
-          "description": "Version of Policy Controller installed.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PolicyControllerMembershipState": {
-      "description": "**Policy Controller**: State for a single cluster.",
-      "id": "PolicyControllerMembershipState",
-      "properties": {
-        "clusterName": {
-          "description": "The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.",
-          "type": "string"
-        },
-        "membershipSpec": {
-          "$ref": "PolicyControllerMembershipSpec",
-          "description": "Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state"
-        },
-        "policyControllerHubState": {
-          "$ref": "PolicyControllerPolicyControllerHubState",
-          "description": "Policy Controller state observed by the Policy Controller Hub"
-        },
-        "state": {
-          "description": "The lifecycle state Policy Controller is in.",
-          "enum": [
-            "LIFECYCLE_STATE_UNSPECIFIED",
-            "NOT_INSTALLED",
-            "INSTALLING",
-            "ACTIVE",
-            "UPDATING",
-            "DECOMISSIONING",
-            "CLUSTER_ERROR",
-            "HUB_ERROR"
-          ],
-          "enumDescriptions": [
-            "The lifecycle state is unspecified.",
-            "The PC does not exist on the given cluster, and no k8s resources of any type that are associated with the PC should exist there. The cluster does not possess a membership with the PCH.",
-            "The PCH possesses a Membership, however the PC is not fully installed on the cluster. In this state the hub can be expected to be taking actions to install the PC on the cluster.",
-            "The PC is fully installed on the cluster and in an operational mode. In this state PCH will be reconciling state with the PC, and the PC will be performing it’s operational tasks per that software. Entering a READY state requires that the hub has confirmed the PC is installed and its pods are operational with the version of the PC the PCH expects.",
-            "The PC is fully installed, but in the process of changing the configuration (including changing the version of PC either up and down, or modifying the manifests of PC) of the resources running on the cluster. The PCH has a Membership, is aware of the version the cluster should be running in, but has not confirmed for itself that the PC is running with that version.",
-            "The PC may have resources on the cluster, but the PCH wishes to remove the Membership. The Membership still exists.",
-            "The PC is not operational, and the PCH is unable to act to make it operational. Entering a CLUSTER_ERROR state happens automatically when the PCH determines that a PC installed on the cluster is non-operative or that the cluster does not meet requirements set for the PCH to administer the cluster but has nevertheless been given an instruction to do so (such as ‘install’).",
-            "In this state, the PC may still be operational, and only the PCH is unable to act. The hub should not issue instructions to change the PC state, or otherwise interfere with the on-cluster resources. Entering a HUB_ERROR state happens automatically when the PCH determines the hub is in an unhealthy state and it wishes to ‘take hands off’ to avoid corrupting the PC or other data."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "PolicyControllerPolicyControllerHubConfig": {
+    "PolicyControllerHubConfig": {
       "description": "Configuration for Policy Controller",
-      "id": "PolicyControllerPolicyControllerHubConfig",
+      "id": "PolicyControllerHubConfig",
       "properties": {
         "auditIntervalSeconds": {
           "description": "Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.",
@@ -2251,9 +2212,9 @@
       },
       "type": "object"
     },
-    "PolicyControllerPolicyControllerHubState": {
+    "PolicyControllerHubState": {
       "description": "State of the Policy Controller.",
-      "id": "PolicyControllerPolicyControllerHubState",
+      "id": "PolicyControllerHubState",
       "properties": {
         "deploymentStates": {
           "additionalProperties": {
@@ -2275,18 +2236,76 @@
           "type": "object"
         },
         "version": {
-          "$ref": "PolicyControllerPolicyControllerHubVersion",
+          "$ref": "PolicyControllerHubVersion",
           "description": "The version of Gatekeeper Policy Controller deployed."
         }
       },
       "type": "object"
     },
-    "PolicyControllerPolicyControllerHubVersion": {
+    "PolicyControllerHubVersion": {
       "description": "The build version of Gatekeeper that Policy Controller is using.",
-      "id": "PolicyControllerPolicyControllerHubVersion",
+      "id": "PolicyControllerHubVersion",
       "properties": {
         "version": {
           "description": "The gatekeeper image tag that is composed of ACM version, git tag, build number.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyControllerMembershipSpec": {
+      "description": "**Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.",
+      "id": "PolicyControllerMembershipSpec",
+      "properties": {
+        "policyControllerHubConfig": {
+          "$ref": "PolicyControllerHubConfig",
+          "description": "Policy Controller configuration for the cluster."
+        },
+        "version": {
+          "description": "Version of Policy Controller installed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PolicyControllerMembershipState": {
+      "description": "**Policy Controller**: State for a single cluster.",
+      "id": "PolicyControllerMembershipState",
+      "properties": {
+        "clusterName": {
+          "description": "The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.",
+          "type": "string"
+        },
+        "membershipSpec": {
+          "$ref": "PolicyControllerMembershipSpec",
+          "description": "Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state"
+        },
+        "policyControllerHubState": {
+          "$ref": "PolicyControllerHubState",
+          "description": "Policy Controller state observed by the Policy Controller Hub"
+        },
+        "state": {
+          "description": "The lifecycle state Policy Controller is in.",
+          "enum": [
+            "LIFECYCLE_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLING",
+            "ACTIVE",
+            "UPDATING",
+            "DECOMISSIONING",
+            "CLUSTER_ERROR",
+            "HUB_ERROR"
+          ],
+          "enumDescriptions": [
+            "The lifecycle state is unspecified.",
+            "The PC does not exist on the given cluster, and no k8s resources of any type that are associated with the PC should exist there. The cluster does not possess a membership with the PCH.",
+            "The PCH possesses a Membership, however the PC is not fully installed on the cluster. In this state the hub can be expected to be taking actions to install the PC on the cluster.",
+            "The PC is fully installed on the cluster and in an operational mode. In this state PCH will be reconciling state with the PC, and the PC will be performing it’s operational tasks per that software. Entering a READY state requires that the hub has confirmed the PC is installed and its pods are operational with the version of the PC the PCH expects.",
+            "The PC is fully installed, but in the process of changing the configuration (including changing the version of PC either up and down, or modifying the manifests of PC) of the resources running on the cluster. The PCH has a Membership, is aware of the version the cluster should be running in, but has not confirmed for itself that the PC is running with that version.",
+            "The PC may have resources on the cluster, but the PCH wishes to remove the Membership. The Membership still exists.",
+            "The PC is not operational, and the PCH is unable to act to make it operational. Entering a CLUSTER_ERROR state happens automatically when the PCH determines that a PC installed on the cluster is non-operative or that the cluster does not meet requirements set for the PCH to administer the cluster but has nevertheless been given an instruction to do so (such as ‘install’).",
+            "In this state, the PC may still be operational, and only the PCH is unable to act. The hub should not issue instructions to change the PC state, or otherwise interfere with the on-cluster resources. Entering a HUB_ERROR state happens automatically when the PCH determines the hub is in an unhealthy state and it wishes to ‘take hands off’ to avoid corrupting the PC or other data."
+          ],
           "type": "string"
         }
       },
