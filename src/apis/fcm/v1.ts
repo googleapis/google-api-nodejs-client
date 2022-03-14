@@ -188,6 +188,10 @@ export namespace fcm_v1 {
      */
     bodyLocKey?: string | null;
     /**
+     * If set, display notifications delivered to the device will be handled by the app instead of the proxy.
+     */
+    bypassProxyNotification?: boolean | null;
+    /**
      * The [notification's channel id](https://developer.android.com/guide/topics/ui/notifiers/notifications#ManageChannels) (new in Android O). The app must create a channel with this channel ID before any notification with this channel ID is received. If you don't send this channel ID in the request, or if the channel ID provided has not yet been created by the app, FCM uses the channel ID specified in the app manifest.
      */
     channelId?: string | null;
