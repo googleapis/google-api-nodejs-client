@@ -3412,7 +3412,7 @@
       }
     }
   },
-  "revision": "20220227",
+  "revision": "20220305",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -3703,6 +3703,8 @@
             "TEXT_UTF8",
             "WORD_DOCUMENT",
             "PDF",
+            "POWERPOINT_DOCUMENT",
+            "EXCEL_DOCUMENT",
             "AVRO",
             "CSV",
             "TSV"
@@ -3717,6 +3719,8 @@
             "plain text",
             "docx, docm, dotx, dotm",
             "pdf",
+            "powerpoint",
+            "excel",
             "avro",
             "csv",
             "tsv"
@@ -3890,7 +3894,9 @@
               "PDF",
               "AVRO",
               "CSV",
-              "TSV"
+              "TSV",
+              "POWERPOINT",
+              "EXCEL"
             ],
             "enumDescriptions": [
               "Includes all files.",
@@ -3901,7 +3907,9 @@
               "PDF files >30 MB will be scanned as binary files. Included file extensions: pdf",
               "Included file extensions: avro",
               "Included file extensions: csv",
-              "Included file extensions: tsv"
+              "Included file extensions: tsv",
+              "Powerpoint files >30 MB will be scanned as binary files. Included file extensions: pptx, pptm, potx, potm, pot",
+              "Excel files >30 MB will be scanned as binary files. Included file extensions: xlsx, xlsm, xltx, xltm"
             ],
             "type": "string"
           },
@@ -7557,7 +7565,7 @@
       "type": "object"
     },
     "GoogleTypeDate": {
-      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "GoogleTypeDate",
       "properties": {
         "day": {
