@@ -63,6 +63,7 @@
     "src/apis/firebaserules": {},
     "src/apis/firebasestorage": {},
     "src/apis/fitness": {},
+    "src/apis/forms": {},
     "src/apis/games": {},
     "src/apis/gamesConfiguration": {},
     "src/apis/gamesManagement": {},
