@@ -985,7 +985,12 @@ export namespace notebooks_v1 {
   /**
    * Request for resetting a Managed Notebook Runtime.
    */
-  export interface Schema$ResetRuntimeRequest {}
+  export interface Schema$ResetRuntimeRequest {
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string | null;
+  }
   /**
    * Request for rollbacking a notebook instance
    */
@@ -1261,7 +1266,12 @@ export namespace notebooks_v1 {
   /**
    * Request for starting a Managed Notebook Runtime.
    */
-  export interface Schema$StartRuntimeRequest {}
+  export interface Schema$StartRuntimeRequest {
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string | null;
+  }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -1286,7 +1296,12 @@ export namespace notebooks_v1 {
   /**
    * Request for stopping a Managed Notebook Runtime.
    */
-  export interface Schema$StopRuntimeRequest {}
+  export interface Schema$StopRuntimeRequest {
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string | null;
+  }
   /**
    * Request for switching a Managed Notebook Runtime.
    */
@@ -1299,6 +1314,10 @@ export namespace notebooks_v1 {
      * machine type.
      */
     machineType?: string | null;
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -7273,6 +7292,8 @@ export namespace notebooks_v1 {
      *   const res = await notebooks.projects.locations.runtimes.create({
      *     // Required. Format: `parent=projects/{project_id\}/locations/{location\}`
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Idempotent request UUID.
+     *     requestId: 'placeholder-value',
      *     // Required. User-defined unique ID of this Runtime.
      *     runtimeId: 'placeholder-value',
      *
@@ -7424,6 +7445,8 @@ export namespace notebooks_v1 {
      *   const res = await notebooks.projects.locations.runtimes.delete({
      *     // Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
      *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *     // Idempotent request UUID.
+     *     requestId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -8107,7 +8130,9 @@ export namespace notebooks_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "requestId": "my_requestId"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -8382,7 +8407,9 @@ export namespace notebooks_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "requestId": "my_requestId"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -8518,7 +8545,9 @@ export namespace notebooks_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "requestId": "my_requestId"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -8656,7 +8685,8 @@ export namespace notebooks_v1 {
      *       // request body parameters
      *       // {
      *       //   "acceleratorConfig": {},
-     *       //   "machineType": "my_machineType"
+     *       //   "machineType": "my_machineType",
+     *       //   "requestId": "my_requestId"
      *       // }
      *     },
      *   });
@@ -8913,6 +8943,10 @@ export namespace notebooks_v1 {
      */
     parent?: string;
     /**
+     * Idempotent request UUID.
+     */
+    requestId?: string;
+    /**
      * Required. User-defined unique ID of this Runtime.
      */
     runtimeId?: string;
@@ -8928,6 +8962,10 @@ export namespace notebooks_v1 {
      * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
      */
     name?: string;
+    /**
+     * Idempotent request UUID.
+     */
+    requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Runtimes$Get
     extends StandardParameters {
