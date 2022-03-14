@@ -354,11 +354,11 @@ export namespace paymentsresellersubscription_v1 {
      */
     processingState?: string | null;
     /**
-     * Required. Resource name that identifies one or more subscription products. The format will be 'partners/{partner_id\}/products/{product_id\}'.
+     * Required. Required. Resource name that identifies the purchased products. The format will be 'partners/{partner_id\}/products/{product_id\}'.
      */
     products?: string[] | null;
     /**
-     * Optional. Resource name that identifies one or more promotions that can be applied on the product. A typical promotion for a subscription is Free trial. The format will be 'partners/{partner_id\}/promotions/{promotion_id\}'.
+     * Optional. Optional. Resource name that identifies one or more promotions that can be applied on the product. A typical promotion for a subscription is Free trial. The format will be 'partners/{partner_id\}/promotions/{promotion_id\}'.
      */
     promotions?: string[] | null;
     /**
