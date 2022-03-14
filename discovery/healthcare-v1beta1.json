@@ -4865,7 +4865,7 @@
       }
     }
   },
-  "revision": "20220223",
+  "revision": "20220224",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -5565,6 +5565,10 @@
           "$ref": "ImageConfig",
           "description": "Configures de-identification of image pixels wherever they are found in the source_dataset."
         },
+        "operationMetadata": {
+          "$ref": "DeidentifyOperationMetadata",
+          "description": "Details about the work the de-identify operation performed."
+        },
         "text": {
           "$ref": "TextConfig",
           "description": "Configures de-identification of text wherever it is found in the source_dataset."
@@ -5621,6 +5625,17 @@
         "resourceFilter": {
           "$ref": "FhirFilter",
           "description": "A filter specifying the resources to include in the output. If not specified, all resources are included in the output."
+        }
+      },
+      "type": "object"
+    },
+    "DeidentifyOperationMetadata": {
+      "description": "Details about the work the de-identify operation performed.",
+      "id": "DeidentifyOperationMetadata",
+      "properties": {
+        "fhirOutput": {
+          "$ref": "FhirOutput",
+          "description": "Details about the FHIR store to write the output to."
         }
       },
       "type": "object"
@@ -6079,6 +6094,17 @@
         "resources": {
           "$ref": "Resources",
           "description": "List of resources to include in the output. If this list is empty or not specified, all resources are included in the output."
+        }
+      },
+      "type": "object"
+    },
+    "FhirOutput": {
+      "description": "Details about the FHIR store to write the output to.",
+      "id": "FhirOutput",
+      "properties": {
+        "fhirStore": {
+          "description": "Name of the output FHIR store, which must already exist. You must grant the healthcare.fhirResources.update permission on the destination store to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/healthcare/docs/how-tos/permissions-healthcare-api-gcp-products#the_cloud_healthcare_service_agent). The destination store must set `enable_update_create` to true. The destination store must use FHIR version R4. Writing these resources will consume FHIR operations quota from the project containing the source data. De-identify operation metadata is only generated for DICOM de-identification operations.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7395,12 +7421,14 @@
           "enum": [
             "PARSER_VERSION_UNSPECIFIED",
             "V1",
-            "V2"
+            "V2",
+            "V3"
           ],
           "enumDescriptions": [
             "Unspecified parser version, equivalent to V1.",
             "The `parsed_data` includes every given non-empty message field except the Field Separator (MSH-1) field. As a result, the parsed MSH segment starts with the MSH-2 field and the field numbers are off-by-one with respect to the HL7 standard.",
-            "The `parsed_data` includes every given non-empty message field."
+            "The `parsed_data` includes every given non-empty message field.",
+            "This version is the same as V2, with the following change. The `parsed_data` contains unescaped escaped field separators, component separators, sub-component separators, repetition separators, escape characters, and truncation characters. If `schema` is specified, the schematized parser uses improved parsing heuristics compared to previous versions."
           ],
           "type": "string"
         }
