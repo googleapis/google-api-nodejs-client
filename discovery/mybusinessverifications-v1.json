@@ -256,7 +256,7 @@
       }
     }
   },
-  "revision": "20220305",
+  "revision": "20220310",
   "rootUrl": "https://mybusinessverifications.googleapis.com/",
   "schemas": {
     "AddressVerificationData": {
@@ -302,9 +302,24 @@
       "type": "object"
     },
     "ComplyWithGuidelines": {
-      "description": "Indicates that the location fails to comply with our [guidelines](https://support.google.com/business/answer/3038177). To fix this issue, consult the [Help Center Article](https://support.google.com/business/answer/4569145).",
+      "description": "Indicates that the location fails to comply with our [guidelines](https://support.google.com/business/answer/3038177).",
       "id": "ComplyWithGuidelines",
-      "properties": {},
+      "properties": {
+        "recommendationReason": {
+          "description": "The reason why the location is being recommended to comply with guidelines.",
+          "enum": [
+            "RECOMMENDATION_REASON_UNSPECIFIED",
+            "BUSINESS_LOCATION_SUSPENDED",
+            "BUSINESS_LOCATION_DISABLED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The business location is suspended. To fix this issue, consult the [Help Center article](https://support.google.com/business/answer/4569145).",
+            "The business location is disabled. To fix this issue, consult the [Help Center article](https://support.google.com/business/answer/9334246)."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EmailVerificationData": {
