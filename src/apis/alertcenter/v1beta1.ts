@@ -743,6 +743,19 @@ export namespace alertcenter_v1beta1 {
     fromHeader?: string | null;
   }
   /**
+   * Alert Created by the MSA team for communications necessary for continued use of Google Workspace Products.
+   */
+  export interface Schema$MandatoryServiceAnnouncement {
+    /**
+     * Detailed, freeform text describing the announcement
+     */
+    description?: string | null;
+    /**
+     * One line summary of the announcement
+     */
+    title?: string | null;
+  }
+  /**
    * Proto that contains match information from the condition part of the rule.
    */
   export interface Schema$MatchInfo {
