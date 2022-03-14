@@ -613,21 +613,21 @@ export namespace gmail_v1 {
   }
   export interface Schema$ModifyMessageRequest {
     /**
-     * A list of IDs of labels to add to this message.
+     * A list of IDs of labels to add to this message. You can add up to 100 labels with each update.
      */
     addLabelIds?: string[] | null;
     /**
-     * A list IDs of labels to remove from this message.
+     * A list IDs of labels to remove from this message. You can remove up to 100 labels with each update.
      */
     removeLabelIds?: string[] | null;
   }
   export interface Schema$ModifyThreadRequest {
     /**
-     * A list of IDs of labels to add to this thread.
+     * A list of IDs of labels to add to this thread. You can add up to 100 labels with each update.
      */
     addLabelIds?: string[] | null;
     /**
-     * A list of IDs of labels to remove from this thread.
+     * A list of IDs of labels to remove from this thread. You can remove up to 100 labels with each update.
      */
     removeLabelIds?: string[] | null;
   }
@@ -10656,7 +10656,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer `threads.trash` instead.
+     * Immediately and permanently deletes the specified thread. Any messages that belong to the thread are also deleted. This operation cannot be undone. Prefer `threads.trash` instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -11220,7 +11220,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Moves the specified thread to the trash.
+     * Moves the specified thread to the trash. Any messages that belong to the thread are also moved to the trash.
      * @example
      * ```js
      * // Before running the sample:
@@ -11356,7 +11356,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Removes the specified thread from the trash.
+     * Removes the specified thread from the trash. Any messages that belong to the thread are also removed from the trash.
      * @example
      * ```js
      * // Before running the sample:
