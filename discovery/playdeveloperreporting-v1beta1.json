@@ -1,0 +1,909 @@
+{
+  "basePath": "",
+  "baseUrl": "https://playdeveloperreporting.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Playdeveloperreporting",
+  "description": "",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://developers.google.com/play/developer/reporting",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "playdeveloperreporting:v1beta1",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://playdeveloperreporting.mtls.googleapis.com/",
+  "name": "playdeveloperreporting",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "anomalies": {
+      "methods": {
+        "list": {
+          "description": "Lists anomalies in any of the datasets.",
+          "flatPath": "v1beta1/apps/{appsId}/anomalies",
+          "httpMethod": "GET",
+          "id": "playdeveloperreporting.anomalies.list",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "Filtering criteria for anomalies. For basic filter guidance, please check: https://google.aip.dev/160. **Supported functions:** * `activeBetween(startTime, endTime)`: If specified, only list anomalies that were active in between `startTime` (inclusive) and `endTime` (exclusive). Both parameters are expected to conform to an RFC-3339 formatted string (e.g. `2012-04-21T11:30:00-04:00`). UTC offsets are supported. Both `startTime` and `endTime` accept the special value `UNBOUNDED`, to signify intervals with no lower or upper bound, respectively. Examples: * `activeBetween(\"2021-04-21T11:30:00Z\", \"2021-07-21T00:00:00Z\")` * `activeBetween(UNBOUNDED, \"2021-11-21T00:00:00-04:00\")` * `activeBetween(\"2021-07-21T00:00:00-04:00\", UNBOUNDED)`",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "Maximum size of the returned data. If unspecified, at most 10 anomalies will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListErrorReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListErrorReports` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. Parent app for which anomalies were detected. Format: apps/{app}",
+              "location": "path",
+              "pattern": "^apps/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+parent}/anomalies",
+          "response": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1ListAnomaliesResponse"
+          }
+        }
+      }
+    },
+    "vitals": {
+      "resources": {
+        "anrrate": {
+          "methods": {
+            "get": {
+              "description": "Describes the properties of the metric set.",
+              "flatPath": "v1beta1/apps/{appsId}/anrRateMetricSet",
+              "httpMethod": "GET",
+              "id": "playdeveloperreporting.vitals.anrrate.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name. Format: apps/{app}/anrRateMetricSet",
+                  "location": "path",
+                  "pattern": "^apps/[^/]+/anrRateMetricSet$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1AnrRateMetricSet"
+              }
+            },
+            "query": {
+              "description": "Queries the metrics in the metric set.",
+              "flatPath": "v1beta1/apps/{appsId}/anrRateMetricSet:query",
+              "httpMethod": "POST",
+              "id": "playdeveloperreporting.vitals.anrrate.query",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name. Format: apps/{app}/anrRateMetricSet",
+                  "location": "path",
+                  "pattern": "^apps/[^/]+/anrRateMetricSet$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:query",
+              "request": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequest"
+              },
+              "response": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponse"
+              }
+            }
+          }
+        },
+        "crashrate": {
+          "methods": {
+            "get": {
+              "description": "Describes the properties of the metric set.",
+              "flatPath": "v1beta1/apps/{appsId}/crashRateMetricSet",
+              "httpMethod": "GET",
+              "id": "playdeveloperreporting.vitals.crashrate.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name. Format: apps/{app}/crashRateMetricSet",
+                  "location": "path",
+                  "pattern": "^apps/[^/]+/crashRateMetricSet$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1CrashRateMetricSet"
+              }
+            },
+            "query": {
+              "description": "Queries the metrics in the metric set.",
+              "flatPath": "v1beta1/apps/{appsId}/crashRateMetricSet:query",
+              "httpMethod": "POST",
+              "id": "playdeveloperreporting.vitals.crashrate.query",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name. Format: apps/{app}/crashRateMetricSet",
+                  "location": "path",
+                  "pattern": "^apps/[^/]+/crashRateMetricSet$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:query",
+              "request": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequest"
+              },
+              "response": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponse"
+              }
+            }
+          }
+        },
+        "excessivewakeuprate": {
+          "methods": {
+            "get": {
+              "description": "Describes the properties of the metric set.",
+              "flatPath": "v1beta1/apps/{appsId}/excessiveWakeupRateMetricSet",
+              "httpMethod": "GET",
+              "id": "playdeveloperreporting.vitals.excessivewakeuprate.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name. Format: apps/{app}/excessiveWakeupRateMetricSet",
+                  "location": "path",
+                  "pattern": "^apps/[^/]+/excessiveWakeupRateMetricSet$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1ExcessiveWakeupRateMetricSet"
+              }
+            },
+            "query": {
+              "description": "Queries the metrics in the metric set.",
+              "flatPath": "v1beta1/apps/{appsId}/excessiveWakeupRateMetricSet:query",
+              "httpMethod": "POST",
+              "id": "playdeveloperreporting.vitals.excessivewakeuprate.query",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name. Format: apps/{app}/excessiveWakeupRateMetricSet",
+                  "location": "path",
+                  "pattern": "^apps/[^/]+/excessiveWakeupRateMetricSet$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:query",
+              "request": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRequest"
+              },
+              "response": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponse"
+              }
+            }
+          }
+        },
+        "stuckbackgroundwakelockrate": {
+          "methods": {
+            "get": {
+              "description": "Describes the properties of the metric set.",
+              "flatPath": "v1beta1/apps/{appsId}/stuckBackgroundWakelockRateMetricSet",
+              "httpMethod": "GET",
+              "id": "playdeveloperreporting.vitals.stuckbackgroundwakelockrate.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name. Format: apps/{app}/stuckBackgroundWakelockRateMetricSet",
+                  "location": "path",
+                  "pattern": "^apps/[^/]+/stuckBackgroundWakelockRateMetricSet$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1StuckBackgroundWakelockRateMetricSet"
+              }
+            },
+            "query": {
+              "description": "Queries the metrics in the metric set.",
+              "flatPath": "v1beta1/apps/{appsId}/stuckBackgroundWakelockRateMetricSet:query",
+              "httpMethod": "POST",
+              "id": "playdeveloperreporting.vitals.stuckbackgroundwakelockrate.query",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name. Format: apps/{app}/stuckBackgroundWakelockRateMetricSet",
+                  "location": "path",
+                  "pattern": "^apps/[^/]+/stuckBackgroundWakelockRateMetricSet$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:query",
+              "request": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetRequest"
+              },
+              "response": {
+                "$ref": "GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponse"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20220309",
+  "rootUrl": "https://playdeveloperreporting.googleapis.com/",
+  "schemas": {
+    "GooglePlayDeveloperReportingV1beta1Anomaly": {
+      "description": "Represents an anomaly detected in a dataset. Our anomaly detection systems flag datapoints in a time series that fall outside of and expected range derived from historical data. Although those expected ranges have an upper and a lower bound, we only flag anomalies when the data has become unexpectedly _worse_, which usually corresponds to the case where the metric crosses the upper bound. Multiple contiguous datapoints in a timeline outside of the expected range will be grouped into a single anomaly. Therefore, an anomaly represents effectively a segment of a metric's timeline. The information stored in the `timeline_spec`, `dimensions` and `metric` can be used to fetch a full timeline with extended ragne for context. **Required permissions**: to access this resource, the calling user needs the _View app information (read-only)_ permission for the app.",
+      "id": "GooglePlayDeveloperReportingV1beta1Anomaly",
+      "properties": {
+        "dimensions": {
+          "description": "Combination of dimensions in which the anomaly was detected.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1DimensionValue"
+          },
+          "type": "array"
+        },
+        "metric": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1MetricValue",
+          "description": "Metric where the anomaly was detected, together with the anomalous value."
+        },
+        "metricSet": {
+          "description": "Metric set resource where the anomaly was detected.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the anomaly. Format: apps/{app}/anomalies/{anomaly}",
+          "type": "string"
+        },
+        "timelineSpec": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
+          "description": "Timeline specification that covers the anomaly period."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1AnrRateMetricSet": {
+      "description": "Singleton resource representing the set of ANR (Application not responding) metrics. This metric set contains ANRs data combined with usage data to produce a normalized metric independent of user counts. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`. **Supported metrics:** * `anrRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that experienced at least one ANR. If your app exhibits an ANR rate equal to or higher than the threshold, it's in the bottom 25% of the top 1,000 apps on Google Play (by number of installs). * `anrRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `anrRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `anrRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `anrRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `anrRate` metric. A user is counted in this metric if they used the app in the foreground during the aggregation period. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. * `deviceType` (string): the type (also known as form factor) of the user's device. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States). **Required permissions**: to access this resource, the calling user needs the _View app information (read-only)_ permission for the app. **Related metric sets:** * vitals.errors contains unnormalized version (absolute counts) of crashes. * vitals.errors contains normalized metrics about crashes, another stability metric.",
+      "id": "GooglePlayDeveloperReportingV1beta1AnrRateMetricSet",
+      "properties": {
+        "freshnessInfo": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1FreshnessInfo",
+          "description": "Summary about data freshness in this resource."
+        },
+        "name": {
+          "description": "The resource name. Format: apps/{app}/anrRateMetricSet",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1CrashRateMetricSet": {
+      "description": "Singleton resource representing the set of crashrate metrics. This metric set contains crashes data combined with usage data to produce a normalized metric independent of user counts. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`. **Supported metrics:** * `crashRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that experienced at least one crash. If your app exhibits a crash rate equal to or higher than the threshold, it's in the bottom 25% of the top 1,000 apps on Google Play (by number of installs). * `crashRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `crashRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `crashRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `crashRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `crashRate` metric. A user is counted in this metric if they used the app in the foreground during the aggregation period. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. * `deviceType` (string): the type (also known as form factor) of the user's device. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States). **Required permissions**: to access this resource, the calling user needs the _View app information (read-only)_ permission for the app. **Related metric sets:** * vitals.errors contains unnormalized version (absolute counts) of crashes. * vitals.errors contains normalized metrics about ANRs, another stability metric.",
+      "id": "GooglePlayDeveloperReportingV1beta1CrashRateMetricSet",
+      "properties": {
+        "freshnessInfo": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1FreshnessInfo",
+          "description": "Summary about data freshness in this resource."
+        },
+        "name": {
+          "description": "The resource name. Format: apps/{app}/crashRateMetricSet",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1DimensionValue": {
+      "description": "Represents the value of a single dimension.",
+      "id": "GooglePlayDeveloperReportingV1beta1DimensionValue",
+      "properties": {
+        "dimension": {
+          "description": "Name of the dimension.",
+          "type": "string"
+        },
+        "int64Value": {
+          "description": "Actual value, represented as an int64.",
+          "format": "int64",
+          "type": "string"
+        },
+        "stringValue": {
+          "description": "Actual value, represented as a string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1ExcessiveWakeupRateMetricSet": {
+      "description": "Singleton resource representing the set of Excessive Weakeups metrics. This metric set contains AlarmManager wakeup counts data combined with process state data to produce a normalized metric independent of user counts. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`. **Supported metrics:** * `excessiveWakeupRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that had more than 10 wakeups per hour. If your app exhibits an excessive wakeup rate equal to or higher than the threshold, it's in the bottom 25% of the top 1,000 apps on Google Play (by number of installs). * `excessiveWakeupRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `excessiveWakeupRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `excessiveWakeupRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `excessiveWakeupRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `excessiveWakeupRate` metric. A user is counted in this metric if they app was doing any work on the device, i.e., not just active foreground usage but also background work. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. * `deviceType` (string): the type (also known as form factor) of the user's device. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States). **Required permissions**: to access this resource, the calling user needs the _View app information (read-only)_ permission for the app.",
+      "id": "GooglePlayDeveloperReportingV1beta1ExcessiveWakeupRateMetricSet",
+      "properties": {
+        "freshnessInfo": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1FreshnessInfo",
+          "description": "Summary about data freshness in this resource."
+        },
+        "name": {
+          "description": "The resource name. Format: apps/{app}/excessiveWakeupRateMetricSet",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1FreshnessInfo": {
+      "description": "Represents the latest available time that can be requested in a TimelineSpec. Different aggregation periods have different freshness. For example, `DAILY` aggregation may lag behind `HOURLY` in cases where such aggregation is computed only once at the end of the day.",
+      "id": "GooglePlayDeveloperReportingV1beta1FreshnessInfo",
+      "properties": {
+        "freshnesses": {
+          "description": "Information about data freshness for every supported aggregation period. This field has set semantics, keyed by the `aggregation_period` field.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1FreshnessInfoFreshness"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1FreshnessInfoFreshness": {
+      "description": "Information about data freshness for a single aggregation period.",
+      "id": "GooglePlayDeveloperReportingV1beta1FreshnessInfoFreshness",
+      "properties": {
+        "aggregationPeriod": {
+          "description": "Aggregation period for which data is available.",
+          "enum": [
+            "AGGREGATION_PERIOD_UNSPECIFIED",
+            "HOURLY",
+            "DAILY"
+          ],
+          "enumDescriptions": [
+            "Unspecified granularity.",
+            "Data is aggregated in hourly intervals.",
+            "Data is aggregated in daily intervals."
+          ],
+          "type": "string"
+        },
+        "latestEndTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "Latest end time for which data is available, for the aggregation period. The time is specified in the metric set's default timezone. *Note:* time ranges in TimelineSpec are represented as `start_time, end_time)`. For example, if the latest available timeline data point for a `DAILY` aggregation period is `2021-06-23 00:00:00 America/Los_Angeles`, the value of this field would be `2021-06-24 00:00:00 America/Los_Angeles` so it can be easily reused in [TimelineSpec.end_time."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1ListAnomaliesResponse": {
+      "description": "Response with a list of anomalies in datasets.",
+      "id": "GooglePlayDeveloperReportingV1beta1ListAnomaliesResponse",
+      "properties": {
+        "anomalies": {
+          "description": "Anomalies that were found.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1Anomaly"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Continuation token to fetch the next page of data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1MetricValue": {
+      "description": "Represents the value of a metric.",
+      "id": "GooglePlayDeveloperReportingV1beta1MetricValue",
+      "properties": {
+        "decimalValue": {
+          "$ref": "GoogleTypeDecimal",
+          "description": "Actual value, represented as a decimal number."
+        },
+        "metric": {
+          "description": "Name of the metric.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1MetricsRow": {
+      "description": "Represents a row of dimensions and metrics.",
+      "id": "GooglePlayDeveloperReportingV1beta1MetricsRow",
+      "properties": {
+        "aggregationPeriod": {
+          "description": "Granularity of the aggregation period of the row.",
+          "enum": [
+            "AGGREGATION_PERIOD_UNSPECIFIED",
+            "HOURLY",
+            "DAILY"
+          ],
+          "enumDescriptions": [
+            "Unspecified granularity.",
+            "Data is aggregated in hourly intervals.",
+            "Data is aggregated in daily intervals."
+          ],
+          "type": "string"
+        },
+        "dimensions": {
+          "description": "Dimension columns in the row.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1DimensionValue"
+          },
+          "type": "array"
+        },
+        "metrics": {
+          "description": "Metric columns in the row.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1MetricValue"
+          },
+          "type": "array"
+        },
+        "startTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "Starting date (and time for hourly aggregation) of the period covered by this row."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequest": {
+      "description": "Request message for QueryAnrRateMetricSet.",
+      "id": "GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetRequest",
+      "properties": {
+        "dimensions": {
+          "description": "Dimensions to slice the metrics by. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. * `deviceType` (string): the type (also known as form factor) of the user's device. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "Filters to apply to data. The filtering expression follows [AIP-160](https://google.aip.dev/160) standard and supports filtering by equality of all breakdown dimensions.",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Metrics to aggregate. **Supported metrics:** * `anrRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that experienced at least one ANR. If your app exhibits an ANR rate equal to or higher than the threshold, it's in the bottom 25% of the top 1,000 apps on Google Play (by number of installs). * `anrRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `anrRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `anrRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `anrRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `anrRate` metric. A user is counted in this metric if they used the app in the foreground during the aggregation period. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pageSize": {
+          "description": "Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100,000; values above 100,000 will be coerced to 100,000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to the request must match the call that provided the page token.",
+          "type": "string"
+        },
+        "timelineSpec": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
+          "description": "Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the default and only supported timezone is `America/Los_Angeles`."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponse": {
+      "description": "Response message for QueryAnrRateMetricSet.",
+      "id": "GooglePlayDeveloperReportingV1beta1QueryAnrRateMetricSetResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token to fetch the next page of data.",
+          "type": "string"
+        },
+        "rows": {
+          "description": "Returned rows of data.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1MetricsRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequest": {
+      "description": "Request message for QueryCrashRateMetricSet.",
+      "id": "GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetRequest",
+      "properties": {
+        "dimensions": {
+          "description": "Dimensions to slice the metrics by. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. * `deviceType` (string): the type (also known as form factor) of the user's device. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "Filters to apply to data. The filtering expression follows [AIP-160](https://google.aip.dev/160) standard and supports filtering by equality of all breakdown dimensions.",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Metrics to aggregate. **Supported metrics:** * `crashRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that experienced at least one crash. If your app exhibits a crash rate equal to or higher than the threshold, it's in the bottom 25% of the top 1,000 apps on Google Play (by number of installs). * `crashRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `crashRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `crashRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `crashRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `crashRate` metric. A user is counted in this metric if they used the app in the foreground during the aggregation period. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pageSize": {
+          "description": "Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100,000; values above 100,000 will be coerced to 100,000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to the request must match the call that provided the page token.",
+          "type": "string"
+        },
+        "timelineSpec": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
+          "description": "Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the default and only supported timezone is `America/Los_Angeles`."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponse": {
+      "description": "Response message for QueryCrashRateMetricSet.",
+      "id": "GooglePlayDeveloperReportingV1beta1QueryCrashRateMetricSetResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token to fetch the next page of data.",
+          "type": "string"
+        },
+        "rows": {
+          "description": "Returned rows of data.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1MetricsRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRequest": {
+      "description": "Request message for QueryExcessiveWakeupRateMetricSet.",
+      "id": "GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetRequest",
+      "properties": {
+        "dimensions": {
+          "description": "Dimensions to slice the data by. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. * `deviceType` (string): the type (also known as form factor) of the user's device. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "Filters to apply to data. The filtering expression follows [AIP-160](https://google.aip.dev/160) standard and supports filtering by equality of all breakdown dimensions.",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Metrics to aggregate. **Supported metrics:** * `excessiveWakeupRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that had more than 10 wakeups per hour. If your app exhibits an excessive wakeup rate equal to or higher than the threshold, it's in the bottom 25% of the top 1,000 apps on Google Play (by number of installs). * `excessiveWakeupRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `excessiveWakeupRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `excessiveWakeupRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `excessiveWakeupRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `excessiveWakeupRate` metric. A user is counted in this metric if they app was doing any work on the device, i.e., not just active foreground usage but also background work. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pageSize": {
+          "description": "Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to the request must match the call that provided the page token.",
+          "type": "string"
+        },
+        "timelineSpec": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
+          "description": "Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponse": {
+      "description": "Response message for QueryExcessiveWakeupRateMetricSet.",
+      "id": "GooglePlayDeveloperReportingV1beta1QueryExcessiveWakeupRateMetricSetResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token to fetch the next page of data.",
+          "type": "string"
+        },
+        "rows": {
+          "description": "Returned rows of data.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1MetricsRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetRequest": {
+      "description": "Request message for QueryStuckBackgroundWakelockRateMetricSet.",
+      "id": "GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetRequest",
+      "properties": {
+        "dimensions": {
+          "description": "Dimensions to slice the data by. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. * `deviceType` (string): the type (also known as form factor) of the user's device. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "filter": {
+          "description": "Filters to apply to data. The filtering expression follows [AIP-160](https://google.aip.dev/160) standard and supports filtering by equality of all breakdown dimensions.",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Metrics to aggregate. **Supported metrics:** * `stuckBgWakelockRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that had a wakelock held in the background for longer than 1 hour. If your app exhibits a stuck background wakelock rate equal to or higher than the threshold, it's in the bottom 25% of the top 1,000 apps on Google Play (by number of installs). * `stuckBgWakelockRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `stuckBgWakelockRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `stuckBgWakelockRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `stuckBgWakelockRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `stuckBgWakelockRate` metric. A user is counted in this metric if they app was doing any work on the device, i.e., not just active foreground usage but also background work. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "pageSize": {
+          "description": "Maximum size of the returned data. If unspecified, at most 1000 rows will be returned. The maximum value is 100000; values above 100000 will be coerced to 100000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to the request must match the call that provided the page token.",
+          "type": "string"
+        },
+        "timelineSpec": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
+          "description": "Specification of the timeline aggregation parameters. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponse": {
+      "description": "Response message for QueryStuckBackgroundWakelockRateMetricSet.",
+      "id": "GooglePlayDeveloperReportingV1beta1QueryStuckBackgroundWakelockRateMetricSetResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Continuation token to fetch the next page of data.",
+          "type": "string"
+        },
+        "rows": {
+          "description": "Returned rows of data.",
+          "items": {
+            "$ref": "GooglePlayDeveloperReportingV1beta1MetricsRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1StuckBackgroundWakelockRateMetricSet": {
+      "description": "Singleton resource representing the set of Stuck Background Wakelocks metrics. This metric set contains PowerManager wakelock duration data combined with process state data to produce a normalized metric independent of user counts. **Supported aggregation periods:** * DAILY: metrics are aggregated in calendar date intervals. Due to historical constraints, the only supported timezone is `America/Los_Angeles`. **Supported metrics:** * `stuckBgWakelockRate` (`google.type.Decimal`): Percentage of distinct users in the aggregation period that had a wakelock held in the background for longer than 1 hour. If your app exhibits a stuck background wakelocks rate equal to or higher than the threshold, it's in the bottom 25% of the top 1,000 apps on Google Play (by number of installs). * `stuckBgWakelockRate7dUserWeighted` (`google.type.Decimal`): Rolling average value of `stuckBgWakelockRate` in the last 7 days. The daily values are weighted by the count of distinct users for the day. * `stuckBgWakelockRate28dUserWeighted` (`google.type.Decimal`): Rolling average value of `stuckBgWakelockRate` in the last 28 days. The daily values are weighted by the count of distinct users for the day. * `distinctUsers` (`google.type.Decimal`): Count of distinct users in the aggregation period that were used as normalization value for the `stuckBgWakelockRate` metric. A user is counted in this metric if their app was doing any work on the device, i.e., not just active foreground usage but also background work. Care must be taken not to aggregate this count further, as it may result in users being counted multiple times. **Supported dimensions:** * `apiLevel` (string): the API level of Android that was running on the user's device. * `versionCode` (int64): version of the app that was running on the user's device. * `deviceModel` (string): unique identifier of the user's device model. * `deviceType` (string): the type (also known as form factor) of the user's device. * `countryCode` (string): the country or region of the user's device based on their IP address, represented as a 2-letter ISO-3166 code (e.g. US for the United States). **Required permissions**: to access this resource, the calling user needs the _View app information (read-only)_ permission for the app.",
+      "id": "GooglePlayDeveloperReportingV1beta1StuckBackgroundWakelockRateMetricSet",
+      "properties": {
+        "freshnessInfo": {
+          "$ref": "GooglePlayDeveloperReportingV1beta1FreshnessInfo",
+          "description": "Summary about data freshness in this resource."
+        },
+        "name": {
+          "description": "The resource name. Format: apps/{app}/stuckBackgroundWakelockRateMetricSet",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePlayDeveloperReportingV1beta1TimelineSpec": {
+      "description": "Specification of the time-related aggregation parameters of a timeline. Timelines have an aggregation period (`DAILY`, `HOURLY`, etc) which defines how events are aggregated in metrics. The points in a timeline are defined by the starting DateTime of the aggregation period. The duration is implicit in the AggregationPeriod. Hourly aggregation periods, when supported by a metric set, are always specified in UTC to avoid ambiguities around daylight saving time transitions, where an hour is skipped when adopting DST, and repeated when abandoning DST. For example, the timestamp '2021-11-07 01:00:00 America/Los_Angeles' is ambiguous since it can correspond to '2021-11-07 08:00:00 UTC' or '2021-11-07 09:00:00 UTC'. Daily aggregation periods require specifying a timezone which will determine the precise instants of the start and the end of the day. Not all metric sets support all timezones, so make sure to check which timezones are supported by the metric set you want to query.",
+      "id": "GooglePlayDeveloperReportingV1beta1TimelineSpec",
+      "properties": {
+        "aggregationPeriod": {
+          "description": "Type of the aggregation period of the datapoints in the timeline. Intervals are identified by the date and time at the start of the interval.",
+          "enum": [
+            "AGGREGATION_PERIOD_UNSPECIFIED",
+            "HOURLY",
+            "DAILY"
+          ],
+          "enumDescriptions": [
+            "Unspecified granularity.",
+            "Data is aggregated in hourly intervals.",
+            "Data is aggregated in daily intervals."
+          ],
+          "type": "string"
+        },
+        "endTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "Ending datapoint of the timeline (exclusive). See start_time for restrictions. The timezone of the end point must match the timezone of the start point."
+        },
+        "startTime": {
+          "$ref": "GoogleTypeDateTime",
+          "description": "Starting datapoint of the timeline (inclusive). Must be aligned to the aggregation period as follows: * HOURLY: the 'minutes', 'seconds' and 'nanos' fields must be unset. The time_zone can be left unset (defaults to UTC) or set explicitly to \"UTC\". Setting any other utc_offset or timezone id will result in a validation error. * DAILY: the 'hours', 'minutes', 'seconds' and 'nanos' fields must be unset. Different metric sets support different timezones. It can be left unset to use the default timezone specified by the metric set. The timezone of the end point must match the timezone of the start point."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeDateTime": {
+      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
+      "id": "GoogleTypeDateTime",
+      "properties": {
+        "day": {
+          "description": "Required. Day of month. Must be from 1 to 31 and valid for the year and month.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hours": {
+          "description": "Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Required. Minutes of hour of day. Must be from 0 to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Required. Month of year. Must be from 1 to 12.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Required. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Required. Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeZone": {
+          "$ref": "GoogleTypeTimeZone",
+          "description": "Time zone."
+        },
+        "utcOffset": {
+          "description": "UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "year": {
+          "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeDecimal": {
+      "description": "A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's BigDecimal or Python's decimal.Decimal. [BigDecimal]: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html [decimal.Decimal]: https://docs.python.org/3/library/decimal.html",
+      "id": "GoogleTypeDecimal",
+      "properties": {
+        "value": {
+          "description": "The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits (\"the integer\"), optionally followed by a fraction, optionally followed by an exponent. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -> `0.5`). - Coercing the exponent character to lower-case (`2.5E8` -> `2.5e8`). - Removing an explicitly-provided zero exponent (`2.5e0` -> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5e-1` <-> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' }; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeTimeZone": {
+      "description": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).",
+      "id": "GoogleTypeTimeZone",
+      "properties": {
+        "id": {
+          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "Google Play Developer Reporting API",
+  "version": "v1beta1",
+  "version_module": true
+}
