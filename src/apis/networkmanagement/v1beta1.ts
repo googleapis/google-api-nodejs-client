@@ -345,6 +345,15 @@ export namespace networkmanagement_v1beta1 {
     resourceUri?: string | null;
   }
   /**
+   * Representation of a network edge location as per https://cloud.google.com/vpc/docs/edge-locations.
+   */
+  export interface Schema$EdgeLocation {
+    /**
+     * Name of the metropolitan area.
+     */
+    metropolitanArea?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -840,6 +849,10 @@ export namespace networkmanagement_v1beta1 {
      * The reason probing was aborted.
      */
     abortCause?: string | null;
+    /**
+     * The EdgeLocation from which a packet destined for/originating from the internet will egress/ingress the Google network. This will only be populated for a connectivity test which has an internet destination/source address. The absence of this field *must not* be used as an indication that the destination/source is part of the Google network.
+     */
+    destinationEgressLocation?: Schema$EdgeLocation;
     /**
      * The source and destination endpoints derived from the test input and used for active probing.
      */
