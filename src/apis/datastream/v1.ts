@@ -678,7 +678,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$MysqlTable {
     /**
-     * MySQL columns in the database. When unspecified as part of include/exclude lists, includes/excludes everything.
+     * MySQL columns in the database. When unspecified as part of include/exclude objects, includes/excludes everything.
      */
     mysqlColumns?: Schema$MysqlColumn[];
     /**
@@ -871,7 +871,7 @@ export namespace datastream_v1 {
    */
   export interface Schema$OracleTable {
     /**
-     * Oracle columns in the schema. When unspecified as part of inclue/exclude lists, includes/excludes everything.
+     * Oracle columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.
      */
     oracleColumns?: Schema$OracleColumn[];
     /**
@@ -963,11 +963,11 @@ export namespace datastream_v1 {
    */
   export interface Schema$SourceConfig {
     /**
-     * MySQL data source configuration
+     * MySQL data source configuration.
      */
     mysqlSourceConfig?: Schema$MysqlSourceConfig;
     /**
-     * Oracle data source configuration
+     * Oracle data source configuration.
      */
     oracleSourceConfig?: Schema$OracleSourceConfig;
     /**
