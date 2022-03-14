@@ -103,7 +103,7 @@ export namespace chat_v1 {
   /**
    * Google Chat API
    *
-   * Enables bots to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.
+   * Enables apps to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.
    *
    * @example
    * ```js
@@ -1416,7 +1416,7 @@ export namespace chat_v1 {
      */
     displayName?: string | null;
     /**
-     * Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
+     * Optional. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAAAAAAAAA
      */
     name?: string | null;
     /**
@@ -4358,7 +4358,7 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.attachments.get({
-     *     // Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
+     *     // Required. Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
      *     name: 'spaces/my-space/messages/my-message/attachments/my-attachment',
      *   });
      *   console.log(res.data);
@@ -4468,7 +4468,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Attachments$Get
     extends StandardParameters {
     /**
-     * Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
+     * Required. Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
      */
     name?: string;
   }
