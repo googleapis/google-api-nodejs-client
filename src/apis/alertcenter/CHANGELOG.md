@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v5.2.0...alertcenter-v5.3.0) (2022-03-14)
+
+
+### Features
+
+* **alertcenter:** update the API ([90fc655](https://github.com/googleapis/google-api-nodejs-client/commit/90fc655fc049e39385169edd17eb47cbbf31e291))
+
 ## [5.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v5.1.0...alertcenter-v5.2.0) (2022-03-08)
 
 
