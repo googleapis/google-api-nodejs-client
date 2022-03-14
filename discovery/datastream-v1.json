@@ -1217,7 +1217,7 @@
       }
     }
   },
-  "revision": "20220117",
+  "revision": "20220302",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -1966,7 +1966,7 @@
       "id": "MysqlTable",
       "properties": {
         "mysqlColumns": {
-          "description": "MySQL columns in the database. When unspecified as part of include/exclude lists, includes/excludes everything.",
+          "description": "MySQL columns in the database. When unspecified as part of include/exclude objects, includes/excludes everything.",
           "items": {
             "$ref": "MysqlColumn"
           },
@@ -2212,7 +2212,7 @@
       "id": "OracleTable",
       "properties": {
         "oracleColumns": {
-          "description": "Oracle columns in the schema. When unspecified as part of inclue/exclude lists, includes/excludes everything.",
+          "description": "Oracle columns in the schema. When unspecified as part of include/exclude objects, includes/excludes everything.",
           "items": {
             "$ref": "OracleColumn"
           },
@@ -2351,11 +2351,11 @@
       "properties": {
         "mysqlSourceConfig": {
           "$ref": "MysqlSourceConfig",
-          "description": "MySQL data source configuration"
+          "description": "MySQL data source configuration."
         },
         "oracleSourceConfig": {
           "$ref": "OracleSourceConfig",
-          "description": "Oracle data source configuration"
+          "description": "Oracle data source configuration."
         },
         "sourceConnectionProfile": {
           "description": "Required. Source connection profile resoource. Format: `projects/{project}/locations/{location}/connectionProfiles/{name}`",
