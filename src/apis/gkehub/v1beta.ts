@@ -126,6 +126,15 @@ export namespace gkehub_v1beta {
   }
 
   /**
+   * **Anthos Observability**: Spec
+   */
+  export interface Schema$AnthosObservabilityFeatureSpec {
+    /**
+     * default membership spec for unconfigured memberships
+     */
+    defaultMembershipSpec?: Schema$AnthosObservabilityMembershipSpec;
+  }
+  /**
    * **Anthosobservability**: Per-Membership Feature spec.
    */
   export interface Schema$AnthosObservabilityMembershipSpec {
@@ -137,6 +146,10 @@ export namespace gkehub_v1beta {
      * enable collecting and reporting metrics and logs from user apps See go/onyx-application-metrics-logs-user-guide
      */
     enableStackdriverOnApplications?: boolean | null;
+    /**
+     * the version of stackdriver operator used by this feature
+     */
+    version?: string | null;
   }
   /**
    * Spec for App Dev Experience Feature.
@@ -202,6 +215,10 @@ export namespace gkehub_v1beta {
    * CommonFeatureSpec contains Hub-wide configuration information
    */
   export interface Schema$CommonFeatureSpec {
+    /**
+     * Anthos Observability spec
+     */
+    anthosobservability?: Schema$AnthosObservabilityFeatureSpec;
     /**
      * Appdevexperience specific spec.
      */
@@ -1142,43 +1159,9 @@ export namespace gkehub_v1beta {
     version?: number | null;
   }
   /**
-   * **Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.
-   */
-  export interface Schema$PolicyControllerMembershipSpec {
-    /**
-     * Policy Controller configuration for the cluster.
-     */
-    policyControllerHubConfig?: Schema$PolicyControllerPolicyControllerHubConfig;
-    /**
-     * Version of Policy Controller installed.
-     */
-    version?: string | null;
-  }
-  /**
-   * **Policy Controller**: State for a single cluster.
-   */
-  export interface Schema$PolicyControllerMembershipState {
-    /**
-     * The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.
-     */
-    clusterName?: string | null;
-    /**
-     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
-     */
-    membershipSpec?: Schema$PolicyControllerMembershipSpec;
-    /**
-     * Policy Controller state observed by the Policy Controller Hub
-     */
-    policyControllerHubState?: Schema$PolicyControllerPolicyControllerHubState;
-    /**
-     * The lifecycle state Policy Controller is in.
-     */
-    state?: string | null;
-  }
-  /**
    * Configuration for Policy Controller
    */
-  export interface Schema$PolicyControllerPolicyControllerHubConfig {
+  export interface Schema$PolicyControllerHubConfig {
     /**
      * Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.
      */
@@ -1207,7 +1190,7 @@ export namespace gkehub_v1beta {
   /**
    * State of the Policy Controller.
    */
-  export interface Schema$PolicyControllerPolicyControllerHubState {
+  export interface Schema$PolicyControllerHubState {
     /**
      * Map from deployment name to deployment state. Example deployments are gatekeeper-controller-manager, gatekeeper-audit deployment, and gatekeeper-mutation.
      */
@@ -1215,16 +1198,50 @@ export namespace gkehub_v1beta {
     /**
      * The version of Gatekeeper Policy Controller deployed.
      */
-    version?: Schema$PolicyControllerPolicyControllerHubVersion;
+    version?: Schema$PolicyControllerHubVersion;
   }
   /**
    * The build version of Gatekeeper that Policy Controller is using.
    */
-  export interface Schema$PolicyControllerPolicyControllerHubVersion {
+  export interface Schema$PolicyControllerHubVersion {
     /**
      * The gatekeeper image tag that is composed of ACM version, git tag, build number.
      */
     version?: string | null;
+  }
+  /**
+   * **Policy Controller**: Configuration for a single cluster. Intended to parallel the PolicyController CR.
+   */
+  export interface Schema$PolicyControllerMembershipSpec {
+    /**
+     * Policy Controller configuration for the cluster.
+     */
+    policyControllerHubConfig?: Schema$PolicyControllerHubConfig;
+    /**
+     * Version of Policy Controller installed.
+     */
+    version?: string | null;
+  }
+  /**
+   * **Policy Controller**: State for a single cluster.
+   */
+  export interface Schema$PolicyControllerMembershipState {
+    /**
+     * The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed PC on the cluster manually prior to enabling the PC hub feature. Unique within a Policy Controller installation.
+     */
+    clusterName?: string | null;
+    /**
+     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
+     */
+    membershipSpec?: Schema$PolicyControllerMembershipSpec;
+    /**
+     * Policy Controller state observed by the Policy Controller Hub
+     */
+    policyControllerHubState?: Schema$PolicyControllerHubState;
+    /**
+     * The lifecycle state Policy Controller is in.
+     */
+    state?: string | null;
   }
   /**
    * The config specifying which default library templates to install.
