@@ -756,9 +756,12 @@
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -801,9 +804,12 @@
                             "Purchase impressions from specific sub-exchanges.",
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
-                            "Target ads to a specific audio content type."
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -910,9 +916,12 @@
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -955,9 +964,12 @@
                             "Purchase impressions from specific sub-exchanges.",
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
-                            "Target ads to a specific audio content type."
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1920,9 +1932,12 @@
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1965,9 +1980,12 @@
                             "Purchase impressions from specific sub-exchanges.",
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
-                            "Target ads to a specific audio content type."
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2074,9 +2092,12 @@
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2119,9 +2140,12 @@
                             "Purchase impressions from specific sub-exchanges.",
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
-                            "Target ads to a specific audio content type."
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2628,9 +2652,12 @@
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2673,9 +2700,12 @@
                             "Purchase impressions from specific sub-exchanges.",
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
-                            "Target ads to a specific audio content type."
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2772,9 +2802,12 @@
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2817,9 +2850,12 @@
                             "Purchase impressions from specific sub-exchanges.",
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
-                            "Target ads to a specific audio content type."
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2913,9 +2949,12 @@
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2958,9 +2997,12 @@
                             "Purchase impressions from specific sub-exchanges.",
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
-                            "Target ads to a specific audio content type."
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3067,9 +3109,12 @@
                             "TARGETING_TYPE_SUB_EXCHANGE",
                             "TARGETING_TYPE_POI",
                             "TARGETING_TYPE_BUSINESS_CHAIN",
+                            "TARGETING_TYPE_CONTENT_DURATION",
+                            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                             "TARGETING_TYPE_OMID",
-                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                            "TARGETING_TYPE_CONTENT_GENRE"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -3112,9 +3157,12 @@
                             "Purchase impressions from specific sub-exchanges.",
                             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                             "Target ads around locations of a business chain within a specific geo region.",
+                            "Target ads to a specific video content duration.",
+                            "Target ads to a specific video content stream type.",
                             "Target ads to a specific native content position.",
                             "Target ads in an Open Measurement enabled inventory.",
-                            "Target ads to a specific audio content type."
+                            "Target ads to a specific audio content type.",
+                            "Target ads to a specific content genre."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -4167,9 +4215,12 @@
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
-                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4212,9 +4263,12 @@
                         "Purchase impressions from specific sub-exchanges.",
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
+                        "Target ads to a specific video content duration.",
+                        "Target ads to a specific video content stream type.",
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
-                        "Target ads to a specific audio content type."
+                        "Target ads to a specific audio content type.",
+                        "Target ads to a specific content genre."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4302,9 +4356,12 @@
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
-                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4347,9 +4404,12 @@
                         "Purchase impressions from specific sub-exchanges.",
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
+                        "Target ads to a specific video content duration.",
+                        "Target ads to a specific video content stream type.",
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
-                        "Target ads to a specific audio content type."
+                        "Target ads to a specific audio content type.",
+                        "Target ads to a specific content genre."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4434,9 +4494,12 @@
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
-                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4479,9 +4542,12 @@
                         "Purchase impressions from specific sub-exchanges.",
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
+                        "Target ads to a specific video content duration.",
+                        "Target ads to a specific video content stream type.",
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
-                        "Target ads to a specific audio content type."
+                        "Target ads to a specific audio content type.",
+                        "Target ads to a specific content genre."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4579,9 +4645,12 @@
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
-                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4624,9 +4693,12 @@
                         "Purchase impressions from specific sub-exchanges.",
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
+                        "Target ads to a specific video content duration.",
+                        "Target ads to a specific video content stream type.",
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
-                        "Target ads to a specific audio content type."
+                        "Target ads to a specific audio content type.",
+                        "Target ads to a specific content genre."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6622,9 +6694,12 @@
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
-                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6667,9 +6742,12 @@
                         "Purchase impressions from specific sub-exchanges.",
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
+                        "Target ads to a specific video content duration.",
+                        "Target ads to a specific video content stream type.",
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
-                        "Target ads to a specific audio content type."
+                        "Target ads to a specific audio content type.",
+                        "Target ads to a specific content genre."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6757,9 +6835,12 @@
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
-                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6802,9 +6883,12 @@
                         "Purchase impressions from specific sub-exchanges.",
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
+                        "Target ads to a specific video content duration.",
+                        "Target ads to a specific video content stream type.",
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
-                        "Target ads to a specific audio content type."
+                        "Target ads to a specific audio content type.",
+                        "Target ads to a specific content genre."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6889,9 +6973,12 @@
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
-                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6934,9 +7021,12 @@
                         "Purchase impressions from specific sub-exchanges.",
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
+                        "Target ads to a specific video content duration.",
+                        "Target ads to a specific video content stream type.",
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
-                        "Target ads to a specific audio content type."
+                        "Target ads to a specific audio content type.",
+                        "Target ads to a specific content genre."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -7034,9 +7124,12 @@
                         "TARGETING_TYPE_SUB_EXCHANGE",
                         "TARGETING_TYPE_POI",
                         "TARGETING_TYPE_BUSINESS_CHAIN",
+                        "TARGETING_TYPE_CONTENT_DURATION",
+                        "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                         "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                         "TARGETING_TYPE_OMID",
-                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                        "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                        "TARGETING_TYPE_CONTENT_GENRE"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -7079,9 +7172,12 @@
                         "Purchase impressions from specific sub-exchanges.",
                         "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                         "Target ads around locations of a business chain within a specific geo region.",
+                        "Target ads to a specific video content duration.",
+                        "Target ads to a specific video content stream type.",
                         "Target ads to a specific native content position.",
                         "Target ads in an Open Measurement enabled inventory.",
-                        "Target ads to a specific audio content type."
+                        "Target ads to a specific audio content type.",
+                        "Target ads to a specific content genre."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -7227,9 +7323,12 @@
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
-                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -7272,9 +7371,12 @@
                     "Purchase impressions from specific sub-exchanges.",
                     "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                     "Target ads around locations of a business chain within a specific geo region.",
+                    "Target ads to a specific video content duration.",
+                    "Target ads to a specific video content stream type.",
                     "Target ads to a specific native content position.",
                     "Target ads in an Open Measurement enabled inventory.",
-                    "Target ads to a specific audio content type."
+                    "Target ads to a specific audio content type.",
+                    "Target ads to a specific content genre."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -7369,9 +7471,12 @@
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
-                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -7414,9 +7519,12 @@
                     "Purchase impressions from specific sub-exchanges.",
                     "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                     "Target ads around locations of a business chain within a specific geo region.",
+                    "Target ads to a specific video content duration.",
+                    "Target ads to a specific video content stream type.",
                     "Target ads to a specific native content position.",
                     "Target ads in an Open Measurement enabled inventory.",
-                    "Target ads to a specific audio content type."
+                    "Target ads to a specific audio content type.",
+                    "Target ads to a specific content genre."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -7484,9 +7592,12 @@
                     "TARGETING_TYPE_SUB_EXCHANGE",
                     "TARGETING_TYPE_POI",
                     "TARGETING_TYPE_BUSINESS_CHAIN",
+                    "TARGETING_TYPE_CONTENT_DURATION",
+                    "TARGETING_TYPE_CONTENT_STREAM_TYPE",
                     "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
                     "TARGETING_TYPE_OMID",
-                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+                    "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+                    "TARGETING_TYPE_CONTENT_GENRE"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -7529,9 +7640,12 @@
                     "Purchase impressions from specific sub-exchanges.",
                     "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
                     "Target ads around locations of a business chain within a specific geo region.",
+                    "Target ads to a specific video content duration.",
+                    "Target ads to a specific video content stream type.",
                     "Target ads to a specific native content position.",
                     "Target ads in an Open Measurement enabled inventory.",
-                    "Target ads to a specific audio content type."
+                    "Target ads to a specific audio content type.",
+                    "Target ads to a specific content genre."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -7730,7 +7844,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220317",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8551,9 +8665,12 @@
             "TARGETING_TYPE_SUB_EXCHANGE",
             "TARGETING_TYPE_POI",
             "TARGETING_TYPE_BUSINESS_CHAIN",
+            "TARGETING_TYPE_CONTENT_DURATION",
+            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
             "TARGETING_TYPE_OMID",
-            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+            "TARGETING_TYPE_CONTENT_GENRE"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -8596,9 +8713,12 @@
             "Purchase impressions from specific sub-exchanges.",
             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
             "Target ads around locations of a business chain within a specific geo region.",
+            "Target ads to a specific video content duration.",
+            "Target ads to a specific video content stream type.",
             "Target ads to a specific native content position.",
             "Target ads in an Open Measurement enabled inventory.",
-            "Target ads to a specific audio content type."
+            "Target ads to a specific audio content type.",
+            "Target ads to a specific content genre."
           ],
           "readOnly": true,
           "type": "string"
@@ -10206,9 +10326,12 @@
             "TARGETING_TYPE_SUB_EXCHANGE",
             "TARGETING_TYPE_POI",
             "TARGETING_TYPE_BUSINESS_CHAIN",
+            "TARGETING_TYPE_CONTENT_DURATION",
+            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
             "TARGETING_TYPE_OMID",
-            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+            "TARGETING_TYPE_CONTENT_GENRE"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -10251,9 +10374,12 @@
             "Purchase impressions from specific sub-exchanges.",
             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
             "Target ads around locations of a business chain within a specific geo region.",
+            "Target ads to a specific video content duration.",
+            "Target ads to a specific video content stream type.",
             "Target ads to a specific native content position.",
             "Target ads in an Open Measurement enabled inventory.",
-            "Target ads to a specific audio content type."
+            "Target ads to a specific audio content type.",
+            "Target ads to a specific content genre."
           ],
           "type": "string"
         }
@@ -11097,9 +11223,12 @@
             "TARGETING_TYPE_SUB_EXCHANGE",
             "TARGETING_TYPE_POI",
             "TARGETING_TYPE_BUSINESS_CHAIN",
+            "TARGETING_TYPE_CONTENT_DURATION",
+            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
             "TARGETING_TYPE_OMID",
-            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+            "TARGETING_TYPE_CONTENT_GENRE"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -11142,9 +11271,12 @@
             "Purchase impressions from specific sub-exchanges.",
             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
             "Target ads around locations of a business chain within a specific geo region.",
+            "Target ads to a specific video content duration.",
+            "Target ads to a specific video content stream type.",
             "Target ads to a specific native content position.",
             "Target ads in an Open Measurement enabled inventory.",
-            "Target ads to a specific audio content type."
+            "Target ads to a specific audio content type.",
+            "Target ads to a specific content genre."
           ],
           "type": "string"
         }
@@ -16941,9 +17073,12 @@
             "TARGETING_TYPE_SUB_EXCHANGE",
             "TARGETING_TYPE_POI",
             "TARGETING_TYPE_BUSINESS_CHAIN",
+            "TARGETING_TYPE_CONTENT_DURATION",
+            "TARGETING_TYPE_CONTENT_STREAM_TYPE",
             "TARGETING_TYPE_NATIVE_CONTENT_POSITION",
             "TARGETING_TYPE_OMID",
-            "TARGETING_TYPE_AUDIO_CONTENT_TYPE"
+            "TARGETING_TYPE_AUDIO_CONTENT_TYPE",
+            "TARGETING_TYPE_CONTENT_GENRE"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -16986,9 +17121,12 @@
             "Purchase impressions from specific sub-exchanges.",
             "Target ads around a specific point of interest, such as a notable building, a street address, or latitude/longitude coordinates.",
             "Target ads around locations of a business chain within a specific geo region.",
+            "Target ads to a specific video content duration.",
+            "Target ads to a specific video content stream type.",
             "Target ads to a specific native content position.",
             "Target ads in an Open Measurement enabled inventory.",
-            "Target ads to a specific audio content type."
+            "Target ads to a specific audio content type.",
+            "Target ads to a specific content genre."
           ],
           "readOnly": true,
           "type": "string"

@@ -532,7 +532,7 @@
       "name": "authorizedbuyersmarketplace",
       "version": "v1",
       "title": "Authorized Buyers Marketplace API",
-      "description": "The Authorized Buyers Marketplace API allows buyers programmatically discover inventory; propose, retrieve and negotiate deals with publishers.",
+      "description": "The Authorized Buyers Marketplace API lets buyers programmatically discover inventory; propose, retrieve and negotiate deals with publishers.",
       "discoveryRestUrl": "https://authorizedbuyersmarketplace.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3222,7 +3222,7 @@
       "name": "keep",
       "version": "v1",
       "title": "Google Keep API",
-      "description": "This API is an enterprise-only API used to create and manage the Keep notes within your domain, including resolving issues identified by CASB software.",
+      "description": "The Google Keep API is used in an enterprise environment to manage Google Keep content and resolve issues identified by cloud security software.",
       "discoveryRestUrl": "https://keep.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
