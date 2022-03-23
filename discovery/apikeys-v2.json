@@ -429,7 +429,7 @@
       }
     }
   },
-  "revision": "20220202",
+  "revision": "20220321",
   "rootUrl": "https://apikeys.googleapis.com/",
   "schemas": {
     "Operation": {
@@ -595,6 +595,13 @@
       "description": "The representation of a key managed by the API Keys API.",
       "id": "V2Key",
       "properties": {
+        "annotations": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects.",
+          "type": "object"
+        },
         "createTime": {
           "description": "Output only. A timestamp identifying the time this key was originally created.",
           "format": "google-datetime",
