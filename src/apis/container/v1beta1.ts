@@ -972,7 +972,7 @@ export namespace container_v1beta1 {
     state?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -1665,7 +1665,7 @@ export namespace container_v1beta1 {
     tags?: string[] | null;
   }
   /**
-   * Parameters that describe the nodes in a cluster.
+   * Parameters that describe the nodes in a cluster. *Note:* GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.
    */
   export interface Schema$NodeConfig {
     /**
@@ -1680,6 +1680,10 @@ export namespace container_v1beta1 {
      *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
      */
     bootDiskKmsKey?: string | null;
+    /**
+     * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
+     */
+    confidentialNodes?: Schema$ConfidentialNodes;
     /**
      * Size of the disk attached to each node, specified in GB. The smallest allowed disk size is 10GB. If unspecified, the default disk size is 100GB.
      */
@@ -2868,6 +2872,10 @@ export namespace container_v1beta1 {
      * Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
     clusterId?: string | null;
+    /**
+     * Confidential nodes config. All the nodes in the node pool will be Confidential VM once enabled.
+     */
+    confidentialNodes?: Schema$ConfidentialNodes;
     /**
      * GCFS config.
      */
@@ -7947,6 +7955,7 @@ export namespace container_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "confidentialNodes": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
@@ -13379,6 +13388,7 @@ export namespace container_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "clusterId": "my_clusterId",
+     *       //   "confidentialNodes": {},
      *       //   "gcfsConfig": {},
      *       //   "gvnic": {},
      *       //   "imageType": "my_imageType",
