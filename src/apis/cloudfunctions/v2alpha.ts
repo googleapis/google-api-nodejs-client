@@ -214,6 +214,10 @@ export namespace cloudfunctions_v2alpha {
      */
     attribute?: string | null;
     /**
+     * Optional. The operator used for matching the events with the value of the filter. If not specified, only events that have an exact key-value pair specified in the filter are matched. The only allowed value is `match-path-pattern`.
+     */
+    operator?: string | null;
+    /**
      * Required. The value for the attribute.
      */
     value?: string | null;
@@ -767,6 +771,10 @@ export namespace cloudfunctions_v2alpha {
      * The limit on the minimum number of function instances that may coexist at a given time. Function instances are kept in idle state for a short period after they finished executing the request to reduce cold start time for subsequent requests. Setting a minimum instance count will ensure that the given number of instances are kept running in idle state always. This can help with cold start times when jump in incoming request count occurs after the idle instance would have been stopped in the default case.
      */
     minInstanceCount?: number | null;
+    /**
+     * Output only. The name of service revision.
+     */
+    revision?: string | null;
     /**
      * Output only. Name of the service associated with a Function. The format of this field is `projects/{project\}/locations/{region\}/services/{service\}`
      */

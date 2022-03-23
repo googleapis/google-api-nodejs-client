@@ -571,7 +571,7 @@
       }
     }
   },
-  "revision": "20220224",
+  "revision": "20220317",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -694,6 +694,10 @@
       "properties": {
         "attribute": {
           "description": "Required. The name of a CloudEvents attribute.",
+          "type": "string"
+        },
+        "operator": {
+          "description": "Optional. The operator used for matching the events with the value of the filter. If not specified, only events that have an exact key-value pair specified in the filter are matched. The only allowed value is `match-path-pattern`.",
           "type": "string"
         },
         "value": {
@@ -1559,6 +1563,11 @@
           "description": "The limit on the minimum number of function instances that may coexist at a given time. Function instances are kept in idle state for a short period after they finished executing the request to reduce cold start time for subsequent requests. Setting a minimum instance count will ensure that the given number of instances are kept running in idle state always. This can help with cold start times when jump in incoming request count occurs after the idle instance would have been stopped in the default case.",
           "format": "int32",
           "type": "integer"
+        },
+        "revision": {
+          "description": "Output only. The name of service revision.",
+          "readOnly": true,
+          "type": "string"
         },
         "service": {
           "description": "Output only. Name of the service associated with a Function. The format of this field is `projects/{project}/locations/{region}/services/{service}`",
