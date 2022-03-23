@@ -225,6 +225,10 @@ export namespace versionhistory_v1 {
      */
     fraction?: number | null;
     /**
+     * Rollout fraction group. Only fractions with the same fraction_group are statistically comparable: there may be non-fractional differences between different fraction groups.
+     */
+    fractionGroup?: string | null;
+    /**
      * Release name. Format is "{product\}/platforms/{platform\}/channels/{channel\}/versions/{version\}/releases/{release\}"
      */
     name?: string | null;
