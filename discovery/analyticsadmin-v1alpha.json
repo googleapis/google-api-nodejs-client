@@ -1675,7 +1675,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
+                      "description": "Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
                       "location": "path",
                       "pattern": "^properties/[^/]+/dataStreams/[^/]+/measurementProtocolSecrets/[^/]+$",
                       "required": true,
@@ -2556,7 +2556,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20220322",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3819,7 +3819,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property}/webDataStreams/{webDataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
+          "description": "Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property}/dataStreams/{dataStream}/measurementProtocolSecrets/{measurementProtocolSecret}",
           "readOnly": true,
           "type": "string"
         },
@@ -3933,7 +3933,23 @@
           "type": "string"
         },
         "parent": {
-          "description": "Immutable. Resource name of this property's logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account} Example: \"accounts/100\"",
+          "description": "Immutable. Resource name of this property's logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account}, properties/{property} Example: \"accounts/100\", \"properties/101\"",
+          "type": "string"
+        },
+        "propertyType": {
+          "description": "Immutable. The property type for this Property resource. When creating a property, if the type is \"PROPERTY_TYPE_UNSPECIFIED\", then \"ORDINARY_PROPERTY\" will be implied. \"SUBPROPERTY\" and \"ROLLUP_PROPERTY\" types cannot yet be created via Google Analytics Admin API.",
+          "enum": [
+            "PROPERTY_TYPE_UNSPECIFIED",
+            "PROPERTY_TYPE_ORDINARY",
+            "PROPERTY_TYPE_SUBPROPERTY",
+            "PROPERTY_TYPE_ROLLUP"
+          ],
+          "enumDescriptions": [
+            "Unknown or unspecified property type",
+            "Ordinary GA4 property",
+            "GA4 subproperty",
+            "GA4 rollup property"
+          ],
           "type": "string"
         },
         "serviceLevel": {
@@ -3972,8 +3988,28 @@
           "description": "Display name for the property referred to in this property summary.",
           "type": "string"
         },
+        "parent": {
+          "description": "Resource name of this property's logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account}, properties/{property} Example: \"accounts/100\", \"properties/200\"",
+          "type": "string"
+        },
         "property": {
           "description": "Resource name of property referred to by this property summary Format: properties/{property_id} Example: \"properties/1000\"",
+          "type": "string"
+        },
+        "propertyType": {
+          "description": "The property's property type.",
+          "enum": [
+            "PROPERTY_TYPE_UNSPECIFIED",
+            "PROPERTY_TYPE_ORDINARY",
+            "PROPERTY_TYPE_SUBPROPERTY",
+            "PROPERTY_TYPE_ROLLUP"
+          ],
+          "enumDescriptions": [
+            "Unknown or unspecified property type",
+            "Ordinary GA4 property",
+            "GA4 subproperty",
+            "GA4 rollup property"
+          ],
           "type": "string"
         }
       },
@@ -4153,7 +4189,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"

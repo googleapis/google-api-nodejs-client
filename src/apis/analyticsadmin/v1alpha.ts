@@ -1009,7 +1009,7 @@ export namespace analyticsadmin_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
      */
     name?: string | null;
     /**
@@ -1054,9 +1054,13 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string | null;
     /**
-     * Immutable. Resource name of this property's logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account\} Example: "accounts/100"
+     * Immutable. Resource name of this property's logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account\}, properties/{property\} Example: "accounts/100", "properties/101"
      */
     parent?: string | null;
+    /**
+     * Immutable. The property type for this Property resource. When creating a property, if the type is "PROPERTY_TYPE_UNSPECIFIED", then "ORDINARY_PROPERTY" will be implied. "SUBPROPERTY" and "ROLLUP_PROPERTY" types cannot yet be created via Google Analytics Admin API.
+     */
+    propertyType?: string | null;
     /**
      * Output only. The Google Analytics service level that applies to this property.
      */
@@ -1079,9 +1083,17 @@ export namespace analyticsadmin_v1alpha {
      */
     displayName?: string | null;
     /**
+     * Resource name of this property's logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account\}, properties/{property\} Example: "accounts/100", "properties/200"
+     */
+    parent?: string | null;
+    /**
      * Resource name of property referred to by this property summary Format: properties/{property_id\} Example: "properties/1000"
      */
     property?: string | null;
+    /**
+     * The property's property type.
+     */
+    propertyType?: string | null;
   }
   /**
    * Request message for ProvisionAccountTicket RPC.
@@ -1182,7 +1194,7 @@ export namespace analyticsadmin_v1alpha {
     name?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
 
@@ -4229,6 +4241,7 @@ export namespace analyticsadmin_v1alpha {
      *       //   "industryCategory": "my_industryCategory",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
+     *       //   "propertyType": "my_propertyType",
      *       //   "serviceLevel": "my_serviceLevel",
      *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
@@ -4248,6 +4261,7 @@ export namespace analyticsadmin_v1alpha {
      *   //   "industryCategory": "my_industryCategory",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
+     *   //   "propertyType": "my_propertyType",
      *   //   "serviceLevel": "my_serviceLevel",
      *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
@@ -4398,6 +4412,7 @@ export namespace analyticsadmin_v1alpha {
      *   //   "industryCategory": "my_industryCategory",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
+     *   //   "propertyType": "my_propertyType",
      *   //   "serviceLevel": "my_serviceLevel",
      *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
@@ -4548,6 +4563,7 @@ export namespace analyticsadmin_v1alpha {
      *   //   "industryCategory": "my_industryCategory",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
+     *   //   "propertyType": "my_propertyType",
      *   //   "serviceLevel": "my_serviceLevel",
      *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
@@ -5126,6 +5142,7 @@ export namespace analyticsadmin_v1alpha {
      *       //   "industryCategory": "my_industryCategory",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
+     *       //   "propertyType": "my_propertyType",
      *       //   "serviceLevel": "my_serviceLevel",
      *       //   "timeZone": "my_timeZone",
      *       //   "updateTime": "my_updateTime"
@@ -5145,6 +5162,7 @@ export namespace analyticsadmin_v1alpha {
      *   //   "industryCategory": "my_industryCategory",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
+     *   //   "propertyType": "my_propertyType",
      *   //   "serviceLevel": "my_serviceLevel",
      *   //   "timeZone": "my_timeZone",
      *   //   "updateTime": "my_updateTime"
@@ -9483,7 +9501,7 @@ export namespace analyticsadmin_v1alpha {
      *   const res =
      *     await analyticsadmin.properties.dataStreams.measurementProtocolSecrets.patch(
      *       {
-     *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     *         // Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
      *         name: 'properties/my-propertie/dataStreams/my-dataStream/measurementProtocolSecrets/my-measurementProtocolSecret',
      *         // The list of fields to be updated. Omitted fields will not be updated.
      *         updateMask: 'placeholder-value',
@@ -9653,7 +9671,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Datastreams$Measurementprotocolsecrets$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/webDataStreams/{webDataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
+     * Output only. Resource name of this secret. This secret may be a child of any type of stream. Format: properties/{property\}/dataStreams/{dataStream\}/measurementProtocolSecrets/{measurementProtocolSecret\}
      */
     name?: string;
     /**
