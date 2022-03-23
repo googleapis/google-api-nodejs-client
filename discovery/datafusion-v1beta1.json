@@ -305,7 +305,7 @@
                   ],
                   "parameters": {
                     "options.requestedPolicyVersion": {
-                      "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                      "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -522,11 +522,11 @@
               "resources": {
                 "dnsPeerings": {
                   "methods": {
-                    "add": {
+                    "create": {
                       "description": "Add DNS peering on the given resource.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings:add",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings",
                       "httpMethod": "POST",
-                      "id": "datafusion.projects.locations.instances.dnsPeerings.add",
+                      "id": "datafusion.projects.locations.instances.dnsPeerings.create",
                       "parameterOrder": [
                         "parent"
                       ],
@@ -539,12 +539,37 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+parent}/dnsPeerings:add",
+                      "path": "v1beta1/{+parent}/dnsPeerings",
                       "request": {
-                        "$ref": "AddDnsPeeringRequest"
+                        "$ref": "DnsPeering"
                       },
                       "response": {
-                        "$ref": "AddDnsPeeringResponse"
+                        "$ref": "DnsPeering"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Remove DNS peering on the given resource.",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings/{dnsPeeringsId}",
+                      "httpMethod": "DELETE",
+                      "id": "datafusion.projects.locations.instances.dnsPeerings.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DNS peering zone to delete. Format: projects/{project}/locations/{location}/instances/{instance}/dnsPeerings/{dns_peering}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+/dnsPeerings/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -552,7 +577,7 @@
                     },
                     "list": {
                       "description": "List DNS peering for a given resource.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings:list",
+                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings",
                       "httpMethod": "GET",
                       "id": "datafusion.projects.locations.instances.dnsPeerings.list",
                       "parameterOrder": [
@@ -560,55 +585,27 @@
                       ],
                       "parameters": {
                         "pageSize": {
-                          "description": "The maximum number of items to return.",
+                          "description": "The maximum number of dns peerings to return. The service may return fewer than this value. If unspecified, at most 10 dns peerings will be returned. The maximum value is 50; values above 50 will be coerced to 50.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+                          "description": "A page token, received from a previous `ListDnsPeerings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDnsPeerings` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource on which dns peering will be listed.",
+                          "description": "Required. The parent, which owns this collection of dns peerings. Format: projects/{project}/locations/{location}/instances/{instance}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                           "required": true,
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+parent}/dnsPeerings:list",
+                      "path": "v1beta1/{+parent}/dnsPeerings",
                       "response": {
                         "$ref": "ListDnsPeeringsResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
-                    "remove": {
-                      "description": "Remove DNS peering on the given resource.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/dnsPeerings:remove",
-                      "httpMethod": "POST",
-                      "id": "datafusion.projects.locations.instances.dnsPeerings.remove",
-                      "parameterOrder": [
-                        "parent"
-                      ],
-                      "parameters": {
-                        "parent": {
-                          "description": "Required. The resource on which DNS peering will be removed.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1beta1/{+parent}/dnsPeerings:remove",
-                      "request": {
-                        "$ref": "RemoveDnsPeeringRequest"
-                      },
-                      "response": {
-                        "$ref": "RemoveDnsPeeringResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -628,7 +625,7 @@
                       ],
                       "parameters": {
                         "options.requestedPolicyVersion": {
-                          "description": "Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+                          "description": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -933,7 +930,7 @@
       }
     }
   },
-  "revision": "20211028",
+  "revision": "20220316",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -955,23 +952,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "AddDnsPeeringRequest": {
-      "description": "Request message to create dns peering.",
-      "id": "AddDnsPeeringRequest",
-      "properties": {
-        "dnsPeering": {
-          "$ref": "DnsPeering",
-          "description": "Dns peering config."
-        }
-      },
-      "type": "object"
-    },
-    "AddDnsPeeringResponse": {
-      "description": "Response message for set dns peering method.",
-      "id": "AddDnsPeeringResponse",
-      "properties": {},
       "type": "object"
     },
     "AuditConfig": {
@@ -1070,7 +1050,11 @@
           "type": "string"
         },
         "domain": {
-          "description": "Required. Name of the dns.",
+          "description": "Required. The dns name suffix of the zone.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The resource name of the dns peering zone. Format: projects/{project}/locations/{location}/instances/{instance}/dnsPeerings/{dns_peering}",
           "type": "string"
         },
         "targetNetwork": {
@@ -1079,10 +1063,6 @@
         },
         "targetProject": {
           "description": "Optional. Optional target project to which dns peering should happen.",
-          "type": "string"
-        },
-        "zone": {
-          "description": "Required. Name of the zone.",
           "type": "string"
         }
       },
@@ -1345,18 +1325,18 @@
       "type": "object"
     },
     "ListDnsPeeringsResponse": {
-      "description": "List dns peering response.",
+      "description": "Response message for list DNS peerings.",
       "id": "ListDnsPeeringsResponse",
       "properties": {
         "dnsPeerings": {
-          "description": "List of dns peering configs.",
+          "description": "List of dns peering.",
           "items": {
             "$ref": "DnsPeering"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to retrieve the next page of results or empty if there are no more results in the list.",
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -1606,23 +1586,6 @@
           "type": "integer"
         }
       },
-      "type": "object"
-    },
-    "RemoveDnsPeeringRequest": {
-      "description": "Request message to remove dns peering.",
-      "id": "RemoveDnsPeeringRequest",
-      "properties": {
-        "zone": {
-          "description": "Required. The zone to be removed.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RemoveDnsPeeringResponse": {
-      "description": "Response message for set dns peering method.",
-      "id": "RemoveDnsPeeringResponse",
-      "properties": {},
       "type": "object"
     },
     "RemoveIamPolicyRequest": {
