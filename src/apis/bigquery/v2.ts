@@ -628,6 +628,16 @@ export namespace bigquery_v2 {
      */
     count?: string | null;
   }
+  export interface Schema$CloneDefinition {
+    /**
+     * [Required] Reference describing the ID of the table that was cloned.
+     */
+    baseTableReference?: Schema$TableReference;
+    /**
+     * [Required] The time at which the base table was cloned. This value is reported in the JSON response using RFC3339 format.
+     */
+    cloneTime?: string | null;
+  }
   /**
    * Message containing the information about one cluster.
    */
@@ -874,6 +884,10 @@ export namespace bigquery_v2 {
      */
     evaluationTable?: Schema$TableReference;
     /**
+     * Table reference of the test data after split.
+     */
+    testTable?: Schema$TableReference;
+    /**
      * Table reference of the training data after split.
      */
     trainingTable?: Schema$TableReference;
@@ -896,6 +910,15 @@ export namespace bigquery_v2 {
      */
     labels?: {[key: string]: string} | null;
   }
+  /**
+   * Model evaluation metrics for dimensionality reduction models.
+   */
+  export interface Schema$DimensionalityReductionMetrics {
+    /**
+     * Total percentage of variance explained by the selected principal components.
+     */
+    totalExplainedVarianceRatio?: number | null;
+  }
   export interface Schema$DmlStatistics {
     /**
      * Number of deleted Rows. populated by DML DELETE, MERGE and TRUNCATE statements.
@@ -909,6 +932,41 @@ export namespace bigquery_v2 {
      * Number of updated Rows. Populated by DML UPDATE and MERGE statements.
      */
     updatedRowCount?: string | null;
+  }
+  /**
+   * Discrete candidates of a double hyperparameter.
+   */
+  export interface Schema$DoubleCandidates {
+    /**
+     * Candidates for the double parameter in increasing order.
+     */
+    candidates?: number[] | null;
+  }
+  /**
+   * Search space for a double hyperparameter.
+   */
+  export interface Schema$DoubleHparamSearchSpace {
+    /**
+     * Candidates of the double hyperparameter.
+     */
+    candidates?: Schema$DoubleCandidates;
+    /**
+     * Range of the double hyperparameter.
+     */
+    range?: Schema$DoubleRange;
+  }
+  /**
+   * Range of a double hyperparameter.
+   */
+  export interface Schema$DoubleRange {
+    /**
+     * Max value of the double parameter.
+     */
+    max?: number | null;
+    /**
+     * Min value of the double parameter.
+     */
+    min?: number | null;
   }
   export interface Schema$EncryptionConfiguration {
     /**
@@ -963,6 +1021,10 @@ export namespace bigquery_v2 {
      * Populated for clustering models.
      */
     clusteringMetrics?: Schema$ClusteringMetrics;
+    /**
+     * Evaluation metrics when the model is a dimensionality reduction model, which currently includes PCA.
+     */
+    dimensionalityReductionMetrics?: Schema$DimensionalityReductionMetrics;
     /**
      * Populated for multi-class classification/classifier models.
      */
@@ -1107,6 +1169,19 @@ export namespace bigquery_v2 {
      * Human-readable stage descriptions.
      */
     substeps?: string[] | null;
+  }
+  /**
+   * Explanation for a single feature.
+   */
+  export interface Schema$Explanation {
+    /**
+     * Attribution of feature.
+     */
+    attribution?: number | null;
+    /**
+     * Full name of the feature. For non-numerical features, will be formatted like .. Overall size of feature name will always be truncated to first 120 characters.
+     */
+    featureName?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1286,6 +1361,19 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
   }
+  /**
+   * Global explanations containing the top most important features after training.
+   */
+  export interface Schema$GlobalExplanation {
+    /**
+     * Class label for this set of global explanations. Will be empty/null for binary logistic and linear regression models. Sorted alphabetically in descending order.
+     */
+    classLabel?: string | null;
+    /**
+     * A list of the top global explanations. Sorted by absolute value of attribution in descending order.
+     */
+    explanations?: Schema$Explanation[];
+  }
   export interface Schema$GoogleSheetsOptions {
     /**
      * [Optional] Range of a sheet to query from. Only used when non-empty. Typical format: sheet_name!top_left_cell_id:bottom_right_cell_id For example: sheet1!A1:B20
@@ -1309,6 +1397,197 @@ export namespace bigquery_v2 {
      * [Optional] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).
      */
     sourceUriPrefix?: string | null;
+  }
+  /**
+   * Hyperparameter search spaces. These should be a subset of training_options.
+   */
+  export interface Schema$HparamSearchSpaces {
+    /**
+     * Activation functions of neural network models.
+     */
+    activationFn?: Schema$StringHparamSearchSpace;
+    /**
+     * Mini batch sample size.
+     */
+    batchSize?: Schema$IntHparamSearchSpace;
+    /**
+     * Booster type for boosted tree models.
+     */
+    boosterType?: Schema$StringHparamSearchSpace;
+    /**
+     * Subsample ratio of columns for each level for boosted tree models.
+     */
+    colsampleBylevel?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Subsample ratio of columns for each node(split) for boosted tree models.
+     */
+    colsampleBynode?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Subsample ratio of columns when constructing each tree for boosted tree models.
+     */
+    colsampleBytree?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Dart normalization type for boosted tree models.
+     */
+    dartNormalizeType?: Schema$StringHparamSearchSpace;
+    /**
+     * Dropout probability for dnn model training and boosted tree models using dart booster.
+     */
+    dropout?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Hidden units for neural network models.
+     */
+    hiddenUnits?: Schema$IntArrayHparamSearchSpace;
+    /**
+     * L1 regularization coefficient.
+     */
+    l1Reg?: Schema$DoubleHparamSearchSpace;
+    /**
+     * L2 regularization coefficient.
+     */
+    l2Reg?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Learning rate of training jobs.
+     */
+    learnRate?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Maximum depth of a tree for boosted tree models.
+     */
+    maxTreeDepth?: Schema$IntHparamSearchSpace;
+    /**
+     * Minimum split loss for boosted tree models.
+     */
+    minSplitLoss?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Minimum sum of instance weight needed in a child for boosted tree models.
+     */
+    minTreeChildWeight?: Schema$IntHparamSearchSpace;
+    /**
+     * Number of clusters for k-means.
+     */
+    numClusters?: Schema$IntHparamSearchSpace;
+    /**
+     * Number of latent factors to train on.
+     */
+    numFactors?: Schema$IntHparamSearchSpace;
+    /**
+     * Number of parallel trees for boosted tree models.
+     */
+    numParallelTree?: Schema$IntHparamSearchSpace;
+    /**
+     * Optimizer of TF models.
+     */
+    optimizer?: Schema$StringHparamSearchSpace;
+    /**
+     * Subsample the training data to grow tree to prevent overfitting for boosted tree models.
+     */
+    subsample?: Schema$DoubleHparamSearchSpace;
+    /**
+     * Tree construction algorithm for boosted tree models.
+     */
+    treeMethod?: Schema$StringHparamSearchSpace;
+    /**
+     * Hyperparameter for matrix factoration when implicit feedback type is specified.
+     */
+    walsAlpha?: Schema$DoubleHparamSearchSpace;
+  }
+  /**
+   * Training info of a trial in hyperparameter tuning.
+   */
+  export interface Schema$HparamTuningTrial {
+    /**
+     * Ending time of the trial.
+     */
+    endTimeMs?: string | null;
+    /**
+     * Error message for FAILED and INFEASIBLE trial.
+     */
+    errorMessage?: string | null;
+    /**
+     * Loss computed on the eval data at the end of trial.
+     */
+    evalLoss?: number | null;
+    /**
+     * Evaluation metrics of this trial calculated on the test data. Empty in Job API.
+     */
+    evaluationMetrics?: Schema$EvaluationMetrics;
+    /**
+     * The hyperprameters selected for this trial.
+     */
+    hparams?: Schema$TrainingOptions;
+    /**
+     * Hyperparameter tuning evaluation metrics of this trial calculated on the eval data. Unlike evaluation_metrics, only the fields corresponding to the hparam_tuning_objectives are set.
+     */
+    hparamTuningEvaluationMetrics?: Schema$EvaluationMetrics;
+    /**
+     * Starting time of the trial.
+     */
+    startTimeMs?: string | null;
+    /**
+     * The status of the trial.
+     */
+    status?: string | null;
+    /**
+     * Loss computed on the training data at the end of trial.
+     */
+    trainingLoss?: number | null;
+    /**
+     * 1-based index of the trial.
+     */
+    trialId?: string | null;
+  }
+  /**
+   * An array of int.
+   */
+  export interface Schema$IntArray {
+    /**
+     * Elements in the int array.
+     */
+    elements?: string[] | null;
+  }
+  /**
+   * Search space for int array.
+   */
+  export interface Schema$IntArrayHparamSearchSpace {
+    /**
+     * Candidates for the int array parameter.
+     */
+    candidates?: Schema$IntArray[];
+  }
+  /**
+   * Discrete candidates of an int hyperparameter.
+   */
+  export interface Schema$IntCandidates {
+    /**
+     * Candidates for the int parameter in increasing order.
+     */
+    candidates?: string[] | null;
+  }
+  /**
+   * Search space for an int hyperparameter.
+   */
+  export interface Schema$IntHparamSearchSpace {
+    /**
+     * Candidates of the int hyperparameter.
+     */
+    candidates?: Schema$IntCandidates;
+    /**
+     * Range of the int hyperparameter.
+     */
+    range?: Schema$IntRange;
+  }
+  /**
+   * Range of an int hyperparameter.
+   */
+  export interface Schema$IntRange {
+    /**
+     * Max value of the int parameter.
+     */
+    max?: string | null;
+    /**
+     * Min value of the int parameter.
+     */
+    min?: string | null;
   }
   export interface Schema$IterationResult {
     /**
@@ -1758,6 +2037,10 @@ export namespace bigquery_v2 {
      */
     completionRatio?: number | null;
     /**
+     * [Output-only] Statistics for a copy job.
+     */
+    copy?: Schema$JobStatistics5;
+    /**
      * [Output-only] Creation time of this job, in milliseconds since the epoch. This field will be present on all jobs.
      */
     creationTime?: string | null;
@@ -1980,6 +2263,16 @@ export namespace bigquery_v2 {
      */
     inputBytes?: string | null;
   }
+  export interface Schema$JobStatistics5 {
+    /**
+     * [Output-only] Number of logical bytes copied to the destination table.
+     */
+    copied_logical_bytes?: string | null;
+    /**
+     * [Output-only] Number of rows copied to the destination table.
+     */
+    copied_rows?: string | null;
+  }
   export interface Schema$JobStatus {
     /**
      * [Output-only] Final error result of the job. If present, indicates that the job has completed and was unsuccessful.
@@ -2079,6 +2372,10 @@ export namespace bigquery_v2 {
      */
     creationTime?: string | null;
     /**
+     * Output only. The default trial_id to use in TVFs when the trial_id is not passed in. For single-objective hyperparameter tuning, this is the best trial id. For multi-objective hyperparameter tuning, this is the smallest trial id among all Pareto optimal trials.
+     */
+    defaultTrialId?: string | null;
+    /**
      * Optional. A user-friendly description of this model.
      */
     description?: string | null;
@@ -2103,6 +2400,14 @@ export namespace bigquery_v2 {
      */
     friendlyName?: string | null;
     /**
+     * Output only. All hyperparameter search spaces in this model.
+     */
+    hparamSearchSpaces?: Schema$HparamSearchSpaces;
+    /**
+     * Output only. Trials of a hyperparameter tuning model sorted by trial_id.
+     */
+    hparamTrials?: Schema$HparamTuningTrial[];
+    /**
      * Output only. Label columns that were used to train this model. The output of the model will have a "predicted_" prefix to these columns.
      */
     labelColumns?: Schema$StandardSqlField[];
@@ -2126,6 +2431,10 @@ export namespace bigquery_v2 {
      * Output only. Type of the model resource.
      */
     modelType?: string | null;
+    /**
+     * Output only. For single-objective hyperparameter tuning, it only contains the best trial. For multi-objective hyperparameter tuning, it contains all Pareto optimal trials sorted by trial_id.
+     */
+    optimalTrialIds?: string[] | null;
     /**
      * Output only. Information for all training runs in increasing order of start_time.
      */
@@ -2202,6 +2511,27 @@ export namespace bigquery_v2 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Principal component infos, used only for eigen decomposition based models, e.g., PCA. Ordered by explained_variance in the descending order.
+   */
+  export interface Schema$PrincipalComponentInfo {
+    /**
+     * The explained_variance is pre-ordered in the descending order to compute the cumulative explained variance ratio.
+     */
+    cumulativeExplainedVarianceRatio?: number | null;
+    /**
+     * Explained variance by this principal component, which is simply the eigenvalue.
+     */
+    explainedVariance?: number | null;
+    /**
+     * Explained_variance over the total explained variance.
+     */
+    explainedVarianceRatio?: number | null;
+    /**
+     * Id of the principal component.
+     */
+    principalComponentId?: string | null;
   }
   export interface Schema$ProjectList {
     /**
@@ -2743,7 +3073,20 @@ export namespace bigquery_v2 {
      */
     oldestEntryTime?: string | null;
   }
+  /**
+   * Search space for string and enum.
+   */
+  export interface Schema$StringHparamSearchSpace {
+    /**
+     * Canididates for the string or enum parameter in lower case.
+     */
+    candidates?: string[] | null;
+  }
   export interface Schema$Table {
+    /**
+     * [Output-only] Clone definition.
+     */
+    cloneDefinition?: Schema$CloneDefinition;
     /**
      * [Beta] Clustering specification for the table. Must be specified with partitioning, data in the table will be first partitioned and subsequently clustered.
      */
@@ -3084,6 +3427,10 @@ export namespace bigquery_v2 {
      */
     boosterType?: string | null;
     /**
+     * Whether or not p-value test should be computed for this model. Only available for linear and logistic regression models.
+     */
+    calculatePValues?: boolean | null;
+    /**
      * If true, clean spikes and dips in the input time series.
      */
     cleanSpikesAndDips?: boolean | null;
@@ -3136,6 +3483,10 @@ export namespace bigquery_v2 {
      */
     earlyStop?: boolean | null;
     /**
+     * If true, enable global explanation during training.
+     */
+    enableGlobalExplain?: boolean | null;
+    /**
      * Feedback type that specifies which algorithm to run for matrix factorization.
      */
     feedbackType?: string | null;
@@ -3152,6 +3503,10 @@ export namespace bigquery_v2 {
      */
     horizon?: string | null;
     /**
+     * The target evaluation metrics to optimize the hyperparameters for.
+     */
+    hparamTuningObjectives?: string[] | null;
+    /**
      * Include drift when fitting an ARIMA model.
      */
     includeDrift?: boolean | null;
@@ -3163,6 +3518,10 @@ export namespace bigquery_v2 {
      * Name of input label columns in training data.
      */
     inputLabelColumns?: string[] | null;
+    /**
+     * Number of integral steps for the integrated gradients explain method.
+     */
+    integratedGradientsNumSteps?: string | null;
     /**
      * Item column specified for matrix factorization models.
      */
@@ -3204,6 +3563,10 @@ export namespace bigquery_v2 {
      */
     maxIterations?: string | null;
     /**
+     * Maximum number of trials to run in parallel.
+     */
+    maxParallelTrials?: string | null;
+    /**
      * Maximum depth of a tree for boosted tree models.
      */
     maxTreeDepth?: string | null;
@@ -3240,6 +3603,10 @@ export namespace bigquery_v2 {
      */
     numParallelTree?: string | null;
     /**
+     * Number of trials to run this hyperparameter tuning job.
+     */
+    numTrials?: string | null;
+    /**
      * Optimization strategy for training linear regression models.
      */
     optimizationStrategy?: string | null;
@@ -3247,6 +3614,10 @@ export namespace bigquery_v2 {
      * Whether to preserve the input structs in output feature names. Suppose there is a struct A with field b. When false (default), the output feature name is A_b. When true, the output feature name is A.b.
      */
     preserveInputStructs?: boolean | null;
+    /**
+     * Number of paths for the sampled shapley explain method.
+     */
+    sampledShapleyNumPaths?: string | null;
     /**
      * Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.
      */
@@ -3289,6 +3660,10 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TrainingRun {
     /**
+     * Global explanation contains the explanation of top features on the class level. Applies to classification models only.
+     */
+    classLevelGlobalExplanations?: Schema$GlobalExplanation[];
+    /**
      * Data split result of the training run. Only set when the input data is actually split.
      */
     dataSplitResult?: Schema$DataSplitResult;
@@ -3296,6 +3671,10 @@ export namespace bigquery_v2 {
      * The evaluation metrics over training/eval data that were computed at the end of training.
      */
     evaluationMetrics?: Schema$EvaluationMetrics;
+    /**
+     * Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models.
+     */
+    modelLevelGlobalExplanation?: Schema$GlobalExplanation;
     /**
      * Output of each iteration run, results.size() <= max_iterations.
      */
@@ -3308,6 +3687,14 @@ export namespace bigquery_v2 {
      * Options that were used for this training run, includes user specified and default options that were used.
      */
     trainingOptions?: Schema$TrainingOptions;
+    /**
+     * The model id in Vertex AI Model Registry for this training run
+     */
+    vertexAiModelId?: string | null;
+    /**
+     * The model version in Vertex AI Model Registry for this training run
+     */
+    vertexAiModelVersion?: string | null;
   }
   export interface Schema$TransactionInfo {
     /**
@@ -5776,18 +6163,22 @@ export namespace bigquery_v2 {
      *   // {
      *   //   "bestTrialId": "my_bestTrialId",
      *   //   "creationTime": "my_creationTime",
+     *   //   "defaultTrialId": "my_defaultTrialId",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
      *   //   "expirationTime": "my_expirationTime",
      *   //   "featureColumns": [],
      *   //   "friendlyName": "my_friendlyName",
+     *   //   "hparamSearchSpaces": {},
+     *   //   "hparamTrials": [],
      *   //   "labelColumns": [],
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "modelReference": {},
      *   //   "modelType": "my_modelType",
+     *   //   "optimalTrialIds": [],
      *   //   "trainingRuns": []
      *   // }
      * }
@@ -6067,18 +6458,22 @@ export namespace bigquery_v2 {
      *       // {
      *       //   "bestTrialId": "my_bestTrialId",
      *       //   "creationTime": "my_creationTime",
+     *       //   "defaultTrialId": "my_defaultTrialId",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
      *       //   "etag": "my_etag",
      *       //   "expirationTime": "my_expirationTime",
      *       //   "featureColumns": [],
      *       //   "friendlyName": "my_friendlyName",
+     *       //   "hparamSearchSpaces": {},
+     *       //   "hparamTrials": [],
      *       //   "labelColumns": [],
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
      *       //   "modelReference": {},
      *       //   "modelType": "my_modelType",
+     *       //   "optimalTrialIds": [],
      *       //   "trainingRuns": []
      *       // }
      *     },
@@ -6089,18 +6484,22 @@ export namespace bigquery_v2 {
      *   // {
      *   //   "bestTrialId": "my_bestTrialId",
      *   //   "creationTime": "my_creationTime",
+     *   //   "defaultTrialId": "my_defaultTrialId",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
      *   //   "etag": "my_etag",
      *   //   "expirationTime": "my_expirationTime",
      *   //   "featureColumns": [],
      *   //   "friendlyName": "my_friendlyName",
+     *   //   "hparamSearchSpaces": {},
+     *   //   "hparamTrials": [],
      *   //   "labelColumns": [],
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
      *   //   "modelReference": {},
      *   //   "modelType": "my_modelType",
+     *   //   "optimalTrialIds": [],
      *   //   "trainingRuns": []
      *   // }
      * }
@@ -8625,6 +9024,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "cloneDefinition": {},
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
@@ -8931,6 +9331,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloneDefinition": {},
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
@@ -8968,6 +9369,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "cloneDefinition": {},
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
@@ -9276,6 +9678,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloneDefinition": {},
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
@@ -9313,6 +9716,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "cloneDefinition": {},
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
@@ -9770,6 +10174,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloneDefinition": {},
      *       //   "clustering": {},
      *       //   "creationTime": "my_creationTime",
      *       //   "defaultCollation": "my_defaultCollation",
@@ -9807,6 +10212,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "cloneDefinition": {},
      *   //   "clustering": {},
      *   //   "creationTime": "my_creationTime",
      *   //   "defaultCollation": "my_defaultCollation",
