@@ -1454,7 +1454,7 @@
         "testers": {
           "methods": {
             "get": {
-              "description": "Gets testers.",
+              "description": "Gets testers. Note: Testers resource does not support email lists.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
               "httpMethod": "GET",
               "id": "androidpublisher.edits.testers.get",
@@ -1492,7 +1492,7 @@
               ]
             },
             "patch": {
-              "description": "Patches testers.",
+              "description": "Patches testers. Note: Testers resource does not support email lists.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
               "httpMethod": "PATCH",
               "id": "androidpublisher.edits.testers.patch",
@@ -1533,7 +1533,7 @@
               ]
             },
             "update": {
-              "description": "Updates testers.",
+              "description": "Updates testers. Note: Testers resource does not support email lists.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/edits/{editId}/testers/{track}",
               "httpMethod": "PUT",
               "id": "androidpublisher.edits.testers.update",
@@ -3040,7 +3040,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20220322",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -4555,7 +4555,7 @@
       "type": "object"
     },
     "Testers": {
-      "description": "The testers of an app. The resource for TestersService.",
+      "description": "The testers of an app. The resource for TestersService. Note: while it is possible in the Play Console UI to add testers via email lists, email lists are not supported by this resource.",
       "id": "Testers",
       "properties": {
         "googleGroups": {

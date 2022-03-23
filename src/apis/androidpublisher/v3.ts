@@ -1311,7 +1311,7 @@ export namespace androidpublisher_v3 {
     variants?: Schema$Variant[];
   }
   /**
-   * The testers of an app. The resource for TestersService.
+   * The testers of an app. The resource for TestersService. Note: while it is possible in the Play Console UI to add testers via email lists, email lists are not supported by this resource.
    */
   export interface Schema$Testers {
     /**
@@ -6380,7 +6380,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Gets testers.
+     * Gets testers. Note: Testers resource does not support email lists.
      * @example
      * ```js
      * // Before running the sample:
@@ -6514,7 +6514,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Patches testers.
+     * Patches testers. Note: Testers resource does not support email lists.
      * @example
      * ```js
      * // Before running the sample:
@@ -6656,7 +6656,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Updates testers.
+     * Updates testers. Note: Testers resource does not support email lists.
      * @example
      * ```js
      * // Before running the sample:
