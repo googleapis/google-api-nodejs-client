@@ -239,7 +239,7 @@ export namespace iap_v1 {
     rctokenAud?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -349,6 +349,19 @@ export namespace iap_v1 {
      * A token, which can be send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * The response from ListTunnelDestGroups.
+   */
+  export interface Schema$ListTunnelDestGroupsResponse {
+    /**
+     * A token, which can be send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * TunnelDestGroup existing in the project.
+     */
+    tunnelDestGroups?: Schema$TunnelDestGroup[];
   }
   /**
    * Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials.
@@ -480,13 +493,32 @@ export namespace iap_v1 {
      */
     permissions?: string[] | null;
   }
+  /**
+   * A TunnelDestGroup.
+   */
+  export interface Schema$TunnelDestGroup {
+    /**
+     * null List of CIDRs that this group applies to.
+     */
+    cidrs?: string[] | null;
+    /**
+     * null List of FQDNs that this group applies to.
+     */
+    fqdns?: string[] | null;
+    /**
+     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.
+     */
+    name?: string | null;
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
     brands: Resource$Projects$Brands;
+    iap_tunnel: Resource$Projects$Iap_tunnel;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.brands = new Resource$Projects$Brands(this.context);
+      this.iap_tunnel = new Resource$Projects$Iap_tunnel(this.context);
     }
   }
 
@@ -1687,6 +1719,778 @@ export namespace iap_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ResetIdentityAwareProxyClientSecretRequest;
+  }
+
+  export class Resource$Projects$Iap_tunnel {
+    context: APIRequestContext;
+    locations: Resource$Projects$Iap_tunnel$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Projects$Iap_tunnel$Locations(this.context);
+    }
+  }
+
+  export class Resource$Projects$Iap_tunnel$Locations {
+    context: APIRequestContext;
+    destGroups: Resource$Projects$Iap_tunnel$Locations$Destgroups;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.destGroups = new Resource$Projects$Iap_tunnel$Locations$Destgroups(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Iap_tunnel$Locations$Destgroups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new TunnelDestGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iap = google.iap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iap.projects.iap_tunnel.locations.destGroups.create({
+     *     // Required. GCP Project number/id and location. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}.
+     *     parent: 'projects/my-project/iap_tunnel/locations/my-location',
+     *     // Required. The ID to use for the TunnelDestGroup, which will become the final component of the resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     *     tunnelDestGroupId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cidrs": [],
+     *       //   "fqdns": [],
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cidrs": [],
+     *   //   "fqdns": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TunnelDestGroup>;
+    create(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$TunnelDestGroup>,
+      callback: BodyResponseCallback<Schema$TunnelDestGroup>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create,
+      callback: BodyResponseCallback<Schema$TunnelDestGroup>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$TunnelDestGroup>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TunnelDestGroup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/destGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TunnelDestGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TunnelDestGroup>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a TunnelDestGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iap = google.iap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iap.projects.iap_tunnel.locations.destGroups.delete({
+     *     // Required. Name of the TunnelDestGroup to be deleted. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}.
+     *     name: 'projects/my-project/iap_tunnel/locations/my-location/destGroups/my-destGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves an existing TunnelDestGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iap = google.iap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iap.projects.iap_tunnel.locations.destGroups.get({
+     *     // Required. Name of the TunnelDestGroup to be fetched. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}.
+     *     name: 'projects/my-project/iap_tunnel/locations/my-location/destGroups/my-destGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cidrs": [],
+     *   //   "fqdns": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TunnelDestGroup>;
+    get(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$TunnelDestGroup>,
+      callback: BodyResponseCallback<Schema$TunnelDestGroup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get,
+      callback: BodyResponseCallback<Schema$TunnelDestGroup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$TunnelDestGroup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TunnelDestGroup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TunnelDestGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TunnelDestGroup>(parameters);
+      }
+    }
+
+    /**
+     * Lists the existing TunnelDestGroups. To group across all locations, use a `-` as the location ID. For example: /v1/projects/123/iap_tunnel/locations/-/destGroups
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iap = google.iap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iap.projects.iap_tunnel.locations.destGroups.list({
+     *     // The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 100 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListTunnelDestGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTunnelDestGroups` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. GCP Project number/id and location. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}. A `-` can be used for the location to group across all locations.
+     *     parent: 'projects/my-project/iap_tunnel/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tunnelDestGroups": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTunnelDestGroupsResponse>;
+    list(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTunnelDestGroupsResponse>,
+      callback: BodyResponseCallback<Schema$ListTunnelDestGroupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List,
+      callback: BodyResponseCallback<Schema$ListTunnelDestGroupsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListTunnelDestGroupsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List
+        | BodyResponseCallback<Schema$ListTunnelDestGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTunnelDestGroupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTunnelDestGroupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTunnelDestGroupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/destGroups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTunnelDestGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTunnelDestGroupsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a TunnelDestGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iap.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const iap = google.iap('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iap.projects.iap_tunnel.locations.destGroups.patch({
+     *     // Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.
+     *     name: 'projects/my-project/iap_tunnel/locations/my-location/destGroups/my-destGroup',
+     *     // The field mask specifying which IAP settings should be updated. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cidrs": [],
+     *       //   "fqdns": [],
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cidrs": [],
+     *   //   "fqdns": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TunnelDestGroup>;
+    patch(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$TunnelDestGroup>,
+      callback: BodyResponseCallback<Schema$TunnelDestGroup>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch,
+      callback: BodyResponseCallback<Schema$TunnelDestGroup>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$TunnelDestGroup>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TunnelDestGroup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$TunnelDestGroup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iap.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TunnelDestGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TunnelDestGroup>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Create
+    extends StandardParameters {
+    /**
+     * Required. GCP Project number/id and location. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}.
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the TunnelDestGroup, which will become the final component of the resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     */
+    tunnelDestGroupId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TunnelDestGroup;
+  }
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the TunnelDestGroup to be deleted. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the TunnelDestGroup to be fetched. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}/destGroups/{dest_group\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$List
+    extends StandardParameters {
+    /**
+     * The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 100 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListTunnelDestGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTunnelDestGroups` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. GCP Project number/id and location. In the following format: projects/{project_number/id\}/iap_tunnel/locations/{location\}. A `-` can be used for the location to group across all locations.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Iap_tunnel$Locations$Destgroups$Patch
+    extends StandardParameters {
+    /**
+     * Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.
+     */
+    name?: string;
+    /**
+     * The field mask specifying which IAP settings should be updated. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TunnelDestGroup;
   }
 
   export class Resource$V1 {

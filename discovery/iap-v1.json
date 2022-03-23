@@ -336,6 +336,171 @@
               }
             }
           }
+        },
+        "iap_tunnel": {
+          "resources": {
+            "locations": {
+              "resources": {
+                "destGroups": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new TunnelDestGroup.",
+                      "flatPath": "v1/projects/{projectsId}/iap_tunnel/locations/{locationsId}/destGroups",
+                      "httpMethod": "POST",
+                      "id": "iap.projects.iap_tunnel.locations.destGroups.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. GCP Project number/id and location. In the following format: projects/{project_number/id}/iap_tunnel/locations/{location}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/iap_tunnel/locations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "tunnelDestGroupId": {
+                          "description": "Required. The ID to use for the TunnelDestGroup, which will become the final component of the resource name. This value should be 4-63 characters, and valid characters are /a-z-/.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/destGroups",
+                      "request": {
+                        "$ref": "TunnelDestGroup"
+                      },
+                      "response": {
+                        "$ref": "TunnelDestGroup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a TunnelDestGroup.",
+                      "flatPath": "v1/projects/{projectsId}/iap_tunnel/locations/{locationsId}/destGroups/{destGroupsId}",
+                      "httpMethod": "DELETE",
+                      "id": "iap.projects.iap_tunnel.locations.destGroups.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the TunnelDestGroup to be deleted. In the following format: projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/iap_tunnel/locations/[^/]+/destGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Retrieves an existing TunnelDestGroup.",
+                      "flatPath": "v1/projects/{projectsId}/iap_tunnel/locations/{locationsId}/destGroups/{destGroupsId}",
+                      "httpMethod": "GET",
+                      "id": "iap.projects.iap_tunnel.locations.destGroups.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the TunnelDestGroup to be fetched. In the following format: projects/{project_number/id}/iap_tunnel/locations/{location}/destGroups/{dest_group}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/iap_tunnel/locations/[^/]+/destGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "TunnelDestGroup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists the existing TunnelDestGroups. To group across all locations, use a `-` as the location ID. For example: /v1/projects/123/iap_tunnel/locations/-/destGroups",
+                      "flatPath": "v1/projects/{projectsId}/iap_tunnel/locations/{locationsId}/destGroups",
+                      "httpMethod": "GET",
+                      "id": "iap.projects.iap_tunnel.locations.destGroups.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of groups to return. The service may return fewer than this value. If unspecified, at most 100 groups will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous `ListTunnelDestGroups` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTunnelDestGroups` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. GCP Project number/id and location. In the following format: projects/{project_number/id}/iap_tunnel/locations/{location}. A `-` can be used for the location to group across all locations.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/iap_tunnel/locations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/destGroups",
+                      "response": {
+                        "$ref": "ListTunnelDestGroupsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a TunnelDestGroup.",
+                      "flatPath": "v1/projects/{projectsId}/iap_tunnel/locations/{locationsId}/destGroups/{destGroupsId}",
+                      "httpMethod": "PATCH",
+                      "id": "iap.projects.iap_tunnel.locations.destGroups.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/iap_tunnel/locations/[^/]+/destGroups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "The field mask specifying which IAP settings should be updated. If omitted, then all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "TunnelDestGroup"
+                      },
+                      "response": {
+                        "$ref": "TunnelDestGroup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -487,7 +652,7 @@
       }
     }
   },
-  "revision": "20211112",
+  "revision": "20220318",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -621,7 +786,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -758,6 +923,24 @@
         "nextPageToken": {
           "description": "A token, which can be send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListTunnelDestGroupsResponse": {
+      "description": "The response from ListTunnelDestGroups.",
+      "id": "ListTunnelDestGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be send as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "tunnelDestGroups": {
+          "description": "TunnelDestGroup existing in the project.",
+          "items": {
+            "$ref": "TunnelDestGroup"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -947,6 +1130,31 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TunnelDestGroup": {
+      "description": "A TunnelDestGroup.",
+      "id": "TunnelDestGroup",
+      "properties": {
+        "cidrs": {
+          "description": "null List of CIDRs that this group applies to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fqdns": {
+          "description": "null List of FQDNs that this group applies to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Immutable. Identifier for the TunnelDestGroup. Must be unique within the project.",
+          "type": "string"
         }
       },
       "type": "object"
