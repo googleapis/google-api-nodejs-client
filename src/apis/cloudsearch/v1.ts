@@ -568,9 +568,15 @@ export namespace cloudsearch_v1 {
    * This is the proto for holding space level scoring information. This data is used for logging in query-api server and for testing purposes.
    */
   export interface Schema$DynamiteSpacesScoringInfo {
+    affinityScore?: number | null;
+    commonContactCountAffinityScore?: number | null;
+    contactsIntersectionCount?: number | null;
     finalScore?: number | null;
     freshnessScore?: number | null;
+    joinedSpacesAffinityScore?: number | null;
     messageScore?: number | null;
+    smallContactListAffinityScore?: number | null;
+    smallUnjoinedSpacesAffinityScore?: number | null;
     spaceAgeInDays?: number | null;
     topicalityScore?: number | null;
   }
@@ -2315,7 +2321,7 @@ export namespace cloudsearch_v1 {
     description?: string | null;
     groupId?: Schema$GroupId;
     /**
-     * Whether this is an external space outside of user's organization
+     * Whether this is a space that enables guest access
      */
     isExternal?: boolean | null;
     name?: string | null;
