@@ -9369,7 +9369,7 @@ export namespace cloudbuild_v1 {
      *     allowMissing: 'placeholder-value',
      *     // Optional. If provided, it must match the server's etag on the workerpool for the request to be processed.
      *     etag: 'placeholder-value',
-     *     // Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
+     *     // Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
      *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
      *     // If set, validate the request and preview the response, but do not actually post it.
      *     validateOnly: 'placeholder-value',
@@ -9931,7 +9931,7 @@ export namespace cloudbuild_v1 {
      */
     etag?: string;
     /**
-     * Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
+     * Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
      */
     name?: string;
     /**
