@@ -201,6 +201,10 @@ export namespace eventarc_v1 {
      * A GKE service capable of receiving events. The service should be running in the same project as the trigger.
      */
     gke?: Schema$GKE;
+    /**
+     * The resource name of the Workflow whose Executions are triggered by the events. The Workflow resource should be deployed in the same project as the trigger. Format: `projects/{project\}/locations/{location\}/workflows/{workflow\}`
+     */
+    workflow?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
