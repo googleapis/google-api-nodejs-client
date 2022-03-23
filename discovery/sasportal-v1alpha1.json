@@ -2483,7 +2483,7 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220319",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2810,6 +2810,11 @@
           "description": "Grant Id.",
           "type": "string"
         },
+        "lastHeartbeatTransmitExpireTime": {
+          "description": "The transmit expiration time of the last heartbeat.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "maxEirp": {
           "description": "Maximum Equivalent Isotropically Radiated Power (EIRP) permitted by the grant. The maximum EIRP is in units of dBm/MHz. The value of `maxEirp` represents the average (RMS) EIRP that would be measured by the procedure defined in FCC part 96.41(e)(3).",
           "format": "double",
@@ -2924,7 +2929,7 @@
       "type": "object"
     },
     "SasPortalEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "SasPortalEmpty",
       "properties": {},
       "type": "object"
@@ -3185,7 +3190,7 @@
       "type": "object"
     },
     "SasPortalNrqzValidation": {
-      "description": "Information about National Radio Quiet Zone validation. The presence of the field indicates the device has been validated.",
+      "description": "Information about National Radio Quiet Zone validation.",
       "id": "SasPortalNrqzValidation",
       "properties": {
         "caseId": {
@@ -3205,6 +3210,20 @@
           "description": "Device longitude associated with the validation.",
           "format": "double",
           "type": "number"
+        },
+        "state": {
+          "description": "State of the NRQZ validation info.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "FINAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Draft state.",
+            "Final state."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
