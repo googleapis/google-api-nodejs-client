@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v2.5.0...androidmanagement-v3.0.0) (2022-03-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **androidmanagement:** This release has breaking changes.
+
+### Features
+
+* **androidmanagement:** update the API ([2746c26](https://github.com/googleapis/google-api-nodejs-client/commit/2746c26778dab905ebcbd2882ede2d2d15be4713))
+
 ## [2.5.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v2.4.0...androidmanagement-v2.5.0) (2022-03-08)
 
 

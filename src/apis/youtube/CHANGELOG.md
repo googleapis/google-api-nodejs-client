@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v4.1.1...youtube-v4.2.0) (2022-03-23)
+
+
+### Features
+
+* **youtube:** update the API ([d6124e4](https://github.com/googleapis/google-api-nodejs-client/commit/d6124e4c1561609b6aa0848e6f5be9614d7cc45b))
+
 ### [4.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v4.1.0...youtube-v4.1.1) (2022-03-08)
 
 

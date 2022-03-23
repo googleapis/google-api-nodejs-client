@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.3.4](https://github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v0.3.3...sourcerepo-v0.3.4) (2022-03-23)
+
+
+### Bug Fixes
+
+* **sourcerepo:** update the API ([7e87df4](https://github.com/googleapis/google-api-nodejs-client/commit/7e87df4e15e2ea1108b8b47f776b21e39ea584f3))
+
 ### [0.3.3](https://www.github.com/googleapis/google-api-nodejs-client/compare/sourcerepo-v0.3.2...sourcerepo-v0.3.3) (2021-12-30)
 
 
