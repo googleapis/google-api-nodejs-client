@@ -947,6 +947,10 @@ export namespace firestore_v1beta1 {
      */
     document?: Schema$Document;
     /**
+     * If present, Firestore has completely finished the request and no more documents will be returned.
+     */
+    done?: boolean | null;
+    /**
      * The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.
      */
     readTime?: string | null;
@@ -2898,6 +2902,163 @@ export namespace firestore_v1beta1 {
     }
 
     /**
+     * Lists documents.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.documents.listDocuments({
+     *     // Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     *     collectionId: 'placeholder-value',
+     *     // The list of field paths in the mask. See Document.fields for a field path syntax reference.
+     *     'mask.fieldPaths': 'placeholder-value',
+     *     // The order to sort results by. For example: `priority desc, name`.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of documents to return.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     parent: 'projects/my-project/databases/my-database/documents',
+     *     // Reads documents as they were at the given time. This may not be older than 270 seconds.
+     *     readTime: 'placeholder-value',
+     *     // If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     *     showMissing: 'placeholder-value',
+     *     // Reads documents in a transaction.
+     *     transaction: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listDocuments(
+      params: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listDocuments(
+      params?: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDocumentsResponse>;
+    listDocuments(
+      params: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listDocuments(
+      params: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDocumentsResponse>,
+      callback: BodyResponseCallback<Schema$ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      params: Params$Resource$Projects$Databases$Documents$Listdocuments,
+      callback: BodyResponseCallback<Schema$ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      callback: BodyResponseCallback<Schema$ListDocumentsResponse>
+    ): void;
+    listDocuments(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Documents$Listdocuments
+        | BodyResponseCallback<Schema$ListDocumentsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDocumentsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDocumentsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDocumentsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Documents$Listdocuments;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Listdocuments;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/{collectionId}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'collectionId'],
+        pathParams: ['collectionId', 'parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDocumentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDocumentsResponse>(parameters);
+      }
+    }
+
+    /**
      * Listens to changes.
      * @example
      * ```js
@@ -3535,6 +3696,7 @@ export namespace firestore_v1beta1 {
      *   // Example response
      *   // {
      *   //   "document": {},
+     *   //   "done": false,
      *   //   "readTime": "my_readTime",
      *   //   "skippedResults": 0,
      *   //   "transaction": "my_transaction"
@@ -3935,6 +4097,45 @@ export namespace firestore_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$ListCollectionIdsRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Listdocuments
+    extends StandardParameters {
+    /**
+     * Required. The collection ID, relative to `parent`, to list. For example: `chatrooms` or `messages`.
+     */
+    collectionId?: string;
+    /**
+     * The list of field paths in the mask. See Document.fields for a field path syntax reference.
+     */
+    'mask.fieldPaths'?: string[];
+    /**
+     * The order to sort results by. For example: `priority desc, name`.
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of documents to return.
+     */
+    pageSize?: number;
+    /**
+     * The `next_page_token` value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     */
+    parent?: string;
+    /**
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     */
+    readTime?: string;
+    /**
+     * If the list should show missing documents. A missing document is a document that does not exist but has sub-documents. These documents will be returned with a key but will not have fields, Document.create_time, or Document.update_time set. Requests with `show_missing` may not specify `where` or `order_by`.
+     */
+    showMissing?: boolean;
+    /**
+     * Reads documents in a transaction.
+     */
+    transaction?: string;
   }
   export interface Params$Resource$Projects$Databases$Documents$Listen
     extends StandardParameters {
