@@ -846,7 +846,7 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220311",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -953,6 +953,10 @@
         "gke": {
           "$ref": "GKE",
           "description": "A GKE service capable of receiving events. The service should be running in the same project as the trigger."
+        },
+        "workflow": {
+          "description": "The resource name of the Workflow whose Executions are triggered by the events. The Workflow resource should be deployed in the same project as the trigger. Format: `projects/{project}/locations/{location}/workflows/{workflow}`",
+          "type": "string"
         }
       },
       "type": "object"
