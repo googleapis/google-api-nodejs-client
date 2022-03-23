@@ -392,7 +392,7 @@ export namespace vault_v1 {
      */
     matterId?: string | null;
     /**
-     * The export name.
+     * The export name. Don't use special characters (~!$'(),;@:/?) in the name, they can prevent you from downloading exports.
      */
     name?: string | null;
     /**
