@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20220316",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -319,6 +319,22 @@
           "description": "The basic metadata of the long running operation."
         },
         "destDatasetType": {
+          "description": "The destination dataset split type.",
+          "enum": [
+            "DATASET_SPLIT_TYPE_UNSPECIFIED",
+            "DATASET_SPLIT_TRAIN",
+            "DATASET_SPLIT_TEST",
+            "DATASET_SPLIT_UNASSIGNED"
+          ],
+          "enumDescriptions": [
+            "Default value if the enum is not set. go/protodosdonts#do-include-an-unspecified-value-in-an-enum",
+            "Identifies the train documents.",
+            "Identifies the test documents.",
+            "Identifies the unassigned documents."
+          ],
+          "type": "string"
+        },
+        "destSplitType": {
           "description": "The destination dataset split type.",
           "enum": [
             "DATASET_SPLIT_TYPE_UNSPECIFIED",

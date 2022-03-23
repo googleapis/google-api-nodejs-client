@@ -149,6 +149,10 @@ export namespace documentai_v1 {
      */
     destDatasetType?: string | null;
     /**
+     * The destination dataset split type.
+     */
+    destSplitType?: string | null;
+    /**
      * The list of response details of each document.
      */
     individualBatchMoveStatuses?: Schema$GoogleCloudDocumentaiUiv1beta3BatchMoveDocumentsMetadataIndividualBatchMoveStatus[];
