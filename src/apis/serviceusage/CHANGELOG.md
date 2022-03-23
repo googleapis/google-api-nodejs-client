@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v3.1.0...serviceusage-v3.1.1) (2022-03-23)
+
+
+### Bug Fixes
+
+* **serviceusage:** update the API ([46e2709](https://github.com/googleapis/google-api-nodejs-client/commit/46e2709f0ce6d9c3600071be35322b21cfeb2dbb))
+
 ## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v3.0.0...serviceusage-v3.1.0) (2021-12-30)
 
 

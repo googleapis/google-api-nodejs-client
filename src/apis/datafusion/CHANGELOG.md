@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datafusion-v3.1.0...datafusion-v4.0.0) (2022-03-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datafusion:** This release has breaking changes.
+
+### Features
+
+* **datafusion:** update the API ([3f7a41c](https://github.com/googleapis/google-api-nodejs-client/commit/3f7a41c0a9740886acb84ff9762f9e02d337682c))
+
 ## [3.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/datafusion-v3.0.1...datafusion-v3.1.0) (2021-11-08)
 
 
