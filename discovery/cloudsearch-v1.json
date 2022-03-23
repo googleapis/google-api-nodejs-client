@@ -1994,7 +1994,7 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220314",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AclInfo": {
@@ -2729,6 +2729,18 @@
       "description": "This is the proto for holding space level scoring information. This data is used for logging in query-api server and for testing purposes.",
       "id": "DynamiteSpacesScoringInfo",
       "properties": {
+        "affinityScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "commonContactCountAffinityScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "contactsIntersectionCount": {
+          "format": "double",
+          "type": "number"
+        },
         "finalScore": {
           "format": "double",
           "type": "number"
@@ -2737,7 +2749,19 @@
           "format": "double",
           "type": "number"
         },
+        "joinedSpacesAffinityScore": {
+          "format": "double",
+          "type": "number"
+        },
         "messageScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "smallContactListAffinityScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "smallUnjoinedSpacesAffinityScore": {
           "format": "double",
           "type": "number"
         },
@@ -5465,7 +5489,7 @@
           "$ref": "GroupId"
         },
         "isExternal": {
-          "description": "Whether this is an external space outside of user's organization",
+          "description": "Whether this is a space that enables guest access",
           "type": "boolean"
         },
         "name": {
