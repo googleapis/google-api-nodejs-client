@@ -1142,6 +1142,10 @@ export namespace youtube_v3 {
    */
   export interface Schema$ChannelToStoreLinkDetails {
     /**
+     * Google Merchant Center id of the store.
+     */
+    merchantId?: string | null;
+    /**
      * Name of the store.
      */
     storeName?: string | null;
@@ -2245,6 +2249,20 @@ export namespace youtube_v3 {
      */
     userComment?: string | null;
   }
+  export interface Schema$LiveChatGiftMembershipReceivedDetails {
+    /**
+     * The ID of the membership gifting message that is related to this gift membership. This ID will always refer to a message whose type is 'membershipGiftingEvent'.
+     */
+    associatedMembershipGiftingMessageId?: string | null;
+    /**
+     * The ID of the user that made the membership gifting purchase. This matches the `snippet.authorChannelId` of the associated membership gifting message.
+     */
+    gifterChannelId?: string | null;
+    /**
+     * The name of the Level at which the viewer is a member. This matches the `snippet.membershipGiftingDetails.giftMembershipsLevelName` of the associated membership gifting message. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.
+     */
+    memberLevelName?: string | null;
+  }
   export interface Schema$LiveChatMemberMilestoneChatDetails {
     /**
      * The name of the Level at which the viever is a member. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.
@@ -2258,6 +2276,16 @@ export namespace youtube_v3 {
      * The comment added by the member to this Member Milestone Chat. This field is empty for messages without a comment from the member.
      */
     userComment?: string | null;
+  }
+  export interface Schema$LiveChatMembershipGiftingDetails {
+    /**
+     * The number of gift memberships purchased by the user.
+     */
+    giftMembershipsCount?: number | null;
+    /**
+     * The name of the level of the gift memberships purchased by the user. The Level names are defined by the YouTube channel offering the Membership. In some situations this field isn't filled.
+     */
+    giftMembershipsLevelName?: string | null;
   }
   /**
    * A *liveChatMessage* resource represents a chat message in a YouTube Live Chat.
@@ -2358,11 +2386,11 @@ export namespace youtube_v3 {
     retractedMessageId?: string | null;
   }
   /**
-   * Next ID: 31
+   * Next ID: 33
    */
   export interface Schema$LiveChatMessageSnippet {
     /**
-     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase
+     * The ID of the user that authored this message, this field is not always filled. textMessageEvent - the user that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that just became a sponsor memberMilestoneChatEvent - the member that sent the message membershipGiftingEvent - the user that made the purchase giftMembershipReceivedEvent - the user that received the gift membership messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the purchase superStickerEvent - the user that made the purchase
      */
     authorChannelId?: string | null;
     /**
@@ -2374,6 +2402,10 @@ export namespace youtube_v3 {
      */
     fanFundingEventDetails?: Schema$LiveChatFanFundingEventDetails;
     /**
+     * Details about the Gift Membership Received event, this is only set if the type is 'giftMembershipReceivedEvent'.
+     */
+    giftMembershipReceivedDetails?: Schema$LiveChatGiftMembershipReceivedDetails;
+    /**
      * Whether the message has display content that should be displayed to users.
      */
     hasDisplayContent?: boolean | null;
@@ -2382,6 +2414,10 @@ export namespace youtube_v3 {
      * Details about the Member Milestone Chat event, this is only set if the type is 'memberMilestoneChatEvent'.
      */
     memberMilestoneChatDetails?: Schema$LiveChatMemberMilestoneChatDetails;
+    /**
+     * Details about the Membership Gifting event, this is only set if the type is 'membershipGiftingEvent'.
+     */
+    membershipGiftingDetails?: Schema$LiveChatMembershipGiftingDetails;
     messageDeletedDetails?: Schema$LiveChatMessageDeletedDetails;
     messageRetractedDetails?: Schema$LiveChatMessageRetractedDetails;
     /**
