@@ -147,7 +147,7 @@ export namespace speech_v1p1beta1 {
      */
     customClass?: Schema$CustomClass;
     /**
-     * Required. The ID to use for the custom class, which will become the final component of the custom class' resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the custom class, which will become the final component of the custom class' resource name. This value should restrict to letters, numbers, and hyphens, with the first character a letter, the last a letter or a number, and be 4-63 characters.
      */
     customClassId?: string | null;
   }
@@ -160,7 +160,7 @@ export namespace speech_v1p1beta1 {
      */
     phraseSet?: Schema$PhraseSet;
     /**
-     * Required. The ID to use for the phrase set, which will become the final component of the phrase set's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     * Required. The ID to use for the phrase set, which will become the final component of the phrase set's resource name. This value should restrict to letters, numbers, and hyphens, with the first character a letter, the last a letter or a number, and be 4-63 characters.
      */
     phraseSetId?: string | null;
   }
