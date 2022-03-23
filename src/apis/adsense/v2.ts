@@ -197,11 +197,11 @@ export namespace adsense_v2 {
      */
     contentAdsSettings?: Schema$ContentAdsSettings;
     /**
-     * Display name of the ad unit, as provided when the ad unit was created.
+     * Required. Display name of the ad unit, as provided when the ad unit was created.
      */
     displayName?: string | null;
     /**
-     * Resource name of the ad unit. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
+     * Required. Resource name of the ad unit. Format: accounts/{account\}/adclients/{adclient\}/adunits/{adunit\}
      */
     name?: string | null;
     /**

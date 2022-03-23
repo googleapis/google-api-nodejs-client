@@ -864,7 +864,7 @@
                     "Revenue per thousand individual ad impressions. This is calculated by dividing estimated revenue by the number of individual ad impressions multiplied by 1000.",
                     "Amount the publisher earns each time a user clicks on an ad. CPC is calculated by dividing the estimated revenue by the number of clicks received.",
                     "Number of ad views per impression.",
-                    "Total earnings.",
+                    "Total earnings are the gross estimated earnings from revenue shared traffic before any parent and child account revenue share is applied.",
                     "Number of results pages."
                   ],
                   "location": "query",
@@ -1172,7 +1172,7 @@
                     "Revenue per thousand individual ad impressions. This is calculated by dividing estimated revenue by the number of individual ad impressions multiplied by 1000.",
                     "Amount the publisher earns each time a user clicks on an ad. CPC is calculated by dividing the estimated revenue by the number of clicks received.",
                     "Number of ad views per impression.",
-                    "Total earnings.",
+                    "Total earnings are the gross estimated earnings from revenue shared traffic before any parent and child account revenue share is applied.",
                     "Number of results pages."
                   ],
                   "location": "query",
@@ -1567,7 +1567,7 @@
       }
     }
   },
-  "revision": "20220304",
+  "revision": "20220319",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1661,11 +1661,11 @@
           "description": "Settings specific to content ads (AFC)."
         },
         "displayName": {
-          "description": "Display name of the ad unit, as provided when the ad unit was created.",
+          "description": "Required. Display name of the ad unit, as provided when the ad unit was created.",
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the ad unit. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
+          "description": "Required. Resource name of the ad unit. Format: accounts/{account}/adclients/{adclient}/adunits/{adunit}",
           "type": "string"
         },
         "reportingDimensionId": {
