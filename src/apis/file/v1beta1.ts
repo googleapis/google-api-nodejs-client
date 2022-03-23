@@ -496,7 +496,7 @@ export namespace file_v1beta1 {
      */
     statusMessage?: string | null;
     /**
-     * Output only. field indicates all the reasons the instance is in "SUSPENDED" state.
+     * Output only. Field indicates all the reasons the instance is in "SUSPENDED" state.
      */
     suspensionReasons?: string[] | null;
     /**
