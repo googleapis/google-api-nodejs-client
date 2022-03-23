@@ -1693,7 +1693,7 @@
       }
     }
   },
-  "revision": "20220222",
+  "revision": "20220313",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2509,6 +2509,21 @@
       },
       "type": "object"
     },
+    "CloneDefinition": {
+      "id": "CloneDefinition",
+      "properties": {
+        "baseTableReference": {
+          "$ref": "TableReference",
+          "description": "[Required] Reference describing the ID of the table that was cloned."
+        },
+        "cloneTime": {
+          "description": "[Required] The time at which the base table was cloned. This value is reported in the JSON response using RFC3339 format.",
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Cluster": {
       "description": "Message containing the information about one cluster.",
       "id": "Cluster",
@@ -2669,6 +2684,10 @@
         "evaluationTable": {
           "$ref": "TableReference",
           "description": "Table reference of the evaluation data after split."
+        },
+        "testTable": {
+          "$ref": "TableReference",
+          "description": "Table reference of the test data after split."
         },
         "trainingTable": {
           "$ref": "TableReference",
@@ -2950,6 +2969,18 @@
       },
       "type": "object"
     },
+    "DimensionalityReductionMetrics": {
+      "description": "Model evaluation metrics for dimensionality reduction models.",
+      "id": "DimensionalityReductionMetrics",
+      "properties": {
+        "totalExplainedVarianceRatio": {
+          "description": "Total percentage of variance explained by the selected principal components.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "DmlStatistics": {
       "id": "DmlStatistics",
       "properties": {
@@ -2967,6 +2998,53 @@
           "description": "Number of updated Rows. Populated by DML UPDATE and MERGE statements.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DoubleCandidates": {
+      "description": "Discrete candidates of a double hyperparameter.",
+      "id": "DoubleCandidates",
+      "properties": {
+        "candidates": {
+          "description": "Candidates for the double parameter in increasing order.",
+          "items": {
+            "format": "double",
+            "type": "number"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DoubleHparamSearchSpace": {
+      "description": "Search space for a double hyperparameter.",
+      "id": "DoubleHparamSearchSpace",
+      "properties": {
+        "candidates": {
+          "$ref": "DoubleCandidates",
+          "description": "Candidates of the double hyperparameter."
+        },
+        "range": {
+          "$ref": "DoubleRange",
+          "description": "Range of the double hyperparameter."
+        }
+      },
+      "type": "object"
+    },
+    "DoubleRange": {
+      "description": "Range of a double hyperparameter.",
+      "id": "DoubleRange",
+      "properties": {
+        "max": {
+          "description": "Max value of the double parameter.",
+          "format": "double",
+          "type": "number"
+        },
+        "min": {
+          "description": "Min value of the double parameter.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -3034,6 +3112,10 @@
         "clusteringMetrics": {
           "$ref": "ClusteringMetrics",
           "description": "Populated for clustering models."
+        },
+        "dimensionalityReductionMetrics": {
+          "$ref": "DimensionalityReductionMetrics",
+          "description": "Evaluation metrics when the model is a dimensionality reduction model, which currently includes PCA."
         },
         "multiClassClassificationMetrics": {
           "$ref": "MultiClassClassificationMetrics",
@@ -3222,6 +3304,22 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Explanation": {
+      "description": "Explanation for a single feature.",
+      "id": "Explanation",
+      "properties": {
+        "attribution": {
+          "description": "Attribution of feature.",
+          "format": "double",
+          "type": "number"
+        },
+        "featureName": {
+          "description": "Full name of the feature. For non-numerical features, will be formatted like .. Overall size of feature name will always be truncated to first 120 characters.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3444,6 +3542,24 @@
       },
       "type": "object"
     },
+    "GlobalExplanation": {
+      "description": "Global explanations containing the top most important features after training.",
+      "id": "GlobalExplanation",
+      "properties": {
+        "classLabel": {
+          "description": "Class label for this set of global explanations. Will be empty/null for binary logistic and linear regression models. Sorted alphabetically in descending order.",
+          "type": "string"
+        },
+        "explanations": {
+          "description": "A list of the top global explanations. Sorted by absolute value of attribution in descending order.",
+          "items": {
+            "$ref": "Explanation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleSheetsOptions": {
       "id": "GoogleSheetsOptions",
       "properties": {
@@ -3472,6 +3588,247 @@
         },
         "sourceUriPrefix": {
           "description": "[Optional] When hive partition detection is requested, a common prefix for all source uris should be supplied. The prefix must end immediately before the partition key encoding begins. For example, consider files following this data layout. gs://bucket/path_to_table/dt=2019-01-01/country=BR/id=7/file.avro gs://bucket/path_to_table/dt=2018-12-31/country=CA/id=3/file.avro When hive partitioning is requested with either AUTO or STRINGS detection, the common prefix can be either of gs://bucket/path_to_table or gs://bucket/path_to_table/ (trailing slash does not matter).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HparamSearchSpaces": {
+      "description": "Hyperparameter search spaces. These should be a subset of training_options.",
+      "id": "HparamSearchSpaces",
+      "properties": {
+        "activationFn": {
+          "$ref": "StringHparamSearchSpace",
+          "description": "Activation functions of neural network models."
+        },
+        "batchSize": {
+          "$ref": "IntHparamSearchSpace",
+          "description": "Mini batch sample size."
+        },
+        "boosterType": {
+          "$ref": "StringHparamSearchSpace",
+          "description": "Booster type for boosted tree models."
+        },
+        "colsampleBylevel": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "Subsample ratio of columns for each level for boosted tree models."
+        },
+        "colsampleBynode": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "Subsample ratio of columns for each node(split) for boosted tree models."
+        },
+        "colsampleBytree": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "Subsample ratio of columns when constructing each tree for boosted tree models."
+        },
+        "dartNormalizeType": {
+          "$ref": "StringHparamSearchSpace",
+          "description": "Dart normalization type for boosted tree models."
+        },
+        "dropout": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "Dropout probability for dnn model training and boosted tree models using dart booster."
+        },
+        "hiddenUnits": {
+          "$ref": "IntArrayHparamSearchSpace",
+          "description": "Hidden units for neural network models."
+        },
+        "l1Reg": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "L1 regularization coefficient."
+        },
+        "l2Reg": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "L2 regularization coefficient."
+        },
+        "learnRate": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "Learning rate of training jobs."
+        },
+        "maxTreeDepth": {
+          "$ref": "IntHparamSearchSpace",
+          "description": "Maximum depth of a tree for boosted tree models."
+        },
+        "minSplitLoss": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "Minimum split loss for boosted tree models."
+        },
+        "minTreeChildWeight": {
+          "$ref": "IntHparamSearchSpace",
+          "description": "Minimum sum of instance weight needed in a child for boosted tree models."
+        },
+        "numClusters": {
+          "$ref": "IntHparamSearchSpace",
+          "description": "Number of clusters for k-means."
+        },
+        "numFactors": {
+          "$ref": "IntHparamSearchSpace",
+          "description": "Number of latent factors to train on."
+        },
+        "numParallelTree": {
+          "$ref": "IntHparamSearchSpace",
+          "description": "Number of parallel trees for boosted tree models."
+        },
+        "optimizer": {
+          "$ref": "StringHparamSearchSpace",
+          "description": "Optimizer of TF models."
+        },
+        "subsample": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "Subsample the training data to grow tree to prevent overfitting for boosted tree models."
+        },
+        "treeMethod": {
+          "$ref": "StringHparamSearchSpace",
+          "description": "Tree construction algorithm for boosted tree models."
+        },
+        "walsAlpha": {
+          "$ref": "DoubleHparamSearchSpace",
+          "description": "Hyperparameter for matrix factoration when implicit feedback type is specified."
+        }
+      },
+      "type": "object"
+    },
+    "HparamTuningTrial": {
+      "description": "Training info of a trial in hyperparameter tuning.",
+      "id": "HparamTuningTrial",
+      "properties": {
+        "endTimeMs": {
+          "description": "Ending time of the trial.",
+          "format": "int64",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "Error message for FAILED and INFEASIBLE trial.",
+          "type": "string"
+        },
+        "evalLoss": {
+          "description": "Loss computed on the eval data at the end of trial.",
+          "format": "double",
+          "type": "number"
+        },
+        "evaluationMetrics": {
+          "$ref": "EvaluationMetrics",
+          "description": "Evaluation metrics of this trial calculated on the test data. Empty in Job API."
+        },
+        "hparamTuningEvaluationMetrics": {
+          "$ref": "EvaluationMetrics",
+          "description": "Hyperparameter tuning evaluation metrics of this trial calculated on the eval data. Unlike evaluation_metrics, only the fields corresponding to the hparam_tuning_objectives are set."
+        },
+        "hparams": {
+          "$ref": "TrainingOptions",
+          "description": "The hyperprameters selected for this trial."
+        },
+        "startTimeMs": {
+          "description": "Starting time of the trial.",
+          "format": "int64",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the trial.",
+          "enum": [
+            "TRIAL_STATUS_UNSPECIFIED",
+            "NOT_STARTED",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "INFEASIBLE",
+            "STOPPED_EARLY"
+          ],
+          "enumDescriptions": [
+            "",
+            "Scheduled but not started.",
+            "Running state.",
+            "The trial succeeded.",
+            "The trial failed.",
+            "The trial is infeasible due to the invalid params.",
+            "Trial stopped early because it's not promising."
+          ],
+          "type": "string"
+        },
+        "trainingLoss": {
+          "description": "Loss computed on the training data at the end of trial.",
+          "format": "double",
+          "type": "number"
+        },
+        "trialId": {
+          "description": "1-based index of the trial.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IntArray": {
+      "description": "An array of int.",
+      "id": "IntArray",
+      "properties": {
+        "elements": {
+          "description": "Elements in the int array.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IntArrayHparamSearchSpace": {
+      "description": "Search space for int array.",
+      "id": "IntArrayHparamSearchSpace",
+      "properties": {
+        "candidates": {
+          "description": "Candidates for the int array parameter.",
+          "items": {
+            "$ref": "IntArray"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IntCandidates": {
+      "description": "Discrete candidates of an int hyperparameter.",
+      "id": "IntCandidates",
+      "properties": {
+        "candidates": {
+          "description": "Candidates for the int parameter in increasing order.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IntHparamSearchSpace": {
+      "description": "Search space for an int hyperparameter.",
+      "id": "IntHparamSearchSpace",
+      "properties": {
+        "candidates": {
+          "$ref": "IntCandidates",
+          "description": "Candidates of the int hyperparameter."
+        },
+        "range": {
+          "$ref": "IntRange",
+          "description": "Range of the int hyperparameter."
+        }
+      },
+      "type": "object"
+    },
+    "IntRange": {
+      "description": "Range of an int hyperparameter.",
+      "id": "IntRange",
+      "properties": {
+        "max": {
+          "description": "Max value of the int parameter.",
+          "format": "int64",
+          "type": "string"
+        },
+        "min": {
+          "description": "Min value of the int parameter.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -4066,6 +4423,10 @@
           "format": "double",
           "type": "number"
         },
+        "copy": {
+          "$ref": "JobStatistics5",
+          "description": "[Output-only] Statistics for a copy job."
+        },
         "creationTime": {
           "description": "[Output-only] Creation time of this job, in milliseconds since the epoch. This field will be present on all jobs.",
           "format": "int64",
@@ -4375,6 +4736,22 @@
       },
       "type": "object"
     },
+    "JobStatistics5": {
+      "id": "JobStatistics5",
+      "properties": {
+        "copied_logical_bytes": {
+          "description": "[Output-only] Number of logical bytes copied to the destination table.",
+          "format": "int64",
+          "type": "string"
+        },
+        "copied_rows": {
+          "description": "[Output-only] Number of rows copied to the destination table.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "JobStatus": {
       "id": "JobStatus",
       "properties": {
@@ -4527,6 +4904,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "defaultTrialId": {
+          "description": "Output only. The default trial_id to use in TVFs when the trial_id is not passed in. For single-objective hyperparameter tuning, this is the best trial id. For multi-objective hyperparameter tuning, this is the smallest trial id among all Pareto optimal trials.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "description": {
           "description": "Optional. A user-friendly description of this model.",
           "type": "string"
@@ -4556,6 +4939,19 @@
         "friendlyName": {
           "description": "Optional. A descriptive name for this model.",
           "type": "string"
+        },
+        "hparamSearchSpaces": {
+          "$ref": "HparamSearchSpaces",
+          "description": "Output only. All hyperparameter search spaces in this model.",
+          "readOnly": true
+        },
+        "hparamTrials": {
+          "description": "Output only. Trials of a hyperparameter tuning model sorted by trial_id.",
+          "items": {
+            "$ref": "HparamTuningTrial"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "labelColumns": {
           "description": "Output only. Label columns that were used to train this model. The output of the model will have a \"predicted_\" prefix to these columns.",
@@ -4603,6 +4999,8 @@
             "ARIMA",
             "AUTOML_REGRESSOR",
             "AUTOML_CLASSIFIER",
+            "PCA",
+            "AUTOENCODER",
             "ARIMA_PLUS"
           ],
           "enumDescriptions": [
@@ -4619,10 +5017,21 @@
             "ARIMA model.",
             "AutoML Tables regression model.",
             "AutoML Tables classification model.",
+            "Prinpical Component Analysis model.",
+            "Autoencoder model.",
             "New name for the ARIMA model."
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "optimalTrialIds": {
+          "description": "Output only. For single-objective hyperparameter tuning, it only contains the best trial. For multi-objective hyperparameter tuning, it contains all Pareto optimal trials sorted by trial_id.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "trainingRuns": {
           "description": "Output only. Information for all training runs in increasing order of start_time.",
@@ -4743,6 +5152,33 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PrincipalComponentInfo": {
+      "description": "Principal component infos, used only for eigen decomposition based models, e.g., PCA. Ordered by explained_variance in the descending order.",
+      "id": "PrincipalComponentInfo",
+      "properties": {
+        "cumulativeExplainedVarianceRatio": {
+          "description": "The explained_variance is pre-ordered in the descending order to compute the cumulative explained variance ratio.",
+          "format": "double",
+          "type": "number"
+        },
+        "explainedVariance": {
+          "description": "Explained variance by this principal component, which is simply the eigenvalue.",
+          "format": "double",
+          "type": "number"
+        },
+        "explainedVarianceRatio": {
+          "description": "Explained_variance over the total explained variance.",
+          "format": "double",
+          "type": "number"
+        },
+        "principalComponentId": {
+          "description": "Id of the principal component.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5589,9 +6025,27 @@
       },
       "type": "object"
     },
+    "StringHparamSearchSpace": {
+      "description": "Search space for string and enum.",
+      "id": "StringHparamSearchSpace",
+      "properties": {
+        "candidates": {
+          "description": "Canididates for the string or enum parameter in lower case.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Table": {
       "id": "Table",
       "properties": {
+        "cloneDefinition": {
+          "$ref": "CloneDefinition",
+          "description": "[Output-only] Clone definition."
+        },
         "clustering": {
           "$ref": "Clustering",
           "description": "[Beta] Clustering specification for the table. Must be specified with partitioning, data in the table will be first partitioned and subsequently clustered."
@@ -6150,6 +6604,10 @@
           ],
           "type": "string"
         },
+        "calculatePValues": {
+          "description": "Whether or not p-value test should be computed for this model. Only available for linear and logistic regression models.",
+          "type": "boolean"
+        },
         "cleanSpikesAndDips": {
           "description": "If true, clean spikes and dips in the input time series.",
           "type": "boolean"
@@ -6263,6 +6721,10 @@
         },
         "earlyStop": {
           "description": "Whether to stop early when the loss doesn't improve significantly any more (compared to min_relative_progress). Used only for iterative training algorithms.",
+          "type": "boolean"
+        },
+        "enableGlobalExplain": {
+          "description": "If true, enable global explanation during training.",
           "type": "boolean"
         },
         "feedbackType": {
@@ -6438,6 +6900,51 @@
           "format": "int64",
           "type": "string"
         },
+        "hparamTuningObjectives": {
+          "description": "The target evaluation metrics to optimize the hyperparameters for.",
+          "items": {
+            "enum": [
+              "HPARAM_TUNING_OBJECTIVE_UNSPECIFIED",
+              "MEAN_ABSOLUTE_ERROR",
+              "MEAN_SQUARED_ERROR",
+              "MEAN_SQUARED_LOG_ERROR",
+              "MEDIAN_ABSOLUTE_ERROR",
+              "R_SQUARED",
+              "EXPLAINED_VARIANCE",
+              "PRECISION",
+              "RECALL",
+              "ACCURACY",
+              "F1_SCORE",
+              "LOG_LOSS",
+              "ROC_AUC",
+              "DAVIES_BOULDIN_INDEX",
+              "MEAN_AVERAGE_PRECISION",
+              "NORMALIZED_DISCOUNTED_CUMULATIVE_GAIN",
+              "AVERAGE_RANK"
+            ],
+            "enumDescriptions": [
+              "Unspecified evaluation metric.",
+              "Mean absolute error. mean_absolute_error = AVG(ABS(label - predicted))",
+              "Mean squared error. mean_squared_error = AVG(POW(label - predicted, 2))",
+              "Mean squared log error. mean_squared_log_error = AVG(POW(LN(1 + label) - LN(1 + predicted), 2))",
+              "Mean absolute error. median_absolute_error = APPROX_QUANTILES(absolute_error, 2)[OFFSET(1)]",
+              "R^2 score. This corresponds to r2_score in ML.EVALUATE. r_squared = 1 - SUM(squared_error)/(COUNT(label)*VAR_POP(label))",
+              "Explained variance. explained_variance = 1 - VAR_POP(label_error)/VAR_POP(label)",
+              "Precision is the fraction of actual positive predictions that had positive actual labels. For multiclass this is a macro-averaged metric treating each class as a binary classifier.",
+              "Recall is the fraction of actual positive labels that were given a positive prediction. For multiclass this is a macro-averaged metric.",
+              "Accuracy is the fraction of predictions given the correct label. For multiclass this is a globally micro-averaged metric.",
+              "The F1 score is an average of recall and precision. For multiclass this is a macro-averaged metric.",
+              "Logorithmic Loss. For multiclass this is a macro-averaged metric.",
+              "Area Under an ROC Curve. For multiclass this is a macro-averaged metric.",
+              "Davies-Bouldin Index.",
+              "Mean Average Precision.",
+              "Normalized Discounted Cumulative Gain.",
+              "Average Rank."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "includeDrift": {
           "description": "Include drift when fitting an ARIMA model.",
           "type": "boolean"
@@ -6453,6 +6960,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "integratedGradientsNumSteps": {
+          "description": "Number of integral steps for the integrated gradients explain method.",
+          "format": "int64",
+          "type": "string"
         },
         "itemColumn": {
           "description": "Item column specified for matrix factorization models.",
@@ -6534,6 +7046,11 @@
           "format": "int64",
           "type": "string"
         },
+        "maxParallelTrials": {
+          "description": "Maximum number of trials to run in parallel.",
+          "format": "int64",
+          "type": "string"
+        },
         "maxTreeDepth": {
           "description": "Maximum depth of a tree for boosted tree models.",
           "format": "int64",
@@ -6577,6 +7094,11 @@
           "format": "int64",
           "type": "string"
         },
+        "numTrials": {
+          "description": "Number of trials to run this hyperparameter tuning job.",
+          "format": "int64",
+          "type": "string"
+        },
         "optimizationStrategy": {
           "description": "Optimization strategy for training linear regression models.",
           "enum": [
@@ -6594,6 +7116,11 @@
         "preserveInputStructs": {
           "description": "Whether to preserve the input structs in output feature names. Suppose there is a struct A with field b. When false (default), the output feature name is A_b. When true, the output feature name is A.b.",
           "type": "boolean"
+        },
+        "sampledShapleyNumPaths": {
+          "description": "Number of paths for the sampled shapley explain method.",
+          "format": "int64",
+          "type": "string"
         },
         "subsample": {
           "description": "Subsample fraction of the training data to grow tree to prevent overfitting for boosted tree models.",
@@ -6657,6 +7184,13 @@
       "description": "Information about a single training query run for the model.",
       "id": "TrainingRun",
       "properties": {
+        "classLevelGlobalExplanations": {
+          "description": "Global explanation contains the explanation of top features on the class level. Applies to classification models only.",
+          "items": {
+            "$ref": "GlobalExplanation"
+          },
+          "type": "array"
+        },
         "dataSplitResult": {
           "$ref": "DataSplitResult",
           "description": "Data split result of the training run. Only set when the input data is actually split."
@@ -6664,6 +7198,10 @@
         "evaluationMetrics": {
           "$ref": "EvaluationMetrics",
           "description": "The evaluation metrics over training/eval data that were computed at the end of training."
+        },
+        "modelLevelGlobalExplanation": {
+          "$ref": "GlobalExplanation",
+          "description": "Global explanation contains the explanation of top features on the model level. Applies to both regression and classification models."
         },
         "results": {
           "description": "Output of each iteration run, results.size() <= max_iterations.",
@@ -6680,6 +7218,14 @@
         "trainingOptions": {
           "$ref": "TrainingOptions",
           "description": "Options that were used for this training run, includes user specified and default options that were used."
+        },
+        "vertexAiModelId": {
+          "description": "The model id in Vertex AI Model Registry for this training run",
+          "type": "string"
+        },
+        "vertexAiModelVersion": {
+          "description": "The model version in Vertex AI Model Registry for this training run",
+          "type": "string"
         }
       },
       "type": "object"
