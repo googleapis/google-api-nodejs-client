@@ -247,6 +247,10 @@ export namespace apikeys_v2 {
    */
   export interface Schema$V2Key {
     /**
+     * Annotations is an unstructured key-value map stored with a policy that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
      * Output only. A timestamp identifying the time this key was originally created.
      */
     createTime?: string | null;
@@ -838,6 +842,7 @@ export namespace apikeys_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "annotations": {},
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
@@ -1119,6 +1124,7 @@ export namespace apikeys_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "createTime": "my_createTime",
      *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
@@ -1535,6 +1541,7 @@ export namespace apikeys_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "annotations": {},
      *       //   "createTime": "my_createTime",
      *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
