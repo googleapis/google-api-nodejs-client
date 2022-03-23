@@ -668,7 +668,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesByDataFilterResponse {
     /**
-     * The ranges that were cleared, in A1 notation. If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
+     * The ranges that were cleared, in [A1 notation](/sheets/api/guides/concepts#cell). If the requests are for an unbounded range or a ranger larger than the bounds of the sheet, this is the actual ranges that were cleared, bounded to the sheet's limits.
      */
     clearedRanges?: string[] | null;
     /**
@@ -681,7 +681,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BatchClearValuesRequest {
     /**
-     * The ranges to clear, in A1 or R1C1 notation.
+     * The ranges to clear, in [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell).
      */
     ranges?: string[] | null;
   }
@@ -2650,7 +2650,7 @@ export namespace sheets_v4 {
     rowGroupControlAfter?: boolean | null;
   }
   /**
-   * A range on a sheet. All indexes are zero-based. Indexes are half open, i.e. the start index is inclusive and the end index is exclusive -- [start_index, end_index). Missing indexes indicate the range is unbounded on that side. For example, if `"Sheet1"` is sheet ID 0, then: `Sheet1!A1:A1 == sheet_id: 0, start_row_index: 0, end_row_index: 1, start_column_index: 0, end_column_index: 1` `Sheet1!A3:B4 == sheet_id: 0, start_row_index: 2, end_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1!A:B == sheet_id: 0, start_column_index: 0, end_column_index: 2` `Sheet1!A5:B == sheet_id: 0, start_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1 == sheet_id:0` The start index must always be less than or equal to the end index. If the start index equals the end index, then the range is empty. Empty ranges are typically not meaningful and are usually rendered in the UI as `#REF!`.
+   * A range on a sheet. All indexes are zero-based. Indexes are half open, i.e. the start index is inclusive and the end index is exclusive -- [start_index, end_index). Missing indexes indicate the range is unbounded on that side. For example, if `"Sheet1"` is sheet ID 123456, then: `Sheet1!A1:A1 == sheet_id: 123456, start_row_index: 0, end_row_index: 1, start_column_index: 0, end_column_index: 1` `Sheet1!A3:B4 == sheet_id: 123456, start_row_index: 2, end_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1!A:B == sheet_id: 123456, start_column_index: 0, end_column_index: 2` `Sheet1!A5:B == sheet_id: 123456, start_row_index: 4, start_column_index: 0, end_column_index: 2` `Sheet1 == sheet_id: 123456` The start index must always be less than or equal to the end index. If the start index equals the end index, then the range is empty. Empty ranges are typically not meaningful and are usually rendered in the UI as `#REF!`.
    */
   export interface Schema$GridRange {
     /**
@@ -4758,7 +4758,7 @@ export namespace sheets_v4 {
      */
     updatedData?: Schema$ValueRange;
     /**
-     * The range (in A1 notation) that updates were applied to.
+     * The range (in [A1 notation](/sheets/api/guides/concepts#cell)) that updates were applied to.
      */
     updatedRange?: string | null;
     /**
@@ -4804,7 +4804,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string | null;
     /**
-     * The range the values cover, in A1 notation. For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
+     * The range the values cover, in [A1 notation](/sheets/api/guides/concepts#cell). For output, this range indicates the entire requested range, even though the values will exclude trailing rows and columns. When appending values, this field represents the range to search for a table, after which values will be appended.
      */
     range?: string | null;
     /**
@@ -6123,7 +6123,7 @@ export namespace sheets_v4 {
      *     includeValuesInResponse: 'placeholder-value',
      *     // How the input data should be inserted.
      *     insertDataOption: 'placeholder-value',
-     *     // The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
+     *     // The [A1 notation](/sheets/api/guides/concepts#cell) of a range to search for a logical table of data. Values are appended after the last row of the table.
      *     range: 'placeholder-value',
      *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     responseDateTimeRenderOption: 'placeholder-value',
@@ -6250,7 +6250,7 @@ export namespace sheets_v4 {
     }
 
     /**
-     * Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting, data validation, etc..) are kept.
+     * Clears one or more ranges of values from a spreadsheet. The caller must specify the spreadsheet ID and one or more ranges. Only values are cleared -- all other properties of the cell (such as formatting and data validation) are kept.
      * @example
      * ```js
      * // Before running the sample:
@@ -6584,9 +6584,9 @@ export namespace sheets_v4 {
      *   const res = await sheets.spreadsheets.values.batchGet({
      *     // How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     dateTimeRenderOption: 'placeholder-value',
-     *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `ranges=["A1:B2"],majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `ranges=["A1:B2"],majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      *     majorDimension: 'placeholder-value',
-     *     // The A1 notation or R1C1 notation of the range to retrieve values from.
+     *     // The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      *     ranges: 'placeholder-value',
      *     // The ID of the spreadsheet to retrieve data from.
      *     spreadsheetId: 'placeholder-value',
@@ -7200,7 +7200,7 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.clear({
-     *     // The A1 notation or R1C1 notation of the values to clear.
+     *     // The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the values to clear.
      *     range: 'placeholder-value',
      *     // The ID of the spreadsheet to update.
      *     spreadsheetId: 'placeholder-value',
@@ -7350,7 +7350,7 @@ export namespace sheets_v4 {
      *     dateTimeRenderOption: 'placeholder-value',
      *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      *     majorDimension: 'placeholder-value',
-     *     // The A1 notation or R1C1 notation of the range to retrieve values from.
+     *     // The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      *     range: 'placeholder-value',
      *     // The ID of the spreadsheet to retrieve data from.
      *     spreadsheetId: 'placeholder-value',
@@ -7490,7 +7490,7 @@ export namespace sheets_v4 {
      *   const res = await sheets.spreadsheets.values.update({
      *     // Determines if the update response should include the values of the cells that were updated. By default, responses do not include the updated values. If the range to write was larger than the range actually written, the response includes all values in the requested range (excluding trailing empty rows and columns).
      *     includeValuesInResponse: 'placeholder-value',
-     *     // The A1 notation of the values to update.
+     *     // The [A1 notation](/sheets/api/guides/concepts#cell) of the values to update.
      *     range: 'placeholder-value',
      *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     responseDateTimeRenderOption: 'placeholder-value',
@@ -7631,7 +7631,7 @@ export namespace sheets_v4 {
      */
     insertDataOption?: string;
     /**
-     * The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
+     * The [A1 notation](/sheets/api/guides/concepts#cell) of a range to search for a logical table of data. Values are appended after the last row of the table.
      */
     range?: string;
     /**
@@ -7687,11 +7687,11 @@ export namespace sheets_v4 {
      */
     dateTimeRenderOption?: string;
     /**
-     * The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
+     * The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `ranges=["A1:B2"],majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `ranges=["A1:B2"],majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      */
     majorDimension?: string;
     /**
-     * The A1 notation or R1C1 notation of the range to retrieve values from.
+     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      */
     ranges?: string[];
     /**
@@ -7742,7 +7742,7 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Clear
     extends StandardParameters {
     /**
-     * The A1 notation or R1C1 notation of the values to clear.
+     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the values to clear.
      */
     range?: string;
     /**
@@ -7766,7 +7766,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string;
     /**
-     * The A1 notation or R1C1 notation of the range to retrieve values from.
+     * The [A1 notation or R1C1 notation](/sheets/api/guides/concepts#cell) of the range to retrieve values from.
      */
     range?: string;
     /**
@@ -7785,7 +7785,7 @@ export namespace sheets_v4 {
      */
     includeValuesInResponse?: boolean;
     /**
-     * The A1 notation of the values to update.
+     * The [A1 notation](/sheets/api/guides/concepts#cell) of the values to update.
      */
     range?: string;
     /**
