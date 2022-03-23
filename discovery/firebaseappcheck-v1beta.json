@@ -143,7 +143,7 @@
         "apps": {
           "methods": {
             "exchangeAppAttestAssertion": {
-              "description": "Accepts an App Attest assertion and an artifact previously obtained from ExchangeAppAttestAttestation and verifies those with Apple. If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
+              "description": "Accepts an App Attest assertion and an artifact previously obtained from ExchangeAppAttestAttestation and verifies those with Apple. If valid, returns an AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeAppAttestAssertion",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeAppAttestAssertion",
@@ -164,7 +164,7 @@
                 "$ref": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAssertionRequest"
               },
               "response": {
-                "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse"
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -172,7 +172,7 @@
               ]
             },
             "exchangeAppAttestAttestation": {
-              "description": "Accepts an App Attest CBOR attestation and verifies it with Apple using your preconfigured team and bundle IDs. If valid, returns an attestation artifact that can later be exchanged for an AttestationTokenResponse using ExchangeAppAttestAssertion. For convenience and performance, this method's response object will also contain an App Check token encapsulated in an AttestationTokenResponse (if the verification is successful).",
+              "description": "Accepts an App Attest CBOR attestation and verifies it with Apple using your preconfigured team and bundle IDs. If valid, returns an attestation artifact that can later be exchanged for an AppCheckToken using ExchangeAppAttestAssertion. For convenience and performance, this method's response object will also contain an AppCheckToken (if the verification is successful).",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeAppAttestAttestation",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeAppAttestAttestation",
@@ -201,7 +201,7 @@
               ]
             },
             "exchangeCustomToken": {
-              "description": "Validates a custom token signed using your project's Admin SDK service account credentials. If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
+              "description": "Validates a custom token signed using your project's Admin SDK service account credentials. If valid, returns an AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeCustomToken",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeCustomToken",
@@ -222,7 +222,7 @@
                 "$ref": "GoogleFirebaseAppcheckV1betaExchangeCustomTokenRequest"
               },
               "response": {
-                "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse"
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -230,7 +230,7 @@
               ]
             },
             "exchangeDebugToken": {
-              "description": "Validates a debug token secret that you have previously created using CreateDebugToken. If valid, returns an App Check token encapsulated in an AttestationTokenResponse. Note that a restrictive quota is enforced on this method to prevent accidental exposure of the app to abuse.",
+              "description": "Validates a debug token secret that you have previously created using CreateDebugToken. If valid, returns an AppCheckToken. Note that a restrictive quota is enforced on this method to prevent accidental exposure of the app to abuse.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeDebugToken",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeDebugToken",
@@ -251,7 +251,7 @@
                 "$ref": "GoogleFirebaseAppcheckV1betaExchangeDebugTokenRequest"
               },
               "response": {
-                "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse"
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -259,7 +259,7 @@
               ]
             },
             "exchangeDeviceCheckToken": {
-              "description": "Accepts a [`device_token`](https://developer.apple.com/documentation/devicecheck/dcdevice) issued by DeviceCheck, and attempts to validate it with Apple. If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
+              "description": "Accepts a [`device_token`](https://developer.apple.com/documentation/devicecheck/dcdevice) issued by DeviceCheck, and attempts to validate it with Apple. If valid, returns an AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeDeviceCheckToken",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeDeviceCheckToken",
@@ -280,7 +280,7 @@
                 "$ref": "GoogleFirebaseAppcheckV1betaExchangeDeviceCheckTokenRequest"
               },
               "response": {
-                "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse"
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -288,7 +288,7 @@
               ]
             },
             "exchangeRecaptchaEnterpriseToken": {
-              "description": "Validates a [reCAPTCHA Enterprise response token](https://cloud.google.com/recaptcha-enterprise/docs/create-assessment#retrieve_token). If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
+              "description": "Validates a [reCAPTCHA Enterprise response token](https://cloud.google.com/recaptcha-enterprise/docs/create-assessment#retrieve_token). If valid, returns an App Check token AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeRecaptchaEnterpriseToken",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeRecaptchaEnterpriseToken",
@@ -309,7 +309,7 @@
                 "$ref": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaEnterpriseTokenRequest"
               },
               "response": {
-                "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse"
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -317,7 +317,7 @@
               ]
             },
             "exchangeRecaptchaToken": {
-              "description": "Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
+              "description": "Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeRecaptchaToken",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeRecaptchaToken",
@@ -338,7 +338,36 @@
                 "$ref": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaTokenRequest"
               },
               "response": {
-                "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse"
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
+            "exchangeRecaptchaV3Token": {
+              "description": "Validates a [reCAPTCHA v3 response token](https://developers.google.com/recaptcha/docs/v3). If valid, returns an AppCheckToken.",
+              "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeRecaptchaV3Token",
+              "httpMethod": "POST",
+              "id": "firebaseappcheck.projects.apps.exchangeRecaptchaV3Token",
+              "parameterOrder": [
+                "app"
+              ],
+              "parameters": {
+                "app": {
+                  "description": "Required. The relative resource name of the web app, in the format: ``` projects/{project_number}/apps/{app_id} ``` If necessary, the `project_number` element can be replaced with the project ID of the Firebase project. Learn more about using project identifiers in Google's [AIP 2510](https://google.aip.dev/cloud/2510) standard.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/apps/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+app}:exchangeRecaptchaV3Token",
+              "request": {
+                "$ref": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest"
+              },
+              "response": {
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -346,7 +375,7 @@
               ]
             },
             "exchangeSafetyNetToken": {
-              "description": "Validates a [SafetyNet token](https://developer.android.com/training/safetynet/attestation#request-attestation-step). If valid, returns an App Check token encapsulated in an AttestationTokenResponse.",
+              "description": "Validates a [SafetyNet token](https://developer.android.com/training/safetynet/attestation#request-attestation-step). If valid, returns an AppCheckToken.",
               "flatPath": "v1beta/projects/{projectsId}/apps/{appsId}:exchangeSafetyNetToken",
               "httpMethod": "POST",
               "id": "firebaseappcheck.projects.apps.exchangeSafetyNetToken",
@@ -367,7 +396,7 @@
                 "$ref": "GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest"
               },
               "response": {
-                "$ref": "GoogleFirebaseAppcheckV1betaAttestationTokenResponse"
+                "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -396,7 +425,7 @@
                 "$ref": "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest"
               },
               "response": {
-                "$ref": "GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse"
+                "$ref": "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -1183,26 +1212,9 @@
       }
     }
   },
-  "revision": "20220128",
+  "revision": "20220318",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
-    "GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse": {
-      "description": "Response message for the GenerateAppAttestChallenge method.",
-      "id": "GoogleFirebaseAppcheckV1betaAppAttestChallengeResponse",
-      "properties": {
-        "challenge": {
-          "description": "A one-time use challenge for the client to pass to the App Attest API.",
-          "format": "byte",
-          "type": "string"
-        },
-        "ttl": {
-          "description": "The duration from the time this challenge is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.",
-          "format": "google-duration",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleFirebaseAppcheckV1betaAppAttestConfig": {
       "description": "An app's App Attest configuration object. This configuration controls certain properties of the App Check token returned by ExchangeAppAttestAttestation and ExchangeAppAttestAssertion, such as its ttl. Note that the Team ID registered with your app is used as part of the validation process. Please register it via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.iosApps/patch).",
       "id": "GoogleFirebaseAppcheckV1betaAppAttestConfig",
@@ -1213,6 +1225,26 @@
         },
         "tokenTtl": {
           "description": "Specifies the duration for which App Check tokens exchanged from App Attest artifacts will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaAppCheckToken": {
+      "description": "Encapsulates an *App Check token*, which are used to access Firebase services protected by App Check.",
+      "id": "GoogleFirebaseAppcheckV1betaAppCheckToken",
+      "properties": {
+        "attestationToken": {
+          "description": "An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.",
+          "type": "string"
+        },
+        "token": {
+          "description": "An App Check token. App Check tokens are signed [JWTs](https://tools.ietf.org/html/rfc7519) containing claims that identify the attested app and Firebase project. This token is used to access Firebase services protected by App Check.",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "The duration from the time this token is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.",
           "format": "google-duration",
           "type": "string"
         }
@@ -1434,6 +1466,10 @@
       "description": "Response message for the ExchangeAppAttestAttestation method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeAppAttestAttestationResponse",
       "properties": {
+        "appCheckToken": {
+          "$ref": "GoogleFirebaseAppcheckV1betaAppCheckToken",
+          "description": "Encapsulates an App Check token."
+        },
         "artifact": {
           "description": "An artifact that can be used in future calls to ExchangeAppAttestAssertion.",
           "format": "byte",
@@ -1501,6 +1537,17 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest": {
+      "description": "Request message for the ExchangeRecaptchaV3Token method.",
+      "id": "GoogleFirebaseAppcheckV1betaExchangeRecaptchaV3TokenRequest",
+      "properties": {
+        "recaptchaV3Token": {
+          "description": "Required. The reCAPTCHA token as returned by the [reCAPTCHA v3 JavaScript API](https://developers.google.com/recaptcha/docs/v3).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest": {
       "description": "Request message for the ExchangeSafetyNetToken method.",
       "id": "GoogleFirebaseAppcheckV1betaExchangeSafetyNetTokenRequest",
@@ -1516,6 +1563,23 @@
       "description": "Request message for the GenerateAppAttestChallenge method.",
       "id": "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse": {
+      "description": "Response message for the GenerateAppAttestChallenge method.",
+      "id": "GoogleFirebaseAppcheckV1betaGenerateAppAttestChallengeResponse",
+      "properties": {
+        "challenge": {
+          "description": "A one-time use challenge for the client to pass to the App Attest API.",
+          "format": "byte",
+          "type": "string"
+        },
+        "ttl": {
+          "description": "The duration from the time this challenge is minted until its expiration. This field is intended to ease client-side token management, since the client may have clock skew, but is still able to accurately measure a duration.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleFirebaseAppcheckV1betaListDebugTokensResponse": {
@@ -1702,7 +1766,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"
