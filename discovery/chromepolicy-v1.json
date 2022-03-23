@@ -324,7 +324,7 @@
       }
     }
   },
-  "revision": "20220305",
+  "revision": "20220321",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "ChromeCrosDpanelAutosettingsProtoPolicyApiLifecycle": {
@@ -597,6 +597,14 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "requiredItems": {
+          "description": "Output only. Provides a list of fields that are required to be set if this field has a certain value.",
+          "items": {
+            "$ref": "GoogleChromePolicyV1PolicySchemaRequiredItems"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -641,6 +649,27 @@
           "description": "Output only. The value of the field that has a notice. When setting the field to this value, the user may be required to acknowledge the notice message in order for the value to be set.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyV1PolicySchemaRequiredItems": {
+      "description": "The fields that will become required based on the value of this field.",
+      "id": "GoogleChromePolicyV1PolicySchemaRequiredItems",
+      "properties": {
+        "fieldConditions": {
+          "description": "The value(s) of the field that provoke required field enforcement. An empty field_conditions implies that any value assigned to this field will provoke required field enforcement.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requiredFields": {
+          "description": "The fields that are required as a consequence of the field conditions.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -774,7 +803,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"
