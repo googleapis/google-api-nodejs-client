@@ -306,6 +306,10 @@ export namespace androidmanagement_v1 {
      */
     accessibleTrackIds?: string[] | null;
     /**
+     * Specifies whether the app is allowed networking when the VPN is not connected and alwaysOnVpnPackage.lockdownEnabled is enabled. If set to VPN_LOCKDOWN_ENFORCED, the app is not allowed networking, and if set to VPN_LOCKDOWN_EXEMPTION, the app is allowed networking. Only supported on devices running Android 10 and above. If this is not supported by the device, the device will contain a NonComplianceDetail with non_compliance_reason set to API_LEVEL and a fieldPath. If this is not applicable to the app, the device will contain a NonComplianceDetail with non_compliance_reason set to UNSUPPORTED and a fieldPath. The fieldPath is set to applications[i].alwaysOnVpnLockdownExemption, where i is the index of the package in the applications policy.
+     */
+    alwaysOnVpnLockdownExemption?: string | null;
+    /**
      * Controls the auto-update mode for the app.
      */
     autoUpdateMode?: string | null;
@@ -611,7 +615,7 @@ export namespace androidmanagement_v1 {
     showWorkContactsInPersonalProfile?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values A month and day, with a zero year (e.g., an anniversary) A year on its own, with a zero month and a zero day A year and month, with a zero day (e.g., a credit card expiration date)Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values. A month and day, with a zero year (for example, an anniversary). A year on its own, with a zero month and a zero day. A year and month, with a zero day (for example, a credit card expiration date).Related types: google.type.TimeOfDay google.type.DateTime google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -1464,10 +1468,6 @@ export namespace androidmanagement_v1 {
      * The length of time after a device or work profile is unlocked using a strong form of authentication (password, PIN, pattern) that it can be unlocked using any other authentication method (e.g. fingerprint, trust agents, face). After the specified time period elapses, only strong forms of authentication can be used to unlock the device or work profile.
      */
     requirePasswordUnlock?: string | null;
-    /**
-     * Controls whether a unified lock is allowed for the device and the work profile, on devices running Android 9 and above with a work profile. This has no effect on other devices. This can be set only if password_scope is set to SCOPE_PROFILE, the policy will be rejected otherwise. If user has not set a separate work lock and this field is set to REQUIRE_SEPARATE_WORK_LOCK, a NonComplianceDetail is reported with nonComplianceReason set to USER_ACTION.
-     */
-    unifiedLockSettings?: string | null;
   }
   /**
    * Configuration for an Android permission and its grant state.
@@ -1758,7 +1758,7 @@ export namespace androidmanagement_v1 {
      */
     passwordPolicies?: Schema$PasswordRequirements[];
     /**
-     * Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here. unified_lock_settings cannot be used here
+     * Password requirements. The field password_requirements.require_password_unlock must not be set. DEPRECATED - Use passwordPolicies.Note:Complexity-based values of PasswordQuality, that is, COMPLEXITY_LOW, COMPLEXITY_MEDIUM, and COMPLEXITY_HIGH, cannot be used here.
      */
     passwordRequirements?: Schema$PasswordRequirements;
     /**
