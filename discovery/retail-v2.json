@@ -155,7 +155,7 @@
                       "type": "string"
                     },
                     "visitorId": {
-                      "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+                      "description": "Required field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -614,7 +614,7 @@
                 "completionData": {
                   "methods": {
                     "import": {
-                      "description": "Bulk import of processed completion dataset. Request processing may be synchronous. Partial updating is not supported. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                      "description": "Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/completionData:import",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.completionData.import",
@@ -725,7 +725,7 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. Full resource name of the format: {name=projects/*/locations/global/catalogs/default_catalog/placements/*} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements",
+                          "description": "Required. Full resource name of the format: {name=projects/*/locations/global/catalogs/default_catalog/placements/*} or {name=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/placements/[^/]+$",
                           "required": true,
@@ -753,9 +753,69 @@
                       ],
                       "parameters": {
                         "placement": {
-                          "description": "Required. The resource name of the search engine placement, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.",
+                          "description": "Required. The resource name of the search engine placement, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search` or `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving configuration name and the set of models that will be used to make the search.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/placements/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+placement}:search",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2SearchRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2SearchResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "servingConfigs": {
+                  "methods": {
+                    "predict": {
+                      "description": "Makes a recommendation prediction.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:predict",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.predict",
+                      "parameterOrder": [
+                        "placement"
+                      ],
+                      "parameters": {
+                        "placement": {
+                          "description": "Required. Full resource name of the format: {name=projects/*/locations/global/catalogs/default_catalog/placements/*} or {name=projects/*/locations/global/catalogs/default_catalog/servingConfigs/*} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+placement}:predict",
+                      "request": {
+                        "$ref": "GoogleCloudRetailV2PredictRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudRetailV2PredictResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "search": {
+                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:search",
+                      "httpMethod": "POST",
+                      "id": "retail.projects.locations.catalogs.servingConfigs.search",
+                      "parameterOrder": [
+                        "placement"
+                      ],
+                      "parameters": {
+                        "placement": {
+                          "description": "Required. The resource name of the search engine placement, such as `projects/*/locations/global/catalogs/default_catalog/placements/default_search` or `projects/*/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving configuration name and the set of models that will be used to make the search.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/catalogs/[^/]+/servingConfigs/[^/]+$",
                           "required": true,
                           "type": "string"
                         }
@@ -873,7 +933,7 @@
                       ]
                     },
                     "rejoin": {
-                      "description": "Triggers a user event rejoin operation with latest product catalog. Events will not be annotated with detailed product information if product is missing from the catalog at the time the user event is ingested, and these events are stored as unjoined events with a limited usage on training and serving. This API can be used to trigger a 'join' operation on specified events with latest version of product catalog. It can also be used to correct events joined with wrong product catalog.",
+                      "description": "Starts a user event rejoin operation with latest product catalog. Events will not be annotated with detailed product information if product is missing from the catalog at the time the user event is ingested, and these events are stored as unjoined events with a limited usage on training and serving. This method can be used to start a join operation on specified events with latest version of product catalog. It can also be used to correct events joined with the wrong product catalog. A rejoin operation can take hours or days to complete.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/userEvents:rejoin",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.userEvents.rejoin",
@@ -1077,7 +1137,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220319",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1295,7 +1355,7 @@
       "id": "GoogleCloudRetailV2BigQuerySource",
       "properties": {
         "dataSchema": {
-          "description": "The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: The schema is available here: https://support.google.com/analytics/answer/3437719. * `user_event_ga4`: This feature is in private preview. Please contact the support team for importing Google Analytics 4 events. The schema is available here: https://support.google.com/analytics/answer/7029846.",
+          "description": "The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: The schema is available here: https://support.google.com/analytics/answer/3437719. * `user_event_ga4`: This feature is in private preview. Please contact the support team for importing Google Analytics 4 events. The schema is available here: https://support.google.com/analytics/answer/7029846. Supported values for auto-completion imports: * `suggestions` (default): One JSON completion suggestion per line. * `denylist`: One JSON deny suggestion per line. * `allowlist`: One JSON allow suggestion per line.",
           "type": "string"
         },
         "datasetId": {
@@ -1366,7 +1426,7 @@
       "id": "GoogleCloudRetailV2CompleteQueryResponse",
       "properties": {
         "attributionToken": {
-          "description": "A unique complete token. This should be included in the SearchRequest resulting from this completion, which enables accurate attribution of complete model performance.",
+          "description": "A unique complete token. This should be included in the UserEvent.completion_detail for search events resulting from this completion, which enables accurate attribution of complete model performance.",
           "type": "string"
         },
         "completionResults": {
@@ -1394,7 +1454,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudRetailV2CustomAttribute"
           },
-          "description": "Additional custom attributes ingested through BigQuery.",
+          "description": "Custom attributes for the suggestion term. * For \"user-data\", the attributes are additional custom attributes ingested through BigQuery. * For \"cloud-retail\", the attributes are product attributes generated by Cloud Retail.",
           "type": "object"
         },
         "suggestion": {
@@ -1533,7 +1593,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2Image": {
-      "description": "Product thumbnail/detail image.",
+      "description": "Product image. Recommendations AI and Retail Search do not use product images to improve prediction and search results. However, product images can be returned in results, and are shown in prediction or search previews in the console.",
       "id": "GoogleCloudRetailV2Image",
       "properties": {
         "height": {
@@ -1612,7 +1672,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Id of the request / operation. This is parroting back the requestId that was passed in the request.",
+          "description": "Deprecated. This field is never set.",
           "type": "string"
         },
         "successCount": {
@@ -1659,7 +1719,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Unique identifier provided by client, within the ancestor dataset scope. Ensures idempotency and used for request deduplication. Server-generated if unspecified. Up to 128 characters long and must match the pattern: `[a-zA-Z0-9_]+`. This is returned as Operation.name in ImportMetadata. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.",
+          "description": "Deprecated. This field has no effect.",
           "type": "string"
         },
         "updateMask": {
@@ -1793,7 +1853,7 @@
       "id": "GoogleCloudRetailV2PredictRequest",
       "properties": {
         "filter": {
-          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, nothing will be returned. If you want generic (unfiltered) popular products to be returned instead, set `strictFiltering` to false in `PredictRequest.params`.",
+          "description": "Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-\"tagA\"` is also supported and is equivalent to `NOT \"tagA\"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: \"Recently viewed\" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=(\"Red\" OR \"Blue\") tag=\"New-Arrival\" tag=(NOT \"promotional\") * filterOutOfStockItems tag=(-\"promotional\") * filterOutOfStockItems If your filter blocks all prediction results, the API will return generic (unfiltered) popular products. If you only want results strictly matching the filters, set `strictFiltering` to True in `PredictRequest.params` to receive empty results instead. Note that the API will never return items with storageStatus of \"EXPIRED\" or \"DELETED\" regardless of filter choices.",
           "type": "string"
         },
         "labels": {
@@ -2033,7 +2093,7 @@
           "type": "string"
         },
         "images": {
-          "description": "Product images for the product.Highly recommended to put the main image to the first. A maximum of 300 images are allowed. Corresponding properties: Google Merchant Center property [image_link](https://support.google.com/merchants/answer/6324350). Schema.org property [Product.image](https://schema.org/image).",
+          "description": "Product images for the product. We highly recommend putting the main image first. A maximum of 300 images are allowed. Corresponding properties: Google Merchant Center property [image_link](https://support.google.com/merchants/answer/6324350). Schema.org property [Product.image](https://schema.org/image).",
           "items": {
             "$ref": "GoogleCloudRetailV2Image"
           },
@@ -2398,7 +2458,7 @@
           "type": "string"
         },
         "canonicalFilter": {
-          "description": "The filter applied to every search request when quality improvement such as query expansion is needed. For example, if a query does not have enough results, an expanded query with SearchRequest.canonical_filter will be returned as a supplement of the original query. This field is strongly recommended to achieve high search quality. See SearchRequest.filter for more details about filter syntax.",
+          "description": "The default filter that is applied when a user performs a search without checking any filters on the search page. The filter applied to every search request when quality improvement such as query expansion is needed. For example, if a query does not have enough results, an expanded query with SearchRequest.canonical_filter will be returned as a supplement of the original query. This field is strongly recommended to achieve high search quality. See SearchRequest.filter for more details about filter syntax.",
           "type": "string"
         },
         "dynamicFacetSpec": {
@@ -2877,7 +2937,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudRetailV2CustomAttribute"
           },
-          "description": "Extra user event features to include in the recommendation model. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendation, an example of extra user information is traffic_channel, i.e. how user arrives at the site. Users can arrive at the site by coming to the site directly, or coming through Google search, and etc.",
+          "description": "Extra user event features to include in the recommendation model. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Retail API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is traffic_channel, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.",
           "type": "object"
         },
         "attributionToken": {
@@ -3175,7 +3235,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Id of the request / operation. This is parroting back the requestId that was passed in the request.",
+          "description": "Deprecated. This field is never set.",
           "type": "string"
         },
         "successCount": {
@@ -3235,6 +3295,52 @@
       "description": "Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudRetailV2alphaPurgeMetadata",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaPurgeProductsMetadata": {
+      "description": "Metadata related to the progress of the PurgeProducts operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudRetailV2alphaPurgeProductsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "failureCount": {
+          "description": "Count of entries that encountered errors while processing.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "Count of entries that were deleted successfully.",
+          "format": "int64",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2alphaPurgeProductsResponse": {
+      "description": "Response of the PurgeProductsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.",
+      "id": "GoogleCloudRetailV2alphaPurgeProductsResponse",
+      "properties": {
+        "purgeCount": {
+          "description": "The total count of products purged as a result of the operation.",
+          "format": "int64",
+          "type": "string"
+        },
+        "purgeSample": {
+          "description": "A sample of the product names that will be deleted. Only populated if `force` is set to false. A max of 100 names will be returned and the names are chosen at random.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRetailV2alphaPurgeUserEventsResponse": {
@@ -3440,7 +3546,7 @@
           "type": "string"
         },
         "requestId": {
-          "description": "Id of the request / operation. This is parroting back the requestId that was passed in the request.",
+          "description": "Deprecated. This field is never set.",
           "type": "string"
         },
         "successCount": {
@@ -3627,7 +3733,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"

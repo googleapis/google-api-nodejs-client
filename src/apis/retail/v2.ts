@@ -372,7 +372,7 @@ export namespace retail_v2 {
      */
     notificationPubsubTopic?: string | null;
     /**
-     * Id of the request / operation. This is parroting back the requestId that was passed in the request.
+     * Deprecated. This field is never set.
      */
     requestId?: string | null;
     /**
@@ -418,6 +418,40 @@ export namespace retail_v2 {
    * Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudRetailV2alphaPurgeMetadata {}
+  /**
+   * Metadata related to the progress of the PurgeProducts operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaPurgeProductsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of entries that encountered errors while processing.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of entries that were deleted successfully.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the PurgeProductsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudRetailV2alphaPurgeProductsResponse {
+    /**
+     * The total count of products purged as a result of the operation.
+     */
+    purgeCount?: string | null;
+    /**
+     * A sample of the product names that will be deleted. Only populated if `force` is set to false. A max of 100 names will be returned and the names are chosen at random.
+     */
+    purgeSample?: string[] | null;
+  }
   /**
    * Response of the PurgeUserEventsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
    */
@@ -581,7 +615,7 @@ export namespace retail_v2 {
      */
     notificationPubsubTopic?: string | null;
     /**
-     * Id of the request / operation. This is parroting back the requestId that was passed in the request.
+     * Deprecated. This field is never set.
      */
     requestId?: string | null;
     /**
@@ -683,7 +717,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2BigQuerySource {
     /**
-     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: The schema is available here: https://support.google.com/analytics/answer/3437719. * `user_event_ga4`: This feature is in private preview. Please contact the support team for importing Google Analytics 4 events. The schema is available here: https://support.google.com/analytics/answer/7029846.
+     * The schema to use when parsing the data from the source. Supported values for product imports: * `product` (default): One JSON Product per line. Each product must have a valid Product.id. * `product_merchant_center`: See [Importing catalog data from Merchant Center](https://cloud.google.com/retail/recommendations-ai/docs/upload-catalog#mc). Supported values for user events imports: * `user_event` (default): One JSON UserEvent per line. * `user_event_ga360`: The schema is available here: https://support.google.com/analytics/answer/3437719. * `user_event_ga4`: This feature is in private preview. Please contact the support team for importing Google Analytics 4 events. The schema is available here: https://support.google.com/analytics/answer/7029846. Supported values for auto-completion imports: * `suggestions` (default): One JSON completion suggestion per line. * `denylist`: One JSON deny suggestion per line. * `allowlist`: One JSON allow suggestion per line.
      */
     dataSchema?: string | null;
     /**
@@ -742,7 +776,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2CompleteQueryResponse {
     /**
-     * A unique complete token. This should be included in the SearchRequest resulting from this completion, which enables accurate attribution of complete model performance.
+     * A unique complete token. This should be included in the UserEvent.completion_detail for search events resulting from this completion, which enables accurate attribution of complete model performance.
      */
     attributionToken?: string | null;
     /**
@@ -759,7 +793,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2CompleteQueryResponseCompletionResult {
     /**
-     * Additional custom attributes ingested through BigQuery.
+     * Custom attributes for the suggestion term. * For "user-data", the attributes are additional custom attributes ingested through BigQuery. * For "cloud-retail", the attributes are product attributes generated by Cloud Retail.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudRetailV2CustomAttribute;
@@ -869,7 +903,7 @@ export namespace retail_v2 {
     setTime?: string | null;
   }
   /**
-   * Product thumbnail/detail image.
+   * Product image. Recommendations AI and Retail Search do not use product images to improve prediction and search results. However, product images can be returned in results, and are shown in prediction or search previews in the console.
    */
   export interface Schema$GoogleCloudRetailV2Image {
     /**
@@ -933,7 +967,7 @@ export namespace retail_v2 {
      */
     notificationPubsubTopic?: string | null;
     /**
-     * Id of the request / operation. This is parroting back the requestId that was passed in the request.
+     * Deprecated. This field is never set.
      */
     requestId?: string | null;
     /**
@@ -966,7 +1000,7 @@ export namespace retail_v2 {
      */
     reconciliationMode?: string | null;
     /**
-     * Unique identifier provided by client, within the ancestor dataset scope. Ensures idempotency and used for request deduplication. Server-generated if unspecified. Up to 128 characters long and must match the pattern: `[a-zA-Z0-9_]+`. This is returned as Operation.name in ImportMetadata. Only supported when ImportProductsRequest.reconciliation_mode is set to `FULL`.
+     * Deprecated. This field has no effect.
      */
     requestId?: string | null;
     /**
@@ -1069,7 +1103,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2PredictRequest {
     /**
-     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, nothing will be returned. If you want generic (unfiltered) popular products to be returned instead, set `strictFiltering` to false in `PredictRequest.params`.
+     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, the API will return generic (unfiltered) popular products. If you only want results strictly matching the filters, set `strictFiltering` to True in `PredictRequest.params` to receive empty results instead. Note that the API will never return items with storageStatus of "EXPIRED" or "DELETED" regardless of filter choices.
      */
     filter?: string | null;
     /**
@@ -1244,7 +1278,7 @@ export namespace retail_v2 {
      */
     id?: string | null;
     /**
-     * Product images for the product.Highly recommended to put the main image to the first. A maximum of 300 images are allowed. Corresponding properties: Google Merchant Center property [image_link](https://support.google.com/merchants/answer/6324350). Schema.org property [Product.image](https://schema.org/image).
+     * Product images for the product. We highly recommend putting the main image first. A maximum of 300 images are allowed. Corresponding properties: Google Merchant Center property [image_link](https://support.google.com/merchants/answer/6324350). Schema.org property [Product.image](https://schema.org/image).
      */
     images?: Schema$GoogleCloudRetailV2Image[];
     /**
@@ -1509,7 +1543,7 @@ export namespace retail_v2 {
      */
     branch?: string | null;
     /**
-     * The filter applied to every search request when quality improvement such as query expansion is needed. For example, if a query does not have enough results, an expanded query with SearchRequest.canonical_filter will be returned as a supplement of the original query. This field is strongly recommended to achieve high search quality. See SearchRequest.filter for more details about filter syntax.
+     * The default filter that is applied when a user performs a search without checking any filters on the search page. The filter applied to every search request when quality improvement such as query expansion is needed. For example, if a query does not have enough results, an expanded query with SearchRequest.canonical_filter will be returned as a supplement of the original query. This field is strongly recommended to achieve high search quality. See SearchRequest.filter for more details about filter syntax.
      */
     canonicalFilter?: string | null;
     /**
@@ -1852,7 +1886,7 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2UserEvent {
     /**
-     * Extra user event features to include in the recommendation model. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendation, an example of extra user information is traffic_channel, i.e. how user arrives at the site. Users can arrive at the site by coming to the site directly, or coming through Google search, and etc.
+     * Extra user event features to include in the recommendation model. If you provide custom attributes for ingested user events, also include them in the user events that you associate with prediction requests. Custom attribute formatting must be consistent between imported events and events provided with prediction requests. This lets the Retail API use those custom attributes when training models and serving predictions, which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example of extra user information is traffic_channel, which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming through Google search, or in other ways.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudRetailV2CustomAttribute;
@@ -2033,7 +2067,7 @@ export namespace retail_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -2101,6 +2135,7 @@ export namespace retail_v2 {
     completionData: Resource$Projects$Locations$Catalogs$Completiondata;
     operations: Resource$Projects$Locations$Catalogs$Operations;
     placements: Resource$Projects$Locations$Catalogs$Placements;
+    servingConfigs: Resource$Projects$Locations$Catalogs$Servingconfigs;
     userEvents: Resource$Projects$Locations$Catalogs$Userevents;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -2115,6 +2150,8 @@ export namespace retail_v2 {
       this.placements = new Resource$Projects$Locations$Catalogs$Placements(
         this.context
       );
+      this.servingConfigs =
+        new Resource$Projects$Locations$Catalogs$Servingconfigs(this.context);
       this.userEvents = new Resource$Projects$Locations$Catalogs$Userevents(
         this.context
       );
@@ -2159,7 +2196,7 @@ export namespace retail_v2 {
      *     maxSuggestions: 'placeholder-value',
      *     // Required. The query used to generate suggestions. The maximum number of allowed characters is 255.
      *     query: 'placeholder-value',
-     *     // A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     // Required field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
      *     visitorId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2875,7 +2912,7 @@ export namespace retail_v2 {
      */
     query?: string;
     /**
-     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Required field. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     visitorId?: string;
   }
@@ -4727,7 +4764,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Bulk import of processed completion dataset. Request processing may be synchronous. Partial updating is not supported. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
      * @example
      * ```js
      * // Before running the sample:
@@ -5241,7 +5278,7 @@ export namespace retail_v2 {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.placements.predict({
-     *     // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     *     // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} or {name=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
      *     placement:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
      *
@@ -5398,7 +5435,7 @@ export namespace retail_v2 {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.placements.search({
-     *     // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.
+     *     // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving configuration name and the set of models that will be used to make the search.
      *     placement:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
      *
@@ -5549,7 +5586,7 @@ export namespace retail_v2 {
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Predict
     extends StandardParameters {
     /**
-     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} or {name=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
      */
     placement?: string;
 
@@ -5561,7 +5598,370 @@ export namespace retail_v2 {
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Search
     extends StandardParameters {
     /**
-     * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search`. This field is used to identify the serving configuration name and the set of models that will be used to make the search.
+     * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving configuration name and the set of models that will be used to make the search.
+     */
+    placement?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2SearchRequest;
+  }
+
+  export class Resource$Projects$Locations$Catalogs$Servingconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Makes a recommendation prediction.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.predict({
+     *     // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} or {name=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "filter": "my_filter",
+     *       //   "labels": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "params": {},
+     *       //   "userEvent": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "missingIds": [],
+     *   //   "results": [],
+     *   //   "validateOnly": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    predict(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    predict(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2PredictResponse>;
+    predict(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    predict(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2PredictResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2PredictResponse>
+    ): void;
+    predict(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2PredictResponse>
+    ): void;
+    predict(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2PredictResponse>
+    ): void;
+    predict(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2PredictResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2PredictResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2PredictResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2PredictResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+placement}:predict').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['placement'],
+        pathParams: ['placement'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2PredictResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2PredictResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Performs a search. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await retail.projects.locations.catalogs.servingConfigs.search({
+     *     // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving configuration name and the set of models that will be used to make the search.
+     *     placement:
+     *       'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boostSpec": {},
+     *       //   "branch": "my_branch",
+     *       //   "canonicalFilter": "my_canonicalFilter",
+     *       //   "dynamicFacetSpec": {},
+     *       //   "facetSpecs": [],
+     *       //   "filter": "my_filter",
+     *       //   "offset": 0,
+     *       //   "orderBy": "my_orderBy",
+     *       //   "pageCategories": [],
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "personalizationSpec": {},
+     *       //   "query": "my_query",
+     *       //   "queryExpansionSpec": {},
+     *       //   "searchMode": "my_searchMode",
+     *       //   "userInfo": {},
+     *       //   "variantRollupKeys": [],
+     *       //   "visitorId": "my_visitorId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "invalidConditionBoostSpecs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRetailV2SearchResponse>;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2SearchResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2SearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2SearchResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2SearchResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2SearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2SearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2SearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRetailV2SearchResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+placement}:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['placement'],
+        pathParams: ['placement'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2SearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2SearchResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Predict
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} or {name=projects/x/locations/global/catalogs/default_catalog/servingConfigs/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     */
+    placement?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2PredictRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Search
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving configuration name and the set of models that will be used to make the search.
      */
     placement?: string;
 
@@ -6019,7 +6419,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Triggers a user event rejoin operation with latest product catalog. Events will not be annotated with detailed product information if product is missing from the catalog at the time the user event is ingested, and these events are stored as unjoined events with a limited usage on training and serving. This API can be used to trigger a 'join' operation on specified events with latest version of product catalog. It can also be used to correct events joined with wrong product catalog.
+     * Starts a user event rejoin operation with latest product catalog. Events will not be annotated with detailed product information if product is missing from the catalog at the time the user event is ingested, and these events are stored as unjoined events with a limited usage on training and serving. This method can be used to start a join operation on specified events with latest version of product catalog. It can also be used to correct events joined with the wrong product catalog. A rejoin operation can take hours or days to complete.
      * @example
      * ```js
      * // Before running the sample:
