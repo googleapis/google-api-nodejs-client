@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20220222",
+  "revision": "20220316",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1547,7 +1547,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The export name.",
+          "description": "The export name. Don't use special characters (~!$'(),;@:/?) in the name, they can prevent you from downloading exports.",
           "type": "string"
         },
         "query": {
@@ -1697,8 +1697,8 @@
           ],
           "enumDescriptions": [
             "No export format specified.",
-            "Export as MBOX.",
-            "Export as PST."
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
           ],
           "type": "string"
         }
@@ -1718,8 +1718,8 @@
           ],
           "enumDescriptions": [
             "No export format specified.",
-            "Export as MBOX.",
-            "Export as PST."
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
           ],
           "type": "string"
         }
@@ -1915,7 +1915,7 @@
             "Drive, including Meet and Sites.",
             "For search, Gmail and classic Hangouts. For holds, Gmail only.",
             "Groups.",
-            "For search, Google Chat only. For holds, Google Chat and classic Hangouts.",
+            "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice."
           ],
           "type": "string"
@@ -2099,8 +2099,8 @@
           ],
           "enumDescriptions": [
             "No export format specified.",
-            "Export as MBOX.",
-            "Export as PST."
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
           ],
           "type": "string"
         },
@@ -2262,7 +2262,7 @@
             "Drive, including Meet and Sites.",
             "For search, Gmail and classic Hangouts. For holds, Gmail only.",
             "Groups.",
-            "For search, Google Chat only. For holds, Google Chat and classic Hangouts.",
+            "For export, Google Chat only. For holds, Google Chat and classic Hangouts.",
             "Google Voice."
           ],
           "type": "string"
@@ -2553,8 +2553,8 @@
           ],
           "enumDescriptions": [
             "No export format specified.",
-            "Export as MBOX.",
-            "Export as PST."
+            "Export as MBOX. Only available for Gmail, Groups, Hangouts and Voice.",
+            "Export as PST. Only available for Gmail, Groups, Hangouts, Voice and Calendar."
           ],
           "type": "string"
         }
