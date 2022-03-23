@@ -169,7 +169,7 @@ export namespace memcache_v1beta2 {
     startTime?: Schema$TimeOfDay;
   }
   /**
-   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day, with a zero year (e.g., an anniversary) * A year on its own, with a zero month and a zero day * A year and month, with a zero day (e.g., a credit card expiration date) Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
     /**
@@ -216,6 +216,27 @@ export namespace memcache_v1beta2 {
     availableZones?: {
       [key: string]: Schema$GoogleCloudMemcacheV1beta2ZoneMetadata;
     } | null;
+  }
+  /**
+   * Maintenance policy per instance.
+   */
+  export interface Schema$GoogleCloudMemcacheV1beta2MaintenancePolicy {
+    /**
+     * Output only. The time when the policy was created.
+     */
+    createTime?: string | null;
+    /**
+     * Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.
+     */
+    description?: string | null;
+    /**
+     * Output only. The time when the policy was updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. Maintenance window that is applied to resources covered by this policy. Minimum 1. For the current version, the maximum number of weekly_maintenance_windows is expected to be one.
+     */
+    weeklyMaintenanceWindow?: Schema$WeeklyMaintenanceWindow[];
   }
   /**
    * Represents the metadata of a long-running operation.
@@ -469,6 +490,14 @@ export namespace memcache_v1beta2 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * The maintenance policy for the instance. If not provided, the maintenance event will be performed based on Memorystore internal rollout schedule.
+     */
+    maintenancePolicy?: Schema$GoogleCloudMemcacheV1beta2MaintenancePolicy;
+    /**
+     * Output only. Published maintenance schedule.
+     */
+    maintenanceSchedule?: Schema$MaintenanceSchedule;
+    /**
      * Output only. The full version of memcached server running on this instance. System automatically determines the full memcached version for an instance based on the input MemcacheVersion. The full version format will be "memcached-1.5.16".
      */
     memcacheFullVersion?: string | null;
@@ -632,6 +661,23 @@ export namespace memcache_v1beta2 {
      * Output only. The time when the resource was updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Upcoming maintenance schedule.
+   */
+  export interface Schema$MaintenanceSchedule {
+    /**
+     * Output only. The end time of any upcoming scheduled maintenance for this instance.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The deadline that the maintenance schedule start time can not go beyond, including reschedule.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
+     * Output only. The start time of any upcoming scheduled maintenance for this instance.
+     */
+    startTime?: string | null;
   }
   /**
    * MaintenanceWindow definition.
@@ -850,6 +896,23 @@ export namespace memcache_v1beta2 {
      * User can specify multiple windows in a week. Minimum of 1 window.
      */
     schedule?: Schema$Schedule[];
+  }
+  /**
+   * Time window specified for weekly operations.
+   */
+  export interface Schema$WeeklyMaintenanceWindow {
+    /**
+     * Required. Allows to define schedule that runs specified day of the week.
+     */
+    day?: string | null;
+    /**
+     * Required. Duration of the time window.
+     */
+    duration?: string | null;
+    /**
+     * Required. Start time of the window in UTC.
+     */
+    startTime?: Schema$TimeOfDay;
   }
   export interface Schema$ZoneMetadata {}
 
@@ -1507,6 +1570,8 @@ export namespace memcache_v1beta2 {
      *       //   "displayName": "my_displayName",
      *       //   "instanceMessages": [],
      *       //   "labels": {},
+     *       //   "maintenancePolicy": {},
+     *       //   "maintenanceSchedule": {},
      *       //   "memcacheFullVersion": "my_memcacheFullVersion",
      *       //   "memcacheNodes": [],
      *       //   "memcacheVersion": "my_memcacheVersion",
@@ -1794,6 +1859,8 @@ export namespace memcache_v1beta2 {
      *   //   "displayName": "my_displayName",
      *   //   "instanceMessages": [],
      *   //   "labels": {},
+     *   //   "maintenancePolicy": {},
+     *   //   "maintenanceSchedule": {},
      *   //   "memcacheFullVersion": "my_memcacheFullVersion",
      *   //   "memcacheNodes": [],
      *   //   "memcacheVersion": "my_memcacheVersion",
@@ -2082,6 +2149,8 @@ export namespace memcache_v1beta2 {
      *       //   "displayName": "my_displayName",
      *       //   "instanceMessages": [],
      *       //   "labels": {},
+     *       //   "maintenancePolicy": {},
+     *       //   "maintenanceSchedule": {},
      *       //   "memcacheFullVersion": "my_memcacheFullVersion",
      *       //   "memcacheNodes": [],
      *       //   "memcacheVersion": "my_memcacheVersion",
