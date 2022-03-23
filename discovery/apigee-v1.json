@@ -7588,7 +7588,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220310",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
@@ -9945,6 +9945,11 @@
         },
         "environment": {
           "description": "Required. ID of the attached environment.",
+          "type": "string"
+        },
+        "environmentGroupId": {
+          "description": "Output only. ID of the environment group.",
+          "readOnly": true,
           "type": "string"
         },
         "name": {

@@ -154,7 +154,7 @@
       }
     }
   },
-  "revision": "20220305",
+  "revision": "20220322",
   "rootUrl": "https://mybusinessnotifications.googleapis.com/",
   "schemas": {
     "NotificationSetting": {
@@ -194,7 +194,7 @@
               "An answer of the location is updated. The notification will provide the resource name of question and answer.",
               "Indicates whether there is a change in location metadata's duplicate location field.",
               "Deprecated: Migrate the existing usages of this value to the more expanded \"VOICE_OF_MERCHANT_UPDATED\".",
-              "Indicates whether the location has an update in voice of merchant status. Call GetVoiceOfMerchantState rpc for more details"
+              "Indicates whether the location has an update in Voice of Merchant (VOM) status. VOM dictates whether the location is in good standing and the merchant has control over the business on Google. Any edits made to the location will propagate to Maps after passing the review phase. Call GetVoiceOfMerchantState rpc for more details."
             ],
             "type": "string"
           },
