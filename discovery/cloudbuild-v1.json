@@ -1625,7 +1625,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the `WorkerPool` to delete. Format: `projects/{project}/locations/{workerPool}/workerPools/{workerPool}`.",
+                      "description": "Required. The name of the `WorkerPool` to delete. Format: `projects/{project}/locations/{location}/workerPools/{workerPool}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
                       "required": true,
@@ -2039,7 +2039,7 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220310",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "AddBitbucketServerConnectedRepositoryRequest": {
