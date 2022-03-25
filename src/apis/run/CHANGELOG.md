@@ -1,5 +1,12 @@
 # Changelog
 
+### [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/run-v8.0.0...run-v8.0.1) (2022-03-25)
+
+
+### Bug Fixes
+
+* **run:** update the API ([7b981bf](https://github.com/googleapis/google-api-nodejs-client/commit/7b981bfaa89206d5e11fe06c955eba5ea7924d18))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v7.0.1...run-v8.0.0) (2022-03-14)
 
 
