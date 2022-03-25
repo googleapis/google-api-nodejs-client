@@ -714,6 +714,11 @@
               "location": "path",
               "required": true,
               "type": "string"
+            },
+            "playerIdConsistencyToken": {
+              "description": "Consistency token of the player id. The call returns a 'not found' result when the token is present and invalid. Empty value is ignored. See also GlobalPlayerIdConsistencyTokenProto",
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "games/v1/players/{playerId}",
@@ -1224,7 +1229,7 @@
       }
     }
   },
-  "revision": "20210401",
+  "revision": "20220317",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {

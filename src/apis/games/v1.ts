@@ -4356,6 +4356,8 @@ export namespace games_v1 {
      *     language: 'placeholder-value',
      *     // A player ID. A value of `me` may be used in place of the authenticated player's ID.
      *     playerId: 'placeholder-value',
+     *     // Consistency token of the player id. The call returns a 'not found' result when the token is present and invalid. Empty value is ignored. See also GlobalPlayerIdConsistencyTokenProto
+     *     playerIdConsistencyToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4614,6 +4616,10 @@ export namespace games_v1 {
      * A player ID. A value of `me` may be used in place of the authenticated player's ID.
      */
     playerId?: string;
+    /**
+     * Consistency token of the player id. The call returns a 'not found' result when the token is present and invalid. Empty value is ignored. See also GlobalPlayerIdConsistencyTokenProto
+     */
+    playerIdConsistencyToken?: string;
   }
   export interface Params$Resource$Players$List extends StandardParameters {
     /**
