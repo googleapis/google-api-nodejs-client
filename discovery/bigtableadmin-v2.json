@@ -1803,7 +1803,7 @@
       }
     }
   },
-  "revision": "20220222",
+  "revision": "20220313",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -1903,7 +1903,7 @@
       "id": "AutoscalingTargets",
       "properties": {
         "cpuUtilizationPercent": {
-          "description": "The cpu utilization that the Autoscaler should be trying to achieve. This number is on a scale from 0 (no utilization) to 100 (total utilization), and is limited between 10 and 80.",
+          "description": "The cpu utilization that the Autoscaler should be trying to achieve. This number is on a scale from 0 (no utilization) to 100 (total utilization), and is limited between 10 and 80, otherwise it will return INVALID_ARGUMENT error.",
           "format": "int32",
           "type": "integer"
         }
