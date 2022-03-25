@@ -515,6 +515,14 @@ export namespace displayvideo_v1 {
      */
     channelDetails?: Schema$ChannelAssignedTargetingOptionDetails;
     /**
+     * Content duration details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_DURATION`.
+     */
+    contentDurationDetails?: Schema$ContentDurationAssignedTargetingOptionDetails;
+    /**
+     * Content genre details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_GENRE`.
+     */
+    contentGenreDetails?: Schema$ContentGenreAssignedTargetingOptionDetails;
+    /**
      * Content instream position details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`.
      */
     contentInstreamPositionDetails?: Schema$ContentInstreamPositionAssignedTargetingOptionDetails;
@@ -522,6 +530,10 @@ export namespace displayvideo_v1 {
      * Content outstream position details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`.
      */
     contentOutstreamPositionDetails?: Schema$ContentOutstreamPositionAssignedTargetingOptionDetails;
+    /**
+     * Content duration details. This field will be populated when the TargetingType is `TARGETING_TYPE_CONTENT_STREAM_TYPE`.
+     */
+    contentStreamTypeDetails?: Schema$ContentStreamTypeAssignedTargetingOptionDetails;
     /**
      * Day and time details. This field will be populated when the targeting_type is `TARGETING_TYPE_DAY_AND_TIME`.
      */
@@ -1474,6 +1486,54 @@ export namespace displayvideo_v1 {
     contactInfos?: Schema$ContactInfo[];
   }
   /**
+   * Details for content duration assigned targeting option. This will be populated in the content_duration_details field when targeting_type is `TARGETING_TYPE_CONTENT_DURATION`. Explicitly targeting all options is not supported. Remove all content duration targeting options to achieve this effect.
+   */
+  export interface Schema$ContentDurationAssignedTargetingOptionDetails {
+    /**
+     * Output only. The content duration.
+     */
+    contentDuration?: string | null;
+    /**
+     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_CONTENT_DURATION`.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable content duration. This will be populated in the content_duration_details field when targeting_type is `TARGETING_TYPE_CONTENT_DURATION`.
+   */
+  export interface Schema$ContentDurationTargetingOptionDetails {
+    /**
+     * Output only. The content duration.
+     */
+    contentDuration?: string | null;
+  }
+  /**
+   * Details for content genre assigned targeting option. This will be populated in the content_genre_details field when targeting_type is `TARGETING_TYPE_CONTENT_GENRE`. Explicitly targeting all options is not supported. Remove all content genre targeting options to achieve this effect.
+   */
+  export interface Schema$ContentGenreAssignedTargetingOptionDetails {
+    /**
+     * Output only. The display name of the content genre.
+     */
+    displayName?: string | null;
+    /**
+     * Indicates if this option is being negatively targeted.
+     */
+    negative?: boolean | null;
+    /**
+     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_CONTENT_GENRE`.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable content genre. This will be populated in the content_genre_details field when targeting_type is `TARGETING_TYPE_CONTENT_GENRE`.
+   */
+  export interface Schema$ContentGenreTargetingOptionDetails {
+    /**
+     * Output only. The display name of the content genre
+     */
+    displayName?: string | null;
+  }
+  /**
    * Assigned content instream position targeting option details. This will be populated in the content_instream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`.
    */
   export interface Schema$ContentInstreamPositionAssignedTargetingOptionDetails {
@@ -1524,6 +1584,28 @@ export namespace displayvideo_v1 {
      * Output only. The content outstream position.
      */
     contentOutstreamPosition?: string | null;
+  }
+  /**
+   * Details for content stream type assigned targeting option. This will be populated in the content_stream_type_details field when targeting_type is `TARGETING_TYPE_CONTENT_STREAM_TYPE`. Explicitly targeting all options is not supported. Remove all content stream type targeting options to achieve this effect.
+   */
+  export interface Schema$ContentStreamTypeAssignedTargetingOptionDetails {
+    /**
+     * Output only. The content stream type.
+     */
+    contentStreamType?: string | null;
+    /**
+     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_CONTENT_STREAM_TYPE`.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable content stream type. This will be populated in the content_stream_type_details field when targeting_type is `TARGETING_TYPE_CONTENT_STREAM_TYPE`.
+   */
+  export interface Schema$ContentStreamTypeTargetingOptionDetails {
+    /**
+     * Output only. The content stream type.
+     */
+    contentStreamType?: string | null;
   }
   /**
    * Settings that control how conversions are counted. All post-click conversions will be counted. A percentage value can be set for post-view conversions counting.
@@ -2227,7 +2309,7 @@ export namespace displayvideo_v1 {
     firstAndThirdPartyAudienceId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -2693,6 +2775,10 @@ export namespace displayvideo_v1 {
      * The bidding strategy of the insertion order. By default, fixed_bid is set.
      */
     bidStrategy?: Schema$BiddingStrategy;
+    /**
+     * Immutable. The billable outcome of the insertion order.
+     */
+    billableOutcome?: string | null;
     /**
      * Required. The budget allocation settings of the insertion order.
      */
@@ -4621,6 +4707,14 @@ export namespace displayvideo_v1 {
      */
     categoryDetails?: Schema$CategoryTargetingOptionDetails;
     /**
+     * Content duration resource details.
+     */
+    contentDurationDetails?: Schema$ContentDurationTargetingOptionDetails;
+    /**
+     * Content genre resource details.
+     */
+    contentGenreDetails?: Schema$ContentGenreTargetingOptionDetails;
+    /**
      * Content instream position details.
      */
     contentInstreamPositionDetails?: Schema$ContentInstreamPositionTargetingOptionDetails;
@@ -4628,6 +4722,10 @@ export namespace displayvideo_v1 {
      * Content outstream position details.
      */
     contentOutstreamPositionDetails?: Schema$ContentOutstreamPositionTargetingOptionDetails;
+    /**
+     * Content stream type resource details.
+     */
+    contentStreamTypeDetails?: Schema$ContentStreamTypeTargetingOptionDetails;
     /**
      * Device make and model resource details.
      */
@@ -7532,8 +7630,11 @@ export namespace displayvideo_v1 {
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "dayAndTimeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
@@ -10581,6 +10682,7 @@ export namespace displayvideo_v1 {
      *       // {
      *       //   "advertiserId": "my_advertiserId",
      *       //   "bidStrategy": {},
+     *       //   "billableOutcome": "my_billableOutcome",
      *       //   "budget": {},
      *       //   "campaignId": "my_campaignId",
      *       //   "displayName": "my_displayName",
@@ -10604,6 +10706,7 @@ export namespace displayvideo_v1 {
      *   // {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "bidStrategy": {},
+     *   //   "billableOutcome": "my_billableOutcome",
      *   //   "budget": {},
      *   //   "campaignId": "my_campaignId",
      *   //   "displayName": "my_displayName",
@@ -10878,6 +10981,7 @@ export namespace displayvideo_v1 {
      *   // {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "bidStrategy": {},
+     *   //   "billableOutcome": "my_billableOutcome",
      *   //   "budget": {},
      *   //   "campaignId": "my_campaignId",
      *   //   "displayName": "my_displayName",
@@ -11170,6 +11274,7 @@ export namespace displayvideo_v1 {
      *       // {
      *       //   "advertiserId": "my_advertiserId",
      *       //   "bidStrategy": {},
+     *       //   "billableOutcome": "my_billableOutcome",
      *       //   "budget": {},
      *       //   "campaignId": "my_campaignId",
      *       //   "displayName": "my_displayName",
@@ -11193,6 +11298,7 @@ export namespace displayvideo_v1 {
      *   // {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "bidStrategy": {},
+     *   //   "billableOutcome": "my_billableOutcome",
      *   //   "budget": {},
      *   //   "campaignId": "my_campaignId",
      *   //   "displayName": "my_displayName",
@@ -11480,8 +11586,11 @@ export namespace displayvideo_v1 {
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "dayAndTimeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
@@ -13646,8 +13755,11 @@ export namespace displayvideo_v1 {
      *           //   "carrierAndIspDetails": {},
      *           //   "categoryDetails": {},
      *           //   "channelDetails": {},
+     *           //   "contentDurationDetails": {},
+     *           //   "contentGenreDetails": {},
      *           //   "contentInstreamPositionDetails": {},
      *           //   "contentOutstreamPositionDetails": {},
+     *           //   "contentStreamTypeDetails": {},
      *           //   "dayAndTimeDetails": {},
      *           //   "deviceMakeModelDetails": {},
      *           //   "deviceTypeDetails": {},
@@ -13700,8 +13812,11 @@ export namespace displayvideo_v1 {
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "dayAndTimeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
@@ -14038,8 +14153,11 @@ export namespace displayvideo_v1 {
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "dayAndTimeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
@@ -18413,8 +18531,11 @@ export namespace displayvideo_v1 {
      *           //   "carrierAndIspDetails": {},
      *           //   "categoryDetails": {},
      *           //   "channelDetails": {},
+     *           //   "contentDurationDetails": {},
+     *           //   "contentGenreDetails": {},
      *           //   "contentInstreamPositionDetails": {},
      *           //   "contentOutstreamPositionDetails": {},
+     *           //   "contentStreamTypeDetails": {},
      *           //   "dayAndTimeDetails": {},
      *           //   "deviceMakeModelDetails": {},
      *           //   "deviceTypeDetails": {},
@@ -18467,8 +18588,11 @@ export namespace displayvideo_v1 {
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "dayAndTimeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
@@ -18797,8 +18921,11 @@ export namespace displayvideo_v1 {
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "dayAndTimeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
@@ -26967,8 +27094,11 @@ export namespace displayvideo_v1 {
      *         //   "carrierAndIspDetails": {},
      *         //   "categoryDetails": {},
      *         //   "channelDetails": {},
+     *         //   "contentDurationDetails": {},
+     *         //   "contentGenreDetails": {},
      *         //   "contentInstreamPositionDetails": {},
      *         //   "contentOutstreamPositionDetails": {},
+     *         //   "contentStreamTypeDetails": {},
      *         //   "dayAndTimeDetails": {},
      *         //   "deviceMakeModelDetails": {},
      *         //   "deviceTypeDetails": {},
@@ -27020,8 +27150,11 @@ export namespace displayvideo_v1 {
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "dayAndTimeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
@@ -27344,8 +27477,11 @@ export namespace displayvideo_v1 {
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
      *   //   "channelDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "dayAndTimeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
@@ -28079,8 +28215,11 @@ export namespace displayvideo_v1 {
      *   //   "businessChainDetails": {},
      *   //   "carrierAndIspDetails": {},
      *   //   "categoryDetails": {},
+     *   //   "contentDurationDetails": {},
+     *   //   "contentGenreDetails": {},
      *   //   "contentInstreamPositionDetails": {},
      *   //   "contentOutstreamPositionDetails": {},
+     *   //   "contentStreamTypeDetails": {},
      *   //   "deviceMakeModelDetails": {},
      *   //   "deviceTypeDetails": {},
      *   //   "digitalContentLabelDetails": {},
