@@ -492,7 +492,7 @@ export namespace chat_v1 {
     error?: Schema$Status;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1525,7 +1525,7 @@ export namespace chat_v1 {
      */
     domainId?: string | null;
     /**
-     * True when the user is deleted or the user's profile is not visible.
+     * When `true`, the user is deleted or their profile is not visible.
      */
     isAnonymous?: boolean | null;
     /**
