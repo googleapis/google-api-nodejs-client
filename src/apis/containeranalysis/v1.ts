@@ -446,6 +446,10 @@ export namespace containeranalysis_v1 {
    */
   export interface Schema$ComplianceVersion {
     /**
+     * The name of the document that defines this benchmark, e.g. "CIS Container-Optimized OS".
+     */
+    benchmarkDocument?: string | null;
+    /**
      * The CPE URI (https://cpe.mitre.org/specification/) this benchmark is applicable to.
      */
     cpeUri?: string | null;
@@ -1311,7 +1315,7 @@ export namespace containeranalysis_v1 {
     humanReadableName?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
