@@ -921,7 +921,7 @@
       }
     }
   },
-  "revision": "20220305",
+  "revision": "20220319",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "ArrayValue": {
@@ -1307,7 +1307,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1830,6 +1830,11 @@
         "pageToken": {
           "description": "A page token. Must be a value from ListCollectionIdsResponse.",
           "type": "string"
+        },
+        "readTime": {
+          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1975,6 +1980,11 @@
         "partitionCount": {
           "description": "The desired maximum number of partition points. The partitions may be returned across multiple pages of results. The number must be positive. The actual number of partitions returned may be fewer. For example, this may be set to one fewer than the number of parallel queries to be run, or in running a data pipeline job, one fewer than the number of workers or compute instances available.",
           "format": "int64",
+          "type": "string"
+        },
+        "readTime": {
+          "description": "Reads documents as they were at the given time. This may not be older than 270 seconds.",
+          "format": "google-datetime",
           "type": "string"
         },
         "structuredQuery": {

@@ -393,7 +393,7 @@ export namespace firestore_v1beta1 {
     fieldTransforms?: Schema$FieldTransform[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -730,6 +730,10 @@ export namespace firestore_v1beta1 {
      * A page token. Must be a value from ListCollectionIdsResponse.
      */
     pageToken?: string | null;
+    /**
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     */
+    readTime?: string | null;
   }
   /**
    * The response from Firestore.ListCollectionIds.
@@ -837,6 +841,10 @@ export namespace firestore_v1beta1 {
      * The desired maximum number of partition points. The partitions may be returned across multiple pages of results. The number must be positive. The actual number of partitions returned may be fewer. For example, this may be set to one fewer than the number of parallel queries to be run, or in running a data pipeline job, one fewer than the number of workers or compute instances available.
      */
     partitionCount?: string | null;
+    /**
+     * Reads documents as they were at the given time. This may not be older than 270 seconds.
+     */
+    readTime?: string | null;
     /**
      * A structured query. Query must specify collection with all descendants and be ordered by name ascending. Other filters, order bys, limits, offsets, and start/end cursors are not supported.
      */
@@ -2789,7 +2797,8 @@ export namespace firestore_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "pageSize": 0,
-     *       //   "pageToken": "my_pageToken"
+     *       //   "pageToken": "my_pageToken",
+     *       //   "readTime": "my_readTime"
      *       // }
      *     },
      *   });
@@ -3245,6 +3254,7 @@ export namespace firestore_v1beta1 {
      *       //   "pageSize": 0,
      *       //   "pageToken": "my_pageToken",
      *       //   "partitionCount": "my_partitionCount",
+     *       //   "readTime": "my_readTime",
      *       //   "structuredQuery": {}
      *       // }
      *     },
