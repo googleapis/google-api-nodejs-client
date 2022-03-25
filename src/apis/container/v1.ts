@@ -1470,7 +1470,7 @@ export namespace container_v1 {
     tags?: string[] | null;
   }
   /**
-   * Parameters that describe the nodes in a cluster.
+   * Parameters that describe the nodes in a cluster. *Note: *GKE Autopilot clusters do not recognize parameters in `NodeConfig`. Use AutoprovisioningNodePoolDefaults instead.
    */
   export interface Schema$NodeConfig {
     /**
