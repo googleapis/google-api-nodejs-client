@@ -1962,7 +1962,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review for Free Listings program in the provided region. Important: This method is only whitelisted for selected merchants.",
+          "description": "Requests a review for free listings program in a specific region. Important: This method is only whitelisted for selected merchants.",
           "flatPath": "{merchantId}/freelistingsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.freelistingsprogram.requestreview",
@@ -5788,7 +5788,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review for Shopping Ads program in the provided country.",
+          "description": "Requests a review for Shopping Ads program in a specific region.",
           "flatPath": "{merchantId}/shoppingadsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.shoppingadsprogram.requestreview",
@@ -5815,7 +5815,7 @@
       }
     }
   },
-  "revision": "20220303",
+  "revision": "20220317",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8132,7 +8132,7 @@
       "id": "FreeListingsProgramStatus",
       "properties": {
         "globalState": {
-          "description": "State of the program, It is set to enabled if there are offers for at least one region.",
+          "description": "State of the program. `ENABLED` if there are offers for at least one region.",
           "enum": [
             "PROGRAM_STATE_UNSPECIFIED",
             "NOT_ENABLED",
@@ -8140,9 +8140,9 @@
             "ENABLED"
           ],
           "enumDescriptions": [
-            "State is not known.",
+            "State is unknown.",
             "Program is not enabled for any country.",
-            "Offers are not uploaded targeting even a single country for this program.",
+            "No offers have been uploaded for any region.",
             "Program is enabled and offers are uploaded for at least one country."
           ],
           "type": "string"
@@ -8162,7 +8162,7 @@
       "id": "FreeListingsProgramStatusRegionStatus",
       "properties": {
         "disapprovalDate": {
-          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format: YYYY-MM-DD",
+          "description": "Date your `eligibilityStatus` will become `DISAPPROVED`. Only visible when your `eligibilityStatus` is `WARNING`. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.",
           "type": "string"
         },
         "eligibilityStatus": {
@@ -8188,7 +8188,7 @@
           "type": "string"
         },
         "onboardingIssues": {
-          "description": "These issues must be fixed to become eligible for the review.",
+          "description": "Must be fixed to be eligible for review.",
           "items": {
             "type": "string"
           },
@@ -8202,14 +8202,14 @@
           "type": "array"
         },
         "reviewEligibilityStatus": {
-          "description": "If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.",
+          "description": "If a program is eligible for review in a specific region. Only visible if `eligibilityStatus` is `DISAPPROVED`.",
           "enum": [
             "REVIEW_ELIGIBILITY_UNSPECIFIED",
             "ELIGIBLE",
             "INELIGIBLE"
           ],
           "enumDescriptions": [
-            "Review eligibility reason state is unknown.",
+            "Review eligibility state is unknown.",
             "Account is eligible for review for a specified region code.",
             "Account is not eligible for review for a specified region code."
           ],
@@ -8236,15 +8236,15 @@
           "type": "string"
         },
         "reviewIneligibilityReasonDescription": {
-          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
+          "description": "Reason a program in a specific region isn’t eligible for review. Only visible if `reviewEligibilityStatus` is `INELIGIBLE`.",
           "type": "string"
         },
         "reviewIneligibilityReasonDetails": {
           "$ref": "FreeListingsProgramStatusReviewIneligibilityReasonDetails",
-          "description": "This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period."
+          "description": "Additional information for ineligibility. If `reviewIneligibilityReason` is `IN_COOLDOWN_PERIOD`, a timestamp for the end of the cooldown period is provided."
         },
         "reviewIssues": {
-          "description": "These issues will be evaluated in review process. Fix all the issues before requesting the review.",
+          "description": "Issues evaluated in the review process. Fix all issues before requesting a review.",
           "items": {
             "type": "string"
           },
@@ -12415,6 +12415,10 @@
           "description": "Date on which the item should expire, as specified upon insertion, in ISO 8601 format. The actual expiration date in Google Shopping is exposed in `productstatuses` as `googleExpirationDate` and might be earlier if `expirationDate` is too far in the future.",
           "type": "string"
         },
+        "externalSellerId": {
+          "description": "Used by a marketplace to externally identify a seller.",
+          "type": "string"
+        },
         "gender": {
           "description": "Target gender of the item.",
           "type": "string"
@@ -13185,6 +13189,7 @@
           "type": "array"
         },
         "includeAttributes": {
+          "description": "Deprecated: Setting this field has no effect and attributes are never included.",
           "type": "boolean"
         },
         "merchantId": {
@@ -15542,7 +15547,7 @@
       "id": "ShoppingAdsProgramStatus",
       "properties": {
         "globalState": {
-          "description": "State of the program, It is set to enabled if there are offers for at least one region.",
+          "description": "State of the program. `ENABLED` if there are offers for at least one region.",
           "enum": [
             "PROGRAM_STATE_UNSPECIFIED",
             "NOT_ENABLED",
@@ -15550,9 +15555,9 @@
             "ENABLED"
           ],
           "enumDescriptions": [
-            "State is not known.",
+            "State is unknown.",
             "Program is not enabled for any country.",
-            "Offers are not uploaded targeting even a single country for this program.",
+            "No offers have been uploaded for any region.",
             "Program is enabled and offers are uploaded for at least one country."
           ],
           "type": "string"
@@ -15572,7 +15577,7 @@
       "id": "ShoppingAdsProgramStatusRegionStatus",
       "properties": {
         "disapprovalDate": {
-          "description": "Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: YYYY-MM-DD",
+          "description": "Date your `eligibilityStatus` will become `DISAPPROVED`. Only visible when your `eligibilityStatus` is `WARNING`. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.",
           "type": "string"
         },
         "eligibilityStatus": {
@@ -15598,7 +15603,7 @@
           "type": "string"
         },
         "onboardingIssues": {
-          "description": "These issues must be fixed to become eligible for the review.",
+          "description": "Must be fixed to be eligible for review.",
           "items": {
             "type": "string"
           },
@@ -15612,14 +15617,14 @@
           "type": "array"
         },
         "reviewEligibilityStatus": {
-          "description": "If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.",
+          "description": "If a program is eligible for review in a specific region. Only visible if `eligibilityStatus` is `DISAPPROVED`.",
           "enum": [
             "REVIEW_ELIGIBILITY_UNSPECIFIED",
             "ELIGIBLE",
             "INELIGIBLE"
           ],
           "enumDescriptions": [
-            "Review eligibility reason state is unknown.",
+            "Review eligibility state is unknown.",
             "Account is eligible for review for a specified region code.",
             "Account is not eligible for review for a specified region code."
           ],
@@ -15646,15 +15651,15 @@
           "type": "string"
         },
         "reviewIneligibilityReasonDescription": {
-          "description": "Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.",
+          "description": "Reason a program in a specific region isn’t eligible for review. Only visible if `reviewEligibilityStatus` is `INELIGIBLE`.",
           "type": "string"
         },
         "reviewIneligibilityReasonDetails": {
           "$ref": "ShoppingAdsProgramStatusReviewIneligibilityReasonDetails",
-          "description": "This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period."
+          "description": "Additional information for ineligibility. If `reviewIneligibilityReason` is `IN_COOLDOWN_PERIOD`, a timestamp for the end of the cooldown period is provided."
         },
         "reviewIssues": {
-          "description": "These issues will be evaluated in review process. Fix all the issues before requesting the review.",
+          "description": "Issues evaluated in the review process. Fix all issues before requesting a review.",
           "items": {
             "type": "string"
           },

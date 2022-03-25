@@ -1896,7 +1896,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$FreeListingsProgramStatus {
     /**
-     * State of the program, It is set to enabled if there are offers for at least one region.
+     * State of the program. `ENABLED` if there are offers for at least one region.
      */
     globalState?: string | null;
     /**
@@ -1909,7 +1909,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$FreeListingsProgramStatusRegionStatus {
     /**
-     * Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in ISO 8601 format: YYYY-MM-DD
+     * Date your `eligibilityStatus` will become `DISAPPROVED`. Only visible when your `eligibilityStatus` is `WARNING`. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.
      */
     disapprovalDate?: string | null;
     /**
@@ -1917,7 +1917,7 @@ export namespace content_v2_1 {
      */
     eligibilityStatus?: string | null;
     /**
-     * These issues must be fixed to become eligible for the review.
+     * Must be fixed to be eligible for review.
      */
     onboardingIssues?: string[] | null;
     /**
@@ -1925,7 +1925,7 @@ export namespace content_v2_1 {
      */
     regionCodes?: string[] | null;
     /**
-     * If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.
+     * If a program is eligible for review in a specific region. Only visible if `eligibilityStatus` is `DISAPPROVED`.
      */
     reviewEligibilityStatus?: string | null;
     /**
@@ -1933,15 +1933,15 @@ export namespace content_v2_1 {
      */
     reviewIneligibilityReason?: string | null;
     /**
-     * Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.
+     * Reason a program in a specific region isn’t eligible for review. Only visible if `reviewEligibilityStatus` is `INELIGIBLE`.
      */
     reviewIneligibilityReasonDescription?: string | null;
     /**
-     * This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period.
+     * Additional information for ineligibility. If `reviewIneligibilityReason` is `IN_COOLDOWN_PERIOD`, a timestamp for the end of the cooldown period is provided.
      */
     reviewIneligibilityReasonDetails?: Schema$FreeListingsProgramStatusReviewIneligibilityReasonDetails;
     /**
-     * These issues will be evaluated in review process. Fix all the issues before requesting the review.
+     * Issues evaluated in the review process. Fix all issues before requesting a review.
      */
     reviewIssues?: string[] | null;
   }
@@ -5133,6 +5133,10 @@ export namespace content_v2_1 {
      */
     expirationDate?: string | null;
     /**
+     * Used by a marketplace to externally identify a seller.
+     */
+    externalSellerId?: string | null;
+    /**
      * Target gender of the item.
      */
     gender?: string | null;
@@ -5631,6 +5635,9 @@ export namespace content_v2_1 {
      * If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
      */
     destinations?: string[] | null;
+    /**
+     * Deprecated: Setting this field has no effect and attributes are never included.
+     */
     includeAttributes?: boolean | null;
     /**
      * The ID of the managing account.
@@ -7402,7 +7409,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$ShoppingAdsProgramStatus {
     /**
-     * State of the program, It is set to enabled if there are offers for at least one region.
+     * State of the program. `ENABLED` if there are offers for at least one region.
      */
     globalState?: string | null;
     /**
@@ -7415,7 +7422,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$ShoppingAdsProgramStatusRegionStatus {
     /**
-     * Date by which `eligibility_status` will go from `WARNING` to `DISAPPROVED`. It will be present when `eligibility_status` is `WARNING`. Date will be provided in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: YYYY-MM-DD
+     * Date your `eligibilityStatus` will become `DISAPPROVED`. Only visible when your `eligibilityStatus` is `WARNING`. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.
      */
     disapprovalDate?: string | null;
     /**
@@ -7423,7 +7430,7 @@ export namespace content_v2_1 {
      */
     eligibilityStatus?: string | null;
     /**
-     * These issues must be fixed to become eligible for the review.
+     * Must be fixed to be eligible for review.
      */
     onboardingIssues?: string[] | null;
     /**
@@ -7431,7 +7438,7 @@ export namespace content_v2_1 {
      */
     regionCodes?: string[] | null;
     /**
-     * If a program in a given country is eligible for review. It will be present only if eligibility status is `DISAPPROVED`.
+     * If a program is eligible for review in a specific region. Only visible if `eligibilityStatus` is `DISAPPROVED`.
      */
     reviewEligibilityStatus?: string | null;
     /**
@@ -7439,15 +7446,15 @@ export namespace content_v2_1 {
      */
     reviewIneligibilityReason?: string | null;
     /**
-     * Reason if a program in a given country is not eligible for review. Populated only if `review_eligibility_status` is `INELIGIBLE`.
+     * Reason a program in a specific region isn’t eligible for review. Only visible if `reviewEligibilityStatus` is `INELIGIBLE`.
      */
     reviewIneligibilityReasonDescription?: string | null;
     /**
-     * This contains additional information specific to review ineligibility reasons. If review is ineligible because of `IN_COOLDOWN_PERIOD`, it will contain timestamp for cooldown period.
+     * Additional information for ineligibility. If `reviewIneligibilityReason` is `IN_COOLDOWN_PERIOD`, a timestamp for the end of the cooldown period is provided.
      */
     reviewIneligibilityReasonDetails?: Schema$ShoppingAdsProgramStatusReviewIneligibilityReasonDetails;
     /**
-     * These issues will be evaluated in review process. Fix all the issues before requesting the review.
+     * Issues evaluated in the review process. Fix all issues before requesting a review.
      */
     reviewIssues?: string[] | null;
   }
@@ -16554,7 +16561,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests a review for Free Listings program in the provided region. Important: This method is only whitelisted for selected merchants.
+     * Requests a review for free listings program in a specific region. Important: This method is only whitelisted for selected merchants.
      * @example
      * ```js
      * // Before running the sample:
@@ -25647,6 +25654,7 @@ export namespace content_v2_1 {
      *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
      *   //   "excludedDestinations": [],
      *   //   "expirationDate": "my_expirationDate",
+     *   //   "externalSellerId": "my_externalSellerId",
      *   //   "gender": "my_gender",
      *   //   "googleProductCategory": "my_googleProductCategory",
      *   //   "gtin": "my_gtin",
@@ -25865,6 +25873,7 @@ export namespace content_v2_1 {
      *       //   "energyEfficiencyClass": "my_energyEfficiencyClass",
      *       //   "excludedDestinations": [],
      *       //   "expirationDate": "my_expirationDate",
+     *       //   "externalSellerId": "my_externalSellerId",
      *       //   "gender": "my_gender",
      *       //   "googleProductCategory": "my_googleProductCategory",
      *       //   "gtin": "my_gtin",
@@ -25961,6 +25970,7 @@ export namespace content_v2_1 {
      *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
      *   //   "excludedDestinations": [],
      *   //   "expirationDate": "my_expirationDate",
+     *   //   "externalSellerId": "my_externalSellerId",
      *   //   "gender": "my_gender",
      *   //   "googleProductCategory": "my_googleProductCategory",
      *   //   "gtin": "my_gtin",
@@ -26322,6 +26332,7 @@ export namespace content_v2_1 {
      *       //   "energyEfficiencyClass": "my_energyEfficiencyClass",
      *       //   "excludedDestinations": [],
      *       //   "expirationDate": "my_expirationDate",
+     *       //   "externalSellerId": "my_externalSellerId",
      *       //   "gender": "my_gender",
      *       //   "googleProductCategory": "my_googleProductCategory",
      *       //   "gtin": "my_gtin",
@@ -26418,6 +26429,7 @@ export namespace content_v2_1 {
      *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
      *   //   "excludedDestinations": [],
      *   //   "expirationDate": "my_expirationDate",
+     *   //   "externalSellerId": "my_externalSellerId",
      *   //   "gender": "my_gender",
      *   //   "googleProductCategory": "my_googleProductCategory",
      *   //   "gtin": "my_gtin",
@@ -34341,7 +34353,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests a review for Shopping Ads program in the provided country.
+     * Requests a review for Shopping Ads program in a specific region.
      * @example
      * ```js
      * // Before running the sample:
