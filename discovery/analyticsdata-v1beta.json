@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20220105",
+  "revision": "20220323",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "ActiveMetricRestriction": {
@@ -1139,7 +1139,7 @@
       "type": "object"
     },
     "OrderBy": {
-      "description": "The sort options.",
+      "description": "Order bys define how rows will be sorted in the response. For example, ordering rows by descending event count is one ordering, and ordering rows by the event name string is a different ordering.",
       "id": "OrderBy",
       "properties": {
         "desc": {
