@@ -666,7 +666,7 @@ export namespace analyticsdata_v1beta {
     int64Value?: string | null;
   }
   /**
-   * The sort options.
+   * Order bys define how rows will be sorted in the response. For example, ordering rows by descending event count is one ordering, and ordering rows by the event name string is a different ordering.
    */
   export interface Schema$OrderBy {
     /**
