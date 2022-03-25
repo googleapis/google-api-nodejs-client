@@ -569,7 +569,7 @@ export namespace run_v1 {
    */
   export interface Schema$ExecutionSpec {
     /**
-     * Optional. Specifies the maximum desired number of tasks the execution should run at any given time. Must be <= task_count. The actual number of tasks running in steady state will be less than this number when ((.spec.task_count - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ +optional
+     * Optional. Specifies the maximum desired number of tasks the execution should run at any given time. Must be <= task_count. If not specified, defaults to -1. When the job is run, this field is passed to the execution, and if -1 it will be set to the maximum possible value. The actual number of tasks running in steady state will be less than this number when there are fewer tasks waiting to be completed remaining, i.e. when the work left to do is less than max parallelism. +optional
      */
     parallelism?: number | null;
     /**
