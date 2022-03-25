@@ -618,7 +618,7 @@ export namespace documentai_v1beta3 {
     vertices?: Schema$GoogleCloudDocumentaiV1beta1Vertex[];
   }
   /**
-   * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
+   * Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1Document {
     /**
@@ -690,6 +690,10 @@ export namespace documentai_v1beta3 {
      * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.
      */
     mentionText?: string | null;
+    /**
+     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
+     */
+    nonPresent?: boolean | null;
     /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
@@ -1475,7 +1479,7 @@ export namespace documentai_v1beta3 {
     vertices?: Schema$GoogleCloudDocumentaiV1beta2Vertex[];
   }
   /**
-   * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
+   * Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2Document {
     /**
@@ -1551,6 +1555,10 @@ export namespace documentai_v1beta3 {
      * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.
      */
     mentionText?: string | null;
+    /**
+     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
+     */
+    nonPresent?: boolean | null;
     /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
@@ -2539,7 +2547,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorResponse {}
   /**
-   * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
+   * Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Document {
     /**
@@ -2611,6 +2619,10 @@ export namespace documentai_v1beta3 {
      * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.
      */
     mentionText?: string | null;
+    /**
+     * Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.
+     */
+    nonPresent?: boolean | null;
     /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
@@ -3896,7 +3908,7 @@ export namespace documentai_v1beta3 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**

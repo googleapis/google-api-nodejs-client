@@ -1029,7 +1029,7 @@
       }
     }
   },
-  "revision": "20220316",
+  "revision": "20220321",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1821,7 +1821,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1Document": {
-      "description": "Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.",
+      "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1Document",
       "properties": {
         "content": {
@@ -1914,6 +1914,10 @@
         "mentionText": {
           "description": "Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.",
           "type": "string"
+        },
+        "nonPresent": {
+          "description": "Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.",
+          "type": "boolean"
         },
         "normalizedValue": {
           "$ref": "GoogleCloudDocumentaiV1DocumentEntityNormalizedValue",
@@ -3456,7 +3460,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta1Document": {
-      "description": "Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.",
+      "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta1Document",
       "properties": {
         "content": {
@@ -3549,6 +3553,10 @@
         "mentionText": {
           "description": "Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.",
           "type": "string"
+        },
+        "nonPresent": {
+          "description": "Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.",
+          "type": "boolean"
         },
         "normalizedValue": {
           "$ref": "GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue",
@@ -4642,7 +4650,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta2Document": {
-      "description": "Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.",
+      "description": "Document represents the canonical document resource in Document AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta2Document",
       "properties": {
         "content": {
@@ -4742,6 +4750,10 @@
         "mentionText": {
           "description": "Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`. If the entity is not present in the document, this field will be empty.",
           "type": "string"
+        },
+        "nonPresent": {
+          "description": "Optional. This attribute indicates that the processing didn't actually identify this entity, but a confidence score was assigned that represent the potential that this could be a false negative. A non-present entity should have an empty mention_text and text_anchor.",
+          "type": "boolean"
         },
         "normalizedValue": {
           "$ref": "GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue",
@@ -6258,7 +6270,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"
