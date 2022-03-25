@@ -626,7 +626,7 @@
       }
     }
   },
-  "revision": "20220221",
+  "revision": "20220319",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "AllocateIdsRequest": {
@@ -773,7 +773,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1785,7 +1785,10 @@
             "GREATER_THAN",
             "GREATER_THAN_OR_EQUAL",
             "EQUAL",
-            "HAS_ANCESTOR"
+            "IN",
+            "NOT_EQUAL",
+            "HAS_ANCESTOR",
+            "NOT_IN"
           ],
           "enumDescriptions": [
             "Unspecified. This value must not be used.",
@@ -1794,7 +1797,10 @@
             "The given `property` is greater than the given `value`. Requires: * That `property` comes first in `order_by`.",
             "The given `property` is greater than or equal to the given `value`. Requires: * That `property` comes first in `order_by`.",
             "The given `property` is equal to the given `value`.",
-            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key."
+            "The given `property` is equal to at least one value in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN` or `NOT_IN` is in the same query.",
+            "The given `property` is not equal to the given `value`. Requires: * No other `NOT_EQUAL` or `NOT_IN` is in the same query. * That `property` comes first in the `order_by`.",
+            "Limit the result set to the given entity and its descendants. Requires: * That `value` is an entity key.",
+            "The value of the `property` is not in the given array. Requires: * That `value` is a non-empty `ArrayValue` with at most 10 values. * No other `IN`, `NOT_IN`, `NOT_EQUAL` is in the same query. * That `field` comes first in the `order_by`."
           ],
           "type": "string"
         },
