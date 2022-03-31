@@ -34792,7 +34792,7 @@
       }
     }
   },
-  "revision": "20220312",
+  "revision": "20220322",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -35771,6 +35771,11 @@
         },
         "threadsPerCore": {
           "description": "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "visibleCoreCount": {
+          "description": "The number of physical cores to expose to an instance. Multiply by the number of threads per core to compute the total number of virtual CPUs to expose to the instance. If unset, the number of cores is inferred from the instance's nominal CPU count and the underlying platform's SMT width.",
           "format": "int32",
           "type": "integer"
         }
@@ -37382,6 +37387,13 @@
           ],
           "type": "string"
         },
+        "localityLbPolicies": {
+          "description": "A list of locality load balancing policies to be used in order of preference. Either the policy or the customPolicy field should be set. Overrides any value set in the localityLbPolicy field. localityLbPolicies is only supported when the BackendService is referenced by a URL Map that is referenced by a target gRPC proxy that has the validateForProxyless field set to true.",
+          "items": {
+            "$ref": "BackendServiceLocalityLoadBalancingPolicyConfig"
+          },
+          "type": "array"
+        },
         "localityLbPolicy": {
           "description": "The load balancing algorithm used within the scope of the locality. The possible values are: - ROUND_ROBIN: This is a simple policy in which each healthy backend is selected in round robin order. This is the default. - LEAST_REQUEST: An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests. - RING_HASH: The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests. - RANDOM: The load balancer selects a random healthy host. - ORIGINAL_DESTINATION: Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer. - MAGLEV: used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, see https://ai.google/research/pubs/pub44824 This field is applicable to either: - A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. - A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED. If sessionAffinity is not NONE, and this field is not set to MAGLEV or RING_HASH, session affinity settings will not take effect. Only ROUND_ROBIN and RING_HASH are supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "enum": [
@@ -37975,6 +37987,65 @@
             }
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServiceLocalityLoadBalancingPolicyConfig": {
+      "description": "Container for either a built-in LB policy supported by gRPC or Envoy or a custom one implemented by the end user.",
+      "id": "BackendServiceLocalityLoadBalancingPolicyConfig",
+      "properties": {
+        "customPolicy": {
+          "$ref": "BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy"
+        },
+        "policy": {
+          "$ref": "BackendServiceLocalityLoadBalancingPolicyConfigPolicy"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy": {
+      "description": "The configuration for a custom policy implemented by the user and deployed with the client.",
+      "id": "BackendServiceLocalityLoadBalancingPolicyConfigCustomPolicy",
+      "properties": {
+        "data": {
+          "description": "An optional, arbitrary JSON object with configuration data, understood by a locally installed custom policy implementation.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifies the custom policy. The value should match the type the custom implementation is registered with on the gRPC clients. It should follow protocol buffer message naming conventions and include the full path (e.g. myorg.CustomLbPolicy). The maximum length is 256 characters. Note that specifying the same custom policy more than once for a backend is not a valid configuration and will be rejected.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServiceLocalityLoadBalancingPolicyConfigPolicy": {
+      "description": "The configuration for a built-in load balancing policy.",
+      "id": "BackendServiceLocalityLoadBalancingPolicyConfigPolicy",
+      "properties": {
+        "name": {
+          "description": "The name of a locality load balancer policy to be used. The value should be one of the predefined ones as supported by localityLbPolicy, although at the moment only ROUND_ROBIN is supported. This field should only be populated when the customPolicy field is not used. Note that specifying the same policy more than once for a backend is not a valid configuration and will be rejected.",
+          "enum": [
+            "INVALID_LB_POLICY",
+            "LEAST_REQUEST",
+            "MAGLEV",
+            "ORIGINAL_DESTINATION",
+            "RANDOM",
+            "RING_HASH",
+            "ROUND_ROBIN",
+            "WEIGHTED_MAGLEV"
+          ],
+          "enumDescriptions": [
+            "",
+            "An O(1) algorithm which selects two random healthy hosts and picks the host which has fewer active requests.",
+            "This algorithm implements consistent hashing to backends. Maglev can be used as a drop in replacement for the ring hash load balancer. Maglev is not as stable as ring hash but has faster table lookup build times and host selection times. For more information about Maglev, see https://ai.google/research/pubs/pub44824",
+            "Backend host is selected based on the client connection metadata, i.e., connections are opened to the same address as the destination address of the incoming connection before the connection was redirected to the load balancer.",
+            "The load balancer selects a random healthy host.",
+            "The ring/modulo hash load balancer implements consistent hashing to backends. The algorithm has the property that the addition/removal of a host from a set of N hosts only affects 1/N of the requests.",
+            "This is a simple policy in which each healthy backend is selected in round robin order. This is the default.",
+            "Per-instance weighted Load Balancing via health check reported weights. If set, the Backend Service must configure a non legacy HTTP-based Health Check, and health check replies are expected to contain non-standard HTTP response header field X-Load-Balancing-Endpoint-Weight to specify the per-instance weights. If set, Load Balancing is weighted based on the per-instance weights reported in the last processed health check replies, as long as every instance either reported a valid weight or had UNAVAILABLE_WEIGHT. Otherwise, Load Balancing remains equal-weight. This option is only supported in Network Load Balancing."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -41396,6 +41467,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "ruleName": {
+          "description": "An optional name for the rule. This field is not a unique identifier and can be updated.",
+          "type": "string"
+        },
         "ruleTupleCount": {
           "description": "[Output Only] Calculation of the complexity of a single firewall policy rule.",
           "format": "int32",
@@ -41436,6 +41511,20 @@
           },
           "type": "array"
         },
+        "destRegionCodes": {
+          "description": "Region codes whose IP addresses will be used to match for destination of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex.\"US\" Maximum number of dest region codes allowed is 5000.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "destThreatIntelligences": {
+          "description": "Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic destination.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "layer4Configs": {
           "description": "Pairs of IP protocols and ports that the rule should match.",
           "items": {
@@ -41450,10 +41539,24 @@
           },
           "type": "array"
         },
+        "srcRegionCodes": {
+          "description": "Region codes whose IP addresses will be used to match for source of traffic. Should be specified as 2 letter country code defined as per ISO 3166 alpha-2 country codes. ex.\"US\" Maximum number of source region codes allowed is 5000.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "srcSecureTags": {
           "description": "List of secure tag values, which should be matched at the source of the traffic. For INGRESS rule, if all the srcSecureTag are INEFFECTIVE, and there is no srcIpRange, this rule will be ignored. Maximum number of source tag values allowed is 256.",
           "items": {
             "$ref": "FirewallPolicyRuleSecureTag"
+          },
+          "type": "array"
+        },
+        "srcThreatIntelligences": {
+          "description": "Names of Network Threat Intelligence lists. The IPs in these lists will be matched against traffic source.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -42201,7 +42304,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A list of labels to apply for this resource. Each label key & value must comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash. For example, \"webserver-frontend\": \"images\". A label value can also be empty (e.g. \"my-label\": \"\").",
+          "description": "A list of labels to apply for this resource. Each label must comply with the requirements for labels. For example, \"webserver-frontend\": \"images\". A label value can also be empty (e.g. \"my-label\": \"\").",
           "type": "object"
         }
       },
@@ -42298,7 +42401,7 @@
       "id": "GuestOsFeature",
       "properties": {
         "type": {
-          "description": "The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - SECURE_BOOT - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_SNP_CAPABLE For more information, see Enabling guest operating system features.",
+          "description": "The ID of a supported feature. To add multiple values, use commas to separate values. Set to one or more of the following values: - VIRTIO_SCSI_MULTIQUEUE - WINDOWS - MULTI_IP_SUBNET - UEFI_COMPATIBLE - GVNIC - SEV_CAPABLE - SUSPEND_RESUME_COMPATIBLE - SEV_SNP_CAPABLE For more information, see Enabling guest operating system features.",
           "enum": [
             "FEATURE_TYPE_UNSPECIFIED",
             "GVNIC",
@@ -51157,7 +51260,7 @@
       "id": "NetworkEndpointGroupServerlessDeployment",
       "properties": {
         "platform": {
-          "description": "The platform of the backend target(s) of this NEG. Possible values include: 1. API Gateway: apigateway.googleapis.com 2. App Engine: appengine.googleapis.com 3. Cloud Functions: cloudfunctions.googleapis.com 4. Cloud Run: run.googleapis.com ",
+          "description": "The platform of the backend target(s) of this NEG. The only supported value is API Gateway: apigateway.googleapis.com.",
           "type": "string"
         },
         "resource": {
@@ -63749,7 +63852,7 @@
           "type": "boolean"
         },
         "externalIpv6Prefix": {
-          "description": "[Output Only] The range of external IPv6 addresses that are owned by this subnetwork.",
+          "description": "[Output Only] The external IPv6 address range that is assigned to this subnetwork.",
           "type": "string"
         },
         "fingerprint": {
@@ -63767,7 +63870,7 @@
           "type": "string"
         },
         "internalIpv6Prefix": {
-          "description": "[Output Only] The range of internal IPv6 addresses that are owned by this subnetwork. Note this is for general VM to VM communication, not to be confused with the ipv6_cidr_range field.",
+          "description": "[Output Only] The internal IPv6 address range that is assigned to this subnetwork.",
           "type": "string"
         },
         "ipCidrRange": {
@@ -63775,19 +63878,19 @@
           "type": "string"
         },
         "ipv6AccessType": {
-          "description": "The access type of IPv6 address this subnet holds. It's immutable and can only be specified during creation or the first time the subnet is updated into IPV4_IPV6 dual stack. If the ipv6_type is EXTERNAL then this subnet cannot enable direct path.",
+          "description": "The access type of IPv6 address this subnet holds. It's immutable and can only be specified during creation or the first time the subnet is updated into IPV4_IPV6 dual stack.",
           "enum": [
             "EXTERNAL",
             "INTERNAL"
           ],
           "enumDescriptions": [
-            "VMs on this subnet will be assigned IPv6 addresses that are accesible via the Internet, as well as the VPC network.",
+            "VMs on this subnet will be assigned IPv6 addresses that are accessible via the Internet, as well as the VPC network.",
             "VMs on this subnet will be assigned IPv6 addresses that are only accessible over the VPC network."
           ],
           "type": "string"
         },
         "ipv6CidrRange": {
-          "description": "[Output Only] The range of internal IPv6 addresses that are owned by this subnetwork. Note this will be for private google access only eventually.",
+          "description": "[Output Only] This field is for internal use.",
           "type": "string"
         },
         "kind": {
@@ -63813,7 +63916,7 @@
           "type": "boolean"
         },
         "privateIpv6GoogleAccess": {
-          "description": "The private IPv6 google access type for the VMs in this subnet. This is an expanded field of enablePrivateV6Access. If both fields are set, privateIpv6GoogleAccess will take priority. This field can be both set at resource creation time and updated using patch.",
+          "description": "This field is for internal use. This field can be both set at resource creation time and updated using patch.",
           "enum": [
             "DISABLE_GOOGLE_ACCESS",
             "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE",
