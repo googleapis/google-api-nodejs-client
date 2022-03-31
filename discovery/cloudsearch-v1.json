@@ -1994,7 +1994,7 @@
       }
     }
   },
-  "revision": "20220314",
+  "revision": "20220322",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AclInfo": {
@@ -2753,9 +2753,21 @@
           "format": "double",
           "type": "number"
         },
+        "lastMessagePostedTimestampMicros": {
+          "format": "int64",
+          "type": "string"
+        },
+        "memberMetadataCount": {
+          "format": "double",
+          "type": "number"
+        },
         "messageScore": {
           "format": "double",
           "type": "number"
+        },
+        "numAucContacts": {
+          "format": "int64",
+          "type": "string"
         },
         "smallContactListAffinityScore": {
           "format": "double",
@@ -2768,6 +2780,10 @@
         "spaceAgeInDays": {
           "format": "double",
           "type": "number"
+        },
+        "spaceCreationTimestampMicros": {
+          "format": "int64",
+          "type": "string"
         },
         "topicalityScore": {
           "format": "double",
@@ -4799,15 +4815,14 @@
       "id": "RestrictItem",
       "properties": {
         "driveFollowUpRestrict": {
-          "$ref": "DriveFollowUpRestrict",
-          "description": "LINT.ThenChange(//depot/google3/java/com/google/apps/search/quality/itemsuggest/utils/SubtypeRerankingUtils.java)"
+          "$ref": "DriveFollowUpRestrict"
         },
         "driveLocationRestrict": {
           "$ref": "DriveLocationRestrict"
         },
         "driveMimeTypeRestrict": {
           "$ref": "DriveMimeTypeRestrict",
-          "description": "LINT.IfChange Drive Types."
+          "description": "Drive Types."
         },
         "driveTimeSpanRestrict": {
           "$ref": "DriveTimeSpanRestrict"
@@ -5849,6 +5864,10 @@
       "description": "Primary key for User resource.",
       "id": "UserId",
       "properties": {
+        "actingUserId": {
+          "description": "Optional. Opaque, server-assigned ID of the user profile associated with App/user acting on behalf of the human user. This is currently only set when a 3P application is acting on the user's behalf.",
+          "type": "string"
+        },
         "id": {
           "description": "Opaque, server-assigned ID of the User.",
           "type": "string"

@@ -574,10 +574,14 @@ export namespace cloudsearch_v1 {
     finalScore?: number | null;
     freshnessScore?: number | null;
     joinedSpacesAffinityScore?: number | null;
+    lastMessagePostedTimestampMicros?: string | null;
+    memberMetadataCount?: number | null;
     messageScore?: number | null;
+    numAucContacts?: string | null;
     smallContactListAffinityScore?: number | null;
     smallUnjoinedSpacesAffinityScore?: number | null;
     spaceAgeInDays?: number | null;
+    spaceCreationTimestampMicros?: string | null;
     topicalityScore?: number | null;
   }
   /**
@@ -1866,13 +1870,10 @@ export namespace cloudsearch_v1 {
    * Information relevant only to a restrict entry. NextId: 12
    */
   export interface Schema$RestrictItem {
-    /**
-     * LINT.ThenChange(//depot/google3/java/com/google/apps/search/quality/itemsuggest/utils/SubtypeRerankingUtils.java)
-     */
     driveFollowUpRestrict?: Schema$DriveFollowUpRestrict;
     driveLocationRestrict?: Schema$DriveLocationRestrict;
     /**
-     * LINT.IfChange Drive Types.
+     * Drive Types.
      */
     driveMimeTypeRestrict?: Schema$DriveMimeTypeRestrict;
     driveTimeSpanRestrict?: Schema$DriveTimeSpanRestrict;
@@ -2566,6 +2567,10 @@ export namespace cloudsearch_v1 {
    * Primary key for User resource.
    */
   export interface Schema$UserId {
+    /**
+     * Optional. Opaque, server-assigned ID of the user profile associated with App/user acting on behalf of the human user. This is currently only set when a 3P application is acting on the user's behalf.
+     */
+    actingUserId?: string | null;
     /**
      * Opaque, server-assigned ID of the User.
      */
