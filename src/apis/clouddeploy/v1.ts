@@ -2015,7 +2015,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.deliveryPipelines.list({
-     *     // Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     *     // Filter pipelines to be returned. See https://google.aip.dev/160 for more details.
      *     filter: 'placeholder-value',
      *     // Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *     orderBy: 'placeholder-value',
@@ -2657,7 +2657,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$List
     extends StandardParameters {
     /**
-     * Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     * Filter pipelines to be returned. See https://google.aip.dev/160 for more details.
      */
     filter?: string;
     /**
@@ -3081,7 +3081,7 @@ export namespace clouddeploy_v1 {
      *   // Do the magic
      *   const res =
      *     await clouddeploy.projects.locations.deliveryPipelines.releases.list({
-     *       // Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     *       // Optional. Filter releases to be returned. See https://google.aip.dev/160 for more details.
      *       filter: 'placeholder-value',
      *       // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *       orderBy: 'placeholder-value',
@@ -3235,7 +3235,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$List
     extends StandardParameters {
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     * Optional. Filter releases to be returned. See https://google.aip.dev/160 for more details.
      */
     filter?: string;
     /**
@@ -3751,7 +3751,7 @@ export namespace clouddeploy_v1 {
      *   const res =
      *     await clouddeploy.projects.locations.deliveryPipelines.releases.rollouts.list(
      *       {
-     *         // Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     *         // Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more details.
      *         filter: 'placeholder-value',
      *         // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *         orderBy: 'placeholder-value',
@@ -3918,7 +3918,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Deliverypipelines$Releases$Rollouts$List
     extends StandardParameters {
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     * Optional. Filter rollouts to be returned. See https://google.aip.dev/160 for more details.
      */
     filter?: string;
     /**
@@ -5119,7 +5119,7 @@ export namespace clouddeploy_v1 {
      *
      *   // Do the magic
      *   const res = await clouddeploy.projects.locations.targets.list({
-     *     // Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     *     // Optional. Filter targets to be returned. See https://google.aip.dev/160 for more details.
      *     filter: 'placeholder-value',
      *     // Optional. Field to sort by. See https://google.aip.dev/132#ordering for more details.
      *     orderBy: 'placeholder-value',
@@ -5747,7 +5747,7 @@ export namespace clouddeploy_v1 {
   export interface Params$Resource$Projects$Locations$Targets$List
     extends StandardParameters {
     /**
-     * Optional. Filter builds to be returned. See https://google.aip.dev/160 for more details.
+     * Optional. Filter targets to be returned. See https://google.aip.dev/160 for more details.
      */
     filter?: string;
     /**
