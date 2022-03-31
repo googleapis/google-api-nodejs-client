@@ -159,7 +159,7 @@ export namespace baremetalsolution_v2 {
     shareIp?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -807,6 +807,18 @@ export namespace baremetalsolution_v2 {
      * Output only. The name of the provisioning quota.
      */
     name?: string | null;
+    /**
+     * Network bandwidth, Gbps
+     */
+    networkBandwidth?: string | null;
+    /**
+     * Server count.
+     */
+    serverCount?: string | null;
+    /**
+     * Storage size (GB).
+     */
+    storageGib?: string | null;
   }
   /**
    * QOS policy parameters.
