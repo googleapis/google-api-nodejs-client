@@ -249,7 +249,7 @@ export namespace storagetransfer_v1 {
     year?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -374,7 +374,7 @@ export namespace storagetransfer_v1 {
     logActionStates?: string[] | null;
   }
   /**
-   * Specifies the metadata options for running a transfer. These options only apply to transfers involving a POSIX filesystem and are ignored for other transfers.
+   * Specifies the metadata options for running a transfer.
    */
   export interface Schema$MetadataOptions {
     /**
@@ -382,7 +382,7 @@ export namespace storagetransfer_v1 {
      */
     acl?: string | null;
     /**
-     * Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer. By default, GID is not preserved.
+     * Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer. By default, GID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.
      */
     gid?: string | null;
     /**
@@ -390,7 +390,7 @@ export namespace storagetransfer_v1 {
      */
     kmsKey?: string | null;
     /**
-     * Specifies how each file's mode attribute should be handled by the transfer. By default, mode is not preserved.
+     * Specifies how each file's mode attribute should be handled by the transfer. By default, mode is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.
      */
     mode?: string | null;
     /**
@@ -398,7 +398,7 @@ export namespace storagetransfer_v1 {
      */
     storageClass?: string | null;
     /**
-     * Specifies how symlinks should be handled by the transfer. By default, symlinks are not preserved.
+     * Specifies how symlinks should be handled by the transfer. By default, symlinks are not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.
      */
     symlink?: string | null;
     /**
@@ -410,7 +410,7 @@ export namespace storagetransfer_v1 {
      */
     timeCreated?: string | null;
     /**
-     * Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved.
+     * Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers.
      */
     uid?: string | null;
   }
@@ -790,6 +790,10 @@ export namespace storagetransfer_v1 {
      * When to overwrite objects that already exist in the sink. The default is that only objects that are different from the source are ovewritten. If true, all objects in the sink whose name matches an object in the source are overwritten with the source object.
      */
     overwriteObjectsAlreadyExistingInSink?: boolean | null;
+    /**
+     * When to overwrite objects that already exist in the sink. If not set overwrite behavior is determined by overwrite_objects_already_existing_in_sink.
+     */
+    overwriteWhen?: string | null;
   }
   /**
    * Configuration for running a transfer.
