@@ -1217,7 +1217,7 @@
       }
     }
   },
-  "revision": "20220302",
+  "revision": "20220316",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AvroFileFormat": {
@@ -2110,6 +2110,12 @@
       },
       "type": "object"
     },
+    "OracleDropLargeObjects": {
+      "description": "Configuration to drop large object values.",
+      "id": "OracleDropLargeObjects",
+      "properties": {},
+      "type": "object"
+    },
     "OracleObjectIdentifier": {
       "description": "Oracle data source object identifier.",
       "id": "OracleObjectIdentifier",
@@ -2196,6 +2202,10 @@
       "description": "Oracle data source configuration",
       "id": "OracleSourceConfig",
       "properties": {
+        "dropLargeObjects": {
+          "$ref": "OracleDropLargeObjects",
+          "description": "Drop large object values."
+        },
         "excludeObjects": {
           "$ref": "OracleRdbms",
           "description": "Oracle objects to exclude from the stream."
