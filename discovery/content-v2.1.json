@@ -1962,7 +1962,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review for free listings program in a specific region. Important: This method is only whitelisted for selected merchants.",
+          "description": "Requests a review of free listings in a specific region Important: This method is only whitelisted for selected merchants.",
           "flatPath": "{merchantId}/freelistingsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.freelistingsprogram.requestreview",
@@ -5788,7 +5788,7 @@
           ]
         },
         "requestreview": {
-          "description": "Requests a review for Shopping Ads program in a specific region.",
+          "description": "Requests a review of Shopping ads in a specific region.",
           "flatPath": "{merchantId}/shoppingadsprogram/requestreview",
           "httpMethod": "POST",
           "id": "content.shoppingadsprogram.requestreview",
@@ -5815,7 +5815,7 @@
       }
     }
   },
-  "revision": "20220317",
+  "revision": "20220325",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8142,7 +8142,7 @@
           "enumDescriptions": [
             "State is unknown.",
             "Program is not enabled for any country.",
-            "No offers have been uploaded for any region.",
+            "No products have been uploaded for any region. Upload products to Merchant Center.",
             "Program is enabled and offers are uploaded for at least one country."
           ],
           "type": "string"
@@ -8162,7 +8162,7 @@
       "id": "FreeListingsProgramStatusRegionStatus",
       "properties": {
         "disapprovalDate": {
-          "description": "Date your `eligibilityStatus` will become `DISAPPROVED`. Only visible when your `eligibilityStatus` is `WARNING`. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.",
+          "description": "Date by which eligibilityStatus will go from `WARNING` to `DISAPPROVED`. Only visible when your eligibilityStatus is WARNING. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.",
           "type": "string"
         },
         "eligibilityStatus": {
@@ -8181,14 +8181,14 @@
             "If the account has no issues and review is completed successfully.",
             "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
             "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
-            "Account is under review. Deprecated: This state is not created.",
+            "Account is under review.",
             "Account is waiting for review to start.",
             "Program is currently onboarding. Upload valid offers to complete onboarding."
           ],
           "type": "string"
         },
         "onboardingIssues": {
-          "description": "Must be fixed to be eligible for review.",
+          "description": "Issues that must be fixed to be eligible for review.",
           "items": {
             "type": "string"
           },
@@ -8223,7 +8223,10 @@
             "NOT_ENOUGH_OFFERS",
             "IN_COOLDOWN_PERIOD",
             "ALREADY_UNDER_REVIEW",
-            "NO_REVIEW_REQUIRED"
+            "NO_REVIEW_REQUIRED",
+            "WILL_BE_REVIEWED_AUTOMATICALLY",
+            "IS_RETIRED",
+            "ALREADY_REVIEWED"
           ],
           "enumDescriptions": [
             "Requesting a review from Google is not possible.",
@@ -8231,7 +8234,10 @@
             "Not enough offers uploaded for this country.",
             "Cooldown period applies. Wait until cooldown period ends.",
             "Account is already under review.",
-            "No issues available to review."
+            "No issues available to review.",
+            "Account will be automatically reviewed at the end of the grace period.",
+            "Account is retired. Should not appear in MC.",
+            "Account was already reviewd."
           ],
           "type": "string"
         },
@@ -12416,7 +12422,7 @@
           "type": "string"
         },
         "externalSellerId": {
-          "description": "Used by a marketplace to externally identify a seller.",
+          "description": "Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account.",
           "type": "string"
         },
         "gender": {
@@ -13288,7 +13294,7 @@
           "type": "array"
         },
         "contentLanguage": {
-          "description": "Required. The content language used as part of the unique identifier.",
+          "description": "Required. The content language used as part of the unique identifier. Currently only en value is supported.",
           "type": "string"
         },
         "couponValueType": {
@@ -13513,7 +13519,7 @@
           "type": "array"
         },
         "targetCountry": {
-          "description": "Required. The target country used as part of the unique identifier.",
+          "description": "Required. The target country used as part of the unique identifier. Currently only US and CA are supported.",
           "type": "string"
         }
       },
@@ -15557,7 +15563,7 @@
           "enumDescriptions": [
             "State is unknown.",
             "Program is not enabled for any country.",
-            "No offers have been uploaded for any region.",
+            "No products have been uploaded for any region. Upload products to Merchant Center.",
             "Program is enabled and offers are uploaded for at least one country."
           ],
           "type": "string"
@@ -15577,7 +15583,7 @@
       "id": "ShoppingAdsProgramStatusRegionStatus",
       "properties": {
         "disapprovalDate": {
-          "description": "Date your `eligibilityStatus` will become `DISAPPROVED`. Only visible when your `eligibilityStatus` is `WARNING`. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.",
+          "description": "Date by which eligibilityStatus will go from `WARNING` to `DISAPPROVED`. Only visible when your eligibilityStatus is WARNING. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.",
           "type": "string"
         },
         "eligibilityStatus": {
@@ -15596,14 +15602,14 @@
             "If the account has no issues and review is completed successfully.",
             "There are one or more issues that needs to be resolved for account to be active for the program. Detailed list of account issues are available in [accountstatuses](https://developers.google.com/shopping-content/reference/rest/v2.1/accountstatuses) API.",
             "If account has issues but offers are servable. Some of the issue can make account DISAPPROVED after a certain deadline.",
-            "Account is under review. Deprecated: This state is not created.",
+            "Account is under review.",
             "Account is waiting for review to start.",
             "Program is currently onboarding. Upload valid offers to complete onboarding."
           ],
           "type": "string"
         },
         "onboardingIssues": {
-          "description": "Must be fixed to be eligible for review.",
+          "description": "Issues that must be fixed to be eligible for review.",
           "items": {
             "type": "string"
           },
@@ -15638,7 +15644,10 @@
             "NOT_ENOUGH_OFFERS",
             "IN_COOLDOWN_PERIOD",
             "ALREADY_UNDER_REVIEW",
-            "NO_REVIEW_REQUIRED"
+            "NO_REVIEW_REQUIRED",
+            "WILL_BE_REVIEWED_AUTOMATICALLY",
+            "IS_RETIRED",
+            "ALREADY_REVIEWED"
           ],
           "enumDescriptions": [
             "Requesting a review from Google is not possible.",
@@ -15646,7 +15655,10 @@
             "Not enough offers uploaded for this country.",
             "Cooldown period applies. Wait until cooldown period ends.",
             "Account is already under review.",
-            "No issues available to review."
+            "No issues available to review.",
+            "Account will be automatically reviewed at the end of the grace period.",
+            "Account is retired. Should not appear in MC.",
+            "Account was already reviewd."
           ],
           "type": "string"
         },
