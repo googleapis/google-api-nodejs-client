@@ -112,7 +112,7 @@
             "catalogs": {
               "methods": {
                 "completeQuery": {
-                  "description": "Completes the specified prefix with keyword suggestions. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                  "description": "Completes the specified prefix with keyword suggestions. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                   "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}:completeQuery",
                   "httpMethod": "GET",
                   "id": "retail.projects.locations.catalogs.completeQuery",
@@ -533,7 +533,7 @@
                     "products": {
                       "methods": {
                         "addFulfillmentPlaces": {
-                          "description": "Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                          "description": "Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:addFulfillmentPlaces",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.addFulfillmentPlaces",
@@ -561,7 +561,7 @@
                           ]
                         },
                         "addLocalInventories": {
-                          "description": "Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. Local inventory information can only be modified using this method. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact Cloud sales if you are interested in using Retail Search.",
+                          "description": "Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. Local inventory information can only be modified using this method. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:addLocalInventories",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.addLocalInventories",
@@ -819,7 +819,7 @@
                           ]
                         },
                         "removeFulfillmentPlaces": {
-                          "description": "Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                          "description": "Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:removeFulfillmentPlaces",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.removeFulfillmentPlaces",
@@ -847,7 +847,7 @@
                           ]
                         },
                         "removeLocalInventories": {
-                          "description": "Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by GetProduct or ListProducts. Local inventory information can only be removed using this method. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact Cloud sales if you are interested in using Retail Search.",
+                          "description": "Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by GetProduct or ListProducts. Local inventory information can only be removed using this method. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:removeLocalInventories",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.removeLocalInventories",
@@ -875,7 +875,7 @@
                           ]
                         },
                         "setInventory": {
-                          "description": "Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. When inventory is updated with CreateProduct and UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the CreateProduct or UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with SetInventory, AddFulfillmentPlaces, and RemoveFulfillmentPlaces. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                          "description": "Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. When inventory is updated with CreateProduct and UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the CreateProduct or UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with SetInventory, AddFulfillmentPlaces, and RemoveFulfillmentPlaces. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                           "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/branches/{branchesId}/products/{productsId}:setInventory",
                           "httpMethod": "POST",
                           "id": "retail.projects.locations.catalogs.branches.products.setInventory",
@@ -909,7 +909,7 @@
                 "completionData": {
                   "methods": {
                     "import": {
-                      "description": "Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                      "description": "Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                       "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/completionData:import",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.completionData.import",
@@ -1201,7 +1201,7 @@
                       ]
                     },
                     "search": {
-                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                       "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/placements/{placementsId}:search",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.placements.search",
@@ -1470,7 +1470,7 @@
                       ]
                     },
                     "search": {
-                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.",
+                      "description": "Performs a search. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.",
                       "flatPath": "v2alpha/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/servingConfigs/{servingConfigsId}:search",
                       "httpMethod": "POST",
                       "id": "retail.projects.locations.catalogs.servingConfigs.search",
@@ -1803,7 +1803,7 @@
       }
     }
   },
-  "revision": "20220319",
+  "revision": "20220324",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1968,6 +1968,18 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudRetailV2AddLocalInventoriesMetadata": {
+      "description": "Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the AddLocalInventories method.",
+      "id": "GoogleCloudRetailV2AddLocalInventoriesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2AddLocalInventoriesResponse": {
+      "description": "Response of the AddLocalInventories API. Currently empty because there is no meaningful response populated from the AddLocalInventories method.",
+      "id": "GoogleCloudRetailV2AddLocalInventoriesResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudRetailV2ImportCompletionDataResponse": {
       "description": "Response of the ImportCompletionDataRequest. If the long running operation is done, this message is returned by the google.longrunning.Operations.response field if the operation is successful.",
       "id": "GoogleCloudRetailV2ImportCompletionDataResponse",
@@ -2113,6 +2125,18 @@
     "GoogleCloudRetailV2RemoveFulfillmentPlacesResponse": {
       "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2RemoveFulfillmentPlacesResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RemoveLocalInventoriesMetadata": {
+      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the RemoveLocalInventories method.",
+      "id": "GoogleCloudRetailV2RemoveLocalInventoriesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2RemoveLocalInventoriesResponse": {
+      "description": "Response of the RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the RemoveLocalInventories method.",
+      "id": "GoogleCloudRetailV2RemoveLocalInventoriesResponse",
       "properties": {},
       "type": "object"
     },
@@ -2982,7 +3006,7 @@
           "enumDescriptions": [
             "Defaults to INCREMENTAL.",
             "Inserts new products or updates existing products.",
-            "Calculates diff and replaces the entire product dataset. Existing products may be deleted if they are not present in the source location. Can only be set while using BigQuerySource. And the BigQuery dataset must be created in the data location \"us (multiple regions in United States)\", otherwise a PERMISSION_DENIED error is thrown. Add the IAM permission \"BigQuery Data Viewer\" for cloud-retail-customer-data-access@system.gserviceaccount.com before using this feature otherwise an error is thrown. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search."
+            "Calculates diff and replaces the entire product dataset. Existing products may be deleted if they are not present in the source location. Can only be set while using BigQuerySource. And the BigQuery dataset must be created in the data location \"us (multiple regions in United States)\", otherwise a PERMISSION_DENIED error is thrown. Add the IAM permission \"BigQuery Data Viewer\" for cloud-retail-customer-data-access@system.gserviceaccount.com before using this feature otherwise an error is thrown."
           ],
           "type": "string"
         },
@@ -3168,6 +3192,13 @@
           "description": "Additional local inventory attributes, for example, store name, promotion tags, etc. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * At most 30 attributes are allowed. * The key must be a UTF-8 encoded string with a length limit of 32 characters. * The key must match the pattern: `a-zA-Z0-9*`. For example, key0LikeThis or KEY_1_LIKE_THIS. * The attribute values must be of the same type (text or number). * Only 1 value is allowed for each attribute. * For text values, the length limit is 256 UTF-8 characters. * The attribute does not support search. The `searchable` field should be unset or set to false. * The max summed total bytes of custom attribute keys and values per product is 5MiB.",
           "type": "object"
         },
+        "fulfillmentTypes": {
+          "description": "Input only. Supported fulfillment types. Valid fulfillment type values include commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * \"pickup-in-store\" * \"ship-to-store\" * \"same-day-delivery\" * \"next-day-delivery\" * \"custom-type-1\" * \"custom-type-2\" * \"custom-type-3\" * \"custom-type-4\" * \"custom-type-5\" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "placeId": {
           "description": "The place ID for the current set of inventory information.",
           "type": "string"
@@ -3195,7 +3226,7 @@
           "type": "array"
         },
         "languageCode": {
-          "description": "Language of the title/description and other string attributes. Use language tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). ISO 639-1. This specifies the language of offers in Merchant Center that will be accepted. If empty no language filtering will be performed.",
+          "description": "Language of the title/description and other string attributes. Use language tags defined by [BCP 47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt). ISO 639-1. This specifies the language of offers in Merchant Center that will be accepted. If empty no language filtering will be performed. Example value: `en`.",
           "type": "string"
         },
         "merchantCenterAccountId": {
@@ -4160,7 +4191,7 @@
         },
         "dynamicFacetSpec": {
           "$ref": "GoogleCloudRetailV2alphaSearchRequestDynamicFacetSpec",
-          "description": "The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated. This feature requires additional allowlisting. Contact Retail Search support team if you are interested in using dynamic facet feature."
+          "description": "Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic to enable dynamic facets. Do not set this field. The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated."
         },
         "facetSpecs": {
           "description": "Facet specifications for faceted search. If empty, no facets are returned. A maximum of 100 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned.",
@@ -4919,7 +4950,7 @@
           "type": "boolean"
         },
         "ipAddress": {
-          "description": "The end user's IP address. Required for getting SearchResponse.sponsored_results. This field is used to extract location information for personalization. This field must be either an IPv4 address (e.g. \"104.133.9.80\") or an IPv6 address (e.g. \"2001:0db8:85a3:0000:0000:8a2e:0370:7334\"). Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.",
+          "description": "The end user's IP address. This field is used to extract location information for personalization. This field must be either an IPv4 address (e.g. \"104.133.9.80\") or an IPv6 address (e.g. \"2001:0db8:85a3:0000:0000:8a2e:0370:7334\"). Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when: * setting SearchRequest.user_info. * using the JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.",
           "type": "string"
         },
         "userAgent": {
@@ -4927,7 +4958,7 @@
           "type": "string"
         },
         "userId": {
-          "description": "Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. Always use a hashed value for this ID. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         }
       },
@@ -4942,6 +4973,18 @@
     "GoogleCloudRetailV2betaAddFulfillmentPlacesResponse": {
       "description": "Response of the AddFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the AddFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2betaAddFulfillmentPlacesResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaAddLocalInventoriesMetadata": {
+      "description": "Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the AddLocalInventories method.",
+      "id": "GoogleCloudRetailV2betaAddLocalInventoriesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaAddLocalInventoriesResponse": {
+      "description": "Response of the AddLocalInventories API. Currently empty because there is no meaningful response populated from the AddLocalInventories method.",
+      "id": "GoogleCloudRetailV2betaAddLocalInventoriesResponse",
       "properties": {},
       "type": "object"
     },
@@ -5154,6 +5197,18 @@
     "GoogleCloudRetailV2betaRemoveFulfillmentPlacesResponse": {
       "description": "Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.",
       "id": "GoogleCloudRetailV2betaRemoveFulfillmentPlacesResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaRemoveLocalInventoriesMetadata": {
+      "description": "Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the RemoveLocalInventories method.",
+      "id": "GoogleCloudRetailV2betaRemoveLocalInventoriesMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2betaRemoveLocalInventoriesResponse": {
+      "description": "Response of the RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the RemoveLocalInventories method.",
+      "id": "GoogleCloudRetailV2betaRemoveLocalInventoriesResponse",
       "properties": {},
       "type": "object"
     },
