@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20220321",
+  "revision": "20220326",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3BatchDeleteDocumentsMetadata": {
@@ -1344,7 +1344,7 @@
           "description": "Optional. Provenance of the entity. Text anchor indexing into the Document.text."
         },
         "type": {
-          "description": "Entity type from a schema e.g. `Address`.",
+          "description": "Required. Entity type from a schema e.g. `Address`.",
           "type": "string"
         }
       },
@@ -2566,7 +2566,7 @@
           "description": "Optional. Provenance of the entity. Text anchor indexing into the Document.text."
         },
         "type": {
-          "description": "Entity type from a schema e.g. `Address`.",
+          "description": "Required. Entity type from a schema e.g. `Address`.",
           "type": "string"
         }
       },

@@ -753,7 +753,7 @@ export namespace documentai_v1 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -1618,7 +1618,7 @@ export namespace documentai_v1 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -2785,7 +2785,7 @@ export namespace documentai_v1 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -3642,6 +3642,10 @@ export namespace documentai_v1 {
      * The display name of the processor version.
      */
     displayName?: string | null;
+    /**
+     * Denotes that this ProcessorVersion is managed by google.
+     */
+    googleManaged?: boolean | null;
     /**
      * The KMS key name used for encryption.
      */
@@ -7214,6 +7218,7 @@ export namespace documentai_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
+     *   //   "googleManaged": false,
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "kmsKeyVersionName": "my_kmsKeyVersionName",
      *   //   "name": "my_name",
