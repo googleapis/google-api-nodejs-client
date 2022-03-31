@@ -132,28 +132,6 @@ export namespace cloudbuild_v1 {
   }
 
   /**
-   * RPC request object accepted by the AddBitbucketServerConnectedRepository RPC method.
-   */
-  export interface Schema$AddBitbucketServerConnectedRepositoryRequest {
-    /**
-     * The connected repository to add.
-     */
-    connectedRepository?: Schema$BitbucketServerRepositoryId;
-  }
-  /**
-   * RPC request object returned by the AddBitbucketServerConnectedRepository RPC method.
-   */
-  export interface Schema$AddBitbucketServerConnectedRepositoryResponse {
-    /**
-     * The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
-     */
-    config?: string | null;
-    /**
-     * The connected repository.
-     */
-    connectedRepository?: Schema$BitbucketServerRepositoryId;
-  }
-  /**
    * ApprovalConfig describes configuration for manual approval of a build.
    */
   export interface Schema$ApprovalConfig {
@@ -978,7 +956,7 @@ export namespace cloudbuild_v1 {
     workerPool?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1028,7 +1006,7 @@ export namespace cloudbuild_v1 {
      */
     revision?: string | null;
     /**
-     * The URI of the repo (optional). If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.
+     * The URI of the repo. Either uri or repository can be specified. If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.
      */
     uri?: string | null;
   }
@@ -1160,7 +1138,7 @@ export namespace cloudbuild_v1 {
      */
     repoType?: string | null;
     /**
-     * The URI of the repo (required).
+     * The URI of the repo. Either uri or repository can be specified and is required.
      */
     uri?: string | null;
   }
@@ -4413,157 +4391,6 @@ export namespace cloudbuild_v1 {
     }
 
     /**
-     * Add a Bitbucket Server repository to a given BitbucketServerConfig's connected repositories. This API is experimental.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await cloudbuild.projects.locations.bitbucketServerConfigs.addBitbucketServerConnectedRepository(
-     *       {
-     *         // Required. The name of the `BitbucketServerConfig` to add a connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
-     *         config:
-     *           'projects/my-project/locations/my-location/bitbucketServerConfigs/my-bitbucketServerConfig',
-     *
-     *         // Request body metadata
-     *         requestBody: {
-     *           // request body parameters
-     *           // {
-     *           //   "connectedRepository": {}
-     *           // }
-     *         },
-     *       }
-     *     );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "config": "my_config",
-     *   //   "connectedRepository": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    addBitbucketServerConnectedRepository(
-      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    addBitbucketServerConnectedRepository(
-      params?: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$AddBitbucketServerConnectedRepositoryResponse>;
-    addBitbucketServerConnectedRepository(
-      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    addBitbucketServerConnectedRepository(
-      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>,
-      callback: BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
-    ): void;
-    addBitbucketServerConnectedRepository(
-      params: Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository,
-      callback: BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
-    ): void;
-    addBitbucketServerConnectedRepository(
-      callback: BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
-    ): void;
-    addBitbucketServerConnectedRepository(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository
-        | BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$AddBitbucketServerConnectedRepositoryResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$AddBitbucketServerConnectedRepositoryResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://cloudbuild.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v1/{+config}:addBitbucketServerConnectedRepository'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['config'],
-        pathParams: ['config'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$AddBitbucketServerConnectedRepositoryResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$AddBitbucketServerConnectedRepositoryResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Creates a new `BitbucketServerConfig`. This API is experimental.
      * @example
      * ```js
@@ -5428,18 +5255,6 @@ export namespace cloudbuild_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Addbitbucketserverconnectedrepository
-    extends StandardParameters {
-    /**
-     * Required. The name of the `BitbucketServerConfig` to add a connected repository. Format: `projects/{project\}/locations/{location\}/bitbucketServerConfigs/{config\}`
-     */
-    config?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$AddBitbucketServerConnectedRepositoryRequest;
-  }
   export interface Params$Resource$Projects$Locations$Bitbucketserverconfigs$Create
     extends StandardParameters {
     /**

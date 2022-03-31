@@ -591,34 +591,6 @@
           "resources": {
             "bitbucketServerConfigs": {
               "methods": {
-                "addBitbucketServerConnectedRepository": {
-                  "description": "Add a Bitbucket Server repository to a given BitbucketServerConfig's connected repositories. This API is experimental.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/bitbucketServerConfigs/{bitbucketServerConfigsId}:addBitbucketServerConnectedRepository",
-                  "httpMethod": "POST",
-                  "id": "cloudbuild.projects.locations.bitbucketServerConfigs.addBitbucketServerConnectedRepository",
-                  "parameterOrder": [
-                    "config"
-                  ],
-                  "parameters": {
-                    "config": {
-                      "description": "Required. The name of the `BitbucketServerConfig` to add a connected repository. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{config}`",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/bitbucketServerConfigs/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+config}:addBitbucketServerConnectedRepository",
-                  "request": {
-                    "$ref": "AddBitbucketServerConnectedRepositoryRequest"
-                  },
-                  "response": {
-                    "$ref": "AddBitbucketServerConnectedRepositoryResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "create": {
                   "description": "Creates a new `BitbucketServerConfig`. This API is experimental.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/bitbucketServerConfigs",
@@ -2039,35 +2011,9 @@
       }
     }
   },
-  "revision": "20220310",
+  "revision": "20220322",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
-    "AddBitbucketServerConnectedRepositoryRequest": {
-      "description": "RPC request object accepted by the AddBitbucketServerConnectedRepository RPC method.",
-      "id": "AddBitbucketServerConnectedRepositoryRequest",
-      "properties": {
-        "connectedRepository": {
-          "$ref": "BitbucketServerRepositoryId",
-          "description": "The connected repository to add."
-        }
-      },
-      "type": "object"
-    },
-    "AddBitbucketServerConnectedRepositoryResponse": {
-      "description": "RPC request object returned by the AddBitbucketServerConnectedRepository RPC method.",
-      "id": "AddBitbucketServerConnectedRepositoryResponse",
-      "properties": {
-        "config": {
-          "description": "The name of the `BitbucketServerConfig` that added connected repository. Format: `projects/{project}/locations/{location}/bitbucketServerConfigs/{config}`",
-          "type": "string"
-        },
-        "connectedRepository": {
-          "$ref": "BitbucketServerRepositoryId",
-          "description": "The connected repository."
-        }
-      },
-      "type": "object"
-    },
     "ApprovalConfig": {
       "description": "ApprovalConfig describes configuration for manual approval of a build.",
       "id": "ApprovalConfig",
@@ -3251,7 +3197,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -3340,7 +3286,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "The URI of the repo (optional). If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.",
+          "description": "The URI of the repo. Either uri or repository can be specified. If unspecified, the repo from which the trigger invocation originated is assumed to be the repo from which to read the specified path.",
           "type": "string"
         }
       },
@@ -3496,7 +3442,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "The URI of the repo (required).",
+          "description": "The URI of the repo. Either uri or repository can be specified and is required.",
           "type": "string"
         }
       },
