@@ -207,6 +207,15 @@ export namespace firebaseappcheck_v1beta {
     configs?: Schema$GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig[];
   }
   /**
+   * Response message for the BatchGetRecaptchaV3Configs method.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse {
+    /**
+     * RecaptchaV3Configs retrieved.
+     */
+    configs?: Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config[];
+  }
+  /**
    * Response message for the BatchGetSafetyNetConfigs method.
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaBatchGetSafetyNetConfigsResponse {
@@ -513,6 +522,27 @@ export namespace firebaseappcheck_v1beta {
     tokenTtl?: string | null;
   }
   /**
+   * An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaV3Token to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned App Check token, such as its ttl.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config {
+    /**
+     * Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     */
+    name?: string | null;
+    /**
+     * Required. Input only. The site secret used to identify your service for reCAPTCHA v3 verification. For security reasons, this field will never be populated in any response.
+     */
+    siteSecret?: string | null;
+    /**
+     * Output only. Whether the `site_secret` field was previously set. Since we will never return the `site_secret` field, this field is the only way to find out whether it was previously set.
+     */
+    siteSecretSet?: boolean | null;
+    /**
+     * Specifies the duration for which App Check tokens exchanged from reCAPTCHA tokens will be valid. If unset, a default value of 1 day is assumed. Must be between 30 minutes and 7 days, inclusive.
+     */
+    tokenTtl?: string | null;
+  }
+  /**
    * An app's SafetyNet configuration object. This configuration controls certain properties of the App Check token returned by ExchangeSafetyNetToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by SafetyNet; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).
    */
   export interface Schema$GoogleFirebaseAppcheckV1betaSafetyNetConfig {
@@ -726,6 +756,7 @@ export namespace firebaseappcheck_v1beta {
     deviceCheckConfig: Resource$Projects$Apps$Devicecheckconfig;
     recaptchaConfig: Resource$Projects$Apps$Recaptchaconfig;
     recaptchaEnterpriseConfig: Resource$Projects$Apps$Recaptchaenterpriseconfig;
+    recaptchaV3Config: Resource$Projects$Apps$Recaptchav3config;
     safetyNetConfig: Resource$Projects$Apps$Safetynetconfig;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -741,6 +772,9 @@ export namespace firebaseappcheck_v1beta {
       );
       this.recaptchaEnterpriseConfig =
         new Resource$Projects$Apps$Recaptchaenterpriseconfig(this.context);
+      this.recaptchaV3Config = new Resource$Projects$Apps$Recaptchav3config(
+        this.context
+      );
       this.safetyNetConfig = new Resource$Projects$Apps$Safetynetconfig(
         this.context
       );
@@ -5108,6 +5142,488 @@ export namespace firebaseappcheck_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirebaseAppcheckV1betaRecaptchaEnterpriseConfig;
+  }
+
+  export class Resource$Projects$Apps$Recaptchav3config {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Atomically gets the RecaptchaV3Configs for the specified list of apps. For security reasons, the `site_secret` field is never populated in the response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.recaptchaV3Config.batchGet({
+     *     // Required. The relative resource names of the RecaptchaV3Configs to retrieve, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ``` A maximum of 100 objects can be retrieved in a batch.
+     *     names: 'placeholder-value',
+     *     // Required. The parent project name shared by all RecaptchaV3Configs being retrieved, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "configs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Batchget,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Recaptchav3config$Batchget
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Recaptchav3config$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Recaptchav3config$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta/{+parent}/apps/-/recaptchaV3Config:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaBatchGetRecaptchaV3ConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets the RecaptchaV3Config for the specified app. For security reasons, the `site_secret` field is never populated in the response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.recaptchaV3Config.get({
+     *     // Required. The relative resource name of the RecaptchaV3Config, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     *     name: 'projects/my-project/apps/my-app/recaptchaV3Config',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "siteSecret": "my_siteSecret",
+     *   //   "siteSecretSet": false,
+     *   //   "tokenTtl": "my_tokenTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>;
+    get(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Get,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Recaptchav3config$Get
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Recaptchav3config$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Recaptchav3config$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the RecaptchaV3Config for the specified app. While this configuration is incomplete or invalid, the app will be unable to exchange reCAPTCHA V3 tokens for App Check tokens. For security reasons, the `site_secret` field is never populated in the response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseappcheck.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebaseappcheck = google.firebaseappcheck('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseappcheck.projects.apps.recaptchaV3Config.patch({
+     *     // Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     *     name: 'projects/my-project/apps/my-app/recaptchaV3Config',
+     *     // Required. A comma-separated list of names of fields in the RecaptchaV3Config to update. Example: `site_secret`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "siteSecret": "my_siteSecret",
+     *       //   "siteSecretSet": false,
+     *       //   "tokenTtl": "my_tokenTtl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "siteSecret": "my_siteSecret",
+     *   //   "siteSecretSet": false,
+     *   //   "tokenTtl": "my_tokenTtl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>;
+    patch(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Apps$Recaptchav3config$Patch,
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Apps$Recaptchav3config$Patch
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Apps$Recaptchav3config$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Apps$Recaptchav3config$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebaseappcheck.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The relative resource names of the RecaptchaV3Configs to retrieve, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ``` A maximum of 100 objects can be retrieved in a batch.
+     */
+    names?: string[];
+    /**
+     * Required. The parent project name shared by all RecaptchaV3Configs being retrieved, in the format ``` projects/{project_number\} ``` The parent collection in the `name` field of any resource being retrieved must match this field, or the entire batch fails.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Get
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the RecaptchaV3Config, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Apps$Recaptchav3config$Patch
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
+     */
+    name?: string;
+    /**
+     * Required. A comma-separated list of names of fields in the RecaptchaV3Config to update. Example: `site_secret`.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirebaseAppcheckV1betaRecaptchaV3Config;
   }
 
   export class Resource$Projects$Apps$Safetynetconfig {
