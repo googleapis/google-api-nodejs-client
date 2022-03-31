@@ -719,7 +719,7 @@ export namespace documentai_v1beta2 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
@@ -1602,7 +1602,7 @@ export namespace documentai_v1beta2 {
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
     /**
-     * Entity type from a schema e.g. `Address`.
+     * Required. Entity type from a schema e.g. `Address`.
      */
     type?: string | null;
   }
