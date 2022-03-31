@@ -1909,7 +1909,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$FreeListingsProgramStatusRegionStatus {
     /**
-     * Date your `eligibilityStatus` will become `DISAPPROVED`. Only visible when your `eligibilityStatus` is `WARNING`. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.
+     * Date by which eligibilityStatus will go from `WARNING` to `DISAPPROVED`. Only visible when your eligibilityStatus is WARNING. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.
      */
     disapprovalDate?: string | null;
     /**
@@ -1917,7 +1917,7 @@ export namespace content_v2_1 {
      */
     eligibilityStatus?: string | null;
     /**
-     * Must be fixed to be eligible for review.
+     * Issues that must be fixed to be eligible for review.
      */
     onboardingIssues?: string[] | null;
     /**
@@ -5133,7 +5133,7 @@ export namespace content_v2_1 {
      */
     expirationDate?: string | null;
     /**
-     * Used by a marketplace to externally identify a seller.
+     * Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account.
      */
     externalSellerId?: string | null;
     /**
@@ -5815,7 +5815,7 @@ export namespace content_v2_1 {
      */
     brandExclusion?: string[] | null;
     /**
-     * Required. The content language used as part of the unique identifier.
+     * Required. The content language used as part of the unique identifier. Currently only en value is supported.
      */
     contentLanguage?: string | null;
     /**
@@ -5947,7 +5947,7 @@ export namespace content_v2_1 {
      */
     shippingServiceNames?: string[] | null;
     /**
-     * Required. The target country used as part of the unique identifier.
+     * Required. The target country used as part of the unique identifier. Currently only US and CA are supported.
      */
     targetCountry?: string | null;
   }
@@ -7422,7 +7422,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$ShoppingAdsProgramStatusRegionStatus {
     /**
-     * Date your `eligibilityStatus` will become `DISAPPROVED`. Only visible when your `eligibilityStatus` is `WARNING`. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.
+     * Date by which eligibilityStatus will go from `WARNING` to `DISAPPROVED`. Only visible when your eligibilityStatus is WARNING. In [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format: `YYYY-MM-DD`.
      */
     disapprovalDate?: string | null;
     /**
@@ -7430,7 +7430,7 @@ export namespace content_v2_1 {
      */
     eligibilityStatus?: string | null;
     /**
-     * Must be fixed to be eligible for review.
+     * Issues that must be fixed to be eligible for review.
      */
     onboardingIssues?: string[] | null;
     /**
@@ -16561,7 +16561,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests a review for free listings program in a specific region. Important: This method is only whitelisted for selected merchants.
+     * Requests a review of free listings in a specific region Important: This method is only whitelisted for selected merchants.
      * @example
      * ```js
      * // Before running the sample:
@@ -34353,7 +34353,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Requests a review for Shopping Ads program in a specific region.
+     * Requests a review of Shopping ads in a specific region.
      * @example
      * ```js
      * // Before running the sample:
