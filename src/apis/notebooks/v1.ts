@@ -239,7 +239,7 @@ export namespace notebooks_v1 {
     type?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -925,6 +925,28 @@ export namespace notebooks_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Request for getting a new access token.
+   */
+  export interface Schema$RefreshRuntimeTokenInternalRequest {
+    /**
+     * Required. The VM hardware token for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     */
+    vmId?: string | null;
+  }
+  /**
+   * Response with a new access token.
+   */
+  export interface Schema$RefreshRuntimeTokenInternalResponse {
+    /**
+     * The OAuth 2.0 access token.
+     */
+    accessToken?: string | null;
+    /**
+     * Output only. Token expiration time.
+     */
+    expireTime?: string | null;
   }
   /**
    * Request for registering a notebook instance.
@@ -7956,6 +7978,155 @@ export namespace notebooks_v1 {
     }
 
     /**
+     * Gets an access token for the consumer service account that the customer attached to the runtime. Only accessible from the tenant instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await notebooks.projects.locations.runtimes.refreshRuntimeTokenInternal({
+     *       // Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     *       name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "vmId": "my_vmId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessToken": "my_accessToken",
+     *   //   "expireTime": "my_expireTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    refreshRuntimeTokenInternal(
+      params: Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    refreshRuntimeTokenInternal(
+      params?: Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RefreshRuntimeTokenInternalResponse>;
+    refreshRuntimeTokenInternal(
+      params: Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    refreshRuntimeTokenInternal(
+      params: Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RefreshRuntimeTokenInternalResponse>,
+      callback: BodyResponseCallback<Schema$RefreshRuntimeTokenInternalResponse>
+    ): void;
+    refreshRuntimeTokenInternal(
+      params: Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal,
+      callback: BodyResponseCallback<Schema$RefreshRuntimeTokenInternalResponse>
+    ): void;
+    refreshRuntimeTokenInternal(
+      callback: BodyResponseCallback<Schema$RefreshRuntimeTokenInternalResponse>
+    ): void;
+    refreshRuntimeTokenInternal(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal
+        | BodyResponseCallback<Schema$RefreshRuntimeTokenInternalResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RefreshRuntimeTokenInternalResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RefreshRuntimeTokenInternalResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RefreshRuntimeTokenInternalResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:refreshRuntimeTokenInternal').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RefreshRuntimeTokenInternalResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RefreshRuntimeTokenInternalResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Report and process a runtime event.
      * @example
      * ```js
@@ -8999,6 +9170,18 @@ export namespace notebooks_v1 {
      * Required. Format: `parent=projects/{project_id\}/locations/{location\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Refreshruntimetokeninternal
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RefreshRuntimeTokenInternalRequest;
   }
   export interface Params$Resource$Projects$Locations$Runtimes$Reportevent
     extends StandardParameters {
