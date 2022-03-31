@@ -113,6 +113,7 @@ export namespace androidpublisher_v3 {
    */
   export class Androidpublisher {
     context: APIRequestContext;
+    applications: Resource$Applications;
     edits: Resource$Edits;
     generatedapks: Resource$Generatedapks;
     grants: Resource$Grants;
@@ -131,6 +132,7 @@ export namespace androidpublisher_v3 {
         google,
       };
 
+      this.applications = new Resource$Applications(this.context);
       this.edits = new Resource$Edits(this.context);
       this.generatedapks = new Resource$Generatedapks(this.context);
       this.grants = new Resource$Grants(this.context);
@@ -377,6 +379,32 @@ export namespace androidpublisher_v3 {
     text?: string | null;
   }
   /**
+   * LINT.IfChange A group of devices. A group is defined by a set of device selectors. A device belongs to the group if it matches any selector (logical OR).
+   */
+  export interface Schema$DeviceGroup {
+    /**
+     * Device selectors for this group. A device matching any of the selectors is included in this group.
+     */
+    deviceSelectors?: Schema$DeviceSelector[];
+    /**
+     * The name of the group.
+     */
+    name?: string | null;
+  }
+  /**
+   * Identifier of a device.
+   */
+  export interface Schema$DeviceId {
+    /**
+     * Value of Build.BRAND.
+     */
+    buildBrand?: string | null;
+    /**
+     * Value of Build.DEVICE.
+     */
+    buildDevice?: string | null;
+  }
+  /**
    * Characteristics of the user's device.
    */
   export interface Schema$DeviceMetadata {
@@ -426,6 +454,44 @@ export namespace androidpublisher_v3 {
     screenWidthPx?: number | null;
   }
   /**
+   * Conditions about a device's RAM capabilities.
+   */
+  export interface Schema$DeviceRam {
+    /**
+     * Maximum RAM in bytes (bound excluded).
+     */
+    maxBytes?: string | null;
+    /**
+     * Minimum RAM in bytes (bound included).
+     */
+    minBytes?: string | null;
+  }
+  /**
+   * Selector for a device group. A selector consists of a set of conditions on the device that should all match (logical AND) to determine a device group eligibility. For instance, if a selector specifies RAM conditions, device model inclusion and device model exclusion, a device is considered to match if: device matches RAM conditions AND device matches one of the included device models AND device doesn't match excluded device models
+   */
+  export interface Schema$DeviceSelector {
+    /**
+     * Conditions on the device's RAM.
+     */
+    deviceRam?: Schema$DeviceRam;
+    /**
+     * Device models excluded by this selector, even if they match all other conditions.
+     */
+    excludedDeviceIds?: Schema$DeviceId[];
+    /**
+     * A device that has any of these system features is excluded by this selector, even if it matches all other conditions.
+     */
+    forbiddenSystemFeatures?: Schema$SystemFeature[];
+    /**
+     * Device models included by this selector.
+     */
+    includedDeviceIds?: Schema$DeviceId[];
+    /**
+     * A device needs to have all these system features to be included by the selector.
+     */
+    requiredSystemFeatures?: Schema$SystemFeature[];
+  }
+  /**
    * The device spec used to generate a system APK.
    */
   export interface Schema$DeviceSpec {
@@ -441,6 +507,45 @@ export namespace androidpublisher_v3 {
      * All installed locales represented as BCP-47 strings, e.g. "en-US".
      */
     supportedLocales?: string[] | null;
+  }
+  /**
+   * A single device tier. Devices matching any of the device groups in device_group_names are considered to match the tier.
+   */
+  export interface Schema$DeviceTier {
+    /**
+     * Groups of devices included in this tier. These groups must be defined explicitly under device_groups in this configuration.
+     */
+    deviceGroupNames?: string[] | null;
+    /**
+     * The priority level of the tier. Tiers are evaluated in descending order of level: the highest level tier has the highest priority. The highest tier matching a given device is selected for that device. You should use a contiguous range of levels for your tiers in a tier set; tier levels in a tier set must be unique. For instance, if your tier set has 4 tiers (including the global fallback), you should define tiers 1, 2 and 3 in this configuration. Note: tier 0 is implicitly defined as a global fallback and selected for devices that don't match any of the tiers explicitly defined here. You mustn't define level 0 explicitly in this configuration.
+     */
+    level?: number | null;
+  }
+  /**
+   * LINT.IfChange Configuration describing device targeting criteria for the content of an app.
+   */
+  export interface Schema$DeviceTierConfig {
+    /**
+     * Definition of device groups for the app.
+     */
+    deviceGroups?: Schema$DeviceGroup[];
+    /**
+     * Output only. The device tier config ID.
+     */
+    deviceTierConfigId?: string | null;
+    /**
+     * Definition of the set of device tiers for the app.
+     */
+    deviceTierSet?: Schema$DeviceTierSet;
+  }
+  /**
+   * A set of device tiers. A tier set determines what variation of app content gets served to a specific device, for device-targeted content. You should assign a priority level to each tier, which determines the ordering by which they are evaluated by Play. See the documentation of DeviceTier.level for more details.
+   */
+  export interface Schema$DeviceTierSet {
+    /**
+     * Device tiers belonging to the set.
+     */
+    deviceTiers?: Schema$DeviceTier[];
   }
   /**
    * An expansion file. The resource for ExpansionFilesService.
@@ -824,6 +929,19 @@ export namespace androidpublisher_v3 {
      * Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) "P1W" (one week), "P1M" (one month), "P3M" (three months), "P6M" (six months), and "P1Y" (one year).
      */
     introductoryPricePeriod?: string | null;
+  }
+  /**
+   * Response listing existing device tier configs.
+   */
+  export interface Schema$ListDeviceTierConfigsResponse {
+    /**
+     * Device tier configs created by the developer.
+     */
+    deviceTierConfigs?: Schema$DeviceTierConfig[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * A localized store listing. The resource for ListingsService.
@@ -1311,6 +1429,15 @@ export namespace androidpublisher_v3 {
     variants?: Schema$Variant[];
   }
   /**
+   * Representation of a system feature.
+   */
+  export interface Schema$SystemFeature {
+    /**
+     * The name of the feature.
+     */
+    name?: string | null;
+  }
+  /**
    * The testers of an app. The resource for TestersService. Note: while it is possible in the Play Console UI to add testers via email lists, email lists are not supported by this resource.
    */
   export interface Schema$Testers {
@@ -1585,6 +1712,489 @@ export namespace androidpublisher_v3 {
      */
     tokenPagination?: Schema$TokenPagination;
     voidedPurchases?: Schema$VoidedPurchase[];
+  }
+
+  export class Resource$Applications {
+    context: APIRequestContext;
+    deviceTierConfigs: Resource$Applications$Devicetierconfigs;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.deviceTierConfigs = new Resource$Applications$Devicetierconfigs(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Applications$Devicetierconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new device tier config for an app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.applications.deviceTierConfigs.create({
+     *     // Whether the service should accept device IDs that are unknown to Play's device catalog.
+     *     allowUnknownDevices: 'placeholder-value',
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "deviceGroups": [],
+     *       //   "deviceTierConfigId": "my_deviceTierConfigId",
+     *       //   "deviceTierSet": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceGroups": [],
+     *   //   "deviceTierConfigId": "my_deviceTierConfigId",
+     *   //   "deviceTierSet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Applications$Devicetierconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Applications$Devicetierconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceTierConfig>;
+    create(
+      params: Params$Resource$Applications$Devicetierconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Applications$Devicetierconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceTierConfig>,
+      callback: BodyResponseCallback<Schema$DeviceTierConfig>
+    ): void;
+    create(
+      params: Params$Resource$Applications$Devicetierconfigs$Create,
+      callback: BodyResponseCallback<Schema$DeviceTierConfig>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$DeviceTierConfig>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Devicetierconfigs$Create
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceTierConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Devicetierconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Devicetierconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceTierConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeviceTierConfig>(parameters);
+      }
+    }
+
+    /**
+     * Returns a particular device tier config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.applications.deviceTierConfigs.get({
+     *     // Required. Id of an existing device tier config.
+     *     deviceTierConfigId: 'placeholder-value',
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceGroups": [],
+     *   //   "deviceTierConfigId": "my_deviceTierConfigId",
+     *   //   "deviceTierSet": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Applications$Devicetierconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Applications$Devicetierconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DeviceTierConfig>;
+    get(
+      params: Params$Resource$Applications$Devicetierconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Applications$Devicetierconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DeviceTierConfig>,
+      callback: BodyResponseCallback<Schema$DeviceTierConfig>
+    ): void;
+    get(
+      params: Params$Resource$Applications$Devicetierconfigs$Get,
+      callback: BodyResponseCallback<Schema$DeviceTierConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DeviceTierConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Devicetierconfigs$Get
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeviceTierConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DeviceTierConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Devicetierconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Devicetierconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs/{deviceTierConfigId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'deviceTierConfigId'],
+        pathParams: ['deviceTierConfigId', 'packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeviceTierConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeviceTierConfig>(parameters);
+      }
+    }
+
+    /**
+     * Returns created device tier configs, ordered by descending creation time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.applications.deviceTierConfigs.list({
+     *     // Package name of the app.
+     *     packageName: 'placeholder-value',
+     *     // The maximum number of device tier configs to return. The service may return fewer than this value. If unspecified, at most 10 device tier configs will be returned. The maximum value for this field is 100; values above 100 will be coerced to 100. Device tier configs will be ordered by descending creation time.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListDeviceTierConfigs` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceTierConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Applications$Devicetierconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Applications$Devicetierconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListDeviceTierConfigsResponse>;
+    list(
+      params: Params$Resource$Applications$Devicetierconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Applications$Devicetierconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Applications$Devicetierconfigs$List,
+      callback: BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Devicetierconfigs$List
+        | BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDeviceTierConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListDeviceTierConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Devicetierconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Devicetierconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/deviceTierConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDeviceTierConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDeviceTierConfigsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Applications$Devicetierconfigs$Create
+    extends StandardParameters {
+    /**
+     * Whether the service should accept device IDs that are unknown to Play's device catalog.
+     */
+    allowUnknownDevices?: boolean;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeviceTierConfig;
+  }
+  export interface Params$Resource$Applications$Devicetierconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Id of an existing device tier config.
+     */
+    deviceTierConfigId?: string;
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+  }
+  export interface Params$Resource$Applications$Devicetierconfigs$List
+    extends StandardParameters {
+    /**
+     * Package name of the app.
+     */
+    packageName?: string;
+    /**
+     * The maximum number of device tier configs to return. The service may return fewer than this value. If unspecified, at most 10 device tier configs will be returned. The maximum value for this field is 100; values above 100 will be coerced to 100. Device tier configs will be ordered by descending creation time.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListDeviceTierConfigs` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Edits {
