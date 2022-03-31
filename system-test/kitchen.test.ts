@@ -20,6 +20,25 @@ import {promisify} from 'util';
 import * as tmp from 'tmp';
 import {describe, it, afterEach} from 'mocha';
 
+const delay = async (
+  test: Mocha.Runnable | undefined,
+  addMs: number,
+  currentRetry: number
+) => {
+  if (!test) {
+    return;
+  }
+  await new Promise(r => setTimeout(r, addMs));
+  // No retry on the first failure.
+  if (currentRetry === 0) return;
+  // See: https://cloud.google.com/storage/docs/exponential-backoff
+  const ms = Math.pow(2, currentRetry) + Math.random() * 1000;
+  return new Promise(done => {
+    console.info(`retrying "${test.title}" in ${ms}ms`);
+    setTimeout(done, ms);
+  });
+};
+
 const mvp = promisify(mv);
 const ncpp = promisify(ncp);
 const keep = !!process.env.GANC_KEEP_TEMPDIRS;
@@ -33,7 +52,10 @@ const spawnOpts: cp.SpawnSyncOptions = {stdio: 'inherit', shell: true};
  * Create a staging directory with temp fixtures used to test on a fresh application.
  */
 describe('kitchen sink', async () => {
-  it('should be able to use the d.ts', async () => {
+  it('should be able to use the d.ts', async function () {
+    this.retries(3);
+    this.timeout(160000);
+    await delay(this.test, 4000, this.currentRetry);
     console.log(`${__filename} staging area: ${stagingPath}`);
     cp.spawnSync('npm', ['pack'], spawnOpts);
     const tarball = path.join(
@@ -47,7 +69,7 @@ describe('kitchen sink', async () => {
       ['install'],
       Object.assign({cwd: `${stagingPath}/`}, spawnOpts)
     );
-  }).timeout(160000);
+  });
 
   /**
    * CLEAN UP - remove the staging directory when done.
