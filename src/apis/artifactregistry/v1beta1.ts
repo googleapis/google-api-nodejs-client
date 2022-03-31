@@ -143,7 +143,7 @@ export namespace artifactregistry_v1beta1 {
     role?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -403,6 +403,10 @@ export namespace artifactregistry_v1beta1 {
      * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
      */
     name?: string | null;
+    /**
+     * Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.
+     */
+    sizeBytes?: string | null;
     /**
      * The time when the repository was last updated.
      */
@@ -1026,6 +1030,7 @@ export namespace artifactregistry_v1beta1 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1308,6 +1313,7 @@ export namespace artifactregistry_v1beta1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1726,6 +1732,7 @@ export namespace artifactregistry_v1beta1 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1740,6 +1747,7 @@ export namespace artifactregistry_v1beta1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }

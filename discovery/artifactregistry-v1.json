@@ -1207,9 +1207,57 @@
       }
     }
   },
-  "revision": "20220311",
+  "revision": "20220328",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
+    "AptArtifact": {
+      "description": "A detailed representation of an Apt artifact. Information in the record is derived from the archive's control file. See https://www.debian.org/doc/debian-policy/ch-controlfields.html",
+      "id": "AptArtifact",
+      "properties": {
+        "architecture": {
+          "description": "Output only. Operating system architecture of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "component": {
+          "description": "Output only. Repository component of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "controlFile": {
+          "description": "Output only. Contents of the artifact's control metadata file.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The Artifact Registry resource name of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Output only. The Apt package name of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageType": {
+          "description": "Output only. An artifact is a binary or source package.",
+          "enum": [
+            "PACKAGE_TYPE_UNSPECIFIED",
+            "BINARY",
+            "SOURCE"
+          ],
+          "enumDescriptions": [
+            "Package type is not specified.",
+            "Binary package.",
+            "Source package."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Binding": {
       "description": "Associates `members`, or principals, with a `role`.",
       "id": "Binding",
@@ -1274,7 +1322,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1365,6 +1413,21 @@
       },
       "type": "object"
     },
+    "ImportAptArtifactsErrorInfo": {
+      "description": "Error information explaining why a package was not imported.",
+      "id": "ImportAptArtifactsErrorInfo",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "The detailed error status."
+        },
+        "gcsSource": {
+          "$ref": "ImportAptArtifactsGcsSource",
+          "description": "Google Cloud Storage location requested."
+        }
+      },
+      "type": "object"
+    },
     "ImportAptArtifactsGcsSource": {
       "description": "Google Cloud Storage location where the artifacts currently reside.",
       "id": "ImportAptArtifactsGcsSource",
@@ -1383,6 +1446,12 @@
       },
       "type": "object"
     },
+    "ImportAptArtifactsMetadata": {
+      "description": "The operation metadata for importing artifacts.",
+      "id": "ImportAptArtifactsMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "ImportAptArtifactsRequest": {
       "description": "The request to import new apt artifacts.",
       "id": "ImportAptArtifactsRequest",
@@ -1390,6 +1459,42 @@
         "gcsSource": {
           "$ref": "ImportAptArtifactsGcsSource",
           "description": "Google Cloud Storage location where input content is located."
+        }
+      },
+      "type": "object"
+    },
+    "ImportAptArtifactsResponse": {
+      "description": "The response message from importing APT artifacts.",
+      "id": "ImportAptArtifactsResponse",
+      "properties": {
+        "aptArtifacts": {
+          "description": "The Apt artifacts imported.",
+          "items": {
+            "$ref": "AptArtifact"
+          },
+          "type": "array"
+        },
+        "errors": {
+          "description": "Detailed error info for packages that were not imported.",
+          "items": {
+            "$ref": "ImportAptArtifactsErrorInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ImportYumArtifactsErrorInfo": {
+      "description": "Error information explaining why a package was not imported.",
+      "id": "ImportYumArtifactsErrorInfo",
+      "properties": {
+        "error": {
+          "$ref": "Status",
+          "description": "The detailed error status."
+        },
+        "gcsSource": {
+          "$ref": "ImportYumArtifactsGcsSource",
+          "description": "Google Cloud Storage location requested."
         }
       },
       "type": "object"
@@ -1412,6 +1517,12 @@
       },
       "type": "object"
     },
+    "ImportYumArtifactsMetadata": {
+      "description": "The operation metadata for importing artifacts.",
+      "id": "ImportYumArtifactsMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "ImportYumArtifactsRequest": {
       "description": "The request to import new yum artifacts.",
       "id": "ImportYumArtifactsRequest",
@@ -1419,6 +1530,27 @@
         "gcsSource": {
           "$ref": "ImportYumArtifactsGcsSource",
           "description": "Google Cloud Storage location where input content is located."
+        }
+      },
+      "type": "object"
+    },
+    "ImportYumArtifactsResponse": {
+      "description": "The response message from importing YUM artifacts.",
+      "id": "ImportYumArtifactsResponse",
+      "properties": {
+        "errors": {
+          "description": "Detailed error info for packages that were not imported.",
+          "items": {
+            "$ref": "ImportYumArtifactsErrorInfo"
+          },
+          "type": "array"
+        },
+        "yumArtifacts": {
+          "description": "The yum artifacts imported.",
+          "items": {
+            "$ref": "YumArtifact"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1643,6 +1775,12 @@
       },
       "type": "object"
     },
+    "OperationMetadata": {
+      "description": "Metadata type for longrunning-operations, currently empty.",
+      "id": "OperationMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "Package": {
       "description": "Packages are named collections of versions.",
       "id": "Package",
@@ -1773,6 +1911,12 @@
           "description": "The name of the repository, for example: \"projects/p1/locations/us-central1/repositories/repo1\".",
           "type": "string"
         },
+        "sizeBytes": {
+          "description": "Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "updateTime": {
           "description": "The time when the repository was last updated.",
           "format": "google-datetime",
@@ -1879,6 +2023,20 @@
       "properties": {},
       "type": "object"
     },
+    "UploadAptArtifactResponse": {
+      "description": "The response of the completed artifact upload operation. This response is contained in the Operation and available to users.",
+      "id": "UploadAptArtifactResponse",
+      "properties": {
+        "aptArtifacts": {
+          "description": "The Apt artifacts updated.",
+          "items": {
+            "$ref": "AptArtifact"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "UploadYumArtifactMediaResponse": {
       "description": "The response to upload an artifact.",
       "id": "UploadYumArtifactMediaResponse",
@@ -1894,6 +2052,20 @@
       "description": "The request to upload an artifact.",
       "id": "UploadYumArtifactRequest",
       "properties": {},
+      "type": "object"
+    },
+    "UploadYumArtifactResponse": {
+      "description": "The response of the completed artifact upload operation. This response is contained in the Operation and available to users.",
+      "id": "UploadYumArtifactResponse",
+      "properties": {
+        "yumArtifacts": {
+          "description": "The Apt artifacts updated.",
+          "items": {
+            "$ref": "YumArtifact"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Version": {
@@ -1932,6 +2104,43 @@
         "updateTime": {
           "description": "The time when the version was last updated.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YumArtifact": {
+      "description": "A detailed representation of a Yum artifact.",
+      "id": "YumArtifact",
+      "properties": {
+        "architecture": {
+          "description": "Output only. Operating system architecture of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The Artifact Registry resource name of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Output only. The yum package name of the artifact.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "packageType": {
+          "description": "Output only. An artifact is a binary or source package.",
+          "enum": [
+            "PACKAGE_TYPE_UNSPECIFIED",
+            "BINARY",
+            "SOURCE"
+          ],
+          "enumDescriptions": [
+            "Package type is not specified.",
+            "Binary package (.rpm).",
+            "Source package (.srpm)."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },

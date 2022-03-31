@@ -126,6 +126,35 @@ export namespace artifactregistry_v1 {
   }
 
   /**
+   * A detailed representation of an Apt artifact. Information in the record is derived from the archive's control file. See https://www.debian.org/doc/debian-policy/ch-controlfields.html
+   */
+  export interface Schema$AptArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. Repository component of the artifact.
+     */
+    component?: string | null;
+    /**
+     * Output only. Contents of the artifact's control metadata file.
+     */
+    controlFile?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The Apt package name of the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. An artifact is a binary or source package.
+     */
+    packageType?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -176,7 +205,7 @@ export namespace artifactregistry_v1 {
     uri?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -243,6 +272,19 @@ export namespace artifactregistry_v1 {
     value?: string | null;
   }
   /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportAptArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportAptArtifactsGcsSource;
+  }
+  /**
    * Google Cloud Storage location where the artifacts currently reside.
    */
   export interface Schema$ImportAptArtifactsGcsSource {
@@ -256,6 +298,10 @@ export namespace artifactregistry_v1 {
     useWildcards?: boolean | null;
   }
   /**
+   * The operation metadata for importing artifacts.
+   */
+  export interface Schema$ImportAptArtifactsMetadata {}
+  /**
    * The request to import new apt artifacts.
    */
   export interface Schema$ImportAptArtifactsRequest {
@@ -263,6 +309,32 @@ export namespace artifactregistry_v1 {
      * Google Cloud Storage location where input content is located.
      */
     gcsSource?: Schema$ImportAptArtifactsGcsSource;
+  }
+  /**
+   * The response message from importing APT artifacts.
+   */
+  export interface Schema$ImportAptArtifactsResponse {
+    /**
+     * The Apt artifacts imported.
+     */
+    aptArtifacts?: Schema$AptArtifact[];
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportAptArtifactsErrorInfo[];
+  }
+  /**
+   * Error information explaining why a package was not imported.
+   */
+  export interface Schema$ImportYumArtifactsErrorInfo {
+    /**
+     * The detailed error status.
+     */
+    error?: Schema$Status;
+    /**
+     * Google Cloud Storage location requested.
+     */
+    gcsSource?: Schema$ImportYumArtifactsGcsSource;
   }
   /**
    * Google Cloud Storage location where the artifacts currently reside.
@@ -278,6 +350,10 @@ export namespace artifactregistry_v1 {
     useWildcards?: boolean | null;
   }
   /**
+   * The operation metadata for importing artifacts.
+   */
+  export interface Schema$ImportYumArtifactsMetadata {}
+  /**
    * The request to import new yum artifacts.
    */
   export interface Schema$ImportYumArtifactsRequest {
@@ -285,6 +361,19 @@ export namespace artifactregistry_v1 {
      * Google Cloud Storage location where input content is located.
      */
     gcsSource?: Schema$ImportYumArtifactsGcsSource;
+  }
+  /**
+   * The response message from importing YUM artifacts.
+   */
+  export interface Schema$ImportYumArtifactsResponse {
+    /**
+     * Detailed error info for packages that were not imported.
+     */
+    errors?: Schema$ImportYumArtifactsErrorInfo[];
+    /**
+     * The yum artifacts imported.
+     */
+    yumArtifacts?: Schema$YumArtifact[];
   }
   /**
    * The response from listing docker images.
@@ -441,6 +530,10 @@ export namespace artifactregistry_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Metadata type for longrunning-operations, currently empty.
+   */
+  export interface Schema$OperationMetadata {}
+  /**
    * Packages are named collections of versions.
    */
   export interface Schema$Package {
@@ -524,6 +617,10 @@ export namespace artifactregistry_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.
+     */
+    sizeBytes?: string | null;
+    /**
      * The time when the repository was last updated.
      */
     updateTime?: string | null;
@@ -599,6 +696,15 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$UploadAptArtifactRequest {}
   /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadAptArtifactResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    aptArtifacts?: Schema$AptArtifact[];
+  }
+  /**
    * The response to upload an artifact.
    */
   export interface Schema$UploadYumArtifactMediaResponse {
@@ -611,6 +717,15 @@ export namespace artifactregistry_v1 {
    * The request to upload an artifact.
    */
   export interface Schema$UploadYumArtifactRequest {}
+  /**
+   * The response of the completed artifact upload operation. This response is contained in the Operation and available to users.
+   */
+  export interface Schema$UploadYumArtifactResponse {
+    /**
+     * The Apt artifacts updated.
+     */
+    yumArtifacts?: Schema$YumArtifact[];
+  }
   /**
    * The body of a version resource. A version resource represents a collection of components, such as files and other data. This may correspond to a version in many package management schemes.
    */
@@ -639,6 +754,27 @@ export namespace artifactregistry_v1 {
      * The time when the version was last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A detailed representation of a Yum artifact.
+   */
+  export interface Schema$YumArtifact {
+    /**
+     * Output only. Operating system architecture of the artifact.
+     */
+    architecture?: string | null;
+    /**
+     * Output only. The Artifact Registry resource name of the artifact.
+     */
+    name?: string | null;
+    /**
+     * Output only. The yum package name of the artifact.
+     */
+    packageName?: string | null;
+    /**
+     * Output only. An artifact is a binary or source package.
+     */
+    packageType?: string | null;
   }
 
   export class Resource$Projects {
@@ -1484,6 +1620,7 @@ export namespace artifactregistry_v1 {
      *       //   "labels": {},
      *       //   "mavenConfig": {},
      *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1767,6 +1904,7 @@ export namespace artifactregistry_v1 {
      *   //   "labels": {},
      *   //   "mavenConfig": {},
      *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2186,6 +2324,7 @@ export namespace artifactregistry_v1 {
      *       //   "labels": {},
      *       //   "mavenConfig": {},
      *       //   "name": "my_name",
+     *       //   "sizeBytes": "my_sizeBytes",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -2201,6 +2340,7 @@ export namespace artifactregistry_v1 {
      *   //   "labels": {},
      *   //   "mavenConfig": {},
      *   //   "name": "my_name",
+     *   //   "sizeBytes": "my_sizeBytes",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
