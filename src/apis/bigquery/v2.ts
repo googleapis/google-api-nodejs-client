@@ -821,6 +821,10 @@ export namespace bigquery_v2 {
      */
     location?: string | null;
     /**
+     * [Optional] Number of hours for the max time travel for all tables in the dataset.
+     */
+    maxTimeTravelHours?: string | null;
+    /**
      * [Output-only] Reserved for future use.
      */
     satisfiesPZS?: boolean | null;
@@ -3923,6 +3927,7 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
@@ -4071,6 +4076,7 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
@@ -4097,6 +4103,7 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
@@ -4389,6 +4396,7 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
@@ -4415,6 +4423,7 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
@@ -4565,6 +4574,7 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "lastModifiedTime": "my_lastModifiedTime",
      *       //   "location": "my_location",
+     *       //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "tags": []
@@ -4591,6 +4601,7 @@ export namespace bigquery_v2 {
      *   //   "labels": {},
      *   //   "lastModifiedTime": "my_lastModifiedTime",
      *   //   "location": "my_location",
+     *   //   "maxTimeTravelHours": "my_maxTimeTravelHours",
      *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "tags": []
