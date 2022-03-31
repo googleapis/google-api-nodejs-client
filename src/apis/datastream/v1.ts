@@ -790,6 +790,10 @@ export namespace datastream_v1 {
     scale?: number | null;
   }
   /**
+   * Configuration to drop large object values.
+   */
+  export interface Schema$OracleDropLargeObjects {}
+  /**
    * Oracle data source object identifier.
    */
   export interface Schema$OracleObjectIdentifier {
@@ -857,6 +861,10 @@ export namespace datastream_v1 {
    * Oracle data source configuration
    */
   export interface Schema$OracleSourceConfig {
+    /**
+     * Drop large object values.
+     */
+    dropLargeObjects?: Schema$OracleDropLargeObjects;
     /**
      * Oracle objects to exclude from the stream.
      */
