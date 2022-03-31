@@ -274,6 +274,35 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2AddFulfillmentPlacesResponse {}
   /**
+   * Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the AddLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2AddLocalInventoriesMetadata {}
+  /**
+   * Request message for AddLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2AddLocalInventoriesRequest {
+    /**
+     * Indicates which inventory fields in the provided list of LocalInventory to update. The field is updated to the provided value. If a field is set while the place does not have a previous local inventory, the local inventory at that store is created. If a field is set while the value of that field is not provided, the original field value, if it exists, is deleted. If the mask is not set or set with empty paths, all inventory fields will be updated. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned and the entire update will be ignored.
+     */
+    addMask?: string | null;
+    /**
+     * The time when the inventory updates are issued. Used to prevent out-of-order updates on local inventory fields. If not provided, the internal system time will be used.
+     */
+    addTime?: string | null;
+    /**
+     * If set to true, and the Product is not found, the local inventory will still be processed and retained for at most 1 day and processed once the Product is created. If set to false, a NOT_FOUND error is returned if the Product is not found.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Required. A list of inventory information at difference places. Each place is identified by its place ID. At most 3000 inventories are allowed per request.
+     */
+    localInventories?: Schema$GoogleCloudRetailV2LocalInventory[];
+  }
+  /**
+   * Response of the AddLocalInventories API. Currently empty because there is no meaningful response populated from the AddLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2AddLocalInventoriesResponse {}
+  /**
    * Metadata related to the progress of the AddFulfillmentPlaces operation. Currently empty because there is no meaningful metadata populated from the AddFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2alphaAddFulfillmentPlacesMetadata {}
@@ -533,6 +562,14 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2betaAddFulfillmentPlacesResponse {}
   /**
+   * Metadata related to the progress of the AddLocalInventories operation. Currently empty because there is no meaningful metadata populated from the AddLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaAddLocalInventoriesMetadata {}
+  /**
+   * Response of the AddLocalInventories API. Currently empty because there is no meaningful response populated from the AddLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaAddLocalInventoriesResponse {}
+  /**
    * Configuration of destination for Export related errors.
    */
   export interface Schema$GoogleCloudRetailV2betaExportErrorsConfig {
@@ -691,6 +728,14 @@ export namespace retail_v2 {
    * Response of the RemoveFulfillmentPlacesRequest. Currently empty because there is no meaningful response populated from the RemoveFulfillmentPlaces method.
    */
   export interface Schema$GoogleCloudRetailV2betaRemoveFulfillmentPlacesResponse {}
+  /**
+   * Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the RemoveLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaRemoveLocalInventoriesMetadata {}
+  /**
+   * Response of the RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the RemoveLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2betaRemoveLocalInventoriesResponse {}
   /**
    * Metadata related to the progress of the SetInventory operation. Currently empty because there is no meaningful metadata populated from the SetInventory method.
    */
@@ -1097,6 +1142,29 @@ export namespace retail_v2 {
      * The Products.
      */
     products?: Schema$GoogleCloudRetailV2Product[];
+  }
+  /**
+   * The inventory information at a place (e.g. a store) identified by a place ID.
+   */
+  export interface Schema$GoogleCloudRetailV2LocalInventory {
+    /**
+     * Additional local inventory attributes, for example, store name, promotion tags, etc. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * At most 30 attributes are allowed. * The key must be a UTF-8 encoded string with a length limit of 32 characters. * The key must match the pattern: `a-zA-Z0-9*`. For example, key0LikeThis or KEY_1_LIKE_THIS. * The attribute values must be of the same type (text or number). * Only 1 value is allowed for each attribute. * For text values, the length limit is 256 UTF-8 characters. * The attribute does not support search. The `searchable` field should be unset or set to false. * The max summed total bytes of custom attribute keys and values per product is 5MiB.
+     */
+    attributes?: {
+      [key: string]: Schema$GoogleCloudRetailV2CustomAttribute;
+    } | null;
+    /**
+     * Input only. Supported fulfillment types. Valid fulfillment type values include commonly used types (such as pickup in store and same day delivery), and custom types. Customers have to map custom types to their display names before rendering UI. Supported values: * "pickup-in-store" * "ship-to-store" * "same-day-delivery" * "next-day-delivery" * "custom-type-1" * "custom-type-2" * "custom-type-3" * "custom-type-4" * "custom-type-5" If this field is set to an invalid value other than these, an INVALID_ARGUMENT error is returned. All the elements must be distinct. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    fulfillmentTypes?: string[] | null;
+    /**
+     * The place ID for the current set of inventory information.
+     */
+    placeId?: string | null;
+    /**
+     * Product price and cost information. Google Merchant Center property [price](https://support.google.com/merchants/answer/6324371).
+     */
+    priceInfo?: Schema$GoogleCloudRetailV2PriceInfo;
   }
   /**
    * Request message for Predict method.
@@ -1531,6 +1599,31 @@ export namespace retail_v2 {
    */
   export interface Schema$GoogleCloudRetailV2RemoveFulfillmentPlacesResponse {}
   /**
+   * Metadata related to the progress of the RemoveLocalInventories operation. Currently empty because there is no meaningful metadata populated from the RemoveLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2RemoveLocalInventoriesMetadata {}
+  /**
+   * Request message for RemoveLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2RemoveLocalInventoriesRequest {
+    /**
+     * If set to true, and the Product is not found, the local inventory removal request will still be processed and retained for at most 1 day and processed once the Product is created. If set to false, a NOT_FOUND error is returned if the Product is not found.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Required. A list of place IDs to have their inventory deleted. At most 3000 place IDs are allowed per request.
+     */
+    placeIds?: string[] | null;
+    /**
+     * The time when the inventory deletions are issued. Used to prevent out-of-order updates and deletions on local inventory fields. If not provided, the internal system time will be used.
+     */
+    removeTime?: string | null;
+  }
+  /**
+   * Response of the RemoveLocalInventories API. Currently empty because there is no meaningful response populated from the RemoveLocalInventories method.
+   */
+  export interface Schema$GoogleCloudRetailV2RemoveLocalInventoriesResponse {}
+  /**
    * Request message for SearchService.Search method.
    */
   export interface Schema$GoogleCloudRetailV2SearchRequest {
@@ -1547,7 +1640,7 @@ export namespace retail_v2 {
      */
     canonicalFilter?: string | null;
     /**
-     * The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated. This feature requires additional allowlisting. Contact Retail Search support team if you are interested in using dynamic facet feature.
+     * Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic to enable dynamic facets. Do not set this field. The specification for dynamically generated facets. Notice that only textual facets can be dynamically generated.
      */
     dynamicFacetSpec?: Schema$GoogleCloudRetailV2SearchRequestDynamicFacetSpec;
     /**
@@ -2016,7 +2109,7 @@ export namespace retail_v2 {
      */
     directUserRequest?: boolean | null;
     /**
-     * The end user's IP address. Required for getting SearchResponse.sponsored_results. This field is used to extract location information for personalization. This field must be either an IPv4 address (e.g. "104.133.9.80") or an IPv6 address (e.g. "2001:0db8:85a3:0000:0000:8a2e:0370:7334"). Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when using the JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.
+     * The end user's IP address. This field is used to extract location information for personalization. This field must be either an IPv4 address (e.g. "104.133.9.80") or an IPv6 address (e.g. "2001:0db8:85a3:0000:0000:8a2e:0370:7334"). Otherwise, an INVALID_ARGUMENT error is returned. This should not be set when: * setting SearchRequest.user_info. * using the JavaScript tag in UserEventService.CollectUserEvent or if direct_user_request is set.
      */
     ipAddress?: string | null;
     /**
@@ -2024,7 +2117,7 @@ export namespace retail_v2 {
      */
     userAgent?: string | null;
     /**
-     * Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. Always use a hashed value for this ID. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     userId?: string | null;
   }
@@ -2158,7 +2251,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Completes the specified prefix with keyword suggestions. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * Completes the specified prefix with keyword suggestions. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
      * @example
      * ```js
      * // Before running the sample:
@@ -3144,7 +3237,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * Incrementally adds place IDs to Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the added place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
      * @example
      * ```js
      * // Before running the sample:
@@ -3277,6 +3370,162 @@ export namespace retail_v2 {
         options: Object.assign(
           {
             url: (rootUrl + '/v2/{+product}:addFulfillmentPlaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['product'],
+        pathParams: ['product'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Updates local inventory information for a Product at a list of places, while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating inventory information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. Local inventory information can only be modified using this method. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.addLocalInventories(
+     *       {
+     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         product:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "addMask": "my_addMask",
+     *           //   "addTime": "my_addTime",
+     *           //   "allowMissing": false,
+     *           //   "localInventories": []
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addLocalInventories(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addLocalInventories(
+      params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    addLocalInventories(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addLocalInventories(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addLocalInventories(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addLocalInventories(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    addLocalInventories(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+product}:addLocalInventories').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4326,7 +4575,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * Incrementally removes place IDs from a Product.fulfillment_info.place_ids. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, the removed place IDs are not immediately manifested in the Product queried by GetProduct or ListProducts. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
      * @example
      * ```js
      * // Before running the sample:
@@ -4482,7 +4731,162 @@ export namespace retail_v2 {
     }
 
     /**
-     * Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. When inventory is updated with CreateProduct and UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the CreateProduct or UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with SetInventory, AddFulfillmentPlaces, and RemoveFulfillmentPlaces. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * Remove local inventory information for a Product at a list of places at a removal timestamp. This process is asynchronous. If the request is valid, the removal will be enqueued and processed downstream. As a consequence, when a response is returned, removals are not immediately manifested in the Product queried by GetProduct or ListProducts. Local inventory information can only be removed using this method. CreateProduct and UpdateProduct has no effect on local inventories. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.branches.products.removeLocalInventories(
+     *       {
+     *         // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         product:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "allowMissing": false,
+     *           //   "placeIds": [],
+     *           //   "removeTime": "my_removeTime"
+     *           // }
+     *         },
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeLocalInventories(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeLocalInventories(
+      params?: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    removeLocalInventories(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeLocalInventories(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removeLocalInventories(
+      params: Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removeLocalInventories(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    removeLocalInventories(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+product}:removeLocalInventories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['product'],
+        pathParams: ['product'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Updates inventory information for a Product while respecting the last update timestamps of each inventory field. This process is asynchronous and does not require the Product to exist before updating fulfillment information. If the request is valid, the update will be enqueued and processed downstream. As a consequence, when a response is returned, updates are not immediately manifested in the Product queried by GetProduct or ListProducts. When inventory is updated with CreateProduct and UpdateProduct, the specified inventory field value(s) will overwrite any existing value(s) while ignoring the last update time for this field. Furthermore, the last update time for the specified inventory fields will be overwritten to the time of the CreateProduct or UpdateProduct request. If no inventory fields are set in CreateProductRequest.product, then any pre-existing inventory information for this product will be used. If no inventory fields are set in SetInventoryRequest.set_mask, then any existing inventory information will be preserved. Pre-existing inventory information can only be updated with SetInventory, AddFulfillmentPlaces, and RemoveFulfillmentPlaces. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
      * @example
      * ```js
      * // Before running the sample:
@@ -4647,6 +5051,18 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2AddFulfillmentPlacesRequest;
   }
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Addlocalinventories
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     */
+    product?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2AddLocalInventoriesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create
     extends StandardParameters {
     /**
@@ -4744,6 +5160,18 @@ export namespace retail_v2 {
      */
     requestBody?: Schema$GoogleCloudRetailV2RemoveFulfillmentPlacesRequest;
   }
+  export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Removelocalinventories
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     */
+    product?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2RemoveLocalInventoriesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$Branches$Products$Setinventory
     extends StandardParameters {
     /**
@@ -4764,7 +5192,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * Bulk import of processed completion dataset. Request processing is asynchronous. Partial updating is not supported. The operation is successfully finished only after the imported suggestions are indexed successfully and ready for serving. The process takes hours. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
      * @example
      * ```js
      * // Before running the sample:
@@ -5409,7 +5837,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Performs a search. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * Performs a search. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
      * @example
      * ```js
      * // Before running the sample:
@@ -5772,7 +6200,7 @@ export namespace retail_v2 {
     }
 
     /**
-     * Performs a search. This feature is only available for users who have Retail Search enabled. Please submit a form [here](https://cloud.google.com/contact) to contact cloud sales if you are interested in using Retail Search.
+     * Performs a search. This feature is only available for users who have Retail Search enabled. Please enable Retail Search on Cloud Console before using this feature.
      * @example
      * ```js
      * // Before running the sample:
