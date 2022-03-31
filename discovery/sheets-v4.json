@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20220315",
+  "revision": "20220322",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -3147,6 +3147,7 @@
             "DATA_EXECUTION_ERROR_CODE_UNSPECIFIED",
             "TIMED_OUT",
             "TOO_MANY_ROWS",
+            "TOO_MANY_COLUMNS",
             "TOO_MANY_CELLS",
             "ENGINE",
             "PARAMETER_INVALID",
@@ -3167,6 +3168,7 @@
             "Default value, do not use.",
             "The data execution timed out.",
             "The data execution returns more rows than the limit.",
+            "The data execution returns more columns than the limit.",
             "The data execution returns more cells than the limit.",
             "Error is received from the backend data execution engine (e.g. BigQuery). Check error_message for details.",
             "One or some of the provided data source parameters are invalid.",
