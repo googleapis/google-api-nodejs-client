@@ -55,7 +55,7 @@ describe('kitchen sink', async () => {
   it('should be able to use the d.ts', async function () {
     this.retries(3);
     this.timeout(160000);
-    await delay(this.test, 4000, this.currentRetry());
+    await delay(this.test, 4000, this.currentRetry);
     console.log(`${__filename} staging area: ${stagingPath}`);
     cp.spawnSync('npm', ['pack'], spawnOpts);
     const tarball = path.join(
