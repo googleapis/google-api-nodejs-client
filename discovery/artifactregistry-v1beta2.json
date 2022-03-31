@@ -1135,7 +1135,7 @@
       }
     }
   },
-  "revision": "20220307",
+  "revision": "20220328",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
@@ -1209,7 +1209,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -1333,6 +1333,12 @@
       },
       "type": "object"
     },
+    "ImportAptArtifactsMetadata": {
+      "description": "The operation metadata for importing artifacts.",
+      "id": "ImportAptArtifactsMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "ImportAptArtifactsRequest": {
       "description": "The request to import new apt artifacts.",
       "id": "ImportAptArtifactsRequest",
@@ -1396,6 +1402,12 @@
           "type": "boolean"
         }
       },
+      "type": "object"
+    },
+    "ImportYumArtifactsMetadata": {
+      "description": "The operation metadata for importing artifacts.",
+      "id": "ImportYumArtifactsMetadata",
+      "properties": {},
       "type": "object"
     },
     "ImportYumArtifactsRequest": {
@@ -1766,6 +1778,12 @@
         },
         "name": {
           "description": "The name of the repository, for example: \"projects/p1/locations/us-central1/repositories/repo1\".",
+          "type": "string"
+        },
+        "sizeBytes": {
+          "description": "Output only. The size, in bytes, of all artifact storage in this repository. Repositories that are generally available or in public preview use this to calculate storage costs.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {
