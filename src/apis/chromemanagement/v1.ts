@@ -2300,7 +2300,7 @@ export namespace chromemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await chromemanagement.customers.telemetry.devices.list({
-     *     // Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number
+     *     // Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id
      *     filter: 'placeholder-value',
      *     // Maximum number of results to return. Default value is 100. Maximum value is 200.
      *     pageSize: 'placeholder-value',
@@ -2425,7 +2425,7 @@ export namespace chromemanagement_v1 {
   export interface Params$Resource$Customers$Telemetry$Devices$List
     extends StandardParameters {
     /**
-     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number
+     * Optional. Only include resources that match the filter. Supported filter fields: - org_unit_id - serial_number - device_id
      */
     filter?: string;
     /**
