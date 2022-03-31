@@ -1877,7 +1877,7 @@
       }
     }
   },
-  "revision": "20220310",
+  "revision": "20220323",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2249,6 +2249,8 @@
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
+            "MYSQL_8_0_27",
+            "MYSQL_8_0_28",
             "POSTGRES_13",
             "POSTGRES_14",
             "SQLSERVER_2019_STANDARD",
@@ -2273,6 +2275,8 @@
             "The database version is MySQL 8.",
             "The database major version is MySQL 8.0 and the minor version is 18.",
             "The database major version is MySQL 8.0 and the minor version is 26.",
+            "The database major version is MySQL 8.0 and the minor version is 27.",
+            "The database major version is MySQL 8.0 and the minor version is 28.",
             "The database version is PostgreSQL 13.",
             "The database version is PostgreSQL 14.",
             "The database version is SQL Server 2019 Standard.",
@@ -2427,6 +2431,8 @@
             "MYSQL_8_0",
             "MYSQL_8_0_18",
             "MYSQL_8_0_26",
+            "MYSQL_8_0_27",
+            "MYSQL_8_0_28",
             "POSTGRES_13",
             "POSTGRES_14",
             "SQLSERVER_2019_STANDARD",
@@ -2451,6 +2457,8 @@
             "The database version is MySQL 8.",
             "The database major version is MySQL 8.0 and the minor version is 18.",
             "The database major version is MySQL 8.0 and the minor version is 26.",
+            "The database major version is MySQL 8.0 and the minor version is 27.",
+            "The database major version is MySQL 8.0 and the minor version is 28.",
             "The database version is PostgreSQL 13.",
             "The database version is PostgreSQL 14.",
             "The database version is SQL Server 2019 Standard.",
@@ -2936,6 +2944,8 @@
               "MYSQL_8_0",
               "MYSQL_8_0_18",
               "MYSQL_8_0_26",
+              "MYSQL_8_0_27",
+              "MYSQL_8_0_28",
               "POSTGRES_13",
               "POSTGRES_14",
               "SQLSERVER_2019_STANDARD",
@@ -2960,6 +2970,8 @@
               "The database version is MySQL 8.",
               "The database major version is MySQL 8.0 and the minor version is 18.",
               "The database major version is MySQL 8.0 and the minor version is 26.",
+              "The database major version is MySQL 8.0 and the minor version is 27.",
+              "The database major version is MySQL 8.0 and the minor version is 28.",
               "The database version is PostgreSQL 13.",
               "The database version is PostgreSQL 14.",
               "The database version is SQL Server 2019 Standard.",
@@ -3843,6 +3855,10 @@
         },
         "disallowUsernameSubstring": {
           "description": "Disallow username as a part of the password.",
+          "type": "boolean"
+        },
+        "enablePasswordPolicy": {
+          "description": "Whether the password policy is enabled or not.",
           "type": "boolean"
         },
         "minLength": {

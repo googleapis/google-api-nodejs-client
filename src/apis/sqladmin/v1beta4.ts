@@ -1393,6 +1393,10 @@ export namespace sqladmin_v1beta4 {
      */
     disallowUsernameSubstring?: boolean | null;
     /**
+     * Whether the password policy is enabled or not.
+     */
+    enablePasswordPolicy?: boolean | null;
+    /**
      * Minimum number of characters allowed.
      */
     minLength?: number | null;
