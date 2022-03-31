@@ -3820,7 +3820,7 @@
       }
     }
   },
-  "revision": "20220314",
+  "revision": "20220330",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -5573,6 +5573,10 @@
           "description": "Indicates if stackdriver logging is enabled for the agent. Please use agent.advanced_settings instead.",
           "type": "boolean"
         },
+        "locked": {
+          "description": "Indiciates whether the agent is locked for changes. If the agent is locked, modifications to the agent will be rejected except for RestoreAgent.",
+          "type": "boolean"
+        },
         "name": {
           "description": "The unique identifier of the agent. Required for the Agents.UpdateAgent method. Agents.CreateAgent populates the name automatically. Format: `projects//locations//agents/`.",
           "type": "string"
@@ -6570,6 +6574,18 @@
       "properties": {
         "agentUri": {
           "description": "Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the agent to. The format of this URI must be `gs:///`. If left unspecified, the serialized agent is returned inline. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).",
+          "type": "string"
+        },
+        "dataFormat": {
+          "description": "Optional. The data format of the exported agent. If not specified, `BLOB` is assumed.",
+          "enum": [
+            "DATA_FORMAT_UNSPECIFIED",
+            "BLOB"
+          ],
+          "enumDescriptions": [
+            "Unspecified format.",
+            "Agent content will be exported as raw bytes."
+          ],
           "type": "string"
         },
         "environment": {
@@ -13282,7 +13298,7 @@
           "enumDescriptions": [
             "Not specified. This value should never be used.",
             "Examples do not contain @-prefixed entity type names, but example parts can be annotated with entity types.",
-            "Templates are not annotated with entity types, but they can contain @-prefixed entity type names as substrings. Template mode has been deprecated. Example mode is the only supported way to create new training phrases. If you have existing training phrases that you've created in template mode, those will continue to work."
+            "Templates are not annotated with entity types, but they can contain @-prefixed entity type names as substrings. Note: Template mode has been deprecated. Example mode is the only supported way to create new training phrases. If you have existing training phrases in template mode, they will be removed during training and it can cause a drop in agent performance."
           ],
           "type": "string"
         }
@@ -14101,7 +14117,7 @@
       "type": "object"
     },
     "GoogleProtobufEmpty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "GoogleProtobufEmpty",
       "properties": {},
       "type": "object"

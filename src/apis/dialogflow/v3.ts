@@ -180,6 +180,10 @@ export namespace dialogflow_v3 {
      */
     enableStackdriverLogging?: boolean | null;
     /**
+     * Indiciates whether the agent is locked for changes. If the agent is locked, modifications to the agent will be rejected except for RestoreAgent.
+     */
+    locked?: boolean | null;
+    /**
      * The unique identifier of the agent. Required for the Agents.UpdateAgent method. Agents.CreateAgent populates the name automatically. Format: `projects//locations//agents/`.
      */
     name?: string | null;
@@ -2175,6 +2179,10 @@ export namespace dialogflow_v3 {
      * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the agent to. The format of this URI must be `gs:///`. If left unspecified, the serialized agent is returned inline. Dialogflow performs a write operation for the Cloud Storage object on the caller's behalf, so your request authentication must have write permissions for the object. For more information, see [Dialogflow access control](https://cloud.google.com/dialogflow/cx/docs/concept/access-control#storage).
      */
     agentUri?: string | null;
+    /**
+     * Optional. The data format of the exported agent. If not specified, `BLOB` is assumed.
+     */
+    dataFormat?: string | null;
     /**
      * Optional. Environment name. If not set, draft environment is assumed. Format: `projects//locations//agents//environments/`.
      */
@@ -7468,7 +7476,7 @@ export namespace dialogflow_v3 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -7925,6 +7933,7 @@ export namespace dialogflow_v3 {
      *       //   "displayName": "my_displayName",
      *       //   "enableSpellCorrection": false,
      *       //   "enableStackdriverLogging": false,
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "securitySettings": "my_securitySettings",
      *       //   "speechToTextSettings": {},
@@ -7945,6 +7954,7 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
@@ -8222,6 +8232,7 @@ export namespace dialogflow_v3 {
      *       // request body parameters
      *       // {
      *       //   "agentUri": "my_agentUri",
+     *       //   "dataFormat": "my_dataFormat",
      *       //   "environment": "my_environment"
      *       // }
      *     },
@@ -8377,6 +8388,7 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
@@ -8817,6 +8829,7 @@ export namespace dialogflow_v3 {
      *       //   "displayName": "my_displayName",
      *       //   "enableSpellCorrection": false,
      *       //   "enableStackdriverLogging": false,
+     *       //   "locked": false,
      *       //   "name": "my_name",
      *       //   "securitySettings": "my_securitySettings",
      *       //   "speechToTextSettings": {},
@@ -8837,6 +8850,7 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
+     *   //   "locked": false,
      *   //   "name": "my_name",
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
