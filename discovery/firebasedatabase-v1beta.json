@@ -268,6 +268,11 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "showDeleted": {
+                      "description": "Indicate that DatabaseInstances in the `DELETED` state should also be returned.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1beta/{+parent}/instances",
@@ -317,7 +322,7 @@
       }
     }
   },
-  "revision": "20210827",
+  "revision": "20220328",
   "rootUrl": "https://firebasedatabase.googleapis.com/",
   "schemas": {
     "DatabaseInstance": {

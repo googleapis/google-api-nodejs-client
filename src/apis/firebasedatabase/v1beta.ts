@@ -800,6 +800,8 @@ export namespace firebasedatabase_v1beta {
      *     pageToken: 'placeholder-value',
      *     // The parent project for which to list database instances, in the form: `projects/{project-number\}/locations/{location-id\}` To list across all locations, use a parent in the form: `projects/{project-number\}/locations/-`
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Indicate that DatabaseInstances in the `DELETED` state should also be returned.
+     *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1115,6 +1117,10 @@ export namespace firebasedatabase_v1beta {
      * The parent project for which to list database instances, in the form: `projects/{project-number\}/locations/{location-id\}` To list across all locations, use a parent in the form: `projects/{project-number\}/locations/-`
      */
     parent?: string;
+    /**
+     * Indicate that DatabaseInstances in the `DELETED` state should also be returned.
+     */
+    showDeleted?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Instances$Reenable
     extends StandardParameters {
