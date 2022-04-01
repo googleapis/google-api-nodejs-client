@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.6.1](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v0.6.0...ml-v0.6.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **ml:** update the API ([e2b13cf](https://github.com/googleapis/google-api-nodejs-client/commit/e2b13cfdcb1a654a5774efeda6ae7b87251f46e8))
+
 ## [0.6.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/ml-v0.5.1...ml-v0.6.0) (2021-11-25)
 
 

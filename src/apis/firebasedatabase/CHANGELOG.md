@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v0.2.0...firebasedatabase-v0.3.0) (2022-04-01)
+
+
+### Features
+
+* **firebasedatabase:** update the API ([7ceef82](https://github.com/googleapis/google-api-nodejs-client/commit/7ceef82e4e19848ca7f8a461cbe60384ccaec2a8))
+
 ## [0.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebasedatabase-v0.1.1...firebasedatabase-v0.2.0) (2021-09-14)
 
 

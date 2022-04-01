@@ -1,5 +1,12 @@
 # Changelog
 
+### [3.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v3.2.0...ondemandscanning-v3.2.1) (2022-04-01)
+
+
+### Bug Fixes
+
+* **ondemandscanning:** update the API ([6d39698](https://github.com/googleapis/google-api-nodejs-client/commit/6d39698bcc1e9fcdb6235960475a39108e491621))
+
 ## [3.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/ondemandscanning-v3.1.0...ondemandscanning-v3.2.0) (2022-02-04)
 
 
