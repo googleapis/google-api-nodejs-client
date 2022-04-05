@@ -46,22 +46,28 @@ const stagingDir = tmp.dirSync({keep, unsafeCleanup: true});
 const stagingPath = stagingDir.name;
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require('../../package.json');
-const spawnOpts: cp.SpawnSyncOptions = {stdio: 'inherit', shell: true};
+const spawnOpts: cp.SpawnSyncOptions = {
+  stdio: 'inherit', 
+  // Use the shell to find the npm binary in the PATH.
+  shell: true
+};
 
 /**
  * Create a staging directory with temp fixtures used to test on a fresh application.
  */
 describe('kitchen sink', async () => {
   it('should be able to use the d.ts', async function () {
-    this.retries(3);
     this.timeout(160000);
-    await delay(this.test, 4000, this.currentRetry);
     console.log(`${__filename} staging area: ${stagingPath}`);
     cp.spawnSync('npm', ['pack'], spawnOpts);
+    // Sleeping here should absolutely not be necessary, but prevents a 
+    // "file not found" error in the mv statement below.
+    await new Promise(resolve => setTimeout(resolve, 100));
     const tarball = path.join(
       __dirname,
       `../../${pkg.name}-${pkg.version}.tgz`
     );
+    console.log(`mv ${tarball} ${stagingPath}/googleapis.tgz`);
     await mvp(tarball, `${stagingPath}/googleapis.tgz`);
     await ncpp('test/fixtures/kitchen', `${stagingPath}/`);
     cp.spawnSync(
