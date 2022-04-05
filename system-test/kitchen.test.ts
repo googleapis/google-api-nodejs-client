@@ -47,9 +47,9 @@ const stagingPath = stagingDir.name;
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const pkg = require('../../package.json');
 const spawnOpts: cp.SpawnSyncOptions = {
-  stdio: 'inherit', 
+  stdio: 'inherit',
   // Use the shell to find the npm binary in the PATH.
-  shell: true
+  shell: true,
 };
 
 /**
@@ -60,7 +60,7 @@ describe('kitchen sink', async () => {
     this.timeout(160000);
     console.log(`${__filename} staging area: ${stagingPath}`);
     cp.spawnSync('npm', ['pack'], spawnOpts);
-    // Sleeping here should absolutely not be necessary, but prevents a 
+    // Sleeping here should absolutely not be necessary, but prevents a
     // "file not found" error in the mv statement below.
     await new Promise(resolve => setTimeout(resolve, 100));
     const tarball = path.join(
