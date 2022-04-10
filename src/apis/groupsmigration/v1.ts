@@ -260,7 +260,7 @@ export namespace groupsmigration_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/groups/v1/groups/{groupId}/archive').replace(
+            url: (rootUrl + '/upload/groups/v1/groups/{groupId}/archive').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
