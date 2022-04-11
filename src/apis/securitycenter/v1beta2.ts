@@ -335,6 +335,10 @@ export namespace securitycenter_v1beta2 {
      */
     findingClass?: string | null;
     /**
+     * Represents IAM bindings associated with the Finding.
+     */
+    iamBindings?: Schema$IamBinding[];
+    /**
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
@@ -358,6 +362,10 @@ export namespace securitycenter_v1beta2 {
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
     name?: string | null;
+    /**
+     * Next steps associate to the finding.
+     */
+    nextSteps?: string | null;
     /**
      * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
@@ -731,6 +739,23 @@ export namespace securitycenter_v1beta2 {
     state?: string | null;
   }
   /**
+   * Represents a particular IAM binding, which captures a member's role addition, removal, or state.
+   */
+  export interface Schema$IamBinding {
+    /**
+     * The action that was performed on a Binding.
+     */
+    action?: string | null;
+    /**
+     * A single identity requesting access for a Cloud Platform resource, e.g. "foo@google.com".
+     */
+    member?: string | null;
+    /**
+     * Role that is assigned to "members". For example, "roles/viewer", "roles/editor", or "roles/owner".
+     */
+    role?: string | null;
+  }
+  /**
    * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
    */
   export interface Schema$Indicator {
@@ -767,6 +792,19 @@ export namespace securitycenter_v1beta2 {
      * The MITRE ATT&CK version referenced by the above fields. E.g. "8".
      */
     version?: string | null;
+  }
+  /**
+   * Resource capturing onboarding information for a given CRM resource.
+   */
+  export interface Schema$OnboardingState {
+    /**
+     * The resource name of the OnboardingState. Format: organizations/{organization\}/onboardingState Format: folders/{folder\}/onboardingState Format: projects/{project\}/onboardingState
+     */
+    name?: string | null;
+    /**
+     * Describes the level a given organization, folder, or project is onboarded with SCC. If the resource wasn't onboarded, NOT_FOUND would have been thrown.
+     */
+    onboardingLevel?: string | null;
   }
   /**
    * Additional Links
@@ -1213,6 +1251,136 @@ export namespace securitycenter_v1beta2 {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Retrieve the OnboardingState of a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.folders.getOnboardingState({
+     *     // Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
+     *     name: 'folders/my-folder/onboardingState',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "onboardingLevel": "my_onboardingLevel"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getOnboardingState(
+      params: Params$Resource$Folders$Getonboardingstate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getOnboardingState(
+      params?: Params$Resource$Folders$Getonboardingstate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OnboardingState>;
+    getOnboardingState(
+      params: Params$Resource$Folders$Getonboardingstate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getOnboardingState(
+      params: Params$Resource$Folders$Getonboardingstate,
+      options: MethodOptions | BodyResponseCallback<Schema$OnboardingState>,
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      params: Params$Resource$Folders$Getonboardingstate,
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Getonboardingstate
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$OnboardingState> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Getonboardingstate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Getonboardingstate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OnboardingState>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OnboardingState>(parameters);
       }
     }
 
@@ -2419,6 +2587,13 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Folders$Getonboardingstate
+    extends StandardParameters {
+    /**
+     * Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
      */
     name?: string;
   }
@@ -3630,6 +3805,136 @@ export namespace securitycenter_v1beta2 {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Retrieve the OnboardingState of a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.organizations.getOnboardingState({
+     *     // Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
+     *     name: 'organizations/my-organization/onboardingState',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "onboardingLevel": "my_onboardingLevel"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getOnboardingState(
+      params: Params$Resource$Organizations$Getonboardingstate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getOnboardingState(
+      params?: Params$Resource$Organizations$Getonboardingstate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OnboardingState>;
+    getOnboardingState(
+      params: Params$Resource$Organizations$Getonboardingstate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getOnboardingState(
+      params: Params$Resource$Organizations$Getonboardingstate,
+      options: MethodOptions | BodyResponseCallback<Schema$OnboardingState>,
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      params: Params$Resource$Organizations$Getonboardingstate,
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Getonboardingstate
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$OnboardingState> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Getonboardingstate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Getonboardingstate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OnboardingState>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OnboardingState>(parameters);
       }
     }
 
@@ -5113,6 +5418,13 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string;
   }
+  export interface Params$Resource$Organizations$Getonboardingstate
+    extends StandardParameters {
+    /**
+     * Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
+     */
+    name?: string;
+  }
   export interface Params$Resource$Organizations$Getsecuritycentersettings
     extends StandardParameters {
     /**
@@ -6339,6 +6651,136 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
+     * Retrieve the OnboardingState of a resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const securitycenter = google.securitycenter('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await securitycenter.projects.getOnboardingState({
+     *     // Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
+     *     name: 'projects/my-project/onboardingState',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "onboardingLevel": "my_onboardingLevel"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getOnboardingState(
+      params: Params$Resource$Projects$Getonboardingstate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getOnboardingState(
+      params?: Params$Resource$Projects$Getonboardingstate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$OnboardingState>;
+    getOnboardingState(
+      params: Params$Resource$Projects$Getonboardingstate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getOnboardingState(
+      params: Params$Resource$Projects$Getonboardingstate,
+      options: MethodOptions | BodyResponseCallback<Schema$OnboardingState>,
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      params: Params$Resource$Projects$Getonboardingstate,
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      callback: BodyResponseCallback<Schema$OnboardingState>
+    ): void;
+    getOnboardingState(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Getonboardingstate
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OnboardingState>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$OnboardingState> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Getonboardingstate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Getonboardingstate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://securitycenter.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OnboardingState>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OnboardingState>(parameters);
+      }
+    }
+
+    /**
      * Get the SecurityHealthAnalyticsSettings resource.
      * @example
      * ```js
@@ -7542,6 +7984,13 @@ export namespace securitycenter_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Getonboardingstate
+    extends StandardParameters {
+    /**
+     * Required. The name of the OnboardingState to retrieve. Formats: * organizations/{organization\}/onboardingState * folders/{folder\}/onboardingState * projects/{project\}/onboardingState
      */
     name?: string;
   }

@@ -394,6 +394,10 @@ export namespace securitycenter_v1 {
      */
     findingClass?: string | null;
     /**
+     * Represents IAM bindings associated with the Finding.
+     */
+    iamBindings?: Schema$IamBinding[];
+    /**
      * Represents what's commonly known as an Indicator of compromise (IoC) in computer forensics. This is an artifact observed on a network or in an operating system that, with high confidence, indicates a computer intrusion. Reference: https://en.wikipedia.org/wiki/Indicator_of_compromise
      */
     indicator?: Schema$Indicator;
@@ -417,6 +421,10 @@ export namespace securitycenter_v1 {
      * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
     name?: string | null;
+    /**
+     * Next steps associate to the finding.
+     */
+    nextSteps?: string | null;
     /**
      * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
@@ -919,6 +927,23 @@ export namespace securitycenter_v1 {
      * Properties matching the groupBy fields in the request.
      */
     properties?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents a particular IAM binding, which captures a member's role addition, removal, or state.
+   */
+  export interface Schema$IamBinding {
+    /**
+     * The action that was performed on a Binding.
+     */
+    action?: string | null;
+    /**
+     * A single identity requesting access for a Cloud Platform resource, e.g. "foo@google.com".
+     */
+    member?: string | null;
+    /**
+     * Role that is assigned to "members". For example, "roles/viewer", "roles/editor", or "roles/owner".
+     */
+    role?: string | null;
   }
   /**
    * Cloud IAM Policy information associated with the Google Cloud resource described by the Security Command Center asset. This information is managed and defined by the Google Cloud resource and cannot be modified by the user.
@@ -4229,12 +4254,14 @@ export namespace securitycenter_v1 {
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
+     *       //   "iamBindings": [],
      *       //   "indicator": {},
      *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
      *       //   "name": "my_name",
+     *       //   "nextSteps": "my_nextSteps",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
@@ -4257,12 +4284,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -4412,12 +4441,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -4571,12 +4602,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -10353,12 +10386,14 @@ export namespace securitycenter_v1 {
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
+     *       //   "iamBindings": [],
      *       //   "indicator": {},
      *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
      *       //   "name": "my_name",
+     *       //   "nextSteps": "my_nextSteps",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
@@ -10381,12 +10416,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -10836,12 +10873,14 @@ export namespace securitycenter_v1 {
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
+     *       //   "iamBindings": [],
      *       //   "indicator": {},
      *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
      *       //   "name": "my_name",
+     *       //   "nextSteps": "my_nextSteps",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
@@ -10864,12 +10903,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -11019,12 +11060,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -11178,12 +11221,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -14555,12 +14600,14 @@ export namespace securitycenter_v1 {
      *       //   "externalSystems": {},
      *       //   "externalUri": "my_externalUri",
      *       //   "findingClass": "my_findingClass",
+     *       //   "iamBindings": [],
      *       //   "indicator": {},
      *       //   "mitreAttack": {},
      *       //   "mute": "my_mute",
      *       //   "muteInitiator": "my_muteInitiator",
      *       //   "muteUpdateTime": "my_muteUpdateTime",
      *       //   "name": "my_name",
+     *       //   "nextSteps": "my_nextSteps",
      *       //   "parent": "my_parent",
      *       //   "resourceName": "my_resourceName",
      *       //   "securityMarks": {},
@@ -14583,12 +14630,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -14738,12 +14787,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
@@ -14897,12 +14948,14 @@ export namespace securitycenter_v1 {
      *   //   "externalSystems": {},
      *   //   "externalUri": "my_externalUri",
      *   //   "findingClass": "my_findingClass",
+     *   //   "iamBindings": [],
      *   //   "indicator": {},
      *   //   "mitreAttack": {},
      *   //   "mute": "my_mute",
      *   //   "muteInitiator": "my_muteInitiator",
      *   //   "muteUpdateTime": "my_muteUpdateTime",
      *   //   "name": "my_name",
+     *   //   "nextSteps": "my_nextSteps",
      *   //   "parent": "my_parent",
      *   //   "resourceName": "my_resourceName",
      *   //   "securityMarks": {},
