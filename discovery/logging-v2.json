@@ -5817,7 +5817,7 @@
       }
     }
   },
-  "revision": "20220318",
+  "revision": "20220401",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -6083,6 +6083,37 @@
         },
         "userAgent": {
           "description": "The user agent sent by the client. Example: \"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IndexConfig": {
+      "description": "Configuration for an indexed field.",
+      "id": "IndexConfig",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the index was last modified.This is used to return the timestamp, and will be ignored if supplied during update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fieldPath": {
+          "description": "Required. The LogEntry field path to index.Note that some paths are automatically indexed, and other paths are not eligible for indexing. See indexing documentation( https://cloud.google.com/logging/docs/view/advanced-queries#indexed-fields) for details.For example: jsonPayload.request.status",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. The type of data in this index.",
+          "enum": [
+            "INDEX_TYPE_UNSPECIFIED",
+            "INDEX_TYPE_STRING",
+            "INDEX_TYPE_INTEGER"
+          ],
+          "enumDescriptions": [
+            "The index's type is unspecified.",
+            "The index is a string-type index.",
+            "The index is a integer-type index."
+          ],
           "type": "string"
         }
       },
@@ -6408,6 +6439,13 @@
         "description": {
           "description": "Describes this bucket.",
           "type": "string"
+        },
+        "indexConfigs": {
+          "description": "A list of indexed fields and related configuration data.",
+          "items": {
+            "$ref": "IndexConfig"
+          },
+          "type": "array"
         },
         "lifecycleState": {
           "description": "Output only. The bucket lifecycle state.",
