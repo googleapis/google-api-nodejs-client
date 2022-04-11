@@ -602,7 +602,7 @@ export namespace calendar_v3 {
      */
     anyoneCanAddSelf?: boolean | null;
     /**
-     * File attachments for the event. Currently only Google Drive attachments are supported.
+     * File attachments for the event.
      * In order to modify attachments the supportsAttachments request parameter should be set to true.
      * There can be at most 25 attachments per event,
      */
@@ -818,7 +818,7 @@ export namespace calendar_v3 {
      */
     fileUrl?: string | null;
     /**
-     * URL link to the attachment's icon. Read-only.
+     * URL link to the attachment's icon. This field can only be modified for custom third-party attachments.
      */
     iconLink?: string | null;
     /**
