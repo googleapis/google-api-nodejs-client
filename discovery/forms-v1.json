@@ -10,6 +10,15 @@
         },
         "https://www.googleapis.com/auth/drive.readonly": {
           "description": "See and download all your Google Drive files"
+        },
+        "https://www.googleapis.com/auth/forms.body": {
+          "description": "See, edit, create, and delete all your Google Forms forms"
+        },
+        "https://www.googleapis.com/auth/forms.body.readonly": {
+          "description": "See all your Google Forms forms"
+        },
+        "https://www.googleapis.com/auth/forms.responses.readonly": {
+          "description": "See all responses to your Google Forms forms"
         }
       }
     }
@@ -138,7 +147,8 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/drive",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/forms.body"
           ]
         },
         "create": {
@@ -157,7 +167,8 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/drive",
-            "https://www.googleapis.com/auth/drive.file"
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/forms.body"
           ]
         },
         "get": {
@@ -183,7 +194,9 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
-            "https://www.googleapis.com/auth/drive.readonly"
+            "https://www.googleapis.com/auth/drive.readonly",
+            "https://www.googleapis.com/auth/forms.body",
+            "https://www.googleapis.com/auth/forms.body.readonly"
           ]
         }
       },
@@ -219,7 +232,8 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
-                "https://www.googleapis.com/auth/drive.file"
+                "https://www.googleapis.com/auth/drive.file",
+                "https://www.googleapis.com/auth/forms.responses.readonly"
               ]
             },
             "list": {
@@ -260,7 +274,8 @@
               },
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
-                "https://www.googleapis.com/auth/drive.file"
+                "https://www.googleapis.com/auth/drive.file",
+                "https://www.googleapis.com/auth/forms.responses.readonly"
               ]
             }
           }
@@ -293,7 +308,10 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/drive.readonly"
+                "https://www.googleapis.com/auth/drive.readonly",
+                "https://www.googleapis.com/auth/forms.body",
+                "https://www.googleapis.com/auth/forms.body.readonly",
+                "https://www.googleapis.com/auth/forms.responses.readonly"
               ]
             },
             "delete": {
@@ -326,7 +344,10 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/drive.readonly"
+                "https://www.googleapis.com/auth/drive.readonly",
+                "https://www.googleapis.com/auth/forms.body",
+                "https://www.googleapis.com/auth/forms.body.readonly",
+                "https://www.googleapis.com/auth/forms.responses.readonly"
               ]
             },
             "list": {
@@ -352,7 +373,10 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/drive.readonly"
+                "https://www.googleapis.com/auth/drive.readonly",
+                "https://www.googleapis.com/auth/forms.body",
+                "https://www.googleapis.com/auth/forms.body.readonly",
+                "https://www.googleapis.com/auth/forms.responses.readonly"
               ]
             },
             "renew": {
@@ -388,7 +412,10 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/drive.readonly"
+                "https://www.googleapis.com/auth/drive.readonly",
+                "https://www.googleapis.com/auth/forms.body",
+                "https://www.googleapis.com/auth/forms.body.readonly",
+                "https://www.googleapis.com/auth/forms.responses.readonly"
               ]
             }
           }
@@ -396,7 +423,7 @@
       }
     }
   },
-  "revision": "20220322",
+  "revision": "20220405",
   "rootUrl": "https://forms.googleapis.com/",
   "schemas": {
     "Answer": {
