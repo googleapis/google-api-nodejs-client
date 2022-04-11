@@ -206,6 +206,10 @@ export namespace vmmigration_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The time the clone job was ended.
+     */
+    endTime?: string | null;
+    /**
      * Output only. Provides details for the errors that led to the Clone Job's state.
      */
     error?: Schema$Status;
@@ -402,6 +406,10 @@ export namespace vmmigration_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The time the cutover job had finished.
+     */
+    endTime?: string | null;
+    /**
      * Output only. Provides details for the errors that led to the Cutover Job's state.
      */
     error?: Schema$Status;
@@ -488,7 +496,7 @@ export namespace vmmigration_v1 {
     version?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -1468,7 +1476,7 @@ export namespace vmmigration_v1 {
      *
      *   // Do the magic
      *   const res = await vmmigration.projects.locations.list({
-     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
@@ -1593,7 +1601,7 @@ export namespace vmmigration_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -6707,6 +6715,7 @@ export namespace vmmigration_v1 {
      *         // {
      *         //   "computeEngineTargetDetails": {},
      *         //   "createTime": "my_createTime",
+     *         //   "endTime": "my_endTime",
      *         //   "error": {},
      *         //   "name": "my_name",
      *         //   "state": "my_state",
@@ -6855,6 +6864,7 @@ export namespace vmmigration_v1 {
      *   // {
      *   //   "computeEngineTargetDetails": {},
      *   //   "createTime": "my_createTime",
+     *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
      *   //   "state": "my_state",
@@ -7351,6 +7361,7 @@ export namespace vmmigration_v1 {
      *           // {
      *           //   "computeEngineTargetDetails": {},
      *           //   "createTime": "my_createTime",
+     *           //   "endTime": "my_endTime",
      *           //   "error": {},
      *           //   "name": "my_name",
      *           //   "progressPercent": 0,
@@ -7502,6 +7513,7 @@ export namespace vmmigration_v1 {
      *   // {
      *   //   "computeEngineTargetDetails": {},
      *   //   "createTime": "my_createTime",
+     *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "name": "my_name",
      *   //   "progressPercent": 0,
