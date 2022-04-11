@@ -283,7 +283,7 @@ export namespace iam_v1 {
    */
   export interface Schema$DisableServiceAccountRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
   /**
@@ -871,7 +871,7 @@ export namespace iam_v1 {
    */
   export interface Schema$UploadServiceAccountKeyRequest {
     /**
-     * A field that allows clients to upload their own public key. If set, use this public key data to create a service account key for given service account. Please note, the expected format for this field is X509_PEM.
+     * The public key to associate with the service account. Must be an RSA public key that is wrapped in an X.509 v3 certificate. Include the first line, `-----BEGIN CERTIFICATE-----`, and the last line, `-----END CERTIFICATE-----`.
      */
     publicKeyData?: string | null;
   }
@@ -9244,7 +9244,7 @@ export namespace iam_v1 {
     }
 
     /**
-     * Creates a ServiceAccountKey, using a public key that you provide.
+     * Uploads the public key portion of a key pair that you manage, and associates the public key with a ServiceAccount. After you upload the public key, you can use the private key from the key pair as a service account key.
      * @example
      * ```js
      * // Before running the sample:

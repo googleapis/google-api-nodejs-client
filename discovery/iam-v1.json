@@ -1790,7 +1790,7 @@
                   ]
                 },
                 "upload": {
-                  "description": "Creates a ServiceAccountKey, using a public key that you provide.",
+                  "description": "Uploads the public key portion of a key pair that you manage, and associates the public key with a ServiceAccount. After you upload the public key, you can use the private key from the key pair as a service account key.",
                   "flatPath": "v1/projects/{projectsId}/serviceAccounts/{serviceAccountsId}/keys:upload",
                   "httpMethod": "POST",
                   "id": "iam.projects.serviceAccounts.keys.upload",
@@ -1921,7 +1921,7 @@
       }
     }
   },
-  "revision": "20220310",
+  "revision": "20220331",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
@@ -2149,7 +2149,7 @@
       "type": "object"
     },
     "Empty": {
-      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
       "type": "object"
@@ -3030,7 +3030,7 @@
       "id": "UploadServiceAccountKeyRequest",
       "properties": {
         "publicKeyData": {
-          "description": "A field that allows clients to upload their own public key. If set, use this public key data to create a service account key for given service account. Please note, the expected format for this field is X509_PEM.",
+          "description": "The public key to associate with the service account. Must be an RSA public key that is wrapped in an X.509 v3 certificate. Include the first line, `-----BEGIN CERTIFICATE-----`, and the last line, `-----END CERTIFICATE-----`.",
           "format": "byte",
           "type": "string"
         }
