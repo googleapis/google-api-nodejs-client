@@ -171,6 +171,10 @@ export namespace firebasedatabase_v1beta {
    * The request sent to the ReenableDatabaseInstance method.
    */
   export interface Schema$ReenableDatabaseInstanceRequest {}
+  /**
+   * The request sent to UndeleteDatabaseInstance method.
+   */
+  export interface Schema$UndeleteDatabaseInstanceRequest {}
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -1055,6 +1059,149 @@ export namespace firebasedatabase_v1beta {
         return createAPIRequest<Schema$DatabaseInstance>(parameters);
       }
     }
+
+    /**
+     * Restores a DatabaseInstance that was previously marked to be deleted. This may only be used on a DatabaseInstance in the DELETED state. Purged DatabaseInstance's may not be recovered.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasedatabase.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasedatabase = google.firebasedatabase('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasedatabase.projects.locations.instances.undelete({
+     *     // The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "databaseUrl": "my_databaseUrl",
+     *   //   "name": "my_name",
+     *   //   "project": "my_project",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Projects$Locations$Instances$Undelete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    undelete(
+      params?: Params$Resource$Projects$Locations$Instances$Undelete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$DatabaseInstance>;
+    undelete(
+      params: Params$Resource$Projects$Locations$Instances$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Instances$Undelete,
+      options: MethodOptions | BodyResponseCallback<Schema$DatabaseInstance>,
+      callback: BodyResponseCallback<Schema$DatabaseInstance>
+    ): void;
+    undelete(
+      params: Params$Resource$Projects$Locations$Instances$Undelete,
+      callback: BodyResponseCallback<Schema$DatabaseInstance>
+    ): void;
+    undelete(callback: BodyResponseCallback<Schema$DatabaseInstance>): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Undelete
+        | BodyResponseCallback<Schema$DatabaseInstance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DatabaseInstance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DatabaseInstance>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$DatabaseInstance> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasedatabase.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DatabaseInstance>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DatabaseInstance>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Create
@@ -1133,5 +1280,17 @@ export namespace firebasedatabase_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$ReenableDatabaseInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Undelete
+    extends StandardParameters {
+    /**
+     * The fully qualified resource name of the database instance, in the form: `projects/{project-number\}/locations/{location-id\}/instances/{database-id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteDatabaseInstanceRequest;
   }
 }
