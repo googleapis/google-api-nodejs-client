@@ -1536,7 +1536,7 @@
       }
     }
   },
-  "revision": "20220301",
+  "revision": "20220404",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1931,6 +1931,10 @@
           "description": "Output only. When the Company-Owned device was imported. This field is empty for BYOD devices.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "deviceId": {
+          "description": "Unique identifier for the device.",
           "type": "string"
         },
         "deviceType": {

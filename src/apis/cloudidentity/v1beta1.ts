@@ -391,6 +391,10 @@ export namespace cloudidentity_v1beta1 {
      */
     createTime?: string | null;
     /**
+     * Unique identifier for the device.
+     */
+    deviceId?: string | null;
+    /**
      * Output only. Type of device.
      */
     deviceType?: string | null;
@@ -2802,6 +2806,7 @@ export namespace cloudidentity_v1beta1 {
      *   //   "buildNumber": "my_buildNumber",
      *   //   "compromisedState": "my_compromisedState",
      *   //   "createTime": "my_createTime",
+     *   //   "deviceId": "my_deviceId",
      *   //   "deviceType": "my_deviceType",
      *   //   "enabledDeveloperOptions": false,
      *   //   "enabledUsbDebugging": false,
