@@ -126,6 +126,28 @@ export namespace firestore_v1beta1 {
   }
 
   /**
+   * Defines a aggregation that produces a single result.
+   */
+  export interface Schema$Aggregation {
+    /**
+     * Required. The name of the field to store the result of the aggregation into. Requires: * Must be present. * Must be unique across all aggregation aliases. * Conform to existing document field name limitations.
+     */
+    alias?: string | null;
+    /**
+     * Count aggregator.
+     */
+    count?: Schema$Count;
+  }
+  /**
+   * The result of a single bucket from a Firestore aggregation query. The keys of `aggregate_fields` are the same for all results in an aggregation query, unlike document queries which can have different fields present for each result.
+   */
+  export interface Schema$AggregationResult {
+    /**
+     * The result of the aggregation functions, ex: `COUNT(*) AS total_docs`. The key is the alias assigned to the aggregation function on input and the size of this map equals the number of aggregation functions in the query.
+     */
+    aggregateFields?: {[key: string]: Schema$Value} | null;
+  }
+  /**
    * An array value.
    */
   export interface Schema$ArrayValue {
@@ -268,13 +290,22 @@ export namespace firestore_v1beta1 {
    */
   export interface Schema$CompositeFilter {
     /**
-     * The list of filters to combine. Must contain at least one filter.
+     * The list of filters to combine. Requires: * At least one filter is present.
      */
     filters?: Schema$Filter[];
     /**
      * The operator for combining multiple filters.
      */
     op?: string | null;
+  }
+  /**
+   * Count of documents that match the query. The `COUNT(*)` aggregation function operates on the entire document so it does not require a field reference.
+   */
+  export interface Schema$Count {
+    /**
+     * Optional. Optional constraint on the maximum number of documents to count. This provides a way to set an upper bound on the number of documents to scan, limiting latency and cost. High-Level Example: ``` SELECT COUNT_UP_TO(1000) FROM ( SELECT * FROM k ); ``` Requires: * Must be greater than zero when present.
+     */
+    upTo?: number | null;
   }
   /**
    * A position in a query result set.
@@ -926,6 +957,44 @@ export namespace firestore_v1beta1 {
     transaction?: string | null;
   }
   /**
+   * The request for Firestore.RunAggregationQuery.
+   */
+  export interface Schema$RunAggregationQueryRequest {
+    /**
+     * Starts a new transaction as part of the query, defaulting to read-only. The new transaction ID will be returned as the first response in the stream.
+     */
+    newTransaction?: Schema$TransactionOptions;
+    /**
+     * Executes the query at the given timestamp. Requires: * Cannot be more than 270 seconds in the past.
+     */
+    readTime?: string | null;
+    /**
+     * An aggregation query.
+     */
+    structuredAggregationQuery?: Schema$StructuredAggregationQuery;
+    /**
+     * Run the aggregation within an already active transaction. The value here is the opaque transaction ID to execute the query in.
+     */
+    transaction?: string | null;
+  }
+  /**
+   * The response for Firestore.RunAggregationQuery.
+   */
+  export interface Schema$RunAggregationQueryResponse {
+    /**
+     * The time at which the aggregate value is valid for.
+     */
+    readTime?: string | null;
+    /**
+     * A single aggregation result. Not present when reporting partial progress or when the query produced zero results.
+     */
+    result?: Schema$AggregationResult;
+    /**
+     * The transaction that was started as part of this request. Only present on the first response when the request requested to start a new transaction.
+     */
+    transaction?: string | null;
+  }
+  /**
    * The request for Firestore.RunQuery.
    */
   export interface Schema$RunQueryRequest {
@@ -955,10 +1024,6 @@ export namespace firestore_v1beta1 {
      */
     document?: Schema$Document;
     /**
-     * If present, Firestore has completely finished the request and no more documents will be returned.
-     */
-    done?: boolean | null;
-    /**
      * The time at which the document was read. This may be monotonically increasing; in this case, the previous documents in the result stream are guaranteed not to have changed between their `read_time` and this one. If the query returns no results, a response with `read_time` and no `document` will be sent, and this represents the time at which the query was run.
      */
     readTime?: string | null;
@@ -987,6 +1052,19 @@ export namespace firestore_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Firestore query for running an aggregation over a StructuredQuery.
+   */
+  export interface Schema$StructuredAggregationQuery {
+    /**
+     * Optional. Series of aggregations to apply on top of the `structured_query`.
+     */
+    aggregations?: Schema$Aggregation[];
+    /**
+     * Nested structured query.
+     */
+    structuredQuery?: Schema$StructuredQuery;
   }
   /**
    * A Firestore query.
@@ -3657,6 +3735,160 @@ export namespace firestore_v1beta1 {
     }
 
     /**
+     * Runs an aggregation query. Rather than producing Document results like Firestore.RunQuery, this API allows running an aggregation to produce a series of AggregationResult server-side. High-Level Example: ``` -- Return the number of documents in table given a filter. SELECT COUNT(*) FROM ( SELECT * FROM k where a = true ); ```
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.documents.runAggregationQuery({
+     *     // Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     *     parent:
+     *       'projects/my-project/databases/my-database/documents/my-document/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "newTransaction": {},
+     *       //   "readTime": "my_readTime",
+     *       //   "structuredAggregationQuery": {},
+     *       //   "transaction": "my_transaction"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "readTime": "my_readTime",
+     *   //   "result": {},
+     *   //   "transaction": "my_transaction"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runAggregationQuery(
+      params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runAggregationQuery(
+      params?: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RunAggregationQueryResponse>;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>,
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      params: Params$Resource$Projects$Databases$Documents$Runaggregationquery,
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      callback: BodyResponseCallback<Schema$RunAggregationQueryResponse>
+    ): void;
+    runAggregationQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Documents$Runaggregationquery
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RunAggregationQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RunAggregationQueryResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Documents$Runaggregationquery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Runaggregationquery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}:runAggregationQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RunAggregationQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RunAggregationQueryResponse>(parameters);
+      }
+    }
+
+    /**
      * Runs a query.
      * @example
      * ```js
@@ -3706,7 +3938,6 @@ export namespace firestore_v1beta1 {
      *   // Example response
      *   // {
      *   //   "document": {},
-     *   //   "done": false,
      *   //   "readTime": "my_readTime",
      *   //   "skippedResults": 0,
      *   //   "transaction": "my_transaction"
@@ -4210,6 +4441,18 @@ export namespace firestore_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$RollbackRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Documents$Runaggregationquery
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name. In the format: `projects/{project_id\}/databases/{database_id\}/documents` or `projects/{project_id\}/databases/{database_id\}/documents/{document_path\}`. For example: `projects/my-project/databases/my-database/documents` or `projects/my-project/databases/my-database/documents/chatrooms/my-chatroom`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunAggregationQueryRequest;
   }
   export interface Params$Resource$Projects$Databases$Documents$Runquery
     extends StandardParameters {
