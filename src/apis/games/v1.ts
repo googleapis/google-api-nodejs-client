@@ -1043,6 +1043,10 @@ export namespace games_v1 {
      */
     friendStatus?: string | null;
     /**
+     * Per-application unique player identifier.
+     */
+    gamePlayerId?: string | null;
+    /**
      * Uniquely identifies the type of this resource. Value is always the fixed string `games#player`
      */
     kind?: string | null;
@@ -4369,6 +4373,7 @@ export namespace games_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "experienceInfo": {},
      *   //   "friendStatus": "my_friendStatus",
+     *   //   "gamePlayerId": "my_gamePlayerId",
      *   //   "kind": "my_kind",
      *   //   "name": {},
      *   //   "originalPlayerId": "my_originalPlayerId",
